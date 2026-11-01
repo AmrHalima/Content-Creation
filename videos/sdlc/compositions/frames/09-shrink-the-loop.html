@@ -1,0 +1,146 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f09-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    .f09-ring-svg { position: absolute; left: 0; top: 0; }
+    .f09-arc { fill: none; stroke: #141413; stroke-opacity: 0.85; stroke-width: 3; stroke-linecap: round; }
+    .f09-head { fill: #141413; opacity: 0; }
+    .f09-mini {
+      position: absolute; width: 80px; height: 38px; box-sizing: border-box;
+      background: #EFE9DE;
+      border: 1px solid rgba(20,19,19,0.12);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw;
+      letter-spacing: 0.02em; color: rgba(20,19,19,0.7);
+      opacity: 0;
+    }
+    .f09-line1 {
+      position: absolute; top: 650px; left: 0; right: 0; text-align: center;
+      font-size: 3.2cqw; font-weight: 400; line-height: 1.3; color: rgba(20,19,19,0.85);
+      opacity: 0;
+    }
+    .f09-display {
+      position: absolute; top: 750px; left: 0; right: 0; text-align: center;
+      font-family: "EB Garamond", serif; font-size: 13cqw; font-weight: 400;
+      line-height: 0.95; letter-spacing: -0.02em; color: #141413;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .f09-band-mask {
+      position: absolute; left: 230px; top: 990px; width: 620px; height: 104px;
+      overflow: hidden;
+    }
+    .f09-band {
+      position: absolute; left: 0; top: 0; width: 620px; height: 104px; box-sizing: border-box;
+      background: #FAF9F5;
+      border: 2px solid #CC785C;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    .f09-band-star {
+      display: inline-block; font-size: 3.2cqw; line-height: 1; color: #CC785C;
+      opacity: 0;
+    }
+    .f09-band-text {
+      font-size: 2.7cqw; font-weight: 400; letter-spacing: 0.01em; color: rgba(20,19,19,0.9);
+    }
+  </style>
+
+  <div id="root" data-composition-id="09-shrink-the-loop" data-width="1080" data-height="1920">
+
+    <div id="09-shrink-the-loop-bg" class="clip" data-start="0" data-duration="5.248" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f09-bg"></div>
+    </div>
+
+    <div id="09-shrink-the-loop-stage" class="clip" data-start="0" data-duration="5.248" data-track-index="1" style="position:absolute;inset:0;">
+
+      <div id="09-shrink-the-loop-ring">
+        <svg class="f09-ring-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <path id="09-shrink-the-loop-arc1" class="f09-arc" d="M 585.7 216.6 A 189 189 0 0 1 676.0 268.7" />
+          <path id="09-shrink-the-loop-arc2" class="f09-arc" d="M 721.7 347.9 A 189 189 0 0 1 721.7 452.1" />
+          <path id="09-shrink-the-loop-arc3" class="f09-arc" d="M 676.0 531.3 A 189 189 0 0 1 585.7 583.4" />
+          <path id="09-shrink-the-loop-arc4" class="f09-arc" d="M 494.3 583.4 A 189 189 0 0 1 404.0 531.3" />
+          <path id="09-shrink-the-loop-arc5" class="f09-arc" d="M 358.3 452.1 A 189 189 0 0 1 358.3 347.9" />
+          <path id="09-shrink-the-loop-arc6" class="f09-arc" d="M 404.0 268.7 A 189 189 0 0 1 494.3 216.6" />
+          <polygon id="09-shrink-the-loop-head1" class="f09-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(676.0,268.7) rotate(46)" />
+          <polygon id="09-shrink-the-loop-head2" class="f09-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(721.7,452.1) rotate(106)" />
+          <polygon id="09-shrink-the-loop-head3" class="f09-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(585.7,583.4) rotate(166)" />
+          <polygon id="09-shrink-the-loop-head4" class="f09-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(404.0,531.3) rotate(226)" />
+          <polygon id="09-shrink-the-loop-head5" class="f09-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(358.3,347.9) rotate(286)" />
+          <polygon id="09-shrink-the-loop-head6" class="f09-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(494.3,216.6) rotate(346)" />
+        </svg>
+        <div id="09-shrink-the-loop-mini1" class="f09-mini" style="left:500px;top:192px;">plan</div>
+        <div id="09-shrink-the-loop-mini2" class="f09-mini" style="left:664px;top:286px;">design</div>
+        <div id="09-shrink-the-loop-mini3" class="f09-mini" style="left:664px;top:476px;">build</div>
+        <div id="09-shrink-the-loop-mini4" class="f09-mini" style="left:500px;top:570px;">test</div>
+        <div id="09-shrink-the-loop-mini5" class="f09-mini" style="left:336px;top:476px;">deploy</div>
+        <div id="09-shrink-the-loop-mini6" class="f09-mini" style="left:336px;top:286px;">operate</div>
+      </div>
+
+      <div id="09-shrink-the-loop-line1" class="f09-line1">The boxes were never the point.</div>
+      <div id="09-shrink-the-loop-display" class="f09-display">Shrink the loop.</div>
+    </div>
+
+    <div id="09-shrink-the-loop-bandclip" class="clip" data-start="3.1" data-duration="2.148" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f09-band-mask" data-layout-allow-overflow>
+        <div id="09-shrink-the-loop-band" class="f09-band">
+          <span id="09-shrink-the-loop-star" class="f09-band-star">&#10022;</span>
+          <span class="f09-band-text">Read the full teardown</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["09-shrink-the-loop"] = tl;
+
+      // ── Scene 1: cleared cream stage; the frame-1 loop returns small, arrows re-drawn
+      // heavier in ink (svg-path-draw), line one snaps beneath on the VO. ──
+      for (var i = 1; i <= 6; i++) {
+        var arc = el("09-shrink-the-loop-arc" + i);
+        var len = arc.getTotalLength() * 1.05;
+        arc.style.strokeDasharray = String(len);
+        arc.style.strokeDashoffset = String(len);
+        tl.to(arc, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 0.10 + (i - 1) * 0.10);
+        tl.set(el("09-shrink-the-loop-head" + i), { opacity: 1 }, 0.40 + (i - 1) * 0.10);
+        tl.fromTo(el("09-shrink-the-loop-mini" + i), { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, 0.15 + (i - 1) * 0.10);
+      }
+      tl.fromTo(el("09-shrink-the-loop-line1"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.30);
+
+      // ── Scene 2: the display lands — the largest type in the film; the callback ring
+      // steps back to supporting (single dim tween on the group). ──
+      tl.fromTo(el("09-shrink-the-loop-ring"), { opacity: 1 }, { opacity: 0.55, duration: 0.5, ease: "power1.out" }, 1.96);
+      tl.fromTo(el("09-shrink-the-loop-display"),
+        { opacity: 0, scale: 1.14 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out", transformOrigin: "50% 50%" }, 1.96);
+
+      // ── Scene 3: the coral band wipes in under the mask; the ✱ takes the single
+      // emphasis beat (fade + scale 0.92→1, never spins). Everything holds to the end. ──
+      tl.fromTo(el("09-shrink-the-loop-band"), { x: -620 }, { x: 0, duration: 0.45, ease: "power3.out" }, 3.30);
+      tl.fromTo(el("09-shrink-the-loop-star"),
+        { opacity: 0, scale: 0.92 },
+        { opacity: 1, scale: 1, duration: 0.28, ease: "power2.out", transformOrigin: "50% 50%" }, 3.74);
+    })();
+  </script>
+</template>

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Every app you use remembers things. Here's the trick behind it."
+    },
+    {
+      "id": "02",
+      "text": "A variable is a labeled box. Put a value inside, give the box a name, and use that name whenever you need the value."
+    },
+    {
+      "id": "03",
+      "text": "Change what is inside and the name stays the same. That is the trick: the name is not the value."
+    },
+    {
+      "id": "04",
+      "text": "Score starts at ten. Then score becomes score plus five. Print it, and you get fifteen."
+    },
+    {
+      "id": "05",
+      "text": "So: if score starts at one hundred, and you add five, what prints? Drop the number below."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

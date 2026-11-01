@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Press control Z and you're using a stack."
+    },
+    {
+      "id": "02",
+      "text": "A stack is last in, first out, like a pile of plates. You push onto the top and pop from the top."
+    },
+    {
+      "id": "03",
+      "text": "Undo history, the browser back button, and function calls all use stacks. Push one, push two, then pop gives two."
+    },
+    {
+      "id": "04",
+      "text": "In Python, a list does this. Append puts it on top. Pop takes the top off."
+    },
+    {
+      "id": "05",
+      "text": "After push 1, push 2, push 3, then pop: what's on top?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

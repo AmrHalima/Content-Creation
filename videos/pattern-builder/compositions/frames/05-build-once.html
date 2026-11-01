@@ -1,0 +1,267 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; top: 158px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f05-spike { color: #1a1a1a; font-size: 2.5cqw; letter-spacing: 0; }
+    .f05-gate {
+      position: absolute; top: 246px; left: 56px; width: 968px; height: 176px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 28px;
+      background: #1a1a1a;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f05-gate-name {
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 3.6cqw; letter-spacing: -0.01em; color: #ffa946;
+    }
+    .f05-gate-note {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.6cqw; color: rgba(255,255,235,0.82);
+    }
+    .f05-gate-once {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,235,0.60);
+      opacity: 0;
+      display: inline-block;
+    }
+    .f05-checks {
+      position: absolute; top: 470px; left: 56px; width: 968px;
+      display: flex; flex-direction: column; gap: 22px;
+    }
+    .f05-check {
+      display: flex; align-items: center; gap: 24px;
+      box-sizing: border-box; height: 132px; padding: 0 30px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f05-check-badge {
+      display: inline-block;
+      width: 76px; height: 76px; line-height: 72px; text-align: center;
+      background: #e4e4d0;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 2.6cqw; color: #76766e;
+    }
+    .f05-check-badge-ok { background: #034f46; border-color: #034f46; color: #ffffeb; }
+    .f05-check-text {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.6cqw; color: #1a1a1a;
+    }
+    .f05-check-rule { margin-left: auto; width: 118px; height: 1px; background: rgba(26,26,26,0.18); }
+    .f05-ghost {
+      position: absolute; top: 786px; left: 56px; width: 968px; height: 264px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 30px;
+      background: #1a1a1a;
+      border: 2px solid rgba(26,26,26,0.34);
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f05-ghost-key {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.06em; color: rgba(255,255,235,0.66);
+    }
+    .f05-ghost-skip {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.6cqw; color: rgba(255,255,235,0.78);
+    }
+    .f05-reject {
+      position: absolute; top: 1094px; left: 56px; width: 968px; height: 168px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 26px; padding: 0 30px;
+      background: #ffffeb;
+      border: 2px solid rgba(26,26,26,0.22);
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f05-reject-cross {
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 3.4cqw; color: #ffa946;
+    }
+    .f05-reject-text {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.6cqw; color: #1a1a1a;
+    }
+    .f05-reject-mono {
+      margin-left: auto;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.10em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f05-product {
+      position: absolute; top: 1300px; left: 56px; width: 968px; height: 254px;
+      box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+      background: #f0d7ff;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f05-product-label {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.10em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f05-name {
+      display: inline-block;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.4cqw; line-height: 1; letter-spacing: -0.022em;
+      color: #1a1a1a;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-build-once" data-width="1080" data-height="1920" data-duration="9.716">
+
+    <div id="05-build-once-fieldclip" class="clip" data-start="0" data-duration="9.716" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-field"></div>
+      <div id="05-build-once-grid" class="f05-grid"></div>
+    </div>
+
+    <div id="05-build-once-headclip" class="clip" data-start="0" data-duration="9.716" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="05-build-once-kicker" class="f05-kicker"><span class="f05-spike">&#10033;</span><span>the only door</span></div>
+      <div id="05-build-once-gate" class="f05-gate">
+        <span class="f05-gate-name">build()</span>
+        <span class="f05-gate-note">checks the invariants</span>
+        <span id="05-build-once-once" class="f05-gate-once">once</span>
+      </div>
+    </div>
+
+    <div id="05-build-once-checkclip" class="clip" data-start="1.94" data-duration="7.776" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f05-checks">
+        <div id="05-build-once-k1" class="f05-check">
+          <span id="05-build-once-b1" class="f05-check-badge">?</span>
+          <span class="f05-check-text">every piece present</span>
+          <span class="f05-check-rule"></span>
+        </div>
+        <div id="05-build-once-k2" class="f05-check">
+          <span id="05-build-once-b2" class="f05-check-badge">?</span>
+          <span class="f05-check-text">the totals add up</span>
+          <span class="f05-check-rule"></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="05-build-once-ghostclip" class="clip" data-start="2.72" data-duration="6.996" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="05-build-once-ghost" class="f05-ghost">
+        <span class="f05-ghost-skip">state collected here</span>
+        <span class="f05-ghost-key">inspected once</span>
+      </div>
+    </div>
+
+    <div id="05-build-once-rejectclip" class="clip" data-start="6.64" data-duration="3.076" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="05-build-once-reject" class="f05-reject">
+        <span id="05-build-once-cross" class="f05-reject-cross">&#215;</span>
+        <span class="f05-reject-text">a piece missing</span>
+        <span class="f05-reject-mono">throws</span>
+      </div>
+    </div>
+
+    <div id="05-build-once-productclip" class="clip" data-start="7.18" data-duration="2.536" data-track-index="5" style="position:absolute;inset:0;">
+      <div id="05-build-once-product" class="f05-product">
+        <span class="f05-product-label">the result</span>
+        <span id="05-build-once-name" class="f05-name">builder</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.216;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-build-once"] = tl;
+
+      // ── Scene 1 (0.0–1.9s) — "then build()". The gate enters and the kicker names what it
+      //    is. Nothing else exists: the checks are still unspoken. ──
+      tl.fromTo(el("05-build-once-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("05-build-once-kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 0.14);
+      tl.fromTo(el("05-build-once-gate"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.34);
+
+      // ── Scene 2 (1.9–3.8s) — "checks the invariants once". Two rows arrive on "invariants",
+      //    both flip to checked together on "once" — one beat, no third row, no repeat. ──
+      tl.fromTo(el("05-build-once-k1"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 1.94);
+      tl.fromTo(el("05-build-once-k2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 2.20);
+      tl.to(el("05-build-once-b1"), { backgroundColor: "#034f46", borderColor: "#034f46", color: "#ffffeb", duration: 0.22, ease: "power2.out" }, 2.72);
+      tl.to(el("05-build-once-b2"), { backgroundColor: "#034f46", borderColor: "#034f46", color: "#ffffeb", duration: 0.22, ease: "power2.out" }, 2.72);
+      tl.fromTo(el("05-build-once-once"), { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 2.80);
+      tl.fromTo(el("05-build-once-ghost"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.72);
+
+      // ── Scene 3 (3.8–6.6s) — "missing pieces, bad totals". Each row is named by the voice,
+      //    so each one takes a single lean. No new elements arrive here. ──
+      tl.fromTo(el("05-build-once-k1"), { x: 0 }, { x: 16, duration: 0.26, ease: "power2.out" }, 3.82);
+      tl.to(el("05-build-once-k1"), { x: 0, duration: 0.3, ease: "power2.inOut" }, 4.14);
+      tl.fromTo(el("05-build-once-k2"), { x: 0 }, { x: 16, duration: 0.26, ease: "power2.out" }, 5.34);
+      tl.to(el("05-build-once-k2"), { x: 0, duration: 0.3, ease: "power2.inOut" }, 5.66);
+
+      // ── Scene 4 (6.6–9.2s) — "it throws before an order exists". A rejected attempt shows
+      //    the cost, then the product chamber fills and its name plate swaps in place.
+      //    The swap is a time-proxy + reverse-search discrete sequence: there is no TextPlugin
+      //    in the shipped GSAP, so a `text` tween here would no-op silently and the film would
+      //    explain Builder while showing a static box. ──
+      tl.fromTo(el("05-build-once-reject"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 6.64);
+      tl.fromTo(el("05-build-once-cross"), { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "power3.out" }, 6.76);
+      tl.fromTo(el("05-build-once-product"), { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 7.18);
+
+      var name = el("05-build-once-name");
+      var STEPS = [
+        { at: 0.0, label: "builder" },
+        { at: 7.86, label: "Order" }
+      ];
+      var proxy = { t: 0 };
+      tl.to(proxy, {
+        t: D,
+        duration: D,
+        ease: "none",
+        onUpdate: function () {
+          var i = STEPS.length - 1;
+          while (i > 0 && proxy.t < STEPS[i].at) i--;
+          if (name.textContent !== STEPS[i].label) name.textContent = STEPS[i].label;
+        }
+      }, 0);
+
+      var jit = { p: 0 };
+      var prod = el("05-build-once-product");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.18,
+        duration: D - 8.4,
+        ease: "none",
+        onUpdate: function () { prod.style.transform = "translateY(" + (Math.sin(jit.p) * 1.2).toFixed(3) + "px)"; }
+      }, 8.4);
+    })();
+  </script>
+</template>

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Search a million items in about twenty steps."
+    },
+    {
+      "id": "02",
+      "text": "A binary search tree keeps smaller values on the left. Larger ones go on the right, at every node. The root is eight. Search for three. Left, then left."
+    },
+    {
+      "id": "03",
+      "text": "At each step you discard half the tree. If the tree stays balanced, a lookup takes about log n steps. One million, then five hundred thousand, then down to one."
+    },
+    {
+      "id": "04",
+      "text": "Here is that tree as code. It looks at three boxes and stops. That is what twenty means for a million."
+    },
+    {
+      "id": "05",
+      "text": "What happens if you insert 1, 2, 3, 4, 5 in that order?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

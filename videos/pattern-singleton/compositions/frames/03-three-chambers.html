@@ -1,0 +1,155 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .clipband { position: absolute; inset: 0; }
+
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    .f03-kicker {
+      position: absolute; top: 200px; left: 72px; width: 820px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f03-spike { display: inline-block; opacity: 0; color: #76766e; font-size: 1.7cqw; margin-right: 14px; }
+    .f03-ktext { display: inline-block; opacity: 0; }
+
+    /* grammar R — three named chambers, stacked, 2px ink border, the seam in a dark room */
+    .f03-chamber {
+      position: absolute; left: 90px; width: 680px; height: 190px;
+      box-sizing: border-box; display: flex; align-items: center;
+      padding: 0 40px; border-radius: 8px; border: 2px solid #1a1a1a;
+      background: #ffffeb; opacity: 0;
+    }
+    .f03-seam { background: #1a1a1a; border: 2px solid #1a1a1a; }
+    .f03-chamberlabel {
+      display: block; font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 4.2cqw; line-height: 1.02; letter-spacing: -0.018em; color: #1a1a1a; white-space: nowrap;
+    }
+    .f03-seam .f03-chamberlabel { color: #ffffeb; }
+    .f03-caller { top: 380px; }
+    .f03-seambox { top: 690px; }
+    .f03-instance { top: 1000px; }
+
+    /* dependency arrows, pointing down */
+    .f03-arrow {
+      position: absolute; left: 415px; width: 30px; height: 112px;
+      display: flex; flex-direction: column; align-items: center; opacity: 0;
+    }
+    .f03-arrow1 { top: 576px; }
+    .f03-arrow2 { top: 886px; }
+    .f03-arrowline { width: 3px; height: 88px; background: #1a1a1a; }
+    .f03-arrowhead {
+      width: 0; height: 0;
+      border-left: 10px solid transparent; border-right: 10px solid transparent;
+      border-top: 16px solid #1a1a1a;
+    }
+
+    /* the knowledge path: the one ember moment, running back UP to the caller */
+    .f03-up { position: absolute; left: 770px; top: 460px; width: 200px; height: 650px; opacity: 0; }
+    .f03-upline { position: absolute; left: 78px; top: 16px; width: 3px; height: 616px; background: #ffa946; }
+    .f03-uphead {
+      position: absolute; left: 69px; top: 0; width: 0; height: 0;
+      border-left: 10px solid transparent; border-right: 10px solid transparent;
+      border-bottom: 16px solid #ffa946;
+    }
+    .f03-upstubtop { position: absolute; left: 0; top: 8px; width: 81px; height: 3px; background: #ffa946; }
+    .f03-upstubfoot { position: absolute; left: 0; top: 629px; width: 81px; height: 3px; background: #ffa946; }
+    .f03-uplabel {
+      position: absolute; left: 4px; top: 44px; width: 190px; height: 40px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.75cqw; font-weight: 500;
+      letter-spacing: 0.04em; color: #b87a2c;
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-three-chambers" data-width="1080" data-height="1920" data-duration="8.512">
+
+    <div id="f03-ground" class="clip clipband" data-start="0" data-duration="8.512" data-track-index="0">
+      <div class="f03-field"></div>
+      <div id="f03-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="f03-chrome" class="clip clipband" data-start="0" data-duration="8.512" data-track-index="1">
+      <div class="f03-kicker">
+        <div id="f03-spike" class="f03-spike">&#10009;</div>
+        <div id="f03-ktext" class="f03-ktext" data-layout-ignore>THE ANATOMY</div>
+      </div>
+    </div>
+
+    <div id="f03-content" class="clip clipband" data-start="0" data-duration="8.512" data-track-index="2">
+      <div id="f03-caller" class="f03-chamber f03-caller">
+        <div class="f03-chamberlabel">caller</div>
+      </div>
+      <div id="f03-arrow1" class="f03-arrow f03-arrow1">
+        <div class="f03-arrowline"></div><div class="f03-arrowhead"></div>
+      </div>
+      <div id="f03-seambox" class="f03-chamber f03-seam f03-seambox">
+        <div class="f03-chamberlabel">static holder</div>
+      </div>
+      <div id="f03-arrow2" class="f03-arrow f03-arrow2">
+        <div class="f03-arrowline"></div><div class="f03-arrowhead"></div>
+      </div>
+      <div id="f03-instance" class="f03-chamber f03-instance">
+        <div class="f03-chamberlabel">one instance</div>
+      </div>
+      <div id="f03-up" class="f03-up">
+        <div class="f03-upstubtop"></div>
+        <div class="f03-uphead"></div>
+        <div class="f03-upline"></div>
+        <div class="f03-upstubfoot"></div>
+        <div id="f03-uplabel" class="f03-uplabel" data-layout-ignore>uses Config</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.512;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-three-chambers"] = tl;
+
+      tl.fromTo(el("f03-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("f03-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.28, ease: "power2.out" }, 0.08);
+      tl.fromTo(el("f03-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–2.2s) — "Every caller reaches the same door" ──
+      tl.fromTo(el("f03-caller"),
+        { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.44);
+      tl.fromTo(el("f03-arrow1"),
+        { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 2.16);
+
+      // ── Scene 2 (2.2–5.4s) — "a static holder inside the class" ──
+      tl.fromTo(el("f03-seambox"),
+        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out", immediateRender: false }, 3.48);
+      tl.fromTo(el("f03-arrow2"),
+        { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 5.36);
+
+      // ── Scene 3 (5.4–7.3s) — "and the one instance behind it" ──
+      tl.fromTo(el("f03-instance"),
+        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out", immediateRender: false }, 6.82);
+
+      // ── Scene 4 (7.3–8.5s) — the knowledge path lights, running back up to the caller ──
+      tl.fromTo(el("f03-up"),
+        { opacity: 0, scale: 0.985 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power2.out", immediateRender: false }, 7.28);
+      tl.fromTo(el("f03-uplabel"),
+        { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out", immediateRender: false }, 7.62);
+    })();
+  </script>
+</template>

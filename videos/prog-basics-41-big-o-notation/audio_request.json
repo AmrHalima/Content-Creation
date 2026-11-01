@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "How do engineers say 'this code gets slow' without a stopwatch?"
+    },
+    {
+      "id": "02",
+      "text": "Big O describes how the work grows as the input grows. It drops the constants and keeps the shape."
+    },
+    {
+      "id": "03",
+      "text": "One flat line means the same work at any size. One straight line means reading each item once."
+    },
+    {
+      "id": "04",
+      "text": "A loop inside a loop, both over n, is big O of n squared. Halving the list each step keeps it shallow."
+    },
+    {
+      "id": "05",
+      "text": "Save this. What's the Big O of looking up a key in a hash map?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

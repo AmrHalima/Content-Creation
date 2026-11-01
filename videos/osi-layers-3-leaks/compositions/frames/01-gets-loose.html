@@ -1,0 +1,184 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f1-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f1-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    /* one lateral camera, translateX only — same pan machinery as P2 F1, run on row 2 */
+    .f1-world { position: absolute; inset: 0; will-change: transform; }
+    .f1-kicker {
+      position: absolute; top: 470px; left: 96px; width: 560px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f1-column {
+      position: absolute; top: 540px; left: 96px; width: 480px; height: 792px;
+      box-sizing: border-box; border: 4px solid #1a1a1a; border-radius: 8px;
+      background: #ffffff; overflow: hidden;
+    }
+    .f1-row {
+      position: absolute; left: 0; width: 100%; height: 112px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 24px; padding: 0 28px;
+      border-bottom: 2px solid rgba(26,26,26,0.16);
+      opacity: 0;
+    }
+    .f1-row-last { border-bottom: none; }
+    .f1-num {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      color: #76766e; width: 42px; flex: 0 0 42px;
+    }
+    .f1-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.2cqw;
+      line-height: 1.02; letter-spacing: -0.018em; color: #6b6b63;
+    }
+    .f1-row-lit { background: #ffffff; }
+    .f1-row-lit .f1-name { color: #1a1a1a; }
+    .f1-row-lit .f1-num { color: #1a1a1a; }
+    .f1-litbar { position: absolute; left: 0; top: 0; width: 8px; height: 100%; background: #ffa946; opacity: 0; }
+    .f1-svg { position: absolute; inset: 0; }
+    .f1-arw { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f1-head { fill: #ffa946; opacity: 0; }
+    .f1-taildash { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; opacity: 0; }
+    .f1-peer {
+      position: absolute; left: 890px; top: 1126px; width: 150px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 3px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f1-peerdash {
+      position: absolute; left: 890px; top: 1126px; width: 150px; height: 60px; box-sizing: border-box;
+      border: 3px dashed #ffa946; border-radius: 9999px; opacity: 0;
+    }
+    .f1-stub {
+      position: absolute; left: 890px; top: 1210px; width: 150px; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 3px dashed rgba(26,26,26,0.4); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.6); opacity: 0;
+    }
+    .f1-callout {
+      position: absolute; left: 620px; top: 1210px; width: 240px; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 3px solid #ffa946; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-qzwc" id="root" data-composition-id="01-gets-loose" data-width="1080" data-height="1920" data-duration="9.749">
+
+    <div data-hf-id="hf-kor4" id="f1-fieldclip" class="clip" data-start="0" data-duration="9.749" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-g4f4" class="f1-field"></div>
+      <div data-hf-id="hf-a8t2" id="f1-grid" class="f1-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-n8l3" id="f1-worldclip" class="clip" data-start="0" data-duration="9.749" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-w18e" id="f1-world" class="f1-world">
+
+        <div data-hf-id="hf-b8rb" id="f1-kicker" class="f1-kicker" data-layout-ignore>&#10009;&nbsp; the pair at layer two</div>
+
+        <div data-hf-id="hf-2hr6" id="f1-column" class="f1-column">
+          <div data-hf-id="hf-gkyt" id="f1-row7" class="f1-row" style="top:0px;"><span data-hf-id="hf-w96u" class="f1-num">7</span><span data-hf-id="hf-b0j0" class="f1-name">application</span></div>
+          <div data-hf-id="hf-mtb2" id="f1-row6" class="f1-row" style="top:112px;"><span data-hf-id="hf-vuvt" class="f1-num">6</span><span data-hf-id="hf-flsi" class="f1-name">presentation</span></div>
+          <div data-hf-id="hf-gg1f" id="f1-row5" class="f1-row" style="top:224px;"><span data-hf-id="hf-x1sw" class="f1-num">5</span><span data-hf-id="hf-4eqy" class="f1-name">session</span></div>
+          <div data-hf-id="hf-qyg8" id="f1-row4" class="f1-row" style="top:336px;"><span data-hf-id="hf-wnhv" class="f1-num">4</span><span data-hf-id="hf-09tf" class="f1-name">transport</span></div>
+          <div data-hf-id="hf-hq61" id="f1-row3" class="f1-row" style="top:448px;"><span data-hf-id="hf-unyq" class="f1-num">3</span><span data-hf-id="hf-k16c" class="f1-name">network</span></div>
+          <div data-hf-id="hf-jiu7" id="f1-row2" class="f1-row f1-row-lit" style="top:560px;">
+            <div data-hf-id="hf-qkmy" id="f1-litbar" class="f1-litbar"></div>
+            <span data-hf-id="hf-q7ol" class="f1-num">2</span><span data-hf-id="hf-jghm" class="f1-name">data link</span>
+          </div>
+          <div data-hf-id="hf-hsq5" id="f1-row1" class="f1-row f1-row-last" style="top:672px;"><span data-hf-id="hf-vgks" class="f1-num">1</span><span data-hf-id="hf-4u5n" class="f1-name">physical</span></div>
+        </div>
+
+        <svg data-hf-id="hf-tmw1" id="f1-svg" class="f1-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <path data-hf-id="hf-a3kt" id="f1-arw" class="f1-arw" d="M 590 1156 L 760 1156" />
+          <path data-hf-id="hf-3gjg" id="f1-tail" class="f1-arw" d="M 760 1156 L 856 1156" />
+          <path data-hf-id="hf-l2hi" id="f1-taildash" class="f1-taildash" d="M 760 1156 L 856 1156" stroke-dasharray="13 12" />
+          <polygon data-hf-id="hf-ok2b" id="f1-head" class="f1-head" points="848,1145 870,1156 848,1167" />
+        </svg>
+
+        <div data-hf-id="hf-4xyu" id="f1-peer" class="f1-peer">L2 &#8596; L2</div>
+        <div data-hf-id="hf-pzta" id="f1-peerdash" class="f1-peerdash"></div>
+        <div data-hf-id="hf-by2b" id="f1-stub" class="f1-stub">?</div>
+        <div data-hf-id="hf-um9l" id="f1-callout" class="f1-callout">gets loose</div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.749;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-gets-loose"] = tl;
+
+      // ── Scene 1 (0.0–1.6s) — "every layer talks sideways": the column resolves at ~55% ink,
+      //    the ember bar lands on layer 2 only. Right 42% is still bare paper. ──
+      tl.fromTo(el("f1-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f1-kicker"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.12);
+      [
+        ["f1-row7", 0.18], ["f1-row6", 0.34], ["f1-row5", 0.5], ["f1-row4", 0.66],
+        ["f1-row3", 0.82], ["f1-row2", 0.98], ["f1-row1", 1.14]
+      ].forEach(function (r) {
+        tl.fromTo(el(r[0]), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.28, ease: "power3.out" }, r[1]);
+      });
+      tl.fromTo(el("f1-litbar"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.02);
+
+      // ── Scene 2 (1.56–5.1s) — "...to the same number on the other end": the camera pans
+      //    laterally along row 2 while the arrow draws itself out of the chamber edge, solid
+      //    and clean, and the matched peer tag centres where the pan lands. ──
+      var cam = { x: 0 };
+      tl.to(cam, {
+        x: -60, duration: 2.2, ease: "power1.inOut",
+        onUpdate: function () { el("f1-world").style.transform = "translateX(" + cam.x.toFixed(2) + "px)"; }
+      }, 1.6);
+
+      var solid = el("f1-arw");
+      var tail = el("f1-tail");
+      [solid, tail].forEach(function (p) {
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+      });
+      tl.to(solid, { strokeDashoffset: 0, duration: 0.85, ease: "power3.out" }, 2.53);
+      tl.to(tail, { strokeDashoffset: 0, duration: 0.55, ease: "power3.out" }, 3.46);
+      tl.fromTo(el("f1-head"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.02);
+      tl.fromTo(el("f1-peer"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 4.6);
+
+      // ── Scene 3 (5.78–8.6s) — "layer two is where that picture gets loose": the last third
+      //    of the arrow breaks into dashes, the peer tag's outline goes dashed with it, an
+      //    unresolved `?` stub fades up at the far end, and the ember moves off the row onto
+      //    the break. The solid tail crossfades out as the dashed one crossfades in over the
+      //    same geometry — no cream patch, so the hairline grid never gets a hole in it. ──
+      tl.to(tail, { opacity: 0, duration: 0.3, ease: "power1.inOut" }, 6.61);
+      tl.to(el("f1-taildash"), { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 6.61);
+      tl.to(el("f1-peer"), { borderColor: "rgba(26,26,26,0)", duration: 0.3, ease: "power1.inOut" }, 6.61);
+      tl.to(el("f1-peerdash"), { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 6.75);
+      tl.fromTo(el("f1-stub"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 7.75);
+      tl.fromTo(el("f1-callout"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 8.47);
+      tl.to(el("f1-litbar"), { opacity: 0.25, duration: 0.45, ease: "power1.inOut" }, 8.47);
+
+      // ── Scene 4 (8.9–9.749s) — held read of the loose end. The only aliveness is jitter on
+      //    the dashed segment, 1.4px, finite. No exit motion: the harness cut is the exit. ──
+      var jit = { p: 0 };
+      var dash = el("f1-taildash");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.5, duration: D - 8.95, ease: "none",
+        onUpdate: function () { dash.style.transform = "translateX(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)"; }
+      }, 8.95);
+    })();
+  </script>
+</template>

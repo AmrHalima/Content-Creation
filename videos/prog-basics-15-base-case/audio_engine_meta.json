@@ -1,0 +1,317 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 3.008,
+      "words": [
+        {
+          "text": "Forget",
+          "start": 0,
+          "end": 0.3
+        },
+        {
+          "text": "this",
+          "start": 0.3,
+          "end": 0.58
+        },
+        {
+          "text": "one",
+          "start": 0.58,
+          "end": 0.8
+        },
+        {
+          "text": "thing",
+          "start": 0.8,
+          "end": 1.06
+        },
+        {
+          "text": "and",
+          "start": 1.06,
+          "end": 1.56
+        },
+        {
+          "text": "you'll",
+          "start": 1.56,
+          "end": 1.72
+        },
+        {
+          "text": "get",
+          "start": 1.72,
+          "end": 1.84
+        },
+        {
+          "text": "a",
+          "start": 1.84,
+          "end": 1.94
+        },
+        {
+          "text": "stack",
+          "start": 1.94,
+          "end": 2.16
+        },
+        {
+          "text": "overflow.",
+          "start": 2.16,
+          "end": 2.48
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 2.389,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "base",
+          "start": 0.14,
+          "end": 0.38
+        },
+        {
+          "text": "case",
+          "start": 0.38,
+          "end": 0.66
+        },
+        {
+          "text": "is",
+          "start": 0.66,
+          "end": 1.06
+        },
+        {
+          "text": "where",
+          "start": 1.06,
+          "end": 1.22
+        },
+        {
+          "text": "recursion",
+          "start": 1.22,
+          "end": 1.76
+        },
+        {
+          "text": "stops.",
+          "start": 1.76,
+          "end": 2.02
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 4.011,
+      "words": [
+        {
+          "text": "Without",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "it,",
+          "start": 0.26,
+          "end": 0.54
+        },
+        {
+          "text": "the",
+          "start": 0.78,
+          "end": 0.82
+        },
+        {
+          "text": "function",
+          "start": 0.82,
+          "end": 1.16
+        },
+        {
+          "text": "calls",
+          "start": 1.16,
+          "end": 1.54
+        },
+        {
+          "text": "itself",
+          "start": 1.54,
+          "end": 1.94
+        },
+        {
+          "text": "until",
+          "start": 1.94,
+          "end": 2.52
+        },
+        {
+          "text": "the",
+          "start": 2.52,
+          "end": 2.68
+        },
+        {
+          "text": "call",
+          "start": 2.68,
+          "end": 2.9
+        },
+        {
+          "text": "stack",
+          "start": 2.9,
+          "end": 3.16
+        },
+        {
+          "text": "runs",
+          "start": 3.16,
+          "end": 3.5
+        },
+        {
+          "text": "out.",
+          "start": 3.5,
+          "end": 3.78
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 4.352,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "recursive",
+          "start": 0.24,
+          "end": 0.82
+        },
+        {
+          "text": "function",
+          "start": 0.82,
+          "end": 1.12
+        },
+        {
+          "text": "needs",
+          "start": 1.12,
+          "end": 1.58
+        },
+        {
+          "text": "a",
+          "start": 1.58,
+          "end": 1.7
+        },
+        {
+          "text": "base",
+          "start": 1.7,
+          "end": 1.9
+        },
+        {
+          "text": "case",
+          "start": 1.9,
+          "end": 2.2
+        },
+        {
+          "text": "and",
+          "start": 2.2,
+          "end": 2.82
+        },
+        {
+          "text": "a",
+          "start": 2.82,
+          "end": 2.92
+        },
+        {
+          "text": "step",
+          "start": 2.92,
+          "end": 3.14
+        },
+        {
+          "text": "that",
+          "start": 3.14,
+          "end": 3.38
+        },
+        {
+          "text": "moves",
+          "start": 3.38,
+          "end": 3.62
+        },
+        {
+          "text": "toward",
+          "start": 3.62,
+          "end": 3.92
+        },
+        {
+          "text": "it.",
+          "start": 3.92,
+          "end": 4.2
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 2.88,
+      "words": [
+        {
+          "text": "What's",
+          "start": 0,
+          "end": 0.3
+        },
+        {
+          "text": "the",
+          "start": 0.3,
+          "end": 0.4
+        },
+        {
+          "text": "base",
+          "start": 0.4,
+          "end": 0.6
+        },
+        {
+          "text": "case",
+          "start": 0.6,
+          "end": 0.86
+        },
+        {
+          "text": "for",
+          "start": 0.86,
+          "end": 1.08
+        },
+        {
+          "text": "summing",
+          "start": 1.08,
+          "end": 1.38
+        },
+        {
+          "text": "a",
+          "start": 1.38,
+          "end": 1.46
+        },
+        {
+          "text": "list?",
+          "start": 1.46,
+          "end": 1.72
+        },
+        {
+          "text": "Comment",
+          "start": 2.06,
+          "end": 2.36
+        },
+        {
+          "text": "it.",
+          "start": 2.36,
+          "end": 2.64
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 16.64
+}

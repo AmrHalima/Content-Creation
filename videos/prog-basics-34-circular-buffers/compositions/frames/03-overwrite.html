@@ -1,0 +1,214 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* R2 cells, same lefts/top as F2 — the row never moves, so the numbers are the same pixels.
+       Tokens are SIBLINGS of the chambers: a value must never sit at a group opacity with its
+       digit inside (pb-13's finding), which is what lets `A` leave at full alpha. */
+    .pb-chamber { position: absolute; box-sizing: border-box; width: 96px; height: 110px; top: 400px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 16px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f3-tok { position: absolute; width: 96px; height: 110px; top: 400px; display: flex;
+      align-items: center; justify-content: center; font-family: "Space Grotesk", sans-serif;
+      font-weight: 700; font-size: 4.0cqw; color: #5AD6A0; }
+
+    .f3-idx { position: absolute; top: 566px; width: 96px; height: 40px; text-align: center;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 400;
+      letter-spacing: 0.10em; color: #9BA6B2; }
+
+    /* HEAD (amber, the frame's only amber element) straddles the cell's BOTTOM edge;
+       TAIL (chrome-neutral, because amber stays singular) straddles its TOP edge, same x.
+       Two markers on the two edges of one slot read as one bracketed slot.
+       z-index 3 is load-bearing: a straddling marker paints OVER the chamber it brackets,
+       so its label is never buried in --panel (pb-21 got this for free from DOM order; here the
+       chambers must come first so the tokens paint over the chambers). TAIL sits 8px higher than
+       a dead-centre straddle (bottom 422, not 430) so its own label clears the `B` glyph's box. */
+    .pb-marker { position: absolute; width: 120px; height: 60px; display: flex; align-items: center;
+      justify-content: center; opacity: 0; background: #262C36; border-radius: 14px; z-index: 3;
+      box-shadow: 0 12px 26px -12px rgba(0,0,0,0.8);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700; }
+    .f3-head { top: 640px; left: 88px; border: 3px solid #FFD166; color: #FFD166; }
+    .f3-tail { top: 362px; left: 200px; border: 3px solid rgba(255,255,255,0.16); color: #9BA6B2; }
+
+    /* counted tags — pb-21's `.f3-tag` form. Upper lane 288 is free in this frame (no arc),
+       so the two `nothing` clauses get one tag each; the overwrite tag uses G20's lower lane. */
+    .f3-tag { position: absolute; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #9BA6B2; white-space: nowrap; }
+    .pb-digit { color: #5AD6A0; }
+
+    /* B4: the physical cells read D B C; the recency reading is a separate labelled line.
+       It sits in the counter band (630-746), which a three-slot R2 row leaves empty. */
+    .f3-log { position: absolute; left: 72px; top: 700px; width: 864px; height: 44px;
+      display: flex; align-items: center; justify-content: center; gap: 24px; opacity: 0; }
+    .f3-logl { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.2cqw;
+      font-weight: 400; letter-spacing: 0.08em; color: #9BA6B2; white-space: nowrap; }
+    .f3-logv { display: inline-block; font-family: "Space Grotesk", sans-serif; font-size: 3.2cqw;
+      font-weight: 700; letter-spacing: 0.02em; color: #5AD6A0; white-space: nowrap; }
+
+    /* the one reading line, and the example chip */
+    .pb-ann { position: absolute; left: 72px; top: 810px; width: 936px; height: 56px;
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw; color: #9BA6B2; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+    .f3-tab { position: absolute; left: 452px; top: 424px; width: 108px; height: 44px;
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 700; color: #9BA6B2; }
+    .f3-chip { position: absolute; left: 592px; top: 424px; width: 236px; height: 44px;
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 400; color: #9BA6B2;
+      white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="03-overwrite" data-width="1080" data-height="1920" data-duration="8.45">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="8.45" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="8.45" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>NEWEST LANDS ON OLDEST</div>
+        <div id="c3-badge" class="pb-kbadge" data-layout-ignore>INTERMEDIATE</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="8.45" data-track-index="2">
+      <div id="f3-tagA" class="f3-tag" style="left:270px; top:288px; width:300px;" data-layout-allow-overlap>MOVED&nbsp;<span class="pb-digit">0</span></div>
+      <div id="f3-tagB" class="f3-tag" style="left:590px; top:288px; width:220px;" data-layout-allow-overlap>SIZE&nbsp;<span class="pb-digit">3</span></div>
+
+      <div id="f3-tail" class="pb-marker f3-tail" data-layout-allow-overlap>TAIL</div>
+
+      <div id="f3-b0" class="pb-chamber" style="left:100px;"></div>
+      <div id="f3-b1" class="pb-chamber" style="left:212px;"></div>
+      <div id="f3-b2" class="pb-chamber" style="left:324px;"></div>
+      <div id="f3-t0" class="f3-tok" style="left:100px;">A</div>
+      <div id="f3-t1" class="f3-tok" style="left:212px;">B</div>
+      <div id="f3-t2" class="f3-tok" style="left:324px;">C</div>
+      <div id="f3-td" class="f3-tok" style="left:100px; opacity:0;">D</div>
+
+      <div id="f3-i0" class="f3-idx" style="left:100px;" data-layout-ignore>0</div>
+      <div id="f3-i1" class="f3-idx" style="left:212px;" data-layout-ignore>1</div>
+      <div id="f3-i2" class="f3-idx" style="left:324px;" data-layout-ignore>2</div>
+
+      <div id="f3-tab" class="f3-tab" data-layout-ignore>buf</div>
+      <div id="f3-chip" class="f3-chip" data-layout-ignore>streaming audio</div>
+      <div id="f3-head" class="pb-marker f3-head" data-layout-allow-overlap>HEAD</div>
+
+      <div id="f3-log" class="f3-log">
+        <span class="f3-logl" data-layout-ignore>oldest&nbsp;&rarr;&nbsp;newest</span>
+        <span class="f3-logv">B&nbsp;&rarr;&nbsp;C&nbsp;&rarr;&nbsp;D</span>
+      </div>
+
+      <div id="f3-note" class="pb-ann">newest&nbsp;lands&nbsp;on&nbsp;<strong>oldest</strong></div>
+      <div id="f3-tagC" class="f3-tag" style="left:590px; top:892px; width:220px;" data-layout-allow-overlap>OVERWROTE&nbsp;<span class="pb-digit">A</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.45;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-overwrite"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 2.11, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.81, ease: "sine.inOut", repeat: 2, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.11, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c3-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: in from the left (F2 came up). The row is already the board, so it arrives
+         as a set with the wipe — no per-box accent, and no box ever translates in this frame. */
+      tl.fromTo(el("f3-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* P9 count-tick, zero first: the slots keep their numbers, only what is in them changes */
+      [0, 1, 2].forEach(function (n, i) {
+        tl.fromTo(el("f3-i" + n), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 0.2 + i * 0.08);
+      });
+
+      /* the head is waiting on slot 0 before the word lands: overwrites 0.54 */
+      tl.fromTo(el("f3-head"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.8)", immediateRender: false }, 0.3);
+      tl.to(el("f3-head"), { y: -160, duration: 0.26, ease: "power3.out", immediateRender: false }, 0.48);
+
+      /* the lost value: A dims to 0.42 (0.56-0.70), then LEAVES the chamber upward at full
+         alpha-quality (0.72-1.02). The new value drop-ins 0.12s after it is gone (1.14), so no
+         cell ever holds two glyphs — the single easiest way to make this frame unreadable. */
+      tl.to(el("f3-t0"), { opacity: 0.42, duration: 0.14, ease: "power1.out", immediateRender: false }, 0.56);
+      tl.to(el("f3-t0"), { y: -46, opacity: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, 0.72);
+      tl.fromTo(el("f3-td"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.44, ease: "bounce.out", immediateRender: false }, 1.14);
+      tl.to(el("f3-b0"), { borderColor: "rgba(90,214,160,0.75)", duration: 0.2, immediateRender: false }, 1.44);
+      tl.to(el("f3-b0"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.34 }, 1.64);
+
+      /* the overwrite is named, and the head/tail pair settles on slot 1 (ledger: head 1, tail 1) */
+      tl.fromTo(el("f3-tagC"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 1.26);
+      tl.to(el("f3-head"), { x: 112, y: -160, duration: 0.24, ease: "power2.inOut", immediateRender: false }, 1.5);
+      tl.fromTo(el("f3-tail"), { opacity: 0, y: -34 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.62);
+
+      /* the recency reading, on its own labelled line, opposite to the cells: D B C in slots,
+         B -> C -> D in age. Two systems, two lanes, never merged. */
+      tl.fromTo(el("f3-log"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 2.1);
+
+      /* the two `nothing` clauses: one counted tag per clause, and both are counts of what did
+         not happen here — 0 chambers translated, the size never changed */
+      tl.fromTo(el("f3-tagA"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 3.02);
+      tl.fromTo(el("f3-tagB"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 3.86);
+
+      /* the example arrives as chrome, not as a claim (streaming 5.80) */
+      tl.fromTo(el("f3-chip"), { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 5.82);
+
+      /* the reading line arrives with the word it glosses (oldest 1.38) */
+      tl.fromTo(el("f3-note"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 1.4);
+
+      /* ambient float on the written row, back to zero — the chambers stay in their slots */
+      [0, 1, 2].forEach(function (n, i) {
+        tl.fromTo(el("f3-b" + n), { y: 0 }, { y: -4, duration: 0.6, ease: "sine.inOut", repeat: 1,
+          yoyo: true, immediateRender: false }, 6.5 + i * 0.08);
+      });
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 8.13);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

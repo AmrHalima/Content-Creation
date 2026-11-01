@@ -1,0 +1,442 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 4.8,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "string",
+          "start": 0.22,
+          "end": 0.62
+        },
+        {
+          "text": "isn't",
+          "start": 0.62,
+          "end": 1.2
+        },
+        {
+          "text": "one",
+          "start": 1.2,
+          "end": 1.44
+        },
+        {
+          "text": "thing.",
+          "start": 1.44,
+          "end": 1.78
+        },
+        {
+          "text": "It's",
+          "start": 2.28,
+          "end": 2.58
+        },
+        {
+          "text": "a",
+          "start": 2.58,
+          "end": 2.66
+        },
+        {
+          "text": "lot",
+          "start": 2.66,
+          "end": 2.86
+        },
+        {
+          "text": "of",
+          "start": 2.86,
+          "end": 3
+        },
+        {
+          "text": "tiny",
+          "start": 3,
+          "end": 3.36
+        },
+        {
+          "text": "things",
+          "start": 3.36,
+          "end": 3.8
+        },
+        {
+          "text": "in",
+          "start": 3.8,
+          "end": 4.04
+        },
+        {
+          "text": "a",
+          "start": 4.04,
+          "end": 4.16
+        },
+        {
+          "text": "row.",
+          "start": 4.16,
+          "end": 4.4
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 5.909,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "character",
+          "start": 0.22,
+          "end": 0.66
+        },
+        {
+          "text": "is",
+          "start": 0.66,
+          "end": 1.16
+        },
+        {
+          "text": "one",
+          "start": 1.16,
+          "end": 1.46
+        },
+        {
+          "text": "symbol.",
+          "start": 1.46,
+          "end": 1.94
+        },
+        {
+          "text": "One",
+          "start": 2.6,
+          "end": 2.94
+        },
+        {
+          "text": "letter,",
+          "start": 2.94,
+          "end": 3.26
+        },
+        {
+          "text": "one",
+          "start": 3.52,
+          "end": 3.72
+        },
+        {
+          "text": "digit,",
+          "start": 3.72,
+          "end": 4.1
+        },
+        {
+          "text": "even",
+          "start": 4.44,
+          "end": 4.7
+        },
+        {
+          "text": "one",
+          "start": 4.7,
+          "end": 5.04
+        },
+        {
+          "text": "space.",
+          "start": 5.04,
+          "end": 5.4
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 11.52,
+      "words": [
+        {
+          "text": "Line",
+          "start": 0,
+          "end": 0.46
+        },
+        {
+          "text": "those",
+          "start": 0.46,
+          "end": 0.82
+        },
+        {
+          "text": "symbols",
+          "start": 0.82,
+          "end": 1.24
+        },
+        {
+          "text": "up",
+          "start": 1.24,
+          "end": 1.68
+        },
+        {
+          "text": "and",
+          "start": 1.68,
+          "end": 1.96
+        },
+        {
+          "text": "you",
+          "start": 1.96,
+          "end": 2.1
+        },
+        {
+          "text": "have",
+          "start": 2.1,
+          "end": 2.3
+        },
+        {
+          "text": "a",
+          "start": 2.3,
+          "end": 2.4
+        },
+        {
+          "text": "string.",
+          "start": 2.4,
+          "end": 2.8
+        },
+        {
+          "text": "Each",
+          "start": 3.62,
+          "end": 3.92
+        },
+        {
+          "text": "one",
+          "start": 3.92,
+          "end": 4.18
+        },
+        {
+          "text": "sits",
+          "start": 4.18,
+          "end": 4.52
+        },
+        {
+          "text": "at",
+          "start": 4.52,
+          "end": 4.8
+        },
+        {
+          "text": "a",
+          "start": 4.8,
+          "end": 4.92
+        },
+        {
+          "text": "position,",
+          "start": 4.92,
+          "end": 5.44
+        },
+        {
+          "text": "counting",
+          "start": 5.96,
+          "end": 6.48
+        },
+        {
+          "text": "from",
+          "start": 6.48,
+          "end": 6.9
+        },
+        {
+          "text": "zero.",
+          "start": 6.9,
+          "end": 7.36
+        },
+        {
+          "text": "A",
+          "start": 8.38,
+          "end": 8.52
+        },
+        {
+          "text": "slice",
+          "start": 8.52,
+          "end": 8.86
+        },
+        {
+          "text": "takes",
+          "start": 8.86,
+          "end": 9.46
+        },
+        {
+          "text": "the",
+          "start": 9.46,
+          "end": 9.72
+        },
+        {
+          "text": "letters",
+          "start": 9.72,
+          "end": 10.1
+        },
+        {
+          "text": "before",
+          "start": 10.1,
+          "end": 10.58
+        },
+        {
+          "text": "its",
+          "start": 10.58,
+          "end": 10.88
+        },
+        {
+          "text": "end.",
+          "start": 10.88,
+          "end": 11.24
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 6.635,
+      "words": [
+        {
+          "text": "Word",
+          "start": 0,
+          "end": 0.44
+        },
+        {
+          "text": "is",
+          "start": 0.44,
+          "end": 0.72
+        },
+        {
+          "text": "code.",
+          "start": 0.72,
+          "end": 1.14
+        },
+        {
+          "text": "Position",
+          "start": 1.74,
+          "end": 2.16
+        },
+        {
+          "text": "zero",
+          "start": 2.16,
+          "end": 2.84
+        },
+        {
+          "text": "gives",
+          "start": 2.84,
+          "end": 3.32
+        },
+        {
+          "text": "you",
+          "start": 3.32,
+          "end": 3.52
+        },
+        {
+          "text": "c.",
+          "start": 3.52,
+          "end": 3.84
+        },
+        {
+          "text": "Slice",
+          "start": 4.3,
+          "end": 4.86
+        },
+        {
+          "text": "one",
+          "start": 4.86,
+          "end": 5.1
+        },
+        {
+          "text": "to",
+          "start": 5.1,
+          "end": 5.3
+        },
+        {
+          "text": "three",
+          "start": 5.3,
+          "end": 5.6
+        },
+        {
+          "text": "gives",
+          "start": 5.6,
+          "end": 5.84
+        },
+        {
+          "text": "you",
+          "start": 5.84,
+          "end": 6.06
+        },
+        {
+          "text": "od.",
+          "start": 6.06,
+          "end": 6.36
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 5.888,
+      "words": [
+        {
+          "text": "Save",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "this.",
+          "start": 0.38,
+          "end": 0.74
+        },
+        {
+          "text": "Then",
+          "start": 1.12,
+          "end": 1.3
+        },
+        {
+          "text": "slice",
+          "start": 1.3,
+          "end": 1.64
+        },
+        {
+          "text": "your",
+          "start": 1.64,
+          "end": 1.98
+        },
+        {
+          "text": "own",
+          "start": 1.98,
+          "end": 2.12
+        },
+        {
+          "text": "name.",
+          "start": 2.12,
+          "end": 2.46
+        },
+        {
+          "text": "Position",
+          "start": 3.14,
+          "end": 3.56
+        },
+        {
+          "text": "zero",
+          "start": 3.56,
+          "end": 4.14
+        },
+        {
+          "text": "is",
+          "start": 4.14,
+          "end": 4.66
+        },
+        {
+          "text": "the",
+          "start": 4.66,
+          "end": 4.82
+        },
+        {
+          "text": "first",
+          "start": 4.82,
+          "end": 5.16
+        },
+        {
+          "text": "letter.",
+          "start": 5.16,
+          "end": 5.56
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

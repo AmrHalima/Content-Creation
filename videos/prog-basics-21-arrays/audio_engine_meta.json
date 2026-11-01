@@ -1,0 +1,352 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 2.837,
+      "words": [
+        {
+          "text": "Need",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "100",
+          "start": 0.26,
+          "end": 0.78
+        },
+        {
+          "text": "variables?",
+          "start": 0.78,
+          "end": 1.32
+        },
+        {
+          "text": "You",
+          "start": 1.76,
+          "end": 1.94
+        },
+        {
+          "text": "need",
+          "start": 1.94,
+          "end": 2.14
+        },
+        {
+          "text": "one",
+          "start": 2.14,
+          "end": 2.32
+        },
+        {
+          "text": "array.",
+          "start": 2.32,
+          "end": 2.5
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 6.848,
+      "words": [
+        {
+          "text": "An",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "text": "array",
+          "start": 0.18,
+          "end": 0.44
+        },
+        {
+          "text": "holds",
+          "start": 0.44,
+          "end": 0.82
+        },
+        {
+          "text": "many",
+          "start": 0.82,
+          "end": 1.08
+        },
+        {
+          "text": "values",
+          "start": 1.08,
+          "end": 1.5
+        },
+        {
+          "text": "in",
+          "start": 1.5,
+          "end": 1.74
+        },
+        {
+          "text": "order,",
+          "start": 1.74,
+          "end": 1.96
+        },
+        {
+          "text": "side",
+          "start": 2.36,
+          "end": 2.76
+        },
+        {
+          "text": "by",
+          "start": 2.76,
+          "end": 2.96
+        },
+        {
+          "text": "side",
+          "start": 2.96,
+          "end": 3.34
+        },
+        {
+          "text": "in",
+          "start": 3.34,
+          "end": 3.56
+        },
+        {
+          "text": "memory.",
+          "start": 3.56,
+          "end": 3.84
+        },
+        {
+          "text": "Each",
+          "start": 4.56,
+          "end": 4.84
+        },
+        {
+          "text": "has",
+          "start": 4.84,
+          "end": 5.06
+        },
+        {
+          "text": "an",
+          "start": 5.06,
+          "end": 5.18
+        },
+        {
+          "text": "index",
+          "start": 5.18,
+          "end": 5.46
+        },
+        {
+          "text": "that",
+          "start": 5.46,
+          "end": 5.78
+        },
+        {
+          "text": "starts",
+          "start": 5.78,
+          "end": 6.08
+        },
+        {
+          "text": "at",
+          "start": 6.08,
+          "end": 6.28
+        },
+        {
+          "text": "zero.",
+          "start": 6.28,
+          "end": 6.54
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 5.44,
+      "words": [
+        {
+          "text": "Reading",
+          "start": 0,
+          "end": 0.28
+        },
+        {
+          "text": "by",
+          "start": 0.28,
+          "end": 0.56
+        },
+        {
+          "text": "index",
+          "start": 0.56,
+          "end": 0.96
+        },
+        {
+          "text": "is",
+          "start": 0.96,
+          "end": 1.38
+        },
+        {
+          "text": "instant.",
+          "start": 1.38,
+          "end": 1.82
+        },
+        {
+          "text": "Inserting",
+          "start": 2.48,
+          "end": 2.94
+        },
+        {
+          "text": "in",
+          "start": 2.94,
+          "end": 3.12
+        },
+        {
+          "text": "the",
+          "start": 3.12,
+          "end": 3.2
+        },
+        {
+          "text": "middle",
+          "start": 3.2,
+          "end": 3.38
+        },
+        {
+          "text": "means",
+          "start": 3.38,
+          "end": 3.7
+        },
+        {
+          "text": "shifting",
+          "start": 3.7,
+          "end": 4.18
+        },
+        {
+          "text": "everything",
+          "start": 4.18,
+          "end": 4.68
+        },
+        {
+          "text": "after",
+          "start": 4.68,
+          "end": 5.1
+        },
+        {
+          "text": "it.",
+          "start": 5.1,
+          "end": 5.32
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 4.437,
+      "words": [
+        {
+          "text": "Nums",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "is",
+          "start": 0.36,
+          "end": 0.48
+        },
+        {
+          "text": "ten,",
+          "start": 0.48,
+          "end": 0.525
+        },
+        {
+          "text": "twenty,",
+          "start": 0.48,
+          "end": 0.82
+        },
+        {
+          "text": "thirty.",
+          "start": 1.1,
+          "end": 1.66
+        },
+        {
+          "text": "Nums",
+          "start": 2.24,
+          "end": 2.8
+        },
+        {
+          "text": "at",
+          "start": 2.8,
+          "end": 2.9
+        },
+        {
+          "text": "index",
+          "start": 2.9,
+          "end": 3.18
+        },
+        {
+          "text": "one",
+          "start": 3.18,
+          "end": 3.56
+        },
+        {
+          "text": "gives",
+          "start": 3.56,
+          "end": 3.8
+        },
+        {
+          "text": "twenty.",
+          "start": 3.8,
+          "end": 4.14
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 3.563,
+      "words": [
+        {
+          "text": "Save",
+          "start": 0,
+          "end": 0.28
+        },
+        {
+          "text": "this.",
+          "start": 0.28,
+          "end": 0.56
+        },
+        {
+          "text": "Quick",
+          "start": 0.88,
+          "end": 1.08
+        },
+        {
+          "text": "one:",
+          "start": 1.08,
+          "end": 1.36
+        },
+        {
+          "text": "what's",
+          "start": 1.76,
+          "end": 2
+        },
+        {
+          "text": "nums[-1]",
+          "start": 2,
+          "end": 2.32
+        },
+        {
+          "text": "in",
+          "start": 2.82,
+          "end": 2.92
+        },
+        {
+          "text": "Python?",
+          "start": 2.92,
+          "end": 3.16
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 23.125
+}

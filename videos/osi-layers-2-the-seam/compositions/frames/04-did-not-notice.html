@@ -1,0 +1,150 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f4-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f4-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    /* one world wrapper; the whole frame is one decelerating zoom-out about the QUIC block */
+    .f4-world { position: absolute; inset: 0; transform-origin: 240px 945px; will-change: transform; }
+    .f4-band {
+      position: absolute; left: 96px; width: 520px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; padding: 18px 26px;
+    }
+    .f4-band-kicker {
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f4-band-name { font-family: "EB Garamond", serif; font-size: 4cqw; line-height: 1.02; letter-spacing: -0.02em; margin-top: 2px; }
+    .f4-app { top: 620px; height: 180px; }
+    .f4-net { top: 1080px; height: 180px; }
+    .f4-tr { top: 830px; height: 220px; background: #fff6ea; border-color: #ffa946; }
+    /* the two sibling transport blocks: the swap kept on screen as a fact */
+    .f4-old {
+      position: absolute; left: 370px; top: 880px; width: 220px; height: 130px; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      background: rgba(138,138,128,0.12); border: 3px dashed rgba(26,26,26,0.3); border-radius: 6px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; color: #6b6b63;
+    }
+    .f4-new {
+      position: absolute; left: 130px; top: 880px; width: 220px; height: 130px; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      background: #ffa946; border: 4px solid #1a1a1a; border-radius: 6px;
+      font-family: "EB Garamond", serif; font-size: 4.4cqw; color: #1a1a1a;
+    }
+    .f4-sub { font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.1em; text-transform: uppercase; color: #1a1a1a; }
+    .f4-svg { position: absolute; inset: 0; }
+    .f4-arrow { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 5; stroke-linecap: round; }
+    .f4-arrow-ember { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f4-head { fill: rgba(26,26,26,0.55); }
+    .f4-head-ember { fill: #ffa946; }
+    .f4-peer {
+      position: absolute; left: 812px; width: 200px; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid rgba(26,26,26,0.6); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+    }
+    .f4-get {
+      position: absolute; left: 130px; top: 1272px; width: 456px; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; padding: 0 22px;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f4-unchanged {
+      position: absolute; left: 812px; top: 748px; width: 200px; height: 48px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-x3s7" id="root" data-composition-id="04-did-not-notice" data-width="1080" data-height="1920" data-duration="10.325">
+
+    <div data-hf-id="hf-ooqb" id="f4-fieldclip" class="clip" data-start="0" data-duration="10.325" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-49n1" class="f4-field"></div>
+      <div data-hf-id="hf-z1wr" class="f4-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-yy88" id="f4-worldclip" class="clip" data-start="0" data-duration="10.325" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-ujay" id="f4-world" class="f4-world">
+
+        <div data-hf-id="hf-13di" class="f4-band f4-app">
+          <div data-hf-id="hf-f0un" class="f4-band-kicker" data-layout-ignore>&#10009;&nbsp; layer 7 &middot; application</div>
+          <div data-hf-id="hf-fcny" id="f4-httpname" class="f4-band-name">HTTP</div>
+        </div>
+        <div data-hf-id="hf-8kkj" class="f4-band f4-tr">
+          <div data-hf-id="hf-7um2" class="f4-band-kicker" data-layout-ignore>layer 4 &middot; transport</div>
+        </div>
+        <div data-hf-id="hf-wlw6" class="f4-band f4-net">
+          <div data-hf-id="hf-v4jc" class="f4-band-kicker" data-layout-ignore>layer 3 &middot; network</div>
+          <div data-hf-id="hf-viwv" class="f4-band-name">IP</div>
+        </div>
+        <div data-hf-id="hf-59mx" class="f4-old">TCP<span data-hf-id="hf-oclb" class="f4-sub">was</span></div>
+        <div data-hf-id="hf-mm1t" class="f4-new">QUIC<span data-hf-id="hf-zygm" class="f4-sub">now</span></div>
+
+        <svg data-hf-id="hf-n9f4" class="f4-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <path data-hf-id="hf-9q4r" class="f4-arrow" d="M 620 710 L 1046 710" />
+          <polygon data-hf-id="hf-01fh" class="f4-head" points="1038,699 1060,710 1038,721" />
+          <path data-hf-id="hf-7wsf" class="f4-arrow-ember" d="M 620 940 L 1046 940" />
+          <polygon data-hf-id="hf-5vkd" class="f4-head-ember" points="1038,929 1060,940 1038,951" />
+          <path data-hf-id="hf-jtql" class="f4-arrow" d="M 620 1170 L 1046 1170" />
+          <polygon data-hf-id="hf-fh3x" class="f4-head" points="1038,1159 1060,1170 1038,1181" />
+        </svg>
+        <div data-hf-id="hf-1dbp" class="f4-peer" data-layout-allow-overflow style="top:682px;">theirs</div>
+        <div data-hf-id="hf-sgc9" class="f4-peer" data-layout-allow-overflow style="top:912px;">theirs</div>
+        <div data-hf-id="hf-yfjz" class="f4-peer" data-layout-allow-overflow style="top:1142px;">theirs</div>
+
+        <div data-hf-id="hf-v9u0" id="f4-get" class="f4-get">GET /index.html</div>
+        <div data-hf-id="hf-bdqc" id="f4-unchanged" class="f4-unchanged" data-layout-ignore>unchanged</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.325;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-did-not-notice"] = tl;
+
+      // ── Scene 1 (0.0–1.4s) — open TIGHT: the QUIC block fills the frame as a macro detail,
+      //    the fourpx border cropped by the frame edge. Nothing else is in the world's range. ──
+      el("f4-world").style.transform = "scale(3.6)";
+
+      // ── Scene 2 (1.4–6.0s) — ONE decelerating zoom-out (viewport-change, single .world,
+      //    scale -> 1 with the counter-translate resolved to 0 on one shared ease). It ends
+      //    before the shot does, and after the lock no camera tween exists on this timeline. ──
+      var cam = { s: 3.6 };
+      tl.to(cam, {
+        s: 1, duration: 4.6, ease: "expo.out",
+        onUpdate: function () { el("f4-world").style.transform = "scale(" + cam.s.toFixed(4) + ")"; }
+      }, 1.4);
+
+      // ── Scene 3 (5.28–8.4s) — "the application sent the same request": the HTTP row lights to
+      //    full ink at element level (no camera move), the request line steps in under it, the
+      //    two transport blocks stay visibly different. The ember is on transport, never on application. ──
+      tl.to(el("f4-httpname"), { color: "#1a1a1a", duration: 0.4, ease: "power1.out" }, 5.28);
+      tl.fromTo(el("f4-get"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 6.36);
+      tl.fromTo(el("f4-unchanged"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 8.42);
+
+      // ── Scene 4 (8.8–10.325s) — THE HELD READ. Everything stops. The stillness is the argument:
+      //    after two frames of swapping, the top of the stack does nothing. Jitter on the HTTP row. ──
+      var jit = { p: 0 };
+      var row = el("f4-httpname");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.55, duration: D - 8.9, ease: "none",
+        onUpdate: function () { row.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)"; }
+      }, 8.9);
+    })();
+  </script>
+</template>

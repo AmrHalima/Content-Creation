@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Every decision your app makes comes down to this."
+    },
+    {
+      "id": "02",
+      "text": "A condition is a yes or no question. If it is true, this block runs. Otherwise, the other block. One path runs, the other never gets read."
+    },
+    {
+      "id": "03",
+      "text": "More paths? Add elif. Elif means else if. The first true answer wins, the rest never get checked."
+    },
+    {
+      "id": "04",
+      "text": "If age is at least eighteen, print Welcome. Otherwise print Sorry. Age twenty gives Welcome. Fifteen gives Sorry."
+    },
+    {
+      "id": "05",
+      "text": "Challenge: rewrite that as a one-liner. Show me in the comments. Warning, the obvious attempt does not parse."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

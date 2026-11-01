@@ -1,0 +1,164 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; top: 214px; left: 84px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f03-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f03-ktext { display: inline-block; opacity: 0; }
+
+    .f03-slot {
+      position: absolute; top: 528px; left: 180px; width: 720px; height: 188px;
+      box-sizing: border-box; background: #181715;
+      border: 2px solid rgba(255,255,235,0.20); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 4.4cqw; line-height: 1;
+      letter-spacing: 0.02em; color: #ffffeb; opacity: 0;
+    }
+    .f03-mark {
+      position: absolute; top: 528px; left: 168px; width: 6px; height: 188px;
+      background: #ffa946; opacity: 0;
+    }
+    .f03-subtag {
+      position: absolute; top: 744px; left: 180px; width: 720px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.0cqw; line-height: 1;
+      letter-spacing: 0.02em; color: #76766e; opacity: 0; white-space: nowrap;
+    }
+
+    .f03-subtext { display: inline-block; }
+
+    .f03-mask { position: absolute; top: 940px; left: 84px; width: 912px; height: 340px; overflow: hidden; }
+    .f03-display {
+      display: block;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.8cqw; line-height: 1.06; letter-spacing: -0.02em; color: #1a1a1a;
+    }
+    .f03-line { display: block; white-space: nowrap; }
+    .f03-line-b { color: #1a1a1a; }
+  </style>
+
+  <div id="root" data-composition-id="03-not-a-factory" data-width="1080" data-height="1920" data-duration="6.869">
+
+    <div id="f03-ground" class="clip" data-start="0" data-duration="6.869" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field"></div>
+      <div id="f03-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="f03-chrome" class="clip" data-start="0" data-duration="6.869" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f03-kicker">
+        <span id="f03-spike" class="f03-spike">&#10009;</span><span id="f03-ktext" class="f03-ktext" data-layout-ignore>ONE BOUNDARY</span>
+      </div>
+    </div>
+
+    <div id="f03-anchor" class="clip" data-start="0.2" data-duration="6.669" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f03-mark" class="f03-mark"></div>
+      <div id="f03-slot" data-hold class="f03-slot"><span id="f03-label" class="f03-label">factory</span></div>
+      <div id="f03-sub" class="f03-subtag"><span id="f03-subtext" class="f03-subtext" data-layout-ignore>which thing to build</span></div>
+    </div>
+
+    <div id="f03-statement" class="clip" data-start="3.1" data-duration="3.769" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f03-mask">
+        <div id="f03-display" class="f03-display">
+          <span class="f03-line">reshapes a thing</span>
+          <span class="f03-line f03-line-b">that already exists</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.869;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-not-a-factory"] = tl;
+
+      // discrete-text-sequence: a {t, text} array read by a time proxy whose onUpdate
+      // assigns textContent. There is NO TextPlugin in the shipped GSAP, so
+      // tl.set({ text: ... }) would silently no-op while check still reports 0 errors.
+      // Reverse search makes it correct under any scrub direction.
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t,
+          duration: states[states.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      // ── ground ──
+      tl.fromTo(el("f03-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.0s) "A factory picks which thing to build": the pinned chamber seats ──
+      tl.fromTo(el("f03-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f03-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+      tl.fromTo(el("f03-slot"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 0.3);
+
+      // ── Scene 2 (1.0–3.1s) state 1 of the cycle, plus the ember edge marking the slot ──
+      tl.fromTo(el("f03-mark"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 1.06);
+      tl.fromTo(el("f03-sub"), { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power1.out" }, 1.2);
+
+      // ── Scene 3 (3.1–6.0s) "An adapter reshapes a thing that already exists": one step, then the line ──
+      textSeq(el("f03-label"), [
+        { t: 0, text: "factory" },
+        { t: 3.02, text: "adapter" }
+      ]);
+      textSeq(el("f03-subtext"), [
+        { t: 0, text: "which thing to build" },
+        { t: 3.02, text: "this thing, re-fitted" }
+      ]);
+      tl.fromTo(el("f03-display"), { y: 260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 3.34);
+      tl.to(el("f03-display"), { scale: 1.02, duration: 0.5, ease: "power3.out" }, 5.5);
+
+      // ── Scene 4 (6.0–6.87s) held: jitter on the pinned chamber only, nothing else moves ──
+      var jit = { p: 0 };
+      var box = el("f03-slot");
+      var HOLD = 6.05;
+      gsap.set(box, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

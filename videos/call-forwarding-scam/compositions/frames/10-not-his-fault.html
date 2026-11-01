@@ -1,0 +1,114 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #1A1A1A;
+    }
+    .f10-bg { position: absolute; inset: 0; background: #FFA946; }
+
+    .f10-kicker {
+      position: absolute; top: 500px; right: 96px; width: 888px; min-height: 80px;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.6cqw; font-weight: 500;
+      line-height: 1.3; letter-spacing: 0; color: rgba(26,26,26,0.62); opacity: 0;
+    }
+    .f10-display {
+      position: absolute; top: 620px; right: 96px; width: 888px; min-height: 420px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 13cqw; font-weight: 900; line-height: 1.25; letter-spacing: 0;
+      color: #1A1A1A;
+    }
+    .f10-w { display: inline-block; opacity: 0; }
+    .f10-w emph { font-style: normal; text-decoration: underline; text-decoration-thickness: 0.06em; text-underline-offset: 0.12em; }
+
+    .f10-rule {
+      position: absolute; top: 1035px; right: 96px; width: 300px; height: 3px;
+      background: rgba(26,26,26,0.45); transform-origin: right center;
+    }
+    .f10-sub {
+      position: absolute; top: 1110px; right: 96px; width: 830px; min-height: 230px;
+      font-family: "Noto Naskh Arabic", serif; font-size: 4.6cqw; font-weight: 400;
+      line-height: 1.5; letter-spacing: 0; color: rgba(26,26,26,0.78); opacity: 0;
+    }
+
+    .f10-ask {
+      position: absolute; top: 1400px; right: 96px; width: 888px; min-height: 300px;
+      padding: 40px; opacity: 0; box-sizing: border-box;
+    }
+    .f10-askborder { position: absolute; top: 0; right: 0; }
+    .f10-askmark {
+      display: block; margin-bottom: 12px;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.4cqw; font-weight: 700;
+      line-height: 1.3; letter-spacing: 0; color: rgba(26,26,26,0.6);
+    }
+    .f10-asktext {
+      display: block;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 4.6cqw; font-weight: 700;
+      line-height: 1.4; letter-spacing: 0; color: #1A1A1A;
+    }
+  </style>
+
+  <div id="root" data-composition-id="10-not-his-fault" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f10-bgclip" class="clip" data-start="0" data-duration="13.32" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f10-bg"></div>
+    </div>
+
+    <div id="f10-typeclip" class="clip" data-start="0" data-duration="13.32" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f10-kicker" class="f10-kicker">ولو ده حصّل، أول جملة تقولها له</div>
+      <div class="f10-display" id="f10-display">
+        <span class="f10-w" id="f10-w1">ده</span>
+        <span class="f10-w" id="f10-w2"><emph>مش غلطتك</emph></span>
+      </div>
+      <div id="f10-rule" class="f10-rule"></div>
+      <div id="f10-sub" class="f10-sub">الحيلة ذكية، وبتعدي على ناس نبيهة أوي. ولو حسّ إنه غبي، المرة الجاية مبيقولكش.</div>
+    </div>
+
+    <div id="f10-askclip" class="clip" data-start="6.4" data-duration="6.92" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f10-ask" class="f10-ask">
+        <svg class="f10-askborder" width="888" height="300" viewBox="0 0 888 300" xmlns="http://www.w3.org/2000/svg">
+          <rect id="f10-askrect" x="1" y="1" width="886" height="298" fill="none" stroke="#1A1A1A" stroke-width="2" />
+        </svg>
+        <span class="f10-askmark">النهارده</span>
+        <span class="f10-asktext">ادخل على موبايل ماما وبابا. اعمل الفحص بإيدك، مش ببعت بوست.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["10-not-his-fault"] = tl;
+
+      tl.fromTo(el("f10-kicker"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 0.2);
+
+      // center-outward-expansion: the two words arrive from the middle of the line.
+      tl.fromTo(el("f10-w1"), { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.65, ease: "power4.out" }, 1.5);
+      tl.fromTo(el("f10-w2"), { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.65, ease: "power4.out" }, 1.5);
+      tl.fromTo(el("f10-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 2.5);
+
+      tl.fromTo(el("f10-sub"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 4.6);
+
+      // the ask arrives as the narration turns to what to do today; its border draws itself
+      tl.fromTo(el("f10-ask"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.5);
+      var rect = el("f10-askrect");
+      var LEN = rect.getTotalLength();
+      rect.style.strokeDasharray = String(LEN);
+      rect.style.strokeDashoffset = String(LEN);
+      tl.to(rect, { strokeDashoffset: 0, duration: 1.6, ease: "power1.inOut" }, 6.8);
+
+      // 8.6s -> 13.32s: the only movement left is a slow settle on the line that ends the film.
+      tl.to(el("f10-display"), { y: -16, duration: 4.4, ease: "power1.inOut" }, 8.7);
+    })();
+  </script>
+</template>

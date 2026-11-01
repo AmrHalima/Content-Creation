@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "How does a cache decide what to throw away?"
+    },
+    {
+      "id": "02",
+      "text": "An LRU cache has a fixed size. When it fills, it throws out the item used least recently."
+    },
+    {
+      "id": "03",
+      "text": "Every read moves that item to the front. So the back of the line is always the oldest."
+    },
+    {
+      "id": "04",
+      "text": "A hash map finds the item, and a linked list reorders it. That keeps every read and write in constant time on average."
+    },
+    {
+      "id": "05",
+      "text": "Capacity 2: put A, put B, get A, put C. What gets evicted?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

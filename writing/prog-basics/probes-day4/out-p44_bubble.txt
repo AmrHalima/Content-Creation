@@ -1,0 +1,77 @@
+== 44.1  the script's example [3, 1, 2], every comparison logged ==
+  pass 1
+    compare a[0]=3 > a[1]=1 -> SWAP -> [1, 3, 2]
+    compare a[1]=3 > a[2]=2 -> SWAP -> [1, 2, 3]
+    end of pass 1: [1, 2, 3]
+  pass 2
+    compare a[0]=1 > a[1]=2? no -> [1, 2, 3]
+    end of pass 2: [1, 2, 3]
+    no swaps this pass -> already sorted, stop early (this variant only)
+  final: [1, 2, 3] | comparisons: 3 | swaps: 2
+  state after each swap: ['132', '123']
+
+== 44.2  does the script's chain match?  [3, 1, 2] -> [1, 3, 2] -> [1, 2, 3] ==
+states after each swap, executed: [[1, 3, 2], [1, 2, 3]]
+matches the script's chain: True
+pass-end states, executed: [[1, 2, 3], [1, 2, 3]]
+
+LABEL WARNING - this is the one trap in part 44. The two boxed states are AFTER SWAP 1 and
+AFTER SWAP 2. The second one is also the end of pass 1. Pass 2 compares one pair and
+changes nothing, so its end state is IDENTICAL to pass 1's.
+A frame that labels [1, 3, 2] = 'pass 1' and [1, 2, 3] = 'pass 2' is WRONG.
+Correct options: (a) label the two boxes AFTER SWAP, or (b) show three boxes
+PASS 1 [1,2,3] / PASS 2 [1,2,3] - the repeat is itself the 'this is slow' lesson.
+
+== 44.3  'the largest value bubbles to the end each pass' - verified at the right index ==
+(an earlier version of this probe read a[n-passno-1] instead of a[n-passno] and reported
+ this claim FALSE. It is TRUE. The bug was in the probe, not the script.)
+  [3, 1, 2]
+    largest after pass 1 = 3 (true largest 3) -> TRUE
+    values locked at the right end, pass by pass: [3, 2]
+    sorted at the end? True
+  [5, 1, 4, 2, 8, 3]
+    largest after pass 1 = 8 (true largest 8) -> TRUE
+    values locked at the right end, pass by pass: [8, 5, 4, 3, 2]
+    sorted at the end? True
+  [9, 8, 7, 6, 5, 4, 3, 2, 1]
+    largest after pass 1 = 9 (true largest 9) -> TRUE
+    values locked at the right end, pass by pass: [9, 8, 7, 6, 5, 4, 3, 2]
+    sorted at the end? True
+
+== 44.4  real comparison and swap counts, so O(n^2) is evidenced ==
+variant matters: the textbook version runs every pass; the early-exit version stops.
+n  | worst (reversed) textbook | worst early-exit | best (sorted) textbook | best early-exit
+3  |    3 comps,    3 swaps      |    3 comps,    3 swaps  |    3 comps, 0 swaps          |    2 comps, 0 swaps
+5  |   10 comps,   10 swaps      |   10 comps,   10 swaps  |   10 comps, 0 swaps          |    4 comps, 0 swaps
+10 |   45 comps,   45 swaps      |   45 comps,   45 swaps  |   45 comps, 0 swaps          |    9 comps, 0 swaps
+
+the exact worst-case formula, checked against the counts:
+  n= 3: comparisons     3 = n(n-1)/2 = 3     match True | swaps     3 = same (fully reversed: every pair is inverted)
+  n= 5: comparisons    10 = n(n-1)/2 = 10    match True | swaps    10 = same (fully reversed: every pair is inverted)
+  n=10: comparisons    45 = n(n-1)/2 = 45    match True | swaps    45 = same (fully reversed: every pair is inverted)
+  n=20: comparisons   190 = n(n-1)/2 = 190   match True | swaps   190 = same (fully reversed: every pair is inverted)
+  n=40: comparisons   780 = n(n-1)/2 = 780   match True | swaps   780 = same (fully reversed: every pair is inverted)
+
+doubling test - the only honest way to show 'quadratic':
+  n 5 -> 10 (x2) : comparisons 10 -> 45 (x4.50) - expected x4 for quadratic
+  n 10 -> 20 (x2) : comparisons 45 -> 190 (x4.22) - expected x4 for quadratic
+  n 20 -> 40 (x2) : comparisons 190 -> 780 (x4.11) - expected x4 for quadratic
+  n 40 -> 80 (x2) : comparisons 780 -> 3160 (x4.05) - expected x4 for quadratic
+=> ratios converge to 4.0 as n grows; the gap at small n is the '-1' in n(n-1)/2, not a
+   broken claim. On screen, print n(n-1)/2 and the two counts for one doubling pair
+   (10 -> 20: 45 -> 190), never a lone 'n^2' with no number under it.
+
+the part says 'It's easy to understand but slow, O(n^2)'. Strictly: worst and average
+case O(n^2); best case is O(n) WITH the early-exit flag and O(n^2) WITHOUT it. n=3, sorted
+input: textbook 3 comparisons, early-exit 2. Both executed above.
+
+== 44.5  'nobody uses it' - the fair comparison, no stopwatch needed ==
+bubble sort on 1000 items, worst case: 499500 comparisons, 499500 swaps (executed above)
+n log2 n for the same 1000 = 9966  (a good sort's comparison count grows this way)
+ratio: 50x more comparisons at n=1000, growing with n.
+This is arithmetic on counts, not a timed claim, so it is portable across machines.
+NOTE: CPython's sort() is Timsort - O(n log n) worst case, and it detects an already
+descending run in O(n). Do NOT stage a race against reversed input: that is Timsort's
+best case and the ratio becomes meaningless (an earlier draft of this probe did exactly
+that and printed a 2-million-x number, which was an artifact of the comparison, not a fact).
+The explain line's 'real code uses faster sorts' is true: sorted() is not bubble sort.

@@ -1,0 +1,318 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    .pb-tab { position: absolute; height: 60px; display: flex; align-items: center;
+      justify-content: center; padding: 0 26px; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-bottom: none;
+      border-radius: 12px 12px 0 0; font-family: "JetBrains Mono", monospace; font-size: 2.75cqw;
+      font-weight: 700; letter-spacing: 0.03em; color: #F4F1EA; }
+    .pb-chamber { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .pb-chamber.dashed { border-style: dashed; }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .pb-blink { position: absolute; width: 8px; height: 96px; background: #5AD6A0;
+      opacity: 0; border-radius: 3px; }
+
+    .pb-chip { position: absolute; box-sizing: border-box; height: 88px; display: flex;
+      align-items: center; justify-content: center; padding: 0 24px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    .pb-strip { position: absolute; box-sizing: border-box; display: flex; align-items: center;
+      padding: 0 28px; opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      font-weight: 700; color: #5AD6A0; white-space: nowrap; }
+    .pb-strip.emptydash { border-style: dashed; color: #9BA6B2; }
+    .pb-prompt { display: inline-block; margin-right: 18px; color: #9BA6B2; font-weight: 400; }
+    .pb-ann { position: absolute; box-sizing: border-box; opacity: 0; color: #9BA6B2;
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.01em; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+    .pb-plate { position: absolute; display: flex; align-items: center; justify-content: center;
+      height: 92px; padding: 0 44px; box-sizing: border-box; opacity: 0; background: #FFD166;
+      border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.45);
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #22201B; }
+
+    .pb-line { position: absolute; left: 72px; width: 936px; display: block; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.12;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .pb-word { display: inline-block; position: relative; }
+    .pb-hl { position: absolute; left: -8px; right: -8px; top: 0.08em; bottom: 0.06em;
+      background: #FFD166; border-radius: 8px; transform: scaleX(0); transform-origin: left center; }
+    .pb-wtxt { position: relative; z-index: 1; }
+    /* the shared .pb-hl plate bleeds 8px past the word on both sides, which is exactly the width
+       of one space — so an unplated word sitting right after a plated one had no air left and the
+       gloss read "effectacts". The plate stays as the campaign atom; the gap gets the room. */
+    .f3-ggap { padding-left: 14px; }
+
+    .cd-root { position: absolute; left: 72px; top: 300px; width: 936px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 872px; height: 62px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .cd-rev { clip-path: inset(0 100% 0 0); white-space: pre; }
+    .cd-caret { position: absolute; left: 0; top: 7px; width: 5px; height: 46px;
+      background: #FFD166; opacity: 0; border-radius: 2px; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-a { color: #FFD166; } .tk-e { color: #FF6B5A; } .tk-c { color: #9BA6B2; }
+    .tk-b { font-weight: 700; }
+
+    .pb-ask { position: absolute; left: 72px; width: 936px; display: block; text-align: center;
+      opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.005em; color: #F4F1EA; }
+    .pb-brandline { position: absolute; left: 72px; top: 930px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .pb-sidepill { position: absolute; height: 88px; display: flex; align-items: center;
+      justify-content: center; padding: 0 32px; box-sizing: border-box; opacity: 0;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 9999px;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 3.2cqw;
+      letter-spacing: 0.02em; color: #F4F1EA; white-space: nowrap; }
+    .pb-sidepill.ring { border-color: #FFD166; box-shadow: 0 0 0 7px rgba(255,209,102,0.14);
+      color: #FFD166; }
+
+    .pb-rule { position: absolute; height: 4px; background: #FFD166; transform: scaleX(0);
+      transform-origin: left center; border-radius: 2px; }
+    .pb-wall { position: absolute; background: rgba(255,255,255,0.16); transform: scaleY(0);
+      transform-origin: top center; border-radius: 3px; }
+    .pb-fillbar { position: absolute; background: rgba(90,214,160,0.22); transform: scaleY(0);
+      transform-origin: bottom center; border-radius: 14px; }
+    .pb-spill { position: absolute; width: 12px; background: #FFD166; height: 0;
+      border-radius: 6px; }
+    .pb-wire { position: absolute; height: 4px; background: #FFD166; transform-origin: left center;
+      transform: scaleX(0); }
+    .pb-wirev { position: absolute; width: 4px; background: #FFD166; transform-origin: top center;
+      transform: scaleY(0); }
+    .pb-room { position: absolute; box-sizing: border-box; border: 3px dashed rgba(255,255,255,0.14);
+      border-radius: 26px; opacity: 0; }
+    .pb-roomlab { position: absolute; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2;
+      opacity: 0; }
+
+    /* ── F3 specifics: G4 split, RIGHT panel live, the value leaves DOWN/OUT (mirror of F2) ── */
+    .f3-panel { width:456px; height:220px; top:540px; }
+    .f3-pl { left:72px; }
+    .f3-pr { left:552px; }
+    .f3-head { position:absolute; left:20px; top:66px; width:416px; height:44px; display:flex;
+      align-items:center; opacity:0; font-family:"JetBrains Mono", monospace; font-size:2.9cqw;
+      font-weight:700; letter-spacing:0.04em; color:#F4F1EA; }
+    .f3-cl { left:20px; width:416px; height:50px; font-size:2.8cqw; }
+    .f3-cl1 { top:112px; }
+    .f3-cl2 { top:160px; }
+
+    .f3-ybox { left:638px; top:320px; width:284px; height:120px; }
+    .f3-ytab { left:638px; top:260px; width:200px; height:52px; }
+    .f3-y { position:absolute; left:24px; top:34px; display:inline-block; opacity:0;
+      font-family:"JetBrains Mono", monospace; font-size:3.4cqw; font-weight:700; color:#F4F1EA; }
+    .f3-eq { position:absolute; left:96px; top:36px; display:inline-block; opacity:0;
+      font-family:"JetBrains Mono", monospace; font-size:3.2cqw; font-weight:400; color:#9BA6B2; }
+    .f3-caret { left:150px; top:36px; width:6px; height:48px; }
+
+    .f3-ghost { position:absolute; left:778px; top:446px; width:4px; height:88px; background:rgba(255,255,255,0.16);
+      transform:scaleY(0); transform-origin:top center; border-radius:2px; }
+    .f3-gtri { position:absolute; left:768px; top:426px; width:0; height:0; opacity:0;
+      border-left:14px solid transparent; border-right:14px solid transparent;
+      border-bottom:22px solid rgba(255,255,255,0.16); }
+    .f3-strike { position:absolute; left:714px; top:490px; width:132px; height:4px; background:#FFD166;
+      transform:scaleX(0); transform-origin:center center; border-radius:2px; }
+
+    .f3-drop1 { position:absolute; left:778px; top:762px; width:4px; height:78px; background:#FFD166;
+      transform:scaleY(0); transform-origin:top center; border-radius:2px; }
+    .f3-tri1 { position:absolute; left:768px; top:838px; width:0; height:0; opacity:0;
+      border-left:14px solid transparent; border-right:14px solid transparent;
+      border-top:22px solid #FFD166; }
+    .f3-rail { position:absolute; left:290px; top:786px; width:490px; height:4px; background:#FFD166;
+      transform:scaleX(0); transform-origin:right center; border-radius:2px; }
+    .f3-drop2 { position:absolute; left:290px; top:786px; width:4px; height:50px; background:#FFD166;
+      transform:scaleY(0); transform-origin:top center; border-radius:2px; }
+    .f3-tri2 { position:absolute; left:280px; top:838px; width:0; height:0; opacity:0;
+      border-left:14px solid transparent; border-right:14px solid transparent;
+      border-top:22px solid #FFD166; }
+
+    .f3-scr { left:552px; top:866px; width:456px; height:90px; font-size:2.8cqw; }
+    .f3-file { left:72px; top:866px; width:456px; height:90px; font-size:2.8cqw; }
+    .f3-eight { display:inline-block; clip-path:inset(0 100% 0 0); color:#5AD6A0; }
+    .f3-chip { left:738px; top:700px; width:84px; height:84px; padding:0; border-radius:16px;
+      border:2px solid #5AD6A0; font-size:4cqw; color:#5AD6A0; }
+    .f3-gloss { left:72px; top:392px; width:456px; font-size:2.7cqw; }
+  </style>
+
+  <div id="root" data-composition-id="03-print-out" data-width="1080" data-height="1920" data-duration="9.4">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="9.4" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="9.4" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>A SIDE EFFECT · OUTSIDE THE FUNCTION</div>
+        <div id="c3-badge" class="pb-kbadge" data-layout-ignore>INTERMEDIATE</div>
+      </div>
+    </div>
+    <div id="f3-content" class="clip clipband" data-layout-allow-overflow data-start="0" data-duration="9.4" data-track-index="2">
+
+      <div id="f3-gloss" class="pb-ann f3-gloss"><span class="pb-word" id="f3-gw0"><span class="pb-hl" id="f3-ghl0"></span><span class="pb-wtxt" id="f3-gtx0">A side effect</span></span><span class="f3-ggap">acts</span> <span class="pb-word" id="f3-gw1"><span class="pb-hl" id="f3-ghl1"></span><span class="pb-wtxt" id="f3-gtx1">outside the box</span></span></div>
+
+      <div id="f3-ytab" class="pb-tab f3-ytab">caller</div>
+      <div id="f3-ybox" class="pb-chamber dashed f3-ybox">
+        <div id="f3-y" class="f3-y">y</div>
+        <div id="f3-eq" class="f3-eq">=</div>
+        <div id="f3-caret" class="pb-blink f3-caret"></div>
+      </div>
+      <div id="f3-ghost" class="f3-ghost"></div>
+      <div id="f3-gtri" class="f3-gtri"></div>
+      <div id="f3-strike" class="f3-strike"></div>
+
+      <div id="f3-pl" class="cd-root f3-panel f3-pl">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f3-hl" class="f3-head">return</div>
+        <div id="f3-l1" class="cd-line f3-cl f3-cl1"><div class="cd-rev" id="f3-r1"><span class="tk-i">def</span><span class="tk-i"> double</span><span class="tk-m">(</span><span class="tk-i">x</span><span class="tk-m">):</span></div></div>
+        <div id="f3-l2" class="cd-line f3-cl f3-cl2"><div class="cd-rev" id="f3-r2"><span class="tk-m">    </span><span class="tk-i">return</span><span class="tk-i"> x </span><span class="tk-m">* </span><span class="tk-v">2</span></div></div>
+      </div>
+
+      <div id="f3-pr" class="cd-root f3-panel f3-pr">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f3-hr" class="f3-head"><span class="pb-word" id="f3-hrw"><span class="pb-hl" id="f3-hrl"></span><span class="pb-wtxt" id="f3-hrtx">print</span></span></div>
+        <div id="f3-l3" class="cd-line f3-cl f3-cl1"><div class="cd-rev" id="f3-r3"><span class="tk-i">def</span><span class="tk-i"> double</span><span class="tk-m">(</span><span class="tk-i">x</span><span class="tk-m">):</span></div></div>
+        <div id="f3-l4" class="cd-line f3-cl f3-cl2"><div class="cd-rev" id="f3-r4"><span class="tk-m">    </span><span class="tk-i" id="f3-kw">print</span><span class="tk-m">(</span><span class="tk-i">x </span><span class="tk-m">* </span><span class="tk-v">2</span><span class="tk-m">)</span></div></div>
+      </div>
+
+      <div id="f3-drop1" class="f3-drop1"></div>
+      <div id="f3-tri1" class="f3-tri1"></div>
+      <div id="f3-rail" class="f3-rail"></div>
+      <div id="f3-drop2" class="f3-drop2"></div>
+      <div id="f3-tri2" class="f3-tri2"></div>
+
+      <div id="f3-chip" class="pb-chip f3-chip">8</div>
+
+      <div id="f3-scr" class="pb-strip f3-scr"><span class="pb-prompt">&gt;&gt;&gt;</span><span class="f3-eight" id="f3-eight">8</span></div>
+      <div id="f3-file" class="pb-strip emptydash f3-file"><span class="pb-prompt">&gt;&gt;&gt;</span>a file</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.4;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-print-out"] = tl;
+
+      /* ambient ground */
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 1.567, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.35, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.567, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+
+      /* chrome */
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("c3-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.26);
+
+      /* entrance wipe from the RIGHT (F2 came from the left), right panel lit, left panel dimmed */
+      tl.fromTo(el("f3-pr"), { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.16);
+      tl.set(el("f3-l3"), { opacity: 1 }, 0.56);
+      tl.set(el("f3-l4"), { opacity: 1 }, 1.06);
+      tl.set(el("f3-l1"), { opacity: 1 }, 0.76);
+      tl.set(el("f3-l2"), { opacity: 1 }, 1.26);
+      tl.fromTo(el("f3-pl"), { opacity: 0, x: 140 }, { opacity: 0.32, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.34);
+      tl.fromTo(el("f3-r3"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.46, ease: "power1.inOut", immediateRender: false }, 0.60);
+      tl.fromTo(el("f3-r4"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.46, ease: "power1.inOut", immediateRender: false }, 1.10);
+      tl.fromTo(el("f3-r1"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.46, ease: "power1.inOut", immediateRender: false }, 0.80);
+      tl.fromTo(el("f3-r2"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.46, ease: "power1.inOut", immediateRender: false }, 1.30);
+      tl.fromTo(el("f3-hr"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.30);
+      tl.fromTo(el("f3-hl"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.50);
+
+      /* the gloss, with P1 sweeps on "A side effect" (0.26) and "outside itself" (3.00) */
+      tl.fromTo(el("f3-gloss"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 0.24);
+      tl.fromTo(el("f3-ghl0"), { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power2.out", immediateRender: false }, 0.30);
+      tl.to(el("f3-gtx0"), { color: "#22201B", duration: 0.2, ease: "power1.out" }, 0.46);
+      tl.fromTo(el("f3-ghl1"), { scaleX: 0 }, { scaleX: 1, duration: 0.34, ease: "power2.out", immediateRender: false }, 3.00);
+      tl.to(el("f3-gtx1"), { color: "#22201B", duration: 0.2, ease: "power1.out" }, 3.16);
+
+      /* the caller box EXISTS but receives nothing: dashed, empty, one dim mint caret blinking */
+      tl.fromTo(el("f3-ytab"), { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 0.32, ease: "back.out(1.6)", immediateRender: false }, 1.70);
+      tl.fromTo(el("f3-ybox"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 1.56);
+      tl.fromTo(el("f3-y"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 1.90);
+      tl.fromTo(el("f3-eq"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.24, ease: "power2.out", immediateRender: false }, 2.06);
+      tl.fromTo(el("f3-caret"), { opacity: 0 }, { opacity: 0.6, duration: 0.42, ease: "sine.inOut", repeat: 7, yoyo: true, immediateRender: false }, 2.30);
+
+      /* the upward path is drawn as a ghost, then struck through on "itself" (3.48) — P10 */
+      tl.fromTo(el("f3-ghost"), { scaleY: 0, transformOrigin: "top center" }, { scaleY: 1, duration: 0.4, ease: "power2.out", immediateRender: false }, 2.40);
+      tl.fromTo(el("f3-gtri"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.74);
+      tl.fromTo(el("f3-strike"), { scaleX: 0, transformOrigin: "center center" }, { scaleX: 1, duration: 0.36, ease: "power3.out", immediateRender: false }, 3.48);
+      tl.to(el("f3-ghost"), { opacity: 0.35, duration: 0.3, ease: "power1.out" }, 3.90);
+      tl.to(el("f3-gtri"), { opacity: 0.35, duration: 0.3, ease: "power1.out" }, 3.90);
+
+      /* P8 outward, on "prints ... screen" (5.18 -> 6.20): a shaft drops out of the chamber and
+         the value chip leaves the box, lands, and stops moving — inert text on a surface */
+      tl.fromTo(el("f3-drop1"), { scaleY: 0, transformOrigin: "top center" }, { scaleY: 1, duration: 0.36, ease: "power2.out", immediateRender: false }, 5.14);
+      tl.fromTo(el("f3-tri1"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 5.44);
+      tl.fromTo(el("f3-chip"), { opacity: 0, y: -110 }, { opacity: 1, y: 150, duration: 0.66, ease: "power2.inOut", immediateRender: false }, 5.40);
+      tl.fromTo(el("f3-chip"), { scaleY: 1 }, { scaleY: 0.88, duration: 0.12, ease: "power2.in", immediateRender: false }, 6.02);
+      tl.to(el("f3-scr"), { opacity: 1, duration: 0.01 }, 6.08);
+      tl.fromTo(el("f3-eight"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power1.out", immediateRender: false }, 6.08);
+      tl.to(el("f3-chip"), { opacity: 0, duration: 0.22, ease: "power1.in" }, 6.08);
+
+      /* second surface, on "writes a file" (7.08 -> 8.00): the rail runs out LEFT and drops */
+      tl.fromTo(el("f3-rail"), { scaleX: 0, transformOrigin: "right center" }, { scaleX: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, 7.04);
+      tl.fromTo(el("f3-drop2"), { scaleY: 0, transformOrigin: "top center" }, { scaleY: 1, duration: 0.28, ease: "power2.out", immediateRender: false }, 7.44);
+      tl.fromTo(el("f3-tri2"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 7.62);
+      tl.fromTo(el("f3-file"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 7.70);
+
+      /* the keyword inside the live code lights once, late, so the eye goes back to the box */
+      tl.to(el("f3-kw"), { color: "#FFD166", duration: 0.24, ease: "power1.out" }, 8.20);
+
+      /* ambient float on the lit panel, then the exit push inside the silence tail */
+      tl.fromTo(el("f3-pr"), { y: 0 }, { y: 5, duration: 0.8, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 8.30);
+      tl.to(el("f3-content"), { y: -50, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

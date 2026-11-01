@@ -1,0 +1,133 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .clipband { position: absolute; inset: 0; }
+
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    .f02-kicker {
+      position: absolute; top: 200px; left: 72px; width: 820px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f02-spike { display: inline-block; opacity: 0; color: #76766e; font-size: 1.7cqw; margin-right: 14px; }
+    .f02-ktext { display: inline-block; opacity: 0; }
+
+    /* the mono rail: three labels, one per spoken cue, no list punctuation */
+    .f02-rail {
+      position: absolute; left: 72px; width: 620px; height: 66px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      border-left: 4px solid #e4e4d0; padding-left: 24px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 400;
+      letter-spacing: 0.02em; color: #6b6b63;
+    }
+    .f02-raila { top: 384px; }
+    .f02-railb { top: 470px; }
+    .f02-railc { top: 556px; }
+
+    /* the thesis: EB Garamond 400, sentence case, commanding by scale only */
+    .f02-displaywrap { position: absolute; top: 720px; left: 72px; width: 936px; height: 160px; }
+    .f02-display {
+      display: block; width: 100%; height: 100%; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 9.2cqw;
+      line-height: 1.0; letter-spacing: -0.022em; color: #1a1a1a; opacity: 0;
+    }
+    .f02-italicwrap { position: absolute; top: 900px; left: 72px; width: 936px; height: 120px; }
+    .f02-italic {
+      display: block; width: 100%; height: 100%; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-style: italic; font-size: 6.1cqw;
+      line-height: 1.05; letter-spacing: -0.012em; color: #1a1a1a; opacity: 0;
+    }
+    .f02-rule {
+      position: absolute; top: 1090px; left: 72px; width: 0; height: 1px;
+      background: rgba(26,26,26,0.2);
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-lifetime-decision" data-width="1080" data-height="1920" data-duration="11.435">
+
+    <div id="f02-ground" class="clip clipband" data-start="0" data-duration="11.435" data-track-index="0">
+      <div class="f02-field"></div>
+      <div id="f02-grid" class="f02-grid"></div>
+    </div>
+
+    <div id="f02-chrome" class="clip clipband" data-start="0" data-duration="11.435" data-track-index="1">
+      <div class="f02-kicker">
+        <div id="f02-spike" class="f02-spike">&#10009;</div>
+        <div id="f02-ktext" class="f02-ktext" data-layout-ignore>THE REAL CLAIM</div>
+      </div>
+    </div>
+
+    <div id="f02-content" class="clip clipband" data-start="0" data-duration="11.435" data-track-index="2">
+      <div id="f02-raila" class="f02-rail f02-raila">one instance</div>
+      <div id="f02-railb" class="f02-rail f02-railb">whole process</div>
+      <div id="f02-railc" class="f02-rail f02-railc">no second</div>
+      <div class="f02-displaywrap" id="f02-displaywrap">
+        <div id="f02-display" class="f02-display">a lifetime decision</div>
+      </div>
+      <div class="f02-italicwrap" id="f02-italicwrap">
+        <div id="f02-italic" class="f02-italic">wearing a pattern's clothes</div>
+      </div>
+      <div id="f02-rule" class="f02-rule"></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.435;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-lifetime-decision"] = tl;
+
+      // ── ground + chrome ──
+      tl.fromTo(el("f02-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f02-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.10);
+      tl.fromTo(el("f02-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.26);
+
+      // ── Scene 2 (0.0–2.4s) — "One instance" then "the whole process" ──
+      tl.fromTo(el("f02-raila"), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 0.00);
+      tl.fromTo(el("f02-railb"), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 2.50);
+
+      // ── Scene 3 (2.4–7.6s) — "make a second" completes the rail ──
+      tl.fromTo(el("f02-railc"), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 5.92);
+
+      // ── Scene 4 (7.6–11.4s) — the thesis lands, quietly, then the frame holds still ──
+      tl.fromTo(el("f02-display"),
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.62, ease: "power3.out", immediateRender: false }, 7.66);
+      tl.fromTo(el("f02-italic"),
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.66, ease: "power3.out", immediateRender: false }, 9.16);
+      tl.fromTo(el("f02-rule"), { width: 0 }, { width: 300, duration: 0.7, ease: "power2.out", immediateRender: false }, 9.70);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite) on the held italic line only
+      var jit = { p: 0 };
+      var wrap = el("f02-italicwrap");
+      var HOLD = 10.60;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          wrap.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

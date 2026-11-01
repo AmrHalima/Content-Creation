@@ -1,0 +1,195 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; top: 206px; left: 80px; width: 640px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #6e6e64;
+    }
+    .f06-spike { display: inline-block; color: #6e6e64; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f06-ktext { display: inline-block; opacity: 0; }
+    .f06-lockup {
+      position: absolute; top: 176px; right: 80px; width: 300px; height: 120px;
+      display: flex; align-items: flex-start; justify-content: flex-end; gap: 12px;
+      opacity: 0;
+    }
+    .f06-fig {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.4cqw; line-height: 0.9; letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .f06-unit {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.45cqw; line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #6e6e64; margin-top: 26px;
+    }
+
+    .f06-chamber {
+      position: absolute; left: 70px; top: 500px; width: 940px; height: 620px;
+      box-sizing: border-box;
+      background: #181715;
+      border: 2px solid #ffffeb;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .f06-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 78px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px;
+      box-sizing: border-box;
+      background: #252320;
+      border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.6cqw;
+      letter-spacing: 0.06em; color: #ffffeb;
+    }
+    .f06-filename { display: inline-block; }
+    .f06-scope { display: inline-block; color: rgba(255,255,235,0.62); font-size: 1.4cqw; letter-spacing: 0.1em; }
+    .f06-status {
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 66px;
+      display: flex; align-items: center; gap: 34px;
+      padding: 0 28px;
+      box-sizing: border-box;
+      background: #252320;
+      border-top: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.3cqw;
+      letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,235,0.62);
+      opacity: 0;
+    }
+    .f06-line {
+      position: absolute; width: 880px; height: 62px;
+      line-height: 62px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.95cqw; letter-spacing: -0.01em;
+      color: rgba(255,255,235,0.78); white-space: pre;
+      opacity: 0;
+    }
+    .f06-type { display: inline-block; color: #f0d7ff; }
+    .f06-dim { display: inline-block; color: rgba(255,255,235,0.62); }
+    .f06-underline {
+      position: absolute; left: 204px; top: 176px; width: 202px; height: 7px;
+      background: #f0d7ff;
+      opacity: 0;
+    }
+    .f06-guide {
+      position: absolute; left: 76px; top: 200px; width: 2px; height: 96px;
+      background: rgba(255,255,235,0.30);
+      opacity: 0;
+    }
+    .f06-arrow { position: absolute; left: 200px; top: 1120px; width: 4px; height: 62px; background: #1a1a1a; opacity: 0; }
+    .f06-arrowhead {
+      position: absolute; left: 190px; top: 1174px; width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 16px solid #1a1a1a;
+      opacity: 0;
+    }
+    .f06-downstream {
+      position: absolute; left: 70px; top: 1210px; width: 380px; height: 96px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb;
+      border: 2px solid rgba(26,26,26,0.62);
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.7cqw; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(26,26,26,0.78); white-space: nowrap;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-one-expression" data-width="1080" data-height="1920" data-duration="10.027">
+
+    <div id="f06-fieldclip" class="clip" data-start="0" data-duration="10.027" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="f06-field" class="f06-field"></div>
+      <div id="f06-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="f06-chromeclip" class="clip" data-start="0" data-duration="10.027" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f06-kicker" class="f06-kicker">
+        <span id="f06-spike" class="f06-spike">&#10009;</span><span id="f06-ktext" class="f06-ktext" data-layout-ignore>THE CALL SITE</span>
+      </div>
+      <div id="f06-lockup" class="f06-lockup">
+        <span class="f06-fig">1</span><span class="f06-unit" data-layout-ignore>expression</span>
+      </div>
+    </div>
+
+    <div id="f06-codeclip" class="clip" data-start="0" data-duration="10.027" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f06-chamber" class="f06-chamber">
+        <div id="f06-titlebar" class="f06-titlebar">
+          <span id="f06-filename" class="f06-filename">checkout.ts</span>
+          <span id="f06-scope" class="f06-scope">one value</span>
+        </div>
+
+        <div id="f06-line1" class="f06-line" style="left:40px; top:110px;"><span class="f06-dim">const gateway</span><span id="f06-type1" class="f06-type">: PaymentGateway</span><span class="f06-dim"> =</span></div>
+        <div id="f06-line2" class="f06-line" style="left:88px; top:200px;"><span class="f06-dim">new CachedGateway(</span></div>
+        <div id="f06-line3" class="f06-line" style="left:136px; top:290px;"><span class="f06-dim">new RetriedGateway(new LoggedGateway(base)));</span></div>
+
+        <div id="f06-underline" class="f06-underline"></div>
+        <div id="f06-guide" class="f06-guide"></div>
+
+        <div id="f06-status" class="f06-status">
+          <span>three rings</span><span>one expression</span><span>runtime</span>
+        </div>
+      </div>
+      <div id="f06-arrow" class="f06-arrow"></div>
+      <div id="f06-arrowhead" class="f06-arrowhead"></div>
+      <div id="f06-downstream" class="f06-downstream">downstream</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-one-expression"] = tl;
+
+      tl.fromTo(el("f06-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f06-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f06-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–2.8s) — the chamber arrives on "stack", the expression builds line by line ──
+      tl.fromTo(el("f06-chamber"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.22);
+      tl.fromTo(el("f06-line1"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.36, ease: "power2.out" }, 0.98);
+      tl.fromTo(el("f06-type1"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.30);
+      tl.fromTo(el("f06-lockup"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 0.98);
+      tl.fromTo(el("f06-line2"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.34, ease: "power2.out" }, 1.88);
+      tl.fromTo(el("f06-line3"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.36, ease: "power2.out" }, 2.44);
+      tl.fromTo(el("f06-guide"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: "power2.out", transformOrigin: "center top" }, 2.9);
+      tl.fromTo(el("f06-status"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 3.2);
+
+      // ── Scene 2 (2.8–5.4s) — "Its type is still PaymentGateway": the one emphasis in the frame ──
+      tl.fromTo(el("f06-underline"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.46, ease: "power2.out", transformOrigin: "left center" }, 4.88);
+
+      // ── Scene 3 (5.4–10.0s) — "Nothing downstream knows the difference", then held still ──
+      tl.fromTo(el("f06-arrow"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.34, ease: "power2.out", transformOrigin: "center top" }, 7.62);
+      tl.fromTo(el("f06-arrowhead"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 7.96);
+      tl.fromTo(el("f06-downstream"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 8.38);
+      // 9.4 → 10.027: the deliberate held read of the part; nothing moves.
+    })();
+  </script>
+</template>

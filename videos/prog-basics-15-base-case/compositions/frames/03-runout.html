@@ -1,0 +1,232 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 186px; width: 936px; height: 40px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-odiff { display: inline-block; opacity: 0; margin-left: auto; height: 36px; padding: 0 14px;
+      box-sizing: border-box; border: 2px solid rgba(255,255,255,0.08); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.3cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; align-self: center; }
+
+    /* ── G6 overflow: eight cards, the sum pb-14 told part 15 to do (BRIEF deviation 1) ──
+       pb-14's 96px step is arithmetic for four cards. Eight at 96 put the last one at 934 -> 1018,
+       past the framework's y 1004 content limit, so this frame runs pb-14's recorded 78px
+       alternative. A 72px card keeps a 6px gap at that step (an 84px card would OVERLAP its
+       neighbour by 6px), so the valband takes 43 -> 28px and nothing else changes: --panel,
+       3px --line, radius 22, G2 shadow, the 38px --panel-2 name strip, call name mono 700 2.6cqw
+       (the 28px floor), pending work mono 400 2.6cqw --muted, insets +64 and widths -88 per card
+       exactly as pb-14 authored them.
+       tops 262/340/418/496/574/652/730/808 -> column bottom 880; strip 898 -> 994, inside 1004. */
+    .f3-card { position:absolute; box-sizing:border-box; height:72px; background:#1F242C;
+      border:3px solid rgba(255,255,255,0.16); border-radius:22px; opacity:0;
+      box-shadow:0 18px 40px -18px rgba(0,0,0,0.70); }
+    /* PAINT ORDER: the top card is nearest the viewer, so a card still in flight emerges from UNDER
+       the pile instead of ghosting its tab text across the card above it. At a 78px step a 72px card
+       has 6px of clearance, and the P2 drop-in travels 210px while its opacity ramps, so mid-flight
+       overlap is unavoidable UNLESS the newer card sits behind. Found in this project's own snapshots
+       at 13.5s (f(-2) half-drawn over f(0)'s "waits"). At rest nothing overlaps, so the stack's final
+       pixels are pb-14's exactly. */
+    .f3-k1 { left:72px;  top:262px; width:936px; z-index:8; }
+    .f3-k2 { left:136px; top:340px; width:848px; z-index:7; }
+    .f3-k3 { left:200px; top:418px; width:760px; z-index:6; }
+    .f3-k4 { left:264px; top:496px; width:672px; z-index:5; }
+    .f3-k5 { left:328px; top:574px; width:584px; z-index:4; }
+    .f3-k6 { left:392px; top:652px; width:496px; z-index:3; }
+    .f3-k7 { left:456px; top:730px; width:408px; z-index:2; }
+    /* card 8 is the only coral object in the film, and it is coral because 3.13.15 raised here */
+    .f3-k8 { left:520px; top:808px; width:320px; border-color:#FF6B5A; z-index:1; }
+    .f3-tab { position:absolute; left:0; top:0; width:100%; height:38px; box-sizing:border-box;
+      background:#262C36; border-bottom:3px solid rgba(255,255,255,0.16);
+      border-radius:18px 18px 0 0; display:flex; align-items:center; padding:0 22px; }
+    .f3-call { display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.6cqw; font-weight:700; line-height:1; letter-spacing:0.02em; color:#F4F1EA;
+      white-space:pre; }
+    .f3-pend { margin-left:auto; display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.6cqw; font-weight:400; line-height:1; letter-spacing:0.04em; color:#9BA6B2;
+      white-space:pre; margin-right:16px; }
+    .f3-valband { position:absolute; left:0; top:38px; width:100%; height:28px; display:flex;
+      align-items:center; justify-content:center; }
+
+    /* the raised message, quoted character-for-character as Python printed it. 2.8cqw (30.2px):
+       the string is 48 characters and JetBrains Mono advances 0.6em, so the section-2 code size
+       of 2.9cqw would need 902px inside a 892px interior (BRIEF deviation 2). No prompt glyph:
+       the prompt costs the 70px the message needs (deviation 3). DEPTH 1000 is
+       sys.getrecursionlimit() from the same run, on its own muted row below. */
+    .f3-strip { position:absolute; left:72px; top:898px; width:936px; height:96px; box-sizing:border-box;
+      background:#262C36; border:2px solid rgba(255,255,255,0.16); border-radius:14px;
+      padding:8px 20px; display:flex; flex-direction:column; justify-content:center; opacity:0;
+      box-shadow:0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f3-errmsg { display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.8cqw; font-weight:700; line-height:1.15; letter-spacing:0; color:#FF6B5A;
+      white-space:nowrap; }
+    .f3-depth { display:inline-block; margin-top:7px; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.1cqw; font-weight:400; line-height:1; letter-spacing:0.14em; text-transform:uppercase;
+      color:#9BA6B2; opacity:0; white-space:nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="03-runout" data-width="1080" data-height="1920" data-duration="7.6">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="7.6" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="7.6" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>it never gets to an answer</div>
+        <div id="c3-badge" class="pb-odiff" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="7.6" data-track-index="2">
+
+      <div id="f3-k1" class="f3-card f3-k1">
+        <div class="f3-tab"><span class="f3-call">f(4)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k2" class="f3-card f3-k2">
+        <div class="f3-tab"><span class="f3-call">f(3)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k3" class="f3-card f3-k3">
+        <div class="f3-tab"><span class="f3-call">f(2)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k4" class="f3-card f3-k4">
+        <div class="f3-tab"><span class="f3-call">f(1)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k5" class="f3-card f3-k5">
+        <div class="f3-tab"><span class="f3-call">f(0)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k6" class="f3-card f3-k6">
+        <div class="f3-tab"><span class="f3-call">f(-1)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k7" class="f3-card f3-k7">
+        <div class="f3-tab"><span class="f3-call">f(-2)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+      <div id="f3-k8" class="f3-card f3-k8">
+        <div class="f3-tab"><span class="f3-call">f(-3)</span><span class="f3-pend">&nbsp;waits</span></div>
+        <div class="f3-valband"></div>
+      </div>
+
+      <div id="f3-strip" class="f3-strip">
+        <span id="f3-errmsg" class="f3-errmsg">RecursionError: maximum recursion depth exceeded</span>
+        <span id="f3-depth" class="f3-depth" data-layout-ignore>DEPTH 1000</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.6;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-runout"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 1.9, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.9, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.9, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c3-badge"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.24,
+        ease: "back.out(1.6)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: FROM THE RIGHT (F2 rose, F4 comes from the left) */
+      tl.fromTo(el("f3-content"), { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* ── descent with no bottom: one P2 drop-in per measured onset of line 3.
+         Without 0.00 / it 0.26 / the 0.78 / function 0.82 / calls 1.16 / itself 1.54 /
+         until 1.94 / the 2.52 / call 2.68 / stack 2.90 / runs 3.16 / out. 3.50 ──
+         The count passes through zero into the negatives, which is what the executed fragment
+         does: f(4) -> f(3) -> ... -> f(0) -> f(-1) ... and the limit fires on the way. */
+      function drop(id, t) {
+        tl.fromTo(el(id), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46,
+          ease: "bounce.out", immediateRender: false }, t);
+        tl.fromTo(el(id), { scaleY: 1 }, { scaleY: 0.96, duration: 0.1, ease: "power2.out",
+          immediateRender: false }, t + 0.44);
+        tl.to(el(id), { scaleY: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, t + 0.54);
+        tl.fromTo(el(id), { borderColor: "rgba(255,255,255,0.16)" },
+          { borderColor: "rgba(90,214,160,0.55)", duration: 0.2, ease: "power1.out",
+            immediateRender: false }, t + 0.44);
+        tl.to(el(id), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4, ease: "power1.inOut",
+          immediateRender: false }, t + 0.64);
+      }
+      drop("f3-k1", 0.10);   // "Without it"
+      drop("f3-k2", 0.80);   // "the function"
+      drop("f3-k3", 1.18);   // "calls"
+      drop("f3-k4", 1.56);   // "itself"
+      drop("f3-k5", 1.96);   // "until"
+      drop("f3-k6", 2.54);   // "the call"
+      drop("f3-k7", 2.92);   // "stack"
+
+      /* the 8th card: no mint flash — its border IS the error. It arrives on "runs" (3.16) and
+         blooms once, then settles at the flat --err ink it keeps to the cut. */
+      tl.fromTo(el("f3-k8"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46,
+        ease: "bounce.out", immediateRender: false }, 3.20);
+      tl.fromTo(el("f3-k8"), { scaleY: 1 }, { scaleY: 0.94, duration: 0.1, ease: "power2.out",
+        immediateRender: false }, 3.64);
+      tl.to(el("f3-k8"), { scaleY: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 3.74);
+      tl.fromTo(el("f3-k8"), { boxShadow: "0 18px 40px -18px rgba(0,0,0,0.70)" },
+        { boxShadow: "0 0 44px rgba(255,107,90,0.55)", duration: 0.26, ease: "power1.out",
+          immediateRender: false }, 3.66);
+      tl.to(el("f3-k8"), { boxShadow: "0 0 20px rgba(255,107,90,0.28)", duration: 0.5,
+        ease: "power1.inOut", immediateRender: false }, 3.92);
+
+      /* the raised message lands on "out." (3.50) and then holds for 3.4s — a 48-character line has
+         to be readable, which is what this frame's air buys (BRIEF deviation 11).
+         ENTRANCE FROM ABOVE, not from below: the strip rests at 898 -> 994, only 10px inside the
+         y 1004 rule, so the house `y: 40` entrance put its bottom border at ~1007 mid-flight
+         (measured in the 14.2s snapshot). Coming down off the end of the column also reads as the
+         crash landing, and the resting pixels are unchanged. */
+      tl.fromTo(el("f3-strip"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.36,
+        ease: "power3.out", immediateRender: false }, 3.62);
+      tl.fromTo(el("f3-depth"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out",
+        immediateRender: false }, 4.02);
+      tl.fromTo(el("f3-strip"), { y: 0 }, { y: -5, duration: 0.82, ease: "sine.inOut", repeat: 2,
+        yoyo: true, immediateRender: false }, 4.6);
+
+      /* ambient float on the top card, back to zero (0.7 + 3 x 2.2 = 7.3 < 7.6) */
+      tl.fromTo(el("f3-k1"), { y: 0 }, { y: -4, duration: 2.2, ease: "sine.inOut", repeat: 3,
+        yoyo: true }, 0.7);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 7.28);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

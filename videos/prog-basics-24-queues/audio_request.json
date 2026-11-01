@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Every printer, call center, and message app runs on one of these."
+    },
+    {
+      "id": "02",
+      "text": "A queue is first in, first out, like a line at a coffee shop. You enqueue at the back and dequeue from the front."
+    },
+    {
+      "id": "03",
+      "text": "It keeps things fair and in order. That is the right shape for tasks waiting their turn. Enqueue A, enqueue B, then dequeue gives A."
+    },
+    {
+      "id": "04",
+      "text": "In Python, use a deque. Append to the right. Popleft takes the front."
+    },
+    {
+      "id": "05",
+      "text": "Tag a friend who always skips the line."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "The inventor of null called it his billion-dollar mistake."
+    },
+    {
+      "id": "02",
+      "text": "Null, nil, and None all mean no value here. Zero and an empty string are both values. None is the absence of one."
+    },
+    {
+      "id": "03",
+      "text": "Calling a method on nothing crashes your program. So check before you use it."
+    },
+    {
+      "id": "04",
+      "text": "Set user to None, then read user dot name. Python raises AttributeError. JavaScript raises TypeError."
+    },
+    {
+      "id": "05",
+      "text": "Save this, then tell me your worst null bug."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

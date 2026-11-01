@@ -1,0 +1,185 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* G4 split, pb-10/04-two-languages geometry, retuned to v2.1:
+       --panel chamber on --ground (NOT the field colour), 3px --line hairline, own titlebar. */
+    .f4-ch { position: absolute; top: 300px; width: 456px; height: 300px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f4-pl { left: 72px; }
+    .f4-pr { left: 552px; }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 24px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .f4-line { position: absolute; left: 22px; top: 150px; width: 412px; height: 60px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; font-weight: 400; color: #F4F1EA; }
+    .cd-rev { clip-path: inset(0 100% 0 0); white-space: pre; }
+    .cd-caret { position: absolute; left: 0; top: 7px; width: 5px; height: 46px;
+      background: #FFD166; opacity: 0; border-radius: 2px; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-a { color: #FFD166; } .tk-b { font-weight: 700; }
+
+    .f4-out { position: absolute; top: 620px; width: 456px; height: 84px; display: flex;
+      align-items: center; justify-content: center; gap: 18px; opacity: 0; box-sizing: border-box;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; font-weight: 700; color: #5AD6A0;
+      white-space: nowrap; }
+    .f4-ol { left: 72px; } .f4-or { left: 552px; }
+    .f4-op { display: inline-block; color: #9BA6B2; font-weight: 400; font-size: 2cqw; }
+
+    .f4-ann { position: absolute; top: 724px; width: 456px; height: 56px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; font-family: "Space Grotesk", sans-serif;
+      font-weight: 400; font-size: 2.8cqw; color: #9BA6B2; white-space: nowrap; }
+    .f4-al { left: 72px; } .f4-ar { left: 552px; }
+    .f4-ann b { color: #F4F1EA; font-weight: 700; }
+
+    .f4-bar { position: absolute; left: 72px; top: 812px; width: 936px; height: 60px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; font-family: "Space Grotesk", sans-serif;
+      font-weight: 700; font-size: 3cqw; letter-spacing: -0.005em; color: #F4F1EA;
+      white-space: nowrap; }
+    .f4-bar u { text-decoration: none; display: inline-block; position: relative; }
+    .f4-hl { position: absolute; left: -8px; right: -10px; top: 0.1em; bottom: 0.08em;
+      background: #FFD166; border-radius: 8px; transform: scaleX(0); transform-origin: left center; }
+    .f4-ht { position: relative; z-index: 1; }
+  </style>
+
+  <div id="root" data-composition-id="04-split" data-width="1080" data-height="1920" data-duration="6.44">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="6.44" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="6.44" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>TWO LANGUAGES · ONE SYMBOL</div>
+        <div id="c4-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="6.44" data-track-index="2" data-layout-allow-overflow>
+      <div id="f4-chl" class="f4-ch f4-pl">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f4-ll" class="f4-line"><div class="cd-rev" id="f4-rl"><span class="tk-i tk-b" id="f4-cast">int('5')</span><span class="tk-m">&nbsp;+&nbsp;</span><span class="tk-i">3</span></div><div class="cd-caret" id="f4-kl"></div></div>
+      </div>
+
+      <div id="f4-chr" class="f4-ch f4-pr">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.js</span><span class="cd-lang" data-layout-ignore>JAVASCRIPT</span></div>
+        <div id="f4-lr" class="f4-line"><div class="cd-rev" id="f4-rr"><span class="tk-i">'5'</span><span class="tk-m">&nbsp;+&nbsp;</span><span class="tk-i">3</span></div><div class="cd-caret" id="f4-kr"></div></div>
+      </div>
+
+      <div id="f4-ol" class="f4-out f4-ol"><span class="f4-op" data-layout-ignore>python&nbsp;&#9656;</span><span
+        id="f4-ol8">8</span></div>
+      <div id="f4-or" class="f4-out f4-or"><span class="f4-op" data-layout-ignore>node&nbsp;&#9656;</span><span
+        id="f4-or53">'53'</span></div>
+
+      <div id="f4-al" class="f4-ann f4-al">you&nbsp;<b>wrote</b>&nbsp;the&nbsp;conversion</div>
+      <div id="f4-ar" class="f4-ann f4-ar">the&nbsp;<b>language</b>&nbsp;chose</div>
+      <div id="f4-bar" class="f4-bar">ask&nbsp;for&nbsp;it,&nbsp;<u class="f4-hlwrap"><span class="f4-hl" id="f4-hl"></span><span
+        class="f4-ht" id="f4-ht">or&nbsp;it&nbsp;guesses</span></u></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.44;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-split"] = tl;
+
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 1.61, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.61, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 3.22, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c4-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance: the Python panel wipes in from the LEFT (F3 came from the right) */
+      tl.fromTo(el("f4-chl"), { opacity: 0, x: -140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.10);
+
+      /* P3 type-on, one line per spoken clause. "int('5')" is said at 0.00-0.24, so the token
+         carries the only amber moment in this frame and goes back to ink before anything else. */
+      tl.set(el("f4-ll"), { opacity: 1 }, 0.24);
+      tl.fromTo(el("f4-rl"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power1.inOut", immediateRender: false }, 0.26);
+      tl.fromTo(el("f4-kl"), { opacity: 1, x: 0 }, { opacity: 1, x: 250, duration: 0.5, ease: "power1.inOut", immediateRender: false }, 0.26);
+      tl.to(el("f4-kl"), { opacity: 0, duration: 0.2, ease: "power1.out" }, 0.80);
+      tl.to(el("f4-cast"), { color: "#FFD166", duration: 0.22, ease: "power1.out", immediateRender: false }, 0.30);
+      tl.to(el("f4-cast"), { color: "#F4F1EA", duration: 0.26, ease: "power1.inOut", immediateRender: false }, 1.20);
+
+      /* "gives 8" (1.46-1.96): the Python answer prints */
+      tl.fromTo(el("f4-ol"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.60);
+      tl.fromTo(el("f4-ol8"), { scale: 1 }, { scale: 1.22, duration: 0.2, ease: "back.out(1.8)",
+        yoyo: true, repeat: 1, immediateRender: false }, 1.86);
+      tl.fromTo(el("f4-al"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 1.96);
+
+      /* "while" (2.16-2.56): the second language arrives with its own titlebar and chip */
+      tl.fromTo(el("f4-chr"), { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 2.20);
+      tl.set(el("f4-lr"), { opacity: 1 }, 2.86);
+      tl.fromTo(el("f4-rr"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power1.inOut", immediateRender: false }, 2.90);
+      tl.fromTo(el("f4-kr"), { opacity: 1, x: 0 }, { opacity: 1, x: 150, duration: 0.5, ease: "power1.inOut", immediateRender: false }, 2.90);
+      tl.to(el("f4-kr"), { opacity: 0, duration: 0.2, ease: "power1.out" }, 3.44);
+
+      /* "in JavaScript" (3.66-4.14): the chip is the thing being named, so it pulses, not recolours */
+      tl.fromTo(el("f4-chr"), { scale: 1 }, { scale: 1.015, duration: 0.22, ease: "sine.inOut",
+        yoyo: true, repeat: 1, immediateRender: false }, 3.66);
+
+      /* "gives '53'" (4.14-5.12): the JavaScript answer prints, in a different container type */
+      tl.fromTo(el("f4-or"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.60);
+      tl.fromTo(el("f4-or53"), { scale: 1 }, { scale: 1.14, duration: 0.2, ease: "back.out(1.8)",
+        yoyo: true, repeat: 1, immediateRender: false }, 4.82);
+      tl.fromTo(el("f4-ar"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 4.84);
+
+      /* the closing line, with one plate on the words the voice is nearest to, held to the cut */
+      tl.fromTo(el("f4-bar"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 4.98);
+      tl.fromTo(el("f4-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power2.out", immediateRender: false }, 5.10);
+      tl.to(el("f4-ht"), { color: "#22201B", duration: 0.18, immediateRender: false }, 5.22);
+      tl.fromTo(el("f4-bar"), { y: 0 }, { y: -4, duration: 0.42, ease: "sine.inOut", repeat: 1,
+        yoyo: true, immediateRender: false }, 5.5);
+
+      /* exit push inside the authored air */
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

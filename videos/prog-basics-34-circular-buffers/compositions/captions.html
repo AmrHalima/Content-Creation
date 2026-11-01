@@ -1,0 +1,192 @@
+<template id="captions-template" data-composition-id="captions" data-width="1080" data-height="1920">
+<!-- OFFLINE SUBSTITUTION (this run only): the shipped tag is
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+     and cdn.jsdelivr.net does not resolve on this machine, which is what made `check` fail with
+     ERR_NAME_NOT_RESOLVED and every snapshot capture its t=0 static CSS state. A network fetch in a
+     composition is also forbidden by the render contract. Local copy is GSAP 3.15.0, md5
+     9abb8c3834399a3f6f24f1a79c17a039 — the same vendored file
+     prog-basics-23/24/27/29/31 use. NOTE:
+     `.hyperframes/caption-skin.html` keeps the CDN tag on purpose (frame.md frontmatter: the Day-2
+     skin is reused UNCHANGED); `studio assemble --captions` rewrites this line back to the CDN —
+     re-patch it after any re-assembly. -->
+<script src="assets/gsap.min.js"></script>
+
+
+<style data-brand-tokens>
+      :root {
+      --cap-band-top: 1600px;
+      --cap-band-height: 320px;
+      }
+    </style>
+
+<style>
+  @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+  @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* the campaign's lifted band, per frame.md v2 section 5: band 1024 -> 1344, floor empty */
+    --cap-band-top: 1024px;
+    --cap-band-height: 320px;
+    --say: #FFD166;
+    --say-ink: #22201B;
+    --ink: #F4F1EA;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* absolutely stacked over the SAME band — exactly one group shown at a time */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+  .caption-pill {
+    max-width: 88%;
+    padding: 22px 44px 28px;
+    background: rgba(21, 24, 29, 0.72);
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.70);
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.14em 0.26em;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 4.26vw, 46px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--ink);
+  }
+  .caption-word {
+    display: inline-block;
+    padding: 0.04em 0.10em 0.06em;
+    color: rgba(244, 241, 234, 0.45);
+    border-radius: 8px;
+  }
+  .caption-word.is-active {
+    color: var(--say-ink);
+    background: var(--say);
+  }
+  .caption-word.is-spoken {
+    color: var(--ink);
+    background: transparent;
+  }
+  /* dormant until a word-classer tags them (kept from the engine's vocab) */
+  .caption-word.cap-num { color: rgba(244, 241, 234, 0.62); }
+  .caption-word.cap-num.is-active { color: var(--say-ink); background: var(--say); }
+  .caption-word.cap-cta { color: var(--say); background: transparent; }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill { max-width: 92%; }
+    .caption-line { font-size: clamp(36px, 4.26vw, 46px); }
+  }
+</style>
+
+<div
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="32.89"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+>
+  <div class="caption-layer" aria-hidden="true">
+    <div id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [{"id":"caption-group-0","frame":1,"start":0,"end":0.3,"text":"How does","words":[{"id":"caption-word-0-0","text":"How","start":0,"end":0.16},{"id":"caption-word-0-1","text":"does","start":0.16,"end":0.3}]},{"id":"caption-group-1","frame":1,"start":0.3,"end":0.7,"text":"a log","words":[{"id":"caption-word-1-0","text":"a","start":0.3,"end":0.4},{"id":"caption-word-1-1","text":"log","start":0.4,"end":0.7}]},{"id":"caption-group-2","frame":1,"start":0.7,"end":1.42,"text":"keep only","words":[{"id":"caption-word-2-0","text":"keep","start":0.7,"end":1.06},{"id":"caption-word-2-1","text":"only","start":1.06,"end":1.42}]},{"id":"caption-group-3","frame":1,"start":1.42,"end":2.5,"text":"the latest 100","words":[{"id":"caption-word-3-0","text":"the","start":1.42,"end":1.62},{"id":"caption-word-3-1","text":"latest","start":1.62,"end":1.98},{"id":"caption-word-3-2","text":"100","start":1.98,"end":2.5}]},{"id":"caption-group-4","frame":1,"start":2.5,"end":4.16,"text":"entries and never grow?","words":[{"id":"caption-word-4-0","text":"entries","start":2.5,"end":3},{"id":"caption-word-4-1","text":"and","start":3,"end":3.54},{"id":"caption-word-4-2","text":"never","start":3.54,"end":3.76},{"id":"caption-word-4-3","text":"grow?","start":3.76,"end":4.04}]},{"id":"caption-group-5","frame":2,"start":5.33,"end":5.83,"text":"A circular","words":[{"id":"caption-word-5-0","text":"A","start":5.33,"end":5.45},{"id":"caption-word-5-1","text":"circular","start":5.45,"end":5.83}]},{"id":"caption-group-6","frame":2,"start":5.83,"end":6.61,"text":"buffer is","words":[{"id":"caption-word-6-0","text":"buffer","start":5.83,"end":6.19},{"id":"caption-word-6-1","text":"is","start":6.19,"end":6.61}]},{"id":"caption-group-7","frame":2,"start":6.61,"end":7.01,"text":"an array","words":[{"id":"caption-word-7-0","text":"an","start":6.61,"end":6.71},{"id":"caption-word-7-1","text":"array","start":6.71,"end":7.01}]},{"id":"caption-group-8","frame":2,"start":7.01,"end":7.41,"text":"with a","words":[{"id":"caption-word-8-0","text":"with","start":7.01,"end":7.29},{"id":"caption-word-8-1","text":"a","start":7.29,"end":7.41}]},{"id":"caption-group-9","frame":2,"start":7.41,"end":8.07,"text":"set size.","words":[{"id":"caption-word-9-0","text":"set","start":7.41,"end":7.59},{"id":"caption-word-9-1","text":"size.","start":7.59,"end":7.95}]},{"id":"caption-group-10","frame":2,"start":8.71,"end":9.03,"text":"The write","words":[{"id":"caption-word-10-0","text":"The","start":8.71,"end":8.83},{"id":"caption-word-10-1","text":"write","start":8.83,"end":9.03}]},{"id":"caption-group-11","frame":2,"start":9.03,"end":9.73,"text":"spot runs","words":[{"id":"caption-word-11-0","text":"spot","start":9.03,"end":9.33},{"id":"caption-word-11-1","text":"runs","start":9.33,"end":9.73}]},{"id":"caption-group-12","frame":2,"start":9.73,"end":10.07,"text":"to the","words":[{"id":"caption-word-12-0","text":"to","start":9.73,"end":9.95},{"id":"caption-word-12-1","text":"the","start":9.95,"end":10.07}]},{"id":"caption-group-13","frame":2,"start":10.07,"end":10.75,"text":"end and","words":[{"id":"caption-word-13-0","text":"end","start":10.07,"end":10.35},{"id":"caption-word-13-1","text":"and","start":10.35,"end":10.75}]},{"id":"caption-group-14","frame":2,"start":10.75,"end":11.33,"text":"wraps back","words":[{"id":"caption-word-14-0","text":"wraps","start":10.75,"end":10.99},{"id":"caption-word-14-1","text":"back","start":10.99,"end":11.33}]},{"id":"caption-group-15","frame":2,"start":11.33,"end":11.87,"text":"to zero.","words":[{"id":"caption-word-15-0","text":"to","start":11.33,"end":11.49},{"id":"caption-word-15-1","text":"zero.","start":11.49,"end":11.75}]},{"id":"caption-group-16","frame":3,"start":13.03,"end":14.21,"text":"New data overwrites","words":[{"id":"caption-word-16-0","text":"New","start":13.03,"end":13.23},{"id":"caption-word-16-1","text":"data","start":13.23,"end":13.57},{"id":"caption-word-16-2","text":"overwrites","start":13.57,"end":14.21}]},{"id":"caption-group-17","frame":3,"start":14.21,"end":15.35,"text":"the oldest entry.","words":[{"id":"caption-word-17-0","text":"the","start":14.21,"end":14.41},{"id":"caption-word-17-1","text":"oldest","start":14.41,"end":14.75},{"id":"caption-word-17-2","text":"entry.","start":14.75,"end":15.23}]},{"id":"caption-group-18","frame":3,"start":15.75,"end":16.89,"text":"Nothing shifts and","words":[{"id":"caption-word-18-0","text":"Nothing","start":15.75,"end":16.05},{"id":"caption-word-18-1","text":"shifts","start":16.05,"end":16.49},{"id":"caption-word-18-2","text":"and","start":16.49,"end":16.89}]},{"id":"caption-group-19","frame":3,"start":16.89,"end":17.63,"text":"nothing grows.","words":[{"id":"caption-word-19-0","text":"nothing","start":16.89,"end":17.15},{"id":"caption-word-19-1","text":"grows.","start":17.15,"end":17.51}]},{"id":"caption-group-20","frame":3,"start":18.19,"end":18.65,"text":"That is","words":[{"id":"caption-word-20-0","text":"That","start":18.19,"end":18.45},{"id":"caption-word-20-1","text":"is","start":18.45,"end":18.65}]},{"id":"caption-group-21","frame":3,"start":18.65,"end":19.65,"text":"why streaming audio","words":[{"id":"caption-word-21-0","text":"why","start":18.65,"end":18.83},{"id":"caption-word-21-1","text":"streaming","start":18.83,"end":19.25},{"id":"caption-word-21-2","text":"audio","start":19.25,"end":19.65}]},{"id":"caption-group-22","frame":3,"start":19.65,"end":20.45,"text":"uses it.","words":[{"id":"caption-word-22-0","text":"uses","start":19.65,"end":20.09},{"id":"caption-word-22-1","text":"it.","start":20.09,"end":20.33}]},{"id":"caption-group-23","frame":4,"start":21.48,"end":22.24,"text":"Three slots:","words":[{"id":"caption-word-23-0","text":"Three","start":21.48,"end":21.72},{"id":"caption-word-23-1","text":"slots:","start":21.72,"end":22.12}]},{"id":"caption-group-24","frame":4,"start":22.52,"end":22.74,"text":"A,","words":[{"id":"caption-word-24-0","text":"A,","start":22.52,"end":22.64}]},{"id":"caption-group-25","frame":4,"start":22.74,"end":22.98,"text":"B,","words":[{"id":"caption-word-25-0","text":"B,","start":22.74,"end":22.88}]},{"id":"caption-group-26","frame":4,"start":22.98,"end":23.38,"text":"C.","words":[{"id":"caption-word-26-0","text":"C.","start":22.98,"end":23.26}]},{"id":"caption-group-27","frame":4,"start":23.64,"end":24.18,"text":"Write D","words":[{"id":"caption-word-27-0","text":"Write","start":23.64,"end":23.9},{"id":"caption-word-27-1","text":"D","start":23.9,"end":24.18}]},{"id":"caption-group-28","frame":4,"start":24.18,"end":24.44,"text":"and it","words":[{"id":"caption-word-28-0","text":"and","start":24.18,"end":24.36},{"id":"caption-word-28-1","text":"it","start":24.36,"end":24.44}]},{"id":"caption-group-29","frame":4,"start":24.44,"end":25.24,"text":"lands on A.","words":[{"id":"caption-word-29-0","text":"lands","start":24.44,"end":24.7},{"id":"caption-word-29-1","text":"on","start":24.7,"end":24.9},{"id":"caption-word-29-2","text":"A.","start":24.9,"end":25.12}]},{"id":"caption-group-30","frame":4,"start":25.62,"end":25.96,"text":"The log","words":[{"id":"caption-word-30-0","text":"The","start":25.62,"end":25.72},{"id":"caption-word-30-1","text":"log","start":25.72,"end":25.96}]},{"id":"caption-group-31","frame":4,"start":25.96,"end":26.48,"text":"now holds","words":[{"id":"caption-word-31-0","text":"now","start":25.96,"end":26.2},{"id":"caption-word-31-1","text":"holds","start":26.2,"end":26.48}]},{"id":"caption-group-32","frame":4,"start":26.48,"end":27.4,"text":"the newest three.","words":[{"id":"caption-word-32-0","text":"the","start":26.48,"end":26.7},{"id":"caption-word-32-1","text":"newest","start":26.7,"end":26.94},{"id":"caption-word-32-2","text":"three.","start":26.94,"end":27.28}]},{"id":"caption-group-33","frame":5,"start":28.5,"end":29.02,"text":"Save this","words":[{"id":"caption-word-33-0","text":"Save","start":28.5,"end":28.76},{"id":"caption-word-33-1","text":"this","start":28.76,"end":29.02}]},{"id":"caption-group-34","frame":5,"start":29.02,"end":29.62,"text":"for system","words":[{"id":"caption-word-34-0","text":"for","start":29.02,"end":29.3},{"id":"caption-word-34-1","text":"system","start":29.3,"end":29.62}]},{"id":"caption-group-35","frame":5,"start":29.62,"end":30.56,"text":"design questions.","words":[{"id":"caption-word-35-0","text":"design","start":29.62,"end":29.98},{"id":"caption-word-35-1","text":"questions.","start":29.98,"end":30.44}]}];
+  var DURATION = 32.89;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start);
+        tl.set(el, { className: "caption-word is-active" }, at);
+        // micro-animation per word: it lifts onto the highlighter instead of just changing colour
+        tl.fromTo(el, { scale: 0.94, y: 5 }, { scale: 1, y: 0, duration: 0.14, ease: "power2.out" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt);
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>
+
+<style>
+  .caption-line { line-height: 1.1 !important; }
+</style>
+</template>

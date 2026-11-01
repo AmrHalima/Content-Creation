@@ -1,0 +1,237 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    /* G8 chrome — COPIED VERBATIM from pb-14's 01-address.html. The cutaway is a CUTAWAY: the
+       camera stays on around the chamber, which is why the chrome is on this band too. */
+    .g8-br { position: absolute; width: 72px; height: 72px; box-sizing: border-box; opacity: 1; }
+    .g8-br-tl { left: 48px; top: 48px; border-top: 3px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-tr { left: 960px; top: 48px; border-top: 3px solid rgba(255,255,255,0.08);
+      border-right: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-bl { left: 48px; top: 932px; border-bottom: 3px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-br { left: 960px; top: 932px; border-bottom: 3px solid rgba(255,255,255,0.08);
+      border-right: 3px solid rgba(255,255,255,0.08); }
+    .g8-rec { position: absolute; left: 72px; top: 112px; height: 40px; display: flex;
+      align-items: center; opacity: 1; }
+    .g8-dot { display: inline-block; width: 16px; height: 16px; margin-right: 16px;
+      border-radius: 9999px; background: #9BA6B2; }
+    .g8-recword { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.4cqw;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .g8-tc { position: absolute; left: 176px; top: 112px; height: 40px; display: flex;
+      align-items: center; font-family: "JetBrains Mono", monospace; font-size: 2.4cqw;
+      font-weight: 400; letter-spacing: 0.12em; color: #9BA6B2; opacity: 1; }
+    .g8-tc-t { display: inline-block; }
+    .g8-diff { position: absolute; left: 800px; top: 110px; height: 44px; display: flex;
+      align-items: center; justify-content: center; padding: 0 16px; box-sizing: border-box;
+      opacity: 1; border: 2px solid rgba(255,255,255,0.08); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; }
+    .g8-l3 { position: absolute; left: 72px; top: 800px; width: 560px; height: 96px;
+      box-sizing: border-box; background: #262C36; border-radius: 12px; opacity: 1;
+      padding: 12px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .g8-l3kick { display: block; font-family: "JetBrains Mono", monospace; font-size: 1.4cqw;
+      font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2;
+      white-space: nowrap; }
+    .g8-l3title { display: block; margin-top: 6px; font-family: "Space Grotesk", sans-serif;
+      font-weight: 700; font-size: 3.4cqw; letter-spacing: -0.005em; color: #F4F1EA;
+      white-space: nowrap; }
+
+    /* the cutaway scrim: 0.18 opacity, no blur, no new colour (frame-day2 § 4 G8/F4). It stops at
+       y 1004 so the caption band is never dimmed by it. */
+    .f4-scrim { position:absolute; left:48px; top:48px; width:984px; height:956px; opacity:0;
+      background:#0F1216; }
+
+    /* G3 code chambers (pb-14's .cd-* atoms). 880px wide rather than the grammar's 700px: the
+       longest shipped line is `AttributeError: 'NoneType' object` at 33 characters, which needs
+       2.7cqw (29px) to stay above the 28px floor. Stacked vertically rather than side by side —
+       at 440px per chamber the same line would fall to ~12px (BRIEF deviations 2 and 4). */
+    .cd-root { position:absolute; left:100px; width:880px; height:260px; box-sizing:border-box;
+      background:#1F242C; border:3px solid rgba(255,255,255,0.16); border-radius:20px; opacity:0;
+      box-shadow:0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-a { top:232px; } .cd-b { top:512px; }
+    .cd-bar { position:absolute; left:0; top:0; width:100%; height:64px; background:#262C36;
+      border-radius:16px 16px 0 0; display:flex; align-items:center; padding:0 26px;
+      box-sizing:border-box; }
+    .cd-file { display:inline-block; font-family:"JetBrains Mono", monospace; font-size:2.1cqw;
+      font-weight:400; letter-spacing:0.04em; color:#9BA6B2; }
+    .cd-lang { margin-left:auto; display:inline-block; padding:5px 14px;
+      font-family:"JetBrains Mono", monospace; font-size:1.4cqw; font-weight:700;
+      letter-spacing:0.14em; color:#FFD166; border:2px solid #FFD166; border-radius:8px; }
+    .cd-line { position:absolute; left:30px; width:820px; height:40px; display:flex;
+      align-items:center; white-space:pre; opacity:0;
+      font-family:"JetBrains Mono", monospace; font-size:2.7cqw; font-weight:400; color:#F4F1EA;
+      font-variant-ligatures:none; font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; }
+    .cd-l1 { top:72px; } .cd-l2 { top:114px; }
+    .cd-rev { clip-path:inset(0 100% 0 0); white-space:pre; display:block;
+      font-variant-ligatures:none; font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; }
+    .cd-caret { position:absolute; left:0; top:5px; width:4px; height:30px; background:#FFD166;
+      opacity:0; border-radius:2px; }
+    .tk-i { color:#F4F1EA; } .tk-k { color:#F4F1EA; font-weight:700; }
+
+    /* THE CORAL. § 1 reserves --err for an error an interpreter actually raised on this machine,
+       and both of these were: Python 3.13.15 raised the AttributeError, node v24.15.0 raised the
+       TypeError (bible § 4). Each message is quoted exactly as raised and wrapped at a real space,
+       because 59 and 52 characters cannot hold on one line at the 28px floor. Nothing else in this
+       film is coral — including the REC dot above, which is chrome. */
+    .cd-err { position:absolute; left:30px; top:162px; width:820px; height:84px;
+      box-sizing:border-box; display:flex; flex-direction:column; justify-content:center;
+      padding:0 20px; opacity:0; background:#262C36; border:3px solid #FF6B5A; border-radius:12px;
+      font-family:"JetBrains Mono", monospace; font-size:2.7cqw; font-weight:700; color:#FF6B5A;
+      line-height:1.24; white-space:pre;
+      font-variant-ligatures:none; font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; }
+    .cd-errl { display:block; }
+  </style>
+
+  <div id="root" data-composition-id="04-cutaway" data-width="1080" data-height="1920" data-duration="8.4">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="8.4" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="8.4" data-track-index="1">
+      <div class="g8-br g8-br-tl" data-layout-ignore></div>
+      <div class="g8-br g8-br-tr" data-layout-ignore></div>
+      <div class="g8-br g8-br-bl" data-layout-ignore></div>
+      <div class="g8-br g8-br-br" data-layout-ignore></div>
+      <div id="c4-rec" class="g8-rec" data-layout-ignore><span id="c4-dot" class="g8-dot"></span><span class="g8-recword">REC</span></div>
+      <div id="c4-tc" class="g8-tc" data-layout-ignore><span id="c4-tctxt" class="g8-tc-t">00:18</span></div>
+      <div id="c4-diff" class="g8-diff" data-layout-ignore>BEGINNER</div>
+      <div id="c4-l3" class="g8-l3" data-layout-ignore>
+        <span class="g8-l3kick">PROGRAMMING BASICS · BASICS II · 17</span>
+        <span class="g8-l3title">Null, nil, and None</span>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="8.4" data-track-index="2">
+      <div id="f4-scrim" class="f4-scrim" data-layout-allow-overflow></div>
+
+      <div id="f4-cha" class="cd-root cd-a">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f4-a1" class="cd-line cd-l1">
+          <div class="cd-rev" id="f4-ar1"><span class="tk-i">user = </span><span class="tk-k">None</span></div>
+          <div class="cd-caret" id="f4-ak1"></div>
+        </div>
+        <div id="f4-a2" class="cd-line cd-l2">
+          <div class="cd-rev" id="f4-ar2"><span class="tk-i">user.name</span></div>
+          <div class="cd-caret" id="f4-ak2"></div>
+        </div>
+        <div id="f4-aerr" class="cd-err"><span class="cd-errl">AttributeError: 'NoneType' object</span><span class="cd-errl">has no attribute 'name'</span></div>
+      </div>
+
+      <div id="f4-chb" class="cd-root cd-b">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.js</span><span class="cd-lang" data-layout-ignore>JAVASCRIPT</span></div>
+        <div id="f4-b1" class="cd-line cd-l1">
+          <div class="cd-rev" id="f4-br1"><span class="tk-k">const</span><span class="tk-i"> user = </span><span class="tk-k">null</span><span class="tk-i">;</span></div>
+          <div class="cd-caret" id="f4-bk1"></div>
+        </div>
+        <div id="f4-b2" class="cd-line cd-l2">
+          <div class="cd-rev" id="f4-br2"><span class="tk-i">user.name;</span></div>
+          <div class="cd-caret" id="f4-bk2"></div>
+        </div>
+        <div id="f4-berr" class="cd-err"><span class="cd-errl">TypeError: Cannot read properties</span><span class="cd-errl">of null (reading 'name')</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.4;
+      var T0 = 18.6;                    // film offset for the REC timecode only (STORYBOARD starts)
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-cutaway"] = tl;
+
+      /* ground: duration = D/4, odd segment count -> four segments cover 8.4s exactly, ends at zero */
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 2.1, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.1, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.1, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      /* REC dot: 15 half-blinks = 8.0s <= D; chrome never fades, and the dot is never coral */
+      tl.fromTo(el("c4-dot"), { opacity: 1 }, { opacity: 0.15, duration: 0.5, ease: "sine.inOut",
+        repeat: 15, yoyo: true }, 0);
+
+      tl.to({ p: 0 }, { p: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var s = Math.floor(T0 + this.targets()[0].p);
+          el("c4-tctxt").textContent = "00:" + (s < 10 ? "0" + s : "" + s);
+        } }, 0);
+
+      /* the cutaway: a scrim and two chambers dropping into the SAME shot — chrome stays up.
+         The drop is 40px, not pb-14's 90px, because this part stacks TWO 260px chambers and the
+         upper one's settled top is 232 (pb-14's single chamber settles at 268): at -90 the fading
+         titlebar chips measured ink at y 227, i.e. above § 5's content box. The travel is shorter
+         so the chamber never carries ink above 230 while it is still legible. BRIEF deviation 11. */
+      tl.fromTo(el("f4-scrim"), { opacity: 0 }, { opacity: 0.18, duration: 0.35, ease: "power1.out" }, 0.04);
+      tl.fromTo(el("f4-cha"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.42,
+        ease: "power3.out", immediateRender: false }, 0.08);
+      tl.fromTo(el("f4-chb"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.42,
+        ease: "power3.out", immediateRender: false }, 0.20);
+
+      /* P3 type-on, one line per spoken clause. Cued: "Set user to None," 0.00-1.26 / "read user dot
+         name." 1.40-2.40 / "Python raises AttributeError." 3.04-4.90 / "JavaScript raises
+         TypeError." 5.34-6.80. Chamber B's two lines are typed inside the same clause, before
+         either error is named. */
+      function typeon(lineId, revId, caretId, t, run, dur) {
+        tl.set(el(lineId), { opacity: 1 }, t);
+        tl.fromTo(el(revId), { clipPath: "inset(0 100% 0 0)" },
+          { clipPath: "inset(0 0% 0 0)", duration: dur, ease: "power1.inOut", immediateRender: false }, t);
+        tl.fromTo(el(caretId), { opacity: 1, x: 0 }, { opacity: 1, x: run, duration: dur,
+          ease: "power1.inOut", immediateRender: false }, t);
+        tl.to(el(caretId), { opacity: 0, duration: 0.18, ease: "power1.out" }, t + dur + 0.04);
+      }
+      typeon("f4-a1", "f4-ar1", "f4-ak1", 0.12, 192, 0.40);   // user = None
+      typeon("f4-a2", "f4-ar2", "f4-ak2", 1.32, 158, 0.36);   // user.name
+      typeon("f4-b1", "f4-br1", "f4-bk1", 2.10, 315, 0.48);   // const user = null;
+      typeon("f4-b2", "f4-br2", "f4-bk2", 2.72, 175, 0.28);   // user.name;
+
+      /* the two raised messages, one per error NAME (no say-sweep, no mint: they are errors, not
+         values, and the only amber on this frame is the caret and the language chips) */
+      tl.fromTo(el("f4-aerr"), { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: 0.36,
+        ease: "power3.out", immediateRender: false }, 3.90);
+      tl.fromTo(el("f4-berr"), { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: 0.36,
+        ease: "power3.out", immediateRender: false }, 6.42);
+
+      /* one colour-free settle across both, after the second name — the two crashes are one idea */
+      tl.fromTo(el("f4-aerr"), { scale: 1 }, { scale: 1.012, duration: 0.2, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 6.90);
+      tl.fromTo(el("f4-berr"), { scale: 1 }, { scale: 1.012, duration: 0.2, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 6.90);
+
+      /* ambient float on both chambers, back to zero (0.8 + 4 x 1.9 = 8.4 = D) */
+      tl.fromTo(el("f4-cha"), { y: 0 }, { y: -4, duration: 1.9, ease: "sine.inOut", repeat: 3,
+        yoyo: true, immediateRender: false }, 0.8);
+      tl.fromTo(el("f4-chb"), { y: 0 }, { y: -3, duration: 1.9, ease: "sine.inOut", repeat: 3,
+        yoyo: true, immediateRender: false }, 0.8);
+
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 8.08);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

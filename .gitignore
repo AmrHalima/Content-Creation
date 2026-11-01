@@ -1,0 +1,53 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# dependencies / builds
+node_modules/
+dist/
+.astro/
+
+# logs and scratch
+*.log
+.tmp/
+*.bak
+%jn
+.DS_Store
+Thumbs.db
+
+# video, audio, image and font binaries (kept out of git)
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.avi
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.ogg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tif
+*.tiff
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.otf
+
+# HyperFrames render state, captures and contact sheets
+.hyperframes/
+renders/
+snapshots/
+capture/
+.waveform-cache/
+
+# local CLI preferences
+.qoder/settings.local.json.bak

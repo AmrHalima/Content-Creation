@@ -1,0 +1,209 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* terminal strip (pb-21/04-code atom): muted prompt, mint output, --panel-2 shelf */
+    .pb-strip { position: absolute; box-sizing: border-box; display: flex; align-items: center;
+      padding: 0 28px; opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 2.9cqw;
+      font-weight: 700; color: #5AD6A0; white-space: pre; font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .pb-prompt { display: inline-block; margin-right: 18px; color: #9BA6B2; font-weight: 400; }
+
+    /* G3 code chamber (frame-day2 section 4) */
+    .cd-root { position: absolute; left: 72px; top: 292px; width: 936px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 872px; height: 58px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .tk-i { color: #F4F1EA; } .tk-v { color: #5AD6A0; } .tk-a { color: #FFD166; }
+    .tk-b { font-weight: 700; }
+
+    .f4-lmask { position: absolute; left: 30px; height: 58px; width: 872px; background: #1F242C;
+      transform-origin: right center; }
+    .f4-caret { position: absolute; width: 5px; height: 44px; background: #FFD166; border-radius: 2px;
+      opacity: 0; }
+
+    /* G2's `empty` shape drawn INSIDE the code-line column: 3px dashed --line, no value, one dim
+       mint caret blinking at 1s. The quiz asks the viewer to spot the missing line, so the gap has
+       to be a shape they can see. It stays empty: nothing here names what belongs in it.
+       It is the LAST row of the column (top 266, below `    print(i)` at 204), because the update
+       line belongs after the print: slot-then-print would make the correct answer print 1 2 3 4 5
+       while the strip and the pinned comment promise 0 1 2 3 4. Executed both orders on Python
+       3.13.15; see BRIEF "## Deviations". */
+    .f4-slot { position: absolute; left: 106px; top: 266px; width: 320px; height: 58px;
+      box-sizing: border-box; background: rgba(31,36,44,0.6); border: 3px dashed rgba(255,255,255,0.16);
+      border-radius: 12px; opacity: 0; }
+    .f4-slotcaret { position: absolute; left: 18px; top: 10px; width: 5px; height: 36px;
+      border-radius: 2px; background: rgba(90,214,160,0.62); opacity: 0.2; }
+
+    .f4-z { display: inline-block; opacity: 0; }
+
+    .f4-plate { position: absolute; left: 620px; top: 664px; width: 388px; height: 96px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #FFD166; border-radius: 16px;
+      box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+
+    .f4-note { position: absolute; left: 72px; top: 800px; width: 936px; height: 56px; opacity: 0;
+      display: flex; align-items: center; font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 2.9cqw; letter-spacing: 0.01em; color: rgba(244,241,234,0.78); white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="04-missing-line" data-width="1080" data-height="1920" data-duration="5.05">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="5.05" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="5.05" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>IT RUNS FOREVER, HERE IS THE OUTPUT</div>
+        <div id="c4-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="5.05" data-track-index="2">
+      <div id="f4-chamber" class="cd-root" style="height:336px">
+        <div id="f4-bar" class="cd-bar">
+          <span id="f4-file" class="cd-file" data-layout-ignore>main.py</span>
+          <span id="f4-lang" class="cd-lang" data-layout-ignore>PYTHON</span>
+        </div>
+        <div id="f4-l1" class="cd-line" style="top:80px"><span class="tk-i">i</span>&nbsp;=&nbsp;<span class="tk-v tk-b">0</span></div>
+        <div id="f4-l2" class="cd-line" style="top:142px"><span class="tk-a tk-b">while</span>&nbsp;<span class="tk-i">i&nbsp;&lt;&nbsp;5</span>:</div>
+        <!-- ids keep their original numbering; the print row is now the 3rd row and the dashed slot
+             the 4th, so the fragment reads print-then-increment (0 1 2 3 4), not 1 2 3 4 5. -->
+        <div id="f4-l4" class="cd-line" style="top:204px">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tk-i">print</span>(<span class="tk-i">i</span>)</div>
+        <div id="f4-slot" class="f4-slot"><div id="f4-slotcaret" class="f4-slotcaret"></div></div>
+        <div id="f4-m1" class="f4-lmask" style="top:80px"></div>
+        <div id="f4-m2" class="f4-lmask" style="top:142px"></div>
+        <div id="f4-m4" class="f4-lmask" style="top:204px"></div>
+        <div id="f4-cr1" class="f4-caret" style="left:34px;top:87px"></div>
+        <div id="f4-cr2" class="f4-caret" style="left:34px;top:149px"></div>
+        <div id="f4-cr4" class="f4-caret" style="left:34px;top:211px"></div>
+      </div>
+
+      <div id="f4-strip" class="pb-strip" style="left:72px; top:664px; width:520px; height:96px;"><span class="pb-prompt" data-layout-ignore>&gt;&gt;&gt;</span><span class="f4-z" id="f4-z1">0</span><span class="f4-z" id="f4-z2">&nbsp;0</span><span class="f4-z" id="f4-z3">&nbsp;0</span><span class="f4-z" id="f4-z4">&nbsp;0</span><span class="f4-z" id="f4-z5">&nbsp;0</span><span class="f4-z" id="f4-z6">&nbsp;0</span><span class="f4-z" id="f4-z7">&nbsp;0</span><span class="f4-z" id="f4-z8">&nbsp;0</span><span class="f4-z" id="f4-zd">&nbsp;…</span></div>
+
+      <div id="f4-plate" class="f4-plate">never&nbsp;ends</div>
+
+      <div id="f4-note" class="f4-note" data-layout-ignore>the variable the check reads never changed</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.05;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-missing-line"] = tl;
+
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 1.2625, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.525, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.2625, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c4-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.22);
+
+      /* entrance wipe: F3 came in from the left, this one comes up from below */
+      tl.fromTo(el("f4-content"), { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.08);
+      tl.to(el("f4-content"), { y: 0, opacity: 1, duration: 0.01 }, 0.52);
+
+      tl.fromTo(el("f4-chamber"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 0.16);
+      tl.fromTo(el("f4-file"), { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.30);
+      tl.fromTo(el("f4-lang"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 0.38);
+
+      /* P3 type-on, one line per spoken clause.
+         Measured onsets: Before 0.00 / running 0.22 / any 0.54 / loop, 0.70-0.98 / ask: 1.08-1.48 /
+         what 1.88 / changes 2.08-2.44 / each 2.44 / round, 2.68-3.02 / ends 3.46-3.72 / it? 3.72-3.86 */
+      tl.set(el("f4-l1"), { opacity: 1 }, 0.42);
+      tl.fromTo(el("f4-m1"), { scaleX: 1 }, { scaleX: 0, duration: 0.24, ease: "power1.inOut", immediateRender: false }, 0.42);
+      tl.fromTo(el("f4-cr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 130, duration: 0.24, ease: "power1.inOut", immediateRender: false }, 0.42);
+      tl.to(el("f4-cr1"), { opacity: 0, duration: 0.12, immediateRender: false }, 0.68);
+
+      tl.set(el("f4-l2"), { opacity: 1 }, 0.72);
+      tl.fromTo(el("f4-m2"), { scaleX: 1 }, { scaleX: 0, duration: 0.3, ease: "power1.inOut", immediateRender: false }, 0.72);
+      tl.fromTo(el("f4-cr2"), { opacity: 1, x: 0 }, { opacity: 1, x: 250, duration: 0.3, ease: "power1.inOut", immediateRender: false }, 0.72);
+      tl.to(el("f4-cr2"), { opacity: 0, duration: 0.12, immediateRender: false }, 1.04);
+
+      /* P3 types top-to-bottom, so the print row (3rd) takes the "ask:" onset and the gap — now the
+         4th and last row — closes the column on the breath before "what" (1.88). The quiz question is
+         still a shape, not a word; it just arrives after the line it is missing in front of. */
+      tl.set(el("f4-l4"), { opacity: 1 }, 1.10);
+      tl.fromTo(el("f4-m4"), { scaleX: 1 }, { scaleX: 0, duration: 0.26, ease: "power1.inOut", immediateRender: false }, 1.10);
+      tl.fromTo(el("f4-cr4"), { opacity: 1, x: 0 }, { opacity: 1, x: 240, duration: 0.26, ease: "power1.inOut", immediateRender: false }, 1.10);
+      tl.to(el("f4-cr4"), { opacity: 0, duration: 0.12, immediateRender: false }, 1.38);
+
+      tl.fromTo(el("f4-slot"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 1.52);
+
+      /* the caret in the gap blinks on a 1s yoyo (6 runs, back to its own zero) while the question
+         is being asked — "waiting to be filled", and nothing fills it. The 0.24s lead over its own
+         box is the authored one, kept; only the pair moved with the slot. */
+      tl.fromTo(el("f4-slotcaret"), { opacity: 0.2 }, { opacity: 1, duration: 0.5, ease: "sine.inOut", repeat: 5, yoyo: true, immediateRender: false }, 1.76);
+
+      /* the executed output: `0 0 0 0 0 0 0 0 …`, one zero per beat across "what changes each round".
+         Never `0 1 2 3 4` — the repeated zero is the diagnosis, because the variable the check reads
+         never changed (series-bible-day2 section 4, guard fired at pass 13). */
+      tl.fromTo(el("f4-strip"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.84);
+      var zs = ["f4-z1", "f4-z2", "f4-z3", "f4-z4", "f4-z5", "f4-z6", "f4-z7", "f4-z8"];
+      for (var i = 0; i < zs.length; i++) {
+        tl.fromTo(el(zs[i]), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.16, ease: "power2.out", immediateRender: false }, 1.94 + i * 0.13);
+      }
+      tl.fromTo(el("f4-zd"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(1.7)", immediateRender: false }, 3.06);
+
+      /* the amber say-plate lands on the spoken words "what ends it" (ends 3.46 -> it? 3.86) */
+      tl.fromTo(el("f4-plate"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.7)", immediateRender: false }, 3.44);
+      tl.fromTo(el("f4-plate"), { y: 0 }, { y: -5, duration: 0.32, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 3.80);
+
+      tl.fromTo(el("f4-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 3.92);
+
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 4.73);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

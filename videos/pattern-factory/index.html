@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #FFFFEB;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="75.519"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div
+        id="el-01-which-type"
+        class="scene"
+        data-composition-id="01-which-type"
+        data-composition-src="compositions/frames/01-which-type.html"
+        data-start="0"
+        data-duration="9.365"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-01-which-type-voice"
+        src="assets/voice/01.wav"
+        data-start="0"
+        data-duration="9.365"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-02-the-branch"
+        class="scene"
+        data-composition-id="02-the-branch"
+        data-composition-src="compositions/frames/02-the-branch.html"
+        data-start="9.365"
+        data-duration="11.051"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-02-the-branch-voice"
+        src="assets/voice/02.wav"
+        data-start="9.365"
+        data-duration="11.051"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-03-takes-the-question"
+        class="scene"
+        data-composition-id="03-takes-the-question"
+        data-composition-src="compositions/frames/03-takes-the-question.html"
+        data-start="20.416"
+        data-duration="8.128"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-03-takes-the-question-voice"
+        src="assets/voice/03.wav"
+        data-start="20.416"
+        data-duration="8.128"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-04-the-anatomy"
+        class="scene"
+        data-composition-id="04-the-anatomy"
+        data-composition-src="compositions/frames/04-the-anatomy.html"
+        data-start="28.544"
+        data-duration="10.133"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-04-the-anatomy-voice"
+        src="assets/voice/04.wav"
+        data-start="28.544"
+        data-duration="10.133"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-05-the-signature"
+        class="scene"
+        data-composition-id="05-the-signature"
+        data-composition-src="compositions/frames/05-the-signature.html"
+        data-start="38.677"
+        data-duration="8.789"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-05-the-signature-voice"
+        src="assets/voice/05.wav"
+        data-start="38.677"
+        data-duration="8.789"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-06-one-line"
+        class="scene"
+        data-composition-id="06-one-line"
+        data-composition-src="compositions/frames/06-one-line.html"
+        data-start="47.466"
+        data-duration="6.848"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-06-one-line-voice"
+        src="assets/voice/06.wav"
+        data-start="47.466"
+        data-duration="6.848"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-07-one-place"
+        class="scene"
+        data-composition-id="07-one-place"
+        data-composition-src="compositions/frames/07-one-place.html"
+        data-start="54.314"
+        data-duration="9.941"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-07-one-place-voice"
+        src="assets/voice/07.wav"
+        data-start="54.314"
+        data-duration="9.941"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-08-nothing-to-choose"
+        class="scene"
+        data-composition-id="08-nothing-to-choose"
+        data-composition-src="compositions/frames/08-nothing-to-choose.html"
+        data-start="64.255"
+        data-duration="11.264"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-08-nothing-to-choose-voice"
+        src="assets/voice/08.wav"
+        data-start="64.255"
+        data-duration="11.264"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <!-- captions -->
+      <div
+        id="el-captions"
+        data-track-kind="captions"
+        class="scene"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="75.519"
+        data-track-index="2"
+      ></div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

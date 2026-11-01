@@ -1,0 +1,195 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    /* G8 chrome — COPIED VERBATIM from pb-14's 01-address.html (frame-day2 § 14). */
+    .g8-br { position: absolute; width: 72px; height: 72px; box-sizing: border-box; opacity: 1; }
+    .g8-br-tl { left: 48px; top: 48px; border-top: 3px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-tr { left: 960px; top: 48px; border-top: 3px solid rgba(255,255,255,0.08);
+      border-right: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-bl { left: 48px; top: 932px; border-bottom: 3px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-br { left: 960px; top: 932px; border-bottom: 3px solid rgba(255,255,255,0.08);
+      border-right: 3px solid rgba(255,255,255,0.08); }
+    .g8-rec { position: absolute; left: 72px; top: 112px; height: 40px; display: flex;
+      align-items: center; opacity: 1; }
+    .g8-dot { display: inline-block; width: 16px; height: 16px; margin-right: 16px;
+      border-radius: 9999px; background: #9BA6B2; }
+    .g8-recword { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.4cqw;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .g8-tc { position: absolute; left: 176px; top: 112px; height: 40px; display: flex;
+      align-items: center; font-family: "JetBrains Mono", monospace; font-size: 2.4cqw;
+      font-weight: 400; letter-spacing: 0.12em; color: #9BA6B2; opacity: 1; }
+    .g8-tc-t { display: inline-block; }
+    .g8-diff { position: absolute; left: 800px; top: 110px; height: 44px; display: flex;
+      align-items: center; justify-content: center; padding: 0 16px; box-sizing: border-box;
+      opacity: 1; border: 2px solid rgba(255,255,255,0.08); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; }
+    .g8-l3 { position: absolute; left: 72px; top: 800px; width: 560px; height: 96px;
+      box-sizing: border-box; background: #262C36; border-radius: 12px; opacity: 1;
+      padding: 12px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .g8-l3kick { display: block; font-family: "JetBrains Mono", monospace; font-size: 1.4cqw;
+      font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2;
+      white-space: nowrap; }
+    .g8-l3title { display: block; margin-top: 6px; font-family: "Space Grotesk", sans-serif;
+      font-weight: 700; font-size: 3.4cqw; letter-spacing: -0.005em; color: #F4F1EA;
+      white-space: nowrap; }
+
+    /* the spoken line at 5cqw, same reason as F2 (BRIEF deviation 8): the groups are 13-21
+       characters, which measure 393-634px here and would overrun the column at 9cqw. */
+    .f3-line { position:absolute; left:72px; width:936px; text-align:left; opacity:0;
+      font-family:"Space Grotesk", sans-serif; font-weight:700; line-height:1.04;
+      letter-spacing:-0.01em; color:#F4F1EA; white-space:nowrap; font-size:5cqw; }
+    .f3-l1 { top:240px; } .f3-l2 { top:300px; } .f3-l3 { top:360px; }
+    .f3-l4 { top:450px; } .f3-l5 { top:510px; }
+    .f3-w { display:inline-block; position:relative; }
+
+    /* ── the approved screen-text guard (CORRECTIONS-day2.md § B) ──
+       The voice keeps the user's line. The FRAME carries the caveat: `bool(None)` and `bool('')` are
+       both False, so a learner who writes `if user:` cannot tell an absent value from an empty one.
+       P10 strike-out draws a 3px --say rule across `if user:`: "not this" without saying not this.
+       A/B contrast is carried by SHAPE and ELEVATION, not by a second amber plate (§ 1: amber is
+       "the word the voice is on", singular) and not by opacity — § 14 measured `opacity: 0.42` on a
+       whole row at 1.3:1, so the wrong chip recedes by being flat #1F242C behind a 2px --line-faint
+       border while its TEXT stays at full ink. */
+    .pb-check { position:absolute; top:620px; height:96px; box-sizing:border-box; display:flex;
+      align-items:center; padding:0 26px; opacity:0; border-radius:14px;
+      font-family:"JetBrains Mono", monospace; font-size:2.8cqw; font-weight:400; color:#F4F1EA;
+      white-space:pre;
+      font-variant-ligatures:none; font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; }
+    .f3-ca { left:72px; width:230px; background:#1F242C; border:2px solid rgba(255,255,255,0.08); }
+    .f3-cb { left:332px; width:380px; background:#262C36; border:3px solid rgba(255,255,255,0.16);
+      box-shadow:0 18px 40px -18px rgba(0,0,0,0.70); font-weight:700; }
+    .f3-strike { position:absolute; left:14px; top:46px; width:202px; height:3px; background:#FFD166;
+      border-radius:2px; transform:scaleX(0); transform-origin:left center; }
+    .f3-txt { position:relative; z-index:1; display:inline-block; }
+  </style>
+
+  <div id="root" data-composition-id="03-check" data-width="1080" data-height="1920" data-duration="5.5">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="5.5" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="5.5" data-track-index="1">
+      <div class="g8-br g8-br-tl" data-layout-ignore></div>
+      <div class="g8-br g8-br-tr" data-layout-ignore></div>
+      <div class="g8-br g8-br-bl" data-layout-ignore></div>
+      <div class="g8-br g8-br-br" data-layout-ignore></div>
+      <div id="c3-rec" class="g8-rec" data-layout-ignore><span id="c3-dot" class="g8-dot"></span><span class="g8-recword">REC</span></div>
+      <div id="c3-tc" class="g8-tc" data-layout-ignore><span id="c3-tctxt" class="g8-tc-t">00:13</span></div>
+      <div id="c3-diff" class="g8-diff" data-layout-ignore>BEGINNER</div>
+      <div id="c3-l3" class="g8-l3" data-layout-ignore>
+        <span class="g8-l3kick">PROGRAMMING BASICS · BASICS II · 17</span>
+        <span class="g8-l3title">Null, nil, and None</span>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="5.5" data-track-index="2">
+      <div id="f3-l1" class="f3-line f3-l1"><span class="f3-w">calling&nbsp;a&nbsp;method</span></div>
+      <div id="f3-l2" class="f3-line f3-l2"><span class="f3-w">on&nbsp;nothing</span></div>
+      <div id="f3-l3" class="f3-line f3-l3"><span class="f3-w">crashes&nbsp;your&nbsp;program.</span></div>
+      <div id="f3-l4" class="f3-line f3-l4"><span class="f3-w">So&nbsp;check&nbsp;before</span></div>
+      <div id="f3-l5" class="f3-line f3-l5"><span class="f3-w">you&nbsp;use&nbsp;it.</span></div>
+
+      <div id="f3-ca" class="pb-check f3-ca"><span class="f3-txt">if&nbsp;user:</span><span class="f3-strike" id="f3-strike" data-layout-allow-occlusion></span></div>
+      <div id="f3-cb" class="pb-check f3-cb"><span class="f3-txt">if&nbsp;user&nbsp;is&nbsp;None:</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.5;
+      var T0 = 13.1;                    // film offset for the REC timecode only (STORYBOARD starts)
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-check"] = tl;
+
+      /* ground: duration = D/4, odd segment count -> four segments cover 5.5s exactly, ends at zero */
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 1.375, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.375, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.375, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      /* REC dot: 10 half-blinks = 5.0s <= D, so the dot is at opacity 1 on the last frame */
+      tl.fromTo(el("c3-dot"), { opacity: 1 }, { opacity: 0.15, duration: 0.5, ease: "sine.inOut",
+        repeat: 9, yoyo: true }, 0);
+
+      tl.to({ p: 0 }, { p: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var s = Math.floor(T0 + this.targets()[0].p);
+          el("c3-tctxt").textContent = "00:" + (s < 10 ? "0" + s : "" + s);
+        } }, 0);
+
+      /* entrance wipe: FROM THE RIGHT on F3 (F1 left, F2 up) */
+      tl.fromTo(el("f3-content"), { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* Cued onsets: Calling 0.00 / method 0.44 / on 0.72 / nothing 0.94 / crashes 1.24 /
+         program. 1.94 / [real stop] / So 2.82 / check 3.08 / before 3.40 / you 3.70 / use 3.90 /
+         it. 4.16 (last word ends 4.30) */
+      tl.fromTo(el("f3-l1"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 0.05);
+      tl.fromTo(el("f3-l2"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 0.68);
+      tl.fromTo(el("f3-l3"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 1.18);
+      tl.fromTo(el("f3-l4"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 2.76);
+      tl.fromTo(el("f3-l5"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 3.62);
+
+      /* "crashes" (1.24): emphasis by shape, so the frame keeps one amber for the chip pair */
+      tl.fromTo(el("f3-l3"), { scale: 1 }, { scale: 1.03, duration: 0.2, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 1.90);
+
+      /* the wrong check arrives on "So check" (2.82-3.08) ... */
+      tl.fromTo(el("f3-ca"), { y: -150, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4,
+        ease: "power3.out", immediateRender: false }, 2.86);
+      /* ... and P10 strikes it: the rule draws left->right across it (3.35-3.67), which is the
+         frame's one and only --say arrival. Authored as a scaleX on a fixed 202px bar rather than a
+         width tween: same draw, and § 11 bans layout-snapping width tweens. */
+      tl.fromTo(el("f3-strike"), { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power2.out",
+        immediateRender: false }, 3.35);
+
+      /* the correct check drops in after the strike, on "use it." (3.90-4.16), and holds */
+      tl.fromTo(el("f3-cb"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46,
+        ease: "bounce.out", immediateRender: false }, 3.90);
+      tl.fromTo(el("f3-cb"), { scaleY: 1 }, { scaleY: 0.96, duration: 0.1, ease: "power2.out",
+        immediateRender: false }, 4.34);
+      tl.to(el("f3-cb"), { scaleY: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 4.44);
+      tl.fromTo(el("f3-cb"), { borderColor: "rgba(255,255,255,0.16)" },
+        { borderColor: "rgba(90,214,160,0.55)", duration: 0.2, ease: "power1.out",
+          immediateRender: false }, 4.34);
+      tl.to(el("f3-cb"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4, ease: "power1.inOut",
+        immediateRender: false }, 4.54);
+
+      /* ambient float on the instruction line, back to zero (2.8 + 2 x 1.35 = 5.5) */
+      tl.fromTo(el("f3-l4"), { y: 0 }, { y: -3, duration: 1.35, ease: "sine.inOut", repeat: 1,
+        yoyo: true, immediateRender: false }, 2.8);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 5.18);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

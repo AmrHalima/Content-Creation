@@ -1,0 +1,193 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G15 service lane, running state: the heap is already on the board (it arrived on F2 and
+       is drawn here at the identical geometry — the callback is literal, not rhetorical) ── */
+    .g15-node { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; padding-top: 38px; }
+    .g15-val { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 4.2cqw; line-height: 1; color: #5AD6A0; }
+    .g15-tab { position: absolute; box-sizing: border-box; height: 38px; background: #262C36;
+      border-bottom: 3px solid rgba(255,255,255,0.16); border-radius: 18px 18px 0 0;
+      display: flex; align-items: center; justify-content: center; padding: 0 10px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #F4F1EA; white-space: nowrap; }
+    .g15-tab.dim { color: #9BA6B2; }
+    .g15-vbar { position: absolute; width: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; }
+    .g15-hbar { position: absolute; height: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; }
+    .g15-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg); }
+    .g15-slot { position: absolute; box-sizing: border-box; background: #262C36;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .g15-ring { position: absolute; box-sizing: border-box; border: 3px solid #FFD166;
+      border-radius: 9999px; opacity: 0; box-shadow: 0 0 0 8px rgba(255,209,102,0.12); }
+
+    /* the tuple chips: 280x64 --panel-2, 3px --line, radius 12, JetBrains Mono 700 2.9cqw --ink.
+       Text exactly as executed, single quotes, ligatures off. */
+    .g15-tup { position: absolute; box-sizing: border-box; width: 280px; height: 64px;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-radius: 12px;
+      opacity: 0; display: flex; align-items: center; justify-content: center; padding: 0 10px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    /* the lane labels: mono --muted chrome, never a counted tag */
+    .g15-lab { position: absolute; box-sizing: border-box; height: 44px; display: flex;
+      align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g15-lab.head { height: 36px; }
+    /* the counted tag: pb-21's .f3-tag atom, upper lane y 288 h 66 */
+    .f3-tag { position: absolute; top: 288px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #F4F1EA; white-space: nowrap; }
+    /* name chips, lower lane: --panel-2, mono --muted — chips, never chambers */
+    .g15-chip { position: absolute; box-sizing: border-box; height: 56px; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 12px; opacity: 0; display: flex;
+      align-items: center; justify-content: center; padding: 0 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="03-served-out-of-order" data-width="1080" data-height="1920" data-duration="13.1">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="13.1" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="13.1" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 32</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="13.1" data-track-index="2">
+
+      <!-- the heap, unchanged: nothing in the tree is tweened on the serve beat -->
+      <div class="g15-vbar" style="left:538px; top:386px; height:34px;"></div>
+      <div class="g15-hbar" style="left:304px; top:418px; width:236px;"></div>
+      <div class="g15-hbar" style="left:538px; top:418px; width:236px;"></div>
+      <div class="g15-vbar" style="left:304px; top:418px; height:36px;"></div>
+      <div class="g15-vbar" style="left:772px; top:418px; height:36px;"></div>
+      <div class="g15-node" style="left:466px; top:292px; width:148px; height:96px;"><span class="g15-val">1</span></div>
+      <div id="f3-rootab" class="g15-tab" style="left:466px; top:292px; width:148px; opacity:1;" data-layout-ignore>root</div>
+      <div class="g15-node" style="left:232px; top:452px; width:148px; height:96px;"><span class="g15-val">3</span></div>
+      <div class="g15-node" style="left:700px; top:452px; width:148px; height:96px;"><span class="g15-val">2</span></div>
+
+      <!-- the serving lane -->
+      <div class="g15-hbar" style="left:614px; top:338px; width:122px;"></div>
+      <div class="g15-chev" style="left:722px; top:334px;"></div>
+      <div class="g15-slot" style="left:736px; top:300px; width:200px; height:84px;"></div>
+      <div class="g15-tab dim" style="left:736px; top:300px; width:200px; opacity:1;" data-layout-ignore>served</div>
+
+      <div id="f3-ring" class="g15-ring" style="left:456px; top:282px; width:168px; height:116px;"></div>
+
+      <!-- arrival lane: two tuples, top-to-bottom in the order they pushed, which is NOT numeric -->
+      <div id="f3-h0" class="g15-tup" style="left:72px; top:640px;">(5,&nbsp;&apos;low&apos;)</div>
+      <div id="f3-h1" class="g15-tup" style="left:72px; top:712px;">(1,&nbsp;&apos;urgent&apos;)</div>
+      <div id="f3-ah" class="g15-lab head" style="left:372px; top:600px; width:136px;" data-layout-ignore>arrival</div>
+      <div id="f3-a0" class="g15-lab" style="left:372px; top:650px; width:88px;" data-layout-ignore>1st</div>
+      <div id="f3-a1" class="g15-lab" style="left:372px; top:722px; width:88px;" data-layout-ignore>2nd</div>
+
+      <!-- the convention, mandatory beside the lane: smaller number = earlier service -->
+      <div id="f3-conv" class="g15-chip" style="left:500px; top:756px; width:340px;" data-layout-ignore>smaller&nbsp;=&nbsp;earlier</div>
+
+      <div id="f3-tag" class="f3-tag" style="left:72px; width:300px;" data-layout-allow-overlap>FIRST&nbsp;&apos;urgent&apos;</div>
+
+      <!-- where this is used: chips, never chambers (nothing about these was executed here) -->
+      <div id="f3-ch0" class="g15-chip" style="left:72px; top:892px; width:190px;" data-layout-ignore>schedulers</div>
+      <div id="f3-ch1" class="g15-chip" style="left:282px; top:892px; width:240px;" data-layout-ignore>shortest&nbsp;path</div>
+      <div id="f3-ch2" class="g15-chip" style="left:542px; top:892px; width:240px;" data-layout-ignore>notifications</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 13.1;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-served-out-of-order"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 3.275, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 3.275, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 3.275, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: this frame rises (F2 came in from the right, so direction alternates) */
+      tl.fromTo(el("f3-content"), { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.12);
+
+      /* ── beat 1 "Push low with five" — (5, 'low') drops in (P2) at left 72 / y 640 ── */
+      tl.fromTo(el("f3-ah"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 0.1);
+      tl.fromTo(el("f3-h0"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46, ease: "bounce.out", immediateRender: false }, 0.22);
+      tl.fromTo(el("f3-a0"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 0.72);
+
+      /* ── beat 2 "Push urgent with one" — (1, 'urgent') drops at y 712, below it ── */
+      tl.fromTo(el("f3-h1"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46, ease: "bounce.out", immediateRender: false }, 1.75);
+      tl.fromTo(el("f3-a1"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.5);
+
+      /* ── beat 3 "Pop gives urgent" — ONE element moves: the chip travels right and up into the
+         SERVED slot (0.5s power3.out) and turns --value mint on landing (mint = what printed).
+         (5, 'low') holds exactly where it is and the tree carries no tween on this beat. ── */
+      tl.to(el("f3-h1"), { x: 624, y: -374, duration: 0.5, ease: "power3.out", immediateRender: false }, 3.7);
+      tl.to(el("f3-h1"), { color: "#5AD6A0", borderColor: "rgba(90,214,160,0.8)", duration: 0.2, ease: "power2.out", immediateRender: false }, 4.15);
+      tl.fromTo(el("f3-a1"), { opacity: 1 }, { opacity: 0.25, duration: 0.24, ease: "power1.out", immediateRender: false }, 3.7);
+      tl.fromTo(el("f3-tag"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 3.76);
+
+      /* ── beat 4 "A heap puts the smallest number at the top" — the ring marks the root, the one
+         amber arrival of the frame; it retires before anything else changes (§ 1) ── */
+      tl.fromTo(el("f3-ring"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 5.5);
+      tl.to(el("f3-ring"), { opacity: 0, duration: 0.3, ease: "power2.in" }, 7.0);
+
+      /* the convention chip lands with the convention sentence */
+      tl.fromTo(el("f3-conv"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 5.96);
+
+      /* ── beat 5 the chip row, read flat: one chip per named place ── */
+      tl.fromTo(el("f3-ch0"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }, 7.6);
+      tl.fromTo(el("f3-ch1"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }, 8.56);
+      tl.fromTo(el("f3-ch2"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }, 9.88);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

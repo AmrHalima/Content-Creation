@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "How does a log keep only the latest 100 entries and never grow?"
+    },
+    {
+      "id": "02",
+      "text": "A circular buffer is an array with a set size. The write spot runs to the end and wraps back to zero."
+    },
+    {
+      "id": "03",
+      "text": "New data overwrites the oldest entry. Nothing shifts and nothing grows. That is why streaming audio uses it."
+    },
+    {
+      "id": "04",
+      "text": "Three slots: A, B, C. Write D and it lands on A. The log now holds the newest three."
+    },
+    {
+      "id": "05",
+      "text": "Save this for system design questions."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

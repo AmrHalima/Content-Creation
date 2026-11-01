@@ -1,0 +1,788 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 7.723,
+      "words": [
+        {
+          "text": "You",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "want",
+          "start": 0.24,
+          "end": 0.52
+        },
+        {
+          "text": "caching,",
+          "start": 0.52,
+          "end": 1.24
+        },
+        {
+          "text": "retries",
+          "start": 1.74,
+          "end": 2.26
+        },
+        {
+          "text": "and",
+          "start": 2.56,
+          "end": 2.62
+        },
+        {
+          "text": "logging",
+          "start": 2.62,
+          "end": 3
+        },
+        {
+          "text": "on",
+          "start": 3,
+          "end": 3.36
+        },
+        {
+          "text": "one",
+          "start": 3.36,
+          "end": 3.58
+        },
+        {
+          "text": "service.",
+          "start": 3.58,
+          "end": 4.12
+        },
+        {
+          "text": "Each",
+          "start": 5.04,
+          "end": 5.32
+        },
+        {
+          "text": "one",
+          "start": 5.32,
+          "end": 5.56
+        },
+        {
+          "text": "changes",
+          "start": 5.56,
+          "end": 6.08
+        },
+        {
+          "text": "what",
+          "start": 6.08,
+          "end": 6.5
+        },
+        {
+          "text": "the",
+          "start": 6.5,
+          "end": 6.64
+        },
+        {
+          "text": "call",
+          "start": 6.64,
+          "end": 6.9
+        },
+        {
+          "text": "does.",
+          "start": 6.9,
+          "end": 7.32
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 10.368,
+      "words": [
+        {
+          "text": "Inheritance",
+          "start": 0,
+          "end": 0.98
+        },
+        {
+          "text": "answers",
+          "start": 0.98,
+          "end": 1.5
+        },
+        {
+          "text": "that",
+          "start": 1.5,
+          "end": 1.9
+        },
+        {
+          "text": "with",
+          "start": 1.9,
+          "end": 2.14
+        },
+        {
+          "text": "a",
+          "start": 2.14,
+          "end": 2.26
+        },
+        {
+          "text": "subclass",
+          "start": 2.26,
+          "end": 2.94
+        },
+        {
+          "text": "per",
+          "start": 2.94,
+          "end": 3.3
+        },
+        {
+          "text": "combination.",
+          "start": 3.3,
+          "end": 4.04
+        },
+        {
+          "text": "Three",
+          "start": 5.04,
+          "end": 5.38
+        },
+        {
+          "text": "behaviours,",
+          "start": 5.38,
+          "end": 6.06
+        },
+        {
+          "text": "seven",
+          "start": 6.6,
+          "end": 7
+        },
+        {
+          "text": "classes,",
+          "start": 7,
+          "end": 7.66
+        },
+        {
+          "text": "picked",
+          "start": 8.14,
+          "end": 8.44
+        },
+        {
+          "text": "before",
+          "start": 8.44,
+          "end": 8.88
+        },
+        {
+          "text": "the",
+          "start": 8.88,
+          "end": 9.04
+        },
+        {
+          "text": "program",
+          "start": 9.04,
+          "end": 9.52
+        },
+        {
+          "text": "runs.",
+          "start": 9.52,
+          "end": 10.02
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 9.323,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "decorator",
+          "start": 0.22,
+          "end": 1.02
+        },
+        {
+          "text": "wraps",
+          "start": 1.02,
+          "end": 1.46
+        },
+        {
+          "text": "instead.",
+          "start": 1.46,
+          "end": 2.1
+        },
+        {
+          "text": "It",
+          "start": 2.98,
+          "end": 3.12
+        },
+        {
+          "text": "answers",
+          "start": 3.12,
+          "end": 3.6
+        },
+        {
+          "text": "the",
+          "start": 3.6,
+          "end": 3.92
+        },
+        {
+          "text": "same",
+          "start": 3.92,
+          "end": 4.26
+        },
+        {
+          "text": "interface,",
+          "start": 4.26,
+          "end": 4.92
+        },
+        {
+          "text": "does",
+          "start": 5.36,
+          "end": 5.58
+        },
+        {
+          "text": "its",
+          "start": 5.58,
+          "end": 5.74
+        },
+        {
+          "text": "own",
+          "start": 5.74,
+          "end": 6
+        },
+        {
+          "text": "work,",
+          "start": 6,
+          "end": 6.36
+        },
+        {
+          "text": "then",
+          "start": 6.72,
+          "end": 6.96
+        },
+        {
+          "text": "calls",
+          "start": 6.96,
+          "end": 7.36
+        },
+        {
+          "text": "the",
+          "start": 7.36,
+          "end": 7.66
+        },
+        {
+          "text": "object",
+          "start": 7.66,
+          "end": 8.26
+        },
+        {
+          "text": "inside.",
+          "start": 8.26,
+          "end": 8.76
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 7.829,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "order",
+          "start": 0.24,
+          "end": 0.58
+        },
+        {
+          "text": "of",
+          "start": 0.58,
+          "end": 0.84
+        },
+        {
+          "text": "the",
+          "start": 0.84,
+          "end": 0.98
+        },
+        {
+          "text": "rings",
+          "start": 0.98,
+          "end": 1.4
+        },
+        {
+          "text": "is",
+          "start": 1.4,
+          "end": 1.74
+        },
+        {
+          "text": "a",
+          "start": 1.74,
+          "end": 1.86
+        },
+        {
+          "text": "decision.",
+          "start": 1.86,
+          "end": 2.38
+        },
+        {
+          "text": "Retry",
+          "start": 3.16,
+          "end": 3.78
+        },
+        {
+          "text": "inside",
+          "start": 3.78,
+          "end": 4.2
+        },
+        {
+          "text": "the",
+          "start": 4.2,
+          "end": 4.52
+        },
+        {
+          "text": "cache,",
+          "start": 4.52,
+          "end": 4.9
+        },
+        {
+          "text": "and",
+          "start": 4.9,
+          "end": 5.54
+        },
+        {
+          "text": "a",
+          "start": 5.54,
+          "end": 5.66
+        },
+        {
+          "text": "retried",
+          "start": 5.66,
+          "end": 6.18
+        },
+        {
+          "text": "call",
+          "start": 6.18,
+          "end": 6.54
+        },
+        {
+          "text": "gets",
+          "start": 6.54,
+          "end": 6.96
+        },
+        {
+          "text": "stored.",
+          "start": 6.96,
+          "end": 7.44
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 7.36,
+      "words": [
+        {
+          "text": "One",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "ring",
+          "start": 0.38,
+          "end": 0.74
+        },
+        {
+          "text": "in",
+          "start": 0.74,
+          "end": 0.92
+        },
+        {
+          "text": "code",
+          "start": 0.92,
+          "end": 1.26
+        },
+        {
+          "text": "is",
+          "start": 1.26,
+          "end": 1.6
+        },
+        {
+          "text": "small.",
+          "start": 1.6,
+          "end": 2
+        },
+        {
+          "text": "The",
+          "start": 2.86,
+          "end": 2.96
+        },
+        {
+          "text": "constructor",
+          "start": 2.96,
+          "end": 3.48
+        },
+        {
+          "text": "takes",
+          "start": 3.48,
+          "end": 4.02
+        },
+        {
+          "text": "the",
+          "start": 4.02,
+          "end": 4.24
+        },
+        {
+          "text": "interface,",
+          "start": 4.24,
+          "end": 4.74
+        },
+        {
+          "text": "keeps",
+          "start": 5.2,
+          "end": 5.52
+        },
+        {
+          "text": "it,",
+          "start": 5.52,
+          "end": 5.88
+        },
+        {
+          "text": "and",
+          "start": 6.12,
+          "end": 6.2
+        },
+        {
+          "text": "calls",
+          "start": 6.2,
+          "end": 6.56
+        },
+        {
+          "text": "through.",
+          "start": 6.56,
+          "end": 6.96
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "path": "assets/voice/06.wav",
+      "duration_s": 10.027,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "stack",
+          "start": 0.22,
+          "end": 0.6
+        },
+        {
+          "text": "is",
+          "start": 0.6,
+          "end": 0.98
+        },
+        {
+          "text": "one",
+          "start": 0.98,
+          "end": 1.3
+        },
+        {
+          "text": "expression",
+          "start": 1.3,
+          "end": 1.88
+        },
+        {
+          "text": "at",
+          "start": 1.88,
+          "end": 2.34
+        },
+        {
+          "text": "the",
+          "start": 2.34,
+          "end": 2.44
+        },
+        {
+          "text": "call",
+          "start": 2.44,
+          "end": 2.74
+        },
+        {
+          "text": "site.",
+          "start": 2.74,
+          "end": 3.12
+        },
+        {
+          "text": "Its",
+          "start": 3.9,
+          "end": 4.04
+        },
+        {
+          "text": "type",
+          "start": 4.04,
+          "end": 4.44
+        },
+        {
+          "text": "is",
+          "start": 4.44,
+          "end": 4.88
+        },
+        {
+          "text": "still",
+          "start": 4.88,
+          "end": 5.22
+        },
+        {
+          "text": "PaymentGateway.",
+          "start": 5.22,
+          "end": 5.76
+        },
+        {
+          "text": "Nothing",
+          "start": 7.08,
+          "end": 7.62
+        },
+        {
+          "text": "downstream",
+          "start": 7.62,
+          "end": 8.38
+        },
+        {
+          "text": "knows",
+          "start": 8.38,
+          "end": 9
+        },
+        {
+          "text": "the",
+          "start": 9,
+          "end": 9.26
+        },
+        {
+          "text": "difference.",
+          "start": 9.26,
+          "end": 9.6
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "path": "assets/voice/07.wav",
+      "duration_s": 11.115,
+      "words": [
+        {
+          "text": "Inheritance",
+          "start": 0,
+          "end": 0.92
+        },
+        {
+          "text": "needed",
+          "start": 0.92,
+          "end": 1.36
+        },
+        {
+          "text": "seven",
+          "start": 1.36,
+          "end": 1.92
+        },
+        {
+          "text": "classes,",
+          "start": 1.92,
+          "end": 2.6
+        },
+        {
+          "text": "fixed",
+          "start": 3.12,
+          "end": 3.52
+        },
+        {
+          "text": "at",
+          "start": 3.52,
+          "end": 3.8
+        },
+        {
+          "text": "compile",
+          "start": 3.8,
+          "end": 4.28
+        },
+        {
+          "text": "time.",
+          "start": 4.28,
+          "end": 4.9
+        },
+        {
+          "text": "Three",
+          "start": 5.88,
+          "end": 6.14
+        },
+        {
+          "text": "decorators",
+          "start": 6.14,
+          "end": 7
+        },
+        {
+          "text": "need",
+          "start": 7,
+          "end": 7.38
+        },
+        {
+          "text": "three",
+          "start": 7.38,
+          "end": 7.78
+        },
+        {
+          "text": "classes",
+          "start": 7.78,
+          "end": 8.42
+        },
+        {
+          "text": "and",
+          "start": 8.42,
+          "end": 9.02
+        },
+        {
+          "text": "one",
+          "start": 9.02,
+          "end": 9.32
+        },
+        {
+          "text": "expression",
+          "start": 9.32,
+          "end": 9.94
+        },
+        {
+          "text": "per",
+          "start": 9.94,
+          "end": 10.4
+        },
+        {
+          "text": "stack.",
+          "start": 10.4,
+          "end": 10.76
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "path": "assets/voice/08.wav",
+      "duration_s": 9.003,
+      "words": [
+        {
+          "text": "Left",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "unchecked,",
+          "start": 0.36,
+          "end": 1.38
+        },
+        {
+          "text": "every",
+          "start": 1.52,
+          "end": 1.82
+        },
+        {
+          "text": "call",
+          "start": 1.82,
+          "end": 2.22
+        },
+        {
+          "text": "site",
+          "start": 2.22,
+          "end": 2.58
+        },
+        {
+          "text": "adds",
+          "start": 2.58,
+          "end": 3.02
+        },
+        {
+          "text": "a",
+          "start": 3.02,
+          "end": 3.18
+        },
+        {
+          "text": "ring.",
+          "start": 3.18,
+          "end": 3.52
+        },
+        {
+          "text": "Twelve",
+          "start": 4.28,
+          "end": 4.56
+        },
+        {
+          "text": "deep,",
+          "start": 4.56,
+          "end": 5
+        },
+        {
+          "text": "and",
+          "start": 5,
+          "end": 5.56
+        },
+        {
+          "text": "a",
+          "start": 5.56,
+          "end": 5.7
+        },
+        {
+          "text": "type",
+          "start": 5.7,
+          "end": 5.96
+        },
+        {
+          "text": "check",
+          "start": 5.96,
+          "end": 6.36
+        },
+        {
+          "text": "on",
+          "start": 6.36,
+          "end": 6.62
+        },
+        {
+          "text": "the",
+          "start": 6.62,
+          "end": 6.72
+        },
+        {
+          "text": "class",
+          "start": 6.72,
+          "end": 7.14
+        },
+        {
+          "text": "you",
+          "start": 7.14,
+          "end": 7.36
+        },
+        {
+          "text": "wrapped",
+          "start": 7.36,
+          "end": 7.72
+        },
+        {
+          "text": "reads",
+          "start": 7.72,
+          "end": 8.14
+        },
+        {
+          "text": "false.",
+          "start": 8.14,
+          "end": 8.58
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 72.748
+}

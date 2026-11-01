@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1200, height=630" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("../assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+      @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("../assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+      html, body { width: 1200px; height: 630px; overflow: hidden; background: #FFFFEB; }
+      #root {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        container-type: size;
+        direction: rtl;
+        background: #FFFFEB;
+        font-family: "Noto Naskh Arabic", serif;
+        color: #1A1A1A;
+      }
+      .sh-stub { position: absolute; top: 64px; right: 72px; width: 62px; height: 4px; background: #FFA946; }
+      .sh-kicker {
+        position: absolute; top: 92px; right: 72px; width: 640px;
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 2.1cqw; font-weight: 500;
+        letter-spacing: 0; color: #034F46;
+      }
+      .sh-title {
+        position: absolute; top: 132px; right: 72px; width: 700px;
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 6.4cqw; font-weight: 900;
+        line-height: 1.22; letter-spacing: 0; color: #1A1A1A;
+      }
+      .sh-lead {
+        position: absolute; top: 352px; right: 72px; width: 620px;
+        font-family: "Noto Naskh Arabic", serif; font-size: 2.6cqw; font-weight: 400;
+        line-height: 1.5; letter-spacing: 0; color: rgba(26,26,26,0.82);
+      }
+      .sh-foot {
+        position: absolute; bottom: 0; right: 0; width: 1200px; height: 92px;
+        border-top: 1px solid rgba(26,26,26,0.22);
+        display: flex; align-items: center; gap: 20px; padding: 0 72px;
+      }
+      .sh-foot span {
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 1.75cqw; font-weight: 500;
+        letter-spacing: 0; color: #1A1A1A;
+      }
+      .sh-foot b {
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 1.9cqw; font-weight: 700;
+        color: #034F46;
+      }
+      .sh-diagram { position: absolute; top: 60px; left: 60px; width: 400px; height: 420px; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="1"
+      data-fps="1"
+      data-width="1200"
+      data-height="630"
+      dir="rtl"
+      lang="ar"
+    >
+      <div
+        id="sh-clip"
+        class="clip"
+        data-start="0"
+        data-duration="1"
+        data-track-index="0"
+        style="position:absolute;inset:0;"
+      >
+        <div class="sh-stub"></div>
+        <div class="sh-kicker">تحذير</div>
+        <div class="sh-title">تحويل المكالمات</div>
+        <div class="sh-lead">النصب اللي مبيطلبش منك أي حاجة. مفيش كود اتسأل، ومفيش مكالمة بتترن عندها.</div>
+
+        <svg class="sh-diagram" viewBox="0 0 400 420" width="400" height="420" fill="none" aria-hidden="true">
+          <!-- her phone: right of the pair, dimmed (it never rings) -->
+          <rect x="286" y="70" width="94" height="170" stroke="#1A1A1A" stroke-width="1.6" fill="none" opacity="0.32"/>
+          <rect x="298" y="86" width="70" height="130" fill="#1A1A1A" opacity="0.12"/>
+          <text x="333" y="272" text-anchor="middle" font-family="Noto Kufi Arabic, sans-serif" font-size="18" fill="#1A1A1A" opacity="0.62">رقم ماما</text>
+
+          <!-- the divert: from her number, bending to his -->
+          <path d="M 286 155 C 230 175 200 205 150 215" stroke="#FFA946" stroke-width="2.4"/>
+          <path d="M 162 205 L 148 216 L 164 224" stroke="#FFA946" stroke-width="2.4" fill="none"/>
+
+          <!-- his phone: left, active -->
+          <rect x="56" y="180" width="94" height="170" stroke="#1A1A1A" stroke-width="1.6" fill="none"/>
+          <rect x="68" y="196" width="70" height="130" fill="#FFA946"/>
+          <text x="103" y="382" text-anchor="middle" font-family="Noto Kufi Arabic, sans-serif" font-size="18" font-weight="700" fill="#1A1A1A">رقم تاني</text>
+          <circle cx="103" cy="265" r="72" stroke="#FFA946" stroke-width="1.4" opacity="0.75"/>
+        </svg>
+
+        <div class="sh-foot">
+          <b>الفحص في دقيقتين</b>
+          <span>بيتعمل بإيدك إنت، على الموبايل اللي في إيدك.</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

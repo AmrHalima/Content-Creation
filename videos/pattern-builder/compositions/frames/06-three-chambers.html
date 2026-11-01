@@ -1,0 +1,256 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; top: 146px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f06-spike { color: #1a1a1a; font-size: 2.5cqw; letter-spacing: 0; }
+    .f06-box {
+      position: absolute; left: 74px; width: 700px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 26px;
+      padding: 0 34px;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f06-caller { top: 292px; height: 212px; background: #ffffeb; }
+    .f06-seam { top: 634px; height: 300px; background: #1a1a1a; border-color: #ffffeb; flex-wrap: wrap; align-content: center; }
+    .f06-product { top: 1014px; height: 224px; background: #e4e4d0; }
+    .f06-box-name {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 5.2cqw; line-height: 1; letter-spacing: -0.02em;
+    }
+    .f06-seam .f06-box-name { color: #ffffeb; }
+    .f06-box-sig {
+      margin-left: auto;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.02em; color: #76766e;
+      text-align: right;
+    }
+    .f06-seam .f06-box-sig { color: rgba(255,255,235,0.62); }
+    .f06-slotrail { width: 100%; display: flex; gap: 14px; margin-top: 6px; }
+    .f06-slot {
+      box-sizing: border-box; padding: 8px 16px;
+      background: #252320;
+      border: 1px solid rgba(255,255,235,0.22);
+      border-radius: 6px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: rgba(255,255,235,0.80);
+      opacity: 0;
+      display: inline-block;
+    }
+    .f06-badge {
+      position: absolute; left: 792px;
+      box-sizing: border-box; padding: 10px 20px;
+      background: #034f46; border: 2px solid #ffffeb; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #ffffeb; opacity: 0;
+    }
+    .f06-badge-caller { top: 250px; }
+    .f06-badge-seam { top: 592px; }
+    .f06-badge-product { top: 972px; }
+    .f06-svg { position: absolute; inset: 0; pointer-events: none; }
+    .f06-dep { fill: none; stroke: #1a1a1a; stroke-width: 4; stroke-linecap: round; }
+    .f06-dep-head { fill: #1a1a1a; opacity: 0; }
+    .f06-imp { fill: none; stroke: rgba(26,26,26,0.45); stroke-width: 2.5; stroke-dasharray: 9 7; stroke-linecap: round; }
+    .f06-imp-head { fill: rgba(26,26,26,0.45); opacity: 0; }
+    .f06-imp-tag {
+      position: absolute; top: 486px; left: 862px; width: 150px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.04em; color: #76766e;
+      opacity: 0;
+    }
+    .f06-bound {
+      position: absolute; left: 74px; width: 968px;
+      display: flex; align-items: center; gap: 20px;
+      opacity: 0;
+    }
+    .f06-bound-f { top: 1320px; }
+    .f06-bound-b { top: 1444px; }
+    .f06-bound-key {
+      box-sizing: border-box; min-width: 200px; text-align: center;
+      padding: 12px 20px;
+      border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #1a1a1a;
+    }
+    .f06-bound-key-dim { border-color: rgba(26,26,26,0.30); color: #76766e; }
+    .f06-bound-val {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 3.4cqw; letter-spacing: -0.012em; color: #1a1a1a;
+    }
+    .f06-bound-rule { margin-left: auto; width: 140px; height: 1px; background: rgba(26,26,26,0.18); }
+  </style>
+
+  <div id="root" data-composition-id="06-three-chambers" data-width="1080" data-height="1920" data-duration="13.461">
+
+    <div id="06-three-chambers-fieldclip" class="clip" data-start="0" data-duration="13.461" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field"></div>
+      <div id="06-three-chambers-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="06-three-chambers-headclip" class="clip" data-start="0" data-duration="13.461" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="06-three-chambers-kicker" class="f06-kicker"><span class="f06-spike">&#10033;</span><span>the anatomy</span></div>
+      <div id="06-three-chambers-badge-caller" class="f06-badge f06-badge-caller">chains</div>
+      <div id="06-three-chambers-badge-seam" class="f06-badge f06-badge-seam">seam</div>
+      <div id="06-three-chambers-badge-product" class="f06-badge f06-badge-product">finished</div>
+    </div>
+
+    <div id="06-three-chambers-boxclip" class="clip" data-start="0.40" data-duration="13.061" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="06-three-chambers-caller" class="f06-box f06-caller">
+        <span class="f06-box-name">caller</span>
+        <span class="f06-box-sig">placeOrder()</span>
+      </div>
+      <div id="06-three-chambers-seam" class="f06-box f06-seam">
+        <span class="f06-box-name">builder</span>
+        <span class="f06-box-sig">OrderBuilder</span>
+        <span id="06-three-chambers-slotrail" class="f06-slotrail">
+          <span id="06-three-chambers-sl1" class="f06-slot">customer</span>
+          <span id="06-three-chambers-sl2" class="f06-slot">line</span>
+          <span id="06-three-chambers-sl3" class="f06-slot">shipTo</span>
+        </span>
+      </div>
+      <div id="06-three-chambers-product" class="f06-box f06-product">
+        <span class="f06-box-name">product</span>
+        <span class="f06-box-sig">Order</span>
+      </div>
+    </div>
+
+    <div id="06-three-chambers-arrowclip" class="clip" data-start="4.02" data-duration="9.441" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f06-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="06-three-chambers-dep1" class="f06-dep" d="M 300 504 L 300 634" />
+        <polygon id="06-three-chambers-dep1h" class="f06-dep-head" points="288,612 300,640 312,612" />
+        <path id="06-three-chambers-dep2" class="f06-dep" d="M 300 934 L 300 1014" />
+        <polygon id="06-three-chambers-dep2h" class="f06-dep-head" points="288,994 300,1020 312,994" />
+        <path id="06-three-chambers-imp" class="f06-imp" d="M 906 700 C 962 700 962 560 906 470 C 884 442 866 430 848 420" />
+        <polygon id="06-three-chambers-imph" class="f06-imp-head" points="862,430 840,414 858,406" />
+      </svg>
+      <div id="06-three-chambers-imptag" class="f06-imp-tag">knows</div>
+    </div>
+
+    <div id="06-three-chambers-boundclip" class="clip" data-start="10.08" data-duration="3.381" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="06-three-chambers-bound-f" class="f06-bound f06-bound-f">
+        <span class="f06-bound-key f06-bound-key-dim">factory</span>
+        <span class="f06-bound-val">which type</span>
+        <span class="f06-bound-rule"></span>
+      </div>
+      <div id="06-three-chambers-bound-b" class="f06-bound f06-bound-b">
+        <span class="f06-bound-key">builder</span>
+        <span class="f06-bound-val">how one gets assembled</span>
+        <span class="f06-bound-rule"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 13.461;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-three-chambers"] = tl;
+
+      // ── Scene 1 (0.0–3.5s) — "three chambers". The caller lands first, at the top third.
+      //    Below it, empty paper: the other two boxes are unspoken. ──
+      tl.fromTo(el("06-three-chambers-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("06-three-chambers-kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 0.14);
+      tl.fromTo(el("06-three-chambers-caller"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.48, ease: "power3.out" }, 0.40);
+      tl.fromTo(el("06-three-chambers-badge-caller"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.32, ease: "power3.out" }, 0.92);
+
+      // ── Scene 2 (3.5–6.9s) — "the caller chains, the builder holds parts". The seam chamber
+      //    arrives in its dark grammar and the first dependency arrow self-draws down into it,
+      //    then the three held parts settle inside it in F4's order. ──
+      tl.fromTo(el("06-three-chambers-seam"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.64);
+      tl.fromTo(el("06-three-chambers-badge-seam"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.32, ease: "power3.out" }, 4.10);
+      var DEP1 = 132;
+      el("06-three-chambers-dep1").style.strokeDasharray = DEP1 + " " + DEP1;
+      tl.fromTo(
+        el("06-three-chambers-dep1"),
+        { attr: { "stroke-dashoffset": DEP1 } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.52, ease: "power2.out" },
+        4.20
+      );
+      tl.fromTo(el("06-three-chambers-dep1h"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.68);
+      var SLOTS = ["06-three-chambers-sl1", "06-three-chambers-sl2", "06-three-chambers-sl3"];
+      for (var i = 0; i < SLOTS.length; i++) {
+        tl.fromTo(
+          el(SLOTS[i]),
+          { opacity: 0, y: -12 },
+          { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" },
+          5.16 + i * 0.36
+        );
+      }
+
+      // ── Scene 3 (6.9–9.4s) — "the product appears only at the end". Second arrow draws,
+      //    the product box lands, and the slot rail stops being the last word on screen. ──
+      tl.fromTo(el("06-three-chambers-product"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.92);
+      var DEP2 = 82;
+      el("06-three-chambers-dep2").style.strokeDasharray = DEP2 + " " + DEP2;
+      tl.fromTo(
+        el("06-three-chambers-dep2"),
+        { attr: { "stroke-dashoffset": DEP2 } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.42, ease: "power2.out" },
+        7.36
+      );
+      tl.fromTo(el("06-three-chambers-dep2h"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 7.72);
+      tl.fromTo(el("06-three-chambers-badge-product"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 8.42);
+
+      // ── Scene 4 (9.4–10.0s) — the gap after "end". The import arrow draws back up along
+      //    the right edge, dashed and thin, and names which way knowledge flows. ──
+      var IMP = 300;
+      tl.fromTo(
+        el("06-three-chambers-imp"),
+        { attr: { "stroke-dashoffset": IMP } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: "power2.out" },
+        9.00
+      );
+      tl.fromTo(el("06-three-chambers-imph"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 9.70);
+      tl.fromTo(el("06-three-chambers-imptag"), { opacity: 0, x: 12 }, { opacity: 1, x: 0, duration: 0.38, ease: "power3.out" }, 9.10);
+
+      // ── Scene 5 (10.0–13.46s) — "a factory picks which type; this picks none". The one
+      //    boundary this part is allowed to draw: two rows, the sibling dimmed. Then held
+      //    read, the anatomy still enough to copy down. Jitter on the seam only. ──
+      tl.fromTo(el("06-three-chambers-bound-f"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "power3.out" }, 10.08);
+      tl.fromTo(el("06-three-chambers-bound-b"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 11.50);
+      tl.fromTo(el("06-three-chambers-bound-b"), { scale: 1 }, { scale: 1.03, duration: 0.28, ease: "power2.out" }, 12.46);
+
+      var jit = { p: 0 };
+      var box = el("06-three-chambers-seam");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.24,
+        duration: D - 12.9,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.3).toFixed(3) + "px)"; }
+      }, 12.9);
+    })();
+  </script>
+</template>

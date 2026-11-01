@@ -1,0 +1,170 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-kicker {
+      position: absolute; top: 214px; left: 84px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f02-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f02-ktext { display: inline-block; opacity: 0; }
+
+    .f02-mask {
+      position: absolute; top: 566px; left: 60px; width: 960px; height: 400px;
+      overflow: hidden;
+    }
+    .f02-display {
+      display: block;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 7.0cqw; line-height: 1.08; letter-spacing: -0.022em;
+      color: #1a1a1a; white-space: nowrap;
+    }
+    .f02-line { display: block; white-space: nowrap; }
+    .f02-rule {
+      position: absolute; top: 990px; left: 60px; width: 960px; height: 2px;
+      background: rgba(26,26,26,0.16); opacity: 0;
+    }
+    .f02-sub {
+      position: absolute; top: 1024px; left: 60px; width: 960px; height: 60px;
+      font-family: "Inter", sans-serif; font-weight: 400; font-size: 3.0cqw; line-height: 1.3;
+      letter-spacing: -0.005em; color: #76766e; opacity: 0;
+    }
+
+    .f02-chip {
+      position: absolute; top: 1240px; width: 340px; height: 100px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.5cqw; letter-spacing: 0.01em;
+      opacity: 0;
+    }
+    .f02-chip-left { left: 84px; background: #f0d7ff; color: #1a1a1a; border: 2px solid #1a1a1a; }
+    .f02-chip-right { left: 656px; background: #181715; color: #ffffeb; border: 2px solid rgba(255,255,235,0.42); }
+    .f02-chip-tag {
+      position: absolute; top: 1360px; width: 340px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f02-tag-left { left: 84px; }
+    .f02-tag-right { left: 656px; }
+
+    .f02-arrows { position: absolute; inset: 0; }
+    .f02-arrows svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f02-wire { fill: none; stroke: #1a1a1a; stroke-width: 5; stroke-linecap: round; }
+    .f02-head { fill: #ffa946; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="02-converts-one-interface" data-width="1080" data-height="1920" data-duration="8">
+
+    <div id="f02-ground" class="clip" data-start="0" data-duration="8" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f02-field"></div>
+      <div id="f02-grid" class="f02-grid"></div>
+    </div>
+
+    <div id="f02-chrome" class="clip" data-start="0" data-duration="8" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f02-kicker">
+        <span id="f02-spike" class="f02-spike">&#10009;</span><span id="f02-ktext" class="f02-ktext" data-layout-ignore>THE ADAPTER</span>
+      </div>
+    </div>
+
+    <div id="f02-statement" class="clip" data-start="0.2" data-duration="7.8" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f02-mask">
+        <div id="f02-display" data-hold class="f02-display">
+          <span class="f02-line">converts one interface</span>
+          <span class="f02-line f02-line-b">into another</span>
+        </div>
+      </div>
+      <div id="f02-rule" class="f02-rule"></div>
+      <div id="f02-sub" class="f02-sub">neither side changes</div>
+    </div>
+
+    <div id="f02-seam" class="clip" data-start="2.4" data-duration="5.6" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f02-chip-a" class="f02-chip f02-chip-left">PaymentGateway</div>
+      <div id="f02-chip-b" class="f02-chip f02-chip-right">BankClient</div>
+      <div id="f02-tag-a" class="f02-chip-tag f02-tag-left" data-layout-ignore>your side</div>
+      <div id="f02-tag-b" class="f02-chip-tag f02-tag-right" data-layout-ignore>their side</div>
+    </div>
+
+    <div id="f02-wire" class="clip" data-start="3.3" data-duration="4.7" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f02-arrows">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f02-draw" class="f02-wire" d="M 648 1290 L 448 1290" />
+          <polygon id="f02-head" class="f02-head" points="458,1275 430,1290 458,1305" />
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-converts-one-interface"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("f02-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.2s) "An adapter lets them talk": eyebrow, then the line wipes up ──
+      tl.fromTo(el("f02-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f02-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+      tl.fromTo(el("f02-display"), { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.62, ease: "expo.out" }, 0.3);
+
+      // ── Scene 2 (1.2–4.2s) "and neither side changes": rule, sub-line, the two chips ──
+      tl.fromTo(el("f02-rule"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.98);
+      tl.fromTo(el("f02-sub"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 2.1);
+      tl.fromTo(el("f02-chip-a"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 2.5);
+      tl.fromTo(el("f02-chip-b"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 2.9);
+      tl.fromTo(el("f02-tag-a"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 3.2);
+      tl.fromTo(el("f02-tag-b"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 3.4);
+
+      // ── Scene 3 (4.2–6.0s) "It converts one interface into another": the wire draws toward your side ──
+      var wire = el("f02-draw");
+      var len = wire.getTotalLength();
+      wire.style.strokeDasharray = String(len);
+      wire.style.strokeDashoffset = String(len);
+      tl.to(wire, { strokeDashoffset: 0, duration: 0.78, ease: "power3.out" }, 5.02);
+      tl.fromTo(el("f02-head"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out", transformOrigin: "50% 50%" }, 5.72);
+      // the accent words settle one step larger on "converts" (scale only, never letter-spacing)
+      tl.to(el("f02-display"), { scale: 1.035, duration: 0.5, ease: "power3.out", transformOrigin: "0% 50%" }, 5.16);
+
+      // ── Scene 4 (6.0–8.0s) held card; the only aliveness is jitter on the arrowhead ──
+      var jit = { p: 0 };
+      var head = el("f02-head");
+      var HOLD = 6.3;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.35,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          head.style.transform = "translateX(" + (Math.sin(jit.p) * 2.4).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

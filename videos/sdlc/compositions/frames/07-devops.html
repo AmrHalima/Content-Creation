@@ -1,0 +1,253 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f07-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px);
+    }
+    .f07-header {
+      position: absolute; top: 130px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.1cqw; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(20,19,19,0.64);
+      opacity: 0;
+    }
+    .f07-panel {
+      position: absolute; left: 240px; top: 270px; width: 600px; height: 980px; box-sizing: border-box;
+      background: #181715;
+      border: 1px solid rgba(250,249,245,0.14);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      opacity: 0;
+    }
+    .f07-titlebar {
+      position: absolute; left: 0; top: 0; width: 600px; height: 84px; box-sizing: border-box;
+      background: #252320;
+      border-bottom: 1px solid rgba(250,249,245,0.14);
+      border-radius: 7px 7px 0 0;
+      display: flex; align-items: center; padding: 0 36px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw;
+      letter-spacing: 0.06em; color: rgba(250,249,245,0.55);
+      opacity: 0;
+    }
+    .f07-strip {
+      position: absolute; left: 36px; top: 118px; height: 30px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw;
+      color: rgba(250,249,245,0.75); white-space: nowrap;
+    }
+    .f07-stage {
+      position: absolute; left: 100px; height: 44px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.4cqw;
+      color: rgba(250,249,245,0.9); white-space: nowrap;
+    }
+    .f07-caret {
+      display: inline-block; width: 12px; height: 34px; margin-left: 4px;
+      background: rgba(250,249,245,0.85); vertical-align: baseline; opacity: 0;
+    }
+    .f07-strip-caret {
+      display: inline-block; width: 9px; height: 20px; margin-left: 3px;
+      background: rgba(250,249,245,0.75); vertical-align: baseline; opacity: 0;
+    }
+    .f07-panel-svg { position: absolute; left: 0; top: 0; }
+    .f07-flow { fill: none; stroke: rgba(250,249,245,0.4); stroke-width: 2.5; stroke-dasharray: 8 14; opacity: 0; }
+    .f07-return { fill: none; stroke: rgba(250,249,245,0.4); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .f07-returnhead { fill: rgba(250,249,245,0.6); opacity: 0; }
+    .f07-check { fill: none; stroke: #5DB8A6; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+    .f07-gate {
+      position: absolute; left: 0; top: 590px; width: 600px; height: 2px;
+      background: rgba(250,249,245,0.5);
+      opacity: 0;
+    }
+    .f07-gate-label {
+      position: absolute; left: 0; top: 552px; width: 600px; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2cqw;
+      letter-spacing: 0.1em; text-transform: lowercase; color: rgba(250,249,245,0.7);
+      opacity: 0;
+    }
+    .f07-lock-rule {
+      position: absolute; left: 390px; top: 1290px; width: 300px; height: 1px;
+      background: rgba(20,19,19,0.3);
+    }
+    .f07-lock-figure {
+      position: absolute; top: 1304px; left: 0; right: 0; text-align: center;
+      font-family: "EB Garamond", serif; font-size: 8cqw; font-weight: 400;
+      line-height: 0.95; letter-spacing: -0.025em; color: #141413;
+      white-space: nowrap;
+    }
+    .f07-fig-text { display: inline-block; width: 270px; text-align: left; }
+    .f07-fig-cursor {
+      display: inline-block; width: 6px; height: 60px; margin-left: 6px;
+      background: #141413; vertical-align: baseline; opacity: 0;
+    }
+    .f07-lock-label {
+      position: absolute; top: 1402px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(20,19,19,0.74);
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-devops" data-width="1080" data-height="1920" data-duration="12.852">
+
+    <div id="07-devops-bg" class="clip" data-start="0" data-duration="12.852" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-bg"></div>
+      <div class="f07-grid"></div>
+    </div>
+
+    <div id="07-devops-stage" class="clip" data-start="0" data-duration="12.852" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="07-devops-header" class="f07-header">answer 03 &#183; devops</div>
+
+      <div id="07-devops-panel" class="f07-panel">
+        <div id="07-devops-titlebar" class="f07-titlebar">ci/pipeline.yml</div>
+
+        <div class="f07-strip"><span id="07-devops-striptext"></span><span id="07-devops-stripcaret" class="f07-strip-caret"></span></div>
+
+        <div class="f07-stage" style="top:290px;"><span id="07-devops-l1text"></span><span id="07-devops-l1caret" class="f07-caret"></span></div>
+        <div class="f07-stage" style="top:490px;"><span id="07-devops-l2text"></span><span id="07-devops-l2caret" class="f07-caret"></span></div>
+        <div class="f07-stage" style="top:690px;"><span id="07-devops-l3text"></span><span id="07-devops-l3caret" class="f07-caret"></span></div>
+
+        <svg class="f07-panel-svg" width="600" height="980" viewBox="0 0 600 980" xmlns="http://www.w3.org/2000/svg">
+          <path id="07-devops-flow" class="f07-flow" d="M 56 300 L 56 700" />
+          <path id="07-devops-return" class="f07-return" d="M 300 708 L 540 708 L 540 308 L 250 308" />
+          <polygon id="07-devops-returnhead" class="f07-returnhead" points="-7,-6.5 13,0 -7,6.5" transform="translate(250,308) rotate(180)" />
+          <path id="07-devops-check" class="f07-check" d="M 252 706 L 262 719 L 284 693" />
+        </svg>
+
+        <div id="07-devops-gate" class="f07-gate"></div>
+        <div id="07-devops-gatelabel" class="f07-gate-label">manual approval</div>
+      </div>
+    </div>
+
+    <div id="07-devops-lockclip" class="clip" data-start="0" data-duration="12.852" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f07-lock-rule"></div>
+      <div class="f07-lock-figure"><span class="f07-fig-text" id="07-devops-figtext">weeks</span><span class="f07-fig-cursor" id="07-devops-figcursor"></span></div>
+      <div class="f07-lock-label">feedback latency</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var D = 12.352;
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-devops"] = tl;
+
+      // ── Seek-safe driver: every text-state + continuously-varying motion is a pure
+      // function of t (stage typing, strip typing, lockup token cycle, dash flow). ──
+      var l1 = el("07-devops-l1text"), l2 = el("07-devops-l2text"), l3 = el("07-devops-l3text");
+      var l1c = el("07-devops-l1caret"), l2c = el("07-devops-l2caret"), l3c = el("07-devops-l3caret");
+      var stripText = el("07-devops-striptext"), stripCaret = el("07-devops-stripcaret");
+      var figText = el("07-devops-figtext"), figCursor = el("07-devops-figcursor");
+      var flow = el("07-devops-flow");
+
+      var L1 = [{ t: 0.45, s: "b" }, { t: 0.52, s: "bu" }, { t: 0.59, s: "bui" }, { t: 0.66, s: "buil" }, { t: 0.73, s: "build" }];
+      var L2 = [{ t: 0.90, s: "t" }, { t: 0.97, s: "te" }, { t: 1.04, s: "tes" }, { t: 1.11, s: "test" }];
+      var L3 = [{ t: 1.28, s: "d" }, { t: 1.35, s: "de" }, { t: 1.42, s: "dep" }, { t: 1.49, s: "depl" }, { t: 1.56, s: "deplo" }, { t: 1.63, s: "deploy" }];
+      function seqAt(seq, t) {
+        for (var i = seq.length - 1; i >= 0; i--) { if (t >= seq[i].t) return seq[i].s; }
+        return "";
+      }
+
+      var STRIP = "deploy: routine \u00b7 rollback: first-class";
+      var STRIP_T0 = 3.95, STRIP_CPS = 1 / 0.07;
+      function stripAt(t) {
+        if (t < STRIP_T0) return "";
+        return STRIP.substring(0, Math.min(STRIP.length, Math.floor((t - STRIP_T0) * STRIP_CPS)));
+      }
+
+      var FIG = [
+        { t: 0.00, s: "weeks" },
+        { t: 2.50, s: "week" }, { t: 2.56, s: "wee" }, { t: 2.62, s: "we" }, { t: 2.68, s: "w" }, { t: 2.74, s: "" },
+        { t: 2.86, s: "m" }, { t: 2.94, s: "mi" }, { t: 3.01, s: "min" }, { t: 3.09, s: "minu" },
+        { t: 3.16, s: "minut" }, { t: 3.24, s: "minute" }, { t: 3.31, s: "minutes" }
+      ];
+
+      // caret envelope: solid while typing, N whole sin-blink cycles, linear fade
+      function caretOp(t, solid0, solid1, blinkEnd, fadeEnd, cycles) {
+        if (t < solid0 || t >= fadeEnd) return 0;
+        if (t < solid1) return 1;
+        if (t < blinkEnd) {
+          var phase = ((t - solid1) / (blinkEnd - solid1)) * Math.PI * 2 * cycles;
+          return Math.sin(phase) > 0 ? 1 : 0;
+        }
+        return (fadeEnd - t) / (fadeEnd - blinkEnd);
+      }
+
+      // dash flow: constant speed, then finite deceleration to a full stop at the gate
+      var V0 = 60, FLOW_T0 = 1.90, JAM_T0 = 10.85, JAM_T1 = 11.65;
+      function flowDisp(t) {
+        if (t <= FLOW_T0) return 0;
+        if (t < JAM_T0) return V0 * (t - FLOW_T0);
+        var base = V0 * (JAM_T0 - FLOW_T0);
+        if (t < JAM_T1) { var u = t - JAM_T0; return base + V0 * u - (V0 / (2 * (JAM_T1 - JAM_T0))) * u * u; }
+        return base + V0 * (JAM_T1 - JAM_T0) / 2;
+      }
+
+      var driver = { t: 0 };
+      tl.to(driver, {
+        t: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var t = driver.t;
+          l1.textContent = seqAt(L1, t);
+          l2.textContent = seqAt(L2, t);
+          l3.textContent = seqAt(L3, t);
+          l1c.style.opacity = String(caretOp(t, 0.42, 0.85, 0.85, 0.90, 1));
+          l2c.style.opacity = String(caretOp(t, 0.88, 1.23, 1.23, 1.28, 1));
+          l3c.style.opacity = String(caretOp(t, 1.26, 1.75, 2.95, 3.25, 2));
+          stripText.textContent = stripAt(t);
+          stripCaret.style.opacity = String(caretOp(t, 3.95, 6.75, 7.95, 8.25, 2));
+          figText.textContent = seqAt(FIG, t);
+          figText.style.color = t >= 3.31 ? "#CC785C" : "#141413";
+          figCursor.style.opacity = String(caretOp(t, 2.45, 3.31, 4.51, 4.81, 2));
+          flow.style.strokeDashoffset = String(-flowDisp(t));
+        }
+      }, 0);
+
+      // ── Scene 1: the coil compresses into the navy pipeline panel ──
+      tl.fromTo(el("07-devops-header"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.15);
+      tl.fromTo(el("07-devops-panel"), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.10);
+      tl.fromTo(el("07-devops-titlebar"), { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 0.35);
+
+      // deploy ✓ draws itself in teal once "every commit." lands
+      var check = el("07-devops-check");
+      var checkLen = check.getTotalLength() * 1.05;
+      check.style.strokeDasharray = String(checkLen);
+      check.style.strokeDashoffset = String(checkLen);
+      tl.to(check, { strokeDashoffset: 0, duration: 0.25, ease: "power2.out" }, 1.85);
+
+      // flow chevrons start running down the gutter
+      tl.fromTo(flow, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, 1.85);
+
+      // ── Scene 2: the return arrow climbs the panel side — deploy loops back to build ──
+      var ret = el("07-devops-return");
+      var retLen = ret.getTotalLength() * 1.05;
+      ret.style.strokeDasharray = String(retLen);
+      ret.style.strokeDashoffset = String(retLen);
+      tl.to(ret, { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, 2.60);
+      tl.set(el("07-devops-returnhead"), { opacity: 1 }, 3.55);
+
+      // ── Scene 3 (lockup token cycle) runs on the driver — "minutes" flips coral at 3.31 ──
+
+      // ── Scene 4: the jam — a hairline gate drops mid-flow; the chevrons stall to a stop ──
+      tl.fromTo(el("07-devops-gate"), { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 10.85);
+      tl.fromTo(el("07-devops-gatelabel"), { y: -14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 10.85);
+    })();
+  </script>
+</template>

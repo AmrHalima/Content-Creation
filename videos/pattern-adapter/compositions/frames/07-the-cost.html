@@ -1,0 +1,181 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; top: 214px; left: 60px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f07-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f07-ktext { display: inline-block; opacity: 0; }
+
+    .f07-chip {
+      position: absolute; left: 210px; width: 660px; height: 108px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f07-chip-up { top: 440px; background: #f0d7ff; border: 2px solid #1a1a1a; }
+    .f07-chip-down { top: 1200px; background: #ffffeb; border: 2px solid rgba(26,26,26,0.45); color: #46463f; }
+
+    .f07-hub {
+      position: absolute; top: 744px; left: 260px; width: 560px; height: 240px;
+      box-sizing: border-box; background: #181715;
+      border: 2px solid rgba(255,255,235,0.22); border-radius: 8px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; opacity: 0;
+    }
+    .f07-hub-name {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      line-height: 1; color: #ffffeb; white-space: nowrap;
+    }
+    .f07-hub-role {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,235,0.68); white-space: nowrap;
+    }
+    .f07-tag {
+      position: absolute; top: 826px; left: 840px; width: 180px; height: 76px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; line-height: 1.1;
+      color: #1a1a1a; text-align: center; white-space: nowrap; opacity: 0;
+    }
+
+    .f07-wires { position: absolute; inset: 0; }
+    .f07-wires svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f07-wire { fill: none; stroke: #1a1a1a; stroke-width: 5; stroke-linecap: round; }
+    .f07-head { fill: #1a1a1a; opacity: 0; }
+
+    .f07-caption {
+      position: absolute; left: 60px; top: 1408px; width: 960px; height: 110px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.6cqw; line-height: 1.05;
+      letter-spacing: -0.016em; color: #1a1a1a; white-space: nowrap; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-the-cost" data-width="1080" data-height="1920" data-duration="7.915">
+
+    <div id="f07-ground" class="clip" data-start="0" data-duration="7.915" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field"></div>
+      <div id="f07-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="f07-chrome" class="clip" data-start="0" data-duration="7.915" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f07-kicker">
+        <span id="f07-spike" class="f07-spike">&#10009;</span><span id="f07-ktext" class="f07-ktext" data-layout-ignore>THE BILL</span>
+      </div>
+    </div>
+
+    <div id="f07-hubclip" class="clip" data-start="0.2" data-duration="7.715" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f07-hub" data-hold class="f07-hub">
+        <span class="f07-hub-name">VendorPayAdapter</span>
+        <span class="f07-hub-role" data-layout-ignore>translation layer</span>
+      </div>
+      <div id="f07-tag" class="f07-tag">both sides</div>
+    </div>
+
+    <div id="f07-sources" class="clip" data-start="1.0" data-duration="6.915" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f07-chip-up" class="f07-chip f07-chip-up">your side changes</div>
+      <div id="f07-chip-down" class="f07-chip f07-chip-down">vendor changes</div>
+    </div>
+
+    <div id="f07-wires" class="clip" data-start="1.8" data-duration="6.115" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f07-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f07-wire-a" class="f07-wire" d="M 540 556 L 540 728" />
+          <polygon id="f07-head-a" class="f07-head" points="525,718 540,746 555,718" />
+          <path id="f07-wire-b" class="f07-wire" d="M 540 1192 L 540 1006" />
+          <polygon id="f07-head-b" class="f07-head" points="525,1016 540,990 555,1016" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="f07-caption" class="clip" data-start="6.2" data-duration="1.715" data-track-index="5" style="position:absolute;inset:0;">
+      <div id="f07-caption-line" class="f07-caption">different reasons</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.915;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-the-cost"] = tl;
+
+      function draw(id, at, dur) {
+        var p = el(id);
+        var len = p.getTotalLength();
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: dur, ease: "power3.out" }, at);
+      }
+
+      // ── ground ──
+      tl.fromTo(el("f07-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f07-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f07-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.4s) "It costs a layer you maintain": the hub pins and stays put ──
+      tl.fromTo(el("f07-hub"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 0.28);
+
+      // ── Scene 2 (1.4–3.8s) "on both sides": the two sources arrive, both arrows land on the hub ──
+      tl.fromTo(el("f07-chip-up"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.12);
+      draw("f07-wire-a", 1.86, 0.4);
+      tl.fromTo(el("f07-head-a"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 2.2);
+      tl.fromTo(el("f07-chip-down"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.36);
+      draw("f07-wire-b", 2.72, 0.4);
+      tl.fromTo(el("f07-head-b"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 3.06);
+      // the frame's single ember element, on the word "both"
+      tl.fromTo(el("f07-tag"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 2.36);
+
+      // ── Scene 3 (3.8–6.4s) "It pays when the two shapes change": each source steps up once ──
+      tl.to(el("f07-chip-up"), { borderColor: "#1a1a1a", scale: 1.02, duration: 0.34, ease: "power2.out" }, 5.08);
+      tl.to(el("f07-chip-up"), { scale: 1, duration: 0.3, ease: "power1.out" }, 5.44);
+      tl.to(el("f07-chip-down"), { color: "#1a1a1a", scale: 1.02, duration: 0.34, ease: "power2.out" }, 5.74);
+      tl.to(el("f07-chip-down"), { scale: 1, duration: 0.3, ease: "power1.out" }, 6.1);
+
+      // ── Scene 4 (6.4–7.9s) "for different reasons": the caption, then nothing moves ──
+      tl.fromTo(el("f07-caption-line"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.32);
+
+      var jit = { p: 0 };
+      var box = el("f07-hub");
+      var HOLD = 6.96;
+      gsap.set(box, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

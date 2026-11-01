@@ -1,0 +1,83 @@
+==========================================================================
+CHAMBER p40_tuple_assign.py   ::   point = (3, 4) / point[0] = 9
+exit code: 1
+--- stdout (verbatim) ---
+(none)
+--- stderr (verbatim, file path trimmed to the basename) ---
+Traceback (most recent call last):
+  File "p40_tuple_assign.py", line 4, in <module>
+    point[0] = 9
+    ~~~~~^^^
+TypeError: 'tuple' object does not support item assignment
+
+==========================================================================
+CHAMBER p40_list_as_key.py   ::   d = {} / d[[1, 2]] = 3
+exit code: 1
+--- stdout (verbatim) ---
+(none)
+--- stderr (verbatim, file path trimmed to the basename) ---
+Traceback (most recent call last):
+  File "p40_list_as_key.py", line 3, in <module>
+    d[[1, 2]] = 3
+    ~^^^^^^^^
+TypeError: unhashable type: 'list'
+
+==========================================================================
+CHAMBER p40_tuple_key_ok.py   ::   location[(3, 4)] = ...  (the success case)
+exit code: 0
+--- stdout (verbatim) ---
+the point at 3, 4
+{(3, 4): 'the point at 3, 4', (0, 0): 'origin'}
+hashable? True
+a tuple holding a list is NOT: unhashable type: 'list'
+--- stderr (verbatim, file path trimmed to the basename) ---
+(none)
+
+==========================================================================
+CHAMBER p40_list_mutable.py   ::   the mutable list / fixed tuple claim
+exit code: 0
+--- stdout (verbatim) ---
+change  nums[1] = 99      -> [10, 99, 30]
+add     nums.append(40)   -> [10, 99, 30, 40]
+remove  nums.remove(99)   -> [10, 30, 40]
+tuple stays fixed         -> (3, 4) | len 2
+
+identity vs value, the reason immutability is what makes a tuple hashable:
+  a == b: True | same object: False
+  after a[0] = 9 -> a is [9, 2] and b is still [1, 2] (two separate lists)
+  the printed a really did change: True | b untouched: True
+  (1,2) == (1,2): True | hash equal: True
+  tuple value can never drift, so its hash can never drift - that is the whole argument
+  for 'a tuple of hashable items can be a dictionary key', and why the list version cannot.
+--- stderr (verbatim, file path trimmed to the basename) ---
+(none)
+
+==========================================================================
+WHAT A BUILDER PUTS ON SCREEN
+The traceback's first line is an absolute path on THIS machine and is not portable.
+Portable form below is GENERATED from the captured stderr, never typed from memory:
+  ------------------------------------------------------------
+  Traceback (most recent call last):
+    File "main.py", line 4, in <module>
+      point[0] = 9
+      ~~~~~^^^
+  TypeError: 'tuple' object does not support item assignment
+  ------------------------------------------------------------
+  Traceback (most recent call last):
+    File "main.py", line 3, in <module>
+      d[[1, 2]] = 3
+      ~^^^^^^^^
+  TypeError: unhashable type: 'list'
+
+Two things a builder must not silently 'fix' here:
+  1. the LINE NUMBER in the File "main.py" line is the real one from the chamber file
+     (line 4 for the tuple, line 3 for the dict key, because of the leading comment). If
+     the frame's chamber shows a different line count, the traceback must be regenerated,
+     not hand-adjusted;
+  2. the caret row (~~~~~^^^) is PEP 657 fine-grained locations, real in Python 3.11+.
+     Copy it from above - the tilde/caret counts differ between the two chambers.
+
+Cross-check the two message strings against a bare eval, so a typo in the frame text
+is detectable without a subprocess:
+  tuple item assignment: TypeError: 'tuple' object does not support item assignment
+  list as dict key: TypeError: unhashable type: 'list'

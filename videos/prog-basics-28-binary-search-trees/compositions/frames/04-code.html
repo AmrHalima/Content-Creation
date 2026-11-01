@@ -1,0 +1,241 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    /* § 2 / packet § 8: the ligature kill-list on the STYLESHEET of every frame that carries
+       code, or JetBrains Mono ligates `->` and `<=` into glyphs a learner cannot type. */
+    html, body { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+    .mono { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G14 carried into the proof frame. The bar lane belongs to F3's argument (the log ramp);
+          on this frame the field is its COUNTABLE SPINE — § 6's number lane, left 744 width 264,
+          right-aligned, all twenty executed values at their authored row tops (250 + 36k). Rows
+          13-20 dim via § 1 (digits to rgba(244,241,234,0.62)), never container opacity, so
+          `twenty` has twenty things to point at. No bars are drawn here: a 660px chamber would
+          cover them and leave three slivers peeking past its corners. ── */
+    .f4-num { position: absolute; left: 744px; width: 264px; height: 30px; text-align: right;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      line-height: 30px; color: #5AD6A0; white-space: nowrap; }
+    .f4-num.dim { color: rgba(244,241,234,0.62); }
+
+    /* the walk tick, in the 12px gutter between the chamber's right edge and the number lane */
+    .f4-mark { position: absolute; left: 736px; top: 250px; width: 6px; height: 30px;
+      background: rgba(255,255,255,0.16); border-radius: 3px; opacity: 0; }
+
+    /* the counted tag, in the 40px floor band under row 20 (same place it holds on F3) */
+    .f4-tag { position: absolute; left: 744px; top: 966px; width: 264px; height: 34px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: flex-end;
+      gap: 12px; opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2;
+      white-space: nowrap; }
+    .f4-tag-n { display: inline-block; color: #5AD6A0; letter-spacing: 0; min-width: 1.4em; }
+
+    /* ── G3 code chamber: --panel interior on --ground, 3px --line, radius 22, G2 shadow,
+          64px --panel-2 titlebar, filename --muted left, language chip --say right (§ 5 G3).
+          Max 4 code lines + 1 terminal strip, and every line here was executed. ── */
+    .cd-root { position: absolute; left: 72px; top: 296px; width: 660px; height: 316px;
+      box-sizing: border-box; background: #1F242C; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 22px; opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background: #262C36;
+      border-radius: 19px 19px 0 0; display: flex; align-items: center; padding: 0 24px;
+      box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 600px; height: 54px; display: flex;
+      align-items: center; white-space: pre; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .l1 { top: 84px; } .l2 { top: 138px; } .l3 { top: 192px; } .l4 { top: 246px; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .f4-lmask { position: absolute; left: 30px; height: 54px; width: 600px; background: #1F242C;
+      transform-origin: right center; }
+    .f4-caret { position: absolute; width: 5px; height: 40px; background: #FFD166; border-radius: 2px;
+      opacity: 0; }
+    /* the brace-bar under t[1][1] — the brackets ARE the search path (chamber-relative coords) */
+    .f4-hopbar { position: absolute; left: 142px; top: 301px; width: 130px; height: 3px;
+      background: #FFD166; border-radius: 2px; transform-origin: left center; transform: scaleX(0); }
+    .f4-hoptag { position: absolute; left: 100px; top: 632px; height: 30px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    /* the bracket chase, read off the executed path — diagram vocabulary, chrome weight */
+    .f4-path { position: absolute; left: 100px; top: 686px; height: 34px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 400;
+      letter-spacing: 0.06em; color: #9BA6B2; white-space: nowrap; }
+    .f4-path b { display: inline-block; font-weight: 700; color: #F4F1EA; }
+
+    /* terminal strip: the executed stdout, mint on --panel-2, in its own lane (§ 4: y 900 h 72) */
+    .f4-term { position: absolute; left: 72px; top: 900px; width: 660px; height: 72px;
+      box-sizing: border-box; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; opacity: 0; display: flex; align-items: center; padding: 0 24px; }
+    .f4-termlab { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 1.55cqw;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .f4-out { display: inline-block; margin-left: auto; font-family: "JetBrains Mono", monospace;
+      font-size: 2.9cqw; font-weight: 700; color: #5AD6A0; }
+  </style>
+
+  <div id="root" data-composition-id="04-code" data-width="1080" data-height="1920" data-duration="7.4">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="7.4" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="7.4" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 28</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="7.4" data-track-index="2">
+
+      <!-- the twenty executed values, at F3's row tops: twelve at full mint, eight dimmed -->
+      <div id="f4-rows"></div>
+      <div id="f4-mark" class="f4-mark" data-layout-allow-occlusion></div>
+      <div id="f4-tag" class="f4-tag" data-layout-allow-overlap>STEPS&nbsp;<span id="f4-tag-n" class="f4-tag-n">20</span></div>
+
+      <!-- G3 chamber: the tree the search walked, in the executed nested-tuple form.
+           Run here on Python 3.13.15: t[0] -> 8, t[1][0] -> 4, t[1][1][0] -> 3. G3 caps at four
+           code lines, so the tuple takes three and the line the voice names takes the fourth. -->
+      <div id="f4-chamber" class="cd-root">
+        <div class="cd-bar">
+          <span id="f4-file" class="cd-file mono" data-layout-ignore>main.py</span>
+          <span id="f4-lang" class="cd-lang mono" data-layout-ignore>PYTHON</span>
+        </div>
+        <div id="f4-l1" class="cd-line l1 mono"><span class="tk-i">t</span><span class="tk-m">&nbsp;=&nbsp;(</span><span class="tk-v">8</span><span class="tk-m">,&nbsp;(</span><span class="tk-v">4</span><span class="tk-m">,&nbsp;(</span><span class="tk-v">3</span><span class="tk-m">,&nbsp;None,&nbsp;None),</span></div>
+        <div id="f4-l2" class="cd-line l2 mono"><span class="tk-m">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span class="tk-v">6</span><span class="tk-m">,&nbsp;None,&nbsp;None)),</span></div>
+        <div id="f4-l3" class="cd-line l3 mono"><span class="tk-m">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span class="tk-v">12</span><span class="tk-m">,&nbsp;None,&nbsp;None))</span></div>
+        <div id="f4-l4" class="cd-line l4 mono"><span class="tk-i">print</span><span class="tk-m">(t[</span><span class="tk-v">1</span><span class="tk-m">][</span><span class="tk-v">1</span><span class="tk-m">][</span><span class="tk-v">0</span><span class="tk-m">])&nbsp;&nbsp;</span><span class="tk-m">#&nbsp;</span><span class="tk-v">3</span></div>
+        <div id="f4-m1" class="f4-lmask l1"></div>
+        <div id="f4-m2" class="f4-lmask l2"></div>
+        <div id="f4-m3" class="f4-lmask l3"></div>
+        <div id="f4-m4" class="f4-lmask l4"></div>
+        <div id="f4-cr1" class="f4-caret" style="left:34px; top:91px"></div>
+        <div id="f4-cr2" class="f4-caret" style="left:34px; top:145px"></div>
+        <div id="f4-cr3" class="f4-caret" style="left:34px; top:199px"></div>
+        <div id="f4-cr4" class="f4-caret" style="left:34px; top:253px"></div>
+        <div id="f4-hopbar" class="f4-hopbar"></div>
+      </div>
+      <div id="f4-hoptag" class="f4-hoptag mono" data-layout-ignore>left,&nbsp;then&nbsp;left</div>
+      <div id="f4-path" class="f4-path mono" data-layout-ignore>t[0]&nbsp;=&nbsp;<b>8</b>&nbsp;&nbsp;·&nbsp;&nbsp;t[1][0]&nbsp;=&nbsp;<b>4</b>&nbsp;&nbsp;·&nbsp;&nbsp;t[1][1][0]&nbsp;=&nbsp;<b>3</b></div>
+
+      <div id="f4-term" class="f4-term">
+        <span id="f4-termlab" class="f4-termlab" data-layout-ignore>stdout</span>
+        <span id="f4-out" class="f4-out mono">3</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.4;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-code"] = tl;
+
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 12, duration: D / 2, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.08);
+
+      /* entrance wipe: F3 came in on x from the right, so F4 comes in on x from the left (§ 9) */
+      tl.fromTo(el("f4-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f4-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* § 6's twenty executed values at their authored row tops, unchanged from F3 */
+      var VALUES = ["1,000,000", "500,000", "250,000", "125,000", "62,500", "31,250", "15,625",
+        "7,812", "3,906", "1,953", "976", "488", "244", "122", "61", "30", "15", "7", "3", "1"];
+      var host = el("f4-rows");
+      for (var k = 0; k < 20; k++) {
+        var num = document.createElement("div");
+        num.className = "f4-num" + (k >= 12 ? " dim" : "");
+        num.id = "f4-n" + k;
+        num.style.top = (250 + k * 36) + "px";
+        num.textContent = VALUES[k];
+        host.appendChild(num);
+      }
+
+      /* ── measured onsets (studio cues) ─────────────────────────────────────────
+         Here 0.00 is 0.22 that 0.40 tree 0.60 as 0.88 code. 1.06-1.36
+         It 1.86 looks 2.00 at 2.18 three 2.38 boxes 2.60-3.02 and 3.02 stops. 3.30-3.58
+         That 4.24 is 4.48 what 4.70 twenty 4.86-5.16 means 5.16 for 5.48 a 5.72
+         million. 5.82-6.06 */
+
+      /* the field is already the board: it arrives as a set, no per-row accent, no colour */
+      for (var i = 0; i < 20; i++) {
+        tl.fromTo(el("f4-n" + i), { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.12 + i * 0.012);
+      }
+      tl.fromTo(el("f4-tag"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.30);
+
+      /* P3 type-on, one line per clause of "Here is that tree as code" */
+      tl.fromTo(el("f4-chamber"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out", immediateRender: false }, 0.34);
+      tl.fromTo(el("f4-file"), { opacity: 0 }, { opacity: 1, duration: 0.24, immediateRender: false }, 0.52);
+      tl.fromTo(el("f4-lang"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 0.62);
+      function typeLine(n, at, dur, x) {
+        tl.set(el("f4-l" + n), { opacity: 1 }, at);
+        tl.fromTo(el("f4-m" + n), { scaleX: 1 }, { scaleX: 0, duration: dur, ease: "power1.inOut", immediateRender: false }, at);
+        tl.fromTo(el("f4-cr" + n), { opacity: 1, x: 0 }, { opacity: 1, x: x, duration: dur, ease: "power1.inOut", immediateRender: false }, at);
+        tl.set(el("f4-cr" + n), { opacity: 0 }, at + dur + 0.04);
+      }
+      typeLine(1, 0.72, 0.44, 470);
+      typeLine(2, 1.20, 0.28, 300);
+      typeLine(3, 1.52, 0.30, 320);
+      typeLine(4, 1.86, 0.40, 400);
+
+      /* "It looks at three boxes and stops." — stdout arrives on "It looks", the mint 3 on
+         "three boxes", and the bracket chase reads t[0] / t[1][0] / t[1][1][0] */
+      tl.fromTo(el("f4-term"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 1.90);
+      tl.fromTo(el("f4-termlab"), { opacity: 0 }, { opacity: 1, duration: 0.24, immediateRender: false }, 2.10);
+      tl.fromTo(el("f4-out"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.38);
+      tl.fromTo(el("f4-path"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 2.52);
+
+      /* the one keyword sweep this frame owns (the piece: amber belongs to F1 and F4) — a bar
+         under t[1][1], the two brackets that ARE the two lefts */
+      tl.fromTo(el("f4-hopbar"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, 2.80);
+      tl.fromTo(el("f4-hoptag"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 3.06);
+
+      /* "That is what twenty means for a million." — the tick walks all twenty numbers and the
+         counted tag stops being chrome on "twenty". Last dimmed row lights on "million." */
+      tl.fromTo(el("f4-mark"), { opacity: 0 }, { opacity: 1, duration: 0.18, immediateRender: false }, 4.28);
+      tl.to(el("f4-mark"), { y: 684, duration: 0.46, ease: "power2.inOut", immediateRender: false }, 4.60);
+      tl.to(el("f4-mark"), { opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 5.20);
+      tl.to(el("f4-tag"), { color: "#F4F1EA", duration: 0.22, ease: "power1.out", immediateRender: false }, 4.86);
+      tl.to(el("f4-n19"), { color: "#5AD6A0", duration: 0.26, ease: "power1.out", immediateRender: false }, 5.82);
+
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 7.08);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "shortform-vertical",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:35.969Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:36.057Z"
+    },
+    "language": {
+      "value": "en",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:36.147Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:36.217Z"
+    },
+    "storyboard": {
+      "value": "no",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:36.280Z"
+    },
+    "voice": {
+      "value": "am_michael",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:36.369Z"
+    },
+    "style_preset.faceless-explainer": {
+      "value": "code-editorial",
+      "confirmed_in": [
+        "osi-layers-1-sideways"
+      ],
+      "updated_at": "2026-10-21T21:44:36.458Z"
+    }
+  },
+  "sightings": {}
+}

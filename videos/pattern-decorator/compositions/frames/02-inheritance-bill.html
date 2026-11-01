@@ -1,0 +1,162 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-kicker {
+      position: absolute; top: 206px; left: 80px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #6e6e64;
+    }
+    .f02-spike { display: inline-block; color: #6e6e64; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f02-ktext { display: inline-block; opacity: 0; }
+    .f02-count {
+      position: absolute; top: 158px; right: 80px; width: 260px; height: 200px;
+      display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: flex-end; gap: 12px;
+      opacity: 0;
+    }
+    .f02-count-fig {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 8.6cqw; line-height: 0.86; letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .f02-count-unit {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.5cqw; line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #6e6e64; margin-top: 34px;
+    }
+    .f02-formula {
+      width: 100%; text-align: right;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.6cqw; letter-spacing: 0.06em; color: rgba(26,26,26,0.66);
+      opacity: 0;
+    }
+    .f02-rule {
+      position: absolute; top: 520px; left: 80px; width: 920px; height: 2px;
+      background: rgba(26,26,26,0.20); opacity: 0;
+    }
+    .f02-bar {
+      position: absolute; left: 80px; height: 96px;
+      box-sizing: border-box;
+      display: flex; align-items: center; padding: 0 24px;
+      background: #ffffeb;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.3cqw; line-height: 1; letter-spacing: -0.005em;
+      color: #1a1a1a; white-space: nowrap;
+      opacity: 0;
+    }
+    .f02-barlive {
+      position: absolute; left: 76px; top: 1264px; width: 568px; height: 104px;
+      box-sizing: border-box;
+      border: 4px solid #ffa946;
+      border-radius: 14px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .f02-when {
+      position: absolute; top: 1420px; left: 80px; width: 430px; height: 108px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #1a1a1a;
+      border: 2px solid #ffffeb;
+      border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.0cqw; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #ffffeb;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-inheritance-bill" data-width="1080" data-height="1920" data-duration="10.868">
+
+    <div id="f02-fieldclip" class="clip" data-start="0" data-duration="10.868" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="f02-field" class="f02-field"></div>
+      <div id="f02-grid" class="f02-grid"></div>
+    </div>
+
+    <div id="f02-chromeclip" class="clip" data-start="0" data-duration="10.868" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f02-kicker" class="f02-kicker">
+        <span id="f02-spike" class="f02-spike">&#10009;</span><span id="f02-ktext" class="f02-ktext" data-layout-ignore>INHERITANCE&#39;S BILL</span>
+      </div>
+      <div id="f02-count" class="f02-count">
+        <span class="f02-count-fig">7</span><span class="f02-count-unit" data-layout-ignore>classes</span>
+        <span id="f02-formula" class="f02-formula" data-layout-ignore>2^3 &#8722; 1</span>
+      </div>
+      <div id="f02-rule" class="f02-rule"></div>
+    </div>
+
+    <div id="f02-stripclip" class="clip" data-start="0" data-duration="10.868" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f02-bar1" class="f02-bar" style="top:560px; width:360px;">CachedStripeGateway</div>
+      <div id="f02-bar2" class="f02-bar" style="top:678px; width:360px;">LoggedStripeGateway</div>
+      <div id="f02-bar3" class="f02-bar" style="top:796px; width:380px;">RetriedStripeGateway</div>
+      <div id="f02-bar4" class="f02-bar" style="top:914px; width:450px;">LoggedCachedStripeGateway</div>
+      <div id="f02-bar5" class="f02-bar" style="top:1032px; width:470px;">LoggedRetriedStripeGateway</div>
+      <div id="f02-bar6" class="f02-bar" style="top:1150px; width:470px;">CachedRetriedStripeGateway</div>
+      <div id="f02-bar7" class="f02-bar" style="top:1268px; width:560px;">LoggedCachedRetriedStripeGateway</div>
+      <div id="f02-barlive" class="f02-barlive"></div>
+    </div>
+
+    <div id="f02-whenclip" class="clip" data-start="8.1" data-duration="2.768" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f02-when" class="f02-when">compile time</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-inheritance-bill"] = tl;
+
+      tl.fromTo(el("f02-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f02-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f02-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–2.3s) — the baseline rule draws, then the first name on "subclass" ──
+      tl.fromTo(el("f02-rule"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.out", transformOrigin: "left center" }, 0.98);
+      tl.fromTo(el("f02-bar1"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 2.26);
+
+      // ── Scene 2 (2.3–5.0s) — the strip grows downward, one bar per spoken cue ──
+      tl.fromTo(el("f02-bar2"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 2.94);
+      tl.fromTo(el("f02-bar3"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 3.30);
+      tl.fromTo(el("f02-bar4"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 5.04);
+      tl.fromTo(el("f02-bar5"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 5.38);
+
+      // ── Scene 3 (5.0–6.6s) — the number-lockup lands on "seven" ──
+      tl.fromTo(el("f02-count"), { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 6.60);
+
+      // ── Scene 4 (6.6–8.1s) — "classes,": the remaining two combinations arrive, derivation settles ──
+      tl.fromTo(el("f02-bar6"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 7.00);
+      tl.fromTo(el("f02-bar7"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 7.16);
+      tl.fromTo(el("f02-formula"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 7.40);
+
+      // ── Scene 5 (8.1–10.4s) — "picked before the program runs": the tag, then the one voltage ──
+      tl.fromTo(el("f02-when"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 8.44);
+      tl.fromTo(el("f02-barlive"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power2.out" }, 8.88);
+      // hold 9.6→10.368: the pile reads and stops (no jitter on GSAP-transformed bars)
+    })();
+  </script>
+</template>

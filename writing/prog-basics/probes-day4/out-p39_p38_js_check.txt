@@ -1,0 +1,27 @@
+== 39-JS  is a JS array's allocated capacity observable? ==
+a.length after 9 pushes: 9
+'capacity' property: undefined
+'allocated' property: undefined
+Object.keys of the array (index keys only?): ["0","1","2","3","4","5","6","7","8"]
+JSON size proxy - is there ANY standard way to read V8's backing-store slack?
+  Reflect.ownKeys(a).length = 10 (indices + 'length' - no capacity field)
+=> NO. V8 keeps backing-store slack internally and exposes nothing. The only honest
+   JS-side statement is the script's own hedge: 'the growth factor depends on the
+   language'. A JS capacity NUMBER on screen would be fabricated. CPython numbers
+   (p39_capacity.py) are real because sys.getsizeof reports the allocated block.
+
+== 38-JS  is there a built-in string hash to print? ==
+typeof 'ab'.hashCode: undefined
+typeof Object.hash: undefined
+typeof globalThis.hash: undefined
+globalThis.hashCode: undefined
+=> JavaScript defines NO string hash function in the language. Any hash on screen
+   for part 38 is a function the part itself writes down - which is fine, and is
+   exactly why 38 must SHOW its formula (see p38_hash.py: sum of char codes).
+
+== deterministic JS hash, the same sum-of-ord rule, for cross-language honesty ==
+  "ab": ord sum = 195 -> % 4 = 3
+  "cd": ord sum = 199 -> % 4 = 3
+=> same numbers as Python's sum(ord(c)) % 4 (195 -> 3, 199 -> 3). The 38 lesson is
+   portable ONLY because the part supplies its own hash, not because both
+   languages hash strings alike. Say 'here is OUR toy hash', never 'Python/JS hash'.

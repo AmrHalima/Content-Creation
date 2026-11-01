@@ -1,0 +1,11 @@
+Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk) — Space Grotesk latin-subset woff2
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+The license text is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+The file shipped next to this notice is the unmodified latin-subset woff2 binary distributed
+with the installed HyperFrames skills
+(.agents/skills/embedded-captions/modes/standard/fonts/files/). Redistribution under the OFL
+requires this notice and the full licence text to travel with it; the full OFL 1.1 body is at
+the URL above, including the Reserved Font Name clause.

@@ -1,0 +1,183 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* the CTA's own tree, on the SAME G11 grid (this part draws it; 28/29/31 bind to it).
+       Receding by § 1's background rule — the fill dims to rgba(31,36,44,0.42), the border stays at
+       --line 0.16 because a viewer has to COUNT these boxes. No value is painted inside any of them:
+       this frame carries no digit at all, which is what keeps the quiz a quiz. */
+    .f5-node { position: absolute; box-sizing: border-box; width: 148px; height: 96px;
+      background: rgba(31,36,44,0.42); border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      opacity: 0; }
+    .f5-stub { position: absolute; width: 3px; height: 32px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0; }
+    .f5-run { position: absolute; height: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0; }
+    .f5-d0, .f5-u { transform: scaleY(0); }
+    .f5-d0 { transform-origin: top center; }
+    .f5-u { transform-origin: bottom center; }
+    .f5-run { transform: scaleX(0); transform-origin: left center; }
+
+    /* G5 (frame-day3.md § 5): headline ≤9 words and ≤24 characters at 6.4cqw in a 176px box,
+       the mechanic verb as a solid --say plate, badge in muted mono. `count the leaves` = 16 chars. */
+    .f5-ask { position: absolute; left: 72px; top: 296px; width: 936px; height: 176px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0; z-index: 2;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .f5-plate { position: absolute; left: 330px; top: 720px; width: 420px; height: 104px; display: flex;
+      align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    /* the counted lane, emptied: F3's LEAVES slot now holds the question instead of the answer */
+    .f5-ask-tag { position: absolute; left: 590px; top: 892px; width: 220px; height: 66px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 14px;
+      opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #F4F1EA; white-space: nowrap; }
+    .f5-tk { display: inline-block; }
+    .f5-q { display: inline-block; color: #5AD6A0; }
+    .f5-brandline { position: absolute; left: 72px; top: 960px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="6.0">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="6.0" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="6.0" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 27 · THE ASK</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="6.0" data-track-index="2" data-layout-allow-overflow>
+
+      <!-- root has 2 children … -->
+      <div id="f5-nr" class="f5-node" style="left:466px; top:292px;"></div>
+      <div id="f5-d0" class="f5-stub f5-d0" style="left:539px; top:388px;"></div>
+      <div id="f5-r0" class="f5-run" style="left:306px; top:419px; width:234px;"></div>
+      <div id="f5-r1" class="f5-run" style="left:540px; top:419px; width:234px;"></div>
+      <div id="f5-u0" class="f5-stub f5-u" style="left:305px; top:420px;"></div>
+      <div id="f5-u1" class="f5-stub f5-u" style="left:773px; top:420px;"></div>
+      <div id="f5-n1" class="f5-node" style="left:232px; top:452px;"></div>
+      <div id="f5-n2" class="f5-node" style="left:700px; top:452px;"></div>
+
+      <!-- … and each child has 2 more. Two runs at y 580, spanning 189..423 and 657..891: they share a
+           level but never an x range, so the two families read as two brackets and not a knot. -->
+      <div id="f5-d1" class="f5-stub f5-d0" style="left:305px; top:548px;"></div>
+      <div id="f5-r2" class="f5-run" style="left:189px; top:579px; width:117px;"></div>
+      <div id="f5-r3" class="f5-run" style="left:306px; top:579px; width:117px;"></div>
+      <div id="f5-u2" class="f5-stub f5-u" style="left:188px; top:580px;"></div>
+      <div id="f5-u3" class="f5-stub f5-u" style="left:422px; top:580px;"></div>
+      <div id="f5-n3" class="f5-node" style="left:115px; top:612px;"></div>
+      <div id="f5-n4" class="f5-node" style="left:349px; top:612px;"></div>
+
+      <div id="f5-d2" class="f5-stub f5-d0" style="left:773px; top:548px;"></div>
+      <div id="f5-r4" class="f5-run" style="left:657px; top:579px; width:117px;"></div>
+      <div id="f5-r5" class="f5-run" style="left:774px; top:579px; width:117px;"></div>
+      <div id="f5-u4" class="f5-stub f5-u" style="left:656px; top:580px;"></div>
+      <div id="f5-u5" class="f5-stub f5-u" style="left:890px; top:580px;"></div>
+      <div id="f5-n5" class="f5-node" style="left:583px; top:612px;"></div>
+      <div id="f5-n6" class="f5-node" style="left:817px; top:612px;"></div>
+
+      <div id="f5-ask" class="f5-ask">count&nbsp;the&nbsp;leaves</div>
+      <div id="f5-plate" class="f5-plate">comment&nbsp;it</div>
+      <div id="f5-tag" class="f5-ask-tag" data-layout-allow-overlap><span class="f5-tk">leaves</span><span class="f5-q">?</span></div>
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 27 · BEGINNER</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.0;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: 1.5, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.5, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.0, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe from ABOVE (F4 came in from the left). No exit push: this frame holds alone
+         under the platform's own chrome. */
+      tl.fromTo(el("f5-content"), { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+      tl.fromTo(el("f5-ask"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out", immediateRender: false }, 0.14);
+
+      /* "the root" (root 1.02) → "has 2 children" (2 at 1.42 · children 1.64 → 2.06) */
+      tl.fromTo(el("f5-nr"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 1.00);
+      tl.fromTo(el("f5-n1"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 1.44);
+      tl.fromTo(el("f5-n2"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 1.62);
+      tl.fromTo(el("f5-d0"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 1.80);
+      tl.fromTo(el("f5-r0"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 1.94);
+      tl.fromTo(el("f5-u0"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.08);
+      tl.fromTo(el("f5-r1"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.22);
+      tl.fromTo(el("f5-u1"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.36);
+
+      /* "each child" (each 2.58 · child 2.80) → the left family; "has 2 more?" (2 at 3.38) → the right */
+      tl.fromTo(el("f5-n3"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.30, ease: "power3.out", immediateRender: false }, 2.86);
+      tl.fromTo(el("f5-d1"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.92);
+      tl.fromTo(el("f5-r2"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 3.06);
+      tl.fromTo(el("f5-u2"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 3.20);
+      tl.fromTo(el("f5-n4"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.30, ease: "power3.out", immediateRender: false }, 3.34);
+      tl.fromTo(el("f5-r3"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 3.48);
+      tl.fromTo(el("f5-u3"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 3.62);
+
+      tl.fromTo(el("f5-n5"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.30, ease: "power3.out", immediateRender: false }, 3.72);
+      tl.fromTo(el("f5-d2"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 3.80);
+      tl.fromTo(el("f5-r4"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 3.94);
+      tl.fromTo(el("f5-u4"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 4.08);
+      tl.fromTo(el("f5-n6"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.30, ease: "power3.out", immediateRender: false }, 4.16);
+      tl.fromTo(el("f5-r5"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 4.26);
+      tl.fromTo(el("f5-u5"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 4.40);
+
+      /* the question mark takes the slot F3 spent the answer in, ON "more?" (3.56 → 3.74), and the verb
+         plate follows at 3.94 — both held past the 2s floor the craft gate asks for. The last two
+         boxes of the picture land after them, so the drawing completes under the ask. */
+      tl.fromTo(el("f5-tag"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.66);
+      tl.fromTo(el("f5-plate"), { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.7)", immediateRender: false }, 3.94);
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.36);
+
+      /* ambient breath on the headline only, back to zero inside the frame */
+      tl.fromTo(el("f5-ask"), { y: 0 }, { y: -4, duration: 1.2, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 0.9);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

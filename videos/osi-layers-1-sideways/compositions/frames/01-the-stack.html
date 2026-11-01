@@ -1,0 +1,181 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 206px; left: 80px; width: 640px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f01-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 0; }
+    .f01-count {
+      position: absolute; top: 176px; right: 80px; width: 210px; height: 118px;
+      display: flex; align-items: flex-start; justify-content: flex-end; gap: 12px;
+      opacity: 0;
+    }
+    .f01-count-fig {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.4cqw; line-height: 0.9; letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .f01-count-unit {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.45cqw; line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #76766e; margin-top: 26px;
+    }
+    .f01-column {
+      position: absolute; top: 690px; left: 255px; width: 570px; height: 792px;
+      box-sizing: border-box;
+      border: 4px solid #1a1a1a;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .f01-row {
+      position: absolute; left: 0; width: 100%; height: 112px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 26px;
+      padding: 0 30px;
+      border-bottom: 2px solid rgba(26,26,26,0.16);
+      opacity: 0;
+    }
+    .f01-row-last { border-bottom: none; }
+    .f01-num {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.02em;
+      color: rgba(26,26,26,0.55);
+      width: 46px; flex: 0 0 46px;
+    }
+    .f01-name {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 3.5cqw; line-height: 1.02; letter-spacing: -0.018em;
+      color: #1a1a1a;
+    }
+    .f01-chip {
+      position: absolute; top: 622px; left: 545px; width: 336px; height: 62px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 2.6cqw; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-w0pq" id="root" data-composition-id="01-the-stack" data-width="1080" data-height="1920" data-duration="7.668">
+
+    <div data-hf-id="hf-jsl9" id="01-the-stack-fieldclip" class="clip" data-start="0" data-duration="7.668" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-zru4" class="f01-field"></div>
+      <div data-hf-id="hf-gn9v" id="01-the-stack-grid" class="f01-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-1vkq" id="01-the-stack-chromeclip" class="clip" data-start="0" data-duration="7.668" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-bpzv" class="f01-kicker">
+        <span data-hf-id="hf-nvn1" id="01-the-stack-spike" class="f01-spike">&#10009;</span><span data-hf-id="hf-19cb" id="01-the-stack-ktext" class="f01-ktext" data-layout-ignore>THE SEVEN LAYERS</span>
+      </div>
+      <div data-hf-id="hf-k5qt" id="01-the-stack-count" class="f01-count">
+        <span data-hf-id="hf-h3gc" class="f01-count-fig">7</span><span data-hf-id="hf-65ry" class="f01-count-unit" data-layout-ignore>layers</span>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-dio7" id="01-the-stack-stackclip" class="clip" data-start="0" data-duration="7.668" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-54g7" id="01-the-stack-column" class="f01-column">
+        <div data-hf-id="hf-esnq" id="01-the-stack-row7" class="f01-row" style="top:0px;"><span data-hf-id="hf-5hcw" class="f01-num">7</span><span data-hf-id="hf-k1c2" class="f01-name">application</span></div>
+        <div data-hf-id="hf-l2ix" id="01-the-stack-row6" class="f01-row" style="top:112px;"><span data-hf-id="hf-531v" class="f01-num">6</span><span data-hf-id="hf-fx38" class="f01-name">presentation</span></div>
+        <div data-hf-id="hf-686w" id="01-the-stack-row5" class="f01-row" style="top:224px;"><span data-hf-id="hf-4oqu" class="f01-num">5</span><span data-hf-id="hf-4awo" class="f01-name">session</span></div>
+        <div data-hf-id="hf-i0rr" id="01-the-stack-row4" class="f01-row" style="top:336px;"><span data-hf-id="hf-4aft" class="f01-num">4</span><span data-hf-id="hf-y8op" class="f01-name">transport</span></div>
+        <div data-hf-id="hf-4oya" id="01-the-stack-row3" class="f01-row" style="top:448px;"><span data-hf-id="hf-3w4s" class="f01-num">3</span><span data-hf-id="hf-8idu" class="f01-name">network</span></div>
+        <div data-hf-id="hf-wvsw" id="01-the-stack-row2" class="f01-row" style="top:560px;"><span data-hf-id="hf-3htr" class="f01-num">2</span><span data-hf-id="hf-b8bg" class="f01-name">data link</span></div>
+        <div data-hf-id="hf-en76" id="01-the-stack-row1" class="f01-row f01-row-last" style="top:672px;"><span data-hf-id="hf-33iq" class="f01-num">1</span><span data-hf-id="hf-2fu1" class="f01-name">physical</span></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-ay5h" id="01-the-stack-chipclip" class="clip" data-start="5.47" data-duration="2.198" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-zyq9" id="01-the-stack-chip" class="f01-chip">wrong direction</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.168;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-the-stack"] = tl;
+
+      // ── ground: paper field + hairline grid (background, full-bleed, unlit) ──
+      tl.fromTo(el("01-the-stack-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.0s) — "You've seen this stack": eyebrow + Layer 7 arrives ──
+      tl.fromTo(el("01-the-stack-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("01-the-stack-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0.22);
+      tl.fromTo(el("01-the-stack-row7"), { opacity: 0, x: -54 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 0.55);
+
+      // ── Scene 2 (1.0–2.85s) — the other six stagger into slot, one per spoken beat, landing on "times." ──
+      var ROWS = [
+        { id: "01-the-stack-row6", t: 1.0 },
+        { id: "01-the-stack-row5", t: 1.28 },
+        { id: "01-the-stack-row4", t: 1.56 },
+        { id: "01-the-stack-row3", t: 1.84 },
+        { id: "01-the-stack-row2", t: 2.1 },
+        { id: "01-the-stack-row1", t: 2.36 }
+      ];
+      ROWS.forEach(function (r) {
+        tl.fromTo(el(r.id), { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.26, ease: "power3.out" }, r.t);
+      });
+      // "7 layers" count lockup lands on "seven" (1.84)
+      tl.fromTo(el("01-the-stack-count"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 1.84);
+
+      // ── Scene 3 (2.85–5.4s) — the column is composed and holds. No motion; the frame waits for its word. ──
+
+      // ── Scene 4 (5.4–7.17s) — the ember chip settles on "wrong" (5.472); one jitter on the held column ──
+      tl.fromTo(
+        el("01-the-stack-chip"),
+        { opacity: 0, scale: 0.94, y: 10 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power3.out" },
+        5.47
+      );
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite): column only, settle -> cut
+      var jit = { p: 0 };
+      var col = el("01-the-stack-column");
+      var HOLD = 6.1;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.45,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          col.style.transform = "translateY(" + (Math.sin(jit.p) * 2).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

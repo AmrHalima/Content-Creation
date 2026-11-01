@@ -1,0 +1,193 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; left: 90px; top: 218px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f05-chip {
+      position: absolute; display: flex; align-items: center; padding: 0 26px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+    }
+    .f05-caller { left: 90px; top: 300px; width: 340px; height: 108px; }
+    .f05-dep { left: 90px; top: 880px; width: 430px; height: 108px; color: #76766e; border-color: rgba(26,26,26,0.45); }
+    .f05-box {
+      position: absolute; left: 90px; top: 546px; width: 430px; height: 220px;
+      box-sizing: border-box; background: #1a1a1a; border: 2px solid #ffa946; border-radius: 8px;
+      padding: 24px 28px;
+    }
+    .f05-boxlabel {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,235,0.72);
+    }
+    .f05-state {
+      display: block; margin-top: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 5.2cqw; font-weight: 700;
+      letter-spacing: 0.01em; color: #ffa946;
+    }
+    .f05-rail { fill: none; stroke: rgba(26,26,26,0.32); stroke-width: 4; stroke-linecap: round; }
+    .f05-branch { fill: none; stroke: #1a1a1a; stroke-width: 4; stroke-linecap: round; }
+    .f05-head { fill: rgba(26,26,26,0.7); stroke: none; }
+    .f05-pip {
+      position: absolute; left: 190px; top: 424px; width: 26px; height: 26px;
+      box-sizing: border-box; background: #ffffeb; border: 3px solid #1a1a1a; border-radius: 6px;
+      opacity: 0;
+    }
+    .f05-fallback {
+      position: absolute; left: 590px; top: 606px; width: 300px; height: 84px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #f0d7ff; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.04em;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f05-ans {
+      position: absolute; left: 590px; width: 400px; height: 96px; box-sizing: border-box;
+      display: flex; align-items: center; padding-left: 24px;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; opacity: 0;
+    }
+    .f05-a1 { top: 760px; }
+    .f05-a2 { top: 900px; }
+    .f05-alab {
+      position: absolute; left: 590px; width: 400px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f05-alab1 { top: 726px; }
+    .f05-alab2 { top: 1010px; }
+    .f05-blockhead {
+      position: absolute; left: 206px; top: 496px; width: 40px; height: 40px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; color: #1a1a1a;
+      text-align: center; line-height: 40px; opacity: 0;
+    }
+    .f05-rule {
+      position: absolute; left: 90px; top: 1112px; width: 900px; height: 2px;
+      background: rgba(26,26,26,0.12); transform-origin: 0% 50%; transform: scaleX(0);
+    }
+    .f05-strip {
+      position: absolute; left: 90px; top: 1146px; width: 900px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f05-strip span { display: inline-block; color: #76766e; }
+  </style>
+
+  <div id="root" data-composition-id="05-the-fallback" data-width="1080" data-height="1920" data-duration="10.975">
+
+    <div id="05-the-fallback-fieldclip" class="clip" data-start="0" data-duration="10.975" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-field"></div>
+      <div id="05-the-fallback-grid" class="f05-grid"></div>
+    </div>
+
+    <div id="05-the-fallback-railclip" class="clip" data-start="0" data-duration="10.975" data-track-index="1" style="position:absolute;inset:0;">
+      <svg class="f05-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="05-the-fallback-con1" class="f05-rail" d="M 203 408 L 203 540" />
+        <path id="05-the-fallback-con2" class="f05-rail" d="M 203 766 L 203 874" />
+        <path id="05-the-fallback-h2" class="f05-head" d="M 189 856 L 217 856 L 203 882 Z" />
+        <path id="05-the-fallback-branch" class="f05-branch" d="M 520 648 L 1000 648" />
+        <path id="05-the-fallback-return" class="f05-branch" d="M 640 690 C 560 560 480 430 434 372" />
+        <path id="05-the-fallback-hr" class="f05-head" d="M 626 696 L 654 696 L 640 722 Z" />
+      </svg>
+      <div id="05-the-fallback-pip1" class="f05-pip"></div>
+      <div id="05-the-fallback-pip2" class="f05-pip"></div>
+      <div id="05-the-fallback-block" class="f05-blockhead">&times;</div>
+    </div>
+
+    <div id="05-the-fallback-headclip" class="clip" data-start="0" data-duration="10.975" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="05-the-fallback-kicker" class="f05-kicker" data-layout-ignore>&#10009;&nbsp; the fallback</div>
+      <div id="05-the-fallback-caller" class="f05-chip f05-caller">caller</div>
+      <div id="05-the-fallback-dep" class="f05-chip f05-dep">gateway.charge</div>
+      <div id="05-the-fallback-box" class="f05-box">
+        <div class="f05-boxlabel">breaker</div>
+        <div class="f05-state">OPEN</div>
+      </div>
+      <div id="05-the-fallback-fb" class="f05-fallback">fallback</div>
+      <div id="05-the-fallback-a1" class="f05-ans f05-a1">cachedQuote</div>
+      <div id="05-the-fallback-a2" class="f05-ans f05-a2">unavailable()</div>
+    </div>
+
+    <div id="05-the-fallback-footclip" class="clip" data-start="0" data-duration="10.975" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="05-the-fallback-rule" class="f05-rule"></div>
+      <div id="05-the-fallback-strip" class="f05-strip">the answer while open</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var el = function (id) { return document.getElementById(id); };
+      var P = "05-the-fallback-";
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-the-fallback"] = tl;
+
+      // ── Scene 1 (0.0–1.14s) — the spine is already composed and OPEN, so the refusal is the
+      //    starting condition rather than a surprise. A call leaves the caller on "open". ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 0.05);
+      tl.fromTo([el(P + "caller"), el(P + "dep"), el(P + "box"), el(P + "con1")], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power3.out" }, 0.1);
+      tl.fromTo(el(P + "pip1"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power3.out" }, 0.24);
+      tl.to(el(P + "pip1"), { y: 116, duration: 0.6, ease: "power2.in" }, 0.42);
+
+      // ── Scene 2 (1.14–3.06s) — "still has to answer": the pip is refused at the chamber edge
+      //    (a hard cut, not a fade) and comes straight back up. The lower path stays dark:
+      //    nothing reaches the dependency, and that is shown by an empty connector. ──
+      tl.to(el(P + "pip1"), { opacity: 0, duration: 0.12, ease: "none" }, 1.02);
+      tl.to(el(P + "block"), { opacity: 1, duration: 0.14, ease: "none" }, 1.04);
+      tl.to(el(P + "block"), { opacity: 0, duration: 0.4, ease: "power1.out" }, 1.6);
+      tl.fromTo(el(P + "pip2"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power3.out" }, 1.16);
+      tl.set(el(P + "pip2"), { y: 116 }, 1.16);
+      tl.to(el(P + "pip2"), { y: 0, duration: 0.5, ease: "expo.out" }, 1.4);
+      tl.to(el(P + "pip2"), { opacity: 0, duration: 0.16, ease: "none" }, 1.9);
+      tl.to(el(P + "con2"), { opacity: 0.2, duration: 0.4, ease: "power1.out" }, 1.2);
+      tl.to(el(P + "h2"), { opacity: 0.2, duration: 0.4, ease: "power1.out" }, 1.2);
+
+      // ── Scene 3 (3.06–5.42s) — the branch self-draws right out of the chamber and the lavender
+      //    `fallback` pill seats on it at "fallback" (4.86). ──
+      var br = el(P + "branch");
+      var brLen = br.getTotalLength() * 1.05;
+      br.style.strokeDasharray = String(brLen);
+      br.style.strokeDashoffset = String(brLen);
+      tl.to(br, { strokeDashoffset: 0, duration: 0.62, ease: "power2.out" }, 3.1);
+      tl.fromTo(el(P + "fb"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 4.86);
+
+      // ── Scene 4 (6.14–10.475s) — two answers, never three, then the call comes back up the
+      //    return rail so the frame ends with the CALLER holding an answer. ──
+      tl.fromTo(el(P + "a1"), { opacity: 0, x: 22 }, { opacity: 1, x: 0, duration: 0.46, ease: "power3.out" }, 6.72);
+      tl.fromTo(el(P + "a2"), { opacity: 0, x: 22 }, { opacity: 1, x: 0, duration: 0.46, ease: "power3.out" }, 8.7);
+      var rt = el(P + "return");
+      var rtLen = rt.getTotalLength() * 1.05;
+      rt.style.strokeDasharray = String(rtLen);
+      rt.style.strokeDashoffset = String(rtLen);
+      tl.to(rt, { strokeDashoffset: 0, duration: 0.66, ease: "power2.out" }, 9.26);
+      tl.to(el(P + "hr"), { opacity: 1, duration: 0.3, ease: "power1.out" }, 9.7);
+      tl.to(el(P + "caller"), { borderColor: "#1a1a1a", backgroundColor: "#ffffeb", duration: 0.34, ease: "power2.out" }, 9.86);
+      tl.to(el(P + "rule"), { scaleX: 1, duration: 0.46, ease: "power2.out" }, 8.8);
+      tl.to(el(P + "strip"), { opacity: 1, duration: 0.42, ease: "power1.out" }, 9.0);
+      // the only aliveness on the hold: a finite low-amplitude jitter on the fallback pill.
+      var jit = { p: 0 };
+      tl.to(jit, {
+        p: Math.PI * 2,
+        duration: 0.9,
+        ease: "none",
+        onUpdate: function () {
+          el(P + "fb").style.transform = "translateY(" + (1.3 * Math.sin(jit.p)).toFixed(2) + "px)";
+        }
+      }, 9.6);
+    })();
+  </script>
+</template>

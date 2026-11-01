@@ -1,0 +1,627 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 9.749,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.56
+        },
+        {
+          "text": "layer",
+          "start": 0.56,
+          "end": 0.98
+        },
+        {
+          "text": "talks",
+          "start": 0.98,
+          "end": 1.42
+        },
+        {
+          "text": "sideways,",
+          "start": 1.42,
+          "end": 2.26
+        },
+        {
+          "text": "to",
+          "start": 2.26,
+          "end": 3.06
+        },
+        {
+          "text": "the",
+          "start": 3.06,
+          "end": 3.22
+        },
+        {
+          "text": "same",
+          "start": 3.22,
+          "end": 3.58
+        },
+        {
+          "text": "number",
+          "start": 3.58,
+          "end": 4.04
+        },
+        {
+          "text": "on",
+          "start": 4.04,
+          "end": 4.36
+        },
+        {
+          "text": "the",
+          "start": 4.36,
+          "end": 4.56
+        },
+        {
+          "text": "other",
+          "start": 4.56,
+          "end": 4.76
+        },
+        {
+          "text": "end.",
+          "start": 4.76,
+          "end": 5.28
+        },
+        {
+          "text": "Layer",
+          "start": 5.96,
+          "end": 6.42
+        },
+        {
+          "text": "two",
+          "start": 6.42,
+          "end": 6.94
+        },
+        {
+          "text": "is",
+          "start": 6.94,
+          "end": 7.44
+        },
+        {
+          "text": "where",
+          "start": 7.44,
+          "end": 7.68
+        },
+        {
+          "text": "that",
+          "start": 7.68,
+          "end": 7.98
+        },
+        {
+          "text": "picture",
+          "start": 7.98,
+          "end": 8.48
+        },
+        {
+          "text": "gets",
+          "start": 8.48,
+          "end": 8.94
+        },
+        {
+          "text": "loose.",
+          "start": 8.94,
+          "end": 9.38
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 9.877,
+      "words": [
+        {
+          "text": "Ethernet",
+          "start": 0,
+          "end": 0.86
+        },
+        {
+          "text": "is",
+          "start": 0.86,
+          "end": 1.14
+        },
+        {
+          "text": "a",
+          "start": 1.14,
+          "end": 1.28
+        },
+        {
+          "text": "wire",
+          "start": 1.28,
+          "end": 1.74
+        },
+        {
+          "text": "you",
+          "start": 1.74,
+          "end": 2.1
+        },
+        {
+          "text": "use",
+          "start": 2.1,
+          "end": 2.48
+        },
+        {
+          "text": "when",
+          "start": 2.48,
+          "end": 2.76
+        },
+        {
+          "text": "you",
+          "start": 2.76,
+          "end": 2.92
+        },
+        {
+          "text": "like.",
+          "start": 2.92,
+          "end": 3.24
+        },
+        {
+          "text": "Wi-Fi",
+          "start": 3.88,
+          "end": 4.4
+        },
+        {
+          "text": "is",
+          "start": 4.8,
+          "end": 5.2
+        },
+        {
+          "text": "a",
+          "start": 5.2,
+          "end": 5.32
+        },
+        {
+          "text": "shared",
+          "start": 5.32,
+          "end": 5.82
+        },
+        {
+          "text": "radio",
+          "start": 5.82,
+          "end": 6.54
+        },
+        {
+          "text": "where",
+          "start": 6.54,
+          "end": 6.84
+        },
+        {
+          "text": "you",
+          "start": 6.84,
+          "end": 7.02
+        },
+        {
+          "text": "wait",
+          "start": 7.02,
+          "end": 7.3
+        },
+        {
+          "text": "your",
+          "start": 7.3,
+          "end": 7.52
+        },
+        {
+          "text": "turn.",
+          "start": 7.52,
+          "end": 8.02
+        },
+        {
+          "text": "Same",
+          "start": 8.6,
+          "end": 9.06
+        },
+        {
+          "text": "number.",
+          "start": 9.06,
+          "end": 9.6
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 8.661,
+      "words": [
+        {
+          "text": "ARP",
+          "start": 0,
+          "end": 1.04
+        },
+        {
+          "text": "asks",
+          "start": 1.04,
+          "end": 1.58
+        },
+        {
+          "text": "a",
+          "start": 1.58,
+          "end": 1.86
+        },
+        {
+          "text": "layer",
+          "start": 1.86,
+          "end": 2.14
+        },
+        {
+          "text": "three",
+          "start": 2.14,
+          "end": 2.56
+        },
+        {
+          "text": "question",
+          "start": 2.56,
+          "end": 3.24
+        },
+        {
+          "text": "inside",
+          "start": 3.24,
+          "end": 4.02
+        },
+        {
+          "text": "a",
+          "start": 4.02,
+          "end": 4.44
+        },
+        {
+          "text": "layer",
+          "start": 4.44,
+          "end": 4.7
+        },
+        {
+          "text": "two",
+          "start": 4.7,
+          "end": 5.08
+        },
+        {
+          "text": "frame.",
+          "start": 5.08,
+          "end": 5.7
+        },
+        {
+          "text": "It",
+          "start": 6.54,
+          "end": 6.7
+        },
+        {
+          "text": "fits",
+          "start": 6.7,
+          "end": 7.06
+        },
+        {
+          "text": "in",
+          "start": 7.06,
+          "end": 7.42
+        },
+        {
+          "text": "neither",
+          "start": 7.42,
+          "end": 7.72
+        },
+        {
+          "text": "box.",
+          "start": 7.72,
+          "end": 8.22
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 7.04,
+      "words": [
+        {
+          "text": "So",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "the",
+          "start": 0.38,
+          "end": 0.54
+        },
+        {
+          "text": "map",
+          "start": 0.54,
+          "end": 0.94
+        },
+        {
+          "text": "leaks.",
+          "start": 0.94,
+          "end": 1.46
+        },
+        {
+          "text": "Fine,",
+          "start": 2.22,
+          "end": 2.66
+        },
+        {
+          "text": "because",
+          "start": 3.14,
+          "end": 3.36
+        },
+        {
+          "text": "its",
+          "start": 3.36,
+          "end": 3.66
+        },
+        {
+          "text": "job",
+          "start": 3.66,
+          "end": 4.24
+        },
+        {
+          "text": "was",
+          "start": 4.24,
+          "end": 4.6
+        },
+        {
+          "text": "never",
+          "start": 4.6,
+          "end": 5
+        },
+        {
+          "text": "to",
+          "start": 5,
+          "end": 5.24
+        },
+        {
+          "text": "describe",
+          "start": 5.24,
+          "end": 5.84
+        },
+        {
+          "text": "hardware.",
+          "start": 5.84,
+          "end": 6.52
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 13.205,
+      "words": [
+        {
+          "text": "Then",
+          "start": 0,
+          "end": 0.46
+        },
+        {
+          "text": "when",
+          "start": 0.62,
+          "end": 0.7
+        },
+        {
+          "text": "it",
+          "start": 0.7,
+          "end": 0.86
+        },
+        {
+          "text": "breaks,",
+          "start": 0.86,
+          "end": 1.24
+        },
+        {
+          "text": "you",
+          "start": 1.62,
+          "end": 1.74
+        },
+        {
+          "text": "point.",
+          "start": 1.74,
+          "end": 2.18
+        },
+        {
+          "text": "A",
+          "start": 3.02,
+          "end": 3.14
+        },
+        {
+          "text": "dead",
+          "start": 3.14,
+          "end": 3.48
+        },
+        {
+          "text": "link",
+          "start": 3.48,
+          "end": 3.94
+        },
+        {
+          "text": "sits",
+          "start": 3.94,
+          "end": 4.34
+        },
+        {
+          "text": "at",
+          "start": 4.34,
+          "end": 4.64
+        },
+        {
+          "text": "the",
+          "start": 4.64,
+          "end": 4.76
+        },
+        {
+          "text": "bottom.",
+          "start": 4.76,
+          "end": 5.28
+        },
+        {
+          "text": "Connections",
+          "start": 6,
+          "end": 6.8
+        },
+        {
+          "text": "that",
+          "start": 6.8,
+          "end": 7.12
+        },
+        {
+          "text": "reset",
+          "start": 7.12,
+          "end": 7.68
+        },
+        {
+          "text": "are",
+          "start": 7.68,
+          "end": 8.1
+        },
+        {
+          "text": "the",
+          "start": 8.1,
+          "end": 8.24
+        },
+        {
+          "text": "transport's",
+          "start": 8.24,
+          "end": 9.2
+        },
+        {
+          "text": "problem.",
+          "start": 9.2,
+          "end": 9.78
+        },
+        {
+          "text": "A",
+          "start": 10.42,
+          "end": 10.6
+        },
+        {
+          "text": "bad",
+          "start": 10.6,
+          "end": 11
+        },
+        {
+          "text": "certificate",
+          "start": 11,
+          "end": 11.7
+        },
+        {
+          "text": "is",
+          "start": 11.7,
+          "end": 12.22
+        },
+        {
+          "text": "the",
+          "start": 12.22,
+          "end": 12.42
+        },
+        {
+          "text": "top.",
+          "start": 12.42,
+          "end": 12.84
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "path": "assets/voice/06.wav",
+      "duration_s": 7.616,
+      "words": [
+        {
+          "text": "An",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "outage",
+          "start": 0.38,
+          "end": 1.14
+        },
+        {
+          "text": "gets",
+          "start": 1.14,
+          "end": 1.42
+        },
+        {
+          "text": "a",
+          "start": 1.42,
+          "end": 1.68
+        },
+        {
+          "text": "place",
+          "start": 1.68,
+          "end": 1.98
+        },
+        {
+          "text": "to",
+          "start": 1.98,
+          "end": 2.26
+        },
+        {
+          "text": "point",
+          "start": 2.26,
+          "end": 2.68
+        },
+        {
+          "text": "instead",
+          "start": 2.68,
+          "end": 3.14
+        },
+        {
+          "text": "of",
+          "start": 3.14,
+          "end": 3.36
+        },
+        {
+          "text": "a",
+          "start": 3.36,
+          "end": 3.46
+        },
+        {
+          "text": "shrug.",
+          "start": 3.46,
+          "end": 4.14
+        },
+        {
+          "text": "Where",
+          "start": 4.64,
+          "end": 4.98
+        },
+        {
+          "text": "it",
+          "start": 4.98,
+          "end": 5.22
+        },
+        {
+          "text": "leaks",
+          "start": 5.22,
+          "end": 5.6
+        },
+        {
+          "text": "is",
+          "start": 5.6,
+          "end": 6.18
+        },
+        {
+          "text": "in",
+          "start": 6.18,
+          "end": 6.4
+        },
+        {
+          "text": "the",
+          "start": 6.4,
+          "end": 6.58
+        },
+        {
+          "text": "article.",
+          "start": 6.58,
+          "end": 7.06
+        }
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "frame": 5,
+      "file": "assets/sfx/click-soft.mp3",
+      "offset_s": 0,
+      "duration_s": 0.37,
+      "volume": 0.35
+    }
+  ]
+}

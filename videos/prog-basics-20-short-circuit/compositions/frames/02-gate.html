@@ -1,0 +1,234 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 1.35cqw; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #22201B; background: #FFD166; border-radius: 8px; }
+
+    /* G3 code chamber — pb-11/03-gate atoms verbatim (--panel on --ground, 3px --line, --panel-2
+       titlebar, PYTHON chip). A chamber in the field colour is invisible and passes every gate. */
+    .cd-root { position: absolute; left: 72px; top: 348px; width: 936px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 2.1cqw; font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 1.4cqw; font-weight: 700; letter-spacing: 0.14em; color: #FFD166;
+      border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 872px; height: 58px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-a { color: #FFD166; } .tk-c { color: #9BA6B2; } .tk-b { font-weight: 700; }
+
+    .f2-eyebrow { position: absolute; left: 72px; top: 288px; width: 936px; height: 40px;
+      display: flex; align-items: center; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 1.85cqw; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #9BA6B2; white-space: nowrap; }
+
+    /* P3 type-on mask + caret — the mask is chamber-coloured, not ground-coloured */
+    .f2-lmask { position: absolute; left: 30px; height: 58px; width: 872px; background: #1F242C;
+      transform-origin: right center; }
+    .f2-caret { position: absolute; width: 5px; height: 44px; background: #FFD166; border-radius: 2px;
+      opacity: 0; }
+
+    /* P1 say-plate, self-contained inside its own token (pb-11/04-split + pb-21 finding) */
+    .f2-w { display: inline-block; position: relative; }
+    .f2-hl { position: absolute; left: -6px; right: -8px; top: 0.07em; bottom: 0.05em;
+      background: #FFD166; border-radius: 10px; transform: scaleX(0); transform-origin: left center; }
+    .f2-ht { position: relative; z-index: 1; }
+
+    /* the apparatus lane: gate / rail / B chamber. All CSS divs, no SVG (pb-11's drift finding,
+       still true in frame-day2 section 14). Labels and tags are frame coordinates, not relative. */
+    .f2-lab { position: absolute; top: 604px; height: 40px; opacity: 0;
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 2.4cqw; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9BA6B2; white-space: nowrap; }
+    .f2-gate { position: absolute; left: 72px; top: 694px; width: 260px; height: 132px;
+      box-sizing: border-box; background: #262C36; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 16px; opacity: 0; display: flex; align-items: center; justify-content: center; }
+    .f2-gtxt { display: inline-block; font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 3.0cqw; font-weight: 700; color: #5AD6A0; }
+    .f2-rail { position: absolute; left: 356px; top: 758px; width: 216px; height: 4px;
+      background: rgba(255,255,255,0.24); border-radius: 2px; transform-origin: left center;
+      transform: scaleX(0); }
+    /* G2 empty (frame-day2 section 4): 3px DASHED --line, no value, one dim mint caret blinking at
+       1s. B never lights in this frame — that is the whole lesson. */
+    .f2-body { position: absolute; left: 600px; top: 660px; width: 340px; height: 200px;
+      box-sizing: border-box; background: #1F242C; border: 3px dashed rgba(255,255,255,0.16);
+      border-radius: 22px; opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .f2-bcaret { display: inline-block; width: 6px; height: 56px; border-radius: 3px;
+      background: rgba(90,214,160,0.55); opacity: 0; }
+    /* the counted tag — pb-21's .f3-tag atom, sized UP to 3.0cqw (~32px) because this tag is the
+       part's claim and has to be legible at phone size. No data-layout-ignore: it is reading text. */
+    .f2-tag { position: absolute; left: 340px; top: 892px; width: 400px; height: 84px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 3.0cqw; font-weight: 700; letter-spacing: 0.06em; color: #9BA6B2;
+      white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="02-gate" data-width="1080" data-height="1920" data-duration="8.02">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="8.02" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="8.02" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 20</div>
+        <div id="c2-badge" class="pb-kbadge" data-layout-ignore>INTERMEDIATE</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="8.02" data-track-index="2" data-layout-allow-overflow>
+      <div id="f2-eyebrow" class="f2-eyebrow" data-layout-ignore>SHORT-CIRCUIT&nbsp;=&nbsp;IT&nbsp;STOPS&nbsp;EARLY</div>
+
+      <div id="f2-chamber" class="cd-root" style="height:216px">
+        <div id="f2-bar" class="cd-bar">
+          <span id="f2-file" class="cd-file" data-layout-ignore>main.py</span>
+          <span id="f2-lang" class="cd-lang" data-layout-ignore>PYTHON</span>
+        </div>
+        <div id="f2-l1" class="cd-line" style="top:80px"><span class="tk-i">A</span>&nbsp;=&nbsp;<span class="tk-v tk-b" id="f2-false">False</span></div>
+        <div id="f2-l2" class="cd-line" style="top:142px"><span class="tk-i tk-b">if</span>&nbsp;<span class="f2-w"><span class="f2-hl" id="f2-hl" data-layout-allow-occlusion></span><span class="f2-ht" id="f2-ht">A&nbsp;and&nbsp;B()</span></span>:</div>
+        <div id="f2-m1" class="f2-lmask" style="top:80px"></div>
+        <div id="f2-m2" class="f2-lmask" style="top:142px"></div>
+        <div id="f2-cr1" class="f2-caret" style="left:34px;top:87px"></div>
+        <div id="f2-cr2" class="f2-caret" style="left:34px;top:149px"></div>
+      </div>
+
+      <div id="f2-labA" class="f2-lab" style="left:72px; width:260px; text-align:center;" data-layout-ignore>A</div>
+      <div id="f2-labB" class="f2-lab" style="left:600px; width:340px; text-align:center;" data-layout-ignore>B</div>
+      <div id="f2-gate" class="f2-gate"><span id="f2-gtxt" class="f2-gtxt">False</span></div>
+      <div id="f2-rail" class="f2-rail"></div>
+      <div id="f2-body" class="f2-body"><span id="f2-bcaret" class="f2-bcaret"></span></div>
+      <div id="f2-tag" class="f2-tag">RAN&nbsp;1&nbsp;OF&nbsp;2</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.02;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-gate"] = tl;
+
+      /* ground — every loop returns to its own zero */
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 2.0, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 4.0, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.0, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c2-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: F1 pushed up, this one comes in from the left */
+      tl.fromTo(el("f2-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.to(el("f2-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.56);
+
+      tl.fromTo(el("f2-chamber"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.3);
+      tl.fromTo(el("f2-file"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.5);
+      tl.fromTo(el("f2-lang"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 0.62);
+
+      /* P3 type-on, one line per spoken clause (stops 1.36 / answer 2.48) */
+      tl.set(el("f2-l1"), { opacity: 1 }, 1.4);
+      tl.fromTo(el("f2-m1"), { scaleX: 1 }, { scaleX: 0, duration: 0.55, ease: "power1.inOut", immediateRender: false }, 1.4);
+      tl.fromTo(el("f2-cr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 170, duration: 0.55, ease: "power1.inOut", immediateRender: false }, 1.4);
+      tl.set(el("f2-cr1"), { opacity: 0 }, 2.0);
+      tl.set(el("f2-l2"), { opacity: 1 }, 2.48);
+      tl.fromTo(el("f2-m2"), { scaleX: 1 }, { scaleX: 0, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 2.48);
+      tl.fromTo(el("f2-cr2"), { opacity: 1, x: 0 }, { opacity: 1, x: 250, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 2.48);
+      tl.set(el("f2-cr2"), { opacity: 0 }, 3.12);
+
+      /* the naming beat: "Take A and B" (Take 3.92 / A 4.10 / and 4.22 / B. 4.34) — the letters are
+         named before they are used, which is the approved re-cut, so the plate lands here and the
+         two boxes arrive one per letter. */
+      tl.fromTo(el("f2-eyebrow"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 1.36);
+      tl.fromTo(el("f2-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.06);
+      tl.to(el("f2-ht"), { color: "#22201B", duration: 0.16, immediateRender: false }, 4.1);
+      tl.fromTo(el("f2-labA"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 4.06);
+      tl.fromTo(el("f2-gate"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 4.16);
+      tl.fromTo(el("f2-labB"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 4.3);
+      tl.fromTo(el("f2-body"), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 4.4);
+
+      /* the say-plate retires to ink BEFORE the gate's amber border flash, so only one amber mark
+         is live on the board at a time (frame-day2 section 1: amber is singular) */
+      tl.to(el("f2-ht"), { color: "#F4F1EA", duration: 0.2, ease: "power1.inOut", immediateRender: false }, 5.14);
+      tl.fromTo(el("f2-hl"), { scaleX: 1 }, { scaleX: 0, duration: 0.26, ease: "power2.in", immediateRender: false }, 5.14);
+
+      /* "If A is false" (A 5.18 / is 5.26 / false, 5.40-5.70): the gate resolves. The mint value
+         flashes its BORDER amber for 0.3s rather than taking a filled amber plate — a plate behind
+         a mint value breaks the colour contract (pb-21's recorded finding). */
+      tl.to(el("f2-gate"), { borderColor: "#FFD166", duration: 0.16, ease: "power1.out", immediateRender: false }, 5.36);
+      tl.to(el("f2-gate"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.3, ease: "power1.inOut", immediateRender: false }, 5.72);
+
+      /* THE RELEASE — the difference from pb-11's re-testing gate. The rail reaches for B and pulls
+         back before it gets there; B is never touched and never lights. "B never runs"
+         (B 6.04 / never 6.14 / runs. 6.36-6.74). No loop-back arc: nothing is ever evaluated twice. */
+      tl.fromTo(el("f2-rail"), { scaleX: 0 }, { scaleX: 0.55, duration: 0.46, ease: "power2.out", immediateRender: false }, 5.42);
+      tl.to(el("f2-rail"), { scaleX: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, 6.06);
+
+      /* the caret in B blinks on a 1s yoyo: a promise waiting for a value that never arrives */
+      tl.fromTo(el("f2-bcaret"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 4.74);
+      tl.fromTo(el("f2-bcaret"), { opacity: 1 }, { opacity: 0.12, duration: 0.5, ease: "sine.inOut", repeat: 5, yoyo: true, immediateRender: false }, 5.1);
+
+      /* the counted tag lands on "runs." — RAN 1 OF 2, executed: the side-effect list stayed empty */
+      tl.fromTo(el("f2-tag"), { opacity: 0, y: 22, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.34, ease: "back.out(1.7)", immediateRender: false }, 6.42);
+      tl.fromTo(el("f2-tag"), { borderColor: "rgba(255,255,255,0.16)" },
+        { borderColor: "rgba(255,255,255,0.40)", duration: 0.3, ease: "sine.inOut", repeat: 1,
+          yoyo: true, immediateRender: false }, 6.86);
+
+      /* ambient float on the hero chamber, back to zero */
+      tl.fromTo(el("f2-chamber"), { y: 0 }, { y: -5, duration: 1.9, ease: "sine.inOut", repeat: 1, yoyo: true }, 0.7);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 7.7);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

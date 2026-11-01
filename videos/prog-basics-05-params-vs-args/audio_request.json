@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Parameters and arguments are not the same thing, and interviewers know it."
+    },
+    {
+      "id": "02",
+      "text": "A parameter is the placeholder in the function definition. It's the empty seat. An argument is the actual value you pass when you call."
+    },
+    {
+      "id": "03",
+      "text": "The seat exists before anyone arrives. The value fills it, for that one call, and then it's gone."
+    },
+    {
+      "id": "04",
+      "text": "Define add, with a and b. Those two are parameters. Call add with two and three. Those two are arguments."
+    },
+    {
+      "id": "05",
+      "text": "If that finally made it click, comment the word seat."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

@@ -1,0 +1,314 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; left: 90px; top: 222px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f03-chip {
+      position: absolute; display: flex; align-items: center; padding: 0 26px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+    }
+    .f03-caller { left: 90px; top: 300px; width: 340px; height: 108px; }
+    .f03-dep { left: 90px; top: 880px; width: 430px; height: 108px; }
+    /* the pinned anchor: the breaker chamber never moves after Scene 1 */
+    .f03-box {
+      position: absolute; left: 90px; top: 546px; width: 430px; height: 220px;
+      box-sizing: border-box; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px;
+      padding: 24px 28px;
+    }
+    .f03-boxlabel {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,235,0.72);
+    }
+    .f03-state {
+      display: block; margin-top: 16px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 5.2cqw; font-weight: 700;
+      letter-spacing: 0.01em; color: #ffa946;
+    }
+    /* right column: the counting rail + the reset timer, both labelled as configuration */
+    .f03-clab {
+      position: absolute; left: 560px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f03-pip {
+      position: absolute; top: 600px; width: 46px; height: 46px; box-sizing: border-box;
+      background: rgba(26,26,26,0.06); border: 2px solid rgba(26,26,26,0.28); border-radius: 6px;
+    }
+    .f03-p1 { left: 560px; }
+    .f03-p2 { left: 620px; }
+    .f03-p3 { left: 680px; }
+    .f03-p4 { left: 740px; }
+    .f03-track {
+      position: absolute; left: 560px; top: 762px; width: 430px; height: 18px;
+      box-sizing: border-box; border: 2px solid rgba(26,26,26,0.28); border-radius: 6px;
+      background: rgba(26,26,26,0.05); opacity: 0;
+    }
+    .f03-rfill {
+      position: absolute; left: 566px; top: 768px; width: 418px; height: 6px;
+      transform-origin: 0% 50%; transform: scaleX(0); background: #1a1a1a; border-radius: 3px;
+    }
+    .f03-rail { fill: none; stroke: rgba(26,26,26,0.34); stroke-width: 4; stroke-linecap: round; }
+    .f03-bracket { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 4; stroke-linecap: round; }
+    .f03-head { fill: rgba(26,26,26,0.6); stroke: none; }
+    .f03-travel {
+      position: absolute; left: 190px; top: 424px; width: 26px; height: 26px;
+      box-sizing: border-box; background: #ffffeb; border: 3px solid #1a1a1a; border-radius: 6px;
+      opacity: 0;
+    }
+    /* the transition rail — four labelled edges */
+    .f03-row { position: absolute; left: 90px; width: 900px; height: 96px; }
+    .f03-r1 { top: 1096px; }
+    .f03-r2 { top: 1208px; }
+    .f03-r3 { top: 1320px; }
+    .f03-r4 { top: 1432px; }
+    .f03-pair {
+      position: absolute; left: 0; top: 24px; width: 400px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #76766e;
+    }
+    .f03-cause {
+      position: absolute; left: 470px; top: 26px; width: 430px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #76766e;
+    }
+    .f03-mark {
+      position: absolute; left: -26px; top: 12px; width: 8px; height: 72px;
+      background: #1a1a1a; transform-origin: 50% 0%; transform: scaleY(0);
+    }
+    .f03-hair {
+      position: absolute; left: 0; top: 95px; width: 900px; height: 1px;
+      background: rgba(26,26,26,0.12);
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-three-states" data-width="1080" data-height="1920" data-duration="21.151">
+
+    <div id="03-three-states-fieldclip" class="clip" data-start="0" data-duration="21.151" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field"></div>
+      <div id="03-three-states-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="03-three-states-spineclip" class="clip" data-start="0" data-duration="21.151" data-track-index="1" style="position:absolute;inset:0;">
+      <svg class="f03-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="03-three-states-con1" class="f03-rail" d="M 203 408 L 203 540" />
+        <path id="03-three-states-con2" class="f03-rail" d="M 203 766 L 203 874" />
+        <path id="03-three-states-h1" class="f03-head" d="M 189 522 L 217 522 L 203 548 Z" />
+        <path id="03-three-states-h2" class="f03-head" d="M 189 856 L 217 856 L 203 882 Z" />
+        <path id="03-three-states-thr" class="f03-bracket" d="M 552 574 L 552 566 L 800 566 L 800 574" />
+      </svg>
+      <div id="03-three-states-travel1" class="f03-travel"></div>
+      <div id="03-three-states-travel2" class="f03-travel"></div>
+      <div id="03-three-states-travel3" class="f03-travel"></div>
+    </div>
+
+    <div id="03-three-states-anchorclip" class="clip" data-start="0" data-duration="21.151" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="03-three-states-kicker" class="f03-kicker" data-layout-ignore>&#10009;&nbsp; the state machine</div>
+      <div id="03-three-states-caller" class="f03-chip f03-caller">caller</div>
+      <div id="03-three-states-dep" class="f03-chip f03-dep">gateway.charge</div>
+      <div id="03-three-states-box" class="f03-box">
+        <div class="f03-boxlabel">breaker</div>
+        <div id="03-three-states-state" class="f03-state">CLOSED</div>
+      </div>
+      <div id="03-three-states-flab" class="f03-clab" style="top:556px;" data-layout-ignore>failures</div>
+      <div id="03-three-states-p1" class="f03-pip f03-p1"></div>
+      <div id="03-three-states-p2" class="f03-pip f03-p2"></div>
+      <div id="03-three-states-p3" class="f03-pip f03-p3"></div>
+      <div id="03-three-states-p4" class="f03-pip f03-p4"></div>
+      <div id="03-three-states-tlab" class="f03-clab" style="top:666px;left:560px;width:430px;" data-layout-ignore>threshold&nbsp;&middot;&nbsp;configured</div>
+      <div id="03-three-states-rtlab" class="f03-clab" style="top:726px;" data-layout-ignore>reset timeout</div>
+      <div id="03-three-states-rtrack" class="f03-track"></div>
+      <div id="03-three-states-rfill" class="f03-rfill"></div>
+    </div>
+
+    <div id="03-three-states-railclip" class="clip" data-start="0" data-duration="21.151" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="03-three-states-rhead" class="f03-kicker" style="top:1010px;" data-layout-ignore>&#10009;&nbsp; transitions</div>
+      <div id="03-three-states-row1" class="f03-row f03-r1">
+        <div class="f03-mark" id="03-three-states-m1"></div>
+        <div class="f03-pair" id="03-three-states-pair1">closed &rarr; open</div>
+        <div class="f03-cause" id="03-three-states-cause1">threshold crossed</div>
+        <div class="f03-hair"></div>
+      </div>
+      <div id="03-three-states-row2" class="f03-row f03-r2">
+        <div class="f03-mark" id="03-three-states-m2"></div>
+        <div class="f03-pair" id="03-three-states-pair2">open &rarr; half-open</div>
+        <div class="f03-cause" id="03-three-states-cause2">reset timeout elapsed</div>
+        <div class="f03-hair"></div>
+      </div>
+      <div id="03-three-states-row3" class="f03-row f03-r3">
+        <div class="f03-mark" id="03-three-states-m3"></div>
+        <div class="f03-pair" id="03-three-states-pair3">half-open &rarr; closed</div>
+        <div class="f03-cause" id="03-three-states-cause3">probe succeeded</div>
+        <div class="f03-hair"></div>
+      </div>
+      <div id="03-three-states-row4" class="f03-row f03-r4">
+        <div class="f03-mark" id="03-three-states-m4"></div>
+        <div class="f03-pair" id="03-three-states-pair4">half-open &rarr; open</div>
+        <div class="f03-cause" id="03-three-states-cause4">probe failed</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var el = function (id) { return document.getElementById(id); };
+      var P = "03-three-states-";
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-three-states"] = tl;
+
+      // ── discrete-text-sequence (studio/known-traps.md #3): TextPlugin is NOT shipped, so the
+      //    state readout is a sparse {t, text} array read by a time proxy with a reverse search.
+      //    A `tl.to(el, { text: … })` here would pass `check` and never move on screen. ──
+      function seq(node, states, total) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      var state = el(P + "state");
+
+      // The five flips, each cued on the measured word that says it. The proxy runs to the end of
+      // the frame so the last state holds under a seek.
+      seq(state, [
+        { t: 0.00, text: "CLOSED" },
+        { t: 7.68, text: "OPEN" },
+        { t: 12.86, text: "HALF-OPEN" },
+        { t: 17.14, text: "CLOSED" },
+        { t: 19.48, text: "OPEN" }
+      ], 20.6);
+      // Every flip gets a one-frame dip so it reads as a state change, not a text edit.
+      [7.68, 12.86, 17.14, 19.48].forEach(function (t) {
+        tl.to(state, { opacity: 0, duration: 0.07, ease: "none" }, t - 0.07);
+        tl.to(state, { opacity: 1, duration: 0.13, ease: "power1.out" }, t);
+      });
+
+      // ── Scene 1 (0.0–0.86s) — the chamber is already pinned from F2's landing; the rail shows
+      //    its four shells at a third strength so the shape of what is coming is visible. ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "kicker"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.1);
+      tl.fromTo([el(P + "caller"), el(P + "dep"), el(P + "box")], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power3.out" }, 0.12);
+      tl.fromTo([el(P + "con1"), el(P + "con2")], { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.24);
+      tl.fromTo([el(P + "h1"), el(P + "h2")], { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.3);
+      tl.fromTo(el(P + "rhead"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }, 0.34);
+      [1, 2, 3, 4].forEach(function (n) {
+        tl.fromTo(el(P + "row" + n), { opacity: 0 }, { opacity: 0.34, duration: 0.44, ease: "power1.out" }, 0.42 + n * 0.06);
+      });
+
+      // ── Scene 2 (0.86–2.34s) — "calls flow": two calls travel the whole spine. ──
+      function flow(node, at, span, dur) {
+        tl.set(node, { y: 0 }, at);
+        tl.fromTo(node, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power3.out" }, at);
+        tl.to(node, { y: span, duration: dur, ease: "power1.inOut" }, at + 0.18);
+        tl.to(node, { opacity: 0, duration: 0.16, ease: "none" }, at + 0.18 + dur);
+      }
+      flow(el(P + "travel1"), 0.86, 452, 0.94);
+      flow(el(P + "travel2"), 1.4, 452, 0.94);
+
+      // ── Scene 3 (2.34–4.80s) — "counts failures": three pips fill, one per beat. ──
+      tl.to(el(P + "flab"), { opacity: 1, duration: 0.32, ease: "power1.out" }, 2.4);
+      [[P + "p1", 2.82], [P + "p2", 3.4], [P + "p3", 3.9]].forEach(function (p) {
+        tl.to(el(p[0]), {
+          backgroundColor: "#ffffeb",
+          borderColor: "#1a1a1a",
+          duration: 0.3,
+          ease: "power2.out"
+        }, p[1]);
+      });
+
+      // ── Scene 4 (4.80–8.20s) — the threshold bracket draws, the fourth pip lands past it,
+      //    then the readout flips CLOSED → OPEN at 7.68 and row 1 steps up to full strength. ──
+      var thr = el(P + "thr");
+      var thrLen = thr.getTotalLength() * 1.05;
+      thr.style.strokeDasharray = String(thrLen);
+      thr.style.strokeDashoffset = String(thrLen);
+      tl.to(thr, { strokeDashoffset: 0, duration: 0.52, ease: "power2.out" }, 4.86);
+      tl.to(el(P + "tlab"), { opacity: 1, duration: 0.36, ease: "power1.out" }, 5.24);
+      tl.to(el(P + "p4"), { backgroundColor: "#ffffeb", borderColor: "#1a1a1a", duration: 0.3, ease: "power2.out" }, 6.22);
+      tl.to(el(P + "row1"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 4.8);
+      [ "pair1", "cause1" ].forEach(function (k) {
+        tl.to(el(P + k), { color: "#1a1a1a", duration: 0.34, ease: "power1.out" }, 7.68);
+      });
+      tl.to(el(P + "m1"), { scaleY: 1, duration: 0.3, ease: "power2.out" }, 7.68);
+      // the chamber's own edge steps up so the flip is legible from across the room
+      tl.to(el(P + "box"), { borderColor: "#ffa946", duration: 0.28, ease: "power2.out" }, 7.68);
+
+      // ── Scene 5 (8.76–10.60s) — "nothing leaves": a call is refused at the chamber edge and
+      //    comes back up; the lower connector goes dark. Then a beat of still. ──
+      tl.fromTo(el(P + "travel3"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.24, ease: "power3.out" }, 8.76);
+      tl.to(el(P + "travel3"), { y: 96, duration: 0.34, ease: "power2.out" }, 9.0);
+      tl.to(el(P + "travel3"), { y: 0, duration: 0.44, ease: "power2.inOut" }, 9.4);
+      tl.to(el(P + "travel3"), { opacity: 0, duration: 0.18, ease: "none" }, 9.84);
+      tl.to([el(P + "con2"), el(P + "h2")], { opacity: 0.18, duration: 0.44, ease: "power1.out" }, 8.9);
+
+      // ── Scene 6 (10.60–13.22s) — the reset timer spends itself and the readout flips to
+      //    HALF-OPEN at 12.86 exactly as the bar completes. ──
+      tl.to(el(P + "rtlab"), { opacity: 1, duration: 0.32, ease: "power1.out" }, 10.6);
+      tl.to(el(P + "rtrack"), { opacity: 1, duration: 0.32, ease: "power1.out" }, 10.7);
+      tl.to(el(P + "rfill"), { scaleX: 1, duration: 2.02, ease: "power1.inOut" }, 10.84);
+      tl.to(el(P + "row2"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 10.6);
+      tl.to([el(P + "pair2"), el(P + "cause2")], { color: "#1a1a1a", duration: 0.34, ease: "power1.out" }, 12.86);
+      tl.to(el(P + "m2"), { scaleY: 1, duration: 0.3, ease: "power2.out" }, 12.86);
+
+      // ── Scene 7 (13.66–16.44s) — exactly one probe leaves and reaches the dependency; the
+      //    lower connector comes back up as it goes. ──
+      tl.to([el(P + "con2"), el(P + "h2")], { opacity: 1, duration: 0.34, ease: "power1.out" }, 13.66);
+      tl.fromTo(el(P + "travel3"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power3.out" }, 14.36);
+      tl.to(el(P + "travel3"), { y: 452, duration: 1.0, ease: "power1.inOut" }, 14.62);
+      tl.to(el(P + "travel3"), { opacity: 0, duration: 0.18, ease: "none" }, 15.5);
+      tl.to(el(P + "row3"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 16.44);
+
+      // ── Scene 8 (16.44–20.651s) — succeed → CLOSED at 17.14, fail → OPEN again at 19.48.
+      //    The rail is complete; the last 1.1s holds so the diagram can be read. ──
+      tl.to([el(P + "pair3"), el(P + "cause3")], { color: "#1a1a1a", duration: 0.34, ease: "power1.out" }, 17.14);
+      tl.to(el(P + "m3"), { scaleY: 1, duration: 0.3, ease: "power2.out" }, 17.14);
+      tl.to(el(P + "box"), { borderColor: "#ffffeb", duration: 0.3, ease: "power2.out" }, 17.14);
+      // counting restarts under the closed state
+      [P + "p1", P + "p2", P + "p3", P + "p4"].forEach(function (k, i) {
+        tl.to(el(k), { backgroundColor: "rgba(26,26,26,0.06)", borderColor: "rgba(26,26,26,0.28)", duration: 0.26, ease: "power1.out" }, 17.6 + i * 0.1);
+      });
+      tl.to(el(P + "row4"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 18.6);
+      tl.to([el(P + "pair4"), el(P + "cause4")], { color: "#1a1a1a", duration: 0.34, ease: "power1.out" }, 19.48);
+      tl.to(el(P + "m4"), { scaleY: 1, duration: 0.3, ease: "power2.out" }, 19.48);
+      tl.to(el(P + "box"), { borderColor: "#ffa946", duration: 0.28, ease: "power2.out" }, 19.48);
+
+      // ── a finite settle so the held read is alive without breathing (sine-wave-loop, low
+      //    amplitude, one cycle over the hold — no repeat, no yoyo) ──
+      var jit = { p: 0 };
+      tl.to(jit, {
+        p: Math.PI * 2,
+        duration: 1.05,
+        ease: "none",
+        onUpdate: function () {
+          el(P + "box").style.transform = "translateY(" + (1.4 * Math.sin(jit.p)).toFixed(2) + "px)";
+        }
+      }, 19.6);
+    })();
+  </script>
+</template>

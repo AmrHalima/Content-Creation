@@ -1,0 +1,422 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 3.328,
+      "words": [
+        {
+          "text": "Why",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "does",
+          "start": 0.36,
+          "end": 0.62
+        },
+        {
+          "text": "five",
+          "start": 0.62,
+          "end": 1.04
+        },
+        {
+          "text": "plus",
+          "start": 1.04,
+          "end": 1.42
+        },
+        {
+          "text": "five",
+          "start": 1.42,
+          "end": 1.9
+        },
+        {
+          "text": "give",
+          "start": 1.9,
+          "end": 2.16
+        },
+        {
+          "text": "you",
+          "start": 2.16,
+          "end": 2.28
+        },
+        {
+          "text": "fifty-five?",
+          "start": 2.28,
+          "end": 2.72
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 6.528,
+      "words": [
+        {
+          "text": "Because",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "every",
+          "start": 0.36,
+          "end": 0.92
+        },
+        {
+          "text": "value",
+          "start": 0.92,
+          "end": 1.42
+        },
+        {
+          "text": "carries",
+          "start": 1.42,
+          "end": 1.96
+        },
+        {
+          "text": "a",
+          "start": 1.96,
+          "end": 2.24
+        },
+        {
+          "text": "type,",
+          "start": 2.24,
+          "end": 2.6
+        },
+        {
+          "text": "and",
+          "start": 3.14,
+          "end": 3.36
+        },
+        {
+          "text": "the",
+          "start": 3.36,
+          "end": 3.46
+        },
+        {
+          "text": "type",
+          "start": 3.46,
+          "end": 3.78
+        },
+        {
+          "text": "decides",
+          "start": 3.78,
+          "end": 4.34
+        },
+        {
+          "text": "what",
+          "start": 4.34,
+          "end": 4.84
+        },
+        {
+          "text": "the",
+          "start": 4.84,
+          "end": 5
+        },
+        {
+          "text": "operation",
+          "start": 5,
+          "end": 5.48
+        },
+        {
+          "text": "means.",
+          "start": 5.48,
+          "end": 6.24
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 10.261,
+      "words": [
+        {
+          "text": "Four",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "you",
+          "start": 0.36,
+          "end": 0.58
+        },
+        {
+          "text": "will",
+          "start": 0.58,
+          "end": 0.74
+        },
+        {
+          "text": "use",
+          "start": 0.74,
+          "end": 1
+        },
+        {
+          "text": "every",
+          "start": 1,
+          "end": 1.38
+        },
+        {
+          "text": "day.",
+          "start": 1.38,
+          "end": 1.8
+        },
+        {
+          "text": "Int",
+          "start": 2.42,
+          "end": 2.76
+        },
+        {
+          "text": "for",
+          "start": 2.76,
+          "end": 3.02
+        },
+        {
+          "text": "whole",
+          "start": 3.02,
+          "end": 3.28
+        },
+        {
+          "text": "numbers,",
+          "start": 3.28,
+          "end": 3.76
+        },
+        {
+          "text": "float",
+          "start": 4.26,
+          "end": 4.64
+        },
+        {
+          "text": "for",
+          "start": 4.64,
+          "end": 4.96
+        },
+        {
+          "text": "decimals,",
+          "start": 4.96,
+          "end": 5.72
+        },
+        {
+          "text": "str",
+          "start": 6.08,
+          "end": 6.7
+        },
+        {
+          "text": "for",
+          "start": 6.7,
+          "end": 7.04
+        },
+        {
+          "text": "text,",
+          "start": 7.04,
+          "end": 7.5
+        },
+        {
+          "text": "and",
+          "start": 7.92,
+          "end": 8
+        },
+        {
+          "text": "bool",
+          "start": 8,
+          "end": 8.48
+        },
+        {
+          "text": "for",
+          "start": 8.48,
+          "end": 8.68
+        },
+        {
+          "text": "true",
+          "start": 8.68,
+          "end": 9.08
+        },
+        {
+          "text": "or",
+          "start": 9.08,
+          "end": 9.38
+        },
+        {
+          "text": "false.",
+          "start": 9.38,
+          "end": 9.84
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 7.211,
+      "words": [
+        {
+          "text": "Five",
+          "start": 0,
+          "end": 0.42
+        },
+        {
+          "text": "plus",
+          "start": 0.42,
+          "end": 0.88
+        },
+        {
+          "text": "five",
+          "start": 0.88,
+          "end": 1.36
+        },
+        {
+          "text": "gives",
+          "start": 1.36,
+          "end": 1.78
+        },
+        {
+          "text": "ten.",
+          "start": 1.78,
+          "end": 2.2
+        },
+        {
+          "text": "Put",
+          "start": 2.78,
+          "end": 2.98
+        },
+        {
+          "text": "them",
+          "start": 2.98,
+          "end": 3.16
+        },
+        {
+          "text": "both",
+          "start": 3.16,
+          "end": 3.42
+        },
+        {
+          "text": "in",
+          "start": 3.42,
+          "end": 3.66
+        },
+        {
+          "text": "quotes,",
+          "start": 3.66,
+          "end": 4.02
+        },
+        {
+          "text": "and",
+          "start": 4.02,
+          "end": 4.42
+        },
+        {
+          "text": "plus",
+          "start": 4.42,
+          "end": 4.68
+        },
+        {
+          "text": "stops",
+          "start": 4.68,
+          "end": 5.06
+        },
+        {
+          "text": "adding.",
+          "start": 5.06,
+          "end": 5.58
+        },
+        {
+          "text": "It",
+          "start": 6.2,
+          "end": 6.36
+        },
+        {
+          "text": "glues.",
+          "start": 6.36,
+          "end": 6.86
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 6.848,
+      "words": [
+        {
+          "text": "So",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "text": "here",
+          "start": 0.32,
+          "end": 0.66
+        },
+        {
+          "text": "is",
+          "start": 0.66,
+          "end": 0.88
+        },
+        {
+          "text": "the",
+          "start": 0.88,
+          "end": 1.02
+        },
+        {
+          "text": "quiz.",
+          "start": 1.02,
+          "end": 1.34
+        },
+        {
+          "text": "Quote",
+          "start": 1.98,
+          "end": 2.34
+        },
+        {
+          "text": "five,",
+          "start": 2.34,
+          "end": 2.78
+        },
+        {
+          "text": "star",
+          "start": 2.78,
+          "end": 3.12
+        },
+        {
+          "text": "three.",
+          "start": 3.12,
+          "end": 3.66
+        },
+        {
+          "text": "What",
+          "start": 4.14,
+          "end": 4.28
+        },
+        {
+          "text": "does",
+          "start": 4.28,
+          "end": 4.44
+        },
+        {
+          "text": "Python",
+          "start": 4.44,
+          "end": 4.78
+        },
+        {
+          "text": "give",
+          "start": 4.78,
+          "end": 5.26
+        },
+        {
+          "text": "you?",
+          "start": 5.26,
+          "end": 5.58
+        },
+        {
+          "text": "Comment",
+          "start": 5.92,
+          "end": 6.22
+        },
+        {
+          "text": "it.",
+          "start": 6.22,
+          "end": 6.56
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

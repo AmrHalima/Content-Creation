@@ -1,0 +1,257 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G12 board, the same authored slots as F2 (one layout, one scale, three frames) */
+    .g12-node { position: absolute; box-sizing: border-box; width: 148px; height: 96px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex; align-items: center;
+      justify-content: center; }
+    .g12-a { left: 115px; top: 360px; }
+    .g12-b { left: 673px; top: 360px; }
+    .g12-c { left: 394px; top: 700px; }
+    .g12-letter { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 6.2cqw; color: #5AD6A0; }
+    .g12-edge { position: absolute; height: 3px; background: rgba(255,255,255,0.16);
+      transform-origin: left center; border-radius: 2px; }
+    .g12-ab { left: 263px; top: 406px; width: 410px; }
+    .g12-ac { left: 240px; top: 470px; width: 280px; transform: rotate(50.6deg); }
+    .g12-ca { left: 417px; top: 685px; width: 280px; transform: rotate(230.6deg);
+      transform-origin: left center; opacity: 0; }
+    .g12-bc { left: 696px; top: 470px; width: 280px; transform: rotate(129.4deg); }
+    .g12-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16); }
+    .g12-chev-ab { left: 661px; top: 402px; transform: rotate(45deg); }
+    .g12-chev-ac { left: 408px; top: 676px; transform: rotate(95.6deg); }
+    .g12-chev-ca { left: 228px; top: 456px; transform: rotate(275.6deg); opacity: 0; }
+    .g12-chev-bc { left: 517px; top: 676px; transform: rotate(214.4deg); }
+
+    /* weight chips: § 6's 60x44 --panel-2 with a mono 700 --value digit, at a bar midpoint. Digits
+       2 / 7 / 4 are the executed weights (A→C 2, A→B 7, B→C 4). */
+    .g12-weight { position: absolute; width: 56px; height: 44px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700; color: #5AD6A0; }
+    .g12-w-ab { left: 438px; top: 426px; }
+    .g12-w-ac { left: 346px; top: 532px; }
+    .g12-w-bc { left: 533px; top: 532px; }
+
+    /* the walk ring: one element moves, the chambers and bars hold (pb-22's discipline) */
+    .g12-ring { position: absolute; left: 107px; top: 353px; width: 164px; height: 110px;
+      box-sizing: border-box; border: 3px solid #FFD166; border-radius: 26px; opacity: 0;
+      box-shadow: 0 0 0 8px rgba(255,209,102,0.10); }
+
+    /* counted lane (upper y 288 h 66) — pb-21's .f3-tag geometry and her two authored tag slots */
+    .f3-tag { position: absolute; top: 288px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; gap: 12px; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #9BA6B2; white-space: nowrap; }
+    .f3-tag b { color: #5AD6A0; font-weight: 700; }
+    .f3-wnum { display: inline-block; color: #5AD6A0; font-weight: 700; }
+    .f3-tag.held { border-color: rgba(255,255,255,0.16); color: #9BA6B2; }
+    .f3-edges { left: 818px; width: 190px; }
+    .f3-tag-a { left: 270px; width: 300px; }
+    .f3-tag-b { left: 590px; width: 220px; }
+
+    /* the triad as a chip row (frame-day3 § 11) — no colour role, so no amber */
+    .f3-chip { position: absolute; top: 820px; height: 76px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.04em; color: #9BA6B2; white-space: nowrap; }
+    .f3-chip-a { left: 138px; width: 300px; }
+    .f3-chip-b { left: 470px; width: 240px; }
+    .f3-chip-c { left: 742px; width: 200px; }
+
+    .f3-paths { position: absolute; left: 72px; top: 916px; width: 936px; height: 44px;
+      text-align: center; opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 2.9cqw; color: rgba(244,241,234,0.78); white-space: nowrap; }
+    .f3-paths b { color: #5AD6A0; font-weight: 700; }
+    /* the runaway walk, told as a sequence line: it grows, it never resolves */
+    .f3-seq { position: absolute; left: 72px; top: 820px; width: 936px; height: 76px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 2.6cqw; font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2;
+      white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="03-danger" data-width="1080" data-height="1920" data-duration="12.45">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="12.45" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="12.45" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 30</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="12.45" data-track-index="2">
+
+      <div id="f3-edge-ab" class="g12-edge g12-ab"></div>
+      <div id="f3-edge-bc" class="g12-edge g12-bc"></div>
+      <div id="f3-edge-ac" class="g12-edge g12-ac"></div>
+      <div id="f3-edge-ca" class="g12-edge g12-ca"></div>
+      <div id="f3-chev-ab" class="g12-chev g12-chev-ab"></div>
+      <div id="f3-chev-bc" class="g12-chev g12-chev-bc"></div>
+      <div id="f3-chev-ac" class="g12-chev g12-chev-ac"></div>
+      <div id="f3-chev-ca" class="g12-chev g12-chev-ca"></div>
+
+      <div id="f3-n-a" class="g12-node g12-a"><span class="g12-letter">A</span></div>
+      <div id="f3-n-b" class="g12-node g12-b"><span class="g12-letter">B</span></div>
+      <div id="f3-n-c" class="g12-node g12-c"><span class="g12-letter">C</span></div>
+
+      <div id="f3-ring" class="g12-ring"></div>
+
+      <div id="f3-w-ab" class="g12-weight g12-w-ab">7</div>
+      <div id="f3-w-ac" class="g12-weight g12-w-ac">2</div>
+      <div id="f3-w-bc" class="g12-weight g12-w-bc">4</div>
+
+      <div id="f3-edges" class="f3-tag f3-edges held" data-layout-allow-overlap>EDGES&nbsp;<b>3</b></div>
+      <div id="f3-tagA" class="f3-tag f3-tag-a" data-layout-allow-overlap>DIRECT&nbsp;<b>2</b></div>
+      <div id="f3-tagB" class="f3-tag f3-tag-b" data-layout-allow-overlap>VIA&nbsp;B&nbsp;<b>11</b></div>
+      <div id="f3-walked" class="f3-tag f3-tag-a" data-layout-allow-overlap>WALKED&nbsp;<b class="f3-wnum" id="f3-walked-n">3</b>&nbsp;…</div>
+      <div id="f3-noend" class="f3-tag f3-tag-b" data-layout-allow-overlap>NO&nbsp;END</div>
+
+      <div id="f3-chip-a" class="f3-chip f3-chip-a" data-layout-allow-overlap>social&nbsp;networks</div>
+      <div id="f3-chip-b" class="f3-chip f3-chip-b" data-layout-allow-overlap>road&nbsp;maps</div>
+      <div id="f3-chip-c" class="f3-chip f3-chip-c" data-layout-allow-overlap>the&nbsp;web</div>
+      <div id="f3-seq" class="f3-seq" data-layout-allow-overlap>A&nbsp;&rarr;&nbsp;B&nbsp;&rarr;&nbsp;C&nbsp;&rarr;&nbsp;A&nbsp;&rarr;&nbsp;&hellip;</div>
+
+      <div id="f3-paths" class="f3-paths" data-layout-allow-occlusion>A&nbsp;&rarr;&nbsp;C&nbsp;costs&nbsp;<b>2</b>&nbsp;&nbsp;·&nbsp;&nbsp;A&nbsp;&rarr;&nbsp;B&nbsp;&rarr;&nbsp;C&nbsp;costs&nbsp;<b>7&nbsp;+&nbsp;4&nbsp;=&nbsp;11</b></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 12.45;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-danger"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe from the left, then the board simply holds — F2 built it, this frame uses it */
+      tl.fromTo(el("f3-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.55);
+
+      /* ── BEAT 1: "Social networks, road maps, and the web are graphs." (0.00 / 1.46 / 2.34 / 2.72)
+         the triad lands as a chip row, one chip per named thing. Chips take no colour role. */
+      tl.fromTo(el("f3-chip-a"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("f3-chip-b"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.5);
+      tl.fromTo(el("f3-chip-c"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 2.36);
+      tl.fromTo(el("f3-edges"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.74);
+      /* the A→B weight carried over from F2 — present from the first frame of this one */
+      tl.set(el("f3-w-ab"), { opacity: 1 }, 0.05);
+
+      /* ── BEAT 1b: "Most 'find the best route' problems are graph problems." (Most 3.80, best 4.56,
+         route' 4.84, problems 5.10-5.56) — the executed weights land, then the counted pair.
+         A ring travels the direct edge (cost 2) and the two-hop route (7 + 4 = 11). */
+      tl.fromTo(el("f3-w-ac"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 3.84);
+      tl.fromTo(el("f3-w-bc"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 4.06);
+      tl.fromTo(el("f3-ring"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 4.32);
+      tl.fromTo(el("f3-tagA"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.58);
+      tl.fromTo(el("f3-tagB"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 5.12);
+      /* the two routes, walked one at a time (P8 by way of pb-22's travelling ring) */
+      tl.to(el("f3-ring"), { x: 279, y: 340, duration: 0.42, ease: "power2.inOut", immediateRender: false }, 4.70);
+      tl.to(el("f3-ring"), { x: 0, y: 0, duration: 0.34, ease: "power2.inOut", immediateRender: false }, 5.30);
+      tl.to(el("f3-ring"), { x: 558, y: 0, duration: 0.3, ease: "power2.inOut", immediateRender: false }, 5.74);
+      tl.to(el("f3-ring"), { x: 279, y: 340, duration: 0.3, ease: "power2.inOut", immediateRender: false }, 6.10);
+      tl.fromTo(el("f3-paths"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 5.58);
+      tl.to(el("f3-ring"), { opacity: 0, duration: 0.24, ease: "power2.in", immediateRender: false }, 7.06);
+
+      /* ── BEAT 2: "But an edge can lead back where you started." (edge 7.38, lead 7.92, started 8.88)
+         the edge that pointed AWAY from A is replaced by the one that points back to it. Same line,
+         reversed — the chip row and the pair tags clear first so the lane reads the walk. */
+      tl.to(el("f3-chip-a"), { opacity: 0, y: 18, duration: 0.24, ease: "power2.in", immediateRender: false }, 7.16);
+      tl.to(el("f3-chip-b"), { opacity: 0, y: 18, duration: 0.24, ease: "power2.in", immediateRender: false }, 7.22);
+      tl.to(el("f3-chip-c"), { opacity: 0, y: 18, duration: 0.24, ease: "power2.in", immediateRender: false }, 7.28);
+      tl.to(el("f3-paths"), { opacity: 0, duration: 0.24, ease: "power2.in", immediateRender: false }, 7.16);
+      tl.to(el("f3-tagA"), { opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 7.2);
+      tl.to(el("f3-tagB"), { opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 7.26);
+      tl.to(el("f3-edge-ac"), { opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 7.4);
+      tl.to(el("f3-chev-ac"), { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, 7.4);
+      tl.to(el("f3-w-ac"), { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, 7.44);
+      tl.to(el("f3-w-ab"), { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, 7.44);
+      tl.to(el("f3-w-bc"), { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, 7.5);
+      /* the reverse edge draws itself (P8), origin left centre as authored */
+      tl.fromTo(el("f3-edge-ca"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.32, ease: "power3.out", immediateRender: false }, 7.66);
+      tl.fromTo(el("f3-chev-ca"), { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power2.out", immediateRender: false }, 7.94);
+
+      /* the walk starts on "started." — 16 hops at 0.22s, one per node entered, and it is still
+         going when the frame cuts (lap landings: visit 3 at 9.32, 6 at 9.98, 9 at 10.64, 12 at 11.30) */
+      tl.fromTo(el("f3-walked"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 8.95);
+      tl.fromTo(el("f3-ring"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 8.86);
+      var lap = [[558, 0], [279, 340], [0, 0]];
+      var hops = [];
+      for (var k = 0; k < 16; k++) { hops.push(lap[k % 3]); }
+      hops.forEach(function (p, i) {
+        tl.to(el("f3-ring"), { x: p[0], y: p[1], duration: 0.2, ease: "power1.inOut", immediateRender: false }, 8.9 + i * 0.22);
+      });
+
+      /* P9 count-tick off a time proxy (no TextPlugin): the counter is the danger, so it climbs
+         one lap at a time — 3, 6, 9, 12 — and the ring is still moving when the frame cuts. */
+      var walkedSteps = [{ t: 0, v: "3" }, { t: 9.98, v: "6" }, { t: 10.64, v: "9" }, { t: 11.3, v: "12" }];
+      var seqSteps = [{ t: 0, v: "A → B → C → A → …" },
+        { t: 9.98, v: "A → B → C → A → B → C → …" },
+        { t: 11.3, v: "A → B → C → A → B → C → A → B → C → …" }];
+      var clock = { t: 0 };
+      function pick(arr, t) { var s = ""; for (var i = 0; i < arr.length; i++) { if (t >= arr[i].t) s = arr[i].v; } return s; }
+      tl.to(clock, { t: D, duration: D, ease: "none", onUpdate: function () {
+        var n = el("f3-walked-n"), q = el("f3-seq");
+        var s1 = pick(walkedSteps, clock.t);
+        if (n._v !== s1) { n._v = s1; n.textContent = s1; }
+        var s2 = pick(seqSteps, clock.t);
+        if (q._v !== s2) { q._v = s2; q.innerHTML = s2.replace(/ → /g, "&nbsp;&rarr;&nbsp;"); }
+      } }, 0);
+      tl.fromTo(el("f3-seq"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power2.out", immediateRender: false }, 9.02);
+      [9.74, 10.4, 11.06].forEach(function (t) {
+        tl.fromTo(el("f3-walked-n"), { scale: 1.26 }, { scale: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, t);
+      });
+      /* NO END lands on "never" (10.32) — muted chrome. Zero coral: the danger is the number. */
+      tl.fromTo(el("f3-noend"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.5)", immediateRender: false }, 10.34);
+
+      /* ambient breath on the board, back to zero before the cut */
+      tl.fromTo(el("f3-n-a"), { y: 0 }, { y: -4, duration: 1.5, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 1.2);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 12.13);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

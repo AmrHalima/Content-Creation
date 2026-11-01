@@ -1,0 +1,179 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 214px; left: 84px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f01-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 1; }
+
+    .f01-card {
+      position: absolute; left: 84px; width: 912px; height: 268px;
+      box-sizing: border-box; border-radius: 8px; overflow: hidden;
+      display: flex; flex-direction: column; opacity: 0;
+    }
+    .f01-domain {
+      top: 480px;
+      background: #e4e4d0;
+      border: 4px solid #1a1a1a;
+    }
+    .f01-vendor {
+      top: 1064px;
+      background: #181715;
+      border: 2px solid rgba(255,255,235,0.20);
+    }
+    .f01-bar {
+      height: 58px; flex: 0 0 58px; display: flex; align-items: center; padding: 0 28px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.06em;
+      color: #76766e; background: rgba(26,26,26,0.06);
+      border-bottom: 1px solid rgba(26,26,26,0.16);
+    }
+    .f01-vendor .f01-bar { color: rgba(255,255,235,0.62); background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14); }
+    .f01-code {
+      flex: 1 1 auto; display: flex; align-items: center; padding: 0 28px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; line-height: 1.2;
+      color: #1a1a1a; white-space: nowrap;
+    }
+    .f01-vendor .f01-code { color: #ffffeb; }
+    .f01-kw { color: #ffa946; }
+    .f01-vendor .f01-kw { color: #e8a55a; }
+    .f01-tab {
+      position: absolute; right: 28px; bottom: 22px; height: 54px;
+      display: flex; align-items: center; padding: 0 22px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.05cqw; letter-spacing: 0.02em;
+      border-radius: 9999px; white-space: nowrap;
+    }
+    .f01-tab-domain { background: #f0d7ff; color: #1a1a1a; border: 2px solid #1a1a1a; }
+    .f01-tab-vendor { background: transparent; color: rgba(255,255,235,0.78); border: 2px solid rgba(255,255,235,0.42); }
+    .f01-side {
+      position: absolute; left: 28px; bottom: 26px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f01-vendor .f01-side { color: rgba(255,255,235,0.55); }
+
+    .f01-link { position: absolute; inset: 0; }
+    .f01-link svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f01-wire { fill: none; stroke: #1a1a1a; stroke-width: 4; stroke-dasharray: 14 14; stroke-linecap: round; opacity: 0.8; }
+    .f01-neq {
+      position: absolute; top: 838px; left: 500px; width: 84px; height: 96px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.2cqw; line-height: 1;
+      color: #ffa946; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-two-shapes" data-width="1080" data-height="1920" data-duration="5.845">
+
+    <div id="f01-ground" class="clip" data-start="0" data-duration="5.845" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field"></div>
+      <div id="f01-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="f01-chrome" class="clip" data-start="0" data-duration="5.845" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker">
+        <span id="f01-spike" class="f01-spike">&#10009;</span><span id="f01-ktext" class="f01-ktext" data-layout-ignore>THE MISMATCH</span>
+      </div>
+    </div>
+
+    <div id="f01-domain" class="clip" data-start="0.30" data-duration="5.545" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f01-card-a" class="f01-card f01-domain">
+        <div class="f01-bar"><span data-layout-ignore>checkout-service.ts</span></div>
+        <div class="f01-code"><span class="f01-kw">charge</span>(amount, currency)</div>
+        <div class="f01-side" data-layout-ignore>your interface</div>
+        <div class="f01-tab f01-tab-domain">Promise&lt;Receipt&gt;</div>
+      </div>
+    </div>
+
+    <div id="f01-vendor" class="clip" data-start="2.70" data-duration="3.145" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f01-card-b" class="f01-card f01-vendor">
+        <div class="f01-bar"><span data-layout-ignore>bank-client.ts</span></div>
+        <div class="f01-code"><span class="f01-kw">doTransaction</span>(currency, amount)</div>
+        <div class="f01-side" data-layout-ignore>their sdk</div>
+        <div class="f01-tab f01-tab-vendor">Promise&lt;BankResponse&gt;</div>
+      </div>
+    </div>
+
+    <div id="f01-link" class="clip" data-start="3.90" data-duration="1.945" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f01-link">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f01-wire" class="f01-wire" d="M 542 756 L 542 1010" />
+        </svg>
+        <div id="f01-neq" class="f01-neq">&#8800;</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.845;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-two-shapes"] = tl;
+
+      // ── ground: paper field + hairline grid ──
+      tl.fromTo(el("f01-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.2s) "Your code wants one shape": eyebrow + the domain card ──
+      tl.fromTo(el("f01-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      // the eyebrow carries the opening frame (it is the thumbnail's title), so it is set
+      // visible in CSS and never tweened from opacity 0 — frame 0 must not be empty.
+      tl.fromTo(el("f01-card-a"), { opacity: 0.55, scale: 0.985, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
+
+      // ── Scene 2 (1.2–3.0s) "The vendor's SDK hands you a different one": the vendor card ──
+      tl.fromTo(el("f01-card-b"), { opacity: 0, scale: 0.96, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.46, ease: "power3.out" }, 2.86);
+
+      // ── Scene 3 (3.0–5.0s) the wire draws and stops short of the vendor card ──
+      var wire = el("f01-wire");
+      var len = wire.getTotalLength();
+      wire.style.strokeDasharray = String(len);
+      wire.style.strokeDashoffset = String(len);
+      tl.to(wire, { strokeDashoffset: 88, duration: 0.72, ease: "power3.out" }, 4.02);
+
+      // ── Scene 4 (5.0–5.85s) the break, and the only ember element in the frame ──
+      tl.fromTo(el("f01-neq"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 4.94);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite): the break marker only
+      var jit = { p: 0 };
+      var mark = el("f01-neq");
+      var HOLD = 5.32;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.25,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          mark.style.transform = "translateY(" + (Math.sin(jit.p) * 2).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

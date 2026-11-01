@@ -1,0 +1,1227 @@
+{
+  "version": 1,
+  "note": "Single source of truth for every content project in this workspace. Written by studio.mjs; hand edits are fine and are re-read on the next status run.",
+  "projects": {
+    "call-forwarding-scam": {
+      "name": "call-forwarding-scam",
+      "path": "G:/Content Creation/videos/call-forwarding-scam",
+      "workflow": "faceless-explainer",
+      "campaign": null,
+      "language": "ar-EG",
+      "aspect": "1080x1920",
+      "message": "النصب ده مبيطلبش من الكبير حاجة خالص — فلما يتعمل ليه، الولاد يعملوا الفحص بإيدهم",
+      "frames": 10,
+      "runtime_s": 132.24,
+      "captions": false,
+      "voice_lines": 10,
+      "voiced_with_timings": 10,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/call-forwarding-scam.mp4",
+          "bytes": 8880848
+        }
+      ],
+      "stamp": "4377eb0c",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "edit-test-001": {
+      "name": "edit-test-001",
+      "path": "G:/Content Creation/videos/edit-test-001",
+      "workflow": null,
+      "campaign": null,
+      "language": null,
+      "aspect": null,
+      "message": null,
+      "frames": 0,
+      "runtime_s": 11.5,
+      "captions": false,
+      "voice_lines": 0,
+      "voiced_with_timings": 0,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/edit-test-001.mp4",
+          "bytes": 13831054
+        }
+      ],
+      "stamp": "7ce79157",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "osi-layers-1-sideways": {
+      "name": "osi-layers-1-sideways",
+      "path": "G:/Content Creation/videos/osi-layers-1-sideways",
+      "workflow": "faceless-explainer",
+      "campaign": "osi-layers",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Every OSI layer talks sideways to the same layer on the other machine — the stack is seven peer conversations, not one ladder.",
+      "frames": 7,
+      "runtime_s": 63.34,
+      "captions": true,
+      "voice_lines": 7,
+      "voiced_with_timings": 7,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/osi-layers-1-sideways_2026-10-22_13-11-32.mp4",
+          "bytes": 4150733
+        }
+      ],
+      "stamp": "86e62264",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "osi-layers-2-the-seam": {
+      "name": "osi-layers-2-the-seam",
+      "path": "G:/Content Creation/videos/osi-layers-2-the-seam",
+      "workflow": "faceless-explainer",
+      "campaign": "osi-layers",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Because each layer is a sideways conversation with a stable job, you can replace one layer's implementation and the layer above never notices.",
+      "frames": 6,
+      "runtime_s": 54.527,
+      "captions": true,
+      "voice_lines": 6,
+      "voiced_with_timings": 6,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/osi-layers-2-the-seam_2026-10-22_13-13-09.mp4",
+          "bytes": 4486603
+        },
+        {
+          "path": "renders/_stale-draft-2026-10-22_05-42/osi-layers-2-the-seam_2026-10-22_05-42-24.mp4",
+          "bytes": 4089257
+        }
+      ],
+      "stamp": "d15bf3b9",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "osi-layers-3-leaks": {
+      "name": "osi-layers-3-leaks",
+      "path": "G:/Content Creation/videos/osi-layers-3-leaks",
+      "workflow": "faceless-explainer",
+      "campaign": "osi-layers",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "The model leaks — hardest at Layer 2 — and it is still worth learning, because it gives you a way to say which part broke.",
+      "frames": 6,
+      "runtime_s": 56.148,
+      "captions": true,
+      "voice_lines": 6,
+      "voiced_with_timings": 6,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/osi-layers-3-leaks_2026-10-22_13-14-22.mp4",
+          "bytes": 3821529
+        }
+      ],
+      "stamp": "c1a659bc",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "product-intro": {
+      "name": "product-intro",
+      "path": "G:/Content Creation/videos/product-intro",
+      "workflow": null,
+      "campaign": null,
+      "language": null,
+      "aspect": null,
+      "message": null,
+      "frames": 0,
+      "runtime_s": 10,
+      "captions": false,
+      "voice_lines": 0,
+      "voiced_with_timings": 0,
+      "stage": "assembled",
+      "renders": [],
+      "stamp": "fefbc7fe",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "sdlc": {
+      "name": "sdlc",
+      "path": "G:/Content Creation/videos/sdlc",
+      "workflow": "faceless-explainer",
+      "campaign": null,
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Every methodology is a different answer to one question — how late is reality allowed to revise the plan — and things break at the handoffs, not the phases.",
+      "frames": 9,
+      "runtime_s": 74.008,
+      "captions": true,
+      "voice_lines": 9,
+      "voiced_with_timings": 9,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/sdlc_2026-10-18_17-36-31.mp4",
+          "bytes": 6244887
+        }
+      ],
+      "stamp": "48b77e90",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "pattern-adapter": {
+      "name": "pattern-adapter",
+      "path": "G:/Content Creation/videos/pattern-adapter",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Adapter converts one interface into another so incompatible code can talk, and it is what lets your domain stay clean while a legacy vendor or a third-party SDK stays in the room.",
+      "frames": 9,
+      "runtime_s": 73.108,
+      "captions": true,
+      "voice_lines": 9,
+      "voiced_with_timings": 9,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-adapter_2026-10-26_23-28-32.mp4",
+          "bytes": 4524702
+        }
+      ],
+      "stamp": "430c825e",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:30:00.739Z",
+        "file": "renders/pattern-adapter_2026-10-26_23-28-32.mp4",
+        "bytes": 4524702,
+        "quality": "draft",
+        "stamp": "430c825e",
+        "duration_s": 73.133333,
+        "has_audio": true,
+        "mean_volume_db": -23.9
+      }
+    },
+    "pattern-builder": {
+      "name": "pattern-builder",
+      "path": "G:/Content Creation/videos/pattern-builder",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Builder constructs an object step by step and keeps it unfinished until build() checks the invariants once, which is the cure for a telescoping constructor and for objects that are live before they are valid.",
+      "frames": 8,
+      "runtime_s": 79.466,
+      "captions": true,
+      "voice_lines": 8,
+      "voiced_with_timings": 8,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-builder_2026-10-26_23-30-03.mp4",
+          "bytes": 5675027
+        }
+      ],
+      "stamp": "da70451a",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:31:44.786Z",
+        "file": "renders/pattern-builder_2026-10-26_23-30-03.mp4",
+        "bytes": 5675027,
+        "quality": "draft",
+        "stamp": "da70451a",
+        "duration_s": 79.466667,
+        "has_audio": true,
+        "mean_volume_db": -22.4
+      }
+    },
+    "pattern-circuit-breaker": {
+      "name": "pattern-circuit-breaker",
+      "path": "G:/Content Creation/videos/pattern-circuit-breaker",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "A circuit breaker fails fast and gives a dying dependency room to recover instead of piling retries on it: closed, open, half-open, with a fallback.",
+      "frames": 7,
+      "runtime_s": 76.161,
+      "captions": true,
+      "voice_lines": 7,
+      "voiced_with_timings": 7,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-circuit-breaker_2026-10-26_23-31-47.mp4",
+          "bytes": 4499090
+        }
+      ],
+      "stamp": "880acff",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:33:08.073Z",
+        "file": "renders/pattern-circuit-breaker_2026-10-26_23-31-47.mp4",
+        "bytes": 4499090,
+        "quality": "draft",
+        "stamp": "880acff",
+        "duration_s": 76.166667,
+        "has_audio": true,
+        "mean_volume_db": -23.7
+      }
+    },
+    "pattern-cqrs": {
+      "name": "pattern-cqrs",
+      "path": "G:/Content Creation/videos/pattern-cqrs",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "CQRS gives reads and writes separate models, and the models are the split; the command side owns the invariants, the query side is free to denormalise.",
+      "frames": 8,
+      "runtime_s": 77.647,
+      "captions": true,
+      "voice_lines": 8,
+      "voiced_with_timings": 8,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-cqrs_2026-10-26_23-10-02.mp4",
+          "bytes": 4010275
+        }
+      ],
+      "stamp": "8cc6ad46",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:11:33.747Z",
+        "file": "renders/pattern-cqrs_2026-10-26_23-10-02.mp4",
+        "bytes": 4010275,
+        "quality": "draft",
+        "stamp": "8cc6ad46",
+        "duration_s": 77.666667,
+        "has_audio": true,
+        "mean_volume_db": -22.8
+      }
+    },
+    "pattern-decorator": {
+      "name": "pattern-decorator",
+      "path": "G:/Content Creation/videos/pattern-decorator",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "The Decorator pattern adds responsibility by wrapping the same type — stackable at runtime, where inheritance would have baked it in at compile time.",
+      "frames": 8,
+      "runtime_s": 72.748,
+      "captions": true,
+      "voice_lines": 8,
+      "voiced_with_timings": 8,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-decorator_2026-10-26_23-33-14.mp4",
+          "bytes": 4514845
+        }
+      ],
+      "stamp": "4c95335e",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:34:44.545Z",
+        "file": "renders/pattern-decorator_2026-10-26_23-33-14.mp4",
+        "bytes": 4514845,
+        "quality": "draft",
+        "stamp": "4c95335e",
+        "duration_s": 72.766667,
+        "has_audio": true,
+        "mean_volume_db": -22.5
+      }
+    },
+    "pattern-factory": {
+      "name": "pattern-factory",
+      "path": "G:/Content Creation/videos/pattern-factory",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "A factory moves the decision of which concrete type to build out of the caller, so the caller depends on a type rather than on a constructor.",
+      "frames": 8,
+      "runtime_s": 75.519,
+      "captions": true,
+      "voice_lines": 8,
+      "voiced_with_timings": 8,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-factory_2026-10-26_23-34-47.mp4",
+          "bytes": 3912508
+        }
+      ],
+      "stamp": "e9061075",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:36:35.768Z",
+        "file": "renders/pattern-factory_2026-10-26_23-34-47.mp4",
+        "bytes": 3912508,
+        "quality": "draft",
+        "stamp": "e9061075",
+        "duration_s": 75.533333,
+        "has_audio": true,
+        "mean_volume_db": -22.4
+      }
+    },
+    "pattern-observer": {
+      "name": "pattern-observer",
+      "path": "G:/Content Creation/videos/pattern-observer",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Observer notifies every subscriber without the publisher knowing who they are. The decoupling is the product, and the lost causal trace is the price.",
+      "frames": 7,
+      "runtime_s": 77.418,
+      "captions": true,
+      "voice_lines": 7,
+      "voiced_with_timings": 7,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-observer_2026-10-26_23-36-42.mp4",
+          "bytes": 4502271
+        }
+      ],
+      "stamp": "53484f6f",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:38:19.061Z",
+        "file": "renders/pattern-observer_2026-10-26_23-36-42.mp4",
+        "bytes": 4502271,
+        "quality": "draft",
+        "stamp": "53484f6f",
+        "duration_s": 77.433333,
+        "has_audio": true,
+        "mean_volume_db": -22.4
+      }
+    },
+    "pattern-singleton": {
+      "name": "pattern-singleton",
+      "path": "G:/Content Creation/videos/pattern-singleton",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Singleton is a lifetime decision wearing a pattern's clothes, and a DI container gives you one instance with no static.",
+      "frames": 8,
+      "runtime_s": 74.475,
+      "captions": true,
+      "voice_lines": 8,
+      "voiced_with_timings": 8,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-singleton_2026-10-26_23-17-17.mp4",
+          "bytes": 3773195
+        },
+        {
+          "path": "renders/pattern-singleton_2026-10-26_23-38-23.mp4",
+          "bytes": 3773195
+        }
+      ],
+      "stamp": "966738cf",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:39:50.545Z",
+        "file": "renders/pattern-singleton_2026-10-26_23-38-23.mp4",
+        "bytes": 3773195,
+        "quality": "draft",
+        "stamp": "966738cf",
+        "duration_s": 74.5,
+        "has_audio": true,
+        "mean_volume_db": -24.1
+      }
+    },
+    "pattern-strategy": {
+      "name": "pattern-strategy",
+      "path": "G:/Content Creation/videos/pattern-strategy",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "Strategy is a behaviour you can swap at runtime behind one signature; the caller says what, not how.",
+      "frames": 7,
+      "runtime_s": 75.627,
+      "captions": true,
+      "voice_lines": 7,
+      "voiced_with_timings": 7,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/pattern-strategy_2026-10-26_23-39-56.mp4",
+          "bytes": 5468796
+        }
+      ],
+      "stamp": "24cce161",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:41:46.925Z",
+        "file": "renders/pattern-strategy_2026-10-26_23-39-56.mp4",
+        "bytes": 5468796,
+        "quality": "draft",
+        "stamp": "24cce161",
+        "duration_s": 75.633333,
+        "has_audio": true,
+        "mean_volume_db": -22.4
+      }
+    },
+    "repository-pattern": {
+      "name": "repository-pattern",
+      "path": "G:/Content Creation/videos/repository-pattern",
+      "workflow": "faceless-explainer",
+      "campaign": "backend-patterns",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "The Repository Pattern pulls the use case's decisions apart from the storage layer's, and the whole of it is the direction the dependency points.",
+      "frames": 7,
+      "runtime_s": 72.022,
+      "captions": true,
+      "voice_lines": 7,
+      "voiced_with_timings": 7,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/repository-pattern_2026-10-26_23-05-18.mp4",
+          "bytes": 3968405
+        }
+      ],
+      "stamp": "c3c815cf",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-26T20:06:42.894Z",
+        "file": "renders/repository-pattern_2026-10-26_23-05-18.mp4",
+        "bytes": 3968405,
+        "quality": "draft",
+        "stamp": "c3c815cf",
+        "duration_s": 72.033333,
+        "has_audio": true,
+        "mean_volume_db": -22.5
+      }
+    },
+    "prog-basics-01-variable": {
+      "name": "prog-basics-01-variable",
+      "path": "G:/Content Creation/videos/prog-basics-01-variable",
+      "workflow": "hyperframes (faceless-explainer route, retired into /hyperframes 2026-10-27)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "A variable is a name pointing at a value, and the name outlives the value.",
+      "frames": 5,
+      "runtime_s": 43.1,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-01-variable_2026-10-27_17-08-48.mp4",
+          "bytes": 6593152
+        }
+      ],
+      "stamp": "162633be",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-27T14:09:54.535Z",
+        "file": "renders/prog-basics-01-variable_2026-10-27_17-08-48.mp4",
+        "bytes": 6593152,
+        "quality": "delivery",
+        "stamp": "162633be",
+        "duration_s": 43.1,
+        "has_audio": true,
+        "mean_volume_db": -24.5
+      }
+    },
+    "prog-basics-02-data-types": {
+      "name": "prog-basics-02-data-types",
+      "path": "G:/Content Creation/videos/prog-basics-02-data-types",
+      "workflow": "hyperframes (faceless-explainer route, retired into /hyperframes 2026-10-27)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "The type decides what an operation means: plus on numbers adds, plus on text glues.",
+      "frames": 5,
+      "runtime_s": 39,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-02-data-types_2026-10-27_19-25-09.mp4",
+          "bytes": 6199179
+        }
+      ],
+      "stamp": "fb6b8d34",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-10-27T16:26:06.867Z",
+        "file": "renders/prog-basics-02-data-types_2026-10-27_19-25-09.mp4",
+        "bytes": 6199179,
+        "quality": "delivery",
+        "stamp": "fb6b8d34",
+        "duration_s": 39,
+        "has_audio": true,
+        "mean_volume_db": -23
+      }
+    },
+    "prog-basics-04-functions": {
+      "name": "prog-basics-04-functions",
+      "path": "G:/Content Creation/videos/prog-basics-04-functions",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "write the steps once, name them, and one fix repairs every call",
+      "frames": 5,
+      "runtime_s": 44.1,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-04-functions_2026-10-27_15-52-21.mp4",
+          "bytes": 7080144
+        }
+      ],
+      "stamp": "60ba79b5",
+      "render": {
+        "at": "2026-10-27T12:53:24.222Z",
+        "file": "renders/prog-basics-04-functions_2026-10-27_15-52-21.mp4",
+        "bytes": 7080144,
+        "quality": "delivery",
+        "stamp": "60ba79b5",
+        "duration_s": 44.1,
+        "has_audio": true,
+        "mean_volume_db": -22.9
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-03-strings-vs-chars": {
+      "name": "prog-basics-03-strings-vs-chars",
+      "path": "G:/Content Creation/videos/prog-basics-03-strings-vs-chars",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a string is a row of characters, and each character sits at an index that starts at zero",
+      "frames": 5,
+      "runtime_s": 40.1,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-03-strings-vs-chars_2026-10-27_15-54-41.mp4",
+          "bytes": 5924803
+        }
+      ],
+      "stamp": "6bce57d4",
+      "render": {
+        "at": "2026-10-27T12:55:41.745Z",
+        "file": "renders/prog-basics-03-strings-vs-chars_2026-10-27_15-54-41.mp4",
+        "bytes": 5924803,
+        "quality": "delivery",
+        "stamp": "6bce57d4",
+        "duration_s": 40.1,
+        "has_audio": true,
+        "mean_volume_db": -23.3
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-05-params-vs-args": {
+      "name": "prog-basics-05-params-vs-args",
+      "path": "G:/Content Creation/videos/prog-basics-05-params-vs-args",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "the parameter is the empty seat in the definition; the argument is the value that sits in it at the call",
+      "frames": 5,
+      "runtime_s": 42.9,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-05-params-vs-args_2026-10-27_16-08-05.mp4",
+          "bytes": 6905684
+        }
+      ],
+      "stamp": "dc82a4a9",
+      "render": {
+        "at": "2026-10-27T13:09:08.789Z",
+        "file": "renders/prog-basics-05-params-vs-args_2026-10-27_16-08-05.mp4",
+        "bytes": 6905684,
+        "quality": "delivery",
+        "stamp": "dc82a4a9",
+        "duration_s": 42.9,
+        "has_audio": true,
+        "mean_volume_db": -23.1
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-07-scope": {
+      "name": "prog-basics-07-scope",
+      "path": "G:/Content Creation/videos/prog-basics-07-scope",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a name made inside a function lives and dies there, and the global with the same name is a different box",
+      "frames": 5,
+      "runtime_s": 51.7,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-07-scope_2026-10-27_16-20-44.mp4",
+          "bytes": 8059675
+        }
+      ],
+      "stamp": "35cfaf58",
+      "render": {
+        "at": "2026-10-27T13:21:56.447Z",
+        "file": "renders/prog-basics-07-scope_2026-10-27_16-20-44.mp4",
+        "bytes": 8059675,
+        "quality": "delivery",
+        "stamp": "35cfaf58",
+        "duration_s": 51.7,
+        "has_audio": true,
+        "mean_volume_db": -22.9
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-06-return-vs-print": {
+      "name": "prog-basics-06-return-vs-print",
+      "path": "G:/Content Creation/videos/prog-basics-06-return-vs-print",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a return hands the caller something to use; a side effect changes the world outside",
+      "frames": 5,
+      "runtime_s": 47,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-06-return-vs-print_2026-10-27_17-22-18.mp4",
+          "bytes": 7447646
+        }
+      ],
+      "stamp": "ab5ca20a",
+      "render": {
+        "at": "2026-10-27T14:23:30.401Z",
+        "file": "renders/prog-basics-06-return-vs-print_2026-10-27_17-22-18.mp4",
+        "bytes": 7447646,
+        "quality": "delivery",
+        "stamp": "ab5ca20a",
+        "duration_s": 47,
+        "has_audio": true,
+        "mean_volume_db": -22.9
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-11-for-vs-while": {
+      "name": "prog-basics-11-for-vs-while",
+      "path": "G:/Content Creation/videos/prog-basics-11-for-vs-while",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a for loop repeats a count you already know; a while loop repeats until something changes, and if nothing ever changes it hangs",
+      "frames": 5,
+      "runtime_s": 43.9,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-11-for-vs-while_2026-10-27_18-41-28.mp4",
+          "bytes": 7773680
+        }
+      ],
+      "stamp": "b4544951",
+      "render": {
+        "at": "2026-10-27T15:42:31.816Z",
+        "file": "renders/prog-basics-11-for-vs-while_2026-10-27_18-41-28.mp4",
+        "bytes": 7773680,
+        "quality": "delivery",
+        "stamp": "b4544951",
+        "duration_s": 43.9,
+        "has_audio": true,
+        "mean_volume_db": -23.2
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-09-if-else": {
+      "name": "prog-basics-09-if-else",
+      "path": "G:/Content Creation/videos/prog-basics-09-if-else",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a condition picks one path, and the first match wins",
+      "frames": 5,
+      "runtime_s": 48.8,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-09-if-else_2026-10-27_19-02-09.mp4",
+          "bytes": 8176641
+        }
+      ],
+      "stamp": "a468d553",
+      "render": {
+        "at": "2026-10-27T16:03:21.620Z",
+        "file": "renders/prog-basics-09-if-else_2026-10-27_19-02-09.mp4",
+        "bytes": 8176641,
+        "quality": "delivery",
+        "stamp": "a468d553",
+        "duration_s": 48.8,
+        "has_audio": true,
+        "mean_volume_db": -22.9
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-08-constants-immutability": {
+      "name": "prog-basics-08-constants-immutability",
+      "path": "G:/Content Creation/videos/prog-basics-08-constants-immutability",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a constant is a promise Python does not check; immutability is a refusal the language makes for you",
+      "frames": 5,
+      "runtime_s": 49.051,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-08-constants-immutability_2026-10-27_19-13-09.mp4",
+          "bytes": 8239432
+        }
+      ],
+      "stamp": "34033149",
+      "render": {
+        "at": "2026-10-27T16:14:18.999Z",
+        "file": "renders/prog-basics-08-constants-immutability_2026-10-27_19-13-09.mp4",
+        "bytes": 8239432,
+        "quality": "delivery",
+        "stamp": "34033149",
+        "duration_s": 49.066667,
+        "has_audio": true,
+        "mean_volume_db": -23
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-10-switch": {
+      "name": "prog-basics-10-switch",
+      "path": "G:/Content Creation/videos/prog-basics-10-switch",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a switch is a tidy pile of if statements, and its one real trap is the missing break",
+      "frames": 5,
+      "runtime_s": 47.8,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-10-switch_2026-10-27_19-37-49.mp4",
+          "bytes": 7401796
+        }
+      ],
+      "stamp": "75ea60c5",
+      "render": {
+        "at": "2026-10-27T16:38:59.603Z",
+        "file": "renders/prog-basics-10-switch_2026-10-27_19-37-49.mp4",
+        "bytes": 7401796,
+        "quality": "delivery",
+        "stamp": "75ea60c5",
+        "duration_s": 47.8,
+        "has_audio": true,
+        "mean_volume_db": -24.5
+      },
+      "lastObservedAt": "2026-11-01T15:09:21.819Z"
+    },
+    "prog-basics-14-what-is-recursion": {
+      "name": "prog-basics-14-what-is-recursion",
+      "path": "G:/Content Creation/videos/prog-basics-14-what-is-recursion",
+      "workflow": "hyperframes (general-video / companion-shape build, direct-address mode)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a function that solves a smaller version of itself, trusting the next call, until the problem is too small to need one",
+      "frames": 5,
+      "runtime_s": 34.7,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-14-what-is-recursion_2026-11-01_12-01-54.mp4",
+          "bytes": 6037749
+        }
+      ],
+      "stamp": "39cbfbee",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:02:59.634Z",
+        "file": "renders/prog-basics-14-what-is-recursion_2026-11-01_12-01-54.mp4",
+        "bytes": 6037749,
+        "quality": "delivery",
+        "stamp": "39cbfbee",
+        "duration_s": 34.7,
+        "has_audio": true,
+        "mean_volume_db": -23.5
+      }
+    },
+    "prog-basics-21-arrays": {
+      "name": "prog-basics-21-arrays",
+      "path": "G:/Content Creation/videos/prog-basics-21-arrays",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "one name for many values, laid out in order, so reading any position is a jump — and the price for that jump is paid when you insert in the middle",
+      "frames": 5,
+      "runtime_s": 29.13,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-21-arrays_2026-11-01_12-10-07.mp4",
+          "bytes": 5042640
+        }
+      ],
+      "stamp": "33616561",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:10:50.041Z",
+        "file": "renders/prog-basics-21-arrays_2026-11-01_12-10-07.mp4",
+        "bytes": 5042640,
+        "quality": "delivery",
+        "stamp": "33616561",
+        "duration_s": 29.133333,
+        "has_audio": true,
+        "mean_volume_db": -23.3
+      }
+    },
+    "prog-basics-22-linked-lists": {
+      "name": "prog-basics-22-linked-lists",
+      "path": "G:/Content Creation/videos/prog-basics-22-linked-lists",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a chain of nodes, each holding a value and where to go next — so adding at the front is one assignment, and reaching the fiftieth thing is forty-nine hops",
+      "frames": 5,
+      "runtime_s": 32,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-22-linked-lists_2026-11-01_12-10-52.mp4",
+          "bytes": 5771556
+        }
+      ],
+      "stamp": "f4d4ca34",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:11:45.434Z",
+        "file": "renders/prog-basics-22-linked-lists_2026-11-01_12-10-52.mp4",
+        "bytes": 5771556,
+        "quality": "delivery",
+        "stamp": "f4d4ca34",
+        "duration_s": 32,
+        "has_audio": true,
+        "mean_volume_db": -24.8
+      }
+    },
+    "prog-basics-12-infinite-loops": {
+      "name": "prog-basics-12-infinite-loops",
+      "path": "G:/Content Creation/videos/prog-basics-12-infinite-loops",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a while loop only ends when its check turns false, and the check only turns false if something inside the loop changes the variable it reads",
+      "frames": 5,
+      "runtime_s": 25.62,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-12-infinite-loops_2026-11-01_11-59-28.mp4",
+          "bytes": 4471352
+        }
+      ],
+      "stamp": "47f6dcf1",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:00:13.795Z",
+        "file": "renders/prog-basics-12-infinite-loops_2026-11-01_11-59-28.mp4",
+        "bytes": 4471352,
+        "quality": "delivery",
+        "stamp": "47f6dcf1",
+        "duration_s": 25.633333,
+        "has_audio": true,
+        "mean_volume_db": -23.8
+      }
+    },
+    "prog-basics-13-break-and-continue": {
+      "name": "prog-basics-13-break-and-continue",
+      "path": "G:/Content Creation/videos/prog-basics-13-break-and-continue",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "break leaves the loop the instant it fires; continue drops the rest of this round and the walk goes on — use break on a find, continue on an ignore",
+      "frames": 5,
+      "runtime_s": 31.37,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-13-break-and-continue_2026-11-01_12-00-56.mp4",
+          "bytes": 5665896
+        }
+      ],
+      "stamp": "a4af9369",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:01:49.432Z",
+        "file": "renders/prog-basics-13-break-and-continue_2026-11-01_12-00-56.mp4",
+        "bytes": 5665896,
+        "quality": "delivery",
+        "stamp": "a4af9369",
+        "duration_s": 31.4,
+        "has_audio": true,
+        "mean_volume_db": -24.4
+      }
+    },
+    "prog-basics-15-base-case": {
+      "name": "prog-basics-15-base-case",
+      "path": "G:/Content Creation/videos/prog-basics-15-base-case",
+      "workflow": "hyperframes (general-video / code-card build, G6 clone)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "the base case is the card where the descent stops; leave it out and the call stack keeps growing until the interpreter raises",
+      "frames": 5,
+      "runtime_s": 31.7,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-15-base-case_2026-11-01_12-03-05.mp4",
+          "bytes": 5312064
+        }
+      ],
+      "stamp": "c2f7ada4",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:05:14.321Z",
+        "file": "renders/prog-basics-15-base-case_2026-11-01_12-03-05.mp4",
+        "bytes": 5312064,
+        "quality": "delivery",
+        "stamp": "c2f7ada4",
+        "duration_s": 31.7,
+        "has_audio": true,
+        "mean_volume_db": -25
+      }
+    },
+    "prog-basics-16-type-casting": {
+      "name": "prog-basics-16-type-casting",
+      "path": "G:/Content Creation/videos/prog-basics-16-type-casting",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "casting is converting a type on purpose, coercion is the language doing it silently, and the two languages here disagree about the same characters",
+      "frames": 5,
+      "runtime_s": 31.08,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-16-type-casting_2026-11-01_12-05-17.mp4",
+          "bytes": 5469861
+        }
+      ],
+      "stamp": "43f4d5f5",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:06:21.456Z",
+        "file": "renders/prog-basics-16-type-casting_2026-11-01_12-05-17.mp4",
+        "bytes": 5469861,
+        "quality": "delivery",
+        "stamp": "43f4d5f5",
+        "duration_s": 31.1,
+        "has_audio": true,
+        "mean_volume_db": -23.1
+      }
+    },
+    "prog-basics-17-null-nil-none": {
+      "name": "prog-basics-17-null-nil-none",
+      "path": "G:/Content Creation/videos/prog-basics-17-null-nil-none",
+      "workflow": "hyperframes (general-video / companion-shape build, direct-address mode)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "null, nil and None all mean there is no value here, which is not the same as an empty value, and asking nothing for a method is what makes you check first",
+      "frames": 5,
+      "runtime_s": 31.5,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-17-null-nil-none_2026-11-01_12-06-25.mp4",
+          "bytes": 5888826
+        }
+      ],
+      "stamp": "71a9c799",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:07:22.464Z",
+        "file": "renders/prog-basics-17-null-nil-none_2026-11-01_12-06-25.mp4",
+        "bytes": 5888826,
+        "quality": "delivery",
+        "stamp": "71a9c799",
+        "duration_s": 31.5,
+        "has_audio": true,
+        "mean_volume_db": -23.3
+      }
+    },
+    "prog-basics-18-code-comments": {
+      "name": "prog-basics-18-code-comments",
+      "path": "G:/Content Creation/videos/prog-basics-18-code-comments",
+      "workflow": "hyperframes (general-video / companion-shape build, direct-address mode)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "a comment pays for its place by saying why; the code already says what — so when it only echoes the line, rename the line",
+      "frames": 5,
+      "runtime_s": 33.6,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-18-code-comments_2026-11-01_12-07-24.mp4",
+          "bytes": 5852388
+        }
+      ],
+      "stamp": "6daba0e9",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:08:17.152Z",
+        "file": "renders/prog-basics-18-code-comments_2026-11-01_12-07-24.mp4",
+        "bytes": 5852388,
+        "quality": "delivery",
+        "stamp": "6daba0e9",
+        "duration_s": 33.6,
+        "has_audio": true,
+        "mean_volume_db": -23.4
+      }
+    },
+    "prog-basics-19-operators": {
+      "name": "prog-basics-19-operators",
+      "path": "G:/Content Creation/videos/prog-basics-19-operators",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "operators come in three families — they do math, they answer true or false, they combine checks — and the single equals sign is the one that stores instead of asking",
+      "frames": 5,
+      "runtime_s": 30.52,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-19-operators_2026-11-01_12-08-19.mp4",
+          "bytes": 5056936
+        }
+      ],
+      "stamp": "81ae5d63",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:09:14.092Z",
+        "file": "renders/prog-basics-19-operators_2026-11-01_12-08-19.mp4",
+        "bytes": 5056936,
+        "quality": "delivery",
+        "stamp": "81ae5d63",
+        "duration_s": 30.533333,
+        "has_audio": true,
+        "mean_volume_db": -23.2
+      }
+    },
+    "prog-basics-20-short-circuit": {
+      "name": "prog-basics-20-short-circuit",
+      "path": "G:/Content Creation/videos/prog-basics-20-short-circuit",
+      "workflow": "hyperframes (faceless-explainer route)",
+      "campaign": "prog-basics",
+      "language": "en",
+      "aspect": "1080x1920",
+      "message": "`and` and `or` stop the moment the answer is settled, so a cheap check in front of a risky one keeps the risky one from ever running",
+      "frames": 5,
+      "runtime_s": 30.6,
+      "captions": true,
+      "voice_lines": 5,
+      "voiced_with_timings": 5,
+      "stage": "rendered",
+      "renders": [
+        {
+          "path": "renders/prog-basics-20-short-circuit_2026-11-01_12-09-16.mp4",
+          "bytes": 5198745
+        }
+      ],
+      "stamp": "4982209b",
+      "lastObservedAt": "2026-11-01T15:09:21.819Z",
+      "render": {
+        "at": "2026-11-01T10:10:04.735Z",
+        "file": "renders/prog-basics-20-short-circuit_2026-11-01_12-09-16.mp4",
+        "bytes": 5198745,
+        "quality": "delivery",
+        "stamp": "4982209b",
+        "duration_s": 30.6,
+        "has_audio": true,
+        "mean_volume_db": -23.5
+      }
+    }
+  },
+  "updatedAt": "2026-11-01T15:09:21.819Z"
+}

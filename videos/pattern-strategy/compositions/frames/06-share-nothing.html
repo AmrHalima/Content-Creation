@@ -1,0 +1,196 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f06-ground { position: absolute; inset: 0; }
+    .f06-seam { position: absolute; inset: 0; }
+    .f06-cards { position: absolute; inset: 0; }
+    .f06-legend { position: absolute; inset: 0; }
+
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; top: 130px; left: 72px;
+      display: inline-flex; align-items: baseline; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+    .f06-spike { color: rgba(26,26,26,0.64); }
+
+    /* the seam, retained for continuity but recessive by scale — the claim is about what hangs off it */
+    .f06-seambox {
+      position: absolute; top: 210px; left: 300px; width: 480px; height: 130px;
+      box-sizing: border-box; background: #181715; border: 1px solid rgba(255,255,235,0.22);
+      border-radius: 8px; display: flex; flex-direction: column; justify-content: center;
+      gap: 6px; padding: 0 30px; opacity: 0;
+    }
+    .f06-role {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,235,0.72);
+    }
+    .f06-seamsig { font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: rgba(255,255,235,0.86); }
+    .f06-tok { color: #ffa946; }
+
+    .f06-svg { position: absolute; inset: 0; }
+    .f06-spine { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 4; stroke-linecap: round; }
+
+    /* one implementation chamber, three slots, identical signature rows */
+    .f06-chamber {
+      position: absolute; top: 430px; left: 90px; width: 900px; height: 950px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      opacity: 0;
+    }
+    .f06-chamberrole {
+      position: absolute; top: 462px; left: 124px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(26,26,26,0.64); opacity: 0;
+    }
+    .f06-slot {
+      position: absolute; left: 124px; width: 832px; height: 264px; box-sizing: border-box;
+      border: 2px solid rgba(26,26,26,0.55); border-radius: 8px; padding: 22px 26px;
+      opacity: 0;
+    }
+    .f06-slot-1 { top: 540px; }
+    .f06-slot-2 { top: 825px; }
+    .f06-slot-3 { top: 1110px; }
+    .f06-sline {
+      position: absolute; left: 26px; width: 780px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 44px;
+      white-space: pre;
+    }
+    .f06-sname { top: 22px; color: rgba(26,26,26,0.74); }
+    .f06-sig { top: 74px; color: rgba(26,26,26,1); }
+    .f06-body { top: 158px; color: rgba(26,26,26,0.74); }
+    .f06-marker {
+      position: absolute; top: 208px; left: 26px; width: 620px; height: 4px;
+      background: rgba(26,26,26,0.85); opacity: 0;
+    }
+
+    /* legend — the frame's single ember moment is the second row */
+    .f06-legendrow {
+      position: absolute; left: 90px; width: 900px; height: 64px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 20px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.74);
+      opacity: 0;
+    }
+    .f06-legend-1 { top: 1410px; }
+    .f06-legend-2 { top: 1482px; }
+    .f06-swatch { flex: 0 0 60px; height: 4px; background: rgba(26,26,26,0.85); }
+    .f06-swatch-ember { flex: 0 0 60px; height: 26px; background: #ffa946; border-radius: 4px; }
+    .f06-legend-2 { color: rgba(26,26,26,0.86); }
+  </style>
+
+  <div id="root" data-composition-id="06-share-nothing" data-width="1080" data-height="1920" data-duration="12.056">
+
+    <div id="06-share-nothing-ground" class="clip f06-ground" data-start="0" data-duration="12.056" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="06-share-nothing-field" class="f06-field"></div>
+      <div id="06-share-nothing-grid" class="f06-grid"></div>
+      <div id="06-share-nothing-kicker" class="f06-kicker"><span class="f06-spike">&#10033;</span><span>the tell</span></div>
+    </div>
+
+    <div id="06-share-nothing-seam" class="clip f06-seam" data-start="0" data-duration="12.056" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="06-share-nothing-seambox" class="f06-seambox">
+        <div id="06-share-nothing-seamrole" class="f06-role">the seam</div>
+        <div id="06-share-nothing-seamsig" class="f06-seamsig"><span class="f06-tok">price</span>(cart): number</div>
+      </div>
+      <svg id="06-share-nothing-svg" class="f06-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="06-share-nothing-spine" class="f06-spine" d="M 540 340 L 540 430" />
+      </svg>
+    </div>
+
+    <div id="06-share-nothing-cards" class="clip f06-cards" data-start="0" data-duration="12.056" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="06-share-nothing-chamber" class="f06-chamber"></div>
+      <div id="06-share-nothing-chamberrole" class="f06-chamberrole">implementations</div>
+
+      <div id="06-share-nothing-s1" class="f06-slot f06-slot-1">
+        <div id="06-share-nothing-s1n" class="f06-sline f06-sname">StandardPricing</div>
+        <div id="06-share-nothing-s1s" class="f06-sline f06-sig">price(cart): number</div>
+        <div id="06-share-nothing-s1b" class="f06-sline f06-body">return cart.subtotal;</div>
+        <div id="06-share-nothing-s1m" class="f06-marker"></div>
+      </div>
+      <div id="06-share-nothing-s2" class="f06-slot f06-slot-2">
+        <div id="06-share-nothing-s2n" class="f06-sline f06-sname">ContractPricing</div>
+        <div id="06-share-nothing-s2s" class="f06-sline f06-sig">price(cart): number</div>
+        <div id="06-share-nothing-s2b" class="f06-sline f06-body">return cart.subtotal * terms.discount;</div>
+        <div id="06-share-nothing-s2m" class="f06-marker"></div>
+      </div>
+      <div id="06-share-nothing-s3" class="f06-slot f06-slot-3">
+        <div id="06-share-nothing-s3n" class="f06-sline f06-sname">SeasonalPricing</div>
+        <div id="06-share-nothing-s3s" class="f06-sline f06-sig">price(cart): number</div>
+        <div id="06-share-nothing-s3b" class="f06-sline f06-body">return 40;</div>
+        <div id="06-share-nothing-s3m" class="f06-marker"></div>
+      </div>
+    </div>
+
+    <div id="06-share-nothing-key" class="clip f06-legend" data-start="0" data-duration="12.056" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="06-share-nothing-l1" class="f06-legendrow f06-legend-1"><span class="f06-swatch"></span><span>same shape</span></div>
+      <div id="06-share-nothing-l2" class="f06-legendrow f06-legend-2"><span class="f06-swatch-ember"></span><span>unrelated</span></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.456;
+      var el = function (id) { return document.getElementById(id); };
+      var q = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-share-nothing"] = tl;
+
+      // Measured cues (SCRIPT Line 6): tell 0.22 · three 0.94 · strategies 1.36 · share 2.62 ·
+      // nothing 2.98 · interface. 3.90 · One reads 5.36–5.82 · table, 6.38 · one calls 7.40–7.62
+      // provider, 8.22 · one returns 9.38–9.62 · constant. 10.50
+
+      // ── Scene 1 (0.0–2.6s) — the seam holds dimmed, and three slots assemble into one list ──
+      tl.fromTo(el("06-share-nothing-grid"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+      tl.fromTo(el("06-share-nothing-kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.08);
+      tl.fromTo(el("06-share-nothing-seambox"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.1);
+      tl.fromTo(el("06-share-nothing-chamber"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.94);
+      tl.fromTo(el("06-share-nothing-chamberrole"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.3);
+      // grid-card-assemble, staggered under the 0.5s arrival ceiling so the trio reads as one list
+      tl.fromTo(el("06-share-nothing-s1"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.36);
+      tl.fromTo(el("06-share-nothing-s2"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.8);
+      tl.fromTo(el("06-share-nothing-s3"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.24);
+
+      // ── Scene 2 (2.6–4.6s) — "share nothing but the interface": one spine, drawn identically ──
+      var SP = el("06-share-nothing-spine");
+      var SPlen = SP.getTotalLength() * 1.05;
+      SP.style.strokeDasharray = String(SPlen);
+      SP.style.strokeDashoffset = String(SPlen);
+      tl.to(SP, { strokeDashoffset: 0, duration: 0.5, ease: "power3.out" }, 2.62);
+      // the signature rows lift together — the only thing they have in common
+      tl.fromTo(el("06-share-nothing-l1"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 3.9);
+
+      // ── Scene 3 (5.0–10.5s) — each body gets its moment, then steps back ──
+      // css-marker-patterns shape: a hairline under the body line draws, the line lifts to full ink
+      var BODIES = [
+        { body: "06-share-nothing-s1b", mark: "06-share-nothing-s1m", t: 5.36, settle: 6.6 },
+        { body: "06-share-nothing-s2b", mark: "06-share-nothing-s2m", t: 7.4, settle: 8.5 },
+        { body: "06-share-nothing-s3b", mark: "06-share-nothing-s3m", t: 9.38, settle: 10.4 }
+      ];
+      BODIES.forEach(function (b) {
+        tl.to(el(b.body), { color: "rgba(26,26,26,1)", duration: 0.3, ease: "power1.out" }, b.t);
+        tl.fromTo(el(b.mark), { opacity: 0, scaleX: 0.1 }, { opacity: 1, scaleX: 1, transformOrigin: "left center", duration: 0.36, ease: "power2.out" }, b.t + 0.1);
+        tl.to(el(b.body), { color: "rgba(26,26,26,0.74)", duration: 0.42, ease: "power1.inOut" }, b.settle);
+      });
+
+      // ── Scene 4 (10.5–11.456s) — the legend lands: same shape, unrelated ──
+      tl.fromTo(el("06-share-nothing-l2"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 10.5);
+      tl.to(el("06-share-nothing-cards"), { y: 2, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.85);
+    })();
+  </script>
+</template>

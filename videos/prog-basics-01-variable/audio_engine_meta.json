@@ -1,0 +1,492 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 4.864,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.42
+        },
+        {
+          "text": "app",
+          "start": 0.42,
+          "end": 0.84
+        },
+        {
+          "text": "you",
+          "start": 0.84,
+          "end": 1.02
+        },
+        {
+          "text": "use",
+          "start": 1.02,
+          "end": 1.26
+        },
+        {
+          "text": "remembers",
+          "start": 1.26,
+          "end": 1.72
+        },
+        {
+          "text": "things.",
+          "start": 1.72,
+          "end": 2.3
+        },
+        {
+          "text": "Here's",
+          "start": 2.88,
+          "end": 3.42
+        },
+        {
+          "text": "the",
+          "start": 3.42,
+          "end": 3.56
+        },
+        {
+          "text": "trick",
+          "start": 3.56,
+          "end": 3.82
+        },
+        {
+          "text": "behind",
+          "start": 3.82,
+          "end": 4.32
+        },
+        {
+          "text": "it.",
+          "start": 4.32,
+          "end": 4.64
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 10.24,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "variable",
+          "start": 0.26,
+          "end": 0.8
+        },
+        {
+          "text": "is",
+          "start": 0.8,
+          "end": 1.32
+        },
+        {
+          "text": "a",
+          "start": 1.32,
+          "end": 1.48
+        },
+        {
+          "text": "labeled",
+          "start": 1.48,
+          "end": 1.98
+        },
+        {
+          "text": "box.",
+          "start": 1.98,
+          "end": 2.5
+        },
+        {
+          "text": "Put",
+          "start": 3.3,
+          "end": 3.58
+        },
+        {
+          "text": "a",
+          "start": 3.58,
+          "end": 3.7
+        },
+        {
+          "text": "value",
+          "start": 3.7,
+          "end": 4.06
+        },
+        {
+          "text": "inside,",
+          "start": 4.06,
+          "end": 4.54
+        },
+        {
+          "text": "give",
+          "start": 5.16,
+          "end": 5.4
+        },
+        {
+          "text": "the",
+          "start": 5.4,
+          "end": 5.58
+        },
+        {
+          "text": "box",
+          "start": 5.58,
+          "end": 5.92
+        },
+        {
+          "text": "a",
+          "start": 5.92,
+          "end": 6.18
+        },
+        {
+          "text": "name,",
+          "start": 6.18,
+          "end": 6.52
+        },
+        {
+          "text": "and",
+          "start": 6.96,
+          "end": 7.18
+        },
+        {
+          "text": "use",
+          "start": 7.18,
+          "end": 7.4
+        },
+        {
+          "text": "that",
+          "start": 7.4,
+          "end": 7.74
+        },
+        {
+          "text": "name",
+          "start": 7.74,
+          "end": 8.16
+        },
+        {
+          "text": "whenever",
+          "start": 8.16,
+          "end": 8.52
+        },
+        {
+          "text": "you",
+          "start": 8.52,
+          "end": 9.04
+        },
+        {
+          "text": "need",
+          "start": 9.04,
+          "end": 9.3
+        },
+        {
+          "text": "the",
+          "start": 9.3,
+          "end": 9.5
+        },
+        {
+          "text": "value.",
+          "start": 9.5,
+          "end": 9.94
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 7.957,
+      "words": [
+        {
+          "text": "Change",
+          "start": 0,
+          "end": 0.42
+        },
+        {
+          "text": "what",
+          "start": 0.42,
+          "end": 0.92
+        },
+        {
+          "text": "is",
+          "start": 0.92,
+          "end": 1.12
+        },
+        {
+          "text": "inside",
+          "start": 1.12,
+          "end": 1.68
+        },
+        {
+          "text": "and",
+          "start": 1.68,
+          "end": 2.14
+        },
+        {
+          "text": "the",
+          "start": 2.14,
+          "end": 2.24
+        },
+        {
+          "text": "name",
+          "start": 2.24,
+          "end": 2.54
+        },
+        {
+          "text": "stays",
+          "start": 2.54,
+          "end": 2.94
+        },
+        {
+          "text": "the",
+          "start": 2.94,
+          "end": 3.26
+        },
+        {
+          "text": "same.",
+          "start": 3.26,
+          "end": 3.66
+        },
+        {
+          "text": "That",
+          "start": 4.38,
+          "end": 4.7
+        },
+        {
+          "text": "is",
+          "start": 4.7,
+          "end": 4.94
+        },
+        {
+          "text": "the",
+          "start": 4.94,
+          "end": 5.12
+        },
+        {
+          "text": "trick:",
+          "start": 5.12,
+          "end": 5.42
+        },
+        {
+          "text": "the",
+          "start": 5.98,
+          "end": 6.06
+        },
+        {
+          "text": "name",
+          "start": 6.06,
+          "end": 6.44
+        },
+        {
+          "text": "is",
+          "start": 6.44,
+          "end": 6.72
+        },
+        {
+          "text": "not",
+          "start": 6.72,
+          "end": 7
+        },
+        {
+          "text": "the",
+          "start": 7,
+          "end": 7.18
+        },
+        {
+          "text": "value.",
+          "start": 7.18,
+          "end": 7.6
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 7.403,
+      "words": [
+        {
+          "text": "Score",
+          "start": 0,
+          "end": 0.44
+        },
+        {
+          "text": "starts",
+          "start": 0.44,
+          "end": 0.86
+        },
+        {
+          "text": "at",
+          "start": 0.86,
+          "end": 1.16
+        },
+        {
+          "text": "ten.",
+          "start": 1.16,
+          "end": 1.48
+        },
+        {
+          "text": "Then",
+          "start": 2.1,
+          "end": 2.38
+        },
+        {
+          "text": "score",
+          "start": 2.38,
+          "end": 2.82
+        },
+        {
+          "text": "becomes",
+          "start": 2.82,
+          "end": 3.2
+        },
+        {
+          "text": "score",
+          "start": 3.2,
+          "end": 3.74
+        },
+        {
+          "text": "plus",
+          "start": 3.74,
+          "end": 4.12
+        },
+        {
+          "text": "five.",
+          "start": 4.12,
+          "end": 4.62
+        },
+        {
+          "text": "Print",
+          "start": 5.16,
+          "end": 5.56
+        },
+        {
+          "text": "it,",
+          "start": 5.56,
+          "end": 5.82
+        },
+        {
+          "text": "and",
+          "start": 5.82,
+          "end": 6.12
+        },
+        {
+          "text": "you",
+          "start": 6.12,
+          "end": 6.26
+        },
+        {
+          "text": "get",
+          "start": 6.26,
+          "end": 6.46
+        },
+        {
+          "text": "fifteen.",
+          "start": 6.46,
+          "end": 6.9
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 7.147,
+      "words": [
+        {
+          "text": "So:",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "if",
+          "start": 0.64,
+          "end": 0.76
+        },
+        {
+          "text": "score",
+          "start": 0.76,
+          "end": 1.18
+        },
+        {
+          "text": "starts",
+          "start": 1.18,
+          "end": 1.6
+        },
+        {
+          "text": "at",
+          "start": 1.6,
+          "end": 1.84
+        },
+        {
+          "text": "one",
+          "start": 1.84,
+          "end": 1.885
+        },
+        {
+          "text": "hundred,",
+          "start": 1.84,
+          "end": 2.5
+        },
+        {
+          "text": "and",
+          "start": 2.5,
+          "end": 3.1
+        },
+        {
+          "text": "you",
+          "start": 3.1,
+          "end": 3.24
+        },
+        {
+          "text": "add",
+          "start": 3.24,
+          "end": 3.54
+        },
+        {
+          "text": "five,",
+          "start": 3.54,
+          "end": 4.02
+        },
+        {
+          "text": "what",
+          "start": 4.3,
+          "end": 4.4
+        },
+        {
+          "text": "prints?",
+          "start": 4.4,
+          "end": 4.78
+        },
+        {
+          "text": "Drop",
+          "start": 5.44,
+          "end": 5.84
+        },
+        {
+          "text": "the",
+          "start": 5.84,
+          "end": 6.1
+        },
+        {
+          "text": "number",
+          "start": 6.1,
+          "end": 6.32
+        },
+        {
+          "text": "below.",
+          "start": 6.32,
+          "end": 6.72
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 37.611
+}

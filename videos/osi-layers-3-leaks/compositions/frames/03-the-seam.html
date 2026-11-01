@@ -1,0 +1,163 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f3-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f3-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    /* two stacked full-width band outlines — the frame is a static diagram whose one event
+       is a card declining to land. No camera move anywhere in this frame. */
+    .f3-band {
+      position: absolute; left: 96px; width: 888px; height: 330px; box-sizing: border-box;
+      border: 3px solid rgba(26,26,26,0.45); border-radius: 8px; opacity: 0;
+    }
+    .f3-bandname {
+      position: absolute; right: 30px; top: 22px; width: 220px; height: 48px;
+      display: flex; align-items: center; justify-content: flex-end;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; letter-spacing: 0.02em;
+      color: #6b6b63;
+    }
+    /* band B's own label hugs its OUTER edge (bottom-right) instead of the seam side, because
+       the ARP card straddles the seam and would otherwise sit on top of the word "layer 2". */
+    .f3-b .f3-bandname { top: 260px; }
+    .f3-a { top: 500px; }
+    .f3-b { top: 920px; }
+    .f3-svg { position: absolute; inset: 0; }
+    .f3-seam { fill: none; stroke: #ffa946; stroke-width: 5; stroke-dasharray: 14 12; opacity: 0; }
+    .f3-replydot { fill: #1a1a1a; opacity: 0; }
+    /* the ARP card, stopped on the line rather than dropped into either box */
+    .f3-card {
+      position: absolute; left: 232px; top: 785px; width: 620px; height: 180px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f3-cardbar { position: absolute; left: 0; top: 0; width: 8px; height: 100%; background: #ffa946; }
+    .f3-cardname {
+      position: absolute; left: 34px; top: 22px; width: 300px; height: 60px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.4cqw; line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .f3-cardline {
+      position: absolute; left: 34px; top: 96px; width: 540px; height: 46px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; color: #1a1a1a; opacity: 0;
+    }
+    /* an L2 envelope authored around the card's lower half — two boxes disagreeing about one object */
+    .f3-env {
+      position: absolute; left: 200px; top: 875px; width: 700px; height: 116px; box-sizing: border-box;
+      border: 3px dashed rgba(26,26,26,0.65); border-radius: 6px; opacity: 0;
+    }
+    .f3-chip {
+      position: absolute; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 3px solid rgba(26,26,26,0.6); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f3-tag {
+      position: absolute; left: 232px; top: 1084px; width: 520px; height: 68px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 3px solid #ffa946; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f3-mlabel {
+      position: absolute; width: 260px; height: 36px; display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-l7wo" id="root" data-composition-id="03-the-seam" data-width="1080" data-height="1920" data-duration="9.161">
+
+    <div data-hf-id="hf-pd0i" id="f3-fieldclip" class="clip" data-start="0" data-duration="9.161" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-nmvm" class="f3-field"></div>
+      <div data-hf-id="hf-70ne" id="f3-grid" class="f3-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-yxgq" id="f3-bandclip" class="clip" data-start="0" data-duration="9.161" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-6y8g" id="f3-bandA" class="f3-band f3-a"><div data-hf-id="hf-9gkx" id="f3-bandnameA" class="f3-bandname">layer 3</div></div>
+      <div data-hf-id="hf-sk50" id="f3-bandB" class="f3-band f3-b"><div data-hf-id="hf-xgh7" id="f3-bandnameB" class="f3-bandname">layer 2</div></div>
+      <div data-hf-id="hf-kzg2" id="f3-env" class="f3-env"></div>
+      <div data-hf-id="hf-ygwj" id="f3-envlabel" class="f3-mlabel" data-layout-ignore="" style="left:200px; top:990px;">an L2 frame</div>
+    </div>
+
+    <div data-hf-id="hf-88wg" id="f3-seamclip" class="clip" data-start="0" data-duration="9.161" data-track-index="2" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-bobn" class="f3-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-8l3a" id="f3-seam" class="f3-seam" d="M 96 875 L 984 875" />
+        <circle data-hf-id="hf-lymj" id="f3-replydot" class="f3-replydot" cx="660" cy="1038" r="13" />
+        <circle data-hf-id="hf-mafb" id="f3-askdot" class="f3-replydot" cx="660" cy="728" r="13" />
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-z0xl" id="f3-cardclip" class="clip" data-start="0" data-duration="9.161" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-pniq" id="f3-card" class="f3-card">
+        <div data-hf-id="hf-fjf3" class="f3-cardbar"></div>
+        <div data-hf-id="hf-sqv6" class="f3-cardname">ARP</div>
+        <div data-hf-id="hf-vwl2" id="f3-cardline" class="f3-cardline">who has 192.168.1.1?</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-19ld" id="f3-tagclip" class="clip" data-start="2.25" data-duration="6.911" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-oa3q" id="f3-ask" class="f3-chip" style="left:700px; top:700px; width:220px;">question</div>
+      <div data-hf-id="hf-114y" id="f3-reply" class="f3-chip" style="left:700px; top:1010px; width:220px;">reply</div>
+      <div data-hf-id="hf-az3b" id="f3-tag" class="f3-tag">fits in neither box</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.661;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-the-seam"] = tl;
+
+      // ── Scene 1 (0.0–2.25s) — "ARP asks a layer three question": the two bands exist as
+      //    outlines with the ember seam between them, and the ARP card comes down from the top
+      //    carrying the Layer 3 sentence written in its own hand. ──
+      tl.fromTo(el("f3-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f3-bandA"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f3-bandB"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.24);
+      tl.fromTo(el("f3-seam"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.out" }, 0.36);
+      tl.fromTo(el("f3-card"), { opacity: 0, y: -130 }, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out" }, 0.87);
+      tl.fromTo(el("f3-cardline"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.out" }, 2.25);
+      tl.fromTo(el("f3-ask"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 2.6);
+      tl.fromTo(el("f3-askdot"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 2.6);
+
+      // ── Scene 2 (3.24–5.5s) — "inside a layer two frame": the card has stopped ON the seam,
+      //    half in each band, and nothing resolves it. A second, smaller L2 envelope is authored
+      //    around its lower half on the spoken word "frame", so the two boxes visibly disagree
+      //    about the same object. The seam steps a finite number of times — the one deliberate
+      //    exception to the no-dash-dance rule, because the dashed line is the subject. ──
+      tl.fromTo(el("f3-env"), { opacity: 0, scaleY: 0.6 }, { opacity: 1, scaleY: 1, duration: 0.5, ease: "power3.out" }, 4.74);
+      tl.fromTo(el("f3-envlabel"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 5.11);
+      tl.to(el("f3-seam"), { strokeDashoffset: -52, duration: 0.75, ease: "power1.inOut" }, 5.11);
+
+      // ── Scene 3 (5.6–7.6s) — "it fits in neither box": the reply arrives on the L2 side, the
+      //    tag settles under the seam, and both bands' own labels step brighter once, as if each
+      //    of them were claiming the card. They hold claimed. ──
+      tl.fromTo(el("f3-reply"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 5.6);
+      tl.fromTo(el("f3-replydot"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 5.6);
+      tl.fromTo(el("f3-tag"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 6.83);
+      tl.to(el("f3-bandnameA"), { color: "#1a1a1a", duration: 0.3, ease: "power1.out" }, 7.07);
+      tl.to(el("f3-bandnameB"), { color: "#1a1a1a", duration: 0.3, ease: "power1.out" }, 7.2);
+
+      // ── Scene 4 (7.6–8.661s) — held read of the straddle. Jitter on the card only; the seam
+      //    stays the frame's spine. No exit motion. ──
+      var jit = { p: 0 };
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.5, duration: D - 7.65, ease: "none",
+        onUpdate: function () { el("f3-card").style.transform = "translateY(" + (Math.sin(jit.p) * 1.5).toFixed(3) + "px)"; }
+      }, 7.65);
+    })();
+  </script>
+</template>

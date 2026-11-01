@@ -1,0 +1,178 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f08-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f08-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f08-kicker {
+      position: absolute; left: 80px; top: 200px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f08-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f08-ktext { display: inline-block; opacity: 0; }
+
+    /* grammar X: wrong shape on top, fixed shape below — stacked, because each carries a sequence */
+    .f08-chamber { position: absolute; left: 60px; width: 960px; box-sizing: border-box; }
+    .f08-ceremony { top: 286px; height: 500px; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 12px; opacity: 0; }
+    .f08-corrected { top: 846px; height: 430px; background: #ffffff; border: 3px solid #1a1a1a; border-radius: 12px; opacity: 0; }
+    .f08-tag {
+      position: absolute; height: 44px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; opacity: 0;
+    }
+    .f08-tag-ceremony { left: 96px; top: 316px; color: rgba(255,255,235,0.55); }
+    .f08-tag-fixed { left: 96px; top: 876px; color: #76766e; }
+    .f08-chip {
+      position: absolute; width: 320px; height: 96px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px dashed rgba(255,255,235,0.34); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.5cqw; color: rgba(255,255,235,0.55); opacity: 0;
+    }
+    .f08-node {
+      position: absolute; width: 260px; height: 100px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; opacity: 0;
+    }
+    .f08-node-write { background: transparent; border: 2px solid rgba(255,255,235,0.6); color: #ffffeb; }
+    .f08-node-write-ink { background: transparent; border: 2px solid rgba(26,26,26,0.6); color: #1a1a1a; }
+    .f08-screen {
+      position: absolute; width: 320px; height: 124px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,235,0.6); border-radius: 8px; opacity: 0;
+    }
+    /* the empty slot: the eventual-consistency bug, shown as a swap, never as a text tween */
+    .f08-slot {
+      display: flex; align-items: center; justify-content: center;
+      width: 220px; height: 62px; box-sizing: border-box;
+      border: 1px dashed rgba(255,255,235,0.3); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.4cqw; color: rgba(255,255,235,0.5);
+    }
+
+    .f08-svg { position: absolute; inset: 0; }
+    .f08-arw { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 5; stroke-linecap: round; }
+    .f08-arw-live { fill: none; stroke: #ffa946; stroke-width: 5; stroke-linecap: round; }
+    .f08-tip { fill: rgba(26,26,26,0.55); opacity: 0; }
+    .f08-tip-live { fill: #ffa946; opacity: 0; }
+
+    /* the film's only lavender element — the action fill, on the answer */
+    .f08-pill {
+      position: absolute; left: 520px; top: 1008px; width: 450px; height: 92px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #f0d7ff; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.45cqw; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="08-the-misuse-tell" data-width="1080" data-height="1920" data-duration="11.215">
+
+    <div id="08-the-misuse-tell-fieldclip" class="clip" data-start="0" data-duration="11.215" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f08-field"></div>
+      <div id="08-the-misuse-tell-grid" class="f08-grid"></div>
+    </div>
+
+    <div id="08-the-misuse-tell-chromeclip" class="clip" data-start="0" data-duration="11.215" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f08-kicker"><span id="08-the-misuse-tell-spike" class="f08-spike">&#10009;</span><span id="08-the-misuse-tell-ktext" class="f08-ktext" data-layout-ignore>the tell</span></div>
+      <div id="08-the-misuse-tell-tagc" class="f08-tag f08-tag-ceremony" data-layout-ignore>ceremony</div>
+      <div id="08-the-misuse-tell-tagf" class="f08-tag f08-tag-fixed" data-layout-ignore>the split, plus one step</div>
+    </div>
+
+    <div id="08-the-misuse-tell-cerclip" class="clip" data-start="0" data-duration="11.215" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="08-the-misuse-tell-cer" class="f08-chamber f08-ceremony"></div>
+      <div id="08-the-misuse-tell-chip1" class="f08-chip" style="left:96px;top:388px;">two stores</div>
+      <div id="08-the-misuse-tell-chip2" class="f08-chip" style="left:480px;top:388px;">event stream</div>
+      <div id="08-the-misuse-tell-nw" class="f08-node f08-node-write" style="left:96px;top:570px;">write</div>
+      <div id="08-the-misuse-tell-scr" class="f08-screen" style="left:560px;top:558px;">
+        <span id="08-the-misuse-tell-slot" class="f08-slot">&#8230;</span>
+      </div>
+    </div>
+
+    <div id="08-the-misuse-tell-fixclip" class="clip" data-start="8.48" data-duration="2.735" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="08-the-misuse-tell-fix" class="f08-chamber f08-corrected"></div>
+      <div id="08-the-misuse-tell-nwi" class="f08-node f08-node-write-ink" style="left:96px;top:1004px;">write</div>
+      <div id="08-the-misuse-tell-pill" class="f08-pill">read your own write</div>
+    </div>
+
+    <div id="08-the-misuse-tell-arrowclip" class="clip" data-start="6.1" data-duration="5.115" data-track-index="4" style="position:absolute;inset:0;">
+      <svg class="f08-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="08-the-misuse-tell-a1" class="f08-arw-live" d="M 366 620 L 528 620" />
+        <polygon id="08-the-misuse-tell-t1" class="f08-tip-live" points="530,608 554,620 530,632" />
+        <path id="08-the-misuse-tell-a2" class="f08-arw" d="M 366 1054 L 460 1054" />
+        <polygon id="08-the-misuse-tell-t2" class="f08-tip" points="462,1042 484,1054 462,1066" />
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 11.215;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "08-the-misuse-tell-";
+      var tl = gsap.timeline({ paused: true });
+
+      // the screen slot's two states (time proxy + reverse search — no TextPlugin here)
+      var STATES = [{ t: 6.98, text: "…" }, { t: 8.18, text: "no row" }];
+      var slot = el(P + "slot");
+      slot.textContent = STATES[0].text;
+
+      // ── Scene 1 (0.0–3.72s) — "Two stores and an event stream on a workload that never asked" ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el(P + "cer"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.0);
+      tl.fromTo(el(P + "chip1"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 0.32);
+      tl.fromTo(el(P + "chip2"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 1.62);
+      tl.fromTo(el(P + "tagc"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 2.48);
+      tl.to(el(P + "chip1"), { opacity: 0.45, duration: 0.4, ease: "power1.inOut" }, 3.38);
+      tl.to(el(P + "chip2"), { opacity: 0.45, duration: 0.4, ease: "power1.inOut" }, 3.52);
+
+      // ── Scene 2 (3.72–8.48s) — the bug: a page writes, reads the lagging side back, shows nothing ──
+      tl.fromTo(el(P + "nw"), { opacity: 0, x: -28 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 5.30);
+      var a1 = el(P + "a1");
+      var l1 = a1.getTotalLength() * 1.05;
+      a1.style.strokeDasharray = String(l1);
+      a1.style.strokeDashoffset = String(l1);
+      tl.to(a1, { strokeDashoffset: 0, duration: 0.44, ease: "power3.out" }, 6.10);
+      tl.fromTo(el(P + "t1"), { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power1.out" }, 6.44);
+      tl.fromTo(el(P + "scr"), { opacity: 0, x: 28 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 6.98);
+      var proxy = { t: STATES[0].t };
+      tl.to(proxy, {
+        t: STATES[1].t,
+        duration: STATES[1].t - STATES[0].t,
+        ease: "none",
+        onUpdate: function () {
+          var k = STATES.length - 1;
+          while (k > 0 && proxy.t < STATES[k].t) { k -= 1; }
+          if (slot.textContent !== STATES[k].text) { slot.textContent = STATES[k].text; }
+        }
+      }, STATES[0].t);
+
+      // ── Scene 3 (8.48–10.4s) — the corrected shape builds in the silent hold ──
+      tl.fromTo(el(P + "fix"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 8.60);
+      tl.fromTo(el(P + "tagf"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 9.0);
+      tl.fromTo(el(P + "nwi"), { opacity: 0, x: -28 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 9.20);
+      var a2 = el(P + "a2");
+      var l2 = a2.getTotalLength() * 1.05;
+      a2.style.strokeDasharray = String(l2);
+      a2.style.strokeDashoffset = String(l2);
+      tl.to(a2, { strokeDashoffset: 0, duration: 0.34, ease: "power3.out" }, 9.55);
+      tl.fromTo(el(P + "t2"), { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power1.out" }, 9.82);
+      tl.fromTo(el(P + "pill"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 10.0);
+
+      // ── Scene 4 (10.4–11.22s) — full stop: both chambers still, no exit ──
+      window.__timelines = window.__timelines || {};
+      window.__timelines["08-the-misuse-tell"] = tl;
+    })();
+  </script>
+</template>

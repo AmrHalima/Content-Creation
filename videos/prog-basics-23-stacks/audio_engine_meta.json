@@ -1,0 +1,442 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 2.411,
+      "words": [
+        {
+          "text": "Press",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "text": "control",
+          "start": 0.18,
+          "end": 0.58
+        },
+        {
+          "text": "Z",
+          "start": 0.58,
+          "end": 0.9
+        },
+        {
+          "text": "and",
+          "start": 0.9,
+          "end": 1.4
+        },
+        {
+          "text": "you're",
+          "start": 1.4,
+          "end": 1.52
+        },
+        {
+          "text": "using",
+          "start": 1.52,
+          "end": 1.74
+        },
+        {
+          "text": "a",
+          "start": 1.74,
+          "end": 1.88
+        },
+        {
+          "text": "stack.",
+          "start": 1.88,
+          "end": 2.08
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 6.251,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.12
+        },
+        {
+          "text": "stack",
+          "start": 0.12,
+          "end": 0.36
+        },
+        {
+          "text": "is",
+          "start": 0.36,
+          "end": 0.62
+        },
+        {
+          "text": "last",
+          "start": 0.62,
+          "end": 0.96
+        },
+        {
+          "text": "in,",
+          "start": 0.96,
+          "end": 1.24
+        },
+        {
+          "text": "first",
+          "start": 1.5,
+          "end": 1.68
+        },
+        {
+          "text": "out,",
+          "start": 1.68,
+          "end": 2
+        },
+        {
+          "text": "like",
+          "start": 2.28,
+          "end": 2.42
+        },
+        {
+          "text": "a",
+          "start": 2.42,
+          "end": 2.52
+        },
+        {
+          "text": "pile",
+          "start": 2.52,
+          "end": 2.8
+        },
+        {
+          "text": "of",
+          "start": 2.8,
+          "end": 2.96
+        },
+        {
+          "text": "plates.",
+          "start": 2.96,
+          "end": 3.32
+        },
+        {
+          "text": "You",
+          "start": 4,
+          "end": 4.1
+        },
+        {
+          "text": "push",
+          "start": 4.1,
+          "end": 4.34
+        },
+        {
+          "text": "onto",
+          "start": 4.34,
+          "end": 4.5
+        },
+        {
+          "text": "the",
+          "start": 4.5,
+          "end": 4.64
+        },
+        {
+          "text": "top",
+          "start": 4.64,
+          "end": 4.94
+        },
+        {
+          "text": "and",
+          "start": 4.94,
+          "end": 5.16
+        },
+        {
+          "text": "pop",
+          "start": 5.16,
+          "end": 5.42
+        },
+        {
+          "text": "from",
+          "start": 5.42,
+          "end": 5.64
+        },
+        {
+          "text": "the",
+          "start": 5.64,
+          "end": 5.76
+        },
+        {
+          "text": "top.",
+          "start": 5.76,
+          "end": 6.02
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 7.531,
+      "words": [
+        {
+          "text": "Undo",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "history,",
+          "start": 0.38,
+          "end": 0.7
+        },
+        {
+          "text": "the",
+          "start": 1.12,
+          "end": 1.2
+        },
+        {
+          "text": "browser",
+          "start": 1.2,
+          "end": 1.52
+        },
+        {
+          "text": "back",
+          "start": 1.52,
+          "end": 1.84
+        },
+        {
+          "text": "button,",
+          "start": 1.84,
+          "end": 2.26
+        },
+        {
+          "text": "and",
+          "start": 2.26,
+          "end": 2.42
+        },
+        {
+          "text": "function",
+          "start": 2.42,
+          "end": 2.76
+        },
+        {
+          "text": "calls",
+          "start": 2.76,
+          "end": 3.18
+        },
+        {
+          "text": "all",
+          "start": 3.18,
+          "end": 3.44
+        },
+        {
+          "text": "use",
+          "start": 3.44,
+          "end": 3.64
+        },
+        {
+          "text": "stacks.",
+          "start": 3.64,
+          "end": 3.98
+        },
+        {
+          "text": "Push",
+          "start": 4.64,
+          "end": 4.94
+        },
+        {
+          "text": "one,",
+          "start": 4.94,
+          "end": 5.26
+        },
+        {
+          "text": "push",
+          "start": 5.58,
+          "end": 5.82
+        },
+        {
+          "text": "two,",
+          "start": 5.82,
+          "end": 6.12
+        },
+        {
+          "text": "then",
+          "start": 6.32,
+          "end": 6.44
+        },
+        {
+          "text": "pop",
+          "start": 6.44,
+          "end": 6.7
+        },
+        {
+          "text": "gives",
+          "start": 6.7,
+          "end": 6.98
+        },
+        {
+          "text": "two.",
+          "start": 6.98,
+          "end": 7.3
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 5.099,
+      "words": [
+        {
+          "text": "In",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "Python,",
+          "start": 0.14,
+          "end": 0.5
+        },
+        {
+          "text": "a",
+          "start": 0.78,
+          "end": 0.82
+        },
+        {
+          "text": "list",
+          "start": 0.82,
+          "end": 1.06
+        },
+        {
+          "text": "does",
+          "start": 1.06,
+          "end": 1.26
+        },
+        {
+          "text": "this.",
+          "start": 1.26,
+          "end": 1.52
+        },
+        {
+          "text": "Append",
+          "start": 1.96,
+          "end": 2.08
+        },
+        {
+          "text": "puts",
+          "start": 2.28,
+          "end": 2.56
+        },
+        {
+          "text": "it",
+          "start": 2.56,
+          "end": 2.74
+        },
+        {
+          "text": "on",
+          "start": 2.74,
+          "end": 2.86
+        },
+        {
+          "text": "top.",
+          "start": 2.86,
+          "end": 3.14
+        },
+        {
+          "text": "Pop",
+          "start": 3.56,
+          "end": 3.82
+        },
+        {
+          "text": "takes",
+          "start": 3.82,
+          "end": 4.14
+        },
+        {
+          "text": "the",
+          "start": 4.14,
+          "end": 4.34
+        },
+        {
+          "text": "top",
+          "start": 4.34,
+          "end": 4.56
+        },
+        {
+          "text": "off.",
+          "start": 4.56,
+          "end": 4.82
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 3.733,
+      "words": [
+        {
+          "text": "After",
+          "start": 0,
+          "end": 0.28
+        },
+        {
+          "text": "push",
+          "start": 0.28,
+          "end": 0.52
+        },
+        {
+          "text": "1,",
+          "start": 0.52,
+          "end": 0.78
+        },
+        {
+          "text": "push",
+          "start": 0.94,
+          "end": 1.08
+        },
+        {
+          "text": "2,",
+          "start": 1.08,
+          "end": 1.36
+        },
+        {
+          "text": "push",
+          "start": 1.52,
+          "end": 1.7
+        },
+        {
+          "text": "3,",
+          "start": 1.7,
+          "end": 1.98
+        },
+        {
+          "text": "then",
+          "start": 2.04,
+          "end": 2.16
+        },
+        {
+          "text": "pop:",
+          "start": 2.16,
+          "end": 2.44
+        },
+        {
+          "text": "what's",
+          "start": 2.9,
+          "end": 3.12
+        },
+        {
+          "text": "on",
+          "start": 3.12,
+          "end": 3.24
+        },
+        {
+          "text": "top?",
+          "start": 3.24,
+          "end": 3.44
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 25.025
+}

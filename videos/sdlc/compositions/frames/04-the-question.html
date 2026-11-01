@@ -1,0 +1,122 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #FAF9F5;
+    }
+    .f04-bg { position: absolute; inset: 0; background: #181715; }
+    .f04-name {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.6cqw; font-weight: 400; letter-spacing: 0.06em;
+      color: #FAF9F5;
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; top: 548px; left: 0; right: 0;
+      text-align: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 2.7cqw; font-weight: 400; letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(250,249,245,0.72);
+      opacity: 0;
+    }
+    .f04-spike { color: #CC785C; }
+    .f04-question {
+      position: absolute; top: 668px; left: 0; right: 0;
+      text-align: center;
+      font-family: "EB Garamond", serif;
+      font-style: italic;
+      font-size: 6.9cqw; font-weight: 400; line-height: 1.24; letter-spacing: -0.012em;
+      color: #FAF9F5;
+    }
+    .f04-w { display: inline-block; margin-right: 0.3em; opacity: 0; }
+    .f04-w-last { margin-right: 0; }
+  </style>
+
+  <div id="root" data-composition-id="04-the-question" data-width="1080" data-height="1920" data-duration="8.564">
+
+    <div id="04-the-question-bg" class="clip" data-start="0" data-duration="8.564" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-bg"></div>
+    </div>
+
+    <div id="04-the-question-names" class="clip" data-start="0" data-duration="3.4" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="04-the-question-n1" class="f04-name">WATERFALL</div>
+      <div id="04-the-question-n2" class="f04-name">AGILE</div>
+      <div id="04-the-question-n3" class="f04-name">DEVOPS</div>
+    </div>
+
+    <div id="04-the-question-build" class="clip" data-start="2.9" data-duration="5.664" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="04-the-question-kicker" class="f04-kicker"><span class="f04-spike">&#10009;</span>&nbsp; ONE QUESTION</div>
+      <div class="f04-question">
+        <div class="f04-line">
+          <span id="04-the-question-w1" class="f04-w">How</span><span id="04-the-question-w2" class="f04-w">late</span><span id="04-the-question-w3" class="f04-w">is</span><span id="04-the-question-w4" class="f04-w f04-w-last">reality</span>
+        </div>
+        <div class="f04-line">
+          <span id="04-the-question-w5" class="f04-w">allowed</span><span id="04-the-question-w6" class="f04-w">to</span><span id="04-the-question-w7" class="f04-w f04-w-last">revise</span>
+        </div>
+        <div class="f04-line">
+          <span id="04-the-question-w8" class="f04-w">the</span><span id="04-the-question-w9" class="f04-w f04-w-last">plan?</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-the-question"] = tl;
+
+      // ── Scene 1: the three names hard-cut/flash at center, each on its spoken beat ──
+      // binary swaps via tl.set — the cut IS the beat, no fades
+      tl.set(el("04-the-question-n1"), { opacity: 1 }, 0.05);   // "Waterfall," 0–0.85
+      tl.set(el("04-the-question-n1"), { opacity: 0 }, 1.15);
+      tl.set(el("04-the-question-n2"), { opacity: 1 }, 1.15);   // "Agile," 1.15–2.27
+      tl.set(el("04-the-question-n2"), { opacity: 0 }, 2.40);
+      tl.set(el("04-the-question-n3"), { opacity: 1 }, 2.40);   // "DevOps." 2.40–2.54
+      // ── Scene 2: scale-swap handoff — DEVOPS clears as the question regime arrives ──
+      // immediateRender:false — fromTo would otherwise paint the "from" opacity:1 at
+      // build time and leave DEVOPS stacked on top of AGILE for the whole flash sequence.
+      tl.fromTo(el("04-the-question-n3"), { scale: 1, opacity: 1 }, { scale: 1.12, opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 2.95);
+
+      // ✱ kicker tracks in above center ("Three answers to one question:" 3.01–4.62)
+      // scaleX stands in for letter-spacing: tracking reflows layout and snaps to
+      // device pixels per frame, so it is not seek-safe. Resting tracking lives in CSS.
+      tl.fromTo(el("04-the-question-kicker"),
+        { scaleX: 1.28, transformOrigin: "center", opacity: 0 },
+        { scaleX: 1, opacity: 1, duration: 0.55, ease: "power3.out" }, 3.15);
+
+      // the question reveals per-word, landing on the spoken words (5.06–7.90)
+      var W = [
+        { id: "04-the-question-w1", t: 5.06 },  // how
+        { id: "04-the-question-w2", t: 5.32 },  // late
+        { id: "04-the-question-w3", t: 5.58 },  // is
+        { id: "04-the-question-w4", t: 5.86 },  // reality
+        { id: "04-the-question-w5", t: 6.18 },  // allowed
+        { id: "04-the-question-w6", t: 6.48 },  // to
+        { id: "04-the-question-w7", t: 6.72 },  // revise
+        { id: "04-the-question-w8", t: 7.02 },  // the
+        { id: "04-the-question-w9", t: 7.26 }   // plan?
+      ];
+      W.forEach(function (w) {
+        tl.fromTo(el(w.id), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, w.t);
+      });
+      // ── Scene 3: completes at ~7.54 and holds still — the breather. No motion to frame end. ──
+    })();
+  </script>
+</template>

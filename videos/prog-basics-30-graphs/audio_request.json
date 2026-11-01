@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Maps, friendships, and the internet are all the same structure."
+    },
+    {
+      "id": "02",
+      "text": "A graph is nodes connected by edges. Edges can have direction or weights. A node is a thing. An edge is a line to another thing."
+    },
+    {
+      "id": "03",
+      "text": "Social networks, road maps, and the web are graphs. Most 'find the best route' problems are graph problems. But an edge can lead back where you started. Then walking never stops."
+    },
+    {
+      "id": "04",
+      "text": "Three nodes, three edges. The walk stops when a node looks familiar."
+    },
+    {
+      "id": "05",
+      "text": "Name something in daily life that's secretly a graph."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

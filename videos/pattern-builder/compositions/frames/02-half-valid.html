@@ -1,0 +1,214 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-kicker {
+      position: absolute; top: 168px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f02-spike { color: #1a1a1a; font-size: 2.6cqw; letter-spacing: 0; }
+    .f02-word {
+      position: absolute; top: 250px; left: 84px;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 7.4cqw; line-height: 1; letter-spacing: -0.024em;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f02-frame {
+      position: absolute; top: 500px; left: 90px; width: 700px; height: 660px;
+      box-sizing: border-box;
+      border: 3px dashed rgba(26,26,26,0.42);
+      border-radius: 32px;
+      padding: 40px 40px 0;
+      opacity: 0;
+    }
+    .f02-frame-name {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f02-slot {
+      position: relative;
+      margin-top: 26px;
+      height: 128px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 22px;
+      padding: 0 26px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+    }
+    .f02-slot-key {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.5cqw; letter-spacing: 0.01em; color: #76766e;
+      opacity: 0;
+      display: inline-block;
+    }
+    .f02-slot-dash {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.5cqw; color: rgba(26,26,26,0.58);
+    }
+    .f02-slot-open { outline: 3px solid #ffa946; outline-offset: 3px; }
+    .f02-reader {
+      position: absolute; top: 640px; left: 792px; width: 228px;
+      box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      padding: 18px 12px;
+      background: #1a1a1a;
+      border: 2px solid #ffffeb;
+      border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.02em; color: #ffffeb;
+      text-align: center;
+      opacity: 0;
+    }
+    .f02-reader-sub { color: rgba(255,255,235,0.62); font-size: 1.7cqw; letter-spacing: 0.06em; }
+    .f02-svg { position: absolute; inset: 0; }
+    .f02-arrow { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-linecap: round; }
+    .f02-arrow-head { fill: #1a1a1a; opacity: 0; }
+    .f02-band {
+      position: absolute; top: 1236px; left: 90px; width: 700px; height: 128px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 26px;
+      background: #e4e4d0;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f02-band-end {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 3.4cqw; letter-spacing: -0.014em; color: #1a1a1a;
+    }
+    .f02-band-window {
+      flex: 1 1 auto;
+      margin: 0 22px;
+      height: 3px;
+      background: repeating-linear-gradient(to right, #ffa946 0 14px, rgba(255,169,70,0) 14px 24px);
+    }
+    .f02-band-tag {
+      position: absolute; top: 1382px; left: 92px; width: 700px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.06em; color: #76766e;
+      text-align: center; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-half-valid" data-width="1080" data-height="1920" data-duration="12.105">
+
+    <div id="02-half-valid-fieldclip" class="clip" data-start="0" data-duration="12.105" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f02-field"></div>
+      <div id="02-half-valid-grid" class="f02-grid"></div>
+    </div>
+
+    <div id="02-half-valid-headclip" class="clip" data-start="0" data-duration="12.105" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="02-half-valid-kicker" class="f02-kicker"><span class="f02-spike">&#10033;</span><span>no guard</span></div>
+      <div id="02-half-valid-word" class="f02-word">Order</div>
+    </div>
+
+    <div id="02-half-valid-frameclip" class="clip" data-start="0" data-duration="12.105" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="02-half-valid-frame" class="f02-frame">
+        <div class="f02-frame-name">fields, set after construction</div>
+        <div id="02-half-valid-s1" class="f02-slot"><span class="f02-slot-key">customer</span><span class="f02-slot-dash">&#8212;</span></div>
+        <div id="02-half-valid-s2" class="f02-slot"><span class="f02-slot-key">line_items</span><span class="f02-slot-dash">&#8212;</span></div>
+        <div id="02-half-valid-s3" class="f02-slot"><span class="f02-slot-key">ship_to</span><span class="f02-slot-dash">&#8212;</span></div>
+      </div>
+    </div>
+
+    <div id="02-half-valid-readerclip" class="clip" data-start="4.16" data-duration="7.945" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f02-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="02-half-valid-arrow" class="f02-arrow" d="M 900 762 C 862 812 822 848 766 872" />
+        <polygon id="02-half-valid-arrowhead" class="f02-arrow-head" points="762,858 748,882 776,880" />
+      </svg>
+      <div id="02-half-valid-reader" class="f02-reader">
+        <span>reads now</span>
+      </div>
+    </div>
+
+    <div id="02-half-valid-bandclip" class="clip" data-start="9.46" data-duration="2.645" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="02-half-valid-band" class="f02-band">
+        <span class="f02-band-end">live</span>
+        <span class="f02-band-window"></span>
+        <span class="f02-band-end">valid</span>
+      </div>
+      <div id="02-half-valid-bandtag" class="f02-band-tag">the gap</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.605;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-half-valid"] = tl;
+
+      // ── Scene 1 (0.0–1.6s) — "drop the overloads". The frame is a dashed outline: an
+      //    object that exists with nothing in it. Slots empty, keys absent. ──
+      tl.fromTo(el("02-half-valid-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("02-half-valid-kicker"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.16);
+      tl.fromTo(el("02-half-valid-word"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.24);
+      tl.fromTo(el("02-half-valid-frame"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.60);
+
+      // ── Scene 2 (1.6–4.2s) — "callers assign fields afterwards". Slot keys hard-arrive in
+      //    the order a caller happens to remember: customer, line_items. Slot 3 stays open
+      //    and carries the frame's single ember. ──
+      tl.fromTo(el("02-half-valid-s1").querySelector(".f02-slot-key"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 2.38);
+      tl.fromTo(el("02-half-valid-s2").querySelector(".f02-slot-key"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 3.52);
+      tl.fromTo(el("02-half-valid-s3"), { borderColor: "#1a1a1a" }, { borderColor: "#ffa946", duration: 0.34, ease: "power2.out" }, 3.9);
+
+      // ── Scene 3 (4.2–8.3s) — "in an order only the caller remembers". A second party
+      //    arrives and reads the object while slot 3 is still empty. The arrow self-draws. ──
+      tl.fromTo(el("02-half-valid-reader"), { opacity: 0, scale: 0.94, x: 18 }, { opacity: 1, scale: 1, x: 0, duration: 0.42, ease: "power3.out" }, 4.30);
+      // svg self-draw without DrawSVGPlugin: the dash pattern is the path length, and the
+      // offset is what animates (seek-safe, deterministic, no plugin dependency).
+      var ARROW_LEN = 220;
+      tl.fromTo(
+        el("02-half-valid-arrow"),
+        { attr: { "stroke-dasharray": ARROW_LEN, "stroke-dashoffset": ARROW_LEN } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 1.05, ease: "power2.out" },
+        5.28
+      );
+      tl.fromTo(el("02-half-valid-arrowhead"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.24);
+      tl.fromTo(el("02-half-valid-s3").querySelector(".f02-slot-key"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 6.74);
+
+      // ── Scene 4 (8.3–11.6s) — "the object is live before it is valid". The open slot
+      //    closes at "before", then the gap band draws itself between the two words. ──
+      tl.fromTo(el("02-half-valid-s3"), { borderColor: "#ffa946" }, { borderColor: "#1a1a1a", duration: 0.4, ease: "power2.inOut" }, 9.92);
+      tl.fromTo(el("02-half-valid-band"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 9.92);
+      tl.fromTo(el("02-half-valid-bandtag"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 9.98);
+
+      var jit = { p: 0 };
+      var box = el("02-half-valid-frame");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.26,
+        duration: D - 11.0,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)"; }
+      }, 11.0);
+    })();
+  </script>
+</template>

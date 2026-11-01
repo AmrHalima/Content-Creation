@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "In JavaScript, '5' + 3 is '53', but '5' - 3 is 2. Yes, really."
+    },
+    {
+      "id": "02",
+      "text": "Casting is you converting a type on purpose, like int('5')."
+    },
+    {
+      "id": "03",
+      "text": "Coercion is the language doing it silently. Explicit is safer, because coercion rules can surprise you."
+    },
+    {
+      "id": "04",
+      "text": "int('5') + 3 gives 8, while '5' + 3 in JavaScript gives '53'."
+    },
+    {
+      "id": "05",
+      "text": "Should languages coerce types automatically? Yes or no."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

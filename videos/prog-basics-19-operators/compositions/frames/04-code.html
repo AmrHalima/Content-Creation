@@ -1,0 +1,191 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* terminal strip (pb-21/04-code atom): muted prompt, mint values, --panel-2 shelf */
+    .pb-strip { position: absolute; box-sizing: border-box; display: flex; align-items: center;
+      padding: 0 28px; opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 2.9cqw;
+      font-weight: 700; color: #5AD6A0; white-space: nowrap; }
+    .pb-prompt { display: inline-block; margin-right: 18px; color: #9BA6B2; font-weight: 400; }
+
+    /* G3 code chamber (frame-day2 section 4) — pb-21/04-code atoms verbatim */
+    .cd-root { position: absolute; left: 72px; top: 300px; width: 936px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 872px; height: 58px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-c { color: #9BA6B2; } .tk-b { font-weight: 700; }
+
+    /* P3 type-on mask + caret; the mask is chamber-coloured, not ground-coloured */
+    .f4-lmask { position: absolute; left: 30px; height: 58px; width: 872px; background: #1F242C;
+      transform-origin: right center; }
+    .f4-caret { position: absolute; width: 5px; height: 44px; background: #FFD166; border-radius: 2px;
+      opacity: 0; }
+
+    /* P1 say-plate, self-contained inside its own token, wiped with clip-path */
+    .f4-w { display: inline-block; position: relative; }
+    .f4-hl { position: absolute; left: -8px; right: -10px; top: 0.02em; bottom: -0.06em;
+      background: #FFD166; border-radius: 8px; clip-path: inset(0 100% 0 0); }
+    .f4-ht { position: relative; z-index: 1; }
+
+    /* the executed TYPE of each result: chrome, so muted on --panel-2, never mint */
+    .f4-chip { display: inline-block; margin-left: 26px; padding: 4px 14px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.1cqw; font-weight: 700;
+      letter-spacing: 0.08em; color: #9BA6B2; }
+    /* anything scaled is blockified on purpose — a transform on an inline span is a verify finding */
+    .f4-val { display: inline-block; }
+    .pb-out { display: inline-block; }
+  </style>
+
+  <div id="root" data-composition-id="04-code" data-width="1080" data-height="1920" data-duration="6.14">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="6.14" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="6.14" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>it runs, here is the output</div>
+        <div id="c4-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="6.14" data-track-index="2">
+      <div id="f4-chamber" class="cd-root" style="height:232px">
+        <div id="f4-bar" class="cd-bar">
+          <span id="f4-file" class="cd-file" data-layout-ignore>main.py</span>
+          <span id="f4-lang" class="cd-lang" data-layout-ignore>PYTHON</span>
+        </div>
+        <div id="f4-l1" class="cd-line" style="top:80px"><span class="tk-i">print</span>(7&nbsp;<span class="f4-w"><span class="f4-hl" id="f4-p1" data-layout-allow-occlusion></span><span class="f4-ht" id="f4-t1">//</span></span>&nbsp;2)<span class="tk-c">&nbsp;&nbsp;&nbsp;#&nbsp;</span><span class="tk-v tk-b f4-val" id="f4-v1">3</span><span class="f4-chip" id="f4-chip1" data-layout-ignore>int</span></div>
+        <div id="f4-l2" class="cd-line" style="top:142px"><span class="tk-i">print</span>(7&nbsp;<span class="f4-w"><span class="f4-hl" id="f4-p2" data-layout-allow-occlusion></span><span class="f4-ht" id="f4-t2">/</span></span>&nbsp;2)<span class="tk-c">&nbsp;&nbsp;&nbsp;#&nbsp;</span><span class="tk-v tk-b f4-val" id="f4-v2">3.5</span><span class="f4-chip" id="f4-chip2" data-layout-ignore>float</span></div>
+        <div id="f4-m1" class="f4-lmask" style="top:80px"></div>
+        <div id="f4-m2" class="f4-lmask" style="top:142px"></div>
+        <div id="f4-cr1" class="f4-caret" style="left:34px;top:87px"></div>
+        <div id="f4-cr2" class="f4-caret" style="left:34px;top:149px"></div>
+      </div>
+      <div id="f4-strip" class="pb-strip" style="left:72px; top:584px; width:620px; height:96px;"><span class="pb-prompt" data-layout-ignore>&gt;&gt;&gt;</span><span id="f4-o1" class="pb-out">3</span><span class="pb-prompt" data-layout-ignore>&nbsp;&nbsp;&nbsp;</span><span id="f4-o2" class="pb-out">3.5</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.14;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-code"] = tl;
+
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 1.54, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.05, ease: "sine.inOut", repeat: 2, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.54, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c4-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: F3 came in from the left, this one comes from the right */
+      tl.fromTo(el("f4-content"), { x: 140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.06);
+      tl.to(el("f4-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.5);
+
+      tl.fromTo(el("f4-chamber"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.18);
+      tl.fromTo(el("f4-file"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.4);
+      tl.fromTo(el("f4-lang"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 0.5);
+
+      /* P3 type-on line 1 across "Seven floor divided by two" (0.00 -> 1.66) */
+      tl.set(el("f4-l1"), { opacity: 1 }, 0.3);
+      tl.fromTo(el("f4-m1"), { scaleX: 1 }, { scaleX: 0, duration: 0.8, ease: "power1.inOut", immediateRender: false }, 0.3);
+      tl.fromTo(el("f4-cr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 372, duration: 0.8, ease: "power1.inOut", immediateRender: false }, 0.3);
+      tl.to(el("f4-cr1"), { opacity: 0, duration: 0.18, ease: "power1.in", immediateRender: false }, 1.12);
+
+      /* P1 plate on `//` while the voice is on "divided" (0.62 -> 1.08) */
+      tl.fromTo(el("f4-p1"), { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 0.24, ease: "power2.out", immediateRender: false }, 0.72);
+      tl.to(el("f4-t1"), { color: "#22201B", duration: 0.16, immediateRender: false }, 0.98);
+
+      /* the executed result, on "three." (1.88 -> 2.22), then its type as a chrome chip */
+      tl.fromTo(el("f4-v1"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out", immediateRender: false }, 1.9);
+      tl.fromTo(el("f4-v1"), { scale: 1.2 }, { scale: 1, duration: 0.32, ease: "power3.out", immediateRender: false }, 1.9);
+      tl.to(el("f4-chamber"), { borderColor: "rgba(90,214,160,0.7)", duration: 0.22, immediateRender: false }, 1.98);
+      tl.to(el("f4-chamber"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 2.24);
+      tl.fromTo(el("f4-chip1"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 2.3);
+
+      /* the first plate retires before the second lights (amber is singular) */
+      tl.to(el("f4-p1"), { clipPath: "inset(0 0% 0 100%)", duration: 0.22, ease: "power2.in", immediateRender: false }, 2.62);
+      tl.to(el("f4-t1"), { color: "#F4F1EA", duration: 0.2, immediateRender: false }, 2.7);
+
+      /* P3 type-on line 2 across "Seven over two gives" (2.68 -> 3.96) */
+      tl.set(el("f4-l2"), { opacity: 1 }, 2.8);
+      tl.fromTo(el("f4-m2"), { scaleX: 1 }, { scaleX: 0, duration: 0.72, ease: "power1.inOut", immediateRender: false }, 2.8);
+      tl.fromTo(el("f4-cr2"), { opacity: 1, x: 0 }, { opacity: 1, x: 392, duration: 0.72, ease: "power1.inOut", immediateRender: false }, 2.8);
+      tl.to(el("f4-cr2"), { opacity: 0, duration: 0.18, ease: "power1.in", immediateRender: false }, 3.56);
+
+      /* P1 plate on the single `/`, on "over" (3.12 -> 3.36) — the whole difference is one keystroke */
+      tl.fromTo(el("f4-p2"), { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 0.24, ease: "power2.out", immediateRender: false }, 3.2);
+      tl.to(el("f4-t2"), { color: "#22201B", duration: 0.16, immediateRender: false }, 3.46);
+
+      /* the executed result and its type, on "point five." (3.96 -> 4.84) */
+      tl.fromTo(el("f4-v2"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out", immediateRender: false }, 4.0);
+      tl.fromTo(el("f4-v2"), { scale: 1.2 }, { scale: 1, duration: 0.32, ease: "power3.out", immediateRender: false }, 4.0);
+      tl.fromTo(el("f4-chip2"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 4.3);
+
+      /* both printed values, on the shelf, after the sentence lands */
+      tl.fromTo(el("f4-strip"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 4.86);
+      tl.fromTo(el("f4-o1"), { scale: 1.22 }, { scale: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, 4.94);
+      tl.fromTo(el("f4-o2"), { scale: 1.22 }, { scale: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, 5.1);
+
+      /* ambient, back to zero */
+      tl.fromTo(el("f4-chamber"), { y: 0 }, { y: -4, duration: 1.28, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 1.5);
+      tl.fromTo(el("f4-strip"), { y: 0 }, { y: 4, duration: 0.6, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 5.4);
+
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 5.82);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

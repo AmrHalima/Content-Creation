@@ -1,0 +1,209 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; top: 168px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f03-spike { color: #1a1a1a; font-size: 2.6cqw; letter-spacing: 0; }
+    .f03-word {
+      position: absolute; top: 250px; left: 84px;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 7.4cqw; line-height: 1; letter-spacing: -0.024em;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f03-chamber {
+      position: absolute; top: 520px; left: 56px; width: 968px;
+      box-sizing: border-box;
+      background: #1a1a1a;
+      border: 2px solid #ffffeb;
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .f03-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 66px; padding: 0 26px;
+      background: #252320;
+      border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.0cqw; letter-spacing: 0.02em; color: #ffffeb;
+    }
+    .f03-bar-tag { color: rgba(255,255,235,0.55); font-size: 1.7cqw; letter-spacing: 0.12em; text-transform: uppercase; }
+    .f03-code { padding: 30px 26px 34px; }
+    .f03-cl {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; line-height: 1.7; letter-spacing: -0.01em;
+      color: #8a8a7a; white-space: nowrap; opacity: 0;
+    }
+    .f03-kw { color: #ffa946; }
+    .f03-meth { color: #ffffeb; }
+    .f03-typ { color: #5db8a6; }
+    .f03-build { color: #ffffeb; font-weight: 700; }
+    .f03-rail { position: absolute; inset: 0; pointer-events: none; }
+    .f03-loop { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 2.5; stroke-linecap: round; }
+    .f03-loop-head { fill: rgba(26,26,26,0.55); opacity: 0; }
+    .f03-legend {
+      position: absolute; top: 1178px; left: 58px; width: 968px;
+      display: flex; align-items: center; gap: 20px;
+      opacity: 0;
+    }
+    .f03-legend-pill {
+      box-sizing: border-box;
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 14px 24px;
+      background: #e4e4d0;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.03em; color: #1a1a1a;
+    }
+    .f03-legend-word {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.005em; color: #76766e;
+    }
+    .f03-gate {
+      position: absolute; top: 1326px; left: 56px; width: 968px; height: 190px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 26px;
+      background: #1a1a1a;
+      border: 2px solid #ffa946;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f03-gate-name {
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 3.0cqw; letter-spacing: 0.01em; color: #ffa946;
+    }
+    .f03-gate-note {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.6cqw; color: rgba(255,255,235,0.82);
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-the-chain" data-width="1080" data-height="1920" data-duration="7.787">
+
+    <div id="03-the-chain-fieldclip" class="clip" data-start="0" data-duration="7.787" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field"></div>
+      <div id="03-the-chain-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="03-the-chain-headclip" class="clip" data-start="0" data-duration="7.787" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="03-the-chain-kicker" class="f03-kicker"><span class="f03-spike">&#10033;</span><span>the call</span></div>
+      <div id="03-the-chain-word" class="f03-word">OrderBuilder</div>
+    </div>
+
+    <div id="03-the-chain-chamberclip" class="clip" data-start="0.88" data-duration="6.907" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="03-the-chain-chamber" class="f03-chamber">
+        <div class="f03-bar" data-layout-ignore><span>place-order.ts</span><span class="f03-bar-tag">one expression</span></div>
+        <div class="f03-code">
+          <div id="03-the-chain-c1" class="f03-cl"><span class="f03-kw">const</span> order: <span class="f03-typ">Order</span> = <span class="f03-kw">new</span> <span class="f03-meth">OrderBuilder</span>()</div>
+          <div id="03-the-chain-c2" class="f03-cl">&nbsp;&nbsp;.<span class="f03-meth">customer</span>(c)</div>
+          <div id="03-the-chain-c3" class="f03-cl">&nbsp;&nbsp;.<span class="f03-meth">line</span>(l)</div>
+          <div id="03-the-chain-c4" class="f03-cl">&nbsp;&nbsp;.<span class="f03-meth">shipTo</span>(s)</div>
+          <div id="03-the-chain-c5" class="f03-cl">&nbsp;&nbsp;.<span class="f03-build">build</span>();</div>
+        </div>
+      </div>
+      <svg class="f03-rail" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="03-the-chain-loop1" class="f03-loop" d="M 92 858 C 40 858 40 800 92 800" />
+        <path id="03-the-chain-loop2" class="f03-loop" d="M 92 930 C 30 930 30 800 92 800" />
+        <path id="03-the-chain-loop3" class="f03-loop" d="M 92 1002 C 20 1002 20 800 92 800" />
+        <polygon id="03-the-chain-loophead" class="f03-loop-head" points="86,792 100,800 86,808" />
+      </svg>
+    </div>
+
+    <div id="03-the-chain-legendclip" class="clip" data-start="6.04" data-duration="1.747" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="03-the-chain-legend" class="f03-legend">
+        <span class="f03-legend-pill">builder</span>
+        <span class="f03-legend-word">returns the builder</span>
+      </div>
+    </div>
+
+    <div id="03-the-chain-gateclip" class="clip" data-start="6.94" data-duration="0.847" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="03-the-chain-gate" class="f03-gate">
+        <span class="f03-gate-name">.build()</span>
+        <span class="f03-gate-note">Order starts here</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.787;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-the-chain"] = tl;
+
+      // ── Scene 1 (0.0–1.4s) — "so construction moves to a builder". Kicker + wordmark, then
+      //    the dark chamber rises on "builder" (0.88) with the first line only. ──
+      tl.fromTo(el("03-the-chain-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("03-the-chain-kicker"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.16);
+      tl.fromTo(el("03-the-chain-word"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.24);
+      tl.fromTo(el("03-the-chain-chamber"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.88);
+      tl.fromTo(el("03-the-chain-c1"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 1.10);
+
+      // ── Scene 2 (1.4–5.1s) — "each call takes one piece". Three method lines land one under
+      //    the other, each on its own word, so the last one arrives in the back half. ──
+      tl.fromTo(el("03-the-chain-c2"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 3.16);
+      tl.fromTo(el("03-the-chain-c3"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 3.92);
+      tl.fromTo(el("03-the-chain-c4"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 4.50);
+
+      // ── Scene 3 (5.1–6.9s) — "and hands back the same builder". The return loops draw
+      //    themselves from each method up to the builder, one per beat; the head lands last. ──
+      var LOOPS = ["03-the-chain-loop1", "03-the-chain-loop2", "03-the-chain-loop3"];
+      var LENO = [110, 230, 350];
+      for (var i = 0; i < LOOPS.length; i++) {
+        var p = el(LOOPS[i]);
+        p.style.strokeDasharray = LENO[i] + " " + LENO[i];
+        tl.fromTo(
+          p,
+          { attr: { "stroke-dashoffset": LENO[i] } },
+          { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" },
+          5.12 + i * 0.46
+        );
+      }
+      tl.fromTo(el("03-the-chain-loophead"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 5.50);
+      tl.fromTo(el("03-the-chain-legend"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 6.04);
+
+      // ── Scene 4 (6.9–7.79s) — "builder" (6.94). The gate node arrives last and the frame
+      //    is full, so it settles instead of adding anything. ──
+      tl.fromTo(el("03-the-chain-c5"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 6.94);
+      tl.fromTo(el("03-the-chain-gate"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 7.06);
+
+      var jit = { p: 0 };
+      var box = el("03-the-chain-chamber");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.22,
+        duration: D - 7.5,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.2).toFixed(3) + "px)"; }
+      }, 7.5);
+    })();
+  </script>
+</template>

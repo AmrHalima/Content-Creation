@@ -1,0 +1,392 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 3.328,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.12
+        },
+        {
+          "text": "inventor",
+          "start": 0.12,
+          "end": 0.52
+        },
+        {
+          "text": "of",
+          "start": 0.52,
+          "end": 0.74
+        },
+        {
+          "text": "null",
+          "start": 0.74,
+          "end": 1.06
+        },
+        {
+          "text": "called",
+          "start": 1.06,
+          "end": 1.36
+        },
+        {
+          "text": "it",
+          "start": 1.36,
+          "end": 1.54
+        },
+        {
+          "text": "his",
+          "start": 1.54,
+          "end": 1.78
+        },
+        {
+          "text": "billion-dollar",
+          "start": 1.78,
+          "end": 2.16
+        },
+        {
+          "text": "mistake.",
+          "start": 2.6,
+          "end": 2.96
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 7.765,
+      "words": [
+        {
+          "text": "Null,",
+          "start": 0,
+          "end": 0.3
+        },
+        {
+          "text": "nil,",
+          "start": 0.56,
+          "end": 0.84
+        },
+        {
+          "text": "and",
+          "start": 1.02,
+          "end": 1.08
+        },
+        {
+          "text": "None",
+          "start": 1.08,
+          "end": 1.26
+        },
+        {
+          "text": "all",
+          "start": 1.26,
+          "end": 1.56
+        },
+        {
+          "text": "mean",
+          "start": 1.56,
+          "end": 1.72
+        },
+        {
+          "text": "no",
+          "start": 1.72,
+          "end": 1.94
+        },
+        {
+          "text": "value",
+          "start": 1.94,
+          "end": 2.3
+        },
+        {
+          "text": "here.",
+          "start": 2.3,
+          "end": 2.58
+        },
+        {
+          "text": "Zero",
+          "start": 3.1,
+          "end": 3.4
+        },
+        {
+          "text": "and",
+          "start": 3.4,
+          "end": 3.78
+        },
+        {
+          "text": "an",
+          "start": 3.78,
+          "end": 3.86
+        },
+        {
+          "text": "empty",
+          "start": 3.86,
+          "end": 4.16
+        },
+        {
+          "text": "string",
+          "start": 4.16,
+          "end": 4.48
+        },
+        {
+          "text": "are",
+          "start": 4.48,
+          "end": 4.68
+        },
+        {
+          "text": "both",
+          "start": 4.68,
+          "end": 4.9
+        },
+        {
+          "text": "values.",
+          "start": 4.9,
+          "end": 5.38
+        },
+        {
+          "text": "None",
+          "start": 5.98,
+          "end": 6.26
+        },
+        {
+          "text": "is",
+          "start": 6.26,
+          "end": 6.54
+        },
+        {
+          "text": "the",
+          "start": 6.54,
+          "end": 6.68
+        },
+        {
+          "text": "absence",
+          "start": 6.68,
+          "end": 7.02
+        },
+        {
+          "text": "of",
+          "start": 7.02,
+          "end": 7.34
+        },
+        {
+          "text": "one.",
+          "start": 7.34,
+          "end": 7.56
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 4.48,
+      "words": [
+        {
+          "text": "Calling",
+          "start": 0,
+          "end": 0.28
+        },
+        {
+          "text": "a",
+          "start": 0.28,
+          "end": 0.44
+        },
+        {
+          "text": "method",
+          "start": 0.44,
+          "end": 0.72
+        },
+        {
+          "text": "on",
+          "start": 0.72,
+          "end": 0.94
+        },
+        {
+          "text": "nothing",
+          "start": 0.94,
+          "end": 1.24
+        },
+        {
+          "text": "crashes",
+          "start": 1.24,
+          "end": 1.74
+        },
+        {
+          "text": "your",
+          "start": 1.74,
+          "end": 1.94
+        },
+        {
+          "text": "program.",
+          "start": 1.94,
+          "end": 2.38
+        },
+        {
+          "text": "So",
+          "start": 2.82,
+          "end": 3.08
+        },
+        {
+          "text": "check",
+          "start": 3.08,
+          "end": 3.4
+        },
+        {
+          "text": "before",
+          "start": 3.4,
+          "end": 3.7
+        },
+        {
+          "text": "you",
+          "start": 3.7,
+          "end": 3.9
+        },
+        {
+          "text": "use",
+          "start": 3.9,
+          "end": 4.16
+        },
+        {
+          "text": "it.",
+          "start": 4.16,
+          "end": 4.3
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 7.36,
+      "words": [
+        {
+          "text": "Set",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "user",
+          "start": 0.22,
+          "end": 0.46
+        },
+        {
+          "text": "to",
+          "start": 0.46,
+          "end": 0.66
+        },
+        {
+          "text": "None,",
+          "start": 0.66,
+          "end": 0.92
+        },
+        {
+          "text": "then",
+          "start": 1.28,
+          "end": 1.4
+        },
+        {
+          "text": "read",
+          "start": 1.4,
+          "end": 1.66
+        },
+        {
+          "text": "user",
+          "start": 1.66,
+          "end": 1.96
+        },
+        {
+          "text": "dot",
+          "start": 1.96,
+          "end": 2.005
+        },
+        {
+          "text": "name.",
+          "start": 1.96,
+          "end": 2.54
+        },
+        {
+          "text": "Python",
+          "start": 3.04,
+          "end": 3.44
+        },
+        {
+          "text": "raises",
+          "start": 3.44,
+          "end": 3.9
+        },
+        {
+          "text": "AttributeError.",
+          "start": 3.9,
+          "end": 4.5
+        },
+        {
+          "text": "JavaScript",
+          "start": 5.34,
+          "end": 5.74
+        },
+        {
+          "text": "raises",
+          "start": 5.74,
+          "end": 6.42
+        },
+        {
+          "text": "TypeError.",
+          "start": 6.42,
+          "end": 6.8
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 2.453,
+      "words": [
+        {
+          "text": "Save",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "this,",
+          "start": 0.26,
+          "end": 0.56
+        },
+        {
+          "text": "then",
+          "start": 0.82,
+          "end": 0.94
+        },
+        {
+          "text": "tell",
+          "start": 0.94,
+          "end": 1.12
+        },
+        {
+          "text": "me",
+          "start": 1.12,
+          "end": 1.26
+        },
+        {
+          "text": "your",
+          "start": 1.26,
+          "end": 1.38
+        },
+        {
+          "text": "worst",
+          "start": 1.38,
+          "end": 1.64
+        },
+        {
+          "text": "null",
+          "start": 1.64,
+          "end": 1.86
+        },
+        {
+          "text": "bug.",
+          "start": 1.86,
+          "end": 2.12
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

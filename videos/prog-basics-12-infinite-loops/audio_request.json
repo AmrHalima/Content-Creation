@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Your program froze and your laptop fan is screaming. Here's why."
+    },
+    {
+      "id": "02",
+      "text": "An infinite loop happens when the condition never becomes false."
+    },
+    {
+      "id": "03",
+      "text": "Usually you forgot to update the variable the condition depends on."
+    },
+    {
+      "id": "04",
+      "text": "Before running any loop, ask: what changes each round, and what ends it?"
+    },
+    {
+      "id": "05",
+      "text": "Spot the missing line? Comment it."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

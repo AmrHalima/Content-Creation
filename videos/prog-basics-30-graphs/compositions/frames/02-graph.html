@@ -1,0 +1,240 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G12 (frame-day3.md § 6). Nodes are G11's 148x96 chamber; the authored triangle slots are
+          A left 115 / y 360, B left 673 / y 360, C left 394 / y 700, centres (189,408) (747,408)
+          (468,748). Letters are Space Grotesk 700 at 6.2cqw in --value. ───────────────────────── */
+    .g12-node { position: absolute; box-sizing: border-box; width: 148px; height: 96px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex; align-items: center;
+      justify-content: center; }
+    .g12-a { left: 115px; top: 360px; }
+    .g12-b { left: 673px; top: 360px; }
+    .g12-c { left: 394px; top: 700px; }
+    .g12-letter { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 6.2cqw; color: #5AD6A0; }
+
+    /* the gloss tabs are G2's name tab on each chamber's top edge — siblings in the untransformed
+       layer so they hold their size, --muted chrome, one per node */
+    .g12-tab { position: absolute; width: 78px; height: 30px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 8px 8px 0 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.45cqw; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g12-tab-a { left: 150px; top: 345px; }
+    .g12-tab-b { left: 708px; top: 345px; }
+    .g12-tab-c { left: 429px; top: 685px; }
+
+    /* edges: 3px --line CSS bars, EDGE-to-EDGE, authored literals, left-centre origin. No SVG. */
+    .g12-edge { position: absolute; height: 3px; background: rgba(255,255,255,0.16); opacity: 0;
+      transform-origin: left center; transform: scaleX(0); border-radius: 2px; }
+    .g12-ab { left: 263px; top: 406px; width: 410px; }
+    .g12-ac { left: 240px; top: 470px; width: 280px; transform: rotate(50.6deg); transform-origin: left center; }
+    .g12-bc { left: 696px; top: 470px; width: 280px; transform: rotate(129.4deg); transform-origin: left center; }
+    .g12-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box; opacity: 0;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16); }
+    .g12-chev-ab { left: 661px; top: 402px; transform: rotate(45deg); }
+    .g12-chev-ac { left: 408px; top: 676px; transform: rotate(95.6deg); }
+    .g12-chev-bc { left: 517px; top: 676px; transform: rotate(214.4deg); }
+
+    /* EDGE chips sit OUTSIDE the triangle hull so no chip ever crosses a bar or a letter */
+    .g12-edgelab { position: absolute; width: 60px; height: 38px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.5cqw; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+      color: #9BA6B2; white-space: nowrap; }
+    .g12-edgelab-ab { left: 438px; top: 336px; }
+    .g12-edgelab-ac { left: 259px; top: 582px; }
+    .g12-edgelab-bc { left: 616px; top: 582px; }
+
+    /* weight: the § 6 chip — 60x44 --panel-2, mono 700 2.9cqw --value digit, at a bar midpoint */
+    .g12-weight { position: absolute; left: 438px; top: 426px; width: 60px; height: 44px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700; color: #5AD6A0; }
+    .g12-weightlab { position: absolute; left: 298px; top: 434px; width: 112px; height: 30px;
+      display: flex; align-items: center; justify-content: flex-end; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+
+    /* the counted lane (upper, y 288 h 66) — pb-21's .f3-tag atom */
+    .f3-tag { position: absolute; top: 288px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; gap: 12px; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #9BA6B2; white-space: nowrap; }
+    .f3-tag b { color: #5AD6A0; font-weight: 700; }
+    .f2-edges { left: 818px; width: 190px; }
+
+    /* the two gloss sentences, tagged on the objects they name (self-contained say-plates) */
+    .f2-gloss { position: absolute; left: 72px; width: 936px; height: 44px; text-align: center;
+      opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.02em; color: #F4F1EA; white-space: nowrap; }
+    .f2-gloss-1 { top: 846px; }
+    .f2-gloss-2 { top: 900px; }
+    .f2-tok { position: relative; display: inline-block; border-radius: 8px; }
+    .f2-hl { position: absolute; left: -0.06em; right: -0.06em; top: 0.06em; bottom: 0.02em;
+      background: #FFD166; border-radius: 8px; transform: scaleX(0); transform-origin: left center; }
+    .f2-ht { position: relative; z-index: 1; }
+  </style>
+
+  <div id="root" data-composition-id="02-graph" data-width="1080" data-height="1920" data-duration="9.85">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="9.85" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="9.85" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 30</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="9.85" data-track-index="2">
+
+      <div id="f2-edge-ab" class="g12-edge g12-ab"></div>
+      <div id="f2-edge-ac" class="g12-edge g12-ac"></div>
+      <div id="f2-edge-bc" class="g12-edge g12-bc"></div>
+      <div id="f2-chev-ab" class="g12-chev g12-chev-ab"></div>
+      <div id="f2-chev-ac" class="g12-chev g12-chev-ac"></div>
+      <div id="f2-chev-bc" class="g12-chev g12-chev-bc"></div>
+      <div id="f2-el-ab" class="g12-edgelab g12-edgelab-ab" data-layout-ignore>edge</div>
+      <div id="f2-el-ac" class="g12-edgelab g12-edgelab-ac" data-layout-ignore>edge</div>
+      <div id="f2-el-bc" class="g12-edgelab g12-edgelab-bc" data-layout-ignore>edge</div>
+
+      <div id="f2-n-a" class="g12-node g12-a"><span class="g12-letter">A</span></div>
+      <div id="f2-n-b" class="g12-node g12-b"><span class="g12-letter">B</span></div>
+      <div id="f2-n-c" class="g12-node g12-c"><span class="g12-letter">C</span></div>
+      <div id="f2-t-a" class="g12-tab g12-tab-a" data-layout-ignore>node</div>
+      <div id="f2-t-b" class="g12-tab g12-tab-b" data-layout-ignore>node</div>
+      <div id="f2-t-c" class="g12-tab g12-tab-c" data-layout-ignore>node</div>
+
+      <div id="f2-wlab" class="g12-weightlab" data-layout-ignore>weight</div>
+      <div id="f2-w7" class="g12-weight">7</div>
+
+      <div id="f2-edges" class="f3-tag f2-edges" data-layout-allow-overlap>EDGES&nbsp;<b>3</b></div>
+
+      <div id="f2-gl1" class="f2-gloss f2-gloss-1" data-layout-allow-occlusion>A&nbsp;<span class="f2-tok" id="f2-tok1"><span class="f2-hl" id="f2-hl1" data-layout-allow-occlusion></span><span class="f2-ht" id="f2-ht1">NODE</span></span>&nbsp;IS&nbsp;A&nbsp;THING</div>
+      <div id="f2-gl2" class="f2-gloss f2-gloss-2" data-layout-allow-occlusion>AN&nbsp;<span class="f2-tok" id="f2-tok2"><span class="f2-hl" id="f2-hl2" data-layout-allow-occlusion></span><span class="f2-ht" id="f2-ht2">EDGE</span></span>&nbsp;IS&nbsp;A&nbsp;LINE&nbsp;TO&nbsp;ANOTHER&nbsp;THING</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.85;
+      var el = function (id) { return document.getElementById(id); };
+      var LINE = "rgba(255,255,255,0.16)";
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-graph"] = tl;
+
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: the board comes in from the right, then the build starts */
+      tl.fromTo(el("f2-content"), { x: 140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f2-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.55);
+
+      /* "A graph is NODES" (nodes 0.62) — three chambers drop in, one per named thing (P2) */
+      tl.fromTo(el("f2-n-a"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 0.62);
+      tl.fromTo(el("f2-n-b"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 0.86);
+      tl.fromTo(el("f2-n-c"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 1.10);
+      /* NODE tabs land on the chambers as the word is said (the gloss law, § 11) */
+      tl.fromTo(el("f2-t-a"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 0.94);
+      tl.fromTo(el("f2-t-b"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 1.18);
+      tl.fromTo(el("f2-t-c"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 1.42);
+
+      /* "connected by EDGES" (edges 1.72-2.04) — each bar draws itself (P8) in the user's order
+         A→B, B→C, A→C, and its EDGE chip lights as its own bar completes */
+      tl.fromTo(el("f2-edge-ab"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 1.74);
+      tl.fromTo(el("f2-chev-ab"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 1.96);
+      tl.fromTo(el("f2-el-ab"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.00);
+      tl.to(el("f2-el-ab"), { color: "#F4F1EA", duration: 0.2, immediateRender: false }, 2.08);
+      tl.to(el("f2-el-ab"), { color: "#9BA6B2", duration: 0.3, immediateRender: false }, 2.6);
+
+      tl.fromTo(el("f2-edge-bc"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 2.06);
+      tl.fromTo(el("f2-chev-bc"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 2.28);
+      tl.fromTo(el("f2-el-bc"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.32);
+      tl.to(el("f2-el-bc"), { color: "#F4F1EA", duration: 0.2, immediateRender: false }, 2.40);
+      tl.to(el("f2-el-bc"), { color: "#9BA6B2", duration: 0.3, immediateRender: false }, 2.92);
+
+      tl.fromTo(el("f2-edge-ac"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 2.38);
+      tl.fromTo(el("f2-chev-ac"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 2.60);
+      tl.fromTo(el("f2-el-ac"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.64);
+      tl.to(el("f2-el-ac"), { color: "#F4F1EA", duration: 0.2, immediateRender: false }, 2.72);
+      tl.to(el("f2-el-ac"), { color: "#9BA6B2", duration: 0.3, immediateRender: false }, 3.24);
+
+      /* "EDGES can have DIRECTION" (direction 3.62-4.08) — ONE arrowhead lights. This is the only
+         amber on the board during this beat; it returns to --line before the weight chip lands. */
+      tl.to(el("f2-chev-ab"), { borderColor: "#FFD166", duration: 0.18, ease: "power2.out", immediateRender: false }, 3.62);
+      tl.to(el("f2-edge-ab"), { backgroundColor: "rgba(255,209,102,0.45)", duration: 0.2, immediateRender: false }, 3.66);
+      tl.to(el("f2-chev-ab"), { borderColor: LINE, duration: 0.34, ease: "power1.inOut" }, 4.3);
+      tl.to(el("f2-edge-ab"), { backgroundColor: LINE, duration: 0.34, ease: "power1.inOut" }, 4.3);
+
+      /* "or WEIGHTS" (weights 4.46-4.80) — the § 6 chip: a mint digit at a bar midpoint */
+      tl.fromTo(el("f2-wlab"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power2.out", immediateRender: false }, 4.48);
+      tl.fromTo(el("f2-w7"), { opacity: 0, y: -22, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 4.58);
+
+      /* "A NODE is a thing." (node 5.42, thing 6.08-6.32) */
+      tl.fromTo(el("f2-gl1"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 5.28);
+      tl.fromTo(el("f2-hl1"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 5.44);
+      tl.set(el("f2-tok1"), { backgroundColor: "#FFD166" }, 5.76);
+      tl.set(el("f2-ht1"), { color: "#22201B" }, 5.76);
+      tl.set(el("f2-hl1"), { opacity: 0 }, 5.76);
+      /* the first plate retires to ink BEFORE the second one sweeps (never two amber at once) */
+      tl.set(el("f2-tok1"), { backgroundColor: "rgba(255,209,102,0)" }, 6.88);
+      tl.set(el("f2-ht1"), { color: "#F4F1EA" }, 6.88);
+
+      /* "An EDGE is a line to another thing." (edge 6.94, line 7.60, thing 8.34-8.62) */
+      tl.fromTo(el("f2-gl2"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 6.8);
+      tl.fromTo(el("f2-hl2"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 6.98);
+      tl.set(el("f2-tok2"), { backgroundColor: "#FFD166" }, 7.30);
+      tl.set(el("f2-ht2"), { color: "#22201B" }, 7.30);
+      tl.set(el("f2-hl2"), { opacity: 0 }, 7.30);
+
+      /* the counted pair arrives on the last word of the definition (thing 8.34) */
+      tl.fromTo(el("f2-edges"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 8.36);
+      tl.fromTo(el("f2-edges"), { scale: 1 }, { scale: 1.05, duration: 0.18, ease: "power2.out", immediateRender: false }, 8.68);
+      tl.to(el("f2-edges"), { scale: 1, duration: 0.2, ease: "power2.inOut" }, 8.86);
+
+      /* ambient breath on the board, back to zero before the cut */
+      tl.fromTo(el("f2-n-c"), { y: 0 }, { y: -5, duration: 1.2, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 6.4);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 9.53);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

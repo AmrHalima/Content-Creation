@@ -1,0 +1,41 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "A caller that builds an object answers one question first: which concrete type. The factory owns that answer."
+    },
+    {
+      "id": "02",
+      "text": "Today the caller does it itself. Read a config value, branch, call the constructor. Now the caller knows every gateway it can build."
+    },
+    {
+      "id": "03",
+      "text": "A factory takes that question away. The caller asks for a gateway. The factory decides which one."
+    },
+    {
+      "id": "04",
+      "text": "The dependency points down through the seam. The caller holds the interface. The factory below holds the concrete classes."
+    },
+    {
+      "id": "05",
+      "text": "The seam is a signature. It takes a discriminator and returns the interface. That is all the caller sees."
+    },
+    {
+      "id": "06",
+      "text": "So the call site is one line. The config value goes in, a gateway comes back."
+    },
+    {
+      "id": "07",
+      "text": "When a new gateway lands, the change is inside the factory. Callers never heard of it, so coupling stays out of the domain."
+    },
+    {
+      "id": "08",
+      "text": "Here is the tell. A factory that forwards one argument list to one constructor has nothing to choose. Keep it and you have ceremony."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

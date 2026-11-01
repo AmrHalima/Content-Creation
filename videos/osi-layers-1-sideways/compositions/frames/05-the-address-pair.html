@@ -1,0 +1,222 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; left: 90px; top: 456px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f05-title {
+      position: absolute; left: 90px; top: 500px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.4cqw; line-height: 1;
+      letter-spacing: -0.024em; opacity: 0;
+    }
+    .f05-railsvg { position: absolute; inset: 0; }
+    .f05-rail { fill: none; stroke: rgba(26,26,26,0.32); stroke-width: 3; stroke-linecap: round; }
+    .f05-st {
+      position: absolute; top: 852px; width: 56px; height: 56px; box-sizing: border-box;
+      border: 3px solid rgba(26,26,26,0.22); border-radius: 8px; background: #ffffeb;
+    }
+    .f05-stlab {
+      position: absolute; top: 934px; width: 176px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f05-wrap { position: absolute; left: 20px; top: 748px; width: 220px; height: 178px; }
+    .f05-pill {
+      position: absolute; left: 0; top: 0; width: 220px; height: 64px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,169,70,0.18); border: 3px solid #ffa946; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f05-env {
+      position: absolute; left: 44px; top: 86px; width: 132px; height: 92px; box-sizing: border-box;
+      background: #ffffff; border: 3px solid #1a1a1a; border-radius: 6px;
+    }
+    .f05-envsvg { position: absolute; left: 44px; top: 86px; }
+    .f05-flap { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-linecap: round; }
+    .f05-letter {
+      position: absolute; left: 700px; top: 1000px; width: 274px; height: 124px; box-sizing: border-box;
+      background: #ffffff; border: 3px solid #1a1a1a; border-radius: 8px; padding: 16px 18px;
+      opacity: 0;
+    }
+    .f05-letterk {
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f05-letterm {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+      margin-top: 8px; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-dbet" id="root" data-composition-id="05-the-address-pair" data-width="1080" data-height="1920" data-duration="11.267">
+
+    <div data-hf-id="hf-rhwm" id="05-the-address-pair-fieldclip" class="clip" data-start="0" data-duration="11.267" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-v6wg" class="f05-field"></div>
+      <div data-hf-id="hf-3gx0" id="05-the-address-pair-grid" class="f05-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-o9u1" id="05-the-address-pair-headclip" class="clip" data-start="0" data-duration="11.267" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-oxx0" id="05-the-address-pair-kicker" class="f05-kicker" data-layout-ignore>&#10009;&nbsp; layer 3</div>
+      <div data-hf-id="hf-xdpu" id="05-the-address-pair-title" class="f05-title">network</div>
+    </div>
+
+    <div data-hf-id="hf-1nrq" id="05-the-address-pair-railclip" class="clip" data-start="0" data-duration="11.267" data-track-index="2" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-7dwf" class="f05-railsvg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-vtpq" id="05-the-address-pair-rail" class="f05-rail" d="M 90 880 L 940 880" />
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-ub0c" id="05-the-address-pair-stationsclip" class="clip" data-start="0" data-duration="11.267" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-34gv" id="05-the-address-pair-st1" class="f05-st" style="left:312px;"></div>
+      <div data-hf-id="hf-zajx" id="05-the-address-pair-st2" class="f05-st" style="left:562px;"></div>
+      <div data-hf-id="hf-w3kc" id="05-the-address-pair-st3" class="f05-st" style="left:812px;"></div>
+      <div data-hf-id="hf-s0u3" id="05-the-address-pair-lab1" class="f05-stlab" style="left:252px;">hop 1</div>
+      <div data-hf-id="hf-dz7n" id="05-the-address-pair-lab2" class="f05-stlab" style="left:502px;">hop 2</div>
+      <div data-hf-id="hf-09zw" id="05-the-address-pair-lab3" class="f05-stlab" style="left:752px;">far end</div>
+    </div>
+
+    <div data-hf-id="hf-agct" id="05-the-address-pair-envclip" class="clip" data-start="0" data-duration="11.267" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-uqxo" id="05-the-address-pair-wrap" class="f05-wrap">
+        <div data-hf-id="hf-48ph" id="05-the-address-pair-pill" class="f05-pill">10.0.1.7</div>
+        <div data-hf-id="hf-guh5" class="f05-env"></div>
+        <svg data-hf-id="hf-56xm" class="f05-envsvg" width="132" height="92" viewBox="0 0 132 92" xmlns="http://www.w3.org/2000/svg">
+          <polyline data-hf-id="hf-u9nz" id="05-the-address-pair-flap" class="f05-flap" points="4,5 66,50 128,5" />
+        </svg>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-2msr" id="05-the-address-pair-letterclip" class="clip" data-start="8.6" data-duration="2.667" data-track-index="5" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-bhlw" id="05-the-address-pair-letter" class="f05-letter">
+        <div data-hf-id="hf-mxis" id="05-the-address-pair-body" class="f05-letterbody">
+          <div data-hf-id="hf-xwrm" class="f05-letterk" data-layout-ignore>inside</div>
+          <div data-hf-id="hf-c1bm" id="05-the-address-pair-final" class="f05-letterm">93.184.216.34</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.667;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-the-address-pair"] = tl;
+
+      var wrap = el("05-the-address-pair-wrap");
+      var pill = el("05-the-address-pair-pill");
+
+      // ── Scene 1 (0.0–1.7s) — the rail self-draws, the envelope sits at its left anchor with
+      //    the outer label already ember-tinted, the three hop stations still unlit. Camera is
+      //    locked for the whole frame: no push, no pan (movement is the message). ──
+      tl.fromTo(el("05-the-address-pair-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      var rail = el("05-the-address-pair-rail");
+      var railLen = rail.getTotalLength() * 1.05;
+      rail.style.strokeDasharray = String(railLen);
+      rail.style.strokeDashoffset = String(railLen);
+      tl.to(rail, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 0.2);
+      tl.fromTo(el("05-the-address-pair-kicker"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.567);
+      tl.fromTo(el("05-the-address-pair-title"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.135);
+      tl.fromTo(pill, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 1.702);
+
+      // ── Scene 2 (1.7–6.95s) — three nudge-curve legs (slow-fast-slow), one station lighting per
+      //    arrival, the outer label cycling in place to that hop's value. ──
+      var LEGS = [
+        { x: 230, t: 1.75, d: 1.55, lit: "05-the-address-pair-st1", at: 3.30 },
+        { x: 480, t: 4.20, d: 1.20, lit: "05-the-address-pair-st2", at: 5.40 },
+        { x: 730, t: 5.55, d: 1.35, lit: "05-the-address-pair-st3", at: 6.90 }
+      ];
+      LEGS.forEach(function (L) {
+        tl.to(wrap, { x: L.x, duration: L.d, ease: "power1.inOut" }, L.t);
+        tl.to(wrap, { y: -16, duration: L.d / 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, L.t);
+        tl.to(el(L.lit), {
+          borderColor: "#1a1a1a",
+          backgroundColor: "#ffffff",
+          duration: 0.3,
+          ease: "power2.out"
+        }, L.at);
+      });
+
+      // discrete-text-sequence via a time proxy + reverse search (no TextPlugin, deterministic
+      // under any scrub direction): sparse states only, one hand-off per beat, nothing else moves
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t,
+          duration: states[states.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+      textSeq(pill, [
+        { t: 0, text: "10.0.1.7" },
+        { t: 4.766, text: "172.16.254.3" },
+        { t: 6.355, text: "93.184.216.34" }
+      ]);
+      tl.to(pill, { opacity: 0, duration: 0.08, ease: "none" }, 4.686);
+      tl.to(pill, { opacity: 1, duration: 0.12, ease: "power1.out" }, 4.766);
+      tl.to(pill, { opacity: 0, duration: 0.08, ease: "none" }, 6.275);
+      tl.to(pill, { opacity: 1, duration: 0.12, ease: "power1.out" }, 6.355);
+
+      // ── Scene 3 (6.95–9.4s) — "only the far end opens the letter": the intermediate stops are
+      //    demoted to forwards, the ember leaves the label, the flap lifts (finite un-draw) and
+      //    the letter rises with the address it was carrying. ──
+      [["05-the-address-pair-lab1", "hop 1"], ["05-the-address-pair-lab2", "hop 2"]].forEach(function (p, i) {
+        var e = el(p[0]);
+        var at = 7.263 + i * 0.09;
+        textSeq(e, [{ t: 0, text: p[1] }, { t: at, text: "forwards" }]);
+        tl.to(e, { opacity: 0, duration: 0.12, ease: "none" }, at - 0.12);
+        tl.to(e, { opacity: 1, duration: 0.24, ease: "power1.out" }, at);
+      });
+      tl.to(el("05-the-address-pair-lab3"), { color: "#1a1a1a", duration: 0.3, ease: "power1.out" }, 8.398);
+      tl.to(pill, { backgroundColor: "#ffffeb", borderColor: "#1a1a1a", duration: 0.4, ease: "power1.out" }, 8.738);
+
+      var flap = el("05-the-address-pair-flap");
+      var flapLen = flap.getTotalLength() * 1.05;
+      flap.style.strokeDasharray = String(flapLen);
+      flap.style.strokeDashoffset = "0";
+      tl.to(flap, { strokeDashoffset: flapLen, duration: 0.45, ease: "power2.inOut" }, 8.738);
+
+      tl.fromTo(el("05-the-address-pair-letter"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.9);
+      tl.to(el("05-the-address-pair-final"), { opacity: 1, duration: 0.34, ease: "power1.out" }, 9.306);
+
+      // ── Scene 4 (9.4–10.667s) — the deliberate held read. Everything stops except a 1.6px
+      //    jitter on the opened letter (sine-wave-loop, one cycle over the hold). ──
+      var body = el("05-the-address-pair-body");
+      var proxy = { p: 0 };
+      tl.to(proxy, {
+        p: Math.PI * 2 * 0.45,
+        duration: 1.1,
+        ease: "none",
+        onUpdate: function () {
+          body.style.transform = "translateY(" + (1.6 * Math.sin(proxy.p)).toFixed(2) + "px)";
+        }
+      }, 9.5);
+    })();
+  </script>
+</template>

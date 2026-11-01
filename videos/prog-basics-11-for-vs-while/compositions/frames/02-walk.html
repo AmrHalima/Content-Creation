@@ -1,0 +1,258 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-tab { position: absolute; height: 60px; display: flex; align-items: center;
+      justify-content: center; padding: 0 26px; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-bottom: none;
+      border-radius: 12px 12px 0 0; font-family: "JetBrains Mono", monospace; font-size: 2.75cqw;
+      font-weight: 700; letter-spacing: 0.03em; color: #F4F1EA; }
+    .pb-chamber { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .pb-chip { position: absolute; box-sizing: border-box; height: 88px; display: flex;
+      align-items: center; justify-content: center; padding: 0 24px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    .pb-ann { position: absolute; box-sizing: border-box; opacity: 0; color: #9BA6B2;
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.01em; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+    .pb-plate { position: absolute; display: flex; align-items: center; justify-content: center;
+      height: 92px; padding: 0 40px; box-sizing: border-box; opacity: 0; background: #FFD166;
+      border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.45);
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+
+    /* code line written on the ground, revealed under a caret (P3) */
+    .f2-code { position: absolute; left: 72px; top: 300px; width: 936px; height: 58px; display: flex;
+      align-items: center; white-space: pre; font-family: "JetBrains Mono", monospace;
+      font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .f2-mask { position: absolute; left: 396px; top: 300px; width: 540px; height: 58px;
+      background: #15181D; transform-origin: right center; }
+    .f2-caret { position: absolute; left: 392px; top: 306px; width: 5px; height: 46px;
+      background: #FFD166; border-radius: 2px; opacity: 0; }
+    .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; } .tk-a { color: #FFD166; }
+    .tk-b { font-weight: 700; }
+
+    .f2-eyebrow { position: absolute; left: 72px; top: 250px; width: 936px; height: 40px;
+      display: flex; align-items: center; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.85cqw; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #9BA6B2; white-space: nowrap; }
+    .f2-eyebrow em { display: inline-block; font-style: normal; color: #FFD166; }
+    .f2-count { position: absolute; left: 72px; top: 372px; width: 250px; height: 108px;
+      display: flex; align-items: center; justify-content: center; opacity: 0; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 20px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f2-count span { display: inline-block; font-family: "Space Grotesk", sans-serif;
+      font-weight: 700; font-size: 9cqw; color: #5AD6A0; }
+    .f2-rail { position: absolute; left: 72px; top: 470px; width: 936px; height: 4px;
+      background: rgba(255,255,255,0.16); border-radius: 2px; transform-origin: left center;
+      transform: scaleX(0); }
+    .f2-marker { position: absolute; left: 192px; top: 492px; width: 96px; height: 60px;
+      display: flex; align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 3px solid #FFD166; border-radius: 14px; box-shadow: 0 12px 26px -12px rgba(0,0,0,0.8);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700; color: #FFD166; }
+    .f2-cell { position: absolute; top: 566px; width: 240px; height: 152px; }
+    .f2-cell .pb-val { font-size: 7.4cqw; }
+    .f2-idx { position: absolute; top: 730px; width: 240px; height: 40px; text-align: center;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2cqw; font-weight: 400;
+      letter-spacing: 0.10em; color: #9BA6B2; }
+    .f2-turn { position: absolute; left: 72px; top: 790px; width: 468px; height: 84px; display: flex;
+      align-items: center; justify-content: center; gap: 26px; opacity: 0; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700; color: #9BA6B2; }
+    .f2-turn span { display: inline-block; opacity: 0.22; }
+    .f2-turnlab { position: absolute; left: 570px; top: 806px; width: 438px; height: 52px;
+      opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.6cqw;
+      color: #9BA6B2; }
+    .f2-turnlab strong { color: #F4F1EA; font-weight: 700; }
+    .f2-list { position: absolute; left: 72px; top: 902px; width: 200px; height: 66px; display: flex;
+      align-items: center; opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2cqw;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; }
+    .f2-item { position: absolute; top: 898px; width: 132px; height: 76px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700; color: #5AD6A0; }
+    .f2-item-b { left: 300px; } .f2-item-c { left: 452px; } .f2-item-d { left: 604px; }
+    .f2-stop { position: absolute; left: 984px; top: 486px; width: 14px; height: 244px;
+      background: #FFD166; border-radius: 7px; transform-origin: top center; transform: scaleY(0);
+      box-shadow: 0 0 30px rgba(255,209,102,0.35); }
+    .f2-stoptag { position: absolute; left: 700px; top: 756px; width: 300px; height: 46px;
+      display: flex; align-items: center; justify-content: flex-end; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #FFD166; }
+    .f2-note { left: 620px; top: 386px; width: 416px; }
+  </style>
+
+  <div id="root" data-composition-id="02-walk" data-width="1080" data-height="1920" data-duration="9.9">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="9.9" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="9.9" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · 11</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="9.9" data-track-index="2">
+      <div id="f2-eyebrow" class="f2-eyebrow" data-layout-ignore><em>FOR</em>&nbsp;&nbsp;=&nbsp;&nbsp;A COUNT YOU ALREADY KNOW</div>
+
+      <div id="f2-code" class="f2-code"><span class="tk-a tk-b">for</span>&nbsp;i&nbsp;<span class="tk-a">in</span>&nbsp;range(<span class="tk-v tk-b">3</span>):</div>
+      <div id="f2-mask" class="f2-mask"></div>
+      <div id="f2-caret" class="f2-caret"></div>
+
+      <div id="f2-count" class="f2-count"><span id="f2-count-v">3</span></div>
+      <div id="f2-note" class="pb-ann f2-note"><strong>3</strong> is settled before it runs</div>
+
+      <div id="f2-rail" class="f2-rail"></div>
+      <div id="f2-marker" class="f2-marker" data-layout-allow-overlap>i</div>
+
+      <div id="f2-cell-a" class="pb-chamber f2-cell" style="left:120px"><span id="f2-val-a" class="pb-val">0</span></div>
+      <div id="f2-cell-b" class="pb-chamber f2-cell" style="left:420px"><span id="f2-val-b" class="pb-val">1</span></div>
+      <div id="f2-cell-c" class="pb-chamber f2-cell" style="left:720px"><span id="f2-val-c" class="pb-val">2</span></div>
+
+      <div id="f2-idx-a" class="f2-idx" style="left:120px" data-layout-ignore>slot 0</div>
+      <div id="f2-idx-b" class="f2-idx" style="left:420px" data-layout-ignore>slot 1</div>
+      <div id="f2-idx-c" class="f2-idx" style="left:720px" data-layout-ignore>slot 2</div>
+
+      <div id="f2-turn" class="f2-turn">
+        <span id="f2-t1">turn 1/3</span><span id="f2-t2">2/3</span><span id="f2-t3">3/3</span>
+      </div>
+      <div id="f2-turnlab" class="f2-turnlab" data-layout-ignore>it stops because <strong>3</strong> was known</div>
+
+      <div id="f2-list" class="f2-list" data-layout-ignore>a list</div>
+      <div id="f2-item-b" class="f2-item f2-item-b">'a'</div>
+      <div id="f2-item-c" class="f2-item f2-item-c">'b'</div>
+      <div id="f2-item-d" class="f2-item f2-item-d">'c'</div>
+
+      <div id="f2-stop" class="f2-stop"></div>
+      <div id="f2-stoptag" class="f2-stoptag" data-layout-ignore>count spent</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.9;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-walk"] = tl;
+
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 1.65, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.47, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.65, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: this frame comes up from below */
+      tl.fromTo(el("f2-eyebrow"), { opacity: 0, y: 90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.14);
+
+      /* P3 type-on under the caret, one clause per spoken beat (for 0.24 -> range 0.92) */
+      tl.fromTo(el("f2-code"), { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0.2);
+      tl.fromTo(el("f2-mask"), { scaleX: 1 }, { scaleX: 0, duration: 1.1, ease: "power1.inOut", immediateRender: false }, 0.3);
+      tl.fromTo(el("f2-caret"), { opacity: 1, x: 0 }, { opacity: 1, x: 262, duration: 1.1, ease: "power1.inOut", immediateRender: false }, 0.3);
+      tl.fromTo(el("f2-caret"), { opacity: 1 }, { opacity: 0, duration: 0.34, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 1.5);
+
+      /* the count exists BEFORE the rail is drawn (known 1.64, count 1.92) */
+      tl.fromTo(el("f2-count"), { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 1.66);
+      tl.fromTo(el("f2-count-v"), { scale: 1.4 }, { scale: 1, duration: 0.34, ease: "power3.out", immediateRender: false }, 1.8);
+      tl.fromTo(el("f2-note"), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 2.06);
+
+      /* then the rail, then the three known positions */
+      tl.fromTo(el("f2-rail"), { scaleX: 0 }, { scaleX: 1, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 2.42);
+      tl.fromTo(el("f2-cell-a"), { opacity: 0, y: -34 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 2.72);
+      tl.fromTo(el("f2-cell-b"), { opacity: 0, y: -34 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 2.86);
+      tl.fromTo(el("f2-cell-c"), { opacity: 0, y: -34 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 3.0);
+      tl.fromTo(el("f2-idx-a"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.04);
+      tl.fromTo(el("f2-idx-b"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.14);
+      tl.fromTo(el("f2-idx-c"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.24);
+
+      /* the marker arrives and STEPS, one position per turn (how many 3.88 -> runs 4.72) */
+      tl.fromTo(el("f2-marker"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.8)", immediateRender: false }, 3.14);
+      tl.fromTo(el("f2-turn"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 3.2);
+      tl.to(el("f2-t1"), { opacity: 1, color: "#FFD166", scale: 1.12, duration: 0.18, ease: "power2.out", immediateRender: false }, 3.3);
+      tl.to(el("f2-t1"), { scale: 1, duration: 0.2, ease: "power2.inOut" }, 3.48);
+
+      /* P2 drop-in: the value enters the chamber, the box squash-settles, border flashes mint */
+      tl.fromTo(el("f2-val-a"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46, ease: "bounce.out", immediateRender: false }, 3.34);
+      tl.to(el("f2-cell-a"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 3.78);
+      tl.to(el("f2-cell-a"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 3.88);
+      tl.to(el("f2-cell-a"), { borderColor: "rgba(90,214,160,0.75)", duration: 0.22, immediateRender: false }, 3.78);
+      tl.to(el("f2-cell-a"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 4.1);
+
+      tl.to(el("f2-marker"), { x: 300, duration: 0.34, ease: "power3.out", immediateRender: false }, 3.96);
+      tl.to(el("f2-t2"), { opacity: 1, color: "#FFD166", scale: 1.12, duration: 0.18, ease: "power2.out", immediateRender: false }, 4.14);
+      tl.to(el("f2-t2"), { scale: 1, duration: 0.2, ease: "power2.inOut" }, 4.32);
+      tl.fromTo(el("f2-val-b"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46, ease: "bounce.out", immediateRender: false }, 4.18);
+      tl.to(el("f2-cell-b"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 4.62);
+      tl.to(el("f2-cell-b"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 4.72);
+      tl.to(el("f2-cell-b"), { borderColor: "rgba(90,214,160,0.75)", duration: 0.22, immediateRender: false }, 4.62);
+      tl.to(el("f2-cell-b"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 4.94);
+
+      tl.to(el("f2-marker"), { x: 600, duration: 0.34, ease: "power3.out", immediateRender: false }, 4.86);
+      tl.to(el("f2-t3"), { opacity: 1, color: "#FFD166", scale: 1.12, duration: 0.18, ease: "power2.out", immediateRender: false }, 5.04);
+      tl.to(el("f2-t3"), { scale: 1, duration: 0.2, ease: "power2.inOut" }, 5.22);
+      tl.fromTo(el("f2-val-c"), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46, ease: "bounce.out", immediateRender: false }, 5.08);
+      tl.to(el("f2-cell-c"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 5.52);
+      tl.to(el("f2-cell-c"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 5.62);
+      tl.to(el("f2-cell-c"), { borderColor: "rgba(90,214,160,0.75)", duration: 0.22, immediateRender: false }, 5.52);
+      tl.to(el("f2-cell-c"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 5.84);
+
+      /* the second use: walking a list, item by item (list 6.70, item 7.08 / 7.68 / 8.12) */
+      tl.fromTo(el("f2-list"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 6.7);
+      tl.fromTo(el("f2-turnlab"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 5.9);
+      tl.fromTo(el("f2-item-b"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 7.08);
+      tl.fromTo(el("f2-item-c"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 7.68);
+      tl.fromTo(el("f2-item-d"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 8.12);
+      tl.to(el("f2-item-b"), { borderColor: "rgba(255,209,102,0.8)", duration: 0.18, immediateRender: false }, 7.3);
+      tl.to(el("f2-item-c"), { borderColor: "rgba(255,209,102,0.8)", duration: 0.18, immediateRender: false }, 7.9);
+      tl.to(el("f2-item-d"), { borderColor: "rgba(255,209,102,0.8)", duration: 0.18, immediateRender: false }, 8.34);
+
+      /* the walk ENDS because the count was settled first: the stop bar drops, the marker dims */
+      tl.fromTo(el("f2-stop"), { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "power3.inOut", immediateRender: false }, 8.62);
+      tl.fromTo(el("f2-stoptag"), { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 8.92);
+      tl.to(el("f2-marker"), { opacity: 0.3, y: 8, duration: 0.4, ease: "power2.inOut", immediateRender: false }, 9.02);
+      tl.to(el("f2-rail"), { opacity: 0.4, duration: 0.4, ease: "power2.inOut", immediateRender: false }, 9.02);
+      tl.fromTo(el("f2-count"), { y: 0 }, { y: -4, duration: 0.9, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 2.0);
+      tl.fromTo(el("f2-marker"), { y: 0 }, { y: -6, duration: 1.2, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 3.5);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 9.58);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

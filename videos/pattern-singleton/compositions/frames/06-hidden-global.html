@@ -1,0 +1,197 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .clipband { position: absolute; inset: 0; }
+
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    .f06-kicker {
+      position: absolute; top: 200px; left: 72px; width: 820px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f06-spike { display: inline-block; opacity: 0; color: #76766e; font-size: 1.7cqw; margin-right: 14px; }
+    .f06-ktext { display: inline-block; opacity: 0; }
+
+    /* grammar R re-lit: the same stage as F3, same positions, pushed back to muted ink */
+    .f06-stage { position: absolute; inset: 0; opacity: 0; }
+    .f06-chamber {
+      position: absolute; left: 90px; width: 680px; height: 190px;
+      box-sizing: border-box; border-radius: 8px; border: 2px solid rgba(26,26,26,0.3);
+      background: #ffffeb;
+    }
+    .f06-seambox { top: 690px; background: #1a1a1a; }
+    .f06-caller { top: 380px; }
+    .f06-instance { top: 1000px; }
+    .f06-chamberlabel {
+      position: absolute; left: 36px; top: 20px; display: block; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.4cqw;
+      letter-spacing: -0.018em; color: #6b6b63;
+    }
+    .f06-seambox .f06-chamberlabel { color: rgba(255,255,235,0.72); }
+    .f06-midlabel { position: absolute; left: 36px; top: 88px; }
+
+    .f06-filechip {
+      position: absolute; top: 92px; height: 62px; box-sizing: border-box; padding: 0 12px;
+      display: flex; align-items: center; white-space: nowrap;
+      border: 2px solid rgba(26,26,26,0.3); border-radius: 8px; background: #ffffeb;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f06-filea { left: 36px; width: 213px; }
+    .f06-fileb { left: 259px; width: 162px; }
+    .f06-filec { left: 431px; width: 179px; }
+
+    .f06-arrow { position: absolute; left: 415px; width: 30px; height: 112px;
+      display: flex; flex-direction: column; align-items: center; }
+    .f06-arrow1 { top: 576px; }
+    .f06-arrow2 { top: 886px; }
+    .f06-arrowline { width: 3px; height: 88px; background: rgba(26,26,26,0.3); }
+    .f06-arrowhead { width: 0; height: 0; border-left: 10px solid transparent;
+      border-right: 10px solid transparent; border-top: 16px solid rgba(26,26,26,0.3); }
+
+    /* the knowledge path: muted from the start, ember when the accusation lands */
+    .f06-up { position: absolute; left: 770px; top: 460px; width: 200px; height: 650px; }
+    .f06-upline { position: absolute; left: 78px; top: 16px; width: 3px; height: 616px; }
+    .f06-uphead { position: absolute; left: 69px; top: 0; width: 0; height: 0;
+      border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 16px solid; }
+    .f06-upstubtop { position: absolute; left: 0; top: 8px; width: 81px; height: 3px; }
+    .f06-upstubfoot { position: absolute; left: 0; top: 629px; width: 81px; height: 3px; }
+    .f06-muted { color: rgba(26,26,26,0.24); }
+    .f06-muted .f06-upline, .f06-muted .f06-upstubtop, .f06-muted .f06-upstubfoot { background: rgba(26,26,26,0.24); }
+    .f06-muted .f06-uphead { border-bottom-color: rgba(26,26,26,0.24); }
+    .f06-lit { opacity: 0; color: #ffa946; }
+    .f06-lit .f06-upline, .f06-lit .f06-upstubtop, .f06-lit .f06-upstubfoot { background: #ffa946; }
+    .f06-lit .f06-uphead { border-bottom-color: #ffa946; }
+    .f06-uplabel {
+      position: absolute; left: 774px; top: 504px; width: 190px; height: 40px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.75cqw; font-weight: 500;
+      letter-spacing: 0.04em; color: #1a1a1a;
+    }
+
+    /* the finding, below the stack */
+    .f06-note {
+      position: absolute; left: 90px; height: 40px; display: flex; align-items: center;
+      white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.75cqw; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #6b6b63;
+    }
+    .f06-notepos { top: 1232px; }
+    .f06-signature {
+      position: absolute; left: 90px; top: 1282px; width: 520px; height: 66px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #1a1a1a;
+    }
+    .f06-global {
+      position: absolute; left: 90px; top: 1380px; width: 520px; height: 100px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 7.4cqw;
+      letter-spacing: -0.022em; color: #1a1a1a;
+    }
+    .f06-quote {
+      position: absolute; left: 470px; top: 1418px; width: 340px; height: 40px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw; font-weight: 400; color: #6b6b63;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-hidden-global" data-width="1080" data-height="1920" data-duration="9.707">
+
+    <div id="f06-ground" class="clip clipband" data-start="0" data-duration="9.707" data-track-index="0">
+      <div class="f06-field"></div>
+      <div id="f06-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="f06-chrome" class="clip clipband" data-start="0" data-duration="9.707" data-track-index="1">
+      <div class="f06-kicker">
+        <div id="f06-spike" class="f06-spike">&#10009;</div>
+        <div id="f06-ktext" class="f06-ktext" data-layout-ignore>THE COST</div>
+      </div>
+    </div>
+
+    <div id="f06-content" class="clip clipband" data-start="0" data-duration="9.707" data-track-index="2">
+      <div id="f06-stage" class="f06-stage">
+        <div class="f06-chamber f06-caller">
+          <div class="f06-chamberlabel">callers</div>
+          <div id="f06-filea" class="f06-filechip f06-filea">checkout.ts</div>
+          <div id="f06-fileb" class="f06-filechip f06-fileb">audit.ts</div>
+          <div id="f06-filec" class="f06-filechip f06-filec">mailer.ts</div>
+        </div>
+        <div class="f06-arrow f06-arrow1">
+          <div class="f06-arrowline"></div><div class="f06-arrowhead"></div>
+        </div>
+        <div class="f06-chamber f06-seambox">
+          <div class="f06-chamberlabel f06-midlabel">static holder</div>
+        </div>
+        <div class="f06-arrow f06-arrow2">
+          <div class="f06-arrowline"></div><div class="f06-arrowhead"></div>
+        </div>
+        <div class="f06-chamber f06-instance">
+          <div class="f06-chamberlabel f06-midlabel">one instance</div>
+        </div>
+        <div class="f06-up f06-muted">
+          <div class="f06-upstubtop"></div><div class="f06-uphead"></div>
+          <div class="f06-upline"></div><div class="f06-upstubfoot"></div>
+        </div>
+      </div>
+
+      <div id="f06-lit" class="f06-up f06-lit">
+        <div class="f06-upstubtop"></div><div class="f06-uphead"></div>
+        <div class="f06-upline"></div><div class="f06-upstubfoot"></div>
+      </div>
+      <div id="f06-uplabel" class="f06-uplabel" data-layout-ignore>uses Config</div>
+
+      <div id="f06-note" class="f06-note f06-notepos" data-layout-ignore>the signature</div>
+      <div id="f06-signature" class="f06-signature">pay(): Result</div>
+      <div id="f06-global" class="f06-global">global</div>
+      <div id="f06-quote" class="f06-quote" data-layout-ignore>with a good name</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.707;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-hidden-global"] = tl;
+
+      tl.fromTo(el("f06-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f06-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.05);
+      tl.fromTo(el("f06-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0–2.0s) — the F3 stage returns already assembled, muted ──
+      tl.fromTo(el("f06-stage"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.52, ease: "power2.out" }, 0.10);
+
+      // ── Scene 2 (2.0–3.2s) — one file chip per spoken beat: "call the class directly" ──
+      tl.fromTo(el("f06-filea"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 0.80);
+      tl.fromTo(el("f06-fileb"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.48);
+      tl.fromTo(el("f06-filec"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 2.04);
+
+      // ── Scene 3 (3.2–5.8s) — the knowledge path lights ember on "never shows in a signature" ──
+      tl.fromTo(el("f06-lit"), { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power1.out", immediateRender: false }, 4.22);
+      tl.fromTo(el("f06-uplabel"), { opacity: 0 }, { opacity: 1, duration: 0.36, ease: "power1.out", immediateRender: false }, 4.60);
+      tl.fromTo(el("f06-note"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out", immediateRender: false }, 4.22);
+      tl.fromTo(el("f06-signature"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.36, ease: "power2.out", immediateRender: false }, 4.84);
+
+      // ── Scene 4 (5.8–9.7s) — the noun arrives, oversized, and the frame holds still ──
+      tl.fromTo(el("f06-global"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.56, ease: "power3.out", immediateRender: false }, 7.50);
+      tl.fromTo(el("f06-quote"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out", immediateRender: false }, 8.66);
+    })();
+  </script>
+</template>

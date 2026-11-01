@@ -1,0 +1,164 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+
+    /* ground — full-bleed, on its own clip layer, never on #root */
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+
+    /* chrome */
+    .f01-kicker {
+      position: absolute; left: 80px; top: 214px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f01-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 0; }
+    .f01-claim {
+      position: absolute; left: 80px; top: 268px; width: 920px; height: 132px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 8.4cqw;
+      line-height: 0.98; letter-spacing: -0.028em; color: #1a1a1a; opacity: 0;
+    }
+
+    /* the service chamber (frame.md code-surface: navy body, navy-elev title bar) */
+    .f01-card {
+      position: absolute; left: 100px; top: 620px; width: 880px; height: 320px;
+      box-sizing: border-box; background: #181715;
+      border: 1px solid rgba(255,255,235,0.14); border-radius: 8px; opacity: 0;
+    }
+    .f01-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 78px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 18px; padding: 0 28px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.06em;
+      color: rgba(255,255,235,0.62);
+    }
+    .f01-dot { display: inline-block; width: 14px; height: 14px; border-radius: 9999px; background: rgba(255,255,235,0.22); }
+    .f01-codeline {
+      position: absolute; left: 32px; width: 800px; height: 62px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; line-height: 1;
+      color: #ffffeb; opacity: 0;
+    }
+    .f01-kw { display: inline-block; color: #ffa946; }
+    .f01-id { display: inline-block; color: #5db8a6; }
+    .f01-pn { display: inline-block; color: rgba(255,255,235,0.52); }
+
+    /* the two opposing pulls */
+    .f01-svg { position: absolute; inset: 0; }
+    .f01-arw { fill: none; stroke: rgba(26,26,26,0.62); stroke-width: 5; stroke-linecap: round; }
+    .f01-arw-live { fill: none; stroke: #ffa946; stroke-width: 5; stroke-linecap: round; }
+    .f01-head { fill: rgba(26,26,26,0.62); opacity: 0; }
+    .f01-head-live { fill: #ffa946; opacity: 0; }
+    .f01-tag {
+      position: absolute; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(26,26,26,0.24); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f01-tag-rules { left: 60px; top: 440px; width: 176px; height: 54px; }
+    .f01-tag-screens { left: 780px; top: 1064px; width: 200px; height: 54px; color: #1a1a1a; border-color: rgba(26,26,26,0.34); }
+  </style>
+
+  <div id="root" data-composition-id="01-one-class-two-jobs" data-width="1080" data-height="1920" data-duration="8.341">
+
+    <div id="01-one-class-two-jobs-fieldclip" class="clip" data-start="0" data-duration="8.341" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field"></div>
+      <div id="01-one-class-two-jobs-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="01-one-class-two-jobs-chromeclip" class="clip" data-start="0" data-duration="8.341" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker"><span id="01-one-class-two-jobs-spike" class="f01-spike">&#10009;</span><span id="01-one-class-two-jobs-ktext" class="f01-ktext" data-layout-ignore>the coupling</span></div>
+      <div id="01-one-class-two-jobs-claim" class="f01-claim">OrderService</div>
+    </div>
+
+    <div id="01-one-class-two-jobs-cardclip" class="clip" data-start="0" data-duration="8.341" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="01-one-class-two-jobs-card" class="f01-card">
+        <div class="f01-titlebar"><span class="f01-dot"></span><span class="f01-tfile" data-layout-ignore>order_service</span></div>
+        <div id="01-one-class-two-jobs-l1" class="f01-codeline" style="top:112px;"><span>create(</span><span class="f01-id">cmd</span><span class="f01-pn">)</span></div>
+        <div id="01-one-class-two-jobs-l2" class="f01-codeline" style="top:200px;"><span>summary(</span><span class="f01-id">q</span><span class="f01-pn">)</span></div>
+      </div>
+    </div>
+
+    <div id="01-one-class-two-jobs-pullclip" class="clip" data-start="4.28" data-duration="4.061" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f01-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="01-one-class-two-jobs-a1" class="f01-arw" d="M 220 640 L 130 520" />
+        <polygon id="01-one-class-two-jobs-k1" class="f01-head" points="104,498 152,510 122,544" />
+        <path id="01-one-class-two-jobs-a2" class="f01-arw-live" d="M 800 900 L 892 1010" />
+        <polygon id="01-one-class-two-jobs-k2" class="f01-head-live" points="918,1040 872,1024 904,994" />
+      </svg>
+    </div>
+
+    <div id="01-one-class-two-jobs-tagclip" class="clip" data-start="4.38" data-duration="3.961" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="01-one-class-two-jobs-tagrules" class="f01-tag f01-tag-rules" data-layout-ignore>rules</div>
+      <div id="01-one-class-two-jobs-tagscreens" class="f01-tag f01-tag-screens" data-layout-ignore>screens</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 8.341;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "01-one-class-two-jobs-";
+      var tl = gsap.timeline({ paused: true });
+
+      // ── Scene 1 (0.0–1.42s) — "One class": the name of the thing, then the stage is set ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+      tl.fromTo(el(P + "claim"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.52, ease: "power3.out" }, 0.3);
+
+      // ── Scene 2 (1.42–4.28s) — the chamber pins once; one method line per spoken cue ──
+      tl.fromTo(el(P + "card"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 0.78);
+      tl.fromTo(el(P + "l1"), { opacity: 0, x: -42 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 1.70);
+      tl.fromTo(el(P + "l2"), { opacity: 0, x: -42 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 3.06);
+
+      // ── Scene 3 (4.28–6.0s) — "the rules pull one way": the first arrow self-draws out ──
+      var a1 = el(P + "a1");
+      var len1 = a1.getTotalLength() * 1.05;
+      a1.style.strokeDasharray = String(len1);
+      a1.style.strokeDashoffset = String(len1);
+      tl.to(a1, { strokeDashoffset: 0, duration: 0.42, ease: "power3.out" }, 4.38);
+      tl.fromTo(el(P + "k1"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power1.out" }, 4.70);
+      tl.fromTo(el(P + "tagrules"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.28, ease: "power3.out" }, 4.38);
+
+      // ── Scene 4 (6.0–8.34s) — "the screens pull the other": the opposite pull, in ember ──
+      var a2 = el(P + "a2");
+      var len2 = a2.getTotalLength() * 1.05;
+      a2.style.strokeDasharray = String(len2);
+      a2.style.strokeDashoffset = String(len2);
+      tl.to(a2, { strokeDashoffset: 0, duration: 0.42, ease: "power3.out" }, 6.62);
+      tl.fromTo(el(P + "k2"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power1.out" }, 6.94);
+      tl.fromTo(el(P + "tagscreens"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.28, ease: "power3.out" }, 6.62);
+
+      // ── hold: subtle jitter (sine-wave-loop, low amplitude, finite) on the pinned chamber ──
+      var jit = { p: 0 };
+      var card = el(P + "card");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.5,
+        duration: D - 7.4,
+        ease: "none",
+        onUpdate: function () {
+          card.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, 7.4);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["01-one-class-two-jobs"] = tl;
+    })();
+  </script>
+</template>

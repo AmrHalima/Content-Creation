@@ -1,0 +1,172 @@
+<template>
+  <style>
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; top: 260px; left: 100px; width: 780px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f05-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; opacity: 0; }
+    .f05-ktext { display: inline-block; opacity: 0; }
+    .f05-chamber {
+      position: absolute; top: 560px; left: 100px; width: 880px; height: 560px;
+      box-sizing: border-box;
+      background: #181715; border: 2px solid rgba(255,255,235,0.16); border-radius: 8px;
+      opacity: 0;
+    }
+    .f05-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 76px;
+      box-sizing: border-box; display: flex; align-items: center; padding: 0 30px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      border-radius: 6px 6px 0 0;
+    }
+    .f05-filename {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.2cqw; letter-spacing: 0.06em; color: rgba(255,255,235,0.72);
+    }
+    .f05-codeline {
+      position: absolute; left: 130px; width: 820px; height: 76px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.9cqw; line-height: 1.6; color: #8a8a80;
+    }
+    .f05-l1 { top: 660px; }
+    .f05-l2 { top: 736px; }
+    .f05-l3 { top: 812px; }
+    .f05-l4 { top: 888px; }
+    .f05-l5 { top: 964px; }
+    .f05-ember { display: inline-block; color: #FFA946; opacity: 0.3; }
+    .f05-dim { display: inline-block; color: #6f6f66; }
+    .f05-caret {
+      position: absolute; top: 672px; left: 130px; width: 14px; height: 50px;
+      background: rgba(255,255,235,0.8);
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-the-signature" data-width="1080" data-height="1920" data-duration="8.789">
+
+    <div id="05-the-signature-groundclip" class="clip f05-groundclip" data-start="0" data-duration="8.789" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-field" id="05-the-signature-field"></div>
+      <div class="f05-grid" id="05-the-signature-grid"></div>
+    </div>
+
+    <div id="05-the-signature-chamberclip" class="clip f05-chamberclip" data-start="0" data-duration="8.789" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f05-chamber" id="05-the-signature-chamber">
+        <div class="f05-titlebar" id="05-the-signature-titlebar"><span class="f05-filename" id="05-the-signature-filename" data-layout-ignore>gateway-factory.ts</span></div>
+      </div>
+      <div class="f05-kicker" id="05-the-signature-kicker">
+        <span class="f05-spike" id="05-the-signature-spike">&#10009;</span><span class="f05-ktext" id="05-the-signature-ktext" data-layout-ignore>the seam, written</span>
+      </div>
+    </div>
+
+    <div id="05-the-signature-l1clip" class="clip f05-l1clip" data-start="0.64" data-duration="8.149" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f05-codeline f05-l1" id="05-the-signature-l1">function createGateway(</div>
+    </div>
+
+    <div id="05-the-signature-l2clip" class="clip f05-l2clip" data-start="2.76" data-duration="6.029" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f05-codeline f05-l2" id="05-the-signature-l2">  config: GatewayConfig,</div>
+    </div>
+
+    <div id="05-the-signature-l3clip" class="clip f05-l3clip" data-start="4.46" data-duration="4.329" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f05-codeline f05-l3" id="05-the-signature-l3">):&nbsp;<span class="f05-ember" id="05-the-signature-ember">PaymentGateway</span>&nbsp;{</div>
+    </div>
+
+    <div id="05-the-signature-l4clip" class="clip f05-l4clip" data-start="6.64" data-duration="2.149" data-track-index="5" style="position:absolute;inset:0;">
+      <div class="f05-codeline f05-l4"><span class="f05-dim" id="05-the-signature-l4">  switch (config.provider) {</span></div>
+    </div>
+
+    <div id="05-the-signature-l5clip" class="clip f05-l5clip" data-start="7.16" data-duration="1.629" data-track-index="6" style="position:absolute;inset:0;">
+      <div class="f05-codeline f05-l5"><span class="f05-dim" id="05-the-signature-l5">    &#8230;</span></div>
+    </div>
+
+    <div id="05-the-signature-caretclip" class="clip f05-caretclip" data-start="0.64" data-duration="7.12" data-track-index="7" style="position:absolute;inset:0;">
+      <div class="f05-caret" id="05-the-signature-caret"></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.789;
+      var P = "05-the-signature";
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines[P] = tl;
+
+      // Type-on mechanic: a time proxy whose onUpdate assigns textContent.
+      // The shipped GSAP has no TextPlugin, so `text:` in tween vars would be a silent no-op.
+      var CH = 18.8; // JetBrains Mono advance at 2.9cqw on this canvas
+      function typeOn(node, start, dur, caretY) {
+        var full = node.textContent;
+        var proxy = { c: full.length };
+        node.textContent = "";
+        tl.fromTo(proxy, { c: 0 }, {
+          c: full.length,
+          duration: dur,
+          ease: "none",
+          onUpdate: function () { node.textContent = full.slice(0, Math.round(proxy.c)); }
+        }, start);
+        tl.to(el(P + "-caret"), { x: full.length * CH, y: caretY, duration: dur, ease: "none" }, start);
+      }
+
+      // ── ground, chamber, chrome ──
+      tl.fromTo(el(P + "-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "-chamber"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.24);
+      tl.fromTo(el(P + "-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–2.0s) — "the seam is a signature": line 1 types in behind the caret ──
+      tl.fromTo(el(P + "-caret"), { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, 0.64);
+      typeOn(el(P + "-l1"), 0.64, 0.52, 0);
+
+      // ── Scene 2 (2.0–4.2s) — "it takes a discriminator": the parameter line ──
+      typeOn(el(P + "-l2"), 2.76, 0.46, 76);
+
+      // ── Scene 3 (4.2–6.0s) — "and returns the interface": the return type lands in ember ──
+      tl.fromTo(el(P + "-l3"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 4.46);
+      tl.to(el(P + "-caret"), { x: 3 * CH, y: 152, duration: 0.2, ease: "none" }, 4.46);
+      tl.to(el(P + "-caret"), { x: 19 * CH, y: 152, duration: 0.3, ease: "none" }, 4.94);
+      tl.fromTo(el(P + "-ember"), { opacity: 0.3 }, { opacity: 1, duration: 0.42, ease: "power2.out" }, 4.94);
+
+      // ── Scene 4 (6.0–7.4s) — "that is all the caller sees": the body is implied, never shown ──
+      typeOn(el(P + "-l4"), 6.64, 0.34, 228);
+      tl.fromTo(el(P + "-l5"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 7.16);
+
+      // ── Scene 5 (7.4–8.789s) — the caret blinks off (finite), then the chamber holds ──
+      tl.to(el(P + "-caret"), { opacity: 0, duration: 0.14, ease: "none" }, 7.52);
+      tl.to(el(P + "-caret"), { opacity: 1, duration: 0.1, ease: "none" }, 7.66);
+      tl.to(el(P + "-caret"), { opacity: 0, duration: 0.14, ease: "none" }, 7.76);
+
+      // subtle jitter (finite, low amplitude): chamber only, after everything has landed
+      var jit = { p: 0 };
+      var hold = el(P + "-chamber");
+      var HOLD = 8.3;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.25,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          hold.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

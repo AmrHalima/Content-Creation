@@ -1,0 +1,190 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 168px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f01-spike { color: #1a1a1a; font-size: 2.6cqw; letter-spacing: 0; }
+    .f01-word {
+      position: absolute; top: 262px; left: 84px;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 8.4cqw; line-height: 0.98; letter-spacing: -0.026em;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f01-sub {
+      position: absolute; top: 456px; left: 86px;
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.3cqw; letter-spacing: 0.01em; color: #76766e; opacity: 0;
+    }
+    .f01-chamber {
+      position: absolute; top: 560px; left: 56px; width: 968px;
+      box-sizing: border-box;
+      background: #1a1a1a;
+      border: 2px solid #ffffeb;
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .f01-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 66px; padding: 0 26px;
+      background: #252320;
+      border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.0cqw; letter-spacing: 0.02em; color: #ffffeb;
+    }
+    .f01-bar-tag { color: rgba(255,255,235,0.55); letter-spacing: 0.12em; text-transform: uppercase; font-size: 1.7cqw; }
+    .f01-code { padding: 30px 26px 34px; }
+    .f01-cl {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; line-height: 1.62; letter-spacing: -0.01em;
+      color: #8a8a7a; white-space: nowrap; opacity: 0;
+    }
+    .f01-kw { color: #ffa946; }
+    .f01-typ { color: #5db8a6; }
+    .f01-cm { color: #76766e; }
+    .f01-hi { color: #ffffeb; }
+    .f01-chips {
+      position: absolute; top: 1290px; left: 56px; width: 968px;
+      display: flex; align-items: center; gap: 22px;
+    }
+    .f01-chip {
+      box-sizing: border-box;
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 26px;
+      background: #e4e4d0;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.04em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-chip-n {
+      display: inline-block;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 2.8cqw; line-height: 1; letter-spacing: 0;
+    }
+    .f01-note {
+      position: absolute; top: 1444px; left: 58px; width: 968px;
+      display: flex; align-items: center; gap: 18px;
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.2cqw; letter-spacing: 0.005em; color: #76766e;
+      opacity: 0;
+    }
+    .f01-rule { flex: 0 0 54px; height: 1px; background: rgba(26,26,26,0.22); }
+  </style>
+
+  <div id="root" data-composition-id="01-the-pile" data-width="1080" data-height="1920" data-duration="11.103">
+
+    <div id="01-the-pile-fieldclip" class="clip" data-start="0" data-duration="11.103" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field"></div>
+      <div id="01-the-pile-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="01-the-pile-headclip" class="clip" data-start="0" data-duration="11.103" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="01-the-pile-kicker" class="f01-kicker"><span class="f01-spike">&#10033;</span><span>Builder</span></div>
+      <div id="01-the-pile-word" class="f01-word">Order</div>
+    </div>
+
+    <div id="01-the-pile-chamberclip" class="clip" data-start="1.90" data-duration="9.203" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="01-the-pile-chamber" class="f01-chamber">
+        <div class="f01-bar" data-layout-ignore><span>order.ts</span><span class="f01-bar-tag">overloads</span></div>
+        <div class="f01-code">
+          <div id="01-the-pile-l1" class="f01-cl"><span class="f01-kw">class</span> <span class="f01-hi">Order</span> {</div>
+          <div id="01-the-pile-l2" class="f01-cl">&nbsp;&nbsp;<span class="f01-kw">constructor</span>(c: <span class="f01-typ">Customer</span>);</div>
+          <div id="01-the-pile-l3" class="f01-cl">&nbsp;&nbsp;<span class="f01-kw">constructor</span>(c: <span class="f01-typ">Customer</span>, l: <span class="f01-typ">LineItem</span>);</div>
+          <div id="01-the-pile-l4" class="f01-cl">&nbsp;&nbsp;<span class="f01-kw">constructor</span>(c: <span class="f01-typ">Customer</span>, l: <span class="f01-typ">LineItem</span>, s: <span class="f01-typ">Address</span>);</div>
+          <div id="01-the-pile-l5" class="f01-cl">&nbsp;&nbsp;<span class="f01-cm">// &#8230; one overload per combination</span></div>
+          <div id="01-the-pile-l6" class="f01-cl">}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="01-the-pile-chipsclip" class="clip" data-start="4.78" data-duration="6.323" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f01-chips">
+        <div id="01-the-pile-chip-a" class="f01-chip"><span class="f01-chip-n">5</span><span>fields</span></div>
+        <div id="01-the-pile-chip-b" class="f01-chip"><span class="f01-chip-n">3</span><span>optional</span></div>
+      </div>
+    </div>
+
+    <div id="01-the-pile-noteclip" class="clip" data-start="9.04" data-duration="2.063" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="01-the-pile-note" class="f01-note">
+        <span class="f01-rule"></span><span>one signature each, and every one of them readable</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.603;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-the-pile"] = tl;
+
+      // ── Scene 1 (0.0–1.9s) — "a builder exists". Paper, kicker, the wordmark. No chamber
+      //    yet: the VO is still naming the pattern, not showing its cost. ──
+      tl.fromTo(el("01-the-pile-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("01-the-pile-kicker"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.18);
+      tl.fromTo(el("01-the-pile-word"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.24);
+      tl.fromTo(el("01-the-pile-sub"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.86);
+
+      // ── Scene 2 (1.9–4.8s) — "because constructors stop scaling". The dark chamber rises and
+      //    the pile assembles one signature per spoken beat (vertical stagger-assemble). ──
+      tl.fromTo(el("01-the-pile-chamber"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.90);
+      tl.fromTo(el("01-the-pile-l1"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 2.10);
+      tl.fromTo(el("01-the-pile-l2"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 2.92);
+      tl.fromTo(el("01-the-pile-l3"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 3.40);
+
+      // ── Scene 3 (4.8–7.9s) — "five fields, three optional". The widest overload lands on
+      //    "Five", then the two count chips settle under the chamber on their own words. ──
+      tl.fromTo(el("01-the-pile-l4"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 4.78);
+      tl.fromTo(el("01-the-pile-chip-a"), { opacity: 0, scale: 0.94, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.36, ease: "power3.out" }, 5.20);
+      tl.fromTo(el("01-the-pile-chip-b"), { opacity: 0, scale: 0.94, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.36, ease: "power3.out" }, 6.40);
+      tl.fromTo(el("01-the-pile-chip-b"), { filter: "brightness(1)" }, { filter: "brightness(0.965)", duration: 0.3, ease: "power1.inOut" }, 6.90);
+      tl.fromTo(el("01-the-pile-chip-b"), { filter: "brightness(0.965)" }, { filter: "brightness(1)", duration: 0.34, ease: "power1.inOut" }, 7.22);
+
+      // ── Scene 4 (7.9–10.6s) — "an overload for every combination". The ellipsis comment
+      //    lands last (it is the claim), the brace closes the pile, then a held read with a
+      //    jitter on the chamber only. No fifth arrival. ──
+      tl.fromTo(el("01-the-pile-l5"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 8.10);
+      tl.fromTo(el("01-the-pile-l6"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 8.60);
+      tl.fromTo(el("01-the-pile-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 9.04);
+
+      var jit = { p: 0 };
+      var box = el("01-the-pile-chamber");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.28,
+        duration: D - 9.7,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.5).toFixed(3) + "px)"; }
+      }, 9.7);
+    })();
+  </script>
+</template>

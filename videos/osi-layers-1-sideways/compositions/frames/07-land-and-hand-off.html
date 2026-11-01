@@ -1,0 +1,176 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-svg { position: absolute; inset: 0; }
+    .f07-ghost { opacity: 0; }
+    .f07-gpart { opacity: 0.18; }
+    .f07-row { fill: none; stroke: #1a1a1a; stroke-width: 3; }
+    .f07-garw { fill: none; stroke: #1a1a1a; stroke-width: 4; stroke-linecap: round; }
+    .f07-ghead { fill: #1a1a1a; }
+
+    .f07-setup {
+      position: absolute; left: 60px; top: 652px; width: 960px; height: 34px;
+      text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f07-instr {
+      position: absolute; left: 60px; top: 706px; width: 960px; height: 100px;
+      text-align: center;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 8.4cqw; line-height: 1.06;
+      letter-spacing: -0.03em; opacity: 0;
+    }
+    .f07-instrtext { display: inline-block; }
+
+    .f07-card {
+      position: absolute; left: 90px; top: 1194px; width: 900px; height: 196px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; padding: 26px 32px;
+      opacity: 0;
+    }
+    .f07-cardtitle {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.6cqw; line-height: 1.06;
+      letter-spacing: -0.022em;
+    }
+    .f07-cardbody {
+      margin-top: 14px; font-family: "Inter", sans-serif; font-size: 2.7cqw; line-height: 1.28;
+      color: #76766e; opacity: 0;
+    }
+    .f07-pill {
+      position: absolute; left: 340px; top: 1410px; width: 400px; height: 68px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #f0d7ff; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-wpgy" id="root" data-composition-id="07-land-and-hand-off" data-width="1080" data-height="1920">
+
+    <div data-hf-id="hf-n5yl" id="07-land-and-hand-off-fieldclip" class="clip" data-start="0" data-duration="9.131" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-r2g2" class="f07-field"></div>
+      <div data-hf-id="hf-ijl8" id="07-land-and-hand-off-grid" class="f07-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-fsfh" id="07-land-and-hand-off-ghostclip" class="clip" data-start="0" data-duration="9.131" style="position:absolute;inset:0;" data-track-index="1">
+      <svg data-hf-id="hf-suk1" class="f07-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <g data-hf-id="hf-sx4m" id="07-land-and-hand-off-ghost" class="f07-ghost">
+          <g data-hf-id="hf-ejd2" id="07-land-and-hand-off-gleft" class="f07-gpart">
+            <rect data-hf-id="hf-ryce" class="f07-row" x="140" y="860" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-k4wn" class="f07-row" x="140" y="902" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-5c7h" class="f07-row" x="140" y="944" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-z0rf" class="f07-row" x="140" y="986" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-ok8d" class="f07-row" x="140" y="1028" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-k9we" class="f07-row" x="140" y="1070" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-gioz" class="f07-row" x="140" y="1112" width="240" height="30" rx="4" />
+          </g>
+          <g data-hf-id="hf-zd25" id="07-land-and-hand-off-gright" class="f07-gpart">
+            <rect data-hf-id="hf-ji4g" class="f07-row" x="700" y="860" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-8u09" class="f07-row" x="700" y="902" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-lsc3" class="f07-row" x="700" y="944" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-s3s5" class="f07-row" x="700" y="986" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-k443" class="f07-row" x="700" y="1028" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-wwbw" class="f07-row" x="700" y="1070" width="240" height="30" rx="4" />
+            <rect data-hf-id="hf-u0a1" class="f07-row" x="700" y="1112" width="240" height="30" rx="4" />
+          </g>
+          <g data-hf-id="hf-ovvf" id="07-land-and-hand-off-garw" class="f07-gpart">
+            <path data-hf-id="hf-4vl6" id="07-land-and-hand-off-garwpath" class="f07-garw" d="M 380 1001 L 682 1001" />
+            <polygon data-hf-id="hf-dl73" class="f07-ghead" points="684,991 700,1001 684,1011" />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-sgpt" id="07-land-and-hand-off-headclip" class="clip" data-start="0" data-duration="9.131" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-o0uw" id="07-land-and-hand-off-setup" class="f07-setup">next time you see the diagram</div>
+      <div data-hf-id="hf-yiy0" id="07-land-and-hand-off-instr" class="f07-instr"><span data-hf-id="hf-jgje" id="07-land-and-hand-off-instrtext">read it</span></div>
+    </div>
+
+    <div data-hf-id="hf-3bh8" id="07-land-and-hand-off-cardclip" class="clip" data-start="0" data-duration="9.131" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-p3tk" id="07-land-and-hand-off-card" class="f07-card">
+        <div data-hf-id="hf-by2q" class="f07-cardtitle">The seven pairs, side by side</div>
+        <div data-hf-id="hf-s7g5" id="07-land-and-hand-off-cardbody" class="f07-cardbody">Every layer talking to its partner at the other end of the wire.</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-5pta" id="07-land-and-hand-off-pillclip" class="clip" data-start="7.0" data-duration="2.131" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-7x6v" id="07-land-and-hand-off-pill" class="f07-pill">the article</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.131;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-land-and-hand-off"] = tl;
+      var PFX = "07-land-and-hand-off-";
+
+      // ── Scene 1 (0.0–1.5s) — the matrix clears into its own ghost: two columns and one long
+      //    horizontal arrow at 18% ink, still in the same geometry, under the two statements. ──
+      tl.fromTo(el(PFX + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(PFX + "ghost"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0.15);
+
+      // ── Scene 2 (1.5–4.4s) — the instruction line, one restrained move, then one hand-off:
+      //    "read it" becomes "read it sideways" on the spoken word. Nothing else arrives. ──
+      tl.fromTo(el(PFX + "setup"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.87);
+      tl.fromTo(el(PFX + "instr"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.78);
+      // discrete-text-sequence via a time proxy + reverse search (no TextPlugin): one hand-off,
+      // one move — "read it" becomes "read it sideways" on the spoken word and nothing else moves
+      var instrtext = el(PFX + "instrtext");
+      var tp = { t: 0 };
+      tl.to(tp, {
+        t: 3.44,
+        duration: 3.44,
+        ease: "none",
+        onUpdate: function () {
+          instrtext.textContent = tp.t >= 3.44 ? "read it sideways" : "read it";
+        }
+      }, 0);
+      tl.to(el(PFX + "instr"), { opacity: 0, duration: 0.09, ease: "none" }, 3.35);
+      tl.to(el(PFX + "instr"), { opacity: 1, duration: 0.3, ease: "power1.out" }, 3.47);
+
+      // ── Scene 3 (4.4–7.4s) — "all seven pairs, side by side": the ghost brightens once,
+      //    tracking across the gap, while the article card rises below the instruction line. ──
+      tl.to(el(PFX + "gleft"), { opacity: 0.34, duration: 0.4, ease: "power1.out" }, 4.661);
+      var garw = el(PFX + "garwpath");
+      var glen = garw.getTotalLength() * 1.05;
+      garw.style.strokeDasharray = String(glen);
+      garw.style.strokeDashoffset = String(glen);
+      tl.to(garw, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 5.541);
+      tl.to(el(PFX + "gright"), { opacity: 0.34, duration: 0.4, ease: "power1.out" }, 6.231);
+      tl.fromTo(el(PFX + "card"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 4.991);
+      tl.to(el(PFX + "cardbody"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 5.541);
+
+      // ── Scene 4 (7.4–9.131s) — the only lavender in the part, the only action fill, then still. ──
+      tl.fromTo(el(PFX + "pill"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 7.05);
+
+      // still hold: 1.2px jitter on the instruction line only (sine-wave-loop, sub-threshold)
+      var span = el(PFX + "instrtext");
+      var jp = { p: 0 };
+      tl.to(jp, {
+        p: Math.PI * 2 * 0.25,
+        duration: 0.85,
+        ease: "none",
+        onUpdate: function () {
+          span.style.transform = "translateY(" + (1.2 * Math.sin(jp.p)).toFixed(2) + "px)";
+        }
+      }, 8.25);
+    })();
+  </script>
+</template>

@@ -1,0 +1,207 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f03-ground { position: absolute; inset: 0; }
+    .f03-graph { position: absolute; inset: 0; }
+    .f03-marks { position: absolute; inset: 0; }
+
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; top: 130px; left: 72px;
+      display: inline-flex; align-items: baseline; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+    .f03-spike { color: rgba(26,26,26,0.64); }
+
+    /* box chrome — the 2px ink border is the signature; the seam is the dark chamber */
+    .f03-box {
+      position: absolute; box-sizing: border-box; background: #ffffeb;
+      border: 2px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f03-caller { top: 240px; left: 230px; width: 620px; height: 160px; padding: 0 34px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .f03-seam {
+      top: 560px; left: 190px; width: 700px; height: 210px; padding: 0 34px;
+      background: #181715; border: 1px solid rgba(255,255,235,0.22);
+      display: flex; flex-direction: column; justify-content: center; gap: 10px;
+    }
+    .f03-impls { top: 1000px; left: 150px; width: 780px; height: 500px; padding: 30px 34px 0; }
+    .f03-role {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(26,26,26,0.64);
+    }
+    .f03-seam-role { color: rgba(255,255,235,0.72); }
+    .f03-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.0cqw; line-height: 1.0;
+      letter-spacing: -0.022em; color: #1a1a1a;
+    }
+    .f03-seam-name { color: #ffffeb; }
+    .f03-sig { font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: rgba(26,26,26,0.74); }
+    .f03-seam-sig { color: rgba(255,255,235,0.78); }
+    .f03-ember { color: #ffa946; }
+
+    /* the interchangeable list, hanging off one arrow */
+    .f03-row {
+      position: absolute; left: 184px; width: 700px; height: 104px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 22px; padding: 0 26px;
+      border: 2px solid rgba(26,26,26,0.55); border-radius: 8px; background: #ffffeb;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f03-tick { flex: 0 0 12px; height: 44px; background: rgba(26,26,26,0.4); }
+    .f03-row-1 { top: 1100px; }
+    .f03-row-2 { top: 1224px; }
+    .f03-row-3 { top: 1348px; }
+
+    .f03-svg { position: absolute; inset: 0; }
+    .f03-link { fill: none; stroke: rgba(26,26,26,0.6); stroke-width: 4; stroke-linecap: round; }
+    .f03-link-soft { stroke: rgba(26,26,26,0.45); }
+    .f03-head { fill: rgba(26,26,26,0.6); opacity: 0; }
+    .f03-head-soft { fill: rgba(26,26,26,0.45); }
+
+    .f03-label {
+      position: absolute; width: 210px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.04em;
+      color: rgba(26,26,26,0.74); opacity: 0;
+    }
+    .f03-calls { top: 838px; left: 250px; }
+    .f03-imports { top: 838px; left: 620px; }
+    .f03-narrow { top: 402px; left: 596px; width: 250px; color: rgba(26,26,26,0.86); }
+
+    /* transient marks layer */
+    .f03-mark {
+      position: absolute; height: 76px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; padding: 0 24px;
+      border: 2px solid rgba(26,26,26,0.35); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.55);
+      opacity: 0;
+    }
+    .f03-mark-type { top: 190px; left: 700px; width: 300px; }
+    .f03-mark-behaviour { top: 466px; left: 686px; width: 330px; color: rgba(26,26,26,0.86); border-color: rgba(26,26,26,0.6); }
+  </style>
+
+  <div id="root" data-composition-id="03-the-list" data-width="1080" data-height="1920" data-duration="14.111">
+
+    <div id="03-the-list-ground" class="clip f03-ground" data-start="0" data-duration="14.111" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="03-the-list-field" class="f03-field"></div>
+      <div id="03-the-list-grid" class="f03-grid"></div>
+      <div id="03-the-list-kicker" class="f03-kicker"><span class="f03-spike">&#10033;</span><span>the anatomy</span></div>
+    </div>
+
+    <div id="03-the-list-graph" class="clip f03-graph" data-start="0" data-duration="14.111" data-track-index="1" style="position:absolute;inset:0;">
+      <svg id="03-the-list-svg" class="f03-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="03-the-list-d1" class="f03-link" d="M 470 400 L 470 560" />
+        <path id="03-the-list-d2" class="f03-link" d="M 540 770 L 540 1000" />
+        <path id="03-the-list-i1" class="f03-link f03-link-soft" d="M 620 1000 L 620 770" />
+        <polygon id="03-the-list-h1" class="f03-head" points="462,552 478,552 470,568" />
+        <polygon id="03-the-list-h2" class="f03-head" points="532,992 548,992 540,1008" />
+        <polygon id="03-the-list-h3" class="f03-head f03-head-soft" points="612,778 628,778 620,762" />
+      </svg>
+
+      <div id="03-the-list-caller" class="f03-box f03-caller">
+        <div id="03-the-list-callerrole" class="f03-role">caller</div>
+        <div id="03-the-list-callername" class="f03-name">Checkout</div>
+      </div>
+      <div id="03-the-list-seam" class="f03-box f03-seam">
+        <div id="03-the-list-seamrole" class="f03-role f03-seam-role">the seam</div>
+        <div id="03-the-list-seamname" class="f03-name f03-seam-name">PricingStrategy</div>
+        <div id="03-the-list-seamsig" class="f03-sig f03-seam-sig"><span class="f03-ember">price</span>(cart): number</div>
+      </div>
+      <div id="03-the-list-impls" class="f03-box f03-impls">
+        <div id="03-the-list-implsrole" class="f03-role">implementations</div>
+      </div>
+      <div id="03-the-list-r1" class="f03-row f03-row-1"><span class="f03-tick"></span><span>StandardPricing</span></div>
+      <div id="03-the-list-r2" class="f03-row f03-row-2"><span class="f03-tick"></span><span>ContractPricing</span></div>
+      <div id="03-the-list-r3" class="f03-row f03-row-3"><span class="f03-tick"></span><span>SeasonalPricing</span></div>
+
+      <div id="03-the-list-calls" class="f03-label f03-calls">calls</div>
+      <div id="03-the-list-imports" class="f03-label f03-imports">imports</div>
+      <div id="03-the-list-narrow" class="f03-label f03-narrow">one name</div>
+    </div>
+
+    <div id="03-the-list-marks" class="clip f03-marks" data-start="0" data-duration="14.111" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="03-the-list-mtype" class="f03-mark f03-mark-type">which type</div>
+      <div id="03-the-list-mbeh" class="f03-mark f03-mark-behaviour">which behaviour</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 13.611;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-the-list"] = tl;
+
+      // Measured cues (SCRIPT Line 3): A factory 0.00 · which type 1.26 · build. 2.34 ·
+      // A strategy 3.42 · picks 4.22 · which behaviour 4.74 · run, 6.08 · the caller 7.32 ·
+      // holds 7.72 · only 8.34 · the interface. 9.12 · The dependency 10.76 · narrows 11.48 ·
+      // one 12.68 · name. 12.98
+
+      // ── Scene 1 (0.0–2.6s) — the field holds, and the factory's question sits beside it ──
+      tl.fromTo(el("03-the-list-grid"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+      tl.fromTo(el("03-the-list-kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.08);
+      tl.fromTo(el("03-the-list-caller"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
+      tl.fromTo(el("03-the-list-seam"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.16);
+      tl.fromTo(el("03-the-list-mtype"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 0.2);
+      // a within-frame seam: the mark retires, it is not a frame exit
+      tl.to(el("03-the-list-mtype"), { opacity: 0, duration: 0.34, ease: "power1.in" }, 2.34);
+
+      // ── Scene 2 (2.6–6.4s) — the list lands off the seam's spine, one row per beat ──
+      tl.fromTo(el("03-the-list-impls"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 3.42);
+      var D2 = el("03-the-list-d2");
+      var D2len = D2.getTotalLength() * 1.05;
+      D2.style.strokeDasharray = String(D2len);
+      D2.style.strokeDashoffset = String(D2len);
+      // svg-path-draw down the spine, ahead of the rows
+      tl.to(D2, { strokeDashoffset: 0, duration: 0.62, ease: "power3.out" }, 3.6);
+      tl.fromTo(el("03-the-list-h2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.18);
+      // center-outward-expansion, short-path form: each row slides out of the spine leftward
+      tl.fromTo(el("03-the-list-r1"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 4.22);
+      tl.fromTo(el("03-the-list-r2"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 4.74);
+      tl.fromTo(el("03-the-list-r3"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 5.3);
+      tl.fromTo(el("03-the-list-mbeh"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.46, ease: "power3.out" }, 5.7);
+
+      // ── Scene 3 (6.4–9.6s) — which way knowledge flows ──
+      var D1 = el("03-the-list-d1");
+      var D1len = D1.getTotalLength() * 1.05;
+      D1.style.strokeDasharray = String(D1len);
+      D1.style.strokeDashoffset = String(D1len);
+      tl.to(D1, { strokeDashoffset: 0, duration: 0.5, ease: "power3.out" }, 6.4);
+      tl.fromTo(el("03-the-list-h1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.86);
+      tl.fromTo(el("03-the-list-calls"), { opacity: 0 }, { opacity: 1, duration: 0.32, ease: "power1.out" }, 7.32);
+      tl.to(D1, { attr: { "stroke-width": 7 }, duration: 0.4, ease: "power2.out" }, 7.72);
+      // dashed, so it fades rather than draws (see the strokeDashoffset note in frame 01):
+      // the import arrow appears UPWARD — the implementations know the interface, not the reverse
+      tl.fromTo(el("03-the-list-i1"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 8.34);
+      tl.fromTo(el("03-the-list-h3"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 8.94);
+      tl.fromTo(el("03-the-list-imports"), { opacity: 0 }, { opacity: 1, duration: 0.32, ease: "power1.out" }, 9.12);
+
+      // ── Scene 4 (9.6–13.611s) — the push-in, and the one dependency that stays lit ──
+      tl.to(el("03-the-list-graph"), { scale: 1.025, duration: 0.9, ease: "power2.out" }, 10.76);
+      tl.to(el("03-the-list-d1"), { stroke: "#ffa946", duration: 0.5, ease: "power1.out" }, 11.48);
+      tl.to(el("03-the-list-h1"), { fill: "#ffa946", duration: 0.5, ease: "power1.out" }, 11.48);
+      tl.to([el("03-the-list-r1"), el("03-the-list-r2"), el("03-the-list-r3")], { opacity: 0.62, duration: 0.6, ease: "power1.inOut" }, 12.5);
+      tl.fromTo(el("03-the-list-narrow"), { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 12.98);
+      // sine-wave-loop: one held group, minimum amplitude
+      tl.to(el("03-the-list-svg"), { y: 2, duration: 0.36, ease: "sine.inOut", yoyo: true, repeat: 1 }, 13.1);
+    })();
+  </script>
+</template>

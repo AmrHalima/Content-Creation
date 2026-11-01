@@ -1,0 +1,138 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    /* Ligature guard: declared once on #root, never re-declared on a descendant (see 01-hook). */
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* G5 CTA — pb-11/pb-21 atoms at their shipped positions (176px ask band, plate 330/720/420/104) */
+    .f5-ask { position: absolute; left: 72px; top: 296px; width: 936px; height: 176px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .f5-plate { position: absolute; left: 330px; top: 720px; width: 420px; height: 104px; display: flex;
+      align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    .f5-brandline { position: absolute; left: 72px; top: 906px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+
+    /* the legend the film is a reference for: four chips, chrome, and NOT one of them lit —
+       the honest answer has a worst case that part 38 owns, so no O(1) is marked correct here */
+    .f5-chip { position: absolute; top: 838px; width: 200px; height: 52px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.02em; color: #9BA6B2; white-space: nowrap; }
+    .f5-c1 { left: 72px; }
+    .f5-c2 { left: 317px; }
+    .f5-c3 { left: 562px; }
+    .f5-c4 { left: 807px; }
+    .pb-sup { display: inline-block; font-size: 60%; line-height: 1; vertical-align: 0.5em; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="5.50">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="5.50" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="5.50" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 41</div>
+        <div id="c5-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="5.50" data-track-index="2">
+      <div id="f5-ask" class="f5-ask">a&nbsp;hash&nbsp;map&nbsp;lookup?</div>
+
+      <div id="f5-plate" class="f5-plate">save&nbsp;this</div>
+
+      <div id="f5-chip1" class="f5-chip f5-c1" data-layout-ignore>O(1)</div>
+      <div id="f5-chip2" class="f5-chip f5-c2" data-layout-ignore>O(n)</div>
+      <div id="f5-chip3" class="f5-chip f5-c3" data-layout-ignore>O(n<sup class="pb-sup">2</sup>)</div>
+      <div id="f5-chip4" class="f5-chip f5-c4" data-layout-ignore>O(log n)</div>
+
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 41 · BEGINNER</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.50;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c5-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* F5 onsets: Save 0.00 / this. 0.28 | What's 1.00 / the 1.28 / Big 1.42 / O 1.58 / of 1.76
+         / looking 1.94 / up 2.12 / a 2.32 / key 2.42 / in 2.62 / a 2.74 / hash 2.82 / map? 3.04 */
+
+      /* no band-level wipe here: every element arrives on its own word, and translating the whole
+         band put its children above the container's top edge mid-wipe (check's container_overflow
+         info). pb-21's shipped G5 wipes the ask element only — same lesson, learned twice. */
+
+      /* the mechanic verb lands first and alone, on "Save this" */
+      tl.fromTo(el("f5-plate"), { opacity: 0, y: -70, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.36, ease: "back.out(1.7)", immediateRender: false }, 0.12);
+      tl.fromTo(el("f5-plate"), { y: 0 }, { y: -5, duration: (D - 1.2) / 4, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 1.2);
+
+      /* the question arrives on "What's" */
+      tl.fromTo(el("f5-ask"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 0.94);
+
+      /* the legend arrives with "the Big O of" as ONE row, opacity only: no scale, no flash, no
+         chip lit (§ 5.2's static law, applied here so the screenshot is a reference card) */
+      tl.fromTo(el("f5-chip1"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.5);
+      tl.fromTo(el("f5-chip2"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.62);
+      tl.fromTo(el("f5-chip3"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.74);
+      tl.fromTo(el("f5-chip4"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.86);
+
+      /* the series line closes on "map?" and the frame holds */
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 3.08);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

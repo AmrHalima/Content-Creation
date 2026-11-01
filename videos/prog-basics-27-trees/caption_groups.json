@@ -1,0 +1,913 @@
+{
+  "total_duration_s": 35.5,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 1.04,
+      "text": "Your computer's folders",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "Your",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "computer's",
+          "start": 0.14,
+          "end": 0.72
+        },
+        {
+          "id": "caption-word-0-2",
+          "text": "folders",
+          "start": 0.72,
+          "end": 1.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 1.04,
+      "end": 2.26,
+      "text": "are secretly a",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "are",
+          "start": 1.04,
+          "end": 1.58
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "secretly",
+          "start": 1.58,
+          "end": 2.02
+        },
+        {
+          "id": "caption-word-1-2",
+          "text": "a",
+          "start": 2.02,
+          "end": 2.26
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 2.26,
+      "end": 2.92,
+      "text": "data structure.",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "data",
+          "start": 2.26,
+          "end": 2.44
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "structure.",
+          "start": 2.44,
+          "end": 2.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 2,
+      "start": 4.2,
+      "end": 4.58,
+      "text": "A tree",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "A",
+          "start": 4.2,
+          "end": 4.3
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "tree",
+          "start": 4.3,
+          "end": 4.58
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 2,
+      "start": 4.58,
+      "end": 4.96,
+      "text": "is a",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "is",
+          "start": 4.58,
+          "end": 4.86
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "a",
+          "start": 4.86,
+          "end": 4.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 4.96,
+      "end": 6.12,
+      "text": "hierarchy of nodes.",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "hierarchy",
+          "start": 4.96,
+          "end": 5.36
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "of",
+          "start": 5.36,
+          "end": 5.7
+        },
+        {
+          "id": "caption-word-5-2",
+          "text": "nodes.",
+          "start": 5.7,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 6.7,
+      "end": 7.12,
+      "text": "A node",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "A",
+          "start": 6.7,
+          "end": 6.82
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "node",
+          "start": 6.82,
+          "end": 7.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 7.12,
+      "end": 7.6,
+      "text": "is one",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "is",
+          "start": 7.12,
+          "end": 7.34
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "one",
+          "start": 7.34,
+          "end": 7.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 7.6,
+      "end": 7.88,
+      "text": "box,",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "box,",
+          "start": 7.6,
+          "end": 7.88
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 7.88,
+      "end": 9.12,
+      "text": "holding one thing.",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "holding",
+          "start": 7.88,
+          "end": 8.42
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "one",
+          "start": 8.42,
+          "end": 8.72
+        },
+        {
+          "id": "caption-word-9-2",
+          "text": "thing.",
+          "start": 8.72,
+          "end": 9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 9.46,
+      "end": 9.94,
+      "text": "One root",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "One",
+          "start": 9.46,
+          "end": 9.7
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "root",
+          "start": 9.7,
+          "end": 9.94
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 9.94,
+      "end": 10.18,
+      "text": "at the",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "at",
+          "start": 9.94,
+          "end": 10.1
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "the",
+          "start": 10.1,
+          "end": 10.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 10.18,
+      "end": 10.64,
+      "text": "top,",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "top,",
+          "start": 10.18,
+          "end": 10.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 2,
+      "start": 10.78,
+      "end": 11.18,
+      "text": "and every",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "and",
+          "start": 10.78,
+          "end": 10.88
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "every",
+          "start": 10.88,
+          "end": 11.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 2,
+      "start": 11.18,
+      "end": 11.66,
+      "text": "node can",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "node",
+          "start": 11.18,
+          "end": 11.48
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "can",
+          "start": 11.48,
+          "end": 11.66
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 2,
+      "start": 11.66,
+      "end": 12.3,
+      "text": "have children.",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "have",
+          "start": 11.66,
+          "end": 11.84
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "children.",
+          "start": 11.84,
+          "end": 12.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 13.5,
+      "end": 13.88,
+      "text": "A node",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "A",
+          "start": 13.5,
+          "end": 13.62
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "node",
+          "start": 13.62,
+          "end": 13.88
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 13.88,
+      "end": 14.34,
+      "text": "with no",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "with",
+          "start": 13.88,
+          "end": 14.12
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "no",
+          "start": 14.12,
+          "end": 14.34
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 3,
+      "start": 14.34,
+      "end": 14.98,
+      "text": "children is",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "children",
+          "start": 14.34,
+          "end": 14.72
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "is",
+          "start": 14.72,
+          "end": 14.98
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 14.98,
+      "end": 15.44,
+      "text": "a leaf.",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "a",
+          "start": 14.98,
+          "end": 15.1
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "leaf.",
+          "start": 15.1,
+          "end": 15.32
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 3,
+      "start": 16.04,
+      "end": 16.68,
+      "text": "Folders,",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "Folders,",
+          "start": 16.04,
+          "end": 16.56
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 3,
+      "start": 16.86,
+      "end": 18.06,
+      "text": "HTML pages,",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "HTML",
+          "start": 16.86,
+          "end": 17.36
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "pages,",
+          "start": 17.36,
+          "end": 17.94
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 3,
+      "start": 18.32,
+      "end": 18.66,
+      "text": "and org",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "and",
+          "start": 18.32,
+          "end": 18.42
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "org",
+          "start": 18.42,
+          "end": 18.66
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 3,
+      "start": 18.66,
+      "end": 19.24,
+      "text": "charts are",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "charts",
+          "start": 18.66,
+          "end": 18.98
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "are",
+          "start": 18.98,
+          "end": 19.24
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 3,
+      "start": 19.24,
+      "end": 19.86,
+      "text": "all trees.",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "all",
+          "start": 19.24,
+          "end": 19.44
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "trees.",
+          "start": 19.44,
+          "end": 19.74
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 3,
+      "start": 20.46,
+      "end": 20.92,
+      "text": "This one",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "This",
+          "start": 20.46,
+          "end": 20.7
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "one",
+          "start": 20.7,
+          "end": 20.92
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 3,
+      "start": 20.92,
+      "end": 21.42,
+      "text": "has five",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "has",
+          "start": 20.92,
+          "end": 21.12
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "five",
+          "start": 21.12,
+          "end": 21.42
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 3,
+      "start": 21.42,
+      "end": 22.08,
+      "text": "nodes and",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "nodes",
+          "start": 21.42,
+          "end": 21.78
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "and",
+          "start": 21.78,
+          "end": 22.08
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 3,
+      "start": 22.08,
+      "end": 22.78,
+      "text": "three leaves.",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "three",
+          "start": 22.08,
+          "end": 22.3
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "leaves.",
+          "start": 22.3,
+          "end": 22.66
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 4,
+      "start": 23.9,
+      "end": 24.28,
+      "text": "A list",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "A",
+          "start": 23.9,
+          "end": 24.02
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "list",
+          "start": 24.02,
+          "end": 24.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 24.28,
+      "end": 25.16,
+      "text": "is one line.",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "is",
+          "start": 24.28,
+          "end": 24.48
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "one",
+          "start": 24.48,
+          "end": 24.74
+        },
+        {
+          "id": "caption-word-30-2",
+          "text": "line.",
+          "start": 24.74,
+          "end": 25.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 4,
+      "start": 25.64,
+      "end": 25.94,
+      "text": "A tree",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "A",
+          "start": 25.64,
+          "end": 25.74
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "tree",
+          "start": 25.74,
+          "end": 25.94
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 4,
+      "start": 25.94,
+      "end": 26.38,
+      "text": "branches,",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "branches,",
+          "start": 25.94,
+          "end": 26.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 4,
+      "start": 26.38,
+      "end": 27.42,
+      "text": "and each branch",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "and",
+          "start": 26.38,
+          "end": 26.86
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "each",
+          "start": 26.86,
+          "end": 27.1
+        },
+        {
+          "id": "caption-word-33-2",
+          "text": "branch",
+          "start": 27.1,
+          "end": 27.42
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 4,
+      "start": 27.42,
+      "end": 28.34,
+      "text": "is another tree.",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "is",
+          "start": 27.42,
+          "end": 27.64
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "another",
+          "start": 27.64,
+          "end": 27.86
+        },
+        {
+          "id": "caption-word-34-2",
+          "text": "tree.",
+          "start": 27.86,
+          "end": 28.22
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 5,
+      "start": 29.5,
+      "end": 29.84,
+      "text": "How many",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "How",
+          "start": 29.5,
+          "end": 29.66
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "many",
+          "start": 29.66,
+          "end": 29.84
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 29.84,
+      "end": 30.38,
+      "text": "leaves if",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "leaves",
+          "start": 29.84,
+          "end": 30.16
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "if",
+          "start": 30.16,
+          "end": 30.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 5,
+      "start": 30.38,
+      "end": 30.7,
+      "text": "the root",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "the",
+          "start": 30.38,
+          "end": 30.52
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "root",
+          "start": 30.52,
+          "end": 30.7
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 5,
+      "start": 30.7,
+      "end": 31.14,
+      "text": "has 2",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "has",
+          "start": 30.7,
+          "end": 30.92
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "2",
+          "start": 30.92,
+          "end": 31.14
+        }
+      ]
+    },
+    {
+      "id": "caption-group-39",
+      "frame": 5,
+      "start": 31.14,
+      "end": 32.3,
+      "text": "children and each",
+      "words": [
+        {
+          "id": "caption-word-39-0",
+          "text": "children",
+          "start": 31.14,
+          "end": 31.56
+        },
+        {
+          "id": "caption-word-39-1",
+          "text": "and",
+          "start": 31.56,
+          "end": 32.08
+        },
+        {
+          "id": "caption-word-39-2",
+          "text": "each",
+          "start": 32.08,
+          "end": 32.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-40",
+      "frame": 5,
+      "start": 32.3,
+      "end": 32.88,
+      "text": "child has",
+      "words": [
+        {
+          "id": "caption-word-40-0",
+          "text": "child",
+          "start": 32.3,
+          "end": 32.62
+        },
+        {
+          "id": "caption-word-40-1",
+          "text": "has",
+          "start": 32.62,
+          "end": 32.88
+        }
+      ]
+    },
+    {
+      "id": "caption-group-41",
+      "frame": 5,
+      "start": 32.88,
+      "end": 33.36,
+      "text": "2 more?",
+      "words": [
+        {
+          "id": "caption-word-41-0",
+          "text": "2",
+          "start": 32.88,
+          "end": 33.06
+        },
+        {
+          "id": "caption-word-41-1",
+          "text": "more?",
+          "start": 33.06,
+          "end": 33.24
+        }
+      ]
+    }
+  ]
+}

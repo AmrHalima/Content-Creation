@@ -1,0 +1,137 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f07-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f07-ktext { display: inline-block; opacity: 0; }
+
+    .f07-line {
+      position: absolute; left: 80px; width: 920px;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 5.6cqw; line-height: 1.06; letter-spacing: -0.018em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f07-em { display: inline-block; font-style: italic; }
+
+    .f07-chip {
+      position: absolute; left: 300px; width: 480px; height: 78px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f07-consumer { top: 656px; background: #F0D7FF; border: 3px solid #1a1a1a; }
+    .f07-storage { top: 800px; background: #FFA946; border: 3px solid #1a1a1a; }
+    .f07-link { position: absolute; top: 734px; left: 538px; width: 4px; height: 66px; background: #1a1a1a; opacity: 0; }
+    .f07-rule { position: absolute; top: 940px; left: 80px; width: 920px; height: 3px; background: #1a1a1a; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="07-what-it-costs" data-width="1080" data-height="1920" data-duration="10.667">
+
+    <div id="07-what-it-costs-fieldclip" class="clip" data-start="0" data-duration="10.667" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field"></div>
+      <div id="07-what-it-costs-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="07-what-it-costs-chromeclip" class="clip" data-start="0" data-duration="10.667" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f07-kicker">
+        <span id="07-what-it-costs-spike" class="f07-spike">&#10009;</span><span id="07-what-it-costs-ktext" class="f07-ktext" data-layout-ignore>THE TRADEOFF</span>
+      </div>
+      <div id="07-what-it-costs-l1" class="f07-line" style="top:390px;">It pays when storage changes apart from the use case.</div>
+    </div>
+
+    <div id="07-what-it-costs-stripclip" class="clip" data-start="1.28" data-duration="9.387" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="07-what-it-costs-consumer" class="f07-chip f07-consumer">the use case</div>
+      <div id="07-what-it-costs-link" class="f07-link"></div>
+      <div id="07-what-it-costs-storage" class="f07-chip f07-storage">sql</div>
+    </div>
+
+    <div id="07-what-it-costs-ruleclip" class="clip" data-start="5.52" data-duration="5.147" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="07-what-it-costs-rule" class="f07-rule"></div>
+    </div>
+
+    <div id="07-what-it-costs-priceclip" class="clip" data-start="6.08" data-duration="4.587" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="07-what-it-costs-l2" class="f07-line" style="top:986px;">The price is mapping code you <span id="07-what-it-costs-twice" class="f07-em">write twice</span></div>
+      <div id="07-what-it-costs-l3" class="f07-line" style="top:1140px;">and keep honest.</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 10.667;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(el("07-what-it-costs-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("07-what-it-costs-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("07-what-it-costs-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–1.8s) — one restrained rise, then nothing but the words ──
+      tl.fromTo(el("07-what-it-costs-l1"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.38);
+
+      // ── Scene 2 (1.8–5.2s) — the swap the pattern exists to make cheap: storage changes, the
+      //    use case demonstrably does not move ──
+      tl.fromTo(el("07-what-it-costs-consumer"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.28);
+      tl.fromTo(el("07-what-it-costs-link"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.3, ease: "power2.out", transformOrigin: "center top" }, 1.44);
+      tl.fromTo(el("07-what-it-costs-storage"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 1.35);
+
+      // discrete-text-sequence via a time proxy + reverse search (no TextPlugin in this runtime)
+      var chip = el("07-what-it-costs-storage");
+      var pr = { t: 0 };
+      tl.to(pr, {
+        t: 1.92, duration: 1.92, ease: "none",
+        onUpdate: function () {
+          var text = pr.t >= 1.92 ? "documents" : "sql";
+          if (chip.textContent !== text) chip.textContent = text;
+        }
+      }, 0);
+      tl.to(chip, { opacity: 0, duration: 0.1, ease: "none" }, 1.82);
+      tl.to(chip, { opacity: 1, duration: 0.26, ease: "power1.out" }, 1.92);
+
+      // ── Scene 3 (5.2–8.0s) — the rule draws, then the price lands ──
+      tl.fromTo(el("07-what-it-costs-rule"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "power2.inOut", transformOrigin: "left center" }, 5.52);
+      tl.fromTo(el("07-what-it-costs-l2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 6.08);
+      tl.fromTo(el("07-what-it-costs-twice"), { scale: 1 }, { scale: 1.07, duration: 0.4, ease: "power2.out" }, 8.24);
+
+      // ── Scene 4 (8.0–10.667s) — the poster pose: everything stops but a 1.6px breath ──
+      tl.fromTo(el("07-what-it-costs-l3"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.3);
+
+      var jit = { p: 0 };
+      var box = el("07-what-it-costs-l1");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - 9.66,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)"; }
+      }, 9.66);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["07-what-it-costs"] = tl;
+    })();
+  </script>
+</template>

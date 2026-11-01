@@ -1,0 +1,150 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .clipband { position: absolute; inset: 0; }
+
+    .f08-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f08-grid {
+      position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    .f08-kicker {
+      position: absolute; top: 200px; left: 72px; width: 820px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f08-spike { display: inline-block; opacity: 0; color: #76766e; font-size: 1.7cqw; margin-right: 14px; }
+    .f08-ktext { display: inline-block; opacity: 0; }
+
+    /* grammar X — two stacked dark chambers, wrong shape over fixed shape */
+    .f08-chamber {
+      position: absolute; left: 72px; width: 936px; box-sizing: border-box;
+      border: 2px solid rgba(255,255,235,0.14); border-radius: 8px; opacity: 0;
+    }
+    .f08-before { top: 320px; height: 330px; background: #1a1a1a; }
+    .f08-after { top: 712px; height: 420px; background: #252320; }
+    .f08-tag {
+      position: absolute; left: 34px; top: 24px; display: block; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #8f8f84;
+    }
+    .f08-badge {
+      position: absolute; left: 34px; top: 22px; width: 258px; height: 58px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #034f46; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #ffffeb; opacity: 0;
+    }
+    .f08-line {
+      position: absolute; left: 34px; width: 860px; height: 60px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400; color: #8f8f84;
+    }
+    .f08-b1 { top: 82px; }
+    .f08-b2 { top: 142px; left: 62px; }
+    .f08-b3 { top: 202px; }
+    .f08-a1 { top: 108px; }
+    .f08-a2 { top: 168px; left: 62px; }
+    .f08-a3 { top: 228px; left: 62px; }
+    .f08-a4 { top: 288px; }
+    .f08-name { display: inline-block; color: #ffffeb; }
+    .f08-key { display: inline-block; color: #8f8f84; }
+    /* the reach: the one ember moment of this frame, lit as "drop the static" lands */
+    .f08-reach { display: inline-block; color: #8f8f84; }
+    /* the injected dependency: the part's single lavender action token */
+    .f08-inject { display: inline-block; color: #8f8f84; }
+    .f08-rule { position: absolute; left: 72px; top: 678px; width: 0; height: 1px; background: rgba(26,26,26,0.24); }
+    .f08-close {
+      position: absolute; left: 72px; top: 1182px; width: 700px; height: 62px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400; color: #1a1a1a;
+    }
+  </style>
+
+  <div id="root" data-composition-id="08-before-after" data-width="1080" data-height="1920" data-duration="9.237">
+
+    <div id="f08-ground" class="clip clipband" data-start="0" data-duration="9.237" data-track-index="0">
+      <div class="f08-field"></div>
+      <div id="f08-grid" class="f08-grid"></div>
+    </div>
+
+    <div id="f08-chrome" class="clip clipband" data-start="0" data-duration="9.237" data-track-index="1">
+      <div class="f08-kicker">
+        <div id="f08-spike" class="f08-spike">&#10009;</div>
+        <div id="f08-ktext" class="f08-ktext" data-layout-ignore>THE CHOICE</div>
+      </div>
+    </div>
+
+    <div id="f08-content" class="clip clipband" data-start="0" data-duration="9.237" data-track-index="2">
+      <div id="f08-before" class="f08-chamber f08-before">
+        <div class="f08-tag f08-tagbefore">static holder</div>
+        <div id="f08-b1" class="f08-line f08-b1"><span class="f08-key">class</span>&nbsp;<span class="f08-name">Checkout</span>&nbsp;{</div>
+        <div id="f08-b2" class="f08-line f08-b2"><span class="f08-key">pay</span>()&nbsp;{&nbsp;<span class="f08-key">return</span>&nbsp;<span id="f08-reach" class="f08-reach">Config.getInstance();</span>&nbsp;}</div>
+        <div id="f08-b3" class="f08-line f08-b3">}</div>
+      </div>
+
+      <div id="f08-rule" class="f08-rule"></div>
+
+      <div id="f08-after" class="f08-chamber f08-after">
+        <div id="f08-badge" class="f08-badge">container</div>
+        <div id="f08-a1" class="f08-line f08-a1"><span class="f08-key">class</span>&nbsp;<span class="f08-name">Checkout</span>&nbsp;{</div>
+        <div id="f08-a2" class="f08-line f08-a2"><span class="f08-key">constructor</span>(<span id="f08-inject" class="f08-inject">private cfg: Config</span>)&nbsp;{}</div>
+        <div id="f08-a3" class="f08-line f08-a3"><span class="f08-key">pay</span>()&nbsp;{&nbsp;<span class="f08-key">return</span>&nbsp;this.cfg;&nbsp;}</div>
+        <div id="f08-a4" class="f08-line f08-a4">}</div>
+      </div>
+
+      <div id="f08-close" class="f08-close">one instance, no static</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.237;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["08-before-after"] = tl;
+
+      tl.fromTo(el("f08-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f08-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.05);
+      tl.fromTo(el("f08-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0–1.9s) — "Keep the one instance": the wrong shape is already the shape ──
+      tl.fromTo(el("f08-before"),
+        { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.10);
+      tl.fromTo(el("f08-b1"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.16);
+      tl.fromTo(el("f08-b2"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.82);
+      tl.fromTo(el("f08-b3"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 1.30);
+
+      // ── Scene 2 (1.9–3.9s) — "drop the static": the reach lights, and that is the whole tell ──
+      tl.to(el("f08-reach"), { color: "#ffa946", duration: 0.4, ease: "power1.out" }, 1.86);
+
+      // ── Scene 3 (3.9–7.0s) — "Let the container own the lifetime" ──
+      tl.fromTo(el("f08-after"),
+        { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out", immediateRender: false }, 3.92);
+      tl.fromTo(el("f08-rule"), { width: 0 }, { width: 936, duration: 0.5, ease: "power2.out", immediateRender: false }, 4.20);
+      tl.fromTo(el("f08-badge"),
+        { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out", immediateRender: false }, 4.24);
+      tl.fromTo(el("f08-a1"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.60);
+      tl.fromTo(el("f08-a2"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 4.82);
+      tl.to(el("f08-inject"), { color: "#f0d7ff", duration: 0.42, ease: "power1.out" }, 5.48);
+
+      // ── Scene 4 (7.0–9.2s) — "the caller declare the dependency", then nothing moves ──
+      tl.fromTo(el("f08-a3"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 7.16);
+      tl.fromTo(el("f08-a4"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 7.70);
+      tl.fromTo(el("f08-close"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", immediateRender: false }, 6.90);
+    })();
+  </script>
+</template>

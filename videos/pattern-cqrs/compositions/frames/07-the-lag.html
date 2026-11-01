@@ -1,0 +1,195 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; left: 80px; top: 214px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f07-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f07-ktext { display: inline-block; opacity: 0; }
+
+    /* the stacked pair: an interval, not a comparison, so it stacks (bible § 4) */
+    .f07-chamber {
+      position: absolute; left: 60px; width: 960px; height: 250px; box-sizing: border-box;
+      padding: 24px 30px; display: flex; flex-direction: column; gap: 18px;
+    }
+    .f07-write { top: 380px; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 12px; opacity: 0; }
+    .f07-read { top: 900px; background: #ffffff; border: 3px solid #1a1a1a; border-radius: 12px; opacity: 0; }
+    .f07-head {
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; opacity: 0;
+    }
+    .f07-head-write { color: rgba(255,255,235,0.62); }
+    .f07-head-read { color: #76766e; }
+    .f07-rowline { position: absolute; left: 30px; display: flex; align-items: center; gap: 22px; }
+    .f07-rowline-write { top: 108px; }
+    .f07-rowline-read { top: 108px; }
+    .f07-key { font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: -0.01em; }
+    .f07-key-write { color: #ffffeb; }
+    .f07-key-read { color: #1a1a1a; }
+    .f07-value {
+      display: inline-block; box-sizing: border-box; min-width: 150px; height: 66px; padding: 0 22px;
+      display: flex; align-items: center; justify-content: center; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.5cqw;
+    }
+    .f07-value-write { background: #034f46; border: 2px solid #ffffeb; color: #ffffeb; }
+    /* the stale read: the one text element this film swaps in place */
+    .f07-value-read { background: transparent; border: 2px solid #1a1a1a; color: #1a1a1a; opacity: 0; }
+
+    /* the sync arrow, and the marker that is still in flight while the read answers */
+    .f07-svg { position: absolute; inset: 0; }
+    .f07-arw { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 5; stroke-linecap: round; }
+    .f07-head-tri { fill: rgba(26,26,26,0.55); opacity: 0; }
+    .f07-marker { position: absolute; left: 188px; top: 650px; width: 24px; height: 24px; border-radius: 9999px; background: #ffa946; opacity: 0; }
+
+    /* the interval being priced */
+    .f07-gap { position: absolute; inset: 0; }
+    .f07-gaprule { position: absolute; left: 320px; top: 646px; width: 2px; height: 244px; background: rgba(26,26,26,0.32); opacity: 0; }
+    .f07-gapcap { position: absolute; left: 306px; width: 30px; height: 2px; background: rgba(26,26,26,0.32); opacity: 0; }
+    .f07-gaplabel {
+      position: absolute; left: 360px; top: 742px; width: 200px; height: 44px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f07-price {
+      position: absolute; left: 560px; top: 712px; width: 460px; height: 104px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.7cqw;
+      line-height: 1.05; letter-spacing: -0.012em; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-the-lag" data-width="1080" data-height="1920" data-duration="9.293">
+
+    <div id="07-the-lag-fieldclip" class="clip" data-start="0" data-duration="9.293" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field"></div>
+      <div id="07-the-lag-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="07-the-lag-chromeclip" class="clip" data-start="0" data-duration="9.293" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f07-kicker"><span id="07-the-lag-spike" class="f07-spike">&#10009;</span><span id="07-the-lag-ktext" class="f07-ktext" data-layout-ignore>the cost</span></div>
+    </div>
+
+    <div id="07-the-lag-writeclip" class="clip" data-start="0" data-duration="9.293" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="07-the-lag-write" class="f07-chamber f07-write">
+        <div id="07-the-lag-headwrite" class="f07-head f07-head-write" data-layout-ignore>write model</div>
+        <div class="f07-rowline f07-rowline-write">
+          <span class="f07-key f07-key-write">status</span>
+          <span id="07-the-lag-vwrite" class="f07-value f07-value-write">paid</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="07-the-lag-readclip" class="clip" data-start="0.86" data-duration="8.433" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="07-the-lag-read" class="f07-chamber f07-read">
+        <div id="07-the-lag-headread" class="f07-head f07-head-read" data-layout-ignore>read model</div>
+        <div class="f07-rowline f07-rowline-read">
+          <span class="f07-key f07-key-read">status</span>
+          <span id="07-the-lag-vread" class="f07-value f07-value-read">new</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="07-the-lag-arrowclip" class="clip" data-start="1.4" data-duration="7.893" data-track-index="4" style="position:absolute;inset:0;">
+      <svg class="f07-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="07-the-lag-a1" class="f07-arw" d="M 200 640 L 200 878" />
+        <polygon id="07-the-lag-k1" class="f07-head-tri" points="189,876 211,876 200,896" />
+      </svg>
+      <div id="07-the-lag-marker" class="f07-marker"></div>
+    </div>
+
+    <div id="07-the-lag-gapclip" class="clip" data-start="6.3" data-duration="2.993" data-track-index="5" style="position:absolute;inset:0;">
+      <div class="f07-gap">
+        <div id="07-the-lag-gaprule" class="f07-gaprule"></div>
+        <div id="07-the-lag-cap1" class="f07-gapcap" style="top:646px;"></div>
+        <div id="07-the-lag-cap2" class="f07-gapcap" style="top:888px;"></div>
+        <div id="07-the-lag-gaplabel" class="f07-gaplabel" data-layout-ignore>the gap</div>
+        <div id="07-the-lag-price" class="f07-price">price</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 9.293;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "07-the-lag-";
+      var tl = gsap.timeline({ paused: true });
+
+      // the stale read flips in place — time proxy + reverse search, never a text tween
+      var STATES = [{ t: 2.06, text: "new" }, { t: 5.10, text: "paid" }];
+      var vread = el(P + "vread");
+      vread.textContent = STATES[0].text;
+
+      // ── Scene 1 (0.0–2.06s) — "One side reads what the other wrote" ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el(P + "write"), { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.0);
+      tl.fromTo(el(P + "headwrite"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.4);
+      tl.fromTo(el(P + "read"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.86);
+      tl.fromTo(el(P + "headread"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.26);
+      tl.fromTo(el(P + "vwrite"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 2.06);
+      // the mismatch, stated before it is explained: the write is paid, the read still says new
+      tl.fromTo(el(P + "vread"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 2.06);
+
+      // ── Scene 2 (2.06–4.9s) — the arrow draws, then the marker travels while the read holds stale ──
+      var path = el(P + "a1");
+      var len = path.getTotalLength() * 1.05;
+      path.style.strokeDasharray = String(len);
+      path.style.strokeDashoffset = String(len);
+      tl.to(path, { strokeDashoffset: 0, duration: 0.5, ease: "power3.out" }, 2.06);
+      tl.fromTo(el(P + "k1"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power1.out" }, 2.46);
+      tl.fromTo(el(P + "marker"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.24, ease: "power2.out" }, 3.22);
+      tl.to(el(P + "marker"), { y: 216, duration: 1.65, ease: "power1.inOut" }, 3.30);
+
+      // ── Scene 3 (4.9–7.16s) — "by a moment": the marker lands, the row catches up, the gap gets measured ──
+      var proxy = { t: STATES[0].t };
+      tl.to(proxy, {
+        t: STATES[1].t,
+        duration: STATES[1].t - STATES[0].t,
+        ease: "none",
+        onUpdate: function () {
+          var k = STATES.length - 1;
+          while (k > 0 && proxy.t < STATES[k].t) { k -= 1; }
+          if (vread.textContent !== STATES[k].text) { vread.textContent = STATES[k].text; }
+        }
+      }, STATES[0].t);
+      tl.fromTo(el(P + "gaprule"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.34, ease: "power2.out", transformOrigin: "center top" }, 6.30);
+      tl.fromTo(el(P + "cap1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.30);
+      tl.fromTo(el(P + "cap2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.44);
+      tl.fromTo(el(P + "gaplabel"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 6.58);
+
+      // ── Scene 4 (7.16–9.29s) — "is the price", then the quietest hold in the film ──
+      tl.fromTo(el(P + "price"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 7.00);
+      var jit = { p: 0 };
+      var read = el(P + "read");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - 7.8,
+        ease: "none",
+        onUpdate: function () {
+          read.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)";
+        }
+      }, 7.8);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["07-the-lag"] = tl;
+    })();
+  </script>
+</template>

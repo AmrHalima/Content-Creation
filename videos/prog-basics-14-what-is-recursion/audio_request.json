@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "To understand recursion, you must first understand recursion."
+    },
+    {
+      "id": "02",
+      "text": "Recursion is a function calling itself on a smaller version of the same problem."
+    },
+    {
+      "id": "03",
+      "text": "Each call trusts the next one to solve a piece. It stops when the problem is so small the answer is obvious."
+    },
+    {
+      "id": "04",
+      "text": "Fact of four waits on fact of three, then two, then one. One is the base case. Four times three times two times one is twenty-four."
+    },
+    {
+      "id": "05",
+      "text": "Drop the best recursion joke you know."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

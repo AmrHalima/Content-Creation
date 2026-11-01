@@ -1,0 +1,183 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; left: 90px; top: 236px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    /* Grammar R boxes: cream fill + the 2px ink border the series bible mandates. */
+    .f01-chip {
+      position: absolute; display: flex; align-items: center;
+      padding: 0 28px; box-sizing: border-box;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.01em;
+      opacity: 0;
+    }
+    .f01-caller { left: 90px; top: 320px; width: 340px; height: 108px; }
+    .f01-dep { left: 90px; top: 1210px; width: 430px; height: 108px; }
+    .f01-q { left: 620px; width: 370px; height: 104px; font-size: 2.6cqw; color: #76766e; border-width: 2px; border-style: solid; border-color: rgba(26,26,26,0.42); }
+    .f01-q1 { top: 320px; }
+    .f01-q2 { top: 462px; }
+    .f01-q3 { top: 604px; }
+    .f01-qlab {
+      position: absolute; left: 620px; width: 370px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; text-align: right; opacity: 0;
+    }
+    .f01-qlab1 { top: 428px; }
+    .f01-qlab2 { top: 570px; }
+    .f01-qlab3 { top: 712px; }
+    .f01-rail { fill: none; stroke: rgba(26,26,26,0.30); stroke-width: 4; stroke-linecap: round; }
+    .f01-stub { fill: none; stroke: rgba(26,26,26,0.22); stroke-width: 4; stroke-linecap: round; }
+    .f01-head { fill: rgba(26,26,26,0.55); stroke: none; }
+    /* the timeout budget, spent by one call: a bar that fills DOWN the spine */
+    .f01-track {
+      position: absolute; left: 176px; top: 440px; width: 30px; height: 756px;
+      box-sizing: border-box; border: 2px solid rgba(26,26,26,0.28); border-radius: 6px;
+      background: rgba(26,26,26,0.05); opacity: 0;
+    }
+    .f01-fill {
+      position: absolute; left: 182px; top: 446px; width: 18px; height: 744px;
+      transform-origin: 50% 0%; transform: scaleY(0);
+      background: #1a1a1a; border-radius: 4px;
+    }
+    .f01-pip {
+      position: absolute; left: 178px; top: 436px; width: 26px; height: 26px;
+      box-sizing: border-box; background: #ffffeb; border: 3px solid #1a1a1a; border-radius: 6px;
+      opacity: 0;
+    }
+    .f01-blabel {
+      position: absolute; left: 240px; top: 760px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f01-hero {
+      position: absolute; left: 240px; top: 812px;
+      font-family: "JetBrains Mono", monospace; font-size: 5.4cqw; font-weight: 700;
+      letter-spacing: 0.02em; color: #1a1a1a; opacity: 0;
+    }
+    .f01-note {
+      position: absolute; left: 90px; top: 1372px; width: 900px;
+      font-family: "JetBrains Mono", monospace; font-size: 2cqw; letter-spacing: 0.04em;
+      color: #76766e; opacity: 0;
+    }
+    .f01-rule {
+      position: absolute; left: 90px; top: 1340px; width: 900px; height: 2px;
+      background: rgba(26,26,26,0.12); transform-origin: 0% 50%; transform: scaleX(0);
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-the-waiting" data-width="1080" data-height="1920" data-duration="4.788">
+
+    <div id="01-the-waiting-fieldclip" class="clip" data-start="0" data-duration="4.788" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field"></div>
+      <div id="01-the-waiting-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="01-the-waiting-railclip" class="clip" data-start="0" data-duration="4.788" data-track-index="1" style="position:absolute;inset:0;">
+      <svg class="f01-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="01-the-waiting-spine" class="f01-rail" d="M 191 440 L 191 1196" />
+        <path id="01-the-waiting-s1" class="f01-stub" d="M 805 424 L 805 470 L 250 470" />
+        <path id="01-the-waiting-s2" class="f01-stub" d="M 805 566 L 805 612 L 250 612" />
+        <path id="01-the-waiting-s3" class="f01-stub" d="M 805 708 L 805 754 L 250 754" />
+        <path id="01-the-waiting-head" class="f01-head" d="M 177 1180 L 205 1180 L 191 1206 Z" />
+      </svg>
+    </div>
+
+    <div id="01-the-waiting-headclip" class="clip" data-start="0" data-duration="4.788" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="01-the-waiting-kicker" class="f01-kicker" data-layout-ignore>&#10009;&nbsp; one dependency</div>
+      <div id="01-the-waiting-caller" class="f01-chip f01-caller">caller</div>
+      <div id="01-the-waiting-dep" class="f01-chip f01-dep">gateway.charge</div>
+      <div id="01-the-waiting-q1" class="f01-chip f01-q f01-q1">charge(order)</div>
+      <div id="01-the-waiting-q2" class="f01-chip f01-q f01-q2">charge(order)</div>
+      <div id="01-the-waiting-q3" class="f01-chip f01-q f01-q3">charge(order)</div>
+      <div id="01-the-waiting-ql1" class="f01-qlab f01-qlab1" data-layout-ignore>pending</div>
+      <div id="01-the-waiting-ql2" class="f01-qlab f01-qlab2" data-layout-ignore>pending</div>
+      <div id="01-the-waiting-ql3" class="f01-qlab f01-qlab3" data-layout-ignore>pending</div>
+    </div>
+
+    <div id="01-the-waiting-budgetclip" class="clip" data-start="0" data-duration="4.788" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="01-the-waiting-track" class="f01-track"></div>
+      <div id="01-the-waiting-fill" class="f01-fill"></div>
+      <div id="01-the-waiting-pip" class="f01-pip"></div>
+      <div id="01-the-waiting-blabel" class="f01-blabel" data-layout-ignore>bounded by</div>
+      <div id="01-the-waiting-hero" class="f01-hero">TIMEOUT</div>
+    </div>
+
+    <div id="01-the-waiting-footclip" class="clip" data-start="0" data-duration="4.788" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="01-the-waiting-rule" class="f01-rule"></div>
+      <div id="01-the-waiting-note" class="f01-note" data-layout-ignore>caller &rarr; gateway.charge&nbsp;&nbsp;&middot;&nbsp;&nbsp;no seam</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 4.288;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-the-waiting"] = tl;
+
+      // ── Scene 1 (0.0–0.82s) — the field, the kicker and the caller only, seated on
+      //    "dependency" (0.20). Nothing else exists yet. ──
+      tl.fromTo(el("01-the-waiting-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("01-the-waiting-kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.14);
+      tl.fromTo(el("01-the-waiting-caller"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
+
+      // ── Scene 2 (0.82–2.30s) — on "degrades" the dependency seats and the spine
+      //    self-draws downward (svg-path-draw: measured length, strokeDashoffset → 0). ──
+      var spine = el("01-the-waiting-spine");
+      var spineLen = spine.getTotalLength() * 1.05;
+      spine.style.strokeDasharray = String(spineLen);
+      spine.style.strokeDashoffset = String(spineLen);
+      tl.to(spine, { strokeDashoffset: 0, duration: 0.66, ease: "power2.out" }, 0.86);
+      tl.fromTo(el("01-the-waiting-head"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.4);
+      tl.fromTo(el("01-the-waiting-dep"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.52, ease: "power3.out" }, 0.82);
+
+      // ── Scene 3 (2.30–3.50s) — on "every call" three pending calls stagger into the right
+      //    column, one per spoken beat, each drawing its stub into the spine. Index-derived,
+      //    so the cadence is deterministic; capped under 0.5s so it reads as a queue. ──
+      var QS = [
+        ["01-the-waiting-q1", "01-the-waiting-s1", "01-the-waiting-ql1", 2.3],
+        ["01-the-waiting-q2", "01-the-waiting-s2", "01-the-waiting-ql2", 2.68],
+        ["01-the-waiting-q3", "01-the-waiting-s3", "01-the-waiting-ql3", 3.1]
+      ];
+      QS.forEach(function (q) {
+        var stub = el(q[1]);
+        var stubLen = stub.getTotalLength() * 1.05;
+        stub.style.strokeDasharray = String(stubLen);
+        stub.style.strokeDashoffset = String(stubLen);
+        tl.fromTo(el(q[0]), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, q[3]);
+        tl.to(stub, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, q[3] + 0.12);
+        tl.to(el(q[2]), { opacity: 1, duration: 0.3, ease: "power1.out" }, q[3] + 0.2);
+      });
+
+      // ── Scene 4 (3.50–4.288s) — on "waits" the call's timeout budget starts spending.
+      //    The bar deliberately does NOT finish before the cut: the wait is the message. ──
+      tl.to(el("01-the-waiting-track"), { opacity: 1, duration: 0.34, ease: "power1.out" }, 3.16);
+      tl.fromTo(el("01-the-waiting-pip"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.32, ease: "power3.out" }, 3.2);
+      tl.to(el("01-the-waiting-pip"), { y: 96, duration: 0.9, ease: "power1.inOut" }, 3.4);
+      tl.to(el("01-the-waiting-fill"), { scaleY: 0.36, duration: 0.88, ease: "power1.inOut" }, 3.4);
+      tl.to(el("01-the-waiting-blabel"), { opacity: 1, duration: 0.3, ease: "power1.out" }, 3.5);
+      tl.fromTo(el("01-the-waiting-hero"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.56);
+      tl.to(el("01-the-waiting-rule"), { scaleX: 1, duration: 0.5, ease: "power2.out" }, 3.74);
+      tl.to(el("01-the-waiting-note"), { opacity: 1, duration: 0.46, ease: "power1.out" }, 3.98);
+    })();
+  </script>
+</template>

@@ -1,0 +1,862 @@
+{
+  "total_duration_s": 32,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 0.4,
+      "text": "An array",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "An",
+          "start": 0,
+          "end": 0.16
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "array",
+          "start": 0.16,
+          "end": 0.4
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 0.4,
+      "end": 0.82,
+      "text": "is a",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "is",
+          "start": 0.4,
+          "end": 0.72
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "a",
+          "start": 0.72,
+          "end": 0.82
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 0.82,
+      "end": 1.58,
+      "text": "row of seats.",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "row",
+          "start": 0.82,
+          "end": 1.04
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "of",
+          "start": 1.04,
+          "end": 1.16
+        },
+        {
+          "id": "caption-word-2-2",
+          "text": "seats.",
+          "start": 1.16,
+          "end": 1.46
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 2.02,
+      "end": 2.3,
+      "text": "A linked",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "A",
+          "start": 2.02,
+          "end": 2.1
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "linked",
+          "start": 2.1,
+          "end": 2.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 1,
+      "start": 2.3,
+      "end": 2.84,
+      "text": "list is",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "list",
+          "start": 2.3,
+          "end": 2.62
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "is",
+          "start": 2.62,
+          "end": 2.84
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 1,
+      "start": 2.84,
+      "end": 3.56,
+      "text": "a treasure hunt.",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "a",
+          "start": 2.84,
+          "end": 2.92
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "treasure",
+          "start": 2.92,
+          "end": 3.14
+        },
+        {
+          "id": "caption-word-5-2",
+          "text": "hunt.",
+          "start": 3.14,
+          "end": 3.44
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 4.7,
+      "end": 5,
+      "text": "A linked",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "A",
+          "start": 4.7,
+          "end": 4.82
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "linked",
+          "start": 4.82,
+          "end": 5
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 5,
+      "end": 5.52,
+      "text": "list is",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "list",
+          "start": 5,
+          "end": 5.34
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "is",
+          "start": 5.34,
+          "end": 5.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 5.52,
+      "end": 5.9,
+      "text": "a chain",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "a",
+          "start": 5.52,
+          "end": 5.6
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "chain",
+          "start": 5.6,
+          "end": 5.9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 5.9,
+      "end": 6.5,
+      "text": "of nodes.",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "of",
+          "start": 5.9,
+          "end": 6.04
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "nodes.",
+          "start": 6.04,
+          "end": 6.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 7,
+      "end": 7.52,
+      "text": "Each node",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "Each",
+          "start": 7,
+          "end": 7.22
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "node",
+          "start": 7.22,
+          "end": 7.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 7.52,
+      "end": 7.96,
+      "text": "stores a",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "stores",
+          "start": 7.52,
+          "end": 7.78
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "a",
+          "start": 7.78,
+          "end": 7.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 7.96,
+      "end": 8.8,
+      "text": "value and",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "value",
+          "start": 7.96,
+          "end": 8.3
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "and",
+          "start": 8.3,
+          "end": 8.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 2,
+      "start": 8.8,
+      "end": 9.2,
+      "text": "a pointer",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "a",
+          "start": 8.8,
+          "end": 8.9
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "pointer",
+          "start": 8.9,
+          "end": 9.2
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 2,
+      "start": 9.2,
+      "end": 9.58,
+      "text": "to the",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "to",
+          "start": 9.2,
+          "end": 9.46
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "the",
+          "start": 9.46,
+          "end": 9.58
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 2,
+      "start": 9.58,
+      "end": 10.16,
+      "text": "next node.",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "next",
+          "start": 9.58,
+          "end": 9.74
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "node.",
+          "start": 9.74,
+          "end": 10.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 11.3,
+      "end": 11.78,
+      "text": "Adding at",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "Adding",
+          "start": 11.3,
+          "end": 11.6
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "at",
+          "start": 11.6,
+          "end": 11.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 11.78,
+      "end": 12.08,
+      "text": "the front",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "the",
+          "start": 11.78,
+          "end": 11.88
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "front",
+          "start": 11.88,
+          "end": 12.08
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 3,
+      "start": 12.08,
+      "end": 12.68,
+      "text": "is fast.",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "is",
+          "start": 12.08,
+          "end": 12.3
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "fast.",
+          "start": 12.3,
+          "end": 12.56
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 13.22,
+      "end": 14.36,
+      "text": "Finding the 50th",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "Finding",
+          "start": 13.22,
+          "end": 13.6
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "the",
+          "start": 13.6,
+          "end": 13.8
+        },
+        {
+          "id": "caption-word-19-2",
+          "text": "50th",
+          "start": 13.8,
+          "end": 14.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 3,
+      "start": 14.36,
+      "end": 14.96,
+      "text": "means walking",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "means",
+          "start": 14.36,
+          "end": 14.58
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "walking",
+          "start": 14.58,
+          "end": 14.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 3,
+      "start": 14.96,
+      "end": 16.18,
+      "text": "through 49 nodes",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "through",
+          "start": 14.96,
+          "end": 15.28
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "49",
+          "start": 15.28,
+          "end": 15.82
+        },
+        {
+          "id": "caption-word-21-2",
+          "text": "nodes",
+          "start": 15.82,
+          "end": 16.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 3,
+      "start": 16.18,
+      "end": 16.62,
+      "text": "first.",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "first.",
+          "start": 16.18,
+          "end": 16.5
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 4,
+      "start": 17.8,
+      "end": 18.22,
+      "text": "Here is",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "Here",
+          "start": 17.8,
+          "end": 18.02
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "is",
+          "start": 18.02,
+          "end": 18.22
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 4,
+      "start": 18.22,
+      "end": 18.64,
+      "text": "the same",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "the",
+          "start": 18.22,
+          "end": 18.36
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "same",
+          "start": 18.36,
+          "end": 18.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 4,
+      "start": 18.64,
+      "end": 19.7,
+      "text": "chain as code.",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "chain",
+          "start": 18.64,
+          "end": 19.02
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "as",
+          "start": 19.02,
+          "end": 19.26
+        },
+        {
+          "id": "caption-word-25-2",
+          "text": "code.",
+          "start": 19.26,
+          "end": 19.58
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 4,
+      "start": 20.1,
+      "end": 20.52,
+      "text": "To reach",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "To",
+          "start": 20.1,
+          "end": 20.28
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "reach",
+          "start": 20.28,
+          "end": 20.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 4,
+      "start": 20.52,
+      "end": 21,
+      "text": "three you",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "three",
+          "start": 20.52,
+          "end": 20.82
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "you",
+          "start": 20.94,
+          "end": 21
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 4,
+      "start": 21,
+      "end": 22.14,
+      "text": "follow two pointers.",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "follow",
+          "start": 21,
+          "end": 21.28
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "two",
+          "start": 21.28,
+          "end": 21.58
+        },
+        {
+          "id": "caption-word-28-2",
+          "text": "pointers.",
+          "start": 21.58,
+          "end": 22.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 4,
+      "start": 22.7,
+      "end": 23.08,
+      "text": "An array",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "An",
+          "start": 22.7,
+          "end": 22.84
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "array",
+          "start": 22.84,
+          "end": 23.08
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 23.08,
+      "end": 23.72,
+      "text": "asks for",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "asks",
+          "start": 23.08,
+          "end": 23.48
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "for",
+          "start": 23.48,
+          "end": 23.72
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 4,
+      "start": 23.72,
+      "end": 24.38,
+      "text": "index two",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "index",
+          "start": 23.72,
+          "end": 23.96
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "two",
+          "start": 23.96,
+          "end": 24.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 4,
+      "start": 24.38,
+      "end": 25.2,
+      "text": "and gets it.",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "and",
+          "start": 24.38,
+          "end": 24.64
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "gets",
+          "start": 24.64,
+          "end": 24.9
+        },
+        {
+          "id": "caption-word-32-2",
+          "text": "it.",
+          "start": 24.9,
+          "end": 25.08
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 5,
+      "start": 26.3,
+      "end": 26.6,
+      "text": "Which is",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "Which",
+          "start": 26.3,
+          "end": 26.44
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "is",
+          "start": 26.44,
+          "end": 26.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 5,
+      "start": 26.6,
+      "end": 27.22,
+      "text": "faster for",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "faster",
+          "start": 26.6,
+          "end": 26.94
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "for",
+          "start": 26.94,
+          "end": 27.22
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 5,
+      "start": 27.22,
+      "end": 27.76,
+      "text": "inserting at",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "inserting",
+          "start": 27.22,
+          "end": 27.58
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "at",
+          "start": 27.58,
+          "end": 27.76
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 27.76,
+      "end": 28.22,
+      "text": "the front:",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "the",
+          "start": 27.76,
+          "end": 27.86
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "front:",
+          "start": 27.86,
+          "end": 28.1
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 5,
+      "start": 28.54,
+      "end": 29.24,
+      "text": "array or",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "array",
+          "start": 28.54,
+          "end": 29
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "or",
+          "start": 29,
+          "end": 29.24
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 5,
+      "start": 29.24,
+      "end": 29.9,
+      "text": "linked list?",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "linked",
+          "start": 29.24,
+          "end": 29.48
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "list?",
+          "start": 29.48,
+          "end": 29.78
+        }
+      ]
+    }
+  ]
+}

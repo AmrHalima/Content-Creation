@@ -1,0 +1,133 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid { position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px); }
+    .f04-kicker { position: absolute; top: 200px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f04-spike { display: inline-block; color: #956f33; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f04-ktext { display: inline-block; opacity: 0; }
+    .f04-chamber { position: absolute; top: 400px; left: 80px; width: 920px; height: 636px;
+      box-sizing: border-box; background: #181715; border: 1px solid rgba(255,255,235,0.16);
+      border-radius: 8px; opacity: 0; overflow: hidden; }
+    .f04-titlebar { position: absolute; top: 0; left: 0; width: 100%; height: 92px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 20px; padding: 0 30px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14); }
+    .f04-file { font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: 0.02em;
+      color: #ffffeb; }
+    .f04-lang { display: inline-block; padding: 8px 18px; border: 1px solid #ffffff;
+      border-radius: 9999px; font-family: "JetBrains Mono", monospace; font-size: 1.5cqw;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #ffffeb; }
+    .f04-code { position: absolute; left: 0; top: 92px; width: 100%; }
+    .f04-ln { position: absolute; left: 34px; width: 856px; height: 58px; display: flex;
+      align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 1.5;
+      color: #8a8a7a; opacity: 0; }
+    .f04-ln span { display: inline-block; }
+    .f04-kw { color: #ffa946; }
+    .f04-load { color: #f0d7ff; }
+    .f04-gap { position: absolute; left: 34px; width: 200px; height: 2px;
+      background: rgba(255,255,235,0.16); opacity: 0; }
+    .f04-under { position: absolute; left: 34px; width: 620px; height: 4px; background: #f0d7ff;
+      opacity: 0; }
+    .f04-chips { position: absolute; top: 1200px; left: 80px; width: 920px; height: 210px;
+      box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; opacity: 0; }
+    .f04-chip { font-family: "JetBrains Mono", monospace; font-size: 1.8cqw; letter-spacing: 0.01em;
+      color: #6f6f67; white-space: pre; }
+  </style>
+
+  <div id="root" data-composition-id="04-subscribe-notify" data-width="1080" data-height="1920" data-duration="11.401">
+
+    <div id="f04-fieldclip" class="clip" data-start="0" data-duration="11.401" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field"></div>
+      <div id="f04-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="f04-chromeclip" class="clip" data-start="0" data-duration="11.401" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f04-kicker">
+        <span id="f04-spike" class="f04-spike">&#10009;</span><span id="f04-ktext" class="f04-ktext" data-layout-ignore>TWO METHODS</span>
+      </div>
+    </div>
+
+    <div id="f04-codeclip" class="clip" data-start="0" data-duration="11.401" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f04-chamber" class="f04-chamber">
+        <div class="f04-titlebar">
+          <span class="f04-file">OrderService</span><span class="f04-lang" data-layout-ignore>TypeScript</span>
+        </div>
+        <div class="f04-code">
+          <div id="f04-l1" class="f04-ln" style="top:40px;"><span class="f04-load">subscribe</span>(h: <span class="f04-load">OrderHandler</span>): () =&gt; <span class="f04-load">void</span> {</div>
+          <div id="f04-l2" class="f04-ln" style="top:98px;">  this.handlers.<span class="f04-load">push</span>(h);</div>
+          <div id="f04-l3" class="f04-ln" style="top:156px;">  <span class="f04-kw">return</span> () =&gt; this.<span class="f04-load">drop</span>(h);</div>
+          <div id="f04-l4" class="f04-ln" style="top:214px;">}</div>
+          <div id="f04-gap" class="f04-gap" style="top:296px;"></div>
+          <div id="f04-l5" class="f04-ln" style="top:330px;"><span class="f04-load">notify</span>(order: <span class="f04-load">Order</span>): <span class="f04-load">void</span> {</div>
+          <div id="f04-l6" class="f04-ln" style="top:388px;">  <span class="f04-kw">for</span> (<span class="f04-kw">const</span> h <span class="f04-kw">of</span> this.handlers) h(order);</div>
+          <div id="f04-l7" class="f04-ln" style="top:444px;">}</div>
+          <div id="f04-under" class="f04-under" style="top:412px;"></div>
+        </div>
+      </div>
+      <div id="f04-chips" class="f04-chips" data-layout-ignore>
+        <div class="f04-chip">type OrderHandler = (order: Order) =&gt; void;</div>
+        <div class="f04-chip">private handlers: OrderHandler[] = [];</div>
+        <div class="f04-chip">private drop(h: OrderHandler): void</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.901;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-subscribe-notify"] = tl;
+
+      // ── ground + chrome ──
+      tl.fromTo(el("f04-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("f04-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.08);
+      tl.fromTo(el("f04-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0-2.0s) — "Two methods carry it": the chamber arrives empty, declared context ──
+      tl.fromTo(el("f04-chamber"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.52, ease: "power3.out" }, 0.28);
+      tl.fromTo(el("f04-chips"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0.7 );
+
+      // ── Scene 2 (2.16-6.4s) — "Subscribe pushes a handler and returns the way to undo it":
+      //    one line per spoken cue, the ember keyword landing exactly on "returns" ──
+      var SUB = [
+        { id: "f04-l1", t: 2.16 },
+        { id: "f04-l2", t: 2.7 },
+        { id: "f04-l3", t: 4.52 },
+        { id: "f04-l4", t: 6.34 }
+      ];
+      SUB.forEach(function (s) {
+        tl.fromTo(el(s.id), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "power3.out" }, s.t);
+      });
+      tl.fromTo(el("f04-gap"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 6.9);
+
+      // ── Scene 3 (7.4-10.4s) — "Notify walks the list and calls each one" ──
+      [
+        { id: "f04-l5", t: 7.4 },
+        { id: "f04-l6", t: 8.1 },
+        { id: "f04-l7", t: 8.88 }
+      ].forEach(function (s) {
+        tl.fromTo(el(s.id), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "power3.out" }, s.t);
+      });
+      tl.fromTo(el("f04-under"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.out", transformOrigin: "left center" }, 9.66);
+
+      // ── Scene 4 (10.4-10.9s) — held read of the whole fragment ──
+      tl.to(el("f04-chamber"), { y: 2, duration: 0.24, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.4);
+    })();
+  </script>
+</template>

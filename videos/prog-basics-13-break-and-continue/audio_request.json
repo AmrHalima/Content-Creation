@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Two tiny keywords that save you from messy loops."
+    },
+    {
+      "id": "02",
+      "text": "Break exits the loop immediately. Use break when you've found what you need."
+    },
+    {
+      "id": "03",
+      "text": "Continue skips the rest of this round and jumps to the next one. Use continue to ignore items you don't care about."
+    },
+    {
+      "id": "04",
+      "text": "If n is less than zero, continue. If n equals the target, break. Seen keeps three, eight, two, seven."
+    },
+    {
+      "id": "05",
+      "text": "Challenge: find the first even number in a list using break. Post your code."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

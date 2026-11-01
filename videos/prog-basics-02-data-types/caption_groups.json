@@ -1,0 +1,760 @@
+{
+  "total_duration_s": 39,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 1.04,
+      "text": "Why does five",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "Why",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "does",
+          "start": 0.36,
+          "end": 0.62
+        },
+        {
+          "id": "caption-word-0-2",
+          "text": "five",
+          "start": 0.62,
+          "end": 1.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 1.04,
+      "end": 2.16,
+      "text": "plus five give",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "plus",
+          "start": 1.04,
+          "end": 1.42
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "five",
+          "start": 1.42,
+          "end": 1.9
+        },
+        {
+          "id": "caption-word-1-2",
+          "text": "give",
+          "start": 1.9,
+          "end": 2.16
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 2.16,
+      "end": 2.84,
+      "text": "you fifty-five?",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "you",
+          "start": 2.16,
+          "end": 2.28
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "fifty-five?",
+          "start": 2.28,
+          "end": 2.72
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 2,
+      "start": 4.3,
+      "end": 5.72,
+      "text": "Because every value",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "Because",
+          "start": 4.3,
+          "end": 4.66
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "every",
+          "start": 4.66,
+          "end": 5.22
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "value",
+          "start": 5.22,
+          "end": 5.72
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 2,
+      "start": 5.72,
+      "end": 7.02,
+      "text": "carries a type,",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "carries",
+          "start": 5.72,
+          "end": 6.26
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "a",
+          "start": 6.26,
+          "end": 6.54
+        },
+        {
+          "id": "caption-word-4-2",
+          "text": "type,",
+          "start": 6.54,
+          "end": 6.9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 7.44,
+      "end": 7.76,
+      "text": "and the",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "and",
+          "start": 7.44,
+          "end": 7.66
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "the",
+          "start": 7.66,
+          "end": 7.76
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 7.76,
+      "end": 9.14,
+      "text": "type decides what",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "type",
+          "start": 7.76,
+          "end": 8.08
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "decides",
+          "start": 8.08,
+          "end": 8.64
+        },
+        {
+          "id": "caption-word-6-2",
+          "text": "what",
+          "start": 8.64,
+          "end": 9.14
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 9.14,
+      "end": 10.66,
+      "text": "the operation means.",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "the",
+          "start": 9.14,
+          "end": 9.3
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "operation",
+          "start": 9.3,
+          "end": 9.78
+        },
+        {
+          "id": "caption-word-7-2",
+          "text": "means.",
+          "start": 9.78,
+          "end": 10.54
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 3,
+      "start": 11.8,
+      "end": 12.38,
+      "text": "Four you",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "Four",
+          "start": 11.8,
+          "end": 12.16
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "you",
+          "start": 12.16,
+          "end": 12.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 3,
+      "start": 12.38,
+      "end": 12.8,
+      "text": "will use",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "will",
+          "start": 12.38,
+          "end": 12.54
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "use",
+          "start": 12.54,
+          "end": 12.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 3,
+      "start": 12.8,
+      "end": 13.72,
+      "text": "every day.",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "every",
+          "start": 12.8,
+          "end": 13.18
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "day.",
+          "start": 13.18,
+          "end": 13.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 3,
+      "start": 14.22,
+      "end": 14.82,
+      "text": "Int for",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "Int",
+          "start": 14.22,
+          "end": 14.56
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "for",
+          "start": 14.56,
+          "end": 14.82
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 3,
+      "start": 14.82,
+      "end": 15.68,
+      "text": "whole numbers,",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "whole",
+          "start": 14.82,
+          "end": 15.08
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "numbers,",
+          "start": 15.08,
+          "end": 15.56
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 3,
+      "start": 16.06,
+      "end": 17.64,
+      "text": "float for decimals,",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "float",
+          "start": 16.06,
+          "end": 16.44
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "for",
+          "start": 16.44,
+          "end": 16.76
+        },
+        {
+          "id": "caption-word-13-2",
+          "text": "decimals,",
+          "start": 16.76,
+          "end": 17.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 3,
+      "start": 17.88,
+      "end": 19.42,
+      "text": "str for text,",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "str",
+          "start": 17.88,
+          "end": 18.5
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "for",
+          "start": 18.5,
+          "end": 18.84
+        },
+        {
+          "id": "caption-word-14-2",
+          "text": "text,",
+          "start": 18.84,
+          "end": 19.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 3,
+      "start": 19.72,
+      "end": 20.28,
+      "text": "and bool",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "and",
+          "start": 19.72,
+          "end": 19.8
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "bool",
+          "start": 19.8,
+          "end": 20.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 20.28,
+      "end": 20.88,
+      "text": "for true",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "for",
+          "start": 20.28,
+          "end": 20.48
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "true",
+          "start": 20.48,
+          "end": 20.88
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 20.88,
+      "end": 21.76,
+      "text": "or false.",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "or",
+          "start": 20.88,
+          "end": 21.18
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "false.",
+          "start": 21.18,
+          "end": 21.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 4,
+      "start": 23,
+      "end": 24.36,
+      "text": "Five plus five",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "Five",
+          "start": 23,
+          "end": 23.42
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "plus",
+          "start": 23.42,
+          "end": 23.88
+        },
+        {
+          "id": "caption-word-18-2",
+          "text": "five",
+          "start": 23.88,
+          "end": 24.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 4,
+      "start": 24.36,
+      "end": 25.32,
+      "text": "gives ten.",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "gives",
+          "start": 24.36,
+          "end": 24.78
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "ten.",
+          "start": 24.78,
+          "end": 25.2
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 4,
+      "start": 25.78,
+      "end": 26.16,
+      "text": "Put them",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "Put",
+          "start": 25.78,
+          "end": 25.98
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "them",
+          "start": 25.98,
+          "end": 26.16
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 4,
+      "start": 26.16,
+      "end": 26.66,
+      "text": "both in",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "both",
+          "start": 26.16,
+          "end": 26.42
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "in",
+          "start": 26.42,
+          "end": 26.66
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 4,
+      "start": 26.66,
+      "end": 27.02,
+      "text": "quotes,",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "quotes,",
+          "start": 26.66,
+          "end": 27.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 4,
+      "start": 27.02,
+      "end": 28.06,
+      "text": "and plus stops",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "and",
+          "start": 27.02,
+          "end": 27.42
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "plus",
+          "start": 27.42,
+          "end": 27.68
+        },
+        {
+          "id": "caption-word-23-2",
+          "text": "stops",
+          "start": 27.68,
+          "end": 28.06
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 4,
+      "start": 28.06,
+      "end": 28.7,
+      "text": "adding.",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "adding.",
+          "start": 28.06,
+          "end": 28.58
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 4,
+      "start": 29.2,
+      "end": 29.98,
+      "text": "It glues.",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "It",
+          "start": 29.2,
+          "end": 29.36
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "glues.",
+          "start": 29.36,
+          "end": 29.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 5,
+      "start": 31.2,
+      "end": 31.86,
+      "text": "So here",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "So",
+          "start": 31.2,
+          "end": 31.52
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "here",
+          "start": 31.52,
+          "end": 31.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 5,
+      "start": 31.86,
+      "end": 32.66,
+      "text": "is the quiz.",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "is",
+          "start": 31.86,
+          "end": 32.08
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "the",
+          "start": 32.08,
+          "end": 32.22
+        },
+        {
+          "id": "caption-word-27-2",
+          "text": "quiz.",
+          "start": 32.22,
+          "end": 32.54
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 5,
+      "start": 33.18,
+      "end": 33.98,
+      "text": "Quote five,",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "Quote",
+          "start": 33.18,
+          "end": 33.54
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "five,",
+          "start": 33.54,
+          "end": 33.98
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 5,
+      "start": 33.98,
+      "end": 34.98,
+      "text": "star three.",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "star",
+          "start": 33.98,
+          "end": 34.32
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "three.",
+          "start": 34.32,
+          "end": 34.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 5,
+      "start": 35.34,
+      "end": 35.64,
+      "text": "What does",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "What",
+          "start": 35.34,
+          "end": 35.48
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "does",
+          "start": 35.48,
+          "end": 35.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 5,
+      "start": 35.64,
+      "end": 36.9,
+      "text": "Python give you?",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "Python",
+          "start": 35.64,
+          "end": 35.98
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "give",
+          "start": 35.98,
+          "end": 36.46
+        },
+        {
+          "id": "caption-word-31-2",
+          "text": "you?",
+          "start": 36.46,
+          "end": 36.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 5,
+      "start": 37.12,
+      "end": 37.88,
+      "text": "Comment it.",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "Comment",
+          "start": 37.12,
+          "end": 37.42
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "it.",
+          "start": 37.42,
+          "end": 37.76
+        }
+      ]
+    }
+  ]
+}

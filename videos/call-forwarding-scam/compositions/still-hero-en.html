@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1200, height=630" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; background: #FFFFEB; }
+      #root {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        container-type: size;
+        direction: ltr;
+        background: #FFFFEB;
+        font-family: Georgia, "Times New Roman", serif;
+        color: #1A1A1A;
+      }
+      .sh-stub { position: absolute; top: 64px; left: 72px; width: 62px; height: 4px; background: #FFA946; }
+      .sh-kicker {
+        position: absolute; top: 92px; left: 72px; width: 640px;
+        font-family: "Arial Black", Arial, Helvetica, sans-serif; font-size: 1.9cqw; font-weight: 800;
+        letter-spacing: 0.18em; text-transform: uppercase; color: #034F46;
+      }
+      .sh-title {
+        position: absolute; top: 128px; left: 72px; width: 660px;
+        font-family: "Arial Black", Arial, Helvetica, sans-serif; font-size: 6.2cqw; font-weight: 900;
+        line-height: 1.1; letter-spacing: -0.02em; color: #1A1A1A;
+      }
+      .sh-lead {
+        position: absolute; top: 336px; left: 72px; width: 600px;
+        font-family: Georgia, "Times New Roman", serif; font-size: 2.35cqw; font-weight: 400;
+        line-height: 1.45; color: rgba(26,26,26,0.82);
+      }
+      .sh-foot {
+        position: absolute; bottom: 0; left: 0; width: 1200px; height: 92px;
+        border-top: 1px solid rgba(26,26,26,0.22);
+        display: flex; align-items: center; gap: 20px; padding: 0 72px;
+      }
+      .sh-foot span {
+        font-family: Georgia, "Times New Roman", serif; font-size: 1.7cqw; font-weight: 400;
+        color: #1A1A1A;
+      }
+      .sh-foot b {
+        font-family: "Arial Black", Arial, Helvetica, sans-serif; font-size: 1.8cqw; font-weight: 900;
+        color: #034F46; white-space: nowrap;
+      }
+      .sh-diagram { position: absolute; top: 60px; right: 60px; width: 400px; height: 420px; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="1"
+      data-fps="1"
+      data-width="1200"
+      data-height="630"
+      dir="ltr"
+      lang="en"
+    >
+      <div
+        id="sh-clip"
+        class="clip"
+        data-start="0"
+        data-duration="1"
+        data-track-index="0"
+        style="position:absolute;inset:0;"
+      >
+        <div class="sh-stub"></div>
+        <div class="sh-kicker">Warning</div>
+        <div class="sh-title">Call<br />Forwarding</div>
+        <div class="sh-lead">The scam that never asks you for anything. No code was requested, and no call ever rang on their end.</div>
+
+        <svg class="sh-diagram" viewBox="0 0 400 420" width="400" height="420" fill="none" aria-hidden="true">
+          <!-- her phone: left of the pair, dimmed (it never rings) -->
+          <rect x="20" y="70" width="94" height="170" stroke="#1A1A1A" stroke-width="1.6" fill="none" opacity="0.32"/>
+          <rect x="32" y="86" width="70" height="130" fill="#1A1A1A" opacity="0.12"/>
+          <text x="67" y="272" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1A1A1A" opacity="0.62">Her number</text>
+
+          <!-- the divert: from her number, bending to his -->
+          <path d="M 114 155 C 170 175 200 205 250 215" stroke="#FFA946" stroke-width="2.4"/>
+          <path d="M 238 205 L 252 216 L 236 224" stroke="#FFA946" stroke-width="2.4" fill="none"/>
+
+          <!-- his phone: right, active -->
+          <rect x="250" y="180" width="94" height="170" stroke="#1A1A1A" stroke-width="1.6" fill="none"/>
+          <rect x="262" y="196" width="70" height="130" fill="#FFA946"/>
+          <text x="297" y="382" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#1A1A1A">His number</text>
+          <circle cx="297" cy="265" r="72" stroke="#FFA946" stroke-width="1.4" opacity="0.75"/>
+        </svg>
+
+        <div class="sh-foot">
+          <b>The two-minute check</b>
+          <span>Done with your own hands, on the phone in your hand.</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    /* the ligature kill-list is on every frame of the film, not only the code frame
+       (frame.md v3.0 § 2) — JetBrains Mono silently rewrites -> and <= */
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    /* the ground (frame.md v3.0 § 3) — identical in every frame, and every ground animation
+       starts AND ends at its own zero, so a cut changes only the content */
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G1 hook — type over the board, nothing illustrated (frame.md v3.0 § 5) */
+    .f1-line { position: absolute; left: 72px; width: 936px; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.04;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; font-size: 9.2cqw; }
+    .f1-l1 { top: 420px; }
+    .f1-l2 { top: 548px; }
+    .f1-l3 { top: 676px; }
+    /* self-contained say-plate: the plate lives inside its own token, and when the sweep finishes
+       the amber BECOMES the token's own background while the type flips to --say-ink in the same
+       instant, so no sampled frame sits in between (pb-22's finding, kept as a rule) */
+    .f1-w { display: inline-block; position: relative; }
+    .f1-hl { position: absolute; left: 0; right: 0; top: 0.08em; bottom: 0.05em;
+      background: #FFD166; border-radius: 12px; transform: scaleX(0); transform-origin: left center; }
+    .f1-ht { position: relative; z-index: 1; }
+  </style>
+
+  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-duration="4.2">
+
+    <div id="g1-ground" class="clip clipband" data-start="0" data-duration="4.2" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g1-grid" class="gnd-grid"></div>
+      <div id="g1-ga" class="gnd-glow-a"></div>
+      <div id="g1-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c1-chrome" class="clip clipband" data-start="0" data-duration="4.2" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c1-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 32</div>
+      </div>
+    </div>
+
+    <div id="f1-content" class="clip clipband" data-start="0" data-duration="4.2" data-track-index="2">
+      <div id="f1-l1" class="f1-line f1-l1"><span class="f1-w">an&nbsp;ER</span></div>
+      <div id="f1-l2" class="f1-line f1-l2"><span class="f1-w">doesn&apos;t&nbsp;treat</span></div>
+      <div id="f1-l3" class="f1-line f1-l3" data-layout-allow-occlusion><span class="f1-w" id="f1-tok"><span class="f1-hl" id="f1-hl" data-layout-allow-occlusion></span><span class="f1-ht" id="f1-ht">by&nbsp;arrival</span></span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 4.2;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-hook"] = tl;
+
+      /* ground: every animation returns to its own zero (4 passes of D/4 = 4.2) */
+      tl.fromTo(el("g1-grid"), { y: 0 }, { y: 16, duration: 1.05, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g1-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.05, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g1-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.05, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c1-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* hook type, one wipe per group, keyed to the MEASURED onsets (studio cues):
+         An 0.00 / ER 0.16 / doesn't 0.44 / treat 1.02 / patients 1.20 / in 1.64 / the 2.00 /
+         order 2.12 / they 2.34 / arrive 2.58->2.90 */
+      tl.fromTo(el("f1-l1"), { opacity: 0, x: -140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("f1-l2"), { opacity: 0, x: -140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.46);
+      tl.fromTo(el("f1-l3"), { opacity: 0, x: -140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.62);
+
+      /* P1 say-sweep on the hook's sharpest group — the plate lands on "order/arrive" (2.12/2.58) */
+      tl.fromTo(el("f1-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.34, ease: "power2.out", immediateRender: false }, 2.5);
+      tl.set(el("f1-tok"), { backgroundColor: "#FFD166" }, 2.86);
+      tl.set(el("f1-ht"), { color: "#22201B" }, 2.86);
+      tl.set(el("f1-hl"), { opacity: 0 }, 2.86);
+      tl.fromTo(el("f1-hl"), { boxShadow: "0 0 0 rgba(255,209,102,0)" },
+        { boxShadow: "0 0 34px rgba(255,209,102,0.5)", duration: 0.45, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 2.9);
+
+      /* ambient breath on the type only — one breath per half frame, back to zero (1.2 + 2 x 1.05) */
+      tl.fromTo(el("f1-l1"), { y: 0 }, { y: -5, duration: 1.05, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 1.2);
+
+      tl.to(el("f1-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 3.88);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

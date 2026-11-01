@@ -1,0 +1,170 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f1-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f1-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    /* the lateral camera lives here: one world wrapper, translateX only, never scale */
+    .f1-world { position: absolute; inset: 0; will-change: transform; }
+    .f1-kicker {
+      position: absolute; top: 470px; left: 96px; width: 560px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f1-column {
+      position: absolute; top: 540px; left: 96px; width: 480px; height: 792px;
+      box-sizing: border-box; border: 4px solid #1a1a1a; border-radius: 8px;
+      background: #ffffff; overflow: hidden;
+    }
+    .f1-row {
+      position: absolute; left: 0; width: 100%; height: 112px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 24px; padding: 0 28px;
+      border-bottom: 2px solid rgba(26,26,26,0.16);
+      opacity: 0;
+    }
+    .f1-row-last { border-bottom: none; }
+    .f1-num {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      color: rgba(26,26,26,0.5); width: 42px; flex: 0 0 42px;
+    }
+    .f1-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.2cqw;
+      line-height: 1.02; letter-spacing: -0.018em; color: rgba(26,26,26,0.55);
+    }
+    /* the lit row: this is the pair the frame is about */
+    .f1-row-lit { background: #ffffff; }
+    .f1-row-lit .f1-name { color: #1a1a1a; }
+    .f1-row-lit .f1-num { color: #1a1a1a; }
+    .f1-litbar { position: absolute; left: 0; top: 0; width: 8px; height: 100%; background: #ffa946; opacity: 0; }
+    .f1-svg { position: absolute; inset: 0; }
+    .f1-arrow { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f1-head { fill: #ffa946; opacity: 0; }
+    .f1-peer {
+      position: absolute; left: 800px; top: 910px; width: 220px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f1-same {
+      position: absolute; left: 764px; top: 992px; width: 292px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f1-ghost {
+      position: absolute; left: 824px; width: 172px; height: 48px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(26,26,26,0.25); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; color: rgba(26,26,26,0.25); opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-lyiu" id="root" data-composition-id="01-the-promise" data-width="1080" data-height="1920" data-duration="7.241">
+
+    <div data-hf-id="hf-pw91" id="f1-fieldclip" class="clip" data-start="0" data-duration="7.241" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-g4f4" class="f1-field"></div>
+      <div data-hf-id="hf-a8t2" id="f1-grid" class="f1-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-wyaa" id="f1-worldclip" class="clip" data-start="0" data-duration="7.241" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-w18e" id="f1-world" class="f1-world">
+
+        <div data-hf-id="hf-1m1g" id="f1-kicker" class="f1-kicker"><span data-hf-id="hf-zcvq" id="f1-ktext" data-layout-ignore>this end &middot; layer for layer</span></div>
+
+        <div data-hf-id="hf-2hr6" id="f1-column" class="f1-column">
+          <div data-hf-id="hf-gkyt" id="f1-row7" class="f1-row" style="top:0px;"><span data-hf-id="hf-w96u" class="f1-num">7</span><span data-hf-id="hf-b0j0" class="f1-name">application</span></div>
+          <div data-hf-id="hf-mtb2" id="f1-row6" class="f1-row" style="top:112px;"><span data-hf-id="hf-vuvt" class="f1-num">6</span><span data-hf-id="hf-flsi" class="f1-name">presentation</span></div>
+          <div data-hf-id="hf-gg1f" id="f1-row5" class="f1-row" style="top:224px;"><span data-hf-id="hf-x1sw" class="f1-num">5</span><span data-hf-id="hf-4eqy" class="f1-name">session</span></div>
+          <div data-hf-id="hf-86c4" id="f1-row4" class="f1-row f1-row-lit" style="top:336px;">
+            <div data-hf-id="hf-qkmy" id="f1-litbar" class="f1-litbar"></div>
+            <span data-hf-id="hf-wnhv" class="f1-num">4</span><span data-hf-id="hf-09tf" class="f1-name">transport</span>
+          </div>
+          <div data-hf-id="hf-hq61" id="f1-row3" class="f1-row" style="top:448px;"><span data-hf-id="hf-unyq" class="f1-num">3</span><span data-hf-id="hf-k16c" class="f1-name">network</span></div>
+          <div data-hf-id="hf-lrn7" id="f1-row2" class="f1-row" style="top:560px;"><span data-hf-id="hf-q7ol" class="f1-num">2</span><span data-hf-id="hf-jghm" class="f1-name">data link</span></div>
+          <div data-hf-id="hf-hsq5" id="f1-row1" class="f1-row f1-row-last" style="top:672px;"><span data-hf-id="hf-vgks" class="f1-num">1</span><span data-hf-id="hf-4u5n" class="f1-name">physical</span></div>
+        </div>
+
+        <svg data-hf-id="hf-7znx" id="f1-arrow-svg" class="f1-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <path data-hf-id="hf-wqg4" id="f1-arrow" class="f1-arrow" d="M 580 940 L 1046 940" />
+          <polygon data-hf-id="hf-m0q6" id="f1-head" class="f1-head" points="1038,929 1060,940 1038,951" />
+        </svg>
+
+        <div data-hf-id="hf-tls7" id="f1-peer" class="f1-peer">transport</div>
+        <div data-hf-id="hf-wg1g" id="f1-same" class="f1-same" data-layout-ignore>same number</div>
+        <div data-hf-id="hf-68ax" id="f1-ghost7" class="f1-ghost" style="top:572px;">layer 7</div>
+        <div data-hf-id="hf-rxir" id="f1-ghost3" class="f1-ghost" style="top:1160px;">layer 3</div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.741;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-the-promise"] = tl;
+
+      // ── Scene 1 (0.0–1.49s) — "every layer talks sideways": the host column resolves at
+      //    ~55% ink, the ember bar enters on layer 4 only. Right 42% is still empty paper. ──
+      tl.fromTo(el("f1-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f1-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.12);
+      var ROWS = [
+        { id: "f1-row7", t: 0.18 }, { id: "f1-row6", t: 0.34 }, { id: "f1-row5", t: 0.5 },
+        { id: "f1-row4", t: 0.66 }, { id: "f1-row3", t: 0.82 }, { id: "f1-row2", t: 0.98 },
+        { id: "f1-row1", t: 1.14 }
+      ];
+      ROWS.forEach(function (r) {
+        tl.fromTo(el(r.id), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.28, ease: "power3.out" }, r.t);
+      });
+      tl.fromTo(el("f1-litbar"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.02);
+
+      // ── Scene 2 (1.49–4.6s) — the camera pans LATERALLY along row 4 (viewport-change, PAN:
+      //    translateX only, no scale) while its arrow draws itself out of the chamber edge and
+      //    the peer tag is centred as the pan lands on it. ──
+      var cam = { x: 0 };
+      tl.to(cam, {
+        x: -70, duration: 2.4, ease: "power1.inOut",
+        onUpdate: function () { el("f1-world").style.transform = "translateX(" + cam.x.toFixed(2) + "px)"; }
+      }, 1.49);
+
+      var arw = el("f1-arrow");
+      var len = arw.getTotalLength() * 1.05;
+      arw.style.strokeDasharray = String(len);
+      arw.style.strokeDashoffset = String(len);
+      tl.to(arw, { strokeDashoffset: 0, duration: 1.15, ease: "power3.out" }, 1.62);
+      tl.fromTo(el("f1-head"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 2.66);
+
+      // peer tag on "same" (2.92), the mono callout on "number" (3.32)
+      tl.fromTo(el("f1-peer"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 2.92);
+      tl.fromTo(el("f1-same"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 3.32);
+
+      // ── Scene 3 (5.61–6.3s) — ghost peer tags at the layer 7 and layer 3 levels: the promise
+      //    that this holds for every layer, stated visually, never said. ──
+      tl.fromTo(el("f1-ghost7"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 5.61);
+      tl.fromTo(el("f1-ghost3"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 5.78);
+
+      // ── Scene 4 (6.1–6.741s) — held read. Jitter on the arrow head only (sine-wave-loop, finite). ──
+      var jit = { p: 0 };
+      var hd = el("f1-head");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.9, duration: D - 6.1, ease: "none",
+        onUpdate: function () { hd.style.transform = "translateX(" + (Math.sin(jit.p) * 2.4).toFixed(3) + "px)"; }
+      }, 6.1);
+    })();
+  </script>
+</template>

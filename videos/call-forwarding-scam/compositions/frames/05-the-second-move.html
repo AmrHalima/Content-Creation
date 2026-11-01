@@ -1,0 +1,181 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #FFFFEB;
+    }
+    .f05-bg { position: absolute; inset: 0; background: #1A1A1A; }
+    .f05-head {
+      position: absolute; top: 290px; right: 96px; width: 888px; min-height: 240px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 9.4cqw; font-weight: 900; line-height: 1.05; letter-spacing: 0;
+      color: #FFFFEB; opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; top: 220px; right: 96px; width: 600px; height: 60px;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3cqw; font-weight: 500;
+      letter-spacing: 0; color: #FFA946; opacity: 0; white-space: nowrap;
+    }
+    .f05-rail { position: absolute; top: 600px; right: 96px; width: 888px; height: 130px; }
+    .f05-acc {
+      position: absolute; top: 0; right: 0; width: 280px; height: 110px;
+      border: 1px solid rgba(255,255,235,0.24);
+      display: flex; align-items: center; justify-content: center; gap: 20px; box-sizing: border-box;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.2cqw; font-weight: 500;
+      letter-spacing: 0; color: rgba(255,255,235,0.85); opacity: 0; white-space: nowrap;
+    }
+    .f05-lock { width: 28px; height: 35px; flex: 0 0 auto; }
+    .f05-shackle { fill: none; stroke: rgba(255,255,235,0.45); stroke-width: 3; }
+    .f05-lockbody { fill: none; stroke: rgba(255,255,235,0.45); stroke-width: 3; }
+    .f05-a2 { right: 304px; width: 280px; }
+    .f05-a3 { right: 608px; width: 280px; }
+    .f05-devices { position: absolute; top: 830px; right: 0; width: 1080px; height: 560px; }
+    .f05-svg { position: absolute; inset: 0; }
+    .f05-phone { fill: none; stroke: rgba(255,255,235,0.35); stroke-width: 2; }
+    .f05-screen { fill: rgba(255,255,235,0.06); }
+    .f05-cardline { fill: none; stroke: #FFA946; stroke-width: 2.5; }
+    .f05-codebox { fill: #1A1A1A; }
+    .f05-chip { fill: none; stroke: rgba(255,255,235,0.35); stroke-width: 2; }
+    .f05-chipdot { fill: rgba(255,255,235,0.5); }
+    .f05-route { fill: none; stroke: rgba(255,169,70,0.45); stroke-width: 2; }
+    .f05-pip { fill: #FFA946; }
+    .f05-say {
+      position: absolute; bottom: 210px; right: 96px; width: 888px; min-height: 280px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 7.4cqw; font-weight: 800; line-height: 1.15; letter-spacing: 0;
+      color: #FFA946; opacity: 0;
+    }
+    .f05-tag {
+      position: absolute; top: 250px; left: 150px; width: 220px; height: 70px;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.2cqw; font-weight: 500;
+      letter-spacing: 0; color: #FFA946; opacity: 0; text-align: center;
+    }
+    .f05-tagher { top: 330px; right: 130px; left: auto; width: 200px; color: rgba(255,255,235,0.55); }
+  </style>
+
+  <div id="root" data-composition-id="05-the-second-move" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f05-bgclip" class="clip" data-start="0" data-duration="11.78" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-bg"></div>
+    </div>
+
+    <div id="f05-headclip" class="clip" data-start="0" data-duration="11.78" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f05-kicker" class="f05-kicker">والخطوة التانية</div>
+      <div id="f05-head" class="f05-head">«نسيت كلمة السر»</div>
+    </div>
+
+    <div id="f05-railclip" class="clip" data-start="2.2" data-duration="9.58" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f05-rail">
+        <div id="f05-acc1" class="f05-acc">واتساب<svg class="f05-lock" width="28" height="35" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg"><path id="f05-sh1" class="f05-shackle" d="M 10 24 V 16 A 10 10 0 0 1 30 16 V 24" /><rect class="f05-lockbody" x="5" y="24" width="30" height="21" /></svg></div>
+        <div id="f05-acc2" class="f05-acc f05-a2">فيسبوك<svg class="f05-lock" width="28" height="35" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg"><path id="f05-sh2" class="f05-shackle" d="M 10 24 V 16 A 10 10 0 0 1 30 16 V 24" /><rect class="f05-lockbody" x="5" y="24" width="30" height="21" /></svg></div>
+        <div id="f05-acc3" class="f05-acc f05-a3">تطبيق البنك<svg class="f05-lock" width="28" height="35" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg"><path id="f05-sh3" class="f05-shackle" d="M 10 24 V 16 A 10 10 0 0 1 30 16 V 24" /><rect class="f05-lockbody" x="5" y="24" width="30" height="21" /></svg></div>
+      </div>
+    </div>
+
+    <div id="f05-devicesclip" class="clip" data-start="5" data-duration="6.78" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f05-devices">
+        <svg class="f05-svg" width="1080" height="560" viewBox="0 0 1080 560" xmlns="http://www.w3.org/2000/svg">
+          <!-- her phone: still dark from frame 4 -->
+          <g id="f05-her">
+            <rect class="f05-phone" x="760" y="40" width="150" height="270" />
+            <rect class="f05-screen" x="774" y="60" width="122" height="206" />
+          </g>
+          <!-- the system sends the code to the registered number -->
+          <g id="f05-chip">
+            <rect class="f05-chip" x="590" y="110" width="140" height="64" />
+            <circle class="f05-chipdot" cx="614" cy="142" r="5" />
+            <circle class="f05-chipdot" cx="638" cy="142" r="5" />
+            <circle class="f05-chipdot" cx="662" cy="142" r="5" />
+            <circle class="f05-chipdot" cx="686" cy="142" r="5" />
+            <circle class="f05-chipdot" cx="710" cy="142" r="5" />
+          </g>
+          <path id="f05-route" class="f05-route" d="M 588 142 C 470 175 400 215 368 258" />
+          <circle id="f05-pip" class="f05-pip" cx="588" cy="142" r="9" opacity="0" />
+          <!-- his phone: the code lands here -->
+          <g id="f05-his">
+            <rect class="f05-phone" x="170" y="150" width="150" height="270" />
+            <rect class="f05-screen" x="184" y="170" width="122" height="206" />
+            <rect id="f05-card" class="f05-codebox" x="150" y="230" width="220" height="110" />
+            <path id="f05-cardline" class="f05-cardline" d="M 150 230 L 370 230 L 370 340 L 150 340 Z" />
+          </g>
+        </svg>
+        <div id="f05-cardtext" class="f05-tag">كود التحقق</div>
+        <div id="f05-tagher" class="f05-tag f05-tagher">ساكن</div>
+      </div>
+    </div>
+
+    <div id="f05-sayclip" class="clip" data-start="9.2" data-duration="2.58" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f05-say" class="f05-say">كود التحقق بيوصل له هو</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-the-second-move"] = tl;
+
+      tl.fromTo(el("f05-kicker"), { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f05-head"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power4.out" }, 0.35);
+
+      tl.fromTo(el("f05-acc1"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 2.35);
+      tl.fromTo(el("f05-acc2"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 2.8);
+      tl.fromTo(el("f05-acc3"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 3.25);
+
+      // each account locks as the reset runs through it
+      ["f05-sh1", "f05-sh2", "f05-sh3"].forEach(function (id, i) {
+        var sh = el(id);
+        tl.fromTo(sh, { y: -11 }, { y: 0, duration: 0.3, ease: "power3.in" }, 3.95 + i * 0.28);
+        tl.to(sh, { stroke: "#FFA946", duration: 0.3 }, 3.95 + i * 0.28);
+        tl.to(el("f05-acc" + (i + 1)), { borderColor: "rgba(255,169,70,0.55)", duration: 0.3 }, 3.95 + i * 0.28);
+      });
+
+      // the system sends the code to the registered number...
+      tl.fromTo(el("f05-devicesclip").querySelector("#f05-her"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, 5.1);
+      tl.fromTo(el("f05-chip"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 5.5);
+
+      var route = el("f05-route");
+      var RLEN = route.getTotalLength();
+      route.style.strokeDasharray = String(RLEN);
+      route.style.strokeDashoffset = String(RLEN);
+      tl.to(route, { strokeDashoffset: 0, duration: 0.8, ease: "power1.inOut" }, 5.9);
+
+      // ...and it travels to his phone
+      var pip = el("f05-pip");
+      var p = { v: 0 };
+      tl.fromTo(pip, { opacity: 0 }, { opacity: 1, duration: 0.15 }, 6.5);
+      tl.to(p, {
+        v: 1, duration: 1.0, ease: "power1.inOut",
+        onUpdate: function () {
+          var pt = route.getPointAtLength(RLEN * p.v);
+          pip.setAttribute("cx", pt.x);
+          pip.setAttribute("cy", pt.y);
+        }
+      }, 6.5);
+
+      // the card outline draws itself onto HIS phone, hers stays dark
+      var card = el("f05-cardline");
+      var LEN = card.getTotalLength();
+      card.style.strokeDasharray = String(LEN);
+      card.style.strokeDashoffset = String(LEN);
+      tl.fromTo(el("f05-his"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.6);
+      tl.to(card, { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 7.25);
+      tl.to(pip, { opacity: 0, duration: 0.25 }, 7.35);
+      tl.fromTo(el("f05-cardtext"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 8.1);
+      tl.fromTo(el("f05-tagher"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 8.4);
+
+      tl.fromTo(el("f05-say"), { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 9.3);
+      // 9.9s -> 11.78s held.
+    })();
+  </script>
+</template>

@@ -1,0 +1,477 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 3.968,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "text": "safest",
+          "start": 0.2,
+          "end": 0.74
+        },
+        {
+          "text": "variable",
+          "start": 0.74,
+          "end": 1.48
+        },
+        {
+          "text": "is",
+          "start": 1.48,
+          "end": 2.18
+        },
+        {
+          "text": "the",
+          "start": 2.18,
+          "end": 2.36
+        },
+        {
+          "text": "one",
+          "start": 2.36,
+          "end": 2.6
+        },
+        {
+          "text": "that",
+          "start": 2.6,
+          "end": 2.82
+        },
+        {
+          "text": "can't",
+          "start": 2.82,
+          "end": 3.22
+        },
+        {
+          "text": "change.",
+          "start": 3.22,
+          "end": 3.56
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 9.088,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "constant",
+          "start": 0.22,
+          "end": 0.8
+        },
+        {
+          "text": "is",
+          "start": 0.8,
+          "end": 1.28
+        },
+        {
+          "text": "a",
+          "start": 1.28,
+          "end": 1.42
+        },
+        {
+          "text": "name",
+          "start": 1.42,
+          "end": 1.82
+        },
+        {
+          "text": "you",
+          "start": 1.82,
+          "end": 2.02
+        },
+        {
+          "text": "promise",
+          "start": 2.02,
+          "end": 2.44
+        },
+        {
+          "text": "never",
+          "start": 2.44,
+          "end": 2.96
+        },
+        {
+          "text": "to",
+          "start": 2.96,
+          "end": 3.24
+        },
+        {
+          "text": "change.",
+          "start": 3.24,
+          "end": 3.8
+        },
+        {
+          "text": "Python",
+          "start": 4.4,
+          "end": 5
+        },
+        {
+          "text": "does",
+          "start": 5,
+          "end": 5.36
+        },
+        {
+          "text": "not",
+          "start": 5.36,
+          "end": 5.66
+        },
+        {
+          "text": "check",
+          "start": 5.66,
+          "end": 6.06
+        },
+        {
+          "text": "that",
+          "start": 6.06,
+          "end": 6.34
+        },
+        {
+          "text": "promise.",
+          "start": 6.34,
+          "end": 6.8
+        },
+        {
+          "text": "Nothing",
+          "start": 7.42,
+          "end": 7.86
+        },
+        {
+          "text": "stops",
+          "start": 7.86,
+          "end": 8.4
+        },
+        {
+          "text": "you.",
+          "start": 8.4,
+          "end": 8.86
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 8.555,
+      "words": [
+        {
+          "text": "Immutable",
+          "start": 0,
+          "end": 0.62
+        },
+        {
+          "text": "means",
+          "start": 0.62,
+          "end": 1.1
+        },
+        {
+          "text": "the",
+          "start": 1.1,
+          "end": 1.46
+        },
+        {
+          "text": "value",
+          "start": 1.46,
+          "end": 1.9
+        },
+        {
+          "text": "itself",
+          "start": 1.9,
+          "end": 2.36
+        },
+        {
+          "text": "refuses",
+          "start": 2.36,
+          "end": 3.08
+        },
+        {
+          "text": "to",
+          "start": 3.08,
+          "end": 3.5
+        },
+        {
+          "text": "change.",
+          "start": 3.5,
+          "end": 4.02
+        },
+        {
+          "text": "A",
+          "start": 4.72,
+          "end": 4.82
+        },
+        {
+          "text": "string",
+          "start": 4.82,
+          "end": 5.22
+        },
+        {
+          "text": "is",
+          "start": 5.22,
+          "end": 5.66
+        },
+        {
+          "text": "immutable.",
+          "start": 5.66,
+          "end": 6.22
+        },
+        {
+          "text": "Python",
+          "start": 6.9,
+          "end": 7.22
+        },
+        {
+          "text": "stops",
+          "start": 7.22,
+          "end": 7.86
+        },
+        {
+          "text": "you.",
+          "start": 7.86,
+          "end": 8.32
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 12.672,
+      "words": [
+        {
+          "text": "Max",
+          "start": 0,
+          "end": 0.44
+        },
+        {
+          "text": "users",
+          "start": 0.44,
+          "end": 0.86
+        },
+        {
+          "text": "is",
+          "start": 0.86,
+          "end": 1.3
+        },
+        {
+          "text": "one",
+          "start": 1.3,
+          "end": 1.345
+        },
+        {
+          "text": "hundred.",
+          "start": 1.3,
+          "end": 1.82
+        },
+        {
+          "text": "All",
+          "start": 2.7,
+          "end": 2.92
+        },
+        {
+          "text": "caps",
+          "start": 2.92,
+          "end": 3.34
+        },
+        {
+          "text": "means",
+          "start": 3.34,
+          "end": 3.7
+        },
+        {
+          "text": "constant.",
+          "start": 3.7,
+          "end": 4.38
+        },
+        {
+          "text": "Now",
+          "start": 5.16,
+          "end": 5.42
+        },
+        {
+          "text": "s",
+          "start": 5.42,
+          "end": 5.84
+        },
+        {
+          "text": "is",
+          "start": 5.84,
+          "end": 6.04
+        },
+        {
+          "text": "hi.",
+          "start": 6.04,
+          "end": 6.44
+        },
+        {
+          "text": "Put",
+          "start": 6.94,
+          "end": 7.1
+        },
+        {
+          "text": "a",
+          "start": 7.1,
+          "end": 7.24
+        },
+        {
+          "text": "capital",
+          "start": 7.24,
+          "end": 7.62
+        },
+        {
+          "text": "H",
+          "start": 7.62,
+          "end": 8.16
+        },
+        {
+          "text": "at",
+          "start": 8.16,
+          "end": 8.32
+        },
+        {
+          "text": "position",
+          "start": 8.32,
+          "end": 8.7
+        },
+        {
+          "text": "zero.",
+          "start": 8.7,
+          "end": 9.4
+        },
+        {
+          "text": "Python",
+          "start": 10.2,
+          "end": 10.7
+        },
+        {
+          "text": "answers",
+          "start": 10.7,
+          "end": 11.36
+        },
+        {
+          "text": "TypeError.",
+          "start": 11.36,
+          "end": 11.88
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 8.768,
+      "words": [
+        {
+          "text": "Save",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "this",
+          "start": 0.38,
+          "end": 0.72
+        },
+        {
+          "text": "for",
+          "start": 0.72,
+          "end": 1.02
+        },
+        {
+          "text": "your",
+          "start": 1.02,
+          "end": 1.16
+        },
+        {
+          "text": "next",
+          "start": 1.16,
+          "end": 1.48
+        },
+        {
+          "text": "code",
+          "start": 1.48,
+          "end": 1.88
+        },
+        {
+          "text": "review.",
+          "start": 1.88,
+          "end": 2.36
+        },
+        {
+          "text": "Look",
+          "start": 3.1,
+          "end": 3.3
+        },
+        {
+          "text": "for",
+          "start": 3.3,
+          "end": 3.6
+        },
+        {
+          "text": "a",
+          "start": 3.6,
+          "end": 3.74
+        },
+        {
+          "text": "name",
+          "start": 3.74,
+          "end": 4.1
+        },
+        {
+          "text": "you",
+          "start": 4.1,
+          "end": 4.3
+        },
+        {
+          "text": "promised",
+          "start": 4.3,
+          "end": 4.72
+        },
+        {
+          "text": "never",
+          "start": 4.72,
+          "end": 5.28
+        },
+        {
+          "text": "to",
+          "start": 5.28,
+          "end": 5.56
+        },
+        {
+          "text": "change.",
+          "start": 5.56,
+          "end": 6.12
+        },
+        {
+          "text": "Then",
+          "start": 6.76,
+          "end": 7.08
+        },
+        {
+          "text": "check",
+          "start": 7.08,
+          "end": 7.46
+        },
+        {
+          "text": "if",
+          "start": 7.46,
+          "end": 7.74
+        },
+        {
+          "text": "it",
+          "start": 7.74,
+          "end": 7.88
+        },
+        {
+          "text": "changed.",
+          "start": 7.88,
+          "end": 8.36
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

@@ -1,0 +1,1522 @@
+{
+  "total_duration_s": 73.108,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 1.26,
+      "text": "Your code wants",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "Your",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "code",
+          "start": 0.24,
+          "end": 0.7
+        },
+        {
+          "id": "caption-word-0-2",
+          "text": "wants",
+          "start": 0.7,
+          "end": 1.26
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 1.26,
+      "end": 2.12,
+      "text": "one shape.",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "one",
+          "start": 1.26,
+          "end": 1.56
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "shape.",
+          "start": 1.56,
+          "end": 2
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 2.62,
+      "end": 4,
+      "text": "The vendor's SDK",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "The",
+          "start": 2.62,
+          "end": 2.84
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "vendor's",
+          "start": 2.84,
+          "end": 3.44
+        },
+        {
+          "id": "caption-word-2-2",
+          "text": "SDK",
+          "start": 3.44,
+          "end": 4
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 4,
+      "end": 5.02,
+      "text": "hands you a",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "hands",
+          "start": 4,
+          "end": 4.7
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "you",
+          "start": 4.7,
+          "end": 4.92
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "a",
+          "start": 4.92,
+          "end": 5.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 1,
+      "start": 5.02,
+      "end": 5.74,
+      "text": "different one.",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "different",
+          "start": 5.02,
+          "end": 5.32
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "one.",
+          "start": 5.32,
+          "end": 5.62
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 5.845,
+      "end": 7.065,
+      "text": "An adapter lets",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "An",
+          "start": 5.845,
+          "end": 6.125
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "adapter",
+          "start": 6.125,
+          "end": 6.645
+        },
+        {
+          "id": "caption-word-5-2",
+          "text": "lets",
+          "start": 6.645,
+          "end": 7.065
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 7.065,
+      "end": 7.805,
+      "text": "them talk,",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "them",
+          "start": 7.065,
+          "end": 7.325
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "talk,",
+          "start": 7.325,
+          "end": 7.805
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 7.805,
+      "end": 9.205,
+      "text": "and neither side",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "and",
+          "start": 7.805,
+          "end": 8.425
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "neither",
+          "start": 8.425,
+          "end": 8.725
+        },
+        {
+          "id": "caption-word-7-2",
+          "text": "side",
+          "start": 8.725,
+          "end": 9.205
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 9.205,
+      "end": 10.025,
+      "text": "changes.",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "changes.",
+          "start": 9.205,
+          "end": 9.905
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 10.845,
+      "end": 11.965,
+      "text": "It converts one",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "It",
+          "start": 10.845,
+          "end": 10.985
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "converts",
+          "start": 10.985,
+          "end": 11.445
+        },
+        {
+          "id": "caption-word-9-2",
+          "text": "one",
+          "start": 11.445,
+          "end": 11.965
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 11.965,
+      "end": 13.565,
+      "text": "interface into another.",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "interface",
+          "start": 11.965,
+          "end": 12.565
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "into",
+          "start": 12.565,
+          "end": 12.965
+        },
+        {
+          "id": "caption-word-10-2",
+          "text": "another.",
+          "start": 12.965,
+          "end": 13.445
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 3,
+      "start": 13.845,
+      "end": 15.045,
+      "text": "A factory picks",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "A",
+          "start": 13.845,
+          "end": 14.025
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "factory",
+          "start": 14.025,
+          "end": 14.525
+        },
+        {
+          "id": "caption-word-11-2",
+          "text": "picks",
+          "start": 14.525,
+          "end": 15.045
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 3,
+      "start": 15.045,
+      "end": 15.725,
+      "text": "which thing",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "which",
+          "start": 15.045,
+          "end": 15.385
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "thing",
+          "start": 15.385,
+          "end": 15.725
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 3,
+      "start": 15.725,
+      "end": 16.405,
+      "text": "to build.",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "to",
+          "start": 15.725,
+          "end": 15.925
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "build.",
+          "start": 15.925,
+          "end": 16.285
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 3,
+      "start": 17.005,
+      "end": 18.585,
+      "text": "An adapter reshapes",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "An",
+          "start": 17.005,
+          "end": 17.145
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "adapter",
+          "start": 17.145,
+          "end": 17.625
+        },
+        {
+          "id": "caption-word-14-2",
+          "text": "reshapes",
+          "start": 17.625,
+          "end": 18.585
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 3,
+      "start": 18.585,
+      "end": 19.045,
+      "text": "a thing",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "a",
+          "start": 18.585,
+          "end": 18.705
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "thing",
+          "start": 18.705,
+          "end": 19.045
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 19.045,
+      "end": 20.325,
+      "text": "that already exists.",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "that",
+          "start": 19.045,
+          "end": 19.325
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "already",
+          "start": 19.325,
+          "end": 19.745
+        },
+        {
+          "id": "caption-word-16-2",
+          "text": "exists.",
+          "start": 19.745,
+          "end": 20.205
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 4,
+      "start": 20.714,
+      "end": 21.774,
+      "text": "That seam is",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "That",
+          "start": 20.714,
+          "end": 21.034
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "seam",
+          "start": 21.034,
+          "end": 21.414
+        },
+        {
+          "id": "caption-word-17-2",
+          "text": "is",
+          "start": 21.414,
+          "end": 21.774
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 4,
+      "start": 21.774,
+      "end": 22.134,
+      "text": "where your",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "where",
+          "start": 21.774,
+          "end": 21.954
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "your",
+          "start": 21.954,
+          "end": 22.134
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 4,
+      "start": 22.134,
+      "end": 23.814,
+      "text": "domain stops and",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "domain",
+          "start": 22.134,
+          "end": 22.474
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "stops",
+          "start": 22.474,
+          "end": 23.114
+        },
+        {
+          "id": "caption-word-19-2",
+          "text": "and",
+          "start": 23.114,
+          "end": 23.814
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 4,
+      "start": 23.814,
+      "end": 25.014,
+      "text": "the vendor starts.",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "the",
+          "start": 23.814,
+          "end": 23.934
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "vendor",
+          "start": 23.934,
+          "end": 24.254
+        },
+        {
+          "id": "caption-word-20-2",
+          "text": "starts.",
+          "start": 24.254,
+          "end": 24.894
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 4,
+      "start": 25.654,
+      "end": 26.354,
+      "text": "Nothing in",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "Nothing",
+          "start": 25.654,
+          "end": 26.074
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "in",
+          "start": 26.074,
+          "end": 26.354
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 4,
+      "start": 26.354,
+      "end": 27.414,
+      "text": "your code knows",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "your",
+          "start": 26.354,
+          "end": 26.454
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "code",
+          "start": 26.454,
+          "end": 26.934
+        },
+        {
+          "id": "caption-word-22-2",
+          "text": "knows",
+          "start": 26.934,
+          "end": 27.414
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 4,
+      "start": 27.414,
+      "end": 28.874,
+      "text": "their client exists.",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "their",
+          "start": 27.414,
+          "end": 27.734
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "client",
+          "start": 27.734,
+          "end": 28.254
+        },
+        {
+          "id": "caption-word-23-2",
+          "text": "exists.",
+          "start": 28.254,
+          "end": 28.754
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 5,
+      "start": 29.183,
+      "end": 30.423,
+      "text": "The domain asks",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "The",
+          "start": 29.183,
+          "end": 29.403
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "domain",
+          "start": 29.403,
+          "end": 29.963
+        },
+        {
+          "id": "caption-word-24-2",
+          "text": "asks",
+          "start": 29.963,
+          "end": 30.423
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 5,
+      "start": 30.423,
+      "end": 31.023,
+      "text": "for amount,",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "for",
+          "start": 30.423,
+          "end": 30.763
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "amount,",
+          "start": 30.763,
+          "end": 30.903
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 5,
+      "start": 31.563,
+      "end": 32.723,
+      "text": "then currency.",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "then",
+          "start": 31.563,
+          "end": 31.883
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "currency.",
+          "start": 31.883,
+          "end": 32.603
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 5,
+      "start": 33.583,
+      "end": 34.043,
+      "text": "The vendor",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "The",
+          "start": 33.583,
+          "end": 33.723
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "vendor",
+          "start": 33.723,
+          "end": 34.043
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 5,
+      "start": 34.043,
+      "end": 35.043,
+      "text": "wants them the",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "wants",
+          "start": 34.043,
+          "end": 34.463
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "them",
+          "start": 34.463,
+          "end": 34.823
+        },
+        {
+          "id": "caption-word-28-2",
+          "text": "the",
+          "start": 34.823,
+          "end": 35.043
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 5,
+      "start": 35.043,
+      "end": 36.283,
+      "text": "other way round,",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "other",
+          "start": 35.043,
+          "end": 35.323
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "way",
+          "start": 35.323,
+          "end": 35.663
+        },
+        {
+          "id": "caption-word-29-2",
+          "text": "round,",
+          "start": 35.663,
+          "end": 36.163
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 5,
+      "start": 36.523,
+      "end": 37.123,
+      "text": "under a",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "under",
+          "start": 36.523,
+          "end": 36.883
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "a",
+          "start": 36.883,
+          "end": 37.123
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 5,
+      "start": 37.123,
+      "end": 37.883,
+      "text": "different name.",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "different",
+          "start": 37.123,
+          "end": 37.383
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "name.",
+          "start": 37.383,
+          "end": 37.763
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 6,
+      "start": 38.079,
+      "end": 39.139,
+      "text": "The answer gets",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "The",
+          "start": 38.079,
+          "end": 38.319
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "answer",
+          "start": 38.319,
+          "end": 38.759
+        },
+        {
+          "id": "caption-word-32-2",
+          "text": "gets",
+          "start": 38.759,
+          "end": 39.139
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 6,
+      "start": 39.139,
+      "end": 40.339,
+      "text": "converted too,",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "converted",
+          "start": 39.139,
+          "end": 39.819
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "too,",
+          "start": 39.819,
+          "end": 40.339
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 6,
+      "start": 40.339,
+      "end": 41.879,
+      "text": "back into a type",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "back",
+          "start": 40.339,
+          "end": 41.059
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "into",
+          "start": 41.059,
+          "end": 41.379
+        },
+        {
+          "id": "caption-word-34-2",
+          "text": "a",
+          "start": 41.379,
+          "end": 41.599
+        },
+        {
+          "id": "caption-word-34-3",
+          "text": "type",
+          "start": 41.599,
+          "end": 41.879
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 6,
+      "start": 41.879,
+      "end": 42.619,
+      "text": "you own.",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "you",
+          "start": 41.879,
+          "end": 42.159
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "own.",
+          "start": 42.159,
+          "end": 42.499
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 6,
+      "start": 43.159,
+      "end": 44.619,
+      "text": "Every difference handled",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "Every",
+          "start": 43.159,
+          "end": 43.519
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "difference",
+          "start": 43.519,
+          "end": 43.939
+        },
+        {
+          "id": "caption-word-36-2",
+          "text": "handled",
+          "start": 43.939,
+          "end": 44.619
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 6,
+      "start": 44.619,
+      "end": 45.859,
+      "text": "in one box.",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "in",
+          "start": 44.619,
+          "end": 44.999
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "one",
+          "start": 44.999,
+          "end": 45.319
+        },
+        {
+          "id": "caption-word-37-2",
+          "text": "box.",
+          "start": 45.319,
+          "end": 45.739
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 7,
+      "start": 46.164,
+      "end": 46.704,
+      "text": "It costs",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "It",
+          "start": 46.164,
+          "end": 46.364
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "costs",
+          "start": 46.364,
+          "end": 46.704
+        }
+      ]
+    },
+    {
+      "id": "caption-group-39",
+      "frame": 7,
+      "start": 46.704,
+      "end": 47.284,
+      "text": "a layer",
+      "words": [
+        {
+          "id": "caption-word-39-0",
+          "text": "a",
+          "start": 46.704,
+          "end": 46.964
+        },
+        {
+          "id": "caption-word-39-1",
+          "text": "layer",
+          "start": 46.964,
+          "end": 47.284
+        }
+      ]
+    },
+    {
+      "id": "caption-group-40",
+      "frame": 7,
+      "start": 47.284,
+      "end": 48.504,
+      "text": "you maintain on",
+      "words": [
+        {
+          "id": "caption-word-40-0",
+          "text": "you",
+          "start": 47.284,
+          "end": 47.564
+        },
+        {
+          "id": "caption-word-40-1",
+          "text": "maintain",
+          "start": 47.564,
+          "end": 48.004
+        },
+        {
+          "id": "caption-word-40-2",
+          "text": "on",
+          "start": 48.004,
+          "end": 48.504
+        }
+      ]
+    },
+    {
+      "id": "caption-group-41",
+      "frame": 7,
+      "start": 48.504,
+      "end": 49.484,
+      "text": "both sides.",
+      "words": [
+        {
+          "id": "caption-word-41-0",
+          "text": "both",
+          "start": 48.504,
+          "end": 48.804
+        },
+        {
+          "id": "caption-word-41-1",
+          "text": "sides.",
+          "start": 48.804,
+          "end": 49.364
+        }
+      ]
+    },
+    {
+      "id": "caption-group-42",
+      "frame": 7,
+      "start": 50.224,
+      "end": 50.764,
+      "text": "It pays",
+      "words": [
+        {
+          "id": "caption-word-42-0",
+          "text": "It",
+          "start": 50.224,
+          "end": 50.384
+        },
+        {
+          "id": "caption-word-42-1",
+          "text": "pays",
+          "start": 50.384,
+          "end": 50.764
+        }
+      ]
+    },
+    {
+      "id": "caption-group-43",
+      "frame": 7,
+      "start": 50.764,
+      "end": 51.244,
+      "text": "when the",
+      "words": [
+        {
+          "id": "caption-word-43-0",
+          "text": "when",
+          "start": 50.764,
+          "end": 51.124
+        },
+        {
+          "id": "caption-word-43-1",
+          "text": "the",
+          "start": 51.124,
+          "end": 51.244
+        }
+      ]
+    },
+    {
+      "id": "caption-group-44",
+      "frame": 7,
+      "start": 51.244,
+      "end": 52.464,
+      "text": "two shapes change",
+      "words": [
+        {
+          "id": "caption-word-44-0",
+          "text": "two",
+          "start": 51.244,
+          "end": 51.504
+        },
+        {
+          "id": "caption-word-44-1",
+          "text": "shapes",
+          "start": 51.504,
+          "end": 51.904
+        },
+        {
+          "id": "caption-word-44-2",
+          "text": "change",
+          "start": 51.904,
+          "end": 52.464
+        }
+      ]
+    },
+    {
+      "id": "caption-group-45",
+      "frame": 7,
+      "start": 52.464,
+      "end": 53.744,
+      "text": "for different reasons.",
+      "words": [
+        {
+          "id": "caption-word-45-0",
+          "text": "for",
+          "start": 52.464,
+          "end": 52.804
+        },
+        {
+          "id": "caption-word-45-1",
+          "text": "different",
+          "start": 52.804,
+          "end": 53.124
+        },
+        {
+          "id": "caption-word-45-2",
+          "text": "reasons.",
+          "start": 53.124,
+          "end": 53.624
+        }
+      ]
+    },
+    {
+      "id": "caption-group-46",
+      "frame": 8,
+      "start": 54.079,
+      "end": 54.659,
+      "text": "It leaks",
+      "words": [
+        {
+          "id": "caption-word-46-0",
+          "text": "It",
+          "start": 54.079,
+          "end": 54.339
+        },
+        {
+          "id": "caption-word-46-1",
+          "text": "leaks",
+          "start": 54.339,
+          "end": 54.659
+        }
+      ]
+    },
+    {
+      "id": "caption-group-47",
+      "frame": 8,
+      "start": 54.659,
+      "end": 55.719,
+      "text": "when the vendor's",
+      "words": [
+        {
+          "id": "caption-word-47-0",
+          "text": "when",
+          "start": 54.659,
+          "end": 55.019
+        },
+        {
+          "id": "caption-word-47-1",
+          "text": "the",
+          "start": 55.019,
+          "end": 55.159
+        },
+        {
+          "id": "caption-word-47-2",
+          "text": "vendor's",
+          "start": 55.159,
+          "end": 55.719
+        }
+      ]
+    },
+    {
+      "id": "caption-group-48",
+      "frame": 8,
+      "start": 55.719,
+      "end": 57.799,
+      "text": "response type shows up",
+      "words": [
+        {
+          "id": "caption-word-48-0",
+          "text": "response",
+          "start": 55.719,
+          "end": 56.199
+        },
+        {
+          "id": "caption-word-48-1",
+          "text": "type",
+          "start": 56.199,
+          "end": 56.779
+        },
+        {
+          "id": "caption-word-48-2",
+          "text": "shows",
+          "start": 56.779,
+          "end": 57.399
+        },
+        {
+          "id": "caption-word-48-3",
+          "text": "up",
+          "start": 57.399,
+          "end": 57.799
+        }
+      ]
+    },
+    {
+      "id": "caption-group-49",
+      "frame": 8,
+      "start": 57.799,
+      "end": 58.039,
+      "text": "in your",
+      "words": [
+        {
+          "id": "caption-word-49-0",
+          "text": "in",
+          "start": 57.799,
+          "end": 57.919
+        },
+        {
+          "id": "caption-word-49-1",
+          "text": "your",
+          "start": 57.919,
+          "end": 58.039
+        }
+      ]
+    },
+    {
+      "id": "caption-group-50",
+      "frame": 8,
+      "start": 58.039,
+      "end": 59.299,
+      "text": "caller's signature.",
+      "words": [
+        {
+          "id": "caption-word-50-0",
+          "text": "caller's",
+          "start": 58.039,
+          "end": 58.659
+        },
+        {
+          "id": "caption-word-50-1",
+          "text": "signature.",
+          "start": 58.659,
+          "end": 59.179
+        }
+      ]
+    },
+    {
+      "id": "caption-group-51",
+      "frame": 8,
+      "start": 60.099,
+      "end": 60.619,
+      "text": "Then the",
+      "words": [
+        {
+          "id": "caption-word-51-0",
+          "text": "Then",
+          "start": 60.099,
+          "end": 60.399
+        },
+        {
+          "id": "caption-word-51-1",
+          "text": "the",
+          "start": 60.399,
+          "end": 60.619
+        }
+      ]
+    },
+    {
+      "id": "caption-group-52",
+      "frame": 8,
+      "start": 60.619,
+      "end": 61.799,
+      "text": "whole seam is",
+      "words": [
+        {
+          "id": "caption-word-52-0",
+          "text": "whole",
+          "start": 60.619,
+          "end": 60.919
+        },
+        {
+          "id": "caption-word-52-1",
+          "text": "seam",
+          "start": 60.919,
+          "end": 61.419
+        },
+        {
+          "id": "caption-word-52-2",
+          "text": "is",
+          "start": 61.419,
+          "end": 61.799
+        }
+      ]
+    },
+    {
+      "id": "caption-group-53",
+      "frame": 8,
+      "start": 61.799,
+      "end": 62.439,
+      "text": "decoration.",
+      "words": [
+        {
+          "id": "caption-word-53-0",
+          "text": "decoration.",
+          "start": 61.799,
+          "end": 62.319
+        }
+      ]
+    },
+    {
+      "id": "caption-group-54",
+      "frame": 9,
+      "start": 62.975,
+      "end": 64.755,
+      "text": "Stacked adapters fail the",
+      "words": [
+        {
+          "id": "caption-word-54-0",
+          "text": "Stacked",
+          "start": 62.975,
+          "end": 63.495
+        },
+        {
+          "id": "caption-word-54-1",
+          "text": "adapters",
+          "start": 63.495,
+          "end": 64.195
+        },
+        {
+          "id": "caption-word-54-2",
+          "text": "fail",
+          "start": 64.195,
+          "end": 64.515
+        },
+        {
+          "id": "caption-word-54-3",
+          "text": "the",
+          "start": 64.515,
+          "end": 64.755
+        }
+      ]
+    },
+    {
+      "id": "caption-group-55",
+      "frame": 9,
+      "start": 64.755,
+      "end": 65.595,
+      "text": "same way,",
+      "words": [
+        {
+          "id": "caption-word-55-0",
+          "text": "same",
+          "start": 64.755,
+          "end": 65.115
+        },
+        {
+          "id": "caption-word-55-1",
+          "text": "way,",
+          "start": 65.115,
+          "end": 65.475
+        }
+      ]
+    },
+    {
+      "id": "caption-group-56",
+      "frame": 9,
+      "start": 65.855,
+      "end": 67.135,
+      "text": "one layer down.",
+      "words": [
+        {
+          "id": "caption-word-56-0",
+          "text": "one",
+          "start": 65.855,
+          "end": 66.195
+        },
+        {
+          "id": "caption-word-56-1",
+          "text": "layer",
+          "start": 66.195,
+          "end": 66.515
+        },
+        {
+          "id": "caption-word-56-2",
+          "text": "down.",
+          "start": 66.515,
+          "end": 67.015
+        }
+      ]
+    },
+    {
+      "id": "caption-group-57",
+      "frame": 9,
+      "start": 67.715,
+      "end": 68.975,
+      "text": "Keep one box",
+      "words": [
+        {
+          "id": "caption-word-57-0",
+          "text": "Keep",
+          "start": 67.715,
+          "end": 68.155
+        },
+        {
+          "id": "caption-word-57-1",
+          "text": "one",
+          "start": 68.155,
+          "end": 68.495
+        },
+        {
+          "id": "caption-word-57-2",
+          "text": "box",
+          "start": 68.495,
+          "end": 68.975
+        }
+      ]
+    },
+    {
+      "id": "caption-group-58",
+      "frame": 9,
+      "start": 68.975,
+      "end": 69.555,
+      "text": "per pair",
+      "words": [
+        {
+          "id": "caption-word-58-0",
+          "text": "per",
+          "start": 68.975,
+          "end": 69.255
+        },
+        {
+          "id": "caption-word-58-1",
+          "text": "pair",
+          "start": 69.255,
+          "end": 69.555
+        }
+      ]
+    },
+    {
+      "id": "caption-group-59",
+      "frame": 9,
+      "start": 69.555,
+      "end": 70.135,
+      "text": "of shapes",
+      "words": [
+        {
+          "id": "caption-word-59-0",
+          "text": "of",
+          "start": 69.555,
+          "end": 69.715
+        },
+        {
+          "id": "caption-word-59-1",
+          "text": "shapes",
+          "start": 69.715,
+          "end": 70.135
+        }
+      ]
+    },
+    {
+      "id": "caption-group-60",
+      "frame": 9,
+      "start": 70.135,
+      "end": 70.895,
+      "text": "and finish",
+      "words": [
+        {
+          "id": "caption-word-60-0",
+          "text": "and",
+          "start": 70.135,
+          "end": 70.535
+        },
+        {
+          "id": "caption-word-60-1",
+          "text": "finish",
+          "start": 70.535,
+          "end": 70.895
+        }
+      ]
+    },
+    {
+      "id": "caption-group-61",
+      "frame": 9,
+      "start": 70.895,
+      "end": 72.495,
+      "text": "the translation inside",
+      "words": [
+        {
+          "id": "caption-word-61-0",
+          "text": "the",
+          "start": 70.895,
+          "end": 71.095
+        },
+        {
+          "id": "caption-word-61-1",
+          "text": "translation",
+          "start": 71.095,
+          "end": 71.855
+        },
+        {
+          "id": "caption-word-61-2",
+          "text": "inside",
+          "start": 71.855,
+          "end": 72.495
+        }
+      ]
+    },
+    {
+      "id": "caption-group-62",
+      "frame": 9,
+      "start": 72.495,
+      "end": 72.995,
+      "text": "it.",
+      "words": [
+        {
+          "id": "caption-word-62-0",
+          "text": "it.",
+          "start": 72.495,
+          "end": 72.875
+        }
+      ]
+    }
+  ]
+}

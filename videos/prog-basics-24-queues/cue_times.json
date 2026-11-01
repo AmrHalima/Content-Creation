@@ -1,0 +1,447 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 3.904,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "printer,",
+          "start": 0.24,
+          "end": 0.58
+        },
+        {
+          "text": "call",
+          "start": 1,
+          "end": 1.2
+        },
+        {
+          "text": "center,",
+          "start": 1.2,
+          "end": 1.56
+        },
+        {
+          "text": "and",
+          "start": 1.94,
+          "end": 2.12
+        },
+        {
+          "text": "message",
+          "start": 2.12,
+          "end": 2.38
+        },
+        {
+          "text": "app",
+          "start": 2.38,
+          "end": 2.7
+        },
+        {
+          "text": "runs",
+          "start": 2.7,
+          "end": 2.96
+        },
+        {
+          "text": "on",
+          "start": 2.96,
+          "end": 3.14
+        },
+        {
+          "text": "one",
+          "start": 3.14,
+          "end": 3.28
+        },
+        {
+          "text": "of",
+          "start": 3.28,
+          "end": 3.38
+        },
+        {
+          "text": "these.",
+          "start": 3.38,
+          "end": 3.58
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 6.592,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.12
+        },
+        {
+          "text": "queue",
+          "start": 0.12,
+          "end": 0.3
+        },
+        {
+          "text": "is",
+          "start": 0.3,
+          "end": 0.52
+        },
+        {
+          "text": "first",
+          "start": 0.52,
+          "end": 0.8
+        },
+        {
+          "text": "in,",
+          "start": 0.8,
+          "end": 1.08
+        },
+        {
+          "text": "first",
+          "start": 1.36,
+          "end": 1.56
+        },
+        {
+          "text": "out,",
+          "start": 1.56,
+          "end": 1.9
+        },
+        {
+          "text": "like",
+          "start": 2.22,
+          "end": 2.4
+        },
+        {
+          "text": "a",
+          "start": 2.4,
+          "end": 2.52
+        },
+        {
+          "text": "line",
+          "start": 2.52,
+          "end": 2.82
+        },
+        {
+          "text": "at",
+          "start": 2.82,
+          "end": 3
+        },
+        {
+          "text": "a",
+          "start": 3,
+          "end": 3.1
+        },
+        {
+          "text": "coffee",
+          "start": 3.1,
+          "end": 3.38
+        },
+        {
+          "text": "shop.",
+          "start": 3.38,
+          "end": 3.78
+        },
+        {
+          "text": "You",
+          "start": 4.4,
+          "end": 4.52
+        },
+        {
+          "text": "enqueue",
+          "start": 4.52,
+          "end": 4.88
+        },
+        {
+          "text": "at",
+          "start": 4.88,
+          "end": 4.98
+        },
+        {
+          "text": "the",
+          "start": 4.98,
+          "end": 5.06
+        },
+        {
+          "text": "back",
+          "start": 5.06,
+          "end": 5.32
+        },
+        {
+          "text": "and",
+          "start": 5.32,
+          "end": 5.52
+        },
+        {
+          "text": "dequeue",
+          "start": 5.72,
+          "end": 5.84
+        },
+        {
+          "text": "from",
+          "start": 5.84,
+          "end": 6
+        },
+        {
+          "text": "the",
+          "start": 6,
+          "end": 6.12
+        },
+        {
+          "text": "front.",
+          "start": 6.12,
+          "end": 6.32
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 8.469,
+      "words": [
+        {
+          "text": "It",
+          "start": 0,
+          "end": 0.1
+        },
+        {
+          "text": "keeps",
+          "start": 0.1,
+          "end": 0.32
+        },
+        {
+          "text": "things",
+          "start": 0.32,
+          "end": 0.6
+        },
+        {
+          "text": "fair",
+          "start": 0.6,
+          "end": 0.96
+        },
+        {
+          "text": "and",
+          "start": 0.96,
+          "end": 1.32
+        },
+        {
+          "text": "in",
+          "start": 1.32,
+          "end": 1.46
+        },
+        {
+          "text": "order.",
+          "start": 1.46,
+          "end": 1.68
+        },
+        {
+          "text": "That",
+          "start": 2.34,
+          "end": 2.46
+        },
+        {
+          "text": "is",
+          "start": 2.46,
+          "end": 2.64
+        },
+        {
+          "text": "the",
+          "start": 2.64,
+          "end": 2.78
+        },
+        {
+          "text": "right",
+          "start": 2.78,
+          "end": 2.96
+        },
+        {
+          "text": "shape",
+          "start": 2.96,
+          "end": 3.24
+        },
+        {
+          "text": "for",
+          "start": 3.24,
+          "end": 3.48
+        },
+        {
+          "text": "tasks",
+          "start": 3.48,
+          "end": 3.92
+        },
+        {
+          "text": "waiting",
+          "start": 3.92,
+          "end": 4.22
+        },
+        {
+          "text": "their",
+          "start": 4.22,
+          "end": 4.48
+        },
+        {
+          "text": "turn.",
+          "start": 4.48,
+          "end": 4.8
+        },
+        {
+          "text": "Enqueue",
+          "start": 5.44,
+          "end": 5.56
+        },
+        {
+          "text": "A,",
+          "start": 5.56,
+          "end": 6.06
+        },
+        {
+          "text": "enqueue",
+          "start": 6.3,
+          "end": 6.38
+        },
+        {
+          "text": "B,",
+          "start": 6.38,
+          "end": 6.84
+        },
+        {
+          "text": "then",
+          "start": 7.28,
+          "end": 7.36
+        },
+        {
+          "text": "dequeue",
+          "start": 7.36,
+          "end": 7.8
+        },
+        {
+          "text": "gives",
+          "start": 7.8,
+          "end": 8.02
+        },
+        {
+          "text": "A.",
+          "start": 8.02,
+          "end": 8.28
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 4.224,
+      "words": [
+        {
+          "text": "In",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "Python,",
+          "start": 0.14,
+          "end": 0.48
+        },
+        {
+          "text": "use",
+          "start": 0.76,
+          "end": 0.88
+        },
+        {
+          "text": "a",
+          "start": 0.88,
+          "end": 1.02
+        },
+        {
+          "text": "deque.",
+          "start": 1.02,
+          "end": 1.3
+        },
+        {
+          "text": "Append",
+          "start": 1.64,
+          "end": 1.92
+        },
+        {
+          "text": "to",
+          "start": 1.92,
+          "end": 2.06
+        },
+        {
+          "text": "the",
+          "start": 2.06,
+          "end": 2.12
+        },
+        {
+          "text": "right.",
+          "start": 2.12,
+          "end": 2.36
+        },
+        {
+          "text": "Popleft",
+          "start": 2.82,
+          "end": 3.06
+        },
+        {
+          "text": "takes",
+          "start": 3.28,
+          "end": 3.56
+        },
+        {
+          "text": "the",
+          "start": 3.56,
+          "end": 3.74
+        },
+        {
+          "text": "front.",
+          "start": 3.74,
+          "end": 3.94
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 2.133,
+      "words": [
+        {
+          "text": "Tag",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "a",
+          "start": 0.22,
+          "end": 0.36
+        },
+        {
+          "text": "friend",
+          "start": 0.36,
+          "end": 0.6
+        },
+        {
+          "text": "who",
+          "start": 0.6,
+          "end": 0.86
+        },
+        {
+          "text": "always",
+          "start": 0.86,
+          "end": 1.08
+        },
+        {
+          "text": "skips",
+          "start": 1.08,
+          "end": 1.46
+        },
+        {
+          "text": "the",
+          "start": 1.46,
+          "end": 1.58
+        },
+        {
+          "text": "line.",
+          "start": 1.58,
+          "end": 1.82
+        }
+      ]
+    }
+  ]
+}

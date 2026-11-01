@@ -1,0 +1,199 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    html, body { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G14 `halving field`, § 6's derivation with ONE number corrected by the pixels.
+       § 6 authored 20 rows · pitch 36 · row h 30 · first top 250 → bottom 964 and called it
+       verified against the y 1004 floor. It is not verified: it never subtracted § 4's kicker
+       band (230 h 44 → 274) or the 34px tag band this mark itself needs. 714px of field + 44px
+       of kicker + 34px of counter = 792px in a 774px content box — it fails by 18px, and the
+       snapshot showed row 1's bar drawn straight through "PROGRAMMING BASICS · BASICS III · 28".
+       Corrected, keeping everything 29/32 need to clone (20 rows, the 33px bar step, the
+       2.9cqw/31.3px mint numbers, one counter band, the y 1004 floor):
+         rows 20 · pitch 34 · row h 28 · first top 292 → last top 938, bottom 966
+         tag band 966 → 1000 (4px of slack under the floor) · kicker clears by 18px
+       Type is NOT reduced — § 6's hazard says fewer rows or a bigger counter before smaller type,
+       and 34px pitch keeps all twenty rows at 31.3px. ── */
+    .f3-row { position: absolute; left: 0; width: 1008px; height: 28px; box-sizing: border-box; }
+    .f3-bar { position: absolute; left: 72px; top: 0; height: 28px; box-sizing: border-box;
+      background: #262C36; border-left: 3px solid rgba(255,255,255,0.16); border-radius: 0 6px 6px 0;
+      opacity: 0; }
+    .f3-num { position: absolute; left: 744px; top: 0; width: 264px; height: 28px;
+      text-align: right; opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.9cqw;
+      font-weight: 700; line-height: 28px; color: #5AD6A0; white-space: nowrap; }
+
+    /* the two chips § 6 asks for, both --muted chrome over content-neutral ground */
+    .f3-chip { position: absolute; height: 28px; box-sizing: border-box; text-align: center;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      line-height: 28px; letter-spacing: 0.12em; text-transform: uppercase; color: #9BA6B2;
+      white-space: nowrap; }
+    /* the one honest correction to "halving": 15,625 → 7,812 is a FLOOR, bracketed on row 7
+       (row 7 spans y 496-524; the bracket straddles both edges, it never centres on a value) */
+    .f3-brk { position: absolute; left: 736px; top: 492px; width: 3px; height: 36px;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0;
+      transform-origin: top center; transform: scaleY(0); }
+
+    /* the read marker: the campaign's own --line tick atom, in the 12px gutter between the bar
+       lane and the number lane (x 736-742), so it straddles an edge and covers no digit (§ 1) */
+    .f3-mark { position: absolute; left: 736px; top: 292px; width: 6px; height: 28px;
+      background: rgba(255,255,255,0.16); border-radius: 3px; opacity: 0; }
+
+    /* the counted tag. § 6 puts it at y 288; the field's rows 2 and 3 own 286-352 across the
+       whole width, so the counter sits in the 34px band under row 20 instead — see
+       BRIEF.md → Deviations (the row geometry is what 29/32 clone, so the row geometry held). */
+    .f3-tag { position: absolute; left: 744px; top: 966px; width: 264px; height: 34px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: flex-end;
+      gap: 12px; opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #F4F1EA;
+      white-space: nowrap; }
+    .f3-tag-n { display: inline-block; color: #5AD6A0; letter-spacing: 0; min-width: 1.4em; }
+  </style>
+
+  <div id="root" data-composition-id="03-field" data-width="1080" data-height="1920" data-duration="11.45">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="11.45" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="11.45" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 28</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="11.45" data-track-index="2">
+      <div id="f3-rows"></div>
+      <div id="f3-brk" class="f3-brk"></div>
+      <div id="f3-floorschip" class="f3-chip" style="left:748px; top:496px; width:140px;" data-layout-ignore>floor</div>
+      <div id="f3-logchip" class="f3-chip" style="left:72px; top:969px; width:230px;" data-layout-ignore>log scale</div>
+      <div id="f3-mark" class="f3-mark" data-layout-allow-occlusion></div>
+      <div id="f3-tag" class="f3-tag" data-layout-allow-overlap>STEPS&nbsp;<span id="f3-tag-n" class="f3-tag-n">&nbsp;</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.45;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-field"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 12, duration: D / 2, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.08);
+
+      /* entrance wipe: § 9 alternates, F2 came in on y, so this one comes in from the right */
+      tl.fromTo(el("f3-content"), { x: 140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* every number on this frame is executed output (bible § 4): the floor-halving chain from
+         1,000,000 to 1 passes through exactly twenty values in nineteen halvings. 15,625 → 7,812
+         is the floor. Thousands separators are presentation; the VALUES are executed. */
+      var VALUES = ["1,000,000", "500,000", "250,000", "125,000", "62,500", "31,250", "15,625",
+        "7,812", "3,906", "1,953", "976", "488", "244", "122", "61", "30", "15", "7", "3", "1"];
+      /* § 6's authored widths: 660 − 33k for the first seventeen, then the floor and the clamp */
+      var WIDTHS = [660, 627, 594, 561, 528, 494, 461, 428, 395, 362, 329, 296, 263, 229, 196,
+        162, 129, 93, 52, 8];
+      /* rows arrive top-down on the counter's clock: 0.28s apart (§ 6 motion contract), from 0.25
+         so the twentieth row lands at 5.57s — as the voice says "log n steps" (5.14-6.10) */
+      var T0 = 0.25, STEP = 0.28;
+
+      var host = el("f3-rows");
+      for (var k = 0; k < 20; k++) {
+        var row = document.createElement("div");
+        row.className = "f3-row";
+        row.id = "f3-row-" + k;
+        row.style.top = (292 + k * 34) + "px";
+        var bar = document.createElement("div");
+        bar.className = "f3-bar";
+        bar.id = "f3-bar-" + k;
+        bar.style.width = WIDTHS[k] + "px";
+        var num = document.createElement("div");
+        num.className = "f3-num";
+        num.id = "f3-num-" + k;
+        num.textContent = VALUES[k];
+        row.appendChild(bar);
+        row.appendChild(num);
+        host.appendChild(row);
+      }
+
+      /* P9 count-tick over a time proxy — no TextPlugin, and the number lane is never tweened
+         in width or scale (§ 6: "nothing scales — the rows are pre-authored widths revealed") */
+      var clock = { t: 0 };
+      function step(i) { return T0 + i * STEP; }
+      tl.to(clock, { t: D, duration: D, ease: "none", onUpdate: function () {
+        var n = 0;
+        for (var i = 0; i < 20; i++) { if (clock.t >= step(i) + 0.14) { n = i + 1; } }
+        var a = el("f3-tag-n"); var s = n ? String(n) : "\u00a0";
+        if (a._v !== s) { a._v = s; a.textContent = s; }
+      } }, 0);
+
+      for (var i = 0; i < 20; i++) {
+        var at = step(i);
+        tl.fromTo(el("f3-bar-" + i), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power3.out", immediateRender: false }, at);
+        tl.fromTo(el("f3-num-" + i), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power3.out", immediateRender: false }, at + 0.06);
+      }
+
+      /* ── the narration, keyed to measured onsets ──────────────────────────────────
+         At 0.00 each 0.14 step 0.38 you 0.62 discard 0.78 half 1.14 the 1.50 tree. 1.92
+         If 2.56 … balanced, 3.20-3.70 | a 4.12 lookup 4.22 takes 4.58 about 4.88
+         log 5.14 n 5.52 steps. 5.72-6.10
+         One 6.80 million, 7.06-7.38 | then 7.80 five 7.88 hundred 8.26 thousand, 8.60-9.06
+         then 9.46 down 9.56 to 9.86 one. 10.06-10.24 */
+
+      /* the axis is labelled while the voice says what the ramp is: LOG SCALE on "balanced," */
+      tl.fromTo(el("f3-logchip"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.20);
+      /* the counter's box arrives with the first row, so the count is never off-screen */
+      tl.fromTo(el("f3-tag"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.25);
+
+      /* FLOOR: the one honest correction to "halving", drawn on row 7 as § 6 asks */
+      tl.fromTo(el("f3-brk"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 1.14);
+      tl.fromTo(el("f3-floorschip"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 1.34);
+
+      /* the read-back: the voice names three rows, the tick walks to them. 6.80 "One million,"
+         → row 1 · 7.88 "five" → row 2 · 10.06 "one." → row 20 */
+      tl.fromTo(el("f3-mark"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out", immediateRender: false }, 6.70);
+      tl.to(el("f3-mark"), { y: 34, duration: 0.26, ease: "power3.out", immediateRender: false }, 7.86);
+      tl.to(el("f3-mark"), { y: 646, duration: 0.44, ease: "power2.inOut", immediateRender: false }, 9.62);
+      tl.to(el("f3-mark"), { opacity: 0, duration: 0.24, ease: "power2.in", immediateRender: false }, 10.36);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 11.13);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

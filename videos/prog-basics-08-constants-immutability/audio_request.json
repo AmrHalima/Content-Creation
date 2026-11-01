@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "The safest variable is the one that can't change."
+    },
+    {
+      "id": "02",
+      "text": "A constant is a name you promise never to change. Python does not check that promise. Nothing stops you."
+    },
+    {
+      "id": "03",
+      "text": "Immutable means the value itself refuses to change. A string is immutable. Python stops you."
+    },
+    {
+      "id": "04",
+      "text": "Max users is one hundred. All caps means constant. Now s is hi. Put a capital H at position zero. Python answers TypeError."
+    },
+    {
+      "id": "05",
+      "text": "Save this for your next code review. Look for a name you promised never to change. Then check if it changed."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

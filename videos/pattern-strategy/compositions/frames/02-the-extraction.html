@@ -1,0 +1,218 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f02-ground { position: absolute; inset: 0; }
+    .f02-graph { position: absolute; inset: 0; }
+    .f02-chamber { position: absolute; inset: 0; }
+    .f02-transit { position: absolute; inset: 0; }
+    .f02-rail { position: absolute; inset: 0; }
+
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-kicker {
+      position: absolute; top: 140px; left: 72px;
+      display: inline-flex; align-items: baseline; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+    .f02-spike { color: rgba(26,26,26,0.64); }
+
+    /* caller (top box) */
+    .f02-caller {
+      position: absolute; top: 300px; left: 170px; width: 740px; height: 190px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 0 40px;
+      opacity: 0;
+    }
+    .f02-box-role {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(26,26,26,0.64);
+    }
+    .f02-box-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.2cqw;
+      line-height: 1.0; letter-spacing: -0.022em; color: #1a1a1a;
+    }
+    .f02-box-sig {
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: rgba(26,26,26,0.74);
+    }
+
+    /* seam (dark chamber, middle) */
+    .f02-seam {
+      position: absolute; top: 700px; left: 190px; width: 700px; height: 230px;
+      box-sizing: border-box; background: #181715; border: 1px solid rgba(255,255,235,0.22);
+      border-radius: 8px; display: flex; flex-direction: column; justify-content: center;
+      gap: 14px; padding: 0 40px; opacity: 0;
+    }
+    .f02-seam-role {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,235,0.72);
+    }
+    .f02-seam-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.2cqw; line-height: 1.0;
+      letter-spacing: -0.022em; color: #ffffeb;
+    }
+    .f02-seam-sig {
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: rgba(255,255,235,0.72);
+    }
+    .f02-ember { color: #ffa946; }
+
+    /* implementation (bottom box) */
+    .f02-impl {
+      position: absolute; top: 1160px; left: 250px; width: 580px; height: 170px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 0 40px;
+      opacity: 0;
+    }
+    .f02-impl-name {
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; color: #1a1a1a;
+    }
+
+    /* travelling branch chips (they merge into the seam and retire) */
+    .f02-fly {
+      position: absolute; top: 452px; width: 300px; height: 88px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid rgba(26,26,26,0.55); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.74);
+      opacity: 0;
+    }
+    .f02-fly-a { left: 200px; }
+    .f02-fly-b { left: 580px; }
+
+    .f02-svg { position: absolute; inset: 0; }
+    .f02-link { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 4; stroke-linecap: round; }
+    .f02-head { fill: rgba(26,26,26,0.55); opacity: 0; }
+
+    .f02-tag {
+      position: absolute; width: 250px; height: 76px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(26,26,26,0.45); border-radius: 9999px; background: #ffffeb;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.04em;
+      color: rgba(26,26,26,0.74); opacity: 0;
+    }
+    .f02-tag-what { top: 356px; left: 916px; width: 92px; }
+    .f02-tag-how { top: 1206px; left: 846px; width: 92px; }
+  </style>
+
+  <div id="root" data-composition-id="02-the-extraction" data-width="1080" data-height="1920" data-duration="10.719">
+
+    <div id="02-the-extraction-ground" class="clip f02-ground" data-start="0" data-duration="10.719" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="02-the-extraction-field" class="f02-field"></div>
+      <div id="02-the-extraction-grid" class="f02-grid"></div>
+      <div id="02-the-extraction-kicker" class="f02-kicker"><span class="f02-spike">&#10033;</span><span>the move</span></div>
+    </div>
+
+    <div id="02-the-extraction-graph" class="clip f02-graph" data-start="0" data-duration="10.719" data-track-index="1" style="position:absolute;inset:0;">
+      <svg id="02-the-extraction-svg" class="f02-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="02-the-extraction-l1" class="f02-link" d="M 540 490 L 540 700" />
+        <path id="02-the-extraction-l2" class="f02-link" d="M 540 930 L 540 1160" />
+        <polygon id="02-the-extraction-h1" class="f02-head" points="532,692 548,692 540,708" />
+        <polygon id="02-the-extraction-h2" class="f02-head" points="532,1152 548,1152 540,1168" />
+      </svg>
+    </div>
+
+    <div id="02-the-extraction-boxes" class="clip f02-chamber" data-start="0" data-duration="10.719" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="02-the-extraction-caller" class="f02-caller">
+        <div id="02-the-extraction-callerrole" class="f02-box-role">caller</div>
+        <div id="02-the-extraction-callername" class="f02-box-name">Checkout</div>
+        <div id="02-the-extraction-callersig" class="f02-box-sig">total(cart): number</div>
+      </div>
+      <div id="02-the-extraction-seam" class="f02-seam">
+        <div id="02-the-extraction-seamrole" class="f02-seam-role">the seam</div>
+        <div id="02-the-extraction-seamname" class="f02-seam-name">one signature</div>
+        <div id="02-the-extraction-seamsig" class="f02-seam-sig"><span class="f02-ember">price</span>(cart): number</div>
+      </div>
+      <div id="02-the-extraction-impl" class="f02-impl">
+        <div id="02-the-extraction-implrole" class="f02-box-role">implementation</div>
+        <div id="02-the-extraction-implname" class="f02-impl-name">ContractPricing</div>
+      </div>
+    </div>
+
+    <div id="02-the-extraction-fly" class="clip f02-transit" data-start="0" data-duration="10.719" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="02-the-extraction-flya" class="f02-fly f02-fly-a">standard</div>
+      <div id="02-the-extraction-flyb" class="f02-fly f02-fly-b">contract</div>
+    </div>
+
+    <div id="02-the-extraction-tags" class="clip f02-rail" data-start="0" data-duration="10.719" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="02-the-extraction-what" class="f02-tag f02-tag-what">what</div>
+      <div id="02-the-extraction-how" class="f02-tag f02-tag-how">how</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.219;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-the-extraction"] = tl;
+
+      // Measured cues (SCRIPT Line 2): Pull 0.00 · varying behaviour 0.56–1.04 · behind 2.24
+      // signature. 3.36 · The call site 5.02 · question. 6.48 · implementations 7.86 ·
+      // keep 9.00 · how. 9.64
+
+      // ── Scene 1 (0.0–2.2s) — the two branch chips lift out of the caller and travel down ──
+      tl.fromTo(el("02-the-extraction-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("02-the-extraction-kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("02-the-extraction-caller"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
+      // both flyers are flex boxes (never inline spans) so the transform is honoured
+      tl.fromTo(el("02-the-extraction-flya"), { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.26, ease: "power1.out" }, 0.1);
+      tl.fromTo(el("02-the-extraction-flyb"), { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.26, ease: "power1.out" }, 0.16);
+      tl.to(el("02-the-extraction-flya"), { y: 208, x: 40, duration: 1.5, ease: "power2.inOut" }, 0.56);
+      tl.to(el("02-the-extraction-flyb"), { y: 208, x: -40, duration: 1.5, ease: "power2.inOut" }, 0.62);
+      tl.to([el("02-the-extraction-flya"), el("02-the-extraction-flyb")], { opacity: 0, duration: 0.36, ease: "power1.in" }, 1.9);
+
+      // ── Scene 2 (2.2–4.6s) — the seam chamber arrives on "behind one signature" ──
+      tl.fromTo(
+        el("02-the-extraction-seam"),
+        { opacity: 0, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.52, ease: "power3.out" },
+        2.24
+      );
+      var L1 = el("02-the-extraction-l1");
+      var L1len = L1.getTotalLength() * 1.05;
+      L1.style.strokeDasharray = String(L1len);
+      L1.style.strokeDashoffset = String(L1len);
+      // svg-path-draw: the dependency arrow grows downward, caller toward the seam
+      tl.to(L1, { strokeDashoffset: 0, duration: 0.66, ease: "power3.out" }, 2.6);
+      tl.fromTo(el("02-the-extraction-h1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 3.2);
+      // the signature line reveals on "signature."
+      tl.fromTo(el("02-the-extraction-seamsig"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.36);
+
+      // ── Scene 3 (4.6–7.6s) — the caller keeps the question ──
+      tl.fromTo(el("02-the-extraction-what"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 5.48);
+      tl.to(el("02-the-extraction-caller"), { borderColor: "rgba(26,26,26,1)", duration: 0.4, ease: "power1.out" }, 6.2);
+
+      // ── Scene 4 (7.6–10.219s) — an implementation lands under the seam, and the how moves there ──
+      tl.fromTo(
+        el("02-the-extraction-impl"),
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+        7.86
+      );
+      var L2 = el("02-the-extraction-l2");
+      var L2len = L2.getTotalLength() * 1.05;
+      L2.style.strokeDasharray = String(L2len);
+      L2.style.strokeDashoffset = String(L2len);
+      tl.to(L2, { strokeDashoffset: 0, duration: 0.66, ease: "power3.out" }, 8.4);
+      tl.fromTo(el("02-the-extraction-h2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 9.0);
+      tl.fromTo(el("02-the-extraction-how"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 9.38);
+      // sine-wave-loop on the seam→implementation connector only, during the hold
+      tl.to(el("02-the-extraction-graph"), { y: 2, duration: 0.36, ease: "sine.inOut", yoyo: true, repeat: 1 }, 9.7);
+    })();
+  </script>
+</template>

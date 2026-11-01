@@ -1,0 +1,225 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; left: 90px; top: 214px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    /* Grammar X: two stacked chambers, the wrong shape above, the fixed shape below */
+    .f07-panel {
+      position: absolute; left: 60px; width: 960px; box-sizing: border-box;
+      background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px;
+      overflow: hidden; opacity: 0;
+    }
+    .f07-top { top: 282px; height: 588px; }
+    .f07-bottom { top: 900px; height: 452px; }
+    .f07-bar { position: absolute; left: 0; top: 0; width: 100%; height: 88px; background: #252320; }
+    .f07-tag {
+      position: absolute; left: 30px; top: 26px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,235,0.6);
+    }
+    .f07-actor {
+      position: absolute; display: flex; align-items: center; padding-left: 18px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+    }
+    .f07-c1 { left: 34px; top: 118px; width: 186px; height: 62px; }
+    .f07-c2 { left: 34px; top: 238px; width: 186px; height: 62px; }
+    .f07-c3 { left: 34px; top: 358px; width: 186px; height: 62px; }
+    .f07-row { position: absolute; left: 240px; width: 470px; height: 16px; background: rgba(255,255,235,0.16); border-radius: 4px; opacity: 0; }
+    .f07-r1 { top: 141px; }
+    .f07-r2 { top: 261px; }
+    .f07-r3 { top: 381px; }
+    .f07-fill { position: absolute; left: 4px; top: 3px; width: 462px; height: 10px; background: rgba(255,255,235,0.8); border-radius: 3px; transform-origin: 0% 50%; transform: scaleX(0); }
+    .f07-retry { position: absolute; left: 240px; width: 470px; height: 8px; background: rgba(255,255,235,0.34); border-radius: 3px; opacity: 0; }
+    .f07-retry { transform-origin: 0% 50%; transform: scaleX(0); }
+    .f07-a1 { top: 163px; }
+    .f07-a2 { top: 283px; }
+    .f07-a3 { top: 403px; }
+    .f07-b1 { top: 177px; }
+    .f07-b2 { top: 297px; }
+    .f07-b3 { top: 417px; }
+    .f07-down {
+      position: absolute; left: 724px; top: 104px; width: 210px; height: 380px;
+      box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;
+      align-items: center; background: #252320; border: 2px solid rgba(255,255,235,0.4);
+      border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(255,255,235,0.75);
+      opacity: 0;
+    }
+    .f07-downlab {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      text-transform: uppercase; color: rgba(255,255,235,0.5);
+    }
+    .f07-seam { fill: none; stroke: rgba(255,255,235,0.45); stroke-width: 3; stroke-linecap: round; }
+    .f07-stop {
+      position: absolute; left: 476px; top: 108px; width: 10px; height: 84px;
+      background: #ffa946; border-radius: 3px; opacity: 0;
+    }
+    .f07-nb1 { left: 34px; top: 208px; width: 186px; height: 62px; }
+    .f07-nb2 { left: 34px; top: 320px; width: 320px; height: 62px; font-size: 2.6cqw; opacity: 0; }
+    .f07-nd { left: 620px; top: 208px; width: 300px; height: 62px; font-size: 2.6cqw; background: rgba(255,255,235,0.06); border: 2px dashed rgba(255,255,235,0.4); color: rgba(255,255,235,0.55); opacity: 0; }
+    .f07-track { position: absolute; left: 240px; top: 231px; width: 236px; height: 16px; background: rgba(255,255,235,0.16); border-radius: 4px; opacity: 0; }
+    .f07-tfill { position: absolute; left: 4px; top: 3px; width: 228px; height: 10px; background: rgba(255,255,235,0.8); border-radius: 3px; transform-origin: 0% 50%; transform: scaleX(0); }
+    .f07-seamlab {
+      position: absolute; left: 404px; top: 300px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,235,0.6); opacity: 0;
+    }
+    .f07-rule {
+      position: absolute; left: 90px; top: 1380px; width: 900px; height: 2px;
+      background: rgba(26,26,26,0.12); transform-origin: 0% 50%; transform: scaleX(0);
+    }
+    .f07-strip {
+      position: absolute; left: 90px; top: 1410px; width: 900px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f07-strip span { display: inline-block; color: #76766e; }
+  </style>
+
+  <div id="root" data-composition-id="07-where-it-goes-wrong" data-width="1080" data-height="1920" data-duration="14.336">
+
+    <div id="07-where-it-goes-wrong-fieldclip" class="clip" data-start="0" data-duration="14.336" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field"></div>
+      <div id="07-where-it-goes-wrong-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="07-where-it-goes-wrong-beforeclip" class="clip" data-start="0" data-duration="14.336" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="07-where-it-goes-wrong-kicker" class="f07-kicker" data-layout-ignore>&#10009;&nbsp; where it goes wrong</div>
+      <div id="07-where-it-goes-wrong-top" class="f07-panel f07-top">
+        <div class="f07-bar"><div id="07-where-it-goes-wrong-tagtop" class="f07-tag">timeout &middot; no breaker</div></div>
+        <div id="07-where-it-goes-wrong-c1" class="f07-actor f07-c1">caller</div>
+        <div id="07-where-it-goes-wrong-c2" class="f07-actor f07-c2">caller</div>
+        <div id="07-where-it-goes-wrong-c3" class="f07-actor f07-c3">caller</div>
+        <div id="07-where-it-goes-wrong-r1" class="f07-row f07-r1"><div id="07-where-it-goes-wrong-f1" class="f07-fill"></div></div>
+        <div id="07-where-it-goes-wrong-r2" class="f07-row f07-r2"><div id="07-where-it-goes-wrong-f2" class="f07-fill"></div></div>
+        <div id="07-where-it-goes-wrong-r3" class="f07-row f07-r3"><div id="07-where-it-goes-wrong-f3" class="f07-fill"></div></div>
+        <div id="07-where-it-goes-wrong-a1" class="f07-retry f07-a1"></div>
+        <div id="07-where-it-goes-wrong-a2" class="f07-retry f07-a2"></div>
+        <div id="07-where-it-goes-wrong-a3" class="f07-retry f07-a3"></div>
+        <div id="07-where-it-goes-wrong-b1" class="f07-retry f07-b1"></div>
+        <div id="07-where-it-goes-wrong-b2" class="f07-retry f07-b2"></div>
+        <div id="07-where-it-goes-wrong-b3" class="f07-retry f07-b3"></div>
+        <div id="07-where-it-goes-wrong-down" class="f07-down">down<div class="f07-downlab">dependency</div></div>
+      </div>
+    </div>
+
+    <div id="07-where-it-goes-wrong-afterclip" class="clip" data-start="0" data-duration="14.336" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="07-where-it-goes-wrong-bottom" class="f07-panel f07-bottom">
+        <div class="f07-bar"><div class="f07-tag">breaker</div></div>
+        <svg class="f07-svgabs" width="960" height="452" viewBox="0 0 960 452" xmlns="http://www.w3.org/2000/svg">
+          <path id="07-where-it-goes-wrong-seam" class="f07-seam" d="M 486 96 L 486 400" />
+        </svg>
+        <div class="f07-actor f07-nb1">caller</div>
+        <div id="07-where-it-goes-wrong-track" class="f07-track"><div id="07-where-it-goes-wrong-tfill" class="f07-tfill"></div></div>
+        <div id="07-where-it-goes-wrong-stop" class="f07-stop"></div>
+        <div id="07-where-it-goes-wrong-seamlab" class="f07-seamlab" data-layout-ignore>refused here</div>
+        <div id="07-where-it-goes-wrong-nb2" class="f07-actor f07-nb2">cachedQuote</div>
+        <div id="07-where-it-goes-wrong-nd" class="f07-actor f07-nd">gateway.charge</div>
+      </div>
+    </div>
+
+    <div id="07-where-it-goes-wrong-footclip" class="clip" data-start="0" data-duration="14.336" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="07-where-it-goes-wrong-rule" class="f07-rule"></div>
+      <div id="07-where-it-goes-wrong-strip" class="f07-strip">a timeout bounds one call&nbsp;<span>&middot;</span>&nbsp;a breaker bounds the caller</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var el = function (id) { return document.getElementById(id); };
+      var P = "07-where-it-goes-wrong-";
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-where-it-goes-wrong"] = tl;
+
+      // ── Scene 1 (0.0–1.02s) — on "shape" the wrong shape arrives, labelled before it is
+      //    argued. Two stacked bands, asymmetric 55/45, 3 depth layers. ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 0.06);
+      tl.fromTo(el(P + "top"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.58);
+
+      // ── Scene 2 (1.40–3.30s) — "a timeout with no breaker": one long bar starts spending
+      //    slowly, and on "no breaker" the band's own label steps up to full cream. ──
+      tl.to(el(P + "r1"), { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.44);
+      tl.to(el(P + "f1"), { scaleX: 0.66, duration: 1.2, ease: "power1.inOut" }, 1.52);
+      tl.to(el(P + "tagtop"), { color: "rgba(255,255,235,0.95)", duration: 0.36, ease: "power1.out" }, 2.48);
+
+      // ── Scene 3 (3.88–5.84s) — "one slow dependency": the dependency is named as down, and the
+      //    first bar reaches it. ──
+      tl.fromTo(el(P + "down"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 4.52);
+      tl.to(el(P + "f1"), { scaleX: 1, duration: 1.1, ease: "power1.inOut" }, 4.74);
+
+      // ── Scene 4 (5.84–8.62s) — "costs every caller its patience": two more callers stagger in,
+      //    each bringing its own long bar. The back half of the frame is still building. ──
+      var rows = [
+        ["c2", "r2", "f2", 6.62],
+        ["c3", "r3", "f3", 7.4]
+      ];
+      rows.forEach(function (r) {
+        tl.fromTo(el(P + r[0]), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, r[3]);
+        tl.to(el(P + r[1]), { opacity: 1, duration: 0.3, ease: "power1.out" }, r[3] + 0.18);
+        tl.to(el(P + r[2]), { scaleX: 0.8, duration: 0.9, ease: "power1.inOut" }, r[3] + 0.3);
+      });
+      tl.fromTo(el(P + "nd"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 7.0);
+
+      // ── Scene 5 (9.46–11.14s) — "Add retries": a FIXED scripted sequence, six marks, one extra
+      //    pass per caller per round. Nothing counts up and no number is printed; the density is
+      //    the claim. Index-derived cadence, so the render is identical every pass. ──
+      ["a1", "a2", "a3"].forEach(function (k, i) {
+        tl.to(el(P + k), { opacity: 1, duration: 0.2, ease: "none" }, 9.98 + i * 0.16);
+        tl.to(el(P + k), { scaleX: 0.92, duration: 0.44, ease: "power2.out" }, 9.98 + i * 0.16);
+      });
+      ["b1", "b2", "b3"].forEach(function (k, i) {
+        tl.to(el(P + k), { opacity: 1, duration: 0.2, ease: "none" }, 10.62 + i * 0.14);
+        tl.to(el(P + k), { scaleX: 0.78, duration: 0.4, ease: "power2.out" }, 10.62 + i * 0.14);
+      });
+      tl.to(el(P + "f2"), { scaleX: 1, duration: 0.5, ease: "power1.inOut" }, 10.9);
+      tl.to(el(P + "f3"), { scaleX: 1, duration: 0.5, ease: "power1.inOut" }, 11.05);
+
+      // ── Scene 6 (11.14–12.50s) — "the storm": every bar reaches the dependency and its edge
+      //    hardens, while the fixed shape arrives below on the same beat. ──
+      [["f1", 11.3], ["f2", 11.42], ["f3", 11.52]].forEach(function (f) {
+        tl.to(el(P + f[0]), { scaleX: 1, duration: 0.34, ease: "power1.out" }, f[1]);
+      });
+      ["a1", "a2", "a3", "b1", "b2", "b3"].forEach(function (k, i) {
+        tl.to(el(P + k), { backgroundColor: "rgba(255,255,235,0.62)", duration: 0.3, ease: "power1.out" }, 11.52 + i * 0.05);
+      });
+      tl.to(el(P + "down"), { borderColor: "#ffffeb", color: "#ffffeb", duration: 0.4, ease: "power2.out" }, 11.52);
+      tl.fromTo(el(P + "bottom"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.58, ease: "power3.out" }, 11.38);
+
+      // ── Scene 7 (12.50–14.336s) — "what the outage started": one call leaves, STOPS at the seam
+      //    (the part's last ember), and the caller is handed an answer. Then the film holds still.
+      //    This is the final frame, so a quiet settle is allowed here and nowhere else. ──
+      var seam = el(P + "seam");
+      var seamLen = seam.getTotalLength() * 1.05;
+      seam.style.strokeDasharray = String(seamLen);
+      seam.style.strokeDashoffset = String(seamLen);
+      tl.to(seam, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 12.1);
+      tl.to(el(P + "track"), { opacity: 1, duration: 0.26, ease: "power1.out" }, 12.5);
+      tl.to(el(P + "tfill"), { scaleX: 1, duration: 0.5, ease: "power2.out" }, 12.58);
+      tl.to(el(P + "stop"), { opacity: 1, duration: 0.14, ease: "none" }, 13.04);
+      tl.to(el(P + "seamlab"), { opacity: 1, duration: 0.3, ease: "power1.out" }, 13.14);
+      tl.to(el(P + "nb1"), { borderColor: "#ffffeb", duration: 0.34, ease: "power2.out" }, 13.58);
+      tl.fromTo(el(P + "nb2"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 11.5);
+      tl.to(el(P + "rule"), { scaleX: 1, duration: 0.5, ease: "power2.out" }, 10.3);
+      tl.to(el(P + "strip"), { opacity: 1, duration: 0.46, ease: "power1.out" }, 10.6);
+    })();
+  </script>
+</template>

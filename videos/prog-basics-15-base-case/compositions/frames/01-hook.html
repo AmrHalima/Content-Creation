@@ -1,0 +1,142 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    /* the ground (frame-day2 section 3) — identical in every frame, every animation returns to zero */
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    /* chrome (pb-21's pb-kicker atom; BEGINNER is a MUTED OUTLINE chip, not the amber badge —
+       frame-day2 section 14: never two amber plates at once, and this frame's amber is the hook
+       plate. pb-14 deviation 12 made the same call.) */
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-odiff { display: inline-block; opacity: 0; margin-left: auto; height: 40px;
+      padding: 0 16px; box-sizing: border-box; border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 8px; font-family: "JetBrains Mono", monospace; font-size: 1.35cqw;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2;
+      align-self: center; }
+
+    /* G1 hook type + the amber highlighter (P1) — pb-21/01-hook atoms, one size for all three
+       groups: 7.4cqw, because the first group is 21 characters and the 9cqw ramp needs ~1090px
+       against a 936px column (pb-14 deviation 2: the ramp holds only for groups of <=14 chars). */
+    .f1-line { position:absolute; left:72px; width:936px; text-align:center; opacity:0;
+      font-family:"Space Grotesk", sans-serif; font-weight:700; line-height:1.06;
+      letter-spacing:-0.01em; color:#F4F1EA; white-space:nowrap; font-size:7.4cqw; }
+    /* THIS FRAME IS THE COVER: the first hook group and the series chrome are at rest at t=0, with
+       no entrance tween at all (pb-14 deviation 11 — an entered first line renders the cover blank,
+       and the 0s snapshot here proved it). Only groups 2 and 3 arrive, on their own words. */
+    .f1-l1 { top:330px; opacity:1; }
+    #c1-ktext, #c1-badge { opacity: 1; }
+    .f1-l2 { top:440px; color:#9BA6B2; }
+    .f1-l3 { top:550px; }
+    .f1-w { display:inline-block; position:relative; }
+    .f1-hl { position:absolute; left:-14px; right:-16px; top:0.07em; bottom:0.05em;
+      background:#FFD166; border-radius:12px; transform:scaleX(0); transform-origin:left center;
+      box-shadow:0 0 0 rgba(255,209,102,0); }
+    .f1-ht { position:relative; z-index:1; }
+    .f1-rule { position:absolute; left:300px; top:678px; width:480px; height:5px;
+      background:rgba(255,255,255,0.16); border-radius:3px; transform:scaleX(0);
+      transform-origin:center center; }
+
+    /* the hook says "stack overflow"; the interpreter prints RecursionError. The learner gets both
+       words on the frame that says the first one. Chrome, so below the 28px reading floor on
+       purpose, with data-layout-ignore (known-traps section 13). */
+    .f1-gloss { position:absolute; left:72px; top:718px; width:936px; height:40px; text-align:center;
+      opacity:0; font-family:"JetBrains Mono", monospace; font-size:2.1cqw; font-weight:400;
+      letter-spacing:0.06em; color:#9BA6B2; white-space:nowrap; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; }
+  </style>
+
+  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-duration="5.4">
+
+    <div id="g1-ground" class="clip clipband" data-start="0" data-duration="5.4" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g1-grid" class="gnd-grid"></div>
+      <div id="g1-ga" class="gnd-glow-a"></div>
+      <div id="g1-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c1-chrome" class="clip clipband" data-start="0" data-duration="5.4" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c1-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 15</div>
+        <div id="c1-badge" class="pb-odiff" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f1-content" class="clip clipband" data-start="0" data-duration="5.4" data-track-index="2">
+      <div id="f1-l1" class="f1-line f1-l1"><span class="f1-w">Forget&nbsp;this&nbsp;one&nbsp;thing</span></div>
+      <div id="f1-l2" class="f1-line f1-l2"><span class="f1-w">you'll&nbsp;get&nbsp;a</span></div>
+      <div id="f1-l3" class="f1-line f1-l3" data-layout-allow-occlusion><span class="f1-w"><span class="f1-hl" id="f1-hl" data-layout-allow-occlusion></span><span class="f1-ht" id="f1-ht">stack&nbsp;overflow</span></span></div>
+      <div id="f1-rule" class="f1-rule"></div>
+      <div id="f1-gloss" class="f1-gloss" data-layout-ignore>python names it RecursionError</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.4;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-hook"] = tl;
+
+      /* ground: duration = D/4 with repeat 3 -> four segments cover 5.4s exactly, ends at its zero */
+      tl.fromTo(el("g1-grid"), { y: 0 }, { y: 16, duration: 1.35, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g1-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.35, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g1-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.35, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      /* chrome and hook group 1 are AT REST from t=0 (this frame is the cover), so they get no
+         entrance tween at all — see the CSS note above. */
+
+      /* hook type: groups 2 and 3 wipe in on their own measured onsets
+         (Forget 0.00 / you'll 1.56 / stack 1.94 / overflow. 2.16) */
+      tl.fromTo(el("f1-l2"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 1.54);
+      tl.fromTo(el("f1-l3"), { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.88);
+
+      /* P1 say-sweep on the hook's sharpest words, inside the first second of their own utterance */
+      tl.fromTo(el("f1-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power2.out", immediateRender: false }, 1.96);
+      tl.to(el("f1-ht"), { color: "#22201B", duration: 0.2, immediateRender: false }, 2.14);
+      tl.fromTo(el("f1-hl"), { boxShadow: "0 0 0 rgba(255,209,102,0)" },
+        { boxShadow: "0 0 34px rgba(255,209,102,0.55)", duration: 0.5, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 2.5);
+      tl.fromTo(el("f1-l3"), { scale: 1 }, { scale: 1.04, duration: 0.2, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 1.98);
+
+      /* P10 settle rule, then the gloss that pairs the interview word with the interpreter's word
+         (both beats are in the 2.9s of authored air after the VO ends at 2.48) */
+      tl.fromTo(el("f1-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.46, ease: "power3.inOut", immediateRender: false }, 3.05);
+      tl.fromTo(el("f1-rule"), { y: 0 }, { y: -4, duration: 0.45, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 3.56);
+      tl.fromTo(el("f1-gloss"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 3.42);
+
+      /* ambient float on the hero lines, back to zero */
+      tl.fromTo(el("f1-l1"), { y: 0 }, { y: -5, duration: 1.35, ease: "sine.inOut", repeat: 3, yoyo: true }, 0.5);
+      tl.fromTo(el("f1-l2"), { y: 0 }, { y: 3, duration: 0.9, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 2.2);
+
+      /* exit push, inside the air */
+      tl.to(el("f1-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 5.08);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

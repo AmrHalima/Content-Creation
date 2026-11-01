@@ -1,0 +1,169 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; top: 200px; left: 80px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #6e6e64;
+    }
+    .f04-spike { display: inline-block; color: #6e6e64; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f04-ktext { display: inline-block; opacity: 0; }
+    .f04-divider {
+      position: absolute; top: 924px; left: 80px; width: 920px; height: 2px;
+      background: rgba(26,26,26,0.20); opacity: 0;
+    }
+    .f04-ring {
+      position: absolute;
+      box-sizing: border-box;
+      border: 2px solid #1a1a1a;
+      border-radius: 28px;
+      background: transparent;
+      opacity: 0;
+    }
+    .f04-dim { border-color: rgba(26,26,26,0.62); }
+    .f04-label {
+      position: absolute;
+      display: flex; align-items: center; justify-content: center;
+      height: 52px; padding: 0 18px;
+      box-sizing: border-box;
+      background: #ffffeb;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.6cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #1a1a1a; white-space: nowrap;
+      opacity: 0;
+    }
+    .f04-base {
+      position: absolute;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #034f46;
+      border: 2px solid #ffffeb;
+      border-radius: 18px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.6cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #ffffeb; white-space: nowrap;
+      opacity: 0;
+    }
+    .f04-order {
+      position: absolute; left: 706px; width: 300px; height: 54px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.45cqw; letter-spacing: 0.01em;
+      color: rgba(26,26,26,0.72); white-space: nowrap;
+      opacity: 0;
+    }
+    .f04-stored {
+      position: absolute; left: 134px; top: 846px; width: 210px; height: 54px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 1.5cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #1a1a1a; white-space: nowrap;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-order-is-a-decision" data-width="1080" data-height="1920" data-duration="7.829">
+
+    <div id="f04-fieldclip" class="clip" data-start="0" data-duration="7.829" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="f04-field" class="f04-field"></div>
+      <div id="f04-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="f04-chromeclip" class="clip" data-start="0" data-duration="7.829" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f04-kicker" class="f04-kicker">
+        <span id="f04-spike" class="f04-spike">&#10009;</span><span id="f04-ktext" class="f04-ktext" data-layout-ignore>ORDER</span>
+      </div>
+      <div id="f04-divider" class="f04-divider"></div>
+    </div>
+
+    <div id="f04-upperclip" class="clip" data-start="0" data-duration="7.829" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f04-u-cache" class="f04-ring" style="left:120px; top:330px; width:560px; height:580px;"></div>
+      <div id="f04-u-retry" class="f04-ring" style="left:190px; top:400px; width:420px; height:440px;"></div>
+      <div id="f04-u-log" class="f04-ring" style="left:260px; top:470px; width:280px; height:300px;"></div>
+      <div id="f04-u-label-cache" class="f04-label" style="left:134px; top:344px;">cache</div>
+      <div id="f04-u-label-retry" class="f04-label" style="left:204px; top:414px;">retry</div>
+      <div id="f04-u-label-log" class="f04-label" style="left:274px; top:484px;">log</div>
+      <div id="f04-u-base" class="f04-base" style="left:300px; top:560px; width:200px; height:120px;">base</div>
+      <div id="f04-u-order" class="f04-order" style="top:600px;">cache(retry(log))</div>
+      <div id="f04-stored" class="f04-stored">stored</div>
+    </div>
+
+    <div id="f04-lowerclip" class="clip" data-start="2.9" data-duration="4.929" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f04-l-retry" class="f04-ring f04-dim" style="left:120px; top:940px; width:560px; height:580px;"></div>
+      <div id="f04-l-cache" class="f04-ring f04-dim" style="left:190px; top:1010px; width:420px; height:440px;"></div>
+      <div id="f04-l-log" class="f04-ring f04-dim" style="left:260px; top:1080px; width:280px; height:300px;"></div>
+      <div id="f04-l-label-retry" class="f04-label f04-dim" style="left:134px; top:954px;">retry</div>
+      <div id="f04-l-label-cache" class="f04-label f04-dim" style="left:204px; top:1024px;">cache</div>
+      <div id="f04-l-label-log" class="f04-label f04-dim" style="left:274px; top:1094px;">log</div>
+      <div id="f04-l-base" class="f04-base" style="left:300px; top:1170px; width:200px; height:120px;">base</div>
+      <div id="f04-l-order" class="f04-order" style="top:1210px;">retry(cache(log))</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-order-is-a-decision"] = tl;
+
+      tl.fromTo(el("f04-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f04-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f04-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.9s) — the upper stack builds outer-first, one ring per spoken word ──
+      tl.fromTo(el("f04-u-cache"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 0.90);
+      tl.fromTo(el("f04-u-label-cache"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 1.02);
+      tl.fromTo(el("f04-u-retry"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 1.30);
+      tl.fromTo(el("f04-u-label-retry"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 1.42);
+      tl.fromTo(el("f04-u-log"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 1.60);
+      tl.fromTo(el("f04-u-label-log"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 1.72);
+      tl.fromTo(el("f04-u-base"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power3.out" }, 1.86);
+      tl.fromTo(el("f04-u-order"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 2.05);
+
+      // ── Scene 2 (1.9–4.6s) — the divider, then the swapped stack in the lower band ──
+      tl.fromTo(el("f04-divider"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.42, ease: "power2.out", transformOrigin: "left center" }, 2.95);
+      tl.fromTo(el("f04-l-retry"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 3.16);
+      tl.fromTo(el("f04-l-label-retry"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 3.28);
+      tl.fromTo(el("f04-l-cache"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 3.78);
+      tl.fromTo(el("f04-l-label-cache"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 3.90);
+      tl.fromTo(el("f04-l-log"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 4.20);
+      tl.fromTo(el("f04-l-label-log"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 4.32);
+      tl.fromTo(el("f04-l-base"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power3.out" }, 4.52);
+      tl.fromTo(el("f04-l-order"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 4.85);
+
+      // ── Scene 3 (4.9–7.8s) — "a retried call gets stored": the one voltage, then stillness ──
+      tl.fromTo(el("f04-stored"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 6.54);
+    })();
+  </script>
+</template>

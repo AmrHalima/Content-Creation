@@ -1,0 +1,193 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    .pb-chamber { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .pb-chamber.dashed { border-style: dashed; }
+    .pb-chamber.enforced { border-width: 7px; }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+
+    .pb-chip { position: absolute; box-sizing: border-box; height: 88px; display: flex;
+      align-items: center; justify-content: center; padding: 0 24px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    .pb-ann { position: absolute; box-sizing: border-box; opacity: 0; color: #9BA6B2;
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.01em; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+
+    .pb-line { position: absolute; left: 72px; width: 936px; display: block; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.12;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .pb-word { display: inline-block; position: relative; }
+    .pb-hl { position: absolute; left: -8px; right: -8px; top: 0.08em; bottom: 0.06em;
+      background: #FFD166; border-radius: 8px; transform: scaleX(0); transform-origin: left center; }
+    .pb-wtxt { position: relative; z-index: 1; }
+
+    .pb-wall { position: absolute; background: rgba(255,255,255,0.16); transform: scaleY(0);
+      transform-origin: top center; border-radius: 3px; }
+    .pb-rule { position: absolute; height: 4px; background: #FFD166; transform: scaleX(0);
+      transform-origin: left center; border-radius: 2px; }
+
+    /* F3 — the tile that will not open. Thick solid chambers = enforced. The 'H' chip
+       flies in, recoils, and three bars draw down over the letter it tried to change. */
+    .f3-head { top:300px; text-align:center; font-size:7.4cqw; opacity:1; }
+    .f3-hw { display:inline-block; position:relative; opacity:0; }
+    .f3-hl { position:absolute; left:-10px; right:-10px; top:0.07em; bottom:0.05em;
+      background:#FFD166; border-radius:10px; transform:scaleX(0); transform-origin:left center; }
+    .f3-ht { position:relative; z-index:1; }
+    .f3-tile { top:470px; width:250px; height:250px; }
+    .f3-t0 { left:200px; }
+    .f3-t1 { left:630px; }
+    .f3-letter { font-size:9.6cqw; }
+    .f3-idx { top:744px; width:110px; height:64px; border-radius:12px; font-size:2.6cqw;
+      color:#9BA6B2; background:#1F242C; }
+    .f3-i0 { left:270px; }
+    .f3-i1 { left:700px; }
+    .f3-ihl { position:absolute; left:330px; top:826px; width:80px; height:5px;
+      background:rgba(255,255,255,0.16); border-radius:3px; transform:scaleX(0); transform-origin:center center; }
+    .f3-h { left:820px; top:520px; width:150px; height:150px; border-radius:18px;
+      font-size:6.4cqw; border-width:3px; border-color:rgba(255,255,255,0.28); color:#F4F1EA; }
+    .f3-bar { position:absolute; width:9px; height:190px; top:500px;
+      background:rgba(244,241,234,0.30); border-radius:4px; transform:scaleY(0);
+      transform-origin:top center; }
+    .f3-b0 { left:252px; } .f3-b1 { left:320px; } .f3-b2 { left:388px; }
+    .f3-ann { left:96px; top:880px; width:888px; }
+  </style>
+
+  <div id="root" data-composition-id="03-tiles" data-width="1080" data-height="1920" data-duration="9.555">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="9.555" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div id="g3-shelf" class="gnd-shelf"></div>
+    </div>
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="9.555" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>THE LANGUAGE REFUSES FOR YOU</div>
+        <div id="c3-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="9.555" data-track-index="2" data-layout-allow-overflow>
+
+      <div id="f3-head" class="pb-line f3-head"><span class="f3-hw" id="f3-hw1">the</span> <span class="f3-hw" id="f3-hw2">value</span> <span class="f3-hw" id="f3-hw3"><span class="f3-hl" id="f3-hl"></span><span class="f3-ht" id="f3-ht">refuses</span></span></div>
+      <div id="f3-t0" class="pb-chamber enforced f3-tile f3-t0"><span id="f3-l0" class="pb-val f3-letter" style="opacity:0;">h</span></div>
+      <div id="f3-t1" class="pb-chamber enforced f3-tile f3-t1"><span id="f3-l1" class="pb-val f3-letter" style="opacity:0;">i</span></div>
+      <div id="f3-i0" class="pb-chip f3-idx f3-i0">0</div>
+      <div id="f3-i1" class="pb-chip f3-idx f3-i1">1</div>
+      <div id="f3-ihl" class="f3-ihl"></div>
+      <div id="f3-bar0" class="f3-bar f3-b0"></div>
+      <div id="f3-bar1" class="f3-bar f3-b1"></div>
+      <div id="f3-bar2" class="f3-bar f3-b2"></div>
+      <div id="f3-h" class="pb-chip f3-h">&#39;H&#39;</div>
+      <div id="f3-ann" class="pb-ann f3-ann">its letters are <strong>locked</strong></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.555;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-tiles"] = tl;
+
+      /* ground */
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 1.593, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.389, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.593, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g3-shelf"), { opacity: 0.55 }, { opacity: 1, duration: 2.389, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      /* chrome */
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("c3-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.26);
+
+      /* headline "the value refuses" — amber sweep lands on "refuses" with the spoken word (2.36) */
+      tl.fromTo(el("f3-hw1"), { opacity: 0, y: 54 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 0.36);
+      tl.fromTo(el("f3-hw2"), { opacity: 0, y: 54 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 0.62);
+      tl.fromTo(el("f3-hw3"), { opacity: 0, y: 54 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out", immediateRender: false }, 0.9);
+      tl.fromTo(el("f3-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.34, ease: "power3.out", immediateRender: false }, 2.4);
+      tl.to(el("f3-ht"), { color: "#22201B", duration: 0.22 }, 2.62);
+
+      /* the two letter tiles, thick solid = enforced, over their index strip */
+      tl.fromTo(el("f3-t0"), { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.5);
+      tl.fromTo(el("f3-t1"), { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.9);
+      tl.fromTo(el("f3-l0"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 1.86);
+      tl.fromTo(el("f3-l1"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 2.16);
+      tl.fromTo(el("f3-i0"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 2.44);
+      tl.fromTo(el("f3-i1"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 2.62);
+      tl.fromTo(el("f3-ihl"), { scaleX: 0 }, { scaleX: 1, duration: 0.42, ease: "power2.inOut", immediateRender: false }, 2.86);
+
+      /* REFUSAL 1 — the 'H' chip flies in from the right, hits tile 0, recoils and goes */
+      tl.fromTo(el("f3-h"), { opacity: 0, x: 250, scale: 0.9 }, { opacity: 1, x: 250, scale: 1, duration: 0.26, ease: "power2.out", immediateRender: false }, 3.1);
+      tl.to(el("f3-h"), { x: -510, duration: 0.44, ease: "power2.in", immediateRender: false }, 3.34);
+      tl.to(el("f3-h"), { x: -448, duration: 0.18, ease: "power2.out", immediateRender: false }, 3.79);
+      tl.to(el("f3-h"), { x: 320, opacity: 0, duration: 0.42, ease: "power2.in", immediateRender: false }, 3.98);
+      tl.fromTo(el("f3-t0"), { x: 0 }, { x: 9, duration: 0.09, ease: "power1.inOut", yoyo: true, repeat: 3, immediateRender: false }, 3.72);
+      tl.to(el("f3-t0"), { borderColor: "#5AD6A0", duration: 0.16, ease: "power1.out" }, 3.74);
+      tl.to(el("f3-t0"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.5, ease: "power1.inOut" }, 4.3);
+
+      /* three bars draw down over the letter it tried to change */
+      tl.fromTo(el("f3-bar0"), { scaleY: 0 }, { scaleY: 1, duration: 0.24, ease: "power3.out", immediateRender: false }, 4.06);
+      tl.fromTo(el("f3-bar1"), { scaleY: 0 }, { scaleY: 1, duration: 0.24, ease: "power3.out", immediateRender: false }, 4.2);
+      tl.fromTo(el("f3-bar2"), { scaleY: 0 }, { scaleY: 1, duration: 0.24, ease: "power3.out", immediateRender: false }, 4.34);
+      tl.fromTo(el("f3-bar0"), { opacity: 1 }, { opacity: 0.55, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 4.7);
+
+      /* REFUSAL 2 — "A string is immutable" (4.72 → 6.1): it tries again and gets pushed back */
+      tl.fromTo(el("f3-h"), { opacity: 0, x: 250, scale: 0.92 }, { opacity: 1, x: 120, scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.8);
+      tl.to(el("f3-h"), { x: -490, duration: 0.3, ease: "power2.in", immediateRender: false }, 5.18);
+      tl.to(el("f3-h"), { x: -430, duration: 0.14, ease: "power2.out", immediateRender: false }, 5.5);
+      tl.to(el("f3-h"), { x: 320, opacity: 0, duration: 0.36, ease: "power2.in", immediateRender: false }, 5.66);
+      tl.fromTo(el("f3-t0"), { x: 0 }, { x: 7, duration: 0.08, ease: "power1.inOut", yoyo: true, repeat: 2, immediateRender: false }, 5.44);
+      tl.fromTo(el("f3-ann"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out", immediateRender: false }, 5.72);
+
+      /* "Python stops you" (6.9 → 8.2) — both tiles pulse 0.1s apart, no error text here */
+      tl.fromTo(el("f3-t0"), { scale: 1 }, { scale: 1.05, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 7.0);
+      tl.fromTo(el("f3-t1"), { scale: 1 }, { scale: 1.05, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 7.2);
+      tl.fromTo(el("f3-i0"), { opacity: 1 }, { opacity: 0.45, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 7.3);
+      tl.fromTo(el("f3-l0"), { scale: 1 }, { scale: 1.1, duration: 0.24, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 7.5);
+
+      /* ambient: the row breathes, and the frame pushes out in its silence */
+      tl.fromTo(el("f3-head"), { y: 0 }, { y: -5, duration: 1.59, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 0.4);
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

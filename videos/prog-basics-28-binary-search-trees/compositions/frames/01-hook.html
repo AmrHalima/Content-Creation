@@ -1,0 +1,119 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    /* frame.md v3.0 § 2 — the ligature kill-list is on EVERY frame of every Day 3 part,
+       including the one with no code on it, so a clone cannot lose it. JetBrains Mono
+       ligates `<=` and `->` into glyphs a learner cannot type. */
+    html, body { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    /* the ground (v3.0 § 3) — identical in every frame, every loop back to its own zero */
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G1 hook (v3.0 § 5) — display type on the ground, nothing illustrated. No tree and no
+       field on this frame: G11 is F2's entrance and G14 is F3's (piece § "F1"). */
+    .f1-line { position: absolute; left: 72px; width: 936px; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.08;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; font-size: 8.4cqw; }
+    .f1-l1 { top: 420px; }
+    .f1-l2 { top: 540px; }
+    .f1-l3 { top: 660px; }
+    .f1-w { display: inline-block; position: relative; }
+    .f1-hl { position: absolute; left: 0; right: 0; top: 0.08em; bottom: 0.05em;
+      background: #FFD166; border-radius: 12px; transform: scaleX(0); transform-origin: left center; }
+    .f1-ht { position: relative; z-index: 1; }
+    /* the promise is the two numbers, so they hold in mint: --value is "a value", and a
+       countable number is a value (§ 1). Amber stays the single plate on `twenty steps.` */
+    .f1-num { color: #5AD6A0; }
+    .f1-plate { color: #F4F1EA; }
+  </style>
+
+  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-duration="3.6">
+
+    <div id="g1-ground" class="clip clipband" data-start="0" data-duration="3.6" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g1-grid" class="gnd-grid"></div>
+      <div id="g1-ga" class="gnd-glow-a"></div>
+      <div id="g1-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c1-chrome" class="clip clipband" data-start="0" data-duration="3.6" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c1-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 28</div>
+      </div>
+    </div>
+
+    <div id="f1-content" class="clip clipband" data-start="0" data-duration="3.6" data-track-index="2">
+      <div id="f1-l1" class="f1-line f1-l1"><span class="f1-w">Search&nbsp;<span class="f1-num">a&nbsp;million</span></span></div>
+      <div id="f1-l2" class="f1-line f1-l2"><span class="f1-w">items&nbsp;in&nbsp;about</span></div>
+      <div id="f1-l3" class="f1-line f1-l3" data-layout-allow-occlusion><span class="f1-w"><span class="f1-w" id="f1-tok"><span class="f1-hl" id="f1-hl" data-layout-allow-occlusion></span><span class="f1-ht f1-plate" id="f1-ht">twenty&nbsp;steps.</span></span></span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 3.6;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-hook"] = tl;
+
+      /* ground: every animation starts and ends at its own zero (v3.0 § 3), so the last frame
+         of this scene equals the first of F2 and the board never reloads */
+      tl.fromTo(el("g1-grid"), { y: 0 }, { y: 12, duration: D / 2, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g1-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 2, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g1-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 2, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+
+      tl.fromTo(el("c1-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.08);
+
+      /* hook type, one wipe per group, keyed to the measured onsets from `studio cues`:
+         Search 0.00 / million 0.38 — items 0.72 / about 1.50 — twenty 1.66 / steps 1.96 */
+      tl.fromTo(el("f1-l1"), { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("f1-l2"), { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.70);
+      tl.fromTo(el("f1-l3"), { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.60);
+
+      /* P1 say-sweep on `twenty steps.` — inside the first second of its own utterance
+         (twenty starts 1.66, steps ends 2.26). The sweep is the ONLY amber on this frame.
+         When it completes the amber becomes the token's own background and the type flips to
+         --say-ink in the same tick, so no sampled frame sits between plate and ink (§ 1). */
+      tl.fromTo(el("f1-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.30, ease: "power2.out", immediateRender: false }, 1.70);
+      tl.set(el("f1-tok"), { backgroundColor: "#FFD166" }, 2.00);
+      tl.set(el("f1-ht"), { color: "#22201B" }, 2.00);
+      tl.set(el("f1-hl"), { opacity: 0 }, 2.00);
+
+      /* ambient breath on the display block only — the second primitive this frame carries */
+      tl.fromTo(el("f1-l1"), { y: 0 }, { y: -5, duration: 1.2, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 0.5);
+      tl.fromTo(el("f1-l3"), { y: 0 }, { y: 5, duration: 1.2, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 2.10);
+
+      /* exit push (last 0.3s, inside the authored silence after steps. ends 2.26) */
+      tl.to(el("f1-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 3.28);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

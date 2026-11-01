@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Two functions can look identical and behave completely differently."
+    },
+    {
+      "id": "02",
+      "text": "A return value hands the result back to whoever called it. The caller keeps it, stores it, builds on it."
+    },
+    {
+      "id": "03",
+      "text": "A side effect is something the function does outside itself. It prints on screen. It writes a file."
+    },
+    {
+      "id": "04",
+      "text": "Both functions make eight. Return hands it back to y. Print shows it, then returns None. So y equals double of four gives you nothing to work with."
+    },
+    {
+      "id": "05",
+      "text": "So pick a side. Team Return, or Team Print. Say why in the comments."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

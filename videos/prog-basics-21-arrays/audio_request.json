@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Need 100 variables? You need one array."
+    },
+    {
+      "id": "02",
+      "text": "An array holds many values in order, side by side in memory. Each has an index that starts at zero."
+    },
+    {
+      "id": "03",
+      "text": "Reading by index is instant. Inserting in the middle means shifting everything after it."
+    },
+    {
+      "id": "04",
+      "text": "Nums is ten, twenty, thirty. Nums at index one gives twenty."
+    },
+    {
+      "id": "05",
+      "text": "Save this. Quick one: what's nums[-1] in Python?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

@@ -1,0 +1,160 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #1A1A1A;
+    }
+    .f02-bg { position: absolute; inset: 0; background: #FFA946; }
+    .f02-rule {
+      position: absolute; top: 470px; right: 96px; width: 220px; height: 3px;
+      background: rgba(17,17,17,0.55); transform-origin: right center;
+    }
+    .f02-label {
+      position: absolute; top: 380px; right: 96px; width: 800px; height: 80px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 3.1cqw; font-weight: 500; letter-spacing: 0;
+      color: rgba(17,17,17,0.55); white-space: nowrap; opacity: 0;
+    }
+    .f02-name {
+      position: absolute; top: 640px; right: 96px; width: 888px; min-height: 620px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 16cqw; font-weight: 900; line-height: 0.98; letter-spacing: 0;
+      color: #1A1A1A;
+    }
+    .f02-name .half { display: block; }
+    .f02-gloss {
+      position: absolute; top: 1330px; right: 96px; width: 830px; min-height: 300px;
+      font-family: "Noto Naskh Arabic", serif;
+      font-size: 5.2cqw; font-weight: 400; line-height: 1.5; letter-spacing: 0;
+      color: rgba(17,17,17,0.75); opacity: 0;
+    }
+    .f02-gloss b { font-weight: 700; color: #1A1A1A; }
+
+    /* --- the definition, drawn: your number sits between the call and the other number --- */
+    .f02-flow { position: absolute; top: 1580px; right: 0; width: 1080px; height: 240px; opacity: 0; }
+    .f02-svg { position: absolute; inset: 0; }
+    .f02-node { fill: none; stroke: rgba(17,17,17,0.42); stroke-width: 2; }
+    .f02-node-mid { stroke: rgba(17,17,17,0.22); }
+    .f02-node-hot { stroke: rgba(17,17,17,0.85); }
+    .f02-lbl {
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 34px; font-weight: 500;
+      letter-spacing: 0; fill: rgba(17,17,17,0.72);
+    }
+    .f02-lbl-hot { fill: #1A1A1A; font-weight: 700; }
+    .f02-route { fill: none; stroke: rgba(17,17,17,0.35); stroke-width: 2; }
+    .f02-divert { fill: none; stroke: #1A1A1A; stroke-width: 2.5; }
+    .f02-strike { fill: none; stroke: #1A1A1A; stroke-width: 3; stroke-linecap: round; }
+    .f02-pip { fill: #1A1A1A; }
+  </style>
+
+  <div id="root" data-composition-id="02-the-name" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f02-the-name-bg" class="clip" data-start="0" data-duration="8.78" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f02-bg"></div>
+    </div>
+
+    <div id="f02-the-name-chromeclip" class="clip" data-start="0" data-duration="8.78" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f02-label">اسم الإعداد</div>
+      <div id="f02-the-name-rule" class="f02-rule"></div>
+    </div>
+
+    <div id="f02-the-name-headclip" class="clip" data-start="0" data-duration="8.78" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f02-name">
+        <span id="f02-the-name-w1" class="half">تحويل</span>
+        <span id="f02-the-name-w2" class="half">المكالمات</span>
+      </div>
+    </div>
+
+    <div id="f02-the-name-glossclip" class="clip" data-start="2.4" data-duration="6.38" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f02-the-name-gloss" class="f02-gloss">أي مكالمة بتيجي على رقمك بتتحوّل لرقم تاني. <b>إنت مش بتسمعها.</b></div>
+    </div>
+
+    <div id="f02-flowclip" class="clip" data-start="4.2" data-duration="4.58" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f02-flow" class="f02-flow">
+        <svg class="f02-svg" width="1080" height="240" viewBox="0 0 1080 240" xmlns="http://www.w3.org/2000/svg">
+          <text id="f02-n1" class="f02-lbl" x="865" y="30" text-anchor="middle">مكالمة</text>
+          <text id="f02-n2" class="f02-lbl" x="540" y="30" text-anchor="middle">رقمك</text>
+          <text id="f02-n3" class="f02-lbl f02-lbl-hot" x="215" y="30" text-anchor="middle">رقم تاني</text>
+
+          <!-- the call runs the full length of the line; your number sits in the middle of it -->
+          <path id="f02-route" class="f02-route" d="M 762 92 L 332 92" />
+          <path id="f02-routehead" class="f02-route" d="M 352 80 L 330 92 L 352 104" />
+          <path id="f02-divert" class="f02-divert" d="M 435 92 L 332 92" />
+          <path id="f02-diverthead" class="f02-divert" d="M 352 80 L 330 92 L 352 104" />
+
+          <rect id="f02-box1" class="f02-node" x="770" y="52" width="190" height="80" />
+          <rect id="f02-box2" class="f02-node f02-node-mid" x="445" y="52" width="190" height="80" />
+          <rect id="f02-box3" class="f02-node f02-node-hot" x="120" y="52" width="190" height="80" />
+
+          <path id="f02-strike" class="f02-strike" d="M 455 124 L 625 60" />
+          <circle id="f02-pip" class="f02-pip" cx="762" cy="92" r="9" opacity="0" />
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-the-name"] = tl;
+
+      tl.fromTo(el("f02-the-name-chromeclip").querySelector(".f02-label"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.15);
+      tl.fromTo(el("f02-the-name-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0.3);
+
+      // anchored-layout-expand: each half of the name grows from its own anchor, not a slide
+      tl.fromTo(el("f02-the-name-w1"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.62, ease: "power3.out", transformOrigin: "right center" }, 0.9);
+      tl.fromTo(el("f02-the-name-w2"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.62, ease: "power3.out", transformOrigin: "right center" }, 1.45);
+
+      tl.fromTo(el("f02-the-name-gloss"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 2.6);
+
+      // ── the flow: the call crosses your number and lands somewhere else ──
+      tl.fromTo(el("f02-flow"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 4.2);
+      tl.fromTo([el("f02-n1"), el("f02-box1")], { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.4);
+      tl.fromTo(el("f02-route"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 4.9);
+      tl.fromTo([el("f02-n2"), el("f02-box2")], { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 5.2);
+      tl.fromTo(el("f02-routehead"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.5);
+
+      // the strike: this number is where nothing happens
+      var strike = el("f02-strike");
+      var SLEN = strike.getTotalLength();
+      strike.style.strokeDasharray = String(SLEN);
+      strike.style.strokeDashoffset = String(SLEN);
+      tl.to(strike, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 5.9);
+
+      // the divert draws forward, then the call takes it
+      var divert = el("f02-divert");
+      var DLEN = divert.getTotalLength();
+      divert.style.strokeDasharray = String(DLEN);
+      divert.style.strokeDashoffset = String(DLEN);
+      tl.to(divert, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 6.5);
+      tl.fromTo(el("f02-diverthead"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 7.0);
+      tl.fromTo([el("f02-n3"), el("f02-box3")], { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 7.1);
+
+      var pip = el("f02-pip");
+      var RLEN = el("f02-route").getTotalLength();
+      var pp = { v: 0 };
+      tl.fromTo(pip, { opacity: 0 }, { opacity: 1, duration: 0.15 }, 6.6);
+      tl.to(pp, {
+        v: 1, duration: 1.1, ease: "power1.inOut",
+        onUpdate: function () {
+          var pt = el("f02-route").getPointAtLength(RLEN * pp.v);
+          pip.setAttribute("cx", pt.x);
+          pip.setAttribute("cy", pt.y);
+        }
+      }, 6.6);
+      tl.to(pip, { opacity: 0, duration: 0.25 }, 7.5);
+      // 7.7s -> 8.78s held.
+    })();
+  </script>
+</template>

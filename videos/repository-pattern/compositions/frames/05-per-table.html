@@ -1,0 +1,220 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f05-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f05-ktext { display: inline-block; opacity: 0; }
+
+    /* the aggregate chamber: the thing that gets buried */
+    .f05-aggr {
+      position: absolute; top: 320px; left: 190px; width: 700px; height: 176px;
+      box-sizing: border-box; background: #ffffff;
+      border: 3px solid #1a1a1a; border-radius: 12px;
+      opacity: 0;
+    }
+    .f05-aggr-role {
+      position: absolute; top: 26px; left: 36px; width: 420px; height: 72px;
+      display: flex; align-items: center;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 4.4cqw; line-height: 1; letter-spacing: -0.022em; color: #1a1a1a;
+    }
+    .f05-aggr-cls {
+      position: absolute; top: 108px; left: 38px; width: 420px; height: 50px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+    }
+
+    .f05-chip {
+      position: absolute; left: 90px; width: 340px; height: 110px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff; border: 3px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.01em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f05-repo {
+      position: absolute; left: 470px; width: 520px; height: 110px;
+      box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px;
+      background: #181715; border: 1px solid rgba(255,255,235,0.24); border-radius: 8px;
+      padding: 0 22px;
+      opacity: 0;
+    }
+    .f05-repo-name {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #ffffeb;
+    }
+    .f05-repo-meth {
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,235,0.6);
+    }
+    .f05-lead { position: absolute; left: 430px; width: 40px; height: 3px; background: rgba(26,26,26,0.4); opacity: 0; }
+
+    /* the consistency boundary: it draws and stops short, so the seam is visibly not closable */
+    .f05-boundary { position: absolute; inset: 0; overflow: visible; }
+    .f05-boundary path { fill: none; stroke: #1a1a1a; stroke-width: 4; }
+    .f05-gapmark { position: absolute; top: 700px; left: 46px; width: 40px; height: 40px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; color: #76766e; opacity: 0; }
+
+    .f05-tag {
+      position: absolute; top: 1030px; left: 320px; width: 440px; height: 78px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #FFA946; border: 3px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: 0.05em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-per-table" data-width="1080" data-height="1920" data-duration="11.883">
+
+    <div id="05-per-table-fieldclip" class="clip" data-start="0" data-duration="11.883" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-field"></div>
+      <div id="05-per-table-grid" class="f05-grid"></div>
+    </div>
+
+    <div id="05-per-table-chromeclip" class="clip" data-start="0" data-duration="11.883" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f05-kicker">
+        <span id="05-per-table-spike" class="f05-spike">&#10009;</span><span id="05-per-table-ktext" class="f05-ktext" data-layout-ignore>WHERE THE SEAM GOES</span>
+      </div>
+      <div id="05-per-table-aggr" class="f05-aggr">
+        <div class="f05-aggr-role">Order</div>
+        <div id="05-per-table-aggr-cls" class="f05-aggr-cls">aggregate root</div>
+      </div>
+    </div>
+
+    <div id="05-per-table-tablesclip" class="clip" data-start="1.02" data-duration="10.863" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="05-per-table-chip1" class="f05-chip" style="top:560px;">orders</div>
+      <div id="05-per-table-chip2" class="f05-chip" style="top:700px;">order_lines</div>
+      <div id="05-per-table-chip3" class="f05-chip" style="top:840px;">shipping_address</div>
+      <div id="05-per-table-lead1" class="f05-lead" style="top:614px;"></div>
+      <div id="05-per-table-lead2" class="f05-lead" style="top:754px;"></div>
+      <div id="05-per-table-lead3" class="f05-lead" style="top:894px;"></div>
+    </div>
+
+    <div id="05-per-table-reposclip" class="clip" data-start="4.66" data-duration="7.223" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="05-per-table-repo1" class="f05-repo" style="top:560px;">
+        <span class="f05-repo-name">ordersRepo</span><span class="f05-repo-meth" data-layout-ignore>save(orders_row)</span>
+      </div>
+      <div id="05-per-table-repo2" class="f05-repo" style="top:700px;">
+        <span class="f05-repo-name">orderLinesRepo</span><span class="f05-repo-meth" data-layout-ignore>save(order_lines_row)</span>
+      </div>
+      <div id="05-per-table-repo3" class="f05-repo" style="top:840px;">
+        <span class="f05-repo-name">shippingRepo</span><span class="f05-repo-meth" data-layout-ignore>save(shipping_row)</span>
+      </div>
+    </div>
+
+    <div id="05-per-table-boundaryclip" class="clip" data-start="7.58" data-duration="4.303" data-track-index="4" style="position:absolute;inset:0;">
+      <svg class="f05-boundary" width="1080" height="1920" viewBox="0 0 1080 1920">
+        <path id="05-per-table-boundary" d="M 86,520 H 994 A 16,16 0 0 1 1010,536 V 964 A 16,16 0 0 1 994,980 H 86 A 16,16 0 0 1 70,964 V 536 A 16,16 0 0 1 86,520 Z"/>
+      </svg>
+      <div id="05-per-table-gapmark" class="f05-gapmark" data-layout-ignore>open</div>
+    </div>
+
+    <div id="05-per-table-tagclip" class="clip" data-start="9.38" data-duration="2.503" data-track-index="5" style="position:absolute;inset:0;">
+      <div id="05-per-table-tag" class="f05-tag">1 repo per table</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 11.883;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(el("05-per-table-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("05-per-table-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("05-per-table-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–1.6s) — "Put the seam on a table": the aggregate arrives, then the tables ──
+      tl.fromTo(el("05-per-table-aggr"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.36);
+      var CHIPS = [
+        { chip: "05-per-table-chip1", lead: "05-per-table-lead1", t: 1.02 },
+        { chip: "05-per-table-chip2", lead: "05-per-table-lead2", t: 1.42 },
+        { chip: "05-per-table-chip3", lead: "05-per-table-lead3", t: 1.96 }
+      ];
+      CHIPS.forEach(function (r) {
+        tl.fromTo(el(r.chip), { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, r.t);
+        tl.fromTo(el(r.lead), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.22, ease: "power2.out", transformOrigin: "left center" }, r.t + 0.3);
+      });
+
+      // ── Scene 2 (1.96–4.18s) — "instead of an aggregate": the aggregate gets demoted ──
+      tl.to(el("05-per-table-aggr"), { opacity: 0.42, duration: 0.6, ease: "power1.out" }, 2.68);
+
+      // ── Scene 3 (4.66–7.58s) — "the schema quietly becomes your domain model": each repo inherits ──
+      var REPOS = [
+        { id: "05-per-table-repo1", t: 4.66 },
+        { id: "05-per-table-repo2", t: 5.18 },
+        { id: "05-per-table-repo3", t: 5.88 }
+      ];
+      REPOS.forEach(function (r) {
+        tl.fromTo(el(r.id), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, r.t);
+      });
+
+      // discrete-text-sequence via a time proxy + reverse search (there is NO TextPlugin here, so
+      // tl.set({text}) would silently no-op): the domain chamber ends up carrying a table's name
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t,
+          duration: states[states.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+      var sub = el("05-per-table-aggr-cls");
+      textSeq(sub, [{ t: 0, text: "aggregate root" }, { t: 6.7, text: "orders table" }]);
+      tl.to(sub, { opacity: 0, duration: 0.1, ease: "none" }, 6.6);
+      tl.to(sub, { opacity: 1, duration: 0.26, ease: "power1.out" }, 6.7);
+
+      // ── Scene 4 (7.58–11.883s) — the boundary draws and CANNOT close: 6% short on the left edge ──
+      var b = el("05-per-table-boundary");
+      var len = b.getTotalLength();
+      b.style.strokeDasharray = String(len);
+      b.style.strokeDashoffset = String(len);
+      tl.to(b, { strokeDashoffset: len * 0.06, duration: 1.5, ease: "power2.inOut" }, 7.58);
+      tl.fromTo(el("05-per-table-gapmark"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 9.1);
+      tl.fromTo(el("05-per-table-tag"), { opacity: 0, y: 16, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.44, ease: "power3.out" }, 9.38);
+
+      // finite nudge-curve: the three repos creep toward the chamber they buried (one move, then stop)
+      REPOS.forEach(function (r, i) {
+        tl.to(el(r.id), { y: -20 - i * 4, duration: 0.7, ease: "power2.inOut" }, 10.4);
+      });
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["05-per-table"] = tl;
+    })();
+  </script>
+</template>

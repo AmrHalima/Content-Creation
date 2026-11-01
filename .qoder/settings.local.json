@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node studio/tools/studio.mjs:*)",
+      "Bash(node \"studio/tools/studio.mjs\":*)",
+      "Bash(node studio/tools/*:*)",
+      "Bash(npm run studio:*)",
+      "Bash(npm run doctor:*)",
+      "Bash(npm run status:*)",
+      "Bash(npm run verify:*)",
+      "Bash(npm run gate:*)",
+      "Bash(npx --yes hyperframes@*:*)",
+      "Bash(npx hyperframes@*:*)",
+      "Bash(npx hyperframes *:*)",
+      "Bash(ffprobe:*)",
+      "Bash(ffmpeg -v error:*)",
+      "Bash(ffmpeg -hide_banner -i *:*)",
+      "Bash(python studio/tools/asr.py:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(find:*)",
+      "Bash(du:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(diff:*)",
+      "Bash(stat:*)",
+      "Bash(md5sum:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

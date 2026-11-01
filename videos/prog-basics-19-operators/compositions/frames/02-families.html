@@ -1,0 +1,142 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* G2 chamber atom (frame-day2 section 4) — pb-21/02-row verbatim, one notch shorter, and
+       stacked into three rows instead of a line: this frame's enumeration IS the subject, so the
+       row geometry carries the families and nothing else on the board may list. */
+    .pb-chamber { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .pb-ann { position: absolute; box-sizing: border-box; opacity: 0; color: rgba(244,241,234,0.78);
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.01em; display: flex; align-items: center; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+
+    .f2-box { width: 420px; height: 120px; left: 72px; }
+    .f2-name { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 4.6cqw; letter-spacing: -0.01em; color: #F4F1EA; }
+    .f2-r1 { top: 340px; } .f2-r2 { top: 500px; } .f2-r3 { top: 660px; }
+    .f2-g1 { left: 520px; top: 376px; width: 416px; height: 48px; }
+    .f2-g2 { left: 520px; top: 536px; width: 416px; height: 48px; }
+    .f2-g3 { left: 520px; top: 696px; width: 416px; height: 48px; }
+    .f2-rule { position: absolute; left: 72px; top: 860px; width: 936px; height: 4px;
+      background: rgba(255,255,255,0.16); border-radius: 2px; transform: scaleX(0);
+      transform-origin: left center; }
+  </style>
+
+  <div id="root" data-composition-id="02-families" data-width="1080" data-height="1920" data-duration="10.86">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="10.86" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="10.86" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>three families of operators</div>
+        <div id="c2-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="10.86" data-track-index="2">
+      <div id="f2-b1" class="pb-chamber f2-box f2-r1"><span id="f2-n1" class="f2-name">arithmetic</span></div>
+      <div id="f2-b2" class="pb-chamber f2-box f2-r2"><span id="f2-n2" class="f2-name">comparison</span></div>
+      <div id="f2-b3" class="pb-chamber f2-box f2-r3"><span id="f2-n3" class="f2-name">logical</span></div>
+
+      <div id="f2-g1" class="pb-ann f2-g1">does&nbsp;<strong>math</strong></div>
+      <div id="f2-g2" class="pb-ann f2-g2">gives&nbsp;<strong>true or false</strong></div>
+      <div id="f2-g3" class="pb-ann f2-g3">combines&nbsp;<strong>checks</strong></div>
+
+      <div id="f2-rule" class="f2-rule"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.86;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-families"] = tl;
+
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 2.72, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 3.62, ease: "sine.inOut", repeat: 2, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.72, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c2-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: up from below (F1 was a cut, F3 comes in from the left) */
+      tl.fromTo(el("f2-content"), { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.06);
+      tl.to(el("f2-content"), { y: 0, opacity: 1, duration: 0.01 }, 0.5);
+
+      /* P9 count-tick shape: one row per spoken family word, y 26 -> 0, its plain gloss 0.2s behind.
+         Arithmetic 0.00 / do 1.14 · Comparison 2.30 / return 3.28 · Logical 5.76 / combine 6.76 */
+      var rows = [
+        { b: "f2-b1", n: "f2-n1", g: "f2-g1", at: 0.12, gl: 1.16 },
+        { b: "f2-b2", n: "f2-n2", g: "f2-g2", at: 2.34, gl: 3.30 },
+        { b: "f2-b3", n: "f2-n3", g: "f2-g3", at: 5.80, gl: 6.80 }
+      ];
+      rows.forEach(function (r) {
+        tl.fromTo(el(r.b), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, r.at);
+        tl.fromTo(el(r.n), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, r.at + 0.08);
+        tl.fromTo(el(r.g), { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, r.gl);
+      });
+
+      /* the three operators are heard, not listed: one borderless scale pulse per spoken word
+         (and, 7.88 / or, 8.82 / not. 9.26) — P7 pulse-set, no colour change, no second list */
+      [7.90, 8.84, 9.28].forEach(function (at) {
+        tl.fromTo(el("f2-b3"), { scale: 1 }, { scale: 1.06, duration: 0.16, ease: "power2.out",
+          yoyo: true, repeat: 1, immediateRender: false }, at);
+      });
+
+      /* P10 settle rule across the bottom of the stack (silent beat 9.80 -> air) */
+      tl.fromTo(el("f2-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut", immediateRender: false }, 9.8);
+
+      /* ambient: the three rows float out of phase and return to zero, so every sampled second
+         inside this scene has a measurable change */
+      tl.fromTo(el("f2-b1"), { y: 0 }, { y: -6, duration: 1.36, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 1.6);
+      tl.fromTo(el("f2-b2"), { y: 0 }, { y: 6, duration: 1.81, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 3.6);
+      tl.fromTo(el("f2-b3"), { y: 0 }, { y: -5, duration: 1.36, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 7.0);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 10.54);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

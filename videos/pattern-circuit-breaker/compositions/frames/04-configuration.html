@@ -1,0 +1,177 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; left: 90px; top: 218px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f04-row {
+      position: absolute; left: 90px; width: 900px; height: 210px; box-sizing: border-box;
+      background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px; opacity: 0;
+    }
+    .f04-rows { top: 296px; }
+    .f04-rown { top: 696px; }
+    .f04-id {
+      position: absolute; left: 30px; top: 22px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.1cqw; color: #ffffeb;
+    }
+    .f04-tag {
+      position: absolute; left: 660px; top: 20px; width: 250px; height: 60px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,235,0.58); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 500;
+      letter-spacing: 0.02em; text-transform: uppercase; color: rgba(255,255,235,0.86);
+      opacity: 0;
+    }
+    .f04-svc {
+      position: absolute; left: 30px; top: 100px; width: 250px; height: 86px;
+      box-sizing: border-box; display: flex; align-items: center; padding-left: 20px;
+      background: #034f46; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #ffffeb; opacity: 0;
+    }
+    .f04-rail { fill: none; stroke: rgba(255,255,235,0.42); stroke-width: 4; stroke-linecap: round; }
+    .f04-dot {
+      position: absolute; top: 131px; width: 34px; height: 34px; box-sizing: border-box;
+      background: #ffffeb; border: 3px solid #1a1a1a; border-radius: 9999px; opacity: 0;
+    }
+    .f04-copy { fill: none; stroke: #1a1a1a; stroke-width: 4; stroke-linecap: round; }
+    .f04-copyhead { fill: rgba(26,26,26,0.8); stroke: none; opacity: 0; }
+    .f04-guess {
+      position: absolute; left: 648px; top: 540px; width: 250px; height: 82px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #f0d7ff; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #1a1a1a; opacity: 0;
+    }
+    .f04-rule {
+      position: absolute; left: 90px; top: 962px; width: 900px; height: 2px;
+      background: rgba(26,26,26,0.12); transform-origin: 0% 50%; transform: scaleX(0);
+    }
+    .f04-strip {
+      position: absolute; left: 90px; top: 992px; width: 900px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f04-strip em { font-style: normal; color: #76766e; }
+    .f04-obj {
+      position: absolute; left: 90px; top: 1108px; width: 900px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.4cqw; line-height: 1.5;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f04-obj .is-brace { display: inline-block; color: #76766e; }
+    .f04-obj .is-key { display: inline-block; }
+    .f04-obj .is-dot { display: block; color: #76766e; font-size: 2.6cqw; margin-top: 22px; }
+  </style>
+
+  <div id="root" data-composition-id="04-configuration" data-width="1080" data-height="1920" data-duration="11.807">
+
+    <div id="04-configuration-fieldclip" class="clip" data-start="0" data-duration="11.807" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field"></div>
+      <div id="04-configuration-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="04-configuration-railclip" class="clip" data-start="0" data-duration="11.807" data-track-index="1" style="position:absolute;inset:0;">
+      <svg class="f04-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="04-configuration-raila" class="f04-rail" d="M 300 451 L 940 451" />
+        <path id="04-configuration-railn" class="f04-rail" d="M 300 851 L 940 851" />
+        <path id="04-configuration-copypath" class="f04-copy" d="M 617 496 C 640 640 300 620 320 770" />
+        <path id="04-configuration-copyhead" class="f04-copyhead" d="M 306 764 L 336 764 L 320 792 Z" />
+      </svg>
+    </div>
+
+    <div id="04-configuration-rowsclip" class="clip" data-start="0" data-duration="11.807" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="04-configuration-kicker" class="f04-kicker" data-layout-ignore>&#10009;&nbsp; configuration</div>
+      <div id="04-configuration-rowa" class="f04-row f04-rows">
+        <div class="f04-id">failureThreshold</div>
+        <div id="04-configuration-taga" class="f04-tag">configured</div>
+        <div id="04-configuration-svca" class="f04-svc">payments</div>
+        <div id="04-configuration-dota" class="f04-dot" style="left:600px;"></div>
+      </div>
+      <div id="04-configuration-rown" class="f04-row f04-rown">
+        <div class="f04-id">resetTimeout</div>
+        <div id="04-configuration-tagn" class="f04-tag">configured</div>
+        <div id="04-configuration-svcn" class="f04-svc">search</div>
+        <div id="04-configuration-dotn" class="f04-dot" style="left:300px;"></div>
+      </div>
+    </div>
+
+    <div id="04-configuration-guessclip" class="clip" data-start="0" data-duration="11.807" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="04-configuration-guess" class="f04-guess">guess</div>
+    </div>
+
+    <div id="04-configuration-footclip" class="clip" data-start="0" data-duration="11.807" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="04-configuration-rule" class="f04-rule"></div>
+      <div id="04-configuration-strip" class="f04-strip">settings&nbsp;<em>&middot;</em>&nbsp;one per dependency</div>
+      <div id="04-configuration-obj" class="f04-obj"><span class="is-brace">{</span> <span class="is-key">failureThreshold</span><span class="is-brace">,</span> <span class="is-key">resetTimeout</span> <span class="is-brace">}</span><span class="is-dot" data-layout-ignore>no defaults printed</span></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var el = function (id) { return document.getElementById(id); };
+      var P = "04-configuration-";
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-configuration"] = tl;
+
+      // ── Scene 1 (0.0–1.16s) — "Threshold": the first setting row seats, shell first, rail
+      //    unlit, so nothing here can be misread as a value. Full-width stacked strip. ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.38, ease: "power2.out" }, 0.06);
+      tl.fromTo(el(P + "rowa"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.02);
+
+      // ── Scene 2 (1.16–3.42s) — "reset timeout" seats the second row; both rails self-draw,
+      //    and on "configuration" (2.78) the two `configured` pills arrive together. ──
+      tl.fromTo(el(P + "rown"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 1.16);
+      tl.fromTo(el(P + "raila"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.9);
+      var ra = el(P + "raila");
+      var raLen = ra.getTotalLength() * 1.05;
+      ra.style.strokeDasharray = String(raLen);
+      ra.style.strokeDashoffset = String(raLen);
+      tl.to(ra, { strokeDashoffset: 0, duration: 0.56, ease: "power2.out" }, 2.0);
+      tl.fromTo(el(P + "railn"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 2.3);
+      var rn = el(P + "railn");
+      var rnLen = rn.getTotalLength() * 1.05;
+      rn.style.strokeDasharray = String(rnLen);
+      rn.style.strokeDashoffset = String(rnLen);
+      tl.to(rn, { strokeDashoffset: 0, duration: 0.56, ease: "power2.out" }, 2.4);
+      [P + "taga", P + "tagn"].forEach(function (k, i) {
+        tl.to(el(k), { opacity: 1, duration: 0.34, ease: "power1.out" }, 2.78 + i * 0.14);
+      });
+
+      // ── Scene 3 (4.90–7.24s) — "Every dependency sets its own": each service chip claims a
+      //    row and its marker lands at a visibly different position. Two items, never three. ──
+      tl.fromTo(el(P + "svca"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 4.9);
+      tl.fromTo(el(P + "svcn"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 5.2);
+      tl.fromTo(el(P + "dota"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 5.92);
+      tl.fromTo(el(P + "dotn"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 6.56);
+      tl.to(el(P + "rule"), { scaleX: 1, duration: 0.5, ease: "power2.out" }, 6.9);
+      tl.to(el(P + "strip"), { opacity: 1, duration: 0.44, ease: "power1.out" }, 7.2);
+
+      // ── Scene 4 (7.84–11.307s) — the copy arrow draws from the first marker to the second and
+      //    the lavender `guess` pill lands on it at "a guess" (10.10). Then still. ──
+      var cp = el(P + "copypath");
+      var cpLen = cp.getTotalLength() * 1.05;
+      cp.style.strokeDasharray = String(cpLen);
+      cp.style.strokeDashoffset = String(cpLen);
+      tl.to(cp, { strokeDashoffset: 0, duration: 0.94, ease: "power2.inOut" }, 7.9);
+      tl.to(el(P + "copyhead"), { opacity: 1, duration: 0.3, ease: "power1.out" }, 8.74);
+      tl.fromTo(el(P + "guess"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 10.1);
+      tl.to(el(P + "obj"), { opacity: 1, duration: 0.5, ease: "power1.out" }, 10.5);
+    })();
+  </script>
+</template>

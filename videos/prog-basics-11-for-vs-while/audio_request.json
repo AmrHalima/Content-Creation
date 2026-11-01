@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Pick the wrong loop and you'll hang your program."
+    },
+    {
+      "id": "02",
+      "text": "A for loop repeats a known count. You say how many before it runs. Or it walks a list, item by item."
+    },
+    {
+      "id": "03",
+      "text": "A while loop repeats until something changes. Waiting for a right answer. Retrying until it works. If that check never turns false, it never stops."
+    },
+    {
+      "id": "04",
+      "text": "for i in range of three gives zero, one, two. while not done runs until somebody sets done to true."
+    },
+    {
+      "id": "05",
+      "text": "So which do you use more, for or while? Comment it."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

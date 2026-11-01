@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "whatsapp-forward",
+      "confirmed_in": [
+        "call-forwarding-scam"
+      ],
+      "updated_at": "2026-10-21T13:39:55.031Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "call-forwarding-scam"
+      ],
+      "updated_at": "2026-10-21T13:39:55.143Z"
+    },
+    "language": {
+      "value": "ar-EG",
+      "confirmed_in": [
+        "call-forwarding-scam"
+      ],
+      "updated_at": "2026-10-21T13:39:55.288Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "call-forwarding-scam"
+      ],
+      "updated_at": "2026-10-21T13:39:55.413Z"
+    },
+    "storyboard": {
+      "value": "no",
+      "confirmed_in": [
+        "call-forwarding-scam"
+      ],
+      "updated_at": "2026-10-21T13:39:55.537Z"
+    },
+    "style_preset.faceless-explainer": {
+      "value": "broadside",
+      "confirmed_in": [
+        "call-forwarding-scam"
+      ],
+      "updated_at": "2026-10-21T13:39:55.660Z"
+    }
+  },
+  "sightings": {}
+}

@@ -1,0 +1,227 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; top: 214px; left: 60px; width: 720px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f06-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f06-ktext { display: inline-block; opacity: 0; }
+
+    .f06-chip {
+      position: absolute; left: 190px; width: 700px; height: 104px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.4cqw; letter-spacing: 0.01em;
+      background: #e4e4d0; color: #46463f; border: 2px solid rgba(26,26,26,0.4); opacity: 0;
+    }
+    .f06-chip-in { top: 512px; }
+    .f06-chip-out { top: 1104px; }
+    .f06-chip-tag {
+      position: absolute; left: 190px; width: 700px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f06-tag-in { top: 630px; }
+    .f06-tag-out { top: 1044px; }
+
+    .f06-box {
+      position: absolute; top: 760px; left: 260px; width: 560px; height: 236px;
+      box-sizing: border-box; background: #181715;
+      border: 2px solid rgba(255,255,235,0.22); border-radius: 8px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; opacity: 0;
+    }
+    .f06-box-name {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      line-height: 1; color: #ffffeb; white-space: nowrap;
+    }
+    .f06-box-fn {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      line-height: 1; color: #5db8a6; white-space: nowrap;
+    }
+    .f06-seal { fill: none; stroke: rgba(255,255,235,0.55); stroke-width: 3; }
+
+    .f06-wires { position: absolute; inset: 0; }
+    .f06-wires svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f06-wire { fill: none; stroke: #1a1a1a; stroke-width: 5; stroke-linecap: round; }
+    .f06-head { fill: #1a1a1a; opacity: 0; }
+    .f06-dot { fill: #ffa946; opacity: 0; }
+
+    .f06-sig {
+      position: absolute; left: 60px; top: 1330px; width: 960px; height: 62px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.3cqw; line-height: 1;
+      color: #1a1a1a; white-space: nowrap; opacity: 0;
+    }
+    .f06-sig-type { color: #034f46; }
+    .f06-sig-kw { color: #76766e; }
+  </style>
+
+  <div id="root" data-composition-id="06-the-return-morph" data-width="1080" data-height="1920" data-duration="8.085">
+
+    <div id="f06-ground" class="clip" data-start="0" data-duration="8.085" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field"></div>
+      <div id="f06-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="f06-chrome" class="clip" data-start="0" data-duration="8.085" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f06-kicker">
+        <span id="f06-spike" class="f06-spike">&#10009;</span><span id="f06-ktext" class="f06-ktext" data-layout-ignore>CONVERTED, NOT PASSED THROUGH</span>
+      </div>
+    </div>
+
+    <div id="f06-in" class="clip" data-start="0.2" data-duration="7.885" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f06-chip-in" class="f06-chip f06-chip-in">Promise&lt;BankResponse&gt;</div>
+      <div id="f06-tag-in" class="f06-chip-tag f06-tag-in" data-layout-ignore>what they answer</div>
+    </div>
+
+    <div id="f06-box" class="clip" data-start="0.9" data-duration="7.185" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f06-shell" data-hold class="f06-box">
+        <span class="f06-box-name">VendorPayAdapter</span>
+        <span class="f06-box-fn">toReceipt(raw)</span>
+        <svg width="600" height="276" viewBox="0 0 600 276" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:-20px;left:-20px;" data-layout-allow-overflow>
+          <rect id="f06-seal" class="f06-seal" x="20" y="20" width="560" height="236" rx="8" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="f06-out" class="clip" data-start="2.9" data-duration="5.185" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f06-tag-out" class="f06-chip-tag f06-tag-out" data-layout-ignore>what your code gets</div>
+      <div id="f06-chip-out" class="f06-chip f06-chip-out">Promise&lt;BankResponse&gt;</div>
+    </div>
+
+    <div id="f06-wires" class="clip" data-start="1.9" data-duration="6.185" data-track-index="5" style="position:absolute;inset:0;">
+      <div class="f06-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f06-wire-a" class="f06-wire" d="M 540 620 L 540 748" />
+          <polygon id="f06-head-a" class="f06-head" points="525,738 540,766 555,738" />
+          <path id="f06-wire-b" class="f06-wire" d="M 540 1000 L 540 1092" />
+          <polygon id="f06-head-b" class="f06-head" points="525,1082 540,1110 555,1082" />
+          <circle id="f06-dot" class="f06-dot" cx="540" cy="624" r="14" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="f06-sig" class="clip" data-start="4.4" data-duration="3.685" data-track-index="6" style="position:absolute;inset:0;">
+      <div id="f06-sig-line" class="f06-sig"><span class="f06-sig-kw">function</span>&nbsp;toReceipt(raw: BankResponse):&nbsp;<span class="f06-sig-type">Receipt</span></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.085;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-the-return-morph"] = tl;
+
+      // ── THE LABEL SWAP ──────────────────────────────────────────────────────────────
+      // In-place text change, so it goes through a time proxy + reverse-search discrete
+      // sequence. tl.set({ text: ... }) is a silent no-op here (no TextPlugin in the
+      // shipped GSAP) and check still reports 0 errors, so this is the only sanctioned
+      // shape. Snapshot at 2.4s must read Promise<BankResponse>; at 5.0s Promise<Receipt>.
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t,
+          duration: states[states.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      // ── ground ──
+      tl.fromTo(el("f06-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f06-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f06-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.8s) "The answer gets converted too": the box pins, input chip seats ──
+      tl.fromTo(el("f06-chip-in"), { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 0.3);
+      tl.fromTo(el("f06-tag-in"), { opacity: 0 }, { opacity: 1, duration: 0.36, ease: "power1.out" }, 0.62);
+      tl.fromTo(el("f06-shell"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 1.02);
+
+      // ── Scene 2 (1.8–4.4s) "back into a type you own": wire, the travelling dot, then the swap ──
+      function draw(id, at, dur) {
+        var p = el(id);
+        var len = p.getTotalLength();
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: dur, ease: "power3.out" }, at);
+      }
+      draw("f06-wire-a", 1.9, 0.36);
+      tl.fromTo(el("f06-head-a"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 2.2);
+      // the ember dot travels the wire into the box (this frame's single ember element)
+      tl.fromTo(el("f06-dot"), { opacity: 0, attr: { cy: 624 } }, { opacity: 1, attr: { cy: 744 }, duration: 0.62, ease: "power2.in" }, 2.3);
+      tl.to(el("f06-dot"), { opacity: 0, duration: 0.24, ease: "power1.in" }, 2.96);
+      draw("f06-wire-b", 3.0, 0.36);
+      tl.fromTo(el("f06-head-b"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 3.3);
+
+      // the output label arrives speaking the vendor's type, then converts
+      tl.fromTo(el("f06-chip-out"), { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 3.02);
+      tl.fromTo(el("f06-tag-out"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 3.2);
+      textSeq(el("f06-chip-out"), [
+        { t: 0, text: "Promise<BankResponse>" },
+        { t: 3.5, text: "Promise<Receipt>" }
+      ]);
+      // and it takes the domain's colour at the same instant (lavender = your side only)
+      tl.to(el("f06-chip-out"), { backgroundColor: "#f0d7ff", borderColor: "#1a1a1a", color: "#1a1a1a", duration: 0.34, ease: "power1.out" }, 3.5);
+
+      // ── Scene 3 (4.4–6.4s) the declaration and the animation say the same thing ──
+      tl.fromTo(el("f06-sig-line"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 4.5);
+
+      // ── Scene 4 (6.4–8.09s) "Every difference handled in one box": the seal draws, then stillness ──
+      var seal = el("f06-seal");
+      var sealLen = seal.getTotalLength();
+      seal.style.strokeDasharray = String(sealLen);
+      seal.style.strokeDashoffset = String(sealLen);
+      tl.to(seal, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 6.0);
+
+      var jit = { p: 0 };
+      var out = el("f06-chip-out");
+      var HOLD = 7.3;
+      gsap.set(out, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          out.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

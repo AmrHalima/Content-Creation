@@ -1,0 +1,808 @@
+{
+  "total_duration_s": 33.5,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 0.3,
+      "text": "How does",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "How",
+          "start": 0,
+          "end": 0.16
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "does",
+          "start": 0.16,
+          "end": 0.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 0.3,
+      "end": 0.74,
+      "text": "your phone",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "your",
+          "start": 0.3,
+          "end": 0.42
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "phone",
+          "start": 0.42,
+          "end": 0.74
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 0.74,
+      "end": 1.82,
+      "text": "find one contact",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "find",
+          "start": 0.74,
+          "end": 1.06
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "one",
+          "start": 1.06,
+          "end": 1.28
+        },
+        {
+          "id": "caption-word-2-2",
+          "text": "contact",
+          "start": 1.28,
+          "end": 1.82
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 1.82,
+      "end": 3.04,
+      "text": "among ten thousand",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "among",
+          "start": 1.82,
+          "end": 2.24
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "ten",
+          "start": 2.24,
+          "end": 2.62
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "thousand",
+          "start": 2.62,
+          "end": 3.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 1,
+      "start": 3.04,
+      "end": 3.52,
+      "text": "instantly?",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "instantly?",
+          "start": 3.04,
+          "end": 3.4
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 4.8,
+      "end": 5.18,
+      "text": "A hash",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "A",
+          "start": 4.8,
+          "end": 4.92
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "hash",
+          "start": 4.92,
+          "end": 5.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 5.18,
+      "end": 6.26,
+      "text": "map stores key-value",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "map",
+          "start": 5.18,
+          "end": 5.42
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "stores",
+          "start": 5.42,
+          "end": 5.8
+        },
+        {
+          "id": "caption-word-6-2",
+          "text": "key-value",
+          "start": 5.8,
+          "end": 6.14
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 6.46,
+      "end": 6.96,
+      "text": "pairs.",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "pairs.",
+          "start": 6.46,
+          "end": 6.84
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 7.46,
+      "end": 7.86,
+      "text": "A hash",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "A",
+          "start": 7.46,
+          "end": 7.58
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "hash",
+          "start": 7.58,
+          "end": 7.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 7.86,
+      "end": 8.52,
+      "text": "function turns",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "function",
+          "start": 7.86,
+          "end": 8.18
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "turns",
+          "start": 8.18,
+          "end": 8.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 8.52,
+      "end": 9.02,
+      "text": "the key",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "the",
+          "start": 8.52,
+          "end": 8.76
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "key",
+          "start": 8.76,
+          "end": 9.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 9.02,
+      "end": 9.48,
+      "text": "into an",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "into",
+          "start": 9.02,
+          "end": 9.3
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "an",
+          "start": 9.3,
+          "end": 9.48
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 9.48,
+      "end": 10.16,
+      "text": "array position.",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "array",
+          "start": 9.48,
+          "end": 9.7
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "position.",
+          "start": 9.7,
+          "end": 10.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 3,
+      "start": 11.4,
+      "end": 11.92,
+      "text": "A lookup",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "A",
+          "start": 11.4,
+          "end": 11.54
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "lookup",
+          "start": 11.54,
+          "end": 11.92
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 3,
+      "start": 11.92,
+      "end": 12.62,
+      "text": "jumps straight",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "jumps",
+          "start": 11.92,
+          "end": 12.2
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "straight",
+          "start": 12.2,
+          "end": 12.62
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 3,
+      "start": 12.62,
+      "end": 12.92,
+      "text": "to the",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "to",
+          "start": 12.62,
+          "end": 12.8
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "the",
+          "start": 12.8,
+          "end": 12.92
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 12.92,
+      "end": 13.6,
+      "text": "answer instead",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "answer",
+          "start": 12.92,
+          "end": 13.22
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "instead",
+          "start": 13.22,
+          "end": 13.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 13.6,
+      "end": 14.22,
+      "text": "of searching.",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "of",
+          "start": 13.6,
+          "end": 13.76
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "searching.",
+          "start": 13.76,
+          "end": 14.1
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 3,
+      "start": 14.82,
+      "end": 15.48,
+      "text": "On average,",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "On",
+          "start": 14.82,
+          "end": 15
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "average,",
+          "start": 15,
+          "end": 15.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 15.72,
+      "end": 16.28,
+      "text": "lookup takes",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "lookup",
+          "start": 15.72,
+          "end": 16.02
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "takes",
+          "start": 16.02,
+          "end": 16.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 3,
+      "start": 16.28,
+      "end": 17.2,
+      "text": "constant time.",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "constant",
+          "start": 16.28,
+          "end": 16.7
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "time.",
+          "start": 16.7,
+          "end": 17.08
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 3,
+      "start": 17.66,
+      "end": 18.04,
+      "text": "It reads",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "It",
+          "start": 17.66,
+          "end": 17.74
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "reads",
+          "start": 17.74,
+          "end": 18.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 3,
+      "start": 18.04,
+      "end": 18.72,
+      "text": "one bucket.",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "one",
+          "start": 18.04,
+          "end": 18.32
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "bucket.",
+          "start": 18.32,
+          "end": 18.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 3,
+      "start": 19.28,
+      "end": 19.78,
+      "text": "Reading them",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "Reading",
+          "start": 19.28,
+          "end": 19.56
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "them",
+          "start": 19.56,
+          "end": 19.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 3,
+      "start": 19.78,
+      "end": 20.24,
+      "text": "one by",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "one",
+          "start": 19.78,
+          "end": 20.04
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "by",
+          "start": 20.04,
+          "end": 20.24
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 3,
+      "start": 20.24,
+      "end": 20.84,
+      "text": "one takes",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "one",
+          "start": 20.24,
+          "end": 20.56
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "takes",
+          "start": 20.56,
+          "end": 20.84
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 3,
+      "start": 20.84,
+      "end": 21.5,
+      "text": "all six.",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "all",
+          "start": 20.84,
+          "end": 21.12
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "six.",
+          "start": 21.12,
+          "end": 21.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 4,
+      "start": 22.9,
+      "end": 23.58,
+      "text": "Ages is",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "Ages",
+          "start": 22.9,
+          "end": 23.24
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "is",
+          "start": 23.24,
+          "end": 23.58
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 4,
+      "start": 23.58,
+      "end": 24.5,
+      "text": "Sara twenty five.",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "Sara",
+          "start": 23.58,
+          "end": 23.86
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "twenty",
+          "start": 23.86,
+          "end": 23.905
+        },
+        {
+          "id": "caption-word-28-2",
+          "text": "five.",
+          "start": 23.86,
+          "end": 24.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 4,
+      "start": 24.94,
+      "end": 25.62,
+      "text": "Ages at",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "Ages",
+          "start": 24.94,
+          "end": 25.38
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "at",
+          "start": 25.38,
+          "end": 25.62
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 25.62,
+      "end": 26.12,
+      "text": "key Sara",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "key",
+          "start": 25.62,
+          "end": 25.82
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "Sara",
+          "start": 25.82,
+          "end": 26.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 4,
+      "start": 26.12,
+      "end": 27.02,
+      "text": "gives twenty five.",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "gives",
+          "start": 26.12,
+          "end": 26.46
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "twenty",
+          "start": 26.46,
+          "end": 26.505
+        },
+        {
+          "id": "caption-word-31-2",
+          "text": "five.",
+          "start": 26.46,
+          "end": 26.9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 5,
+      "start": 28.4,
+      "end": 28.92,
+      "text": "Save this",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "Save",
+          "start": 28.4,
+          "end": 28.66
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "this",
+          "start": 28.66,
+          "end": 28.92
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 5,
+      "start": 28.92,
+      "end": 29.22,
+      "text": "for your",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "for",
+          "start": 28.92,
+          "end": 29.12
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "your",
+          "start": 29.12,
+          "end": 29.22
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 5,
+      "start": 29.22,
+      "end": 29.98,
+      "text": "next interview.",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "next",
+          "start": 29.22,
+          "end": 29.42
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "interview.",
+          "start": 29.42,
+          "end": 29.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 5,
+      "start": 30.3,
+      "end": 30.64,
+      "text": "It comes",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "It",
+          "start": 30.3,
+          "end": 30.42
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "comes",
+          "start": 30.42,
+          "end": 30.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 30.64,
+      "end": 31.26,
+      "text": "up a lot.",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "up",
+          "start": 30.64,
+          "end": 30.8
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "a",
+          "start": 30.8,
+          "end": 30.94
+        },
+        {
+          "id": "caption-word-36-2",
+          "text": "lot.",
+          "start": 30.94,
+          "end": 31.14
+        }
+      ]
+    }
+  ]
+}

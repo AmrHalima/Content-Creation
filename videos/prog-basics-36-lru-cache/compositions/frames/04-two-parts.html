@@ -1,0 +1,185 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G4 split chrome: two chambers, each with its own titlebar, no language chip
+          (nothing on this frame was executed as a script, so none is claimed) ── */
+    .g4-panel { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .g4-map { left: 72px; top: 400px; width: 420px; height: 224px; }
+    .g4-chain { left: 516px; top: 400px; width: 492px; height: 224px; }
+    .g4-bar { position: absolute; left: 0; right: 0; top: 0; height: 64px; background: #262C36;
+      border-radius: 19px 19px 0 0; border-bottom: 3px solid rgba(255,255,255,0.16);
+      display: flex; align-items: center; padding-left: 24px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .g4-line { position: absolute; left: 24px; width: 444px; height: 40px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      color: #F4F1EA; white-space: nowrap; }
+    .g4-map .g4-line { width: 372px; }
+    .g4-l1 { top: 76px; }
+    .g4-l2 { top: 120px; }
+    .g4-l3 { top: 164px; }
+    .g4-chrome { color: #9BA6B2; }
+    .g4-val { color: #5AD6A0; }
+    /* the PREV hairline, drawn back along the chain (a lone stroke, so --stroke not --line) */
+    .g4-prev { position: absolute; left: 24px; top: 112px; width: 320px; height: 3px;
+      background: rgba(255,255,255,0.30); border-radius: 2px; opacity: 0;
+      transform-origin: right center; transform: scaleX(0); }
+
+    /* the executed state plate, one row per operation */
+    .g21-plate { position: absolute; left: 72px; width: 936px; height: 38px; opacity: 1;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      color: #9BA6B2; white-space: nowrap; }
+    .g21-p1 { top: 640px; }
+    .g21-p2 { top: 678px; }
+    .g21-p3 { top: 716px; }
+    .g21-p4 { top: 754px; opacity: 0; }
+    .g21-st { display: inline-block; font-weight: 700; color: #5AD6A0; }
+    .g21-par { color: #9BA6B2; }
+    /* the waiting put(C,3): G2's empty shape, and the only state cell in this film left unfilled */
+    .g21-wait { display: inline-block; box-sizing: border-box; width: 208px; height: 34px;
+      margin-left: 12px; border: 3px dashed rgba(255,255,255,0.16); border-radius: 12px;
+      background: rgba(31,36,44,0.4); vertical-align: middle;
+      font-family: "JetBrains Mono", monospace; font-size: 2.4cqw; font-weight: 700; color: #9BA6B2;
+      text-align: center; line-height: 28px; }
+    .g21-full { display: inline-block; font-weight: 700; color: #F4F1EA; }
+
+    .g21-note { position: absolute; left: 72px; top: 810px; width: 936px; height: 56px;
+      text-align: center; opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 3.0cqw; color: #9BA6B2; white-space: nowrap; }
+    .g21-note b { display: inline-block; font-weight: 700; color: #5AD6A0; }
+    .g21-note i { display: inline-block; font-style: normal; font-weight: 700; color: #F4F1EA; }
+    .g21-tag { position: absolute; left: 72px; top: 892px; width: 936px; height: 66px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      font-weight: 700; letter-spacing: 0.1em; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="04-two-parts" data-width="1080" data-height="1920" data-duration="8.49">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="8.49" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="8.49" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 36</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="8.49" data-track-index="2">
+      <div id="f4-map" class="g4-panel g4-map">
+        <div id="f4-map-bar" class="g4-bar" data-layout-ignore>map</div>
+        <div id="f4-ml1" class="g4-line g4-l1 g4-chrome" data-layout-ignore>key -&gt; node</div>
+        <div id="f4-ml2" class="g4-line g4-l2"><span class="g4-val">'A': 'node(A)',</span></div>
+        <div id="f4-ml3" class="g4-line g4-l3"><span class="g4-val">'B': 'node(B)'}</span></div>
+      </div>
+
+      <div id="f4-chain" class="g4-panel g4-chain">
+        <div id="f4-chain-bar" class="g4-bar" data-layout-ignore>chain</div>
+        <div id="f4-cl1" class="g4-line g4-l1">head -&gt; A -&gt; B -&gt; None</div>
+        <div id="f4-prev" class="g4-prev"></div>
+        <div id="f4-cl2" class="g4-line g4-l2 g4-chrome" data-layout-ignore>PREV &lt;- A &lt;- B</div>
+        <div id="f4-cl3" class="g4-line g4-l3 g4-chrome" data-layout-ignore>3 pointer writes, no scan</div>
+      </div>
+
+      <div id="f4-p1" class="g21-plate g21-p1">put(A,1) <span class="g21-par">-></span> <span class="g21-st">A</span></div>
+      <div id="f4-p2" class="g21-plate g21-p2">put(B,2) <span class="g21-par">-></span> <span class="g21-st">B -&gt; A</span></div>
+      <div id="f4-p3" class="g21-plate g21-p3">get(A) <span class="g21-par">-></span> <span class="g21-st">A -&gt; B</span></div>
+      <div id="f4-p4" class="g21-plate g21-p4">put(C,3) <span class="g21-par">-></span> <span class="g21-full">FULL</span><span class="g21-wait" id="f4-wait">?</span></div>
+
+      <div id="f4-note" class="g21-note"><b>map</b> finds it&nbsp;·&nbsp;<i>chain</i> orders it</div>
+      <div id="f4-tag" class="g21-tag">ONE LOOK + ONE RE-LINK</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.49;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-two-parts"] = tl;
+
+      /* ground */
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 4.245, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 4.245, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.1225, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe from the left; the record of the last two frames is already on the board */
+      tl.fromTo(el("f4-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.to(el("f4-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.56);
+
+      /* BEAT 1 — "A hash map finds the item" (hash 0.14 · map 0.44 · finds 0.66 · item, 1.22-1.50) */
+      tl.fromTo(el("f4-map"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 0.16);
+      tl.fromTo(el("f4-ml1"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.46);
+      tl.fromTo(el("f4-ml2"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.7);
+      tl.fromTo(el("f4-ml3"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 1.0);
+
+      /* BEAT 2 — "and a linked list reorders it" (and 1.84 · linked 2.14 · list 2.32 ·
+         reorders 2.68-3.10 · it. 3.10-3.42). The colour hands off: mint stays on the map's values,
+         amber takes the chain's order line for the half-second the word is said. */
+      tl.fromTo(el("f4-chain"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 2.16);
+      tl.fromTo(el("f4-cl1"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 2.4);
+      tl.to(el("f4-cl1"), { color: "#FFD166", duration: 0.22, immediateRender: false }, 2.7);
+      tl.to(el("f4-cl1"), { color: "#F4F1EA", duration: 0.4, ease: "power2.inOut", immediateRender: false }, 3.44);
+      /* the PREV hairline draws back along the chain, right to left */
+      tl.fromTo(el("f4-prev"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 3.12);
+      tl.fromTo(el("f4-cl2"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 3.4);
+      tl.fromTo(el("f4-cl3"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 4.5);
+
+      /* BEAT 3 — "That keeps every read and write in constant time on average."
+         (That 3.90 · every 4.46 · read 4.82 · write 5.48 · constant 5.96 · time 6.34 ·
+          on 6.70 · average. 6.88-7.14). Words only: no symbol is printed anywhere in this part. */
+      tl.fromTo(el("f4-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 4.86);
+      tl.fromTo(el("f4-tag"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 5.9);
+      tl.to(el("f4-tag"), { color: "#FFD166", duration: 0.26, immediateRender: false }, 6.0);
+      tl.to(el("f4-tag"), { color: "#9BA6B2", duration: 0.5, ease: "power2.inOut", immediateRender: false }, 6.9);
+
+      /* the frame's LAST arrival, and it never enters: the cache is full and C is still outside.
+         The state cell stays a dashed empty slot — this film never prints the eviction. */
+      tl.fromTo(el("f4-p4"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 7.24);
+      tl.fromTo(el("f4-wait"), { opacity: 0.35 }, { opacity: 1, duration: 0.42, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 7.6);
+
+      /* exit push */
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 8.17);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

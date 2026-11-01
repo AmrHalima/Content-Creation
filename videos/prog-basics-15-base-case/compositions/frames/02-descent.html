@@ -1,0 +1,177 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    /* chrome. The G6 column starts at y 262, so the kicker sits ABOVE the content line (190-230):
+       chrome is allowed there (frame-day2 section 5 "nothing critical above 230", pb-14 deviation
+       10), and a 230-band kicker would collide with card 1. Recorded in BRIEF.md. */
+    .pb-kicker { position: absolute; left: 72px; top: 186px; width: 936px; height: 40px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-odiff { display: inline-block; opacity: 0; margin-left: auto; height: 36px; padding: 0 14px;
+      box-sizing: border-box; border: 2px solid rgba(255,255,255,0.08); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.3cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; align-self: center; }
+
+    /* ── G6 call stack, pb-14's numbers VERBATIM (frame-day2 section 4; BRIEF deviation 1) ──
+       card = G2 chamber at reduced scale: --panel #1F242C over the #15181D ground, 3px --line,
+       radius 22, h 84, G2 shadow. The name tab is the card's own 38px --panel-2 top strip (at h 84
+       with a 96px step there is a 12px gap, so a 60px external folder tab cannot exist).
+       Insets +64, widths authored per card (never a width tween), tops on a 96px step.
+       F2 keeps the four-card column: 262 -> 634, exactly where pb-14 left it. */
+    .f2-card { position:absolute; box-sizing:border-box; height:84px; background:#1F242C;
+      border:3px solid rgba(255,255,255,0.16); border-radius:22px; opacity:0;
+      box-shadow:0 18px 40px -18px rgba(0,0,0,0.70); }
+    /* paint order: card 1 is nearest the viewer, so a card in flight emerges from under the pile
+       rather than ghosting across the card above it (same finding as F3, one contract). */
+    .f2-k1 { left:72px;  top:262px; width:936px; z-index:4; }
+    .f2-k2 { left:136px; top:358px; width:848px; z-index:3; }
+    .f2-k3 { left:200px; top:454px; width:760px; z-index:2; }
+    .f2-k4 { left:264px; top:550px; width:672px; z-index:1; }
+    .f2-tab { position:absolute; left:0; top:0; width:100%; height:38px; box-sizing:border-box;
+      background:#262C36; border-bottom:3px solid rgba(255,255,255,0.16);
+      border-radius:18px 18px 0 0; display:flex; align-items:center; padding:0 22px; }
+    /* the ligature guard is on everything that renders code, not just the code chamber
+       (pb-14 deviation 18; frame-day2 section 14: JetBrains Mono silently rewrites <= and ->) */
+    .f2-call { display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.6cqw; font-weight:700; line-height:1; letter-spacing:0.02em; color:#F4F1EA;
+      white-space:pre; }
+    .f2-pend { margin-left:auto; display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.6cqw; font-weight:400; line-height:1; letter-spacing:0.04em; color:#9BA6B2;
+      white-space:pre; margin-right:16px; }
+    /* the valband is where pb-14 puts a returned value. Every band in this film stays EMPTY:
+       nothing here ever returns, so drawing a mint value would be invented output. */
+    .f2-valband { position:absolute; left:0; top:38px; width:100%; height:43px; display:flex;
+      align-items:center; justify-content:center; }
+    .f2-pendw { display:inline-block; position:relative; }
+    .f2-hl { position:absolute; left:-9px; right:-9px; top:-1px; bottom:-1px; background:#FFD166;
+      border-radius:8px; transform:scaleX(0); transform-origin:left center; }
+    .f2-basetxt { position:relative; z-index:1; }
+  </style>
+
+  <div id="root" data-composition-id="02-descent" data-width="1080" data-height="1920" data-duration="5.1">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="5.1" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="5.1" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>each card is one call</div>
+        <div id="c2-badge" class="pb-odiff" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="5.1" data-track-index="2">
+
+      <div id="f2-k1" class="f2-card f2-k1">
+        <div class="f2-tab"><span class="f2-call">f(4)</span><span class="f2-pend">&nbsp;waits</span></div>
+        <div class="f2-valband"></div>
+      </div>
+      <div id="f2-k2" class="f2-card f2-k2">
+        <div class="f2-tab"><span class="f2-call">f(3)</span><span class="f2-pend">&nbsp;waits</span></div>
+        <div class="f2-valband"></div>
+      </div>
+      <div id="f2-k3" class="f2-card f2-k3">
+        <div class="f2-tab"><span class="f2-call">f(2)</span><span class="f2-pend">&nbsp;waits</span></div>
+        <div class="f2-valband"></div>
+      </div>
+      <div id="f2-k4" class="f2-card f2-k4">
+        <div class="f2-tab"><span class="f2-call">f(1)</span><span class="f2-pend"><span class="f2-pendw"><span class="f2-hl" id="f2-hl" data-layout-allow-occlusion></span><span class="f2-basetxt" id="f2-basetxt">BASE</span></span></span></div>
+        <div class="f2-valband"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.1;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-descent"] = tl;
+
+      /* ground: D/4 with repeat 3 -> four segments cover 5.1s and land back on the from-value */
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 1.275, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.275, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.275, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c2-badge"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.24,
+        ease: "back.out(1.6)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: content rises in (F1 wiped sideways, F3 comes from the right) */
+      tl.fromTo(el("f2-content"), { opacity: 0, y: 90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* ── descent: one P2 drop-in per spoken clause, top-down. Measured onsets in line 2:
+         The 0.00 / base 0.14 / case 0.38 / is 0.66 / where 1.06 / recursion 1.22 / stops. 1.76 ── */
+      function drop(id, t) {
+        tl.fromTo(el(id), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46,
+          ease: "bounce.out", immediateRender: false }, t);
+        tl.fromTo(el(id), { scaleY: 1 }, { scaleY: 0.96, duration: 0.1, ease: "power2.out",
+          immediateRender: false }, t + 0.44);
+        tl.to(el(id), { scaleY: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, t + 0.54);
+        tl.fromTo(el(id), { borderColor: "rgba(255,255,255,0.16)" },
+          { borderColor: "rgba(90,214,160,0.55)", duration: 0.2, ease: "power1.out",
+            immediateRender: false }, t + 0.44);
+        tl.to(el(id), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4, ease: "power1.inOut",
+          immediateRender: false }, t + 0.64);
+      }
+      drop("f2-k1", 0.10);   // "The base case"
+      drop("f2-k2", 0.66);   // "is"
+      drop("f2-k3", 1.26);   // "recursion"
+      drop("f2-k4", 1.80);   // "stops."
+
+      /* the base case lights ON "stops" (cued 1.76-2.02): the only amber arrival in this frame,
+         and it is on the word the voice is on. Nothing dims here, so the plate is never left
+         inside a 0.42 card (pb-14 deviation 8). */
+      tl.fromTo(el("f2-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 2.14);
+      tl.to(el("f2-basetxt"), { color: "#22201B", duration: 0.2, immediateRender: false }, 2.32);
+      tl.fromTo(el("f2-hl"), { y: 0 }, { y: -3, duration: 0.5, ease: "sine.inOut", repeat: 3,
+        yoyo: true, immediateRender: false }, 2.6);
+
+      /* P7 pulse-set 0.12s apart across the four outstanding waits, so 2.9-3.6 is not a dead board */
+      ["1", "2", "3", "4"].forEach(function (n, i) {
+        var sel = document.querySelector(".f2-k" + n + " > .f2-tab > .f2-pend");
+        if (!sel) return;
+        tl.fromTo(sel, { scale: 1 }, { scale: 1.09, duration: 0.18, ease: "power2.out",
+          yoyo: true, repeat: 1, immediateRender: false }, 2.9 + i * 0.12);
+      });
+
+      /* ambient float on the hero card, back to zero (0.6 + 3 x 1.4 = 4.8 < 5.1) */
+      tl.fromTo(el("f2-k1"), { y: 0 }, { y: -4, duration: 1.4, ease: "sine.inOut", repeat: 3,
+        yoyo: true }, 0.6);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 4.78);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

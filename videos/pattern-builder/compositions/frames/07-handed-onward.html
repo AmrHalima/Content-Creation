@@ -1,0 +1,262 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; top: 146px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f07-spike { color: #1a1a1a; font-size: 2.5cqw; letter-spacing: 0; }
+    .f07-box {
+      position: absolute; left: 74px; width: 700px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 24px;
+      padding: 0 32px;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f07-caller { top: 272px; height: 176px; background: #ffffeb; }
+    .f07-seam { top: 596px; height: 336px; background: #1a1a1a; border-color: #ffffeb; flex-wrap: wrap; align-content: center; }
+    .f07-box-name {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 4.6cqw; line-height: 1; letter-spacing: -0.018em;
+    }
+    .f07-seam .f07-box-name { color: #ffffeb; }
+    .f07-box-sig {
+      margin-left: auto;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: #76766e; text-align: right;
+    }
+    .f07-seam .f07-box-sig { color: rgba(255,255,235,0.60); }
+    .f07-slotrail { width: 100%; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+    .f07-slot {
+      box-sizing: border-box; padding: 8px 15px;
+      background: #252320;
+      border: 1px solid rgba(255,255,235,0.22);
+      border-radius: 6px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: rgba(255,255,235,0.80);
+    }
+      display: inline-block;
+    .f07-slot-new { border-color: #ffa946; color: #ffa946; }
+    .f07-holder {
+      position: absolute; top: 654px; left: 800px; width: 224px;
+      box-sizing: border-box; padding: 14px 14px;
+      background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 10px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.03em; color: #ffffeb; text-align: center;
+      opacity: 0;
+    }
+    .f07-holder-sub { display: block; color: rgba(255,255,235,0.58); font-size: 1.5cqw; letter-spacing: 0.06em; }
+    .f07-open {
+      position: absolute; top: 552px; left: 604px;
+      box-sizing: border-box; padding: 10px 20px;
+      background: #ffffeb; border: 2px solid #ffa946; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f07-svg { position: absolute; inset: 0; pointer-events: none; }
+    .f07-flow { fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linecap: round; }
+    .f07-flow-head { fill: #1a1a1a; opacity: 0; }
+    .f07-second { stroke: #ffa946; }
+    .f07-second-head { fill: #ffa946; opacity: 0; }
+    .f07-product {
+      position: absolute; top: 1010px;
+      box-sizing: border-box; width: 456px; height: 244px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+      background: #e4e4d0; border: 2px solid #1a1a1a; border-radius: 12px;
+      opacity: 0;
+    }
+    .f07-product-a { left: 74px; }
+    .f07-product-b { left: 550px; background: #ffffeb; border-color: #ffa946; }
+    .f07-product-name {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 4.0cqw; line-height: 1; letter-spacing: -0.016em; color: #1a1a1a;
+    }
+    .f07-product-tag {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.05em; color: #76766e; text-align: center;
+    }
+    .f07-product-b .f07-product-tag { color: #1a1a1a; }
+    .f07-fix {
+      position: absolute; top: 1336px; left: 74px; width: 932px; height: 168px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 24px; padding: 0 30px;
+      background: #034f46; border: 2px solid #034f46; border-radius: 12px;
+      opacity: 0;
+    }
+    .f07-fix-word {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 3.6cqw; letter-spacing: -0.012em; color: #ffffeb;
+    }
+    .f07-fix-mono {
+      margin-left: auto;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.06em; color: rgba(255,255,235,0.86);
+      text-align: right;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-handed-onward" data-width="1080" data-height="1920" data-duration="10.925">
+
+    <div id="07-handed-onward-fieldclip" class="clip" data-start="0" data-duration="10.925" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field"></div>
+      <div id="07-handed-onward-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="07-handed-onward-headclip" class="clip" data-start="0" data-duration="10.925" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="07-handed-onward-kicker" class="f07-kicker"><span class="f07-spike">&#10033;</span><span>the hand-off</span></div>
+      <div id="07-handed-onward-open" class="f07-open">still open</div>
+    </div>
+
+    <div id="07-handed-onward-boxclip" class="clip" data-start="0" data-duration="10.925" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="07-handed-onward-caller" class="f07-box f07-caller">
+        <span class="f07-box-name">caller</span>
+        <span class="f07-box-sig">asked once</span>
+      </div>
+      <div id="07-handed-onward-seam" class="f07-box f07-seam">
+        <span class="f07-box-name">builder</span>
+        <span class="f07-box-sig">OrderBuilder</span>
+        <span id="07-handed-onward-rail" class="f07-slotrail">
+          <span class="f07-slot">customer</span>
+          <span class="f07-slot">line</span>
+          <span class="f07-slot">shipTo</span>
+          <span id="07-handed-onward-snew" class="f07-slot f07-slot-new">line</span>
+        </span>
+      </div>
+      <div id="07-handed-onward-holder" class="f07-holder">
+        <span>next holder</span>
+      </div>
+    </div>
+
+    <div id="07-handed-onward-arrowclip" class="clip" data-start="1.00" data-duration="9.925" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f07-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="07-handed-onward-h2s" class="f07-flow" d="M 908 744 L 790 744" />
+        <polygon id="07-handed-onward-h2sh" class="f07-flow-head" points="806,732 778,744 806,756" />
+        <path id="07-handed-onward-s2p1" class="f07-flow" d="M 300 932 L 300 1010" />
+        <polygon id="07-handed-onward-s2p1h" class="f07-flow-head" points="288,990 300,1016 312,990" />
+        <path id="07-handed-onward-s2p2" class="f07-flow f07-second" d="M 780 932 L 780 1010" />
+        <polygon id="07-handed-onward-s2p2h" class="f07-second-head" points="768,990 780,1016 792,990" />
+      </svg>
+    </div>
+
+    <div id="07-handed-onward-productclip" class="clip" data-start="3.30" data-duration="7.625" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="07-handed-onward-pa" class="f07-product f07-product-a">
+        <span class="f07-product-name">order</span>
+        <span class="f07-product-tag">built here</span>
+      </div>
+      <div id="07-handed-onward-pb" class="f07-product f07-product-b">
+        <span class="f07-product-name">order</span>
+        <span class="f07-product-tag">one line more</span>
+      </div>
+    </div>
+
+    <div id="07-handed-onward-fixclip" class="clip" data-start="7.62" data-duration="3.305" data-track-index="5" style="position:absolute;inset:0;">
+      <div id="07-handed-onward-fix" class="f07-fix">
+        <span class="f07-fix-word">pass the product</span>
+        <span class="f07-fix-mono">not the builder</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.325;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-handed-onward"] = tl;
+
+      // ── Scene 1 (0.0–2.5s) — "hand a mutable builder onward". F6's chambers carry in, the
+      //    caller dimmed to ~40%: the story is no longer the caller's. ──
+      tl.fromTo(el("07-handed-onward-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("07-handed-onward-kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 0.14);
+      tl.fromTo(el("07-handed-onward-caller"), { opacity: 0, y: 20 }, { opacity: 0.4, y: 0, duration: 0.44, ease: "power3.out" }, 0.20);
+      tl.fromTo(el("07-handed-onward-seam"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.48, ease: "power3.out" }, 0.40);
+      tl.fromTo(el("07-handed-onward-holder"), { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.56);
+      var H2S = 118;
+      el("07-handed-onward-h2s").style.strokeDasharray = H2S + " " + H2S;
+      tl.fromTo(
+        el("07-handed-onward-h2s"),
+        { attr: { "stroke-dashoffset": H2S } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" },
+        1.00
+      );
+      tl.fromTo(el("07-handed-onward-h2sh"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 1.40);
+      tl.fromTo(el("07-handed-onward-open"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 1.42);
+      tl.fromTo(el("07-handed-onward-seam"), { borderColor: "#ffffeb" }, { borderColor: "#ffa946", duration: 0.4, ease: "power2.out" }, 1.42);
+
+      // ── Scene 2 (2.5–5.0s) — "the next holder adds a line". A fourth slot hard-cuts into
+      //    the seam in ember: the first state in this part the caller never asked for, and
+      //    there is no arrow back up to say otherwise. ──
+      tl.fromTo(el("07-handed-onward-snew"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 3.42);
+      tl.to(el("07-handed-onward-snew"), { borderColor: "rgba(255,169,70,0.55)", duration: 0.3, ease: "power1.inOut" }, 4.30);
+
+      // ── Scene 3 (5.0–7.6s) — "then builds a different order". The first product exists;
+      //    then a second build arrow, ember, lands a second order that is not the same one. ──
+      var S1 = 80;
+      el("07-handed-onward-s2p1").style.strokeDasharray = S1 + " " + S1;
+      tl.fromTo(
+        el("07-handed-onward-s2p1"),
+        { attr: { "stroke-dashoffset": S1 } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.34, ease: "power2.out" },
+        3.30
+      );
+      tl.fromTo(el("07-handed-onward-s2p1h"), { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power1.out" }, 3.60);
+      tl.fromTo(el("07-handed-onward-pa"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 3.66);
+      var S2 = 80;
+      el("07-handed-onward-s2p2").style.strokeDasharray = S2 + " " + S2;
+      tl.fromTo(
+        el("07-handed-onward-s2p2"),
+        { attr: { "stroke-dashoffset": S2 } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.4, ease: "power2.out" },
+        5.34
+      );
+      tl.fromTo(el("07-handed-onward-s2p2h"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 5.66);
+      tl.fromTo(el("07-handed-onward-pb"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 5.80);
+      tl.fromTo(el("07-handed-onward-snew"), { scale: 1 }, { scale: 1.08, duration: 0.26, ease: "power2.out" }, 6.12);
+      tl.to(el("07-handed-onward-snew"), { scale: 1, duration: 0.3, ease: "power2.inOut" }, 6.42);
+
+      // ── Scene 4 (7.6–10.3s) — "pass the finished product instead". The fix lands, the ember
+      //    leaves the seam, and the frame holds. ──
+      tl.fromTo(el("07-handed-onward-fix"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 7.62);
+      tl.to(el("07-handed-onward-seam"), { borderColor: "#ffffeb", duration: 0.44, ease: "power2.inOut" }, 9.24);
+      tl.to(el("07-handed-onward-open"), { opacity: 0, y: -8, duration: 0.34, ease: "power2.in" }, 9.24);
+
+      var jit = { p: 0 };
+      var box = el("07-handed-onward-pb");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - 9.7,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.2).toFixed(3) + "px)"; }
+      }, 9.7);
+    })();
+  </script>
+</template>

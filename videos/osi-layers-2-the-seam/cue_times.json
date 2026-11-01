@@ -1,0 +1,573 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 6.741,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.54
+        },
+        {
+          "text": "layer",
+          "start": 0.54,
+          "end": 0.98
+        },
+        {
+          "text": "talks",
+          "start": 0.98,
+          "end": 1.44
+        },
+        {
+          "text": "sideways,",
+          "start": 1.44,
+          "end": 2.3
+        },
+        {
+          "text": "to",
+          "start": 2.6,
+          "end": 3.28
+        },
+        {
+          "text": "the",
+          "start": 3.28,
+          "end": 3.42
+        },
+        {
+          "text": "same",
+          "start": 3.42,
+          "end": 3.8
+        },
+        {
+          "text": "number",
+          "start": 3.8,
+          "end": 4.26
+        },
+        {
+          "text": "on",
+          "start": 4.26,
+          "end": 4.58
+        },
+        {
+          "text": "the",
+          "start": 4.58,
+          "end": 4.72
+        },
+        {
+          "text": "machine",
+          "start": 4.72,
+          "end": 5.2
+        },
+        {
+          "text": "at",
+          "start": 5.2,
+          "end": 5.56
+        },
+        {
+          "text": "the",
+          "start": 5.56,
+          "end": 5.74
+        },
+        {
+          "text": "other",
+          "start": 5.74,
+          "end": 6
+        },
+        {
+          "text": "end.",
+          "start": 6,
+          "end": 6.42
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 5.568,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.34
+        },
+        {
+          "text": "layer",
+          "start": 0.34,
+          "end": 0.76
+        },
+        {
+          "text": "is",
+          "start": 0.76,
+          "end": 1.16
+        },
+        {
+          "text": "a",
+          "start": 1.16,
+          "end": 1.32
+        },
+        {
+          "text": "slot",
+          "start": 1.32,
+          "end": 1.76
+        },
+        {
+          "text": "with",
+          "start": 1.76,
+          "end": 2.06
+        },
+        {
+          "text": "a",
+          "start": 2.06,
+          "end": 2.18
+        },
+        {
+          "text": "job.",
+          "start": 2.18,
+          "end": 2.7
+        },
+        {
+          "text": "And",
+          "start": 3.18,
+          "end": 3.52
+        },
+        {
+          "text": "a",
+          "start": 3.52,
+          "end": 3.66
+        },
+        {
+          "text": "slot",
+          "start": 3.66,
+          "end": 4.04
+        },
+        {
+          "text": "can",
+          "start": 4.04,
+          "end": 4.4
+        },
+        {
+          "text": "be",
+          "start": 4.4,
+          "end": 4.56
+        },
+        {
+          "text": "refilled.",
+          "start": 4.56,
+          "end": 5.22
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 12.309,
+      "words": [
+        {
+          "text": "For",
+          "start": 0,
+          "end": 0.34
+        },
+        {
+          "text": "years",
+          "start": 0.34,
+          "end": 0.7
+        },
+        {
+          "text": "the",
+          "start": 0.7,
+          "end": 1
+        },
+        {
+          "text": "web",
+          "start": 1,
+          "end": 1.3
+        },
+        {
+          "text": "spoke",
+          "start": 1.3,
+          "end": 1.82
+        },
+        {
+          "text": "HTTP",
+          "start": 1.82,
+          "end": 2.86
+        },
+        {
+          "text": "over",
+          "start": 2.86,
+          "end": 3.64
+        },
+        {
+          "text": "TCP.",
+          "start": 3.64,
+          "end": 4.24
+        },
+        {
+          "text": "Then",
+          "start": 5.66,
+          "end": 6
+        },
+        {
+          "text": "HTTP/3",
+          "start": 6.22,
+          "end": 7.1
+        },
+        {
+          "text": "arrived",
+          "start": 8.68,
+          "end": 9.42
+        },
+        {
+          "text": "and",
+          "start": 9.42,
+          "end": 9.98
+        },
+        {
+          "text": "put",
+          "start": 9.98,
+          "end": 10.16
+        },
+        {
+          "text": "itself",
+          "start": 10.16,
+          "end": 10.56
+        },
+        {
+          "text": "on",
+          "start": 10.56,
+          "end": 10.94
+        },
+        {
+          "text": "QUIC",
+          "start": 10.94,
+          "end": 11.28
+        },
+        {
+          "text": "instead.",
+          "start": 11.28,
+          "end": 11.78
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 10.325,
+      "words": [
+        {
+          "text": "Different",
+          "start": 0,
+          "end": 0.58
+        },
+        {
+          "text": "transport,",
+          "start": 0.58,
+          "end": 1.4
+        },
+        {
+          "text": "different",
+          "start": 2.02,
+          "end": 2.36
+        },
+        {
+          "text": "behaviour",
+          "start": 2.36,
+          "end": 3.08
+        },
+        {
+          "text": "underneath.",
+          "start": 3.08,
+          "end": 3.82
+        },
+        {
+          "text": "The",
+          "start": 4.96,
+          "end": 5.1
+        },
+        {
+          "text": "application",
+          "start": 5.1,
+          "end": 5.76
+        },
+        {
+          "text": "sent",
+          "start": 5.76,
+          "end": 6.5
+        },
+        {
+          "text": "the",
+          "start": 6.5,
+          "end": 6.74
+        },
+        {
+          "text": "same",
+          "start": 6.74,
+          "end": 7.1
+        },
+        {
+          "text": "request",
+          "start": 7.1,
+          "end": 7.74
+        },
+        {
+          "text": "and",
+          "start": 7.74,
+          "end": 8.42
+        },
+        {
+          "text": "did",
+          "start": 8.42,
+          "end": 8.66
+        },
+        {
+          "text": "not",
+          "start": 8.66,
+          "end": 9
+        },
+        {
+          "text": "need",
+          "start": 9,
+          "end": 9.38
+        },
+        {
+          "text": "to",
+          "start": 9.38,
+          "end": 9.62
+        },
+        {
+          "text": "know.",
+          "start": 9.62,
+          "end": 9.94
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 10.347,
+      "words": [
+        {
+          "text": "You",
+          "start": 0,
+          "end": 0.36
+        },
+        {
+          "text": "have",
+          "start": 0.36,
+          "end": 0.5
+        },
+        {
+          "text": "done",
+          "start": 0.5,
+          "end": 0.74
+        },
+        {
+          "text": "it",
+          "start": 0.74,
+          "end": 0.88
+        },
+        {
+          "text": "yourself.",
+          "start": 0.88,
+          "end": 1.52
+        },
+        {
+          "text": "Unplug",
+          "start": 2.26,
+          "end": 2.98
+        },
+        {
+          "text": "the",
+          "start": 2.98,
+          "end": 3.12
+        },
+        {
+          "text": "cable,",
+          "start": 3.12,
+          "end": 3.62
+        },
+        {
+          "text": "stay",
+          "start": 3.96,
+          "end": 4.2
+        },
+        {
+          "text": "on",
+          "start": 4.2,
+          "end": 4.52
+        },
+        {
+          "text": "the",
+          "start": 4.52,
+          "end": 4.68
+        },
+        {
+          "text": "site.",
+          "start": 4.68,
+          "end": 5.08
+        },
+        {
+          "text": "Wi-Fi",
+          "start": 5.74,
+          "end": 6.16
+        },
+        {
+          "text": "takes",
+          "start": 6.58,
+          "end": 7
+        },
+        {
+          "text": "over",
+          "start": 7,
+          "end": 7.36
+        },
+        {
+          "text": "the",
+          "start": 7.36,
+          "end": 7.54
+        },
+        {
+          "text": "link,",
+          "start": 7.54,
+          "end": 7.9
+        },
+        {
+          "text": "and",
+          "start": 7.9,
+          "end": 8.16
+        },
+        {
+          "text": "layer",
+          "start": 8.16,
+          "end": 8.48
+        },
+        {
+          "text": "three",
+          "start": 8.48,
+          "end": 9
+        },
+        {
+          "text": "never",
+          "start": 9,
+          "end": 9.44
+        },
+        {
+          "text": "blinks.",
+          "start": 9.44,
+          "end": 10.1
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "duration_s": 9.237,
+      "words": [
+        {
+          "text": "That",
+          "start": 0,
+          "end": 0.46
+        },
+        {
+          "text": "is",
+          "start": 0.46,
+          "end": 0.66
+        },
+        {
+          "text": "how",
+          "start": 0.66,
+          "end": 0.96
+        },
+        {
+          "text": "the",
+          "start": 0.96,
+          "end": 1.22
+        },
+        {
+          "text": "web",
+          "start": 1.22,
+          "end": 1.56
+        },
+        {
+          "text": "got",
+          "start": 1.56,
+          "end": 1.98
+        },
+        {
+          "text": "rebuilt",
+          "start": 1.98,
+          "end": 2.52
+        },
+        {
+          "text": "a",
+          "start": 2.52,
+          "end": 2.82
+        },
+        {
+          "text": "layer",
+          "start": 2.82,
+          "end": 3.26
+        },
+        {
+          "text": "at",
+          "start": 3.26,
+          "end": 3.6
+        },
+        {
+          "text": "a",
+          "start": 3.6,
+          "end": 3.7
+        },
+        {
+          "text": "time,",
+          "start": 3.7,
+          "end": 4.26
+        },
+        {
+          "text": "in",
+          "start": 4.7,
+          "end": 4.9
+        },
+        {
+          "text": "public.",
+          "start": 4.9,
+          "end": 5.4
+        },
+        {
+          "text": "What",
+          "start": 6.36,
+          "end": 6.58
+        },
+        {
+          "text": "got",
+          "start": 6.58,
+          "end": 6.86
+        },
+        {
+          "text": "swapped",
+          "start": 6.86,
+          "end": 7.48
+        },
+        {
+          "text": "is",
+          "start": 7.48,
+          "end": 7.94
+        },
+        {
+          "text": "in",
+          "start": 7.94,
+          "end": 8.14
+        },
+        {
+          "text": "the",
+          "start": 8.14,
+          "end": 8.3
+        },
+        {
+          "text": "article.",
+          "start": 8.3,
+          "end": 8.76
+        }
+      ]
+    }
+  ]
+}

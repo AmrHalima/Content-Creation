@@ -1,0 +1,212 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f07-ground { position: absolute; inset: 0; }
+    .f07-before { position: absolute; inset: 0; }
+    .f07-after { position: absolute; inset: 0; }
+    .f07-marks { position: absolute; inset: 0; }
+
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; top: 130px; left: 72px;
+      display: inline-flex; align-items: baseline; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+    .f07-spike { color: rgba(26,26,26,0.64); }
+
+    /* grammar X — two stacked dark chambers: the wrong shape above, the fixed shape below */
+    .f07-chamber {
+      position: absolute; left: 90px; width: 900px; box-sizing: border-box;
+      background: #181715; border: 1px solid rgba(255,255,235,0.22); border-radius: 8px;
+      opacity: 0;
+    }
+    .f07-chamber-before { top: 230px; height: 500px; overflow: hidden; }
+    .f07-chamber-after { top: 790px; height: 400px; overflow: hidden; }
+    .f07-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 62px; background: #252320;
+      display: flex; align-items: center; padding: 0 34px; box-sizing: border-box;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(255,255,235,0.82);
+    }
+    /* code lines are positioned against the canvas, so left = chamber left + chamber padding */
+    .f07-line {
+      position: absolute; left: 124px; width: 832px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 46px;
+      color: #8a8a7a; white-space: pre; opacity: 0;
+    }
+    .f07-b1 { top: 300px; }
+    .f07-b2 { top: 346px; }
+    .f07-b3 { top: 392px; }
+    .f07-b4 { top: 438px; }
+    .f07-b5 { top: 484px; }
+    .f07-b6 { top: 530px; }
+    .f07-a1 { top: 854px; }
+    .f07-a2 { top: 900px; }
+    .f07-a3 { top: 946px; }
+    .f07-a4 { top: 992px; }
+    .f07-a5 { top: 992px; }
+    .f07-lav { color: #f0d7ff; }
+
+    .f07-svg { position: absolute; inset: 0; }
+    .f07-slot { fill: none; stroke: rgba(255,255,235,0.45); stroke-width: 3; stroke-dasharray: 9 11; }
+    .f07-ring { fill: none; stroke: #ffa946; stroke-width: 4; }
+
+    /* growth markers: lavender for the switch's own growth, ember for the closing tell */
+    .f07-growth {
+      position: absolute; height: 66px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; padding: 0 22px;
+      border: 2px solid #f0d7ff; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #f0d7ff;
+      opacity: 0;
+    }
+    .f07-growth-case { top: 646px; left: 640px; width: 280px; }
+    .f07-growth-entry { top: 1108px; left: 640px; width: 280px; }
+
+    .f07-owner {
+      position: absolute; left: 90px; width: 900px; height: 44px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(26,26,26,0.64); opacity: 0;
+    }
+    .f07-owner-before { top: 182px; }
+    .f07-owner-after { top: 744px; }
+
+    .f07-tell {
+      position: absolute; top: 1250px; left: 90px; width: 900px; height: 110px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 22px;
+      font-family: "Inter", sans-serif; font-size: 2.8cqw; line-height: 1.3;
+      color: rgba(26,26,26,0.86); opacity: 0;
+    }
+    .f07-tell-chip {
+      flex: 0 0 auto; height: 70px; display: flex; align-items: center; padding: 0 26px;
+      background: #ffa946; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-the-tell" data-width="1080" data-height="1920">
+
+    <div id="07-the-tell-ground" class="clip f07-ground" data-start="0" data-duration="11.136" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="07-the-tell-field" class="f07-field"></div>
+      <div id="07-the-tell-grid" class="f07-grid"></div>
+      <div id="07-the-tell-kicker" class="f07-kicker"><span class="f07-spike">&#10033;</span><span>the tell</span></div>
+    </div>
+
+    <div id="07-the-tell-before" class="clip f07-before" data-start="0" data-duration="11.136" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="07-the-tell-ownbefore" class="f07-owner f07-owner-before">the call site edits again</div>
+      <div id="07-the-tell-chamberb" class="f07-chamber f07-chamber-before">
+        <div id="07-the-tell-titleb" class="f07-titlebar">checkout.ts</div>
+      </div>
+      <div id="07-the-tell-b1" class="f07-line f07-b1">switch (terms.plan) {</div>
+      <div id="07-the-tell-b2" class="f07-line f07-b2">  case &quot;standard&quot;:</div>
+      <div id="07-the-tell-b3" class="f07-line f07-b3">    return cart.subtotal;</div>
+      <div id="07-the-tell-b4" class="f07-line f07-b4">  case &quot;contract&quot;:</div>
+      <div id="07-the-tell-b5" class="f07-line f07-b5">    return cart.subtotal * terms.discount;</div>
+      <div id="07-the-tell-b6" class="f07-line f07-b6">}</div>
+      <svg id="07-the-tell-svgb" class="f07-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="07-the-tell-slotb" class="f07-slot" d="M 124 548 L 596 548" />
+      </svg>
+      <div id="07-the-tell-growthcase" class="f07-growth f07-growth-case">+ case</div>
+    </div>
+
+    <div id="07-the-tell-after" class="clip f07-after" data-start="0" data-duration="11.136" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="07-the-tell-ownafter" class="f07-owner f07-owner-after">the call site never edits</div>
+      <div id="07-the-tell-chambera" class="f07-chamber f07-chamber-after">
+        <div id="07-the-tell-titlea" class="f07-titlebar">pricing.ts</div>
+      </div>
+      <div id="07-the-tell-a1" class="f07-line f07-a1">const prices: Record&lt;Plan, <span class="f07-lav">PricingStrategy</span>&gt; = {</div>
+      <div id="07-the-tell-a2" class="f07-line f07-a2">  standard: new StandardPricing(),</div>
+      <div id="07-the-tell-a3" class="f07-line f07-a3">  contract: new ContractPricing(),</div>
+      <div id="07-the-tell-a5" class="f07-line f07-a5">  seasonal: new SeasonalPricing(),</div>
+      <div id="07-the-tell-a4" class="f07-line f07-a4">};</div>
+      <svg id="07-the-tell-svga" class="f07-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="07-the-tell-ring" class="f07-ring" d="M 108 908 L 972 908 L 972 1088 L 108 1088 Z" />
+      </svg>
+      <div id="07-the-tell-growthentry" class="f07-growth f07-growth-entry">+ entry</div>
+    </div>
+
+    <div id="07-the-tell-marks" class="clip f07-marks" data-start="0" data-duration="11.136" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="07-the-tell-tell" class="f07-tell"><span class="f07-tell-chip">never swapped</span><span>one choice, made at startup</span></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.136;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-the-tell"] = tl;
+
+      // Measured cues (SCRIPT Line 7): switch 0.20 · grows 0.58 · new case 1.46–1.70 ·
+      // behaviour. 2.44 · A map 3.80 · strategies 4.40 · grows an entry. 5.10–5.94 ·
+      // seam 7.36 · nobody 7.74 · ever 8.34 · plugs 8.80 · into 9.26 · just 9.92 · ceremony. 10.16
+      //
+      // comparison-split (Adapt): the two paired panels and their mirrored arrival are kept;
+      // the blueprint's rotateY book-open tilt is DROPPED (frame.md bans tilt and shadow-driven
+      // depth), and the panels stack vertically for portrait — see STORYBOARD § Grammar decisions.
+
+      // ── Scene 1 (0.0–2.9s) — the switch, one line per beat, inside the caller's own file ──
+      tl.fromTo(el("07-the-tell-grid"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+      tl.fromTo(el("07-the-tell-kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.08);
+      tl.fromTo(el("07-the-tell-chamberb"), { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
+      tl.fromTo(el("07-the-tell-ownbefore"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.44);
+      tl.fromTo(el("07-the-tell-b1"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 0.58);
+      tl.fromTo(el("07-the-tell-b2"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 1.16);
+      tl.fromTo(el("07-the-tell-b3"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 1.46);
+      tl.fromTo(el("07-the-tell-b4"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 1.9);
+      tl.fromTo(el("07-the-tell-b5"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 2.2);
+      tl.fromTo(el("07-the-tell-b6"), { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power1.out" }, 2.66);
+
+      // ── Scene 2 (2.9–3.9s) — it grows another case, and the growth is in the caller's file ──
+      // dashed slot: fades in (a repeating dasharray is not hideable by strokeDashoffset)
+      tl.fromTo(el("07-the-tell-slotb"), { opacity: 0 }, { opacity: 1, duration: 0.46, ease: "power1.inOut" }, 2.9);
+      // the closing brace steps aside for the new case — the switch grows downward, forever
+      tl.to(el("07-the-tell-b6"), { y: 54, duration: 0.36, ease: "power2.out" }, 2.9);
+      tl.fromTo(el("07-the-tell-growthcase"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 3.2);
+
+      // ── Scene 3 (3.9–7.0s) — the map arrives from below (the mirrored half of the split) ──
+      tl.fromTo(el("07-the-tell-chambera"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.96);
+      tl.fromTo(el("07-the-tell-ownafter"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 4.22);
+      tl.fromTo(el("07-the-tell-a1"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.32, ease: "power2.out" }, 4.4);
+      tl.fromTo(el("07-the-tell-a2"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 4.86);
+      tl.fromTo(el("07-the-tell-a3"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 5.1);
+      tl.fromTo(el("07-the-tell-a4"), { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power1.out" }, 5.5);
+      // the map grows an ENTRY and the closing brace slides down to make room — same instant,
+      // so the two lines never occupy the same slot while both are visible
+      tl.fromTo(el("07-the-tell-a5"), { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.34, ease: "power2.out" }, 6.2);
+      tl.to(el("07-the-tell-a4"), { y: 46, duration: 0.3, ease: "power2.out" }, 5.86);
+      tl.fromTo(el("07-the-tell-growthentry"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 6.4);
+
+      // ── Scene 4 (7.3–11.136s) — the closing tell: nothing ever plugs into this ──
+      var RING = el("07-the-tell-ring");
+      var Rlen = RING.getTotalLength() * 1.02;
+      RING.style.strokeDasharray = String(Rlen);
+      RING.style.strokeDashoffset = String(Rlen);
+      // svg-path-draw: the ember ring traces the block of alternatives nobody selects between
+      tl.to(RING, { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 7.74);
+      tl.fromTo(el("07-the-tell-tell"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.48, ease: "power3.out" }, 8.8);
+      tl.to(el("07-the-tell-before"), { opacity: 0.6, duration: 0.6, ease: "power1.inOut" }, 9.58);
+      tl.to(el("07-the-tell-growthcase"), { opacity: 0.55, duration: 0.5, ease: "power1.inOut" }, 9.8);
+      tl.to([el("07-the-tell-ownbefore"), el("07-the-tell-chamberb")], { opacity: 0.7, duration: 0.5, ease: "power1.inOut" }, 9.8);
+      // the screenshot hold: nothing new after "ceremony", one minimum-amplitude jitter only
+      tl.to(el("07-the-tell-after"), { y: 2, duration: 0.44, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.4);
+    })();
+  </script>
+</template>

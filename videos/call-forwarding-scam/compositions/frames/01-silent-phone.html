@@ -1,0 +1,186 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #FFFFEB;
+    }
+    .f01-bg { position: absolute; inset: 0; background: #1A1A1A; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(255,255,235,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(255,255,235,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 440px; right: 96px; width: 888px; height: 96px;
+      display: flex; align-items: center; gap: 24px;
+      white-space: nowrap; opacity: 0;
+    }
+    .f01-warn {
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 3cqw; font-weight: 500; color: #FFA946;
+    }
+    .f01-stub { width: 4.5cqw; height: 3px; background: #FFA946; transform-origin: right center; }
+    .f01-line1 {
+      position: absolute; top: 660px; right: 96px; width: 888px; min-height: 320px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 15cqw; font-weight: 900; line-height: 0.92; letter-spacing: 0;
+      color: #FFFFEB;
+    }
+    .f01-line1 .w { display: inline-block; opacity: 0; }
+    .f01-line1 .hot { color: #FFA946; }
+    .f01-line2 {
+      position: absolute; top: 1180px; right: 96px; width: 820px; min-height: 260px;
+      font-family: "Noto Naskh Arabic", serif;
+      font-size: 5.6cqw; font-weight: 400; line-height: 1.45; letter-spacing: 0;
+      color: rgba(255,255,235,0.75);
+      opacity: 0;
+    }
+    .f01-hair {
+      position: absolute; top: 1120px; right: 96px; width: 300px; height: 1px;
+      background: rgba(255,255,235,0.22); transform-origin: right center;
+    }
+
+    /* --- the new diagram: calls passing over a phone that never rings --- */
+    .f01-rail { position: absolute; top: 1390px; right: 0; width: 1080px; height: 410px; opacity: 0; }
+    .f01-svg { position: absolute; inset: 0; }
+    .f01-wire { fill: none; stroke: rgba(255,255,235,0.22); stroke-width: 2; }
+    .f01-body { fill: none; stroke: rgba(255,255,235,0.42); stroke-width: 2; }
+    .f01-dark { fill: rgba(255,255,235,0.04); }
+    .f01-exitbox { fill: rgba(255,169,70,0.10); stroke: #FFA946; stroke-width: 2; }
+    .f01-pip { fill: #FFFFEB; }
+    .f01-out { fill: #FFA946; }
+    .f01-tick { stroke: rgba(255,255,235,0.3); stroke-width: 2; stroke-dasharray: 4 8; }
+    .f01-cross { fill: none; stroke: #FFA946; stroke-width: 3; stroke-linecap: round; }
+    .f01-tag {
+      font-family: "Noto Naskh Arabic", serif; font-size: 36px; font-weight: 400;
+      letter-spacing: 0; fill: rgba(255,255,235,0.55);
+    }
+    .f01-tag-hot { fill: #FFA946; }
+  </style>
+
+  <div id="root" data-composition-id="01-silent-phone" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f01-silent-phone-bg" class="clip" data-start="0" data-duration="7.78" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-bg"></div>
+      <div id="f01-silent-phone-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="f01-silent-phone-kickerclip" class="clip" data-start="0" data-duration="7.78" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker">
+        <span class="f01-warn">تحذير</span>
+        <span id="f01-silent-phone-stub" class="f01-stub"></span>
+      </div>
+    </div>
+
+    <div id="f01-silent-phone-headclip" class="clip" data-start="0" data-duration="7.78" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f01-line1">
+        <span class="w">التليفون</span>
+        <span class="w">كان</span>
+        <span class="w hot">ساكن</span>
+      </div>
+    </div>
+
+    <div id="f01-silent-phone-leadclip" class="clip" data-start="2.6" data-duration="5.18" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f01-silent-phone-hair" class="f01-hair"></div>
+      <div id="f01-silent-phone-line2" class="f01-line2">ومع كده، مكالماته كانت بتروح على رقم تاني.</div>
+    </div>
+
+    <div id="f01-railclip" class="clip" data-start="3.2" data-duration="4.58" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f01-rail" class="f01-rail">
+        <svg class="f01-svg" width="1080" height="410" viewBox="0 0 1080 410" xmlns="http://www.w3.org/2000/svg">
+          <!-- the route: a call comes in from the right, then bends down to another number -->
+          <path id="f01-route" class="f01-wire" d="M 1010 60 L 290 60 C 268 60 250 78 250 100 L 250 165" />
+          <path id="f01-arrow" class="f01-wire" d="M 1042 48 L 1012 60 L 1042 72" />
+
+          <!-- his phone, sitting under the wire, never touched -->
+          <g id="f01-phone">
+            <rect class="f01-body" x="545" y="150" width="130" height="180" />
+            <rect class="f01-dark" x="558" y="168" width="104" height="136" />
+          </g>
+          <g id="f01-tickgroup">
+            <path class="f01-tick" d="M 610 78 L 610 120" />
+            <path id="f01-cross" class="f01-cross" d="M 600 128 L 620 148 M 620 128 L 600 148" />
+          </g>
+
+          <!-- the other number -->
+          <g id="f01-exit">
+            <rect class="f01-exitbox" x="185" y="170" width="130" height="180" />
+            <text id="f01-tag" class="f01-tag f01-tag-hot" x="250" y="388" text-anchor="middle">رقم تاني</text>
+          </g>
+
+          <circle id="f01-p1" class="f01-pip" cx="1010" cy="60" r="9" opacity="0" />
+          <circle id="f01-p2" class="f01-pip" cx="1010" cy="60" r="9" opacity="0" />
+          <circle id="f01-p3" class="f01-pip" cx="1010" cy="60" r="9" opacity="0" />
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-silent-phone"] = tl;
+
+      tl.fromTo(el("f01-silent-phone-grid"), { opacity: 0 }, { opacity: 0.55, duration: 1.1, ease: "power2.out" }, 0);
+
+      tl.fromTo(el("f01-silent-phone-stub"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 0.18);
+      tl.fromTo(el("f01-silent-phone-kickerclip").querySelector(".f01-warn"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.42);
+
+      var WORDS = el("f01-silent-phone-headclip").querySelectorAll(".f01-line1 .w");
+      [0.95, 1.45, 1.85].forEach(function (t, i) {
+        tl.fromTo(WORDS[i], { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.34, ease: "power4.out" }, t);
+      });
+
+      tl.fromTo(el("f01-silent-phone-hair"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 2.7);
+      tl.fromTo(el("f01-silent-phone-line2"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 2.95);
+
+      // ── the diagram: calls travel the wire and bend away; his phone never reacts ──
+      tl.fromTo(el("f01-rail"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 3.2);
+
+      var route = el("f01-route");
+      var LEN = route.getTotalLength();
+      route.style.strokeDasharray = String(LEN);
+      route.style.strokeDashoffset = String(LEN);
+      tl.to(route, { strokeDashoffset: 0, duration: 1.0, ease: "power1.inOut" }, 3.4);
+      tl.fromTo(el("f01-arrow"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 3.4);
+      tl.fromTo(el("f01-phone"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 4.0);
+      tl.fromTo(el("f01-exit").querySelector("rect"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 4.2);
+
+      // three calls pass. Finite by construction — no repeat.
+      ["f01-p1", "f01-p2", "f01-p3"].forEach(function (id, i) {
+        var dot = el(id);
+        var at = 4.6 + i * 0.75;
+        var p = { v: 0 };
+        tl.fromTo(dot, { opacity: 0 }, { opacity: 1, duration: 0.18 }, at);
+        tl.to(p, {
+          v: 1, duration: 1.3, ease: "power1.inOut",
+          onUpdate: function () {
+            var pt = route.getPointAtLength(LEN * p.v);
+            dot.setAttribute("cx", pt.x);
+            dot.setAttribute("cy", pt.y);
+          }
+        }, at);
+        tl.to(dot, { opacity: 0, duration: 0.22 }, at + 1.1);
+      });
+
+      // the first one goes straight past his phone
+      tl.fromTo(el("f01-cross"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.15);
+      // and lands on the other number
+      tl.fromTo(el("f01-tag"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 5.85);
+      // 7.2s -> 7.78s: held. The last call is already gone.
+    })();
+  </script>
+</template>

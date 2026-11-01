@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "One of these operators is not what you think."
+    },
+    {
+      "id": "02",
+      "text": "Arithmetic operators do math. Comparison operators return true or false. Logical operators combine conditions: and, or, not."
+    },
+    {
+      "id": "03",
+      "text": "And watch out: a single equals sign assigns, a double equals compares."
+    },
+    {
+      "id": "04",
+      "text": "Seven floor divided by two gives three. Seven over two gives three point five."
+    },
+    {
+      "id": "05",
+      "text": "What's 7% 3? Comment it."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

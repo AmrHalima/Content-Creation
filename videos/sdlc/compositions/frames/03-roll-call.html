@@ -1,0 +1,217 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f03-paper { position: absolute; inset: 0; background: #FAF9F5; }
+    .f03-world { position: absolute; left: 0; top: 0; width: 2600px; height: 2700px; transform-origin: 0 0; }
+    .f03-ground {
+      position: absolute; left: -800px; top: -800px; width: 4200px; height: 4500px;
+      background-color: #FAF9F5;
+      background-image:
+        repeating-linear-gradient(to right, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px);
+    }
+    .f03-svg { position: absolute; left: 0; top: 0; }
+    .f03-arc { fill: none; stroke: #141413; stroke-opacity: 0.5; stroke-width: 2.5; stroke-linecap: round; }
+    .f03-arc-coral { fill: none; stroke: #CC785C; stroke-width: 4.5; stroke-linecap: round; opacity: 0; }
+    .f03-head { fill: #141413; fill-opacity: 0.5; }
+    .f03-head-coral { fill: #CC785C; opacity: 0; }
+    .f03-tile {
+      position: absolute; width: 190px; height: 92px; box-sizing: border-box;
+      background: #EFE9DE;
+      border: 1px solid rgba(20,19,19,0.12);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    }
+    .f03-idx {
+      font-family: "JetBrains Mono", monospace; font-size: 17px;
+      letter-spacing: 0.08em; color: rgba(20,19,19,0.64);
+    }
+    .f03-name { font-size: 30px; font-weight: 400; letter-spacing: -0.005em; color: #141413; }
+    .f03-card {
+      position: absolute; width: 410px; box-sizing: border-box;
+      background: #FAF9F5;
+      border: 1px solid rgba(20,19,19,0.14);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      padding: 28px 32px;
+      opacity: 0;
+    }
+    .f03-quote {
+      font-family: "JetBrains Mono", monospace; font-size: 29px; font-weight: 400;
+      line-height: 1.45; color: #141413; white-space: nowrap;
+    }
+    .f03-q2 { opacity: 0; }
+    .f03-chip {
+      display: inline-block; margin-top: 18px; padding: 6px 14px;
+      border: 1px solid rgba(20,19,19,0.2); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 19px;
+      letter-spacing: 0.04em; color: rgba(20,19,19,0.74); white-space: nowrap;
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-roll-call" data-width="1080" data-height="1920">
+
+    <div id="03-roll-call-bg" class="clip" data-start="0" data-duration="12.331" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-paper"></div>
+    </div>
+
+    <div id="03-roll-call-worldclip" class="clip" data-start="0" data-duration="12.331" data-track-index="1" style="position:absolute;inset:0;overflow:hidden;">
+      <div id="03-roll-call-world" class="f03-world" data-layout-allow-overflow style="transform: translate(-2030.4px, -64.8px) scale(1.68);">
+        <div class="f03-ground"></div>
+
+        <svg class="f03-svg" width="2600" height="2700" viewBox="0 0 2600 2700" xmlns="http://www.w3.org/2000/svg">
+          <path class="f03-arc" d="M 1246.3 617.5 A 800 800 0 0 1 1674.5 864.7" />
+          <path class="f03-arc" d="M 1840.9 1152.8 A 800 800 0 0 1 1840.9 1647.2" />
+          <path class="f03-arc" d="M 1674.5 1935.3 A 800 800 0 0 1 1246.3 2182.5" />
+          <path class="f03-arc" d="M 913.7 2182.5 A 800 800 0 0 1 485.5 1935.3" />
+          <path class="f03-arc" d="M 319.1 1647.2 A 800 800 0 0 1 319.1 1152.8" />
+          <path class="f03-arc" d="M 485.5 864.7 A 800 800 0 0 1 913.7 617.5" />
+          <polygon class="f03-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(1674.5,864.7) rotate(48)" />
+          <polygon class="f03-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(1840.9,1647.2) rotate(108)" />
+          <polygon class="f03-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(1246.3,2182.5) rotate(168)" />
+          <polygon class="f03-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(485.5,1935.3) rotate(228)" />
+          <polygon class="f03-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(319.1,1152.8) rotate(288)" />
+          <polygon class="f03-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(913.7,617.5) rotate(348)" />
+          <path id="03-roll-call-coral1" class="f03-arc-coral" d="M 1246.3 617.5 A 800 800 0 0 1 1674.5 864.7" />
+          <path id="03-roll-call-coral2" class="f03-arc-coral" d="M 1840.9 1152.8 A 800 800 0 0 1 1840.9 1647.2" />
+          <path id="03-roll-call-coral3" class="f03-arc-coral" d="M 1674.5 1935.3 A 800 800 0 0 1 1246.3 2182.5" />
+          <path id="03-roll-call-coral4" class="f03-arc-coral" d="M 913.7 2182.5 A 800 800 0 0 1 485.5 1935.3" />
+          <polygon id="03-roll-call-coralhead1" class="f03-head-coral" points="-8,-7.5 15,0 -8,7.5" transform="translate(1674.5,864.7) rotate(48)" />
+          <polygon id="03-roll-call-coralhead2" class="f03-head-coral" points="-8,-7.5 15,0 -8,7.5" transform="translate(1840.9,1647.2) rotate(108)" />
+          <polygon id="03-roll-call-coralhead3" class="f03-head-coral" points="-8,-7.5 15,0 -8,7.5" transform="translate(1246.3,2182.5) rotate(168)" />
+          <polygon id="03-roll-call-coralhead4" class="f03-head-coral" points="-8,-7.5 15,0 -8,7.5" transform="translate(485.5,1935.3) rotate(228)" />
+        </svg>
+
+        <div class="f03-tile" style="left:985px;top:554px;"><span class="f03-idx">01</span><span class="f03-name">Plan</span></div>
+        <div class="f03-tile" style="left:1678px;top:954px;"><span class="f03-idx">02</span><span class="f03-name">Design</span></div>
+        <div class="f03-tile" style="left:1678px;top:1754px;"><span class="f03-idx">03</span><span class="f03-name">Build</span></div>
+        <div class="f03-tile" style="left:985px;top:2154px;"><span class="f03-idx">04</span><span class="f03-name">Test</span></div>
+        <div class="f03-tile" style="left:292px;top:1754px;"><span class="f03-idx">05</span><span class="f03-name">Deploy</span></div>
+        <div class="f03-tile" style="left:292px;top:954px;"><span class="f03-idx">06</span><span class="f03-name">Operate</span></div>
+
+        <div id="03-roll-call-card1" class="f03-card" style="left:1415px;top:390px;">
+          <div class="f03-quote">make it fast.</div>
+          <div><span class="f03-chip">requirements &#8594; design</span></div>
+        </div>
+        <div id="03-roll-call-card2" class="f03-card" style="left:1935px;top:1290px;">
+          <div class="f03-quote">mockup: 1 state.</div>
+          <div id="03-roll-call-q2" class="f03-quote f03-q2">data: 9 states.</div>
+          <div><span class="f03-chip">design &#8594; build</span></div>
+        </div>
+        <div id="03-roll-call-card3" class="f03-card" style="left:1415px;top:2250px;">
+          <div class="f03-quote">works on my machine</div>
+          <div><span class="f03-chip">build &#8594; test</span></div>
+        </div>
+        <div id="03-roll-call-card4" class="f03-card" style="left:350px;top:2230px;">
+          <div class="f03-quote">shipped it on a Friday.</div>
+          <div><span class="f03-chip">dev &#8594; ops</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 12.331;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-roll-call"] = tl;
+
+      // ── one virtual camera over the oversized world (viewport-change: single source of truth).
+      // Pure function of timeline time over a keyframe track — identical state on any seek,
+      // forward or backward (no chained property tweens to revert out of order). ──
+      var world = el("03-roll-call-world");
+      var STOPS = [
+        { t: 0.00,  x: 1530, y: 610,  s: 1.68 },
+        { t: 0.20,  x: 1530, y: 610,  s: 1.68 },
+        { t: 0.90,  x: 1530, y: 610,  s: 1.55 }, // arrival settle off the zoom-through
+        { t: 2.55,  x: 1530, y: 610,  s: 1.55 }, // pans fire on the VO breaths
+        { t: 3.30,  x: 2005, y: 1400, s: 1.55 },
+        { t: 6.55,  x: 2005, y: 1400, s: 1.55 },
+        { t: 7.30,  x: 1530, y: 2190, s: 1.55 },
+        { t: 9.45,  x: 1530, y: 2190, s: 1.55 },
+        { t: 10.15, x: 630,  y: 2180, s: 1.55 },
+        { t: 11.65, x: 630,  y: 2180, s: 1.55 },
+        { t: D,     x: 1215, y: 1420, s: 0.47 }  // finale ease-out: the whole loop, annotated
+      ];
+      function smooth(p) { return p * p * (3 - 2 * p); }
+      function camAt(t) {
+        if (t <= STOPS[0].t) return STOPS[0];
+        for (var i = 0; i < STOPS.length - 1; i++) {
+          var a = STOPS[i], b = STOPS[i + 1];
+          if (t < b.t) {
+            var p = smooth((t - a.t) / (b.t - a.t));
+            return { x: a.x + (b.x - a.x) * p, y: a.y + (b.y - a.y) * p, s: a.s + (b.s - a.s) * p };
+          }
+        }
+        return STOPS[STOPS.length - 1];
+      }
+      function renderCam(c) {
+        world.style.transform =
+          "translate(" + (540 - c.x * c.s) + "px, " + (960 - c.y * c.s) + "px) scale(" + c.s + ")";
+      }
+
+      // ── coral hands off station to station — one coral at a time; opacity is a pure
+      // function of time over ordered non-overlapping windows per arc ──
+      var CORAL = [
+        { n: 1, wins: [{ t0: 0.25, t1: 0.55, v1: 1 }, { t0: 2.60, t1: 2.95, v1: 0 }, { t0: 11.70, t1: 12.05, v1: 1 }] },
+        { n: 2, wins: [{ t0: 2.95, t1: 3.25, v1: 1 }, { t0: 6.60, t1: 6.95, v1: 0 }, { t0: 11.78, t1: 12.13, v1: 1 }] },
+        { n: 3, wins: [{ t0: 7.00, t1: 7.30, v1: 1 }, { t0: 9.50, t1: 9.85, v1: 0 }, { t0: 11.86, t1: 12.21, v1: 1 }] },
+        { n: 4, wins: [{ t0: 10.10, t1: 10.40, v1: 1 }] }
+      ];
+      function coralOp(wins, t) {
+        var v = 0;
+        for (var i = 0; i < wins.length; i++) {
+          var w = wins[i];
+          if (t >= w.t1) { v = w.v1; }
+          else if (t >= w.t0) { return v + (w.v1 - v) * smooth((t - w.t0) / (w.t1 - w.t0)); }
+          else { break; }
+        }
+        return v;
+      }
+      var coralEls = CORAL.map(function (c) {
+        return { wins: c.wins, arc: el("03-roll-call-coral" + c.n), head: el("03-roll-call-coralhead" + c.n) };
+      });
+
+      var driver = { t: 0 };
+      tl.to(driver, {
+        t: D, duration: D, ease: "none",
+        onUpdate: function () {
+          renderCam(camAt(driver.t));
+          coralEls.forEach(function (c) {
+            var o = coralOp(c.wins, driver.t);
+            c.arc.style.opacity = String(o);
+            c.head.style.opacity = String(o);
+          });
+        }
+      }, 0);
+
+      // ── quote cards land on their spoken lines (smooth power3 settle, no spring) ──
+      function pop(id, t) {
+        tl.fromTo(el(id), { opacity: 0, y: 26, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out" }, t);
+      }
+      pop("03-roll-call-card1", 1.50);  // "make it fast."
+      pop("03-roll-call-card2", 4.40);  // "mockup: 1 state."
+      tl.fromTo(el("03-roll-call-q2"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 5.85); // "the data has nine."
+      pop("03-roll-call-card3", 8.15);  // "works on my machine"
+      pop("03-roll-call-card4", 11.12); // "shipped it on a Friday."
+    })();
+  </script>
+</template>

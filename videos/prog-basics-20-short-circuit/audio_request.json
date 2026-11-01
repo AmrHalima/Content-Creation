@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Your code skips half your condition, and that's a feature."
+    },
+    {
+      "id": "02",
+      "text": "With and or, the language stops as soon as the answer is known. Take A and B. If A is false, B never runs."
+    },
+    {
+      "id": "03",
+      "text": "That lets you guard risky checks, like making sure something exists before reading it."
+    },
+    {
+      "id": "04",
+      "text": "Here user is None. The and stops at once, so admin is never read. Nothing prints, and nothing breaks."
+    },
+    {
+      "id": "05",
+      "text": "Tag the dev who writes nested ifs for this."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

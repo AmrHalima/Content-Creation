@@ -1,0 +1,26 @@
+== 36.1  the script's exact sequence ==
+op performed                    | recency front->back | hash map points at     | size
+put(A,1) -> room free, inserted   |          A          |   {'A': 'node(A)'}   | 1
+put(B,2) -> room free, inserted   |       B -> A        | {'A': 'node(A)', 'B': 'node(B)'} | 2
+get(A) -> hit, A moved to front   |       A -> B        | {'A': 'node(A)', 'B': 'node(B)'} | 2
+put(C,3) -> FULL, evicted B       |       C -> A        | {'A': 'node(A)', 'C': 'node(C)'} | 2
+
+== 36.2  the eviction answer, for the quiz CTA ==
+evicted on put C: B
+keys still cached: ['A', 'C']
+final recency order: C -> A
+why not A: A was touched by get(A) before put(C), so A sat at the front;
+B had not been touched since its put, so B was the tail = least recently used.
+
+== 36.3  counterfactual a commenter will raise: drop the get(A) ==
+op performed                    | recency front->back | size
+put(A,1) -> room free, inserted   |          A          | 1
+put(B,2) -> room free, inserted   |       B -> A        | 2
+put(C,3) -> FULL, evicted A       |       C -> B        | 2
+without the get(A), put(C) evicts: A
+=> the get is doing all the work in the example. The quiz only has one answer
+   because of it, which is what makes it a quiz.
+
+== 36.4  every operation is constant time because... ==
+a put/get touches 3 pointer fields regardless of capacity (unlink + push front), never a scan of the cache
+list.remove-style scan this replaces: O(capacity). Verified by construction in the code above.

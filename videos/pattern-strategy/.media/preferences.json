@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "preferences": {
+    "voice": {
+      "value": "af_heart",
+      "confirmed_in": [
+        "pattern-strategy"
+      ],
+      "updated_at": "2026-10-26T16:44:31.649Z"
+    },
+    "style_preset.faceless-explainer": {
+      "value": "code-editorial",
+      "confirmed_in": [
+        "pattern-strategy"
+      ],
+      "updated_at": "2026-10-26T16:44:31.754Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "pattern-strategy"
+      ],
+      "updated_at": "2026-10-26T16:44:31.850Z"
+    },
+    "language": {
+      "value": "en",
+      "confirmed_in": [
+        "pattern-strategy"
+      ],
+      "updated_at": "2026-10-26T16:44:31.955Z"
+    }
+  },
+  "sightings": {}
+}

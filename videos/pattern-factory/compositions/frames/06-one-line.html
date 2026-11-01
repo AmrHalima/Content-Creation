@@ -1,0 +1,196 @@
+<template>
+  <style>
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; top: 260px; left: 60px; width: 700px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f06-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; }
+    .f06-ktext { display: inline-block; }
+    .f06-chamber {
+      position: absolute; top: 560px; left: 60px; width: 660px; height: 470px;
+      box-sizing: border-box;
+      background: #181715; border: 2px solid rgba(255,255,235,0.16); border-radius: 8px;
+    }
+    .f06-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 70px;
+      box-sizing: border-box; display: flex; align-items: center; padding: 0 26px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      border-radius: 6px 6px 0 0;
+    }
+    .f06-filename {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.1cqw; letter-spacing: 0.06em; color: rgba(255,255,235,0.72);
+    }
+    .f06-code {
+      position: absolute; left: 86px; width: 600px; height: 66px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.7cqw; line-height: 1.6; color: #6f6f66;
+    }
+    .f06-old-a { top: 660px; }
+    .f06-old-b { top: 730px; }
+    .f06-old-c { top: 800px; }
+    .f06-new-a { top: 700px; color: #8a8a80; }
+    .f06-new-b { top: 766px; color: #8a8a80; }
+    .f06-arg { display: inline-block; color: #ffffeb; }
+    .f06-strike {
+      position: absolute; top: 763px; left: 86px; width: 560px; height: 4px;
+      background: #FFA946;
+    }
+    .f06-return {
+      position: absolute; top: 1080px; left: 60px; width: 660px; height: 70px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.7cqw; color: #76766e;
+      opacity: 0;
+    }
+    .f06-return-mark { display: inline-block; width: 34px; height: 2px; background: #76766e; margin-right: 20px; }
+    .f06-rail {
+      position: absolute; top: 560px; left: 760px; width: 240px; height: 590px;
+      box-sizing: border-box;
+    }
+    .f06-box {
+      position: absolute; left: 0; width: 240px; height: 132px;
+      box-sizing: border-box; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+    }
+    .f06-box-seam { background: #181715; border-color: rgba(255,255,235,0.22); }
+    .f06-box-a { top: 0; }
+    .f06-box-b { top: 330px; }
+    .f06-box-role {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.1em; text-transform: uppercase; color: #76766e;
+    }
+    .f06-box-seam .f06-box-role { color: rgba(255,255,235,0.6); }
+    .f06-box-name {
+      font-family: "Inter", sans-serif; font-weight: 400; font-size: 2.7cqw; color: #1a1a1a;
+    }
+    .f06-box-seam .f06-box-name { color: #ffffeb; }
+    .f06-railarrows { position: absolute; inset: 0; }
+    .f06-railarrows svg { display: block; width: 100%; height: 100%; }
+    .f06-shaft { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .f06-head { fill: #1a1a1a; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="06-one-line" data-width="1080" data-height="1920" data-duration="6.848">
+
+    <div id="06-one-line-groundclip" class="clip f06-groundclip" data-start="0" data-duration="6.848" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field" id="06-one-line-field"></div>
+      <div class="f06-grid" id="06-one-line-grid"></div>
+    </div>
+
+    <div id="06-one-line-chromeclip" class="clip f06-chromeclip" data-start="0" data-duration="6.848" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f06-kicker" id="06-one-line-kicker">
+        <span class="f06-spike" id="06-one-line-spike">&#10009;</span><span class="f06-ktext" id="06-one-line-ktext" data-layout-ignore>the caller, after</span>
+      </div>
+    </div>
+
+    <div id="06-one-line-chamberclip" class="clip f06-chamberclip" data-start="0" data-duration="6.848" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f06-chamber" id="06-one-line-chamber">
+        <div class="f06-titlebar"><span class="f06-filename" data-layout-ignore>checkout.ts</span></div>
+      </div>
+    </div>
+
+    <div id="06-one-line-oldclip" class="clip f06-oldclip" data-start="0" data-duration="2.4" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f06-code f06-old-a" id="06-one-line-old1">if (config.provider === &quot;card&quot;)</div>
+      <div class="f06-code f06-old-b" id="06-one-line-old2">  return new StripeGateway(key)</div>
+      <div class="f06-code f06-old-c" id="06-one-line-old3">return new RazorpayGateway(key)</div>
+      <div class="f06-strike" id="06-one-line-strike"></div>
+    </div>
+
+    <div id="06-one-line-newclip" class="clip f06-newclip" data-start="1.5" data-duration="5.348" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f06-code f06-new-a" id="06-one-line-new1">const gateway =</div>
+      <div class="f06-code f06-new-b" id="06-one-line-new2">  createGateway(<span class="f06-arg" id="06-one-line-arg">config</span>);</div>
+    </div>
+
+    <div id="06-one-line-returnclip" class="clip f06-returnclip" data-start="5.58" data-duration="1.268" data-track-index="5" style="position:absolute;inset:0;">
+      <div class="f06-return" id="06-one-line-return"><span class="f06-return-mark" id="06-one-line-returnmark"></span>PaymentGateway</div>
+    </div>
+
+    <div id="06-one-line-railclip" class="clip f06-railclip" data-start="0" data-duration="6.848" data-track-index="6" style="position:absolute;inset:0;">
+      <div class="f06-rail" id="06-one-line-rail">
+        <div class="f06-box f06-box-a" id="06-one-line-caller">
+          <div class="f06-box-role" id="06-one-line-callerrole">caller</div>
+          <div class="f06-box-name" id="06-one-line-callername">checkout</div>
+        </div>
+        <div class="f06-box f06-box-b f06-box-seam" id="06-one-line-seam">
+          <div class="f06-box-role" id="06-one-line-seamrole">the seam</div>
+          <div class="f06-box-name" id="06-one-line-seamname">factory</div>
+        </div>
+        <div class="f06-railarrows">
+          <svg viewBox="0 0 240 590" preserveAspectRatio="none" aria-hidden="true">
+            <path class="f06-shaft" id="06-one-line-shaft" pathLength="1" d="M120 136 L120 322" />
+            <polygon class="f06-head" id="06-one-line-head" points="120,328 104,292 136,292" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.848;
+      var P = "06-one-line";
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines[P] = tl;
+
+      // ── ground ──
+      tl.fromTo(el(P + "-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.0s) — the struck branch is already there; the rail settles in ──
+      tl.fromTo(el(P + "-rail"), { opacity: 0.55 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 2 (1.0–2.9s) — "is one line": waterfall cut, old out to the left, new in from the right ──
+      tl.to(el(P + "-old1"), { x: -64, opacity: 0, duration: 0.26, ease: "power2.in" }, 1.34);
+      tl.to(el(P + "-old2"), { x: -64, opacity: 0, duration: 0.26, ease: "power2.in" }, 1.46);
+      tl.to(el(P + "-old3"), { x: -64, opacity: 0, duration: 0.26, ease: "power2.in" }, 1.58);
+      tl.to(el(P + "-strike"), { opacity: 0, scaleX: 0.4, duration: 0.24, ease: "power2.in", transformOrigin: "left center" }, 1.58);
+      tl.fromTo(el(P + "-new1"), { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 1.66);
+      tl.fromTo(el(P + "-new2"), { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 1.8);
+
+      // ── Scene 3 (2.9–4.9s) — "the config value goes in": the argument lights inside the call ──
+      tl.fromTo(el(P + "-arg"), { opacity: 0.45 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.84);
+
+      // ── Scene 4 (4.9–6.848s) — "a gateway comes back": the return type, and the rail's arrow ──
+      tl.fromTo(el(P + "-return"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 5.58);
+      tl.fromTo(el(P + "-shaft"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.46, ease: "power2.out" }, 5.16);
+      tl.fromTo(el(P + "-head"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 5.56);
+      tl.fromTo(el(P + "-caller"), { opacity: 0.7 }, { opacity: 1, duration: 0.34, ease: "power2.out" }, 5.58);
+
+      // subtle jitter (finite, low amplitude): the caller box only
+      var jit = { p: 0 };
+      var hold = el(P + "-caller");
+      var HOLD = 6.3;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          hold.style.transform = "translateY(" + (Math.sin(jit.p) * 1.5).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

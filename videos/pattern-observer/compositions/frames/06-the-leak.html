@@ -1,0 +1,189 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid { position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px); }
+    .f06-kicker { position: absolute; top: 200px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f06-spike { display: inline-block; color: #956f33; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f06-ktext { display: inline-block; opacity: 0; }
+    .f06-display { position: absolute; top: 268px; left: 80px; width: 920px; height: 150px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.4cqw; line-height: 0.95;
+      letter-spacing: -0.022em; color: #1a1a1a; opacity: 0; }
+    .f06-chamber { position: absolute; top: 470px; left: 80px; width: 470px; height: 560px;
+      box-sizing: border-box; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px;
+      opacity: 0; overflow: hidden; }
+    .f06-head { position: absolute; top: 24px; left: 30px; width: 300px; height: 44px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #c9c9ba; opacity: 0; }
+    .f06-row { position: absolute; left: 24px; top: 90px; width: 422px; height: 100px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 18px; padding: 0 16px;
+      border-bottom: 2px solid rgba(255,255,235,0.12);
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: #ffffeb; opacity: 0; }
+    .f06-live { display: inline-block; width: 14px; height: 14px; flex: 0 0 14px;
+      border-radius: 9999px; background: #ffa946; }
+    .f06-svg { position: absolute; inset: 0; }
+    .f06-wire { fill: none; stroke: rgba(26,26,26,0.5); stroke-width: 4; stroke-linecap: round; }
+    .f06-head2 { fill: rgba(26,26,26,0.5); opacity: 0; }
+    .f06-box { position: absolute; left: 700px; width: 300px; height: 100px; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      background: #ffffff; border: 2px solid #1a1a1a; border-radius: 8px; opacity: 0; }
+    .f06-box-name { display: inline-block; font-family: "JetBrains Mono", monospace;
+      font-size: 2.7cqw; color: #1a1a1a; }
+    .f06-gone { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 1.5cqw;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #6f6f67; opacity: 0; }
+    .f06-strike { position: absolute; top: 44px; left: 40px; width: 220px; height: 3px;
+      background: rgba(26,26,26,0.6); opacity: 0; transform-origin: left center; }
+    .f06-count { position: absolute; top: 1100px; left: 80px; width: 470px; height: 150px;
+      display: flex; align-items: flex-start; justify-content: flex-start; gap: 18px; opacity: 0; }
+    .f06-fig { font-family: "EB Garamond", serif; font-weight: 400; font-size: 7.2cqw;
+      line-height: 0.9; letter-spacing: -0.025em; color: #1a1a1a; }
+    .f06-unit { display: inline-block; margin-top: 30px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f06-note { position: absolute; top: 1268px; left: 80px; width: 920px; height: 60px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #6f6f67; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="06-the-leak" data-width="1080" data-height="1920" data-duration="19.913">
+
+    <div id="f06-fieldclip" class="clip" data-start="0" data-duration="19.913" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field"></div>
+      <div id="f06-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="f06-chromeclip" class="clip" data-start="0" data-duration="19.913" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f06-kicker">
+        <span id="f06-spike" class="f06-spike">&#10009;</span><span id="f06-ktext" class="f06-ktext" data-layout-ignore>NO UNSUBSCRIBE</span>
+      </div>
+      <div id="f06-display" class="f06-display">still alive</div>
+    </div>
+
+    <div id="f06-listclip" class="clip" data-start="0" data-duration="19.913" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f06-chamber" class="f06-chamber">
+        <div id="f06-head" class="f06-head" data-layout-ignore>handlers</div>
+        <div id="f06-row1" class="f06-row" style="top:90px;"><span class="f06-live"></span>sendReceipt</div>
+        <div id="f06-row2" class="f06-row" style="top:190px;"><span class="f06-live"></span>logOrder</div>
+        <div id="f06-row3" class="f06-row" style="top:290px;"><span class="f06-live"></span>recordMetric</div>
+        <div id="f06-row4" class="f06-row" style="top:390px;border-bottom:none;"><span class="f06-live"></span>syncSearch</div>
+      </div>
+      <svg class="f06-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <g id="f06-wires">
+          <path id="f06-w1" class="f06-wire" d="M 556 610 L 690 610" />
+          <path id="f06-w2" class="f06-wire" d="M 556 710 L 690 710" />
+          <path id="f06-w3" class="f06-wire" d="M 556 810 L 690 810" />
+          <path id="f06-w4" class="f06-wire" d="M 556 910 L 690 910" />
+          <polygon id="f06-h1" class="f06-head2" points="672,601 672,619 690,610" />
+          <polygon id="f06-h2" class="f06-head2" points="672,701 672,719 690,710" />
+          <polygon id="f06-h3" class="f06-head2" points="672,801 672,819 690,810" />
+          <polygon id="f06-h4" class="f06-head2" points="672,901 672,919 690,910" />
+        </g>
+      </svg>
+      <div id="f06-box1" class="f06-box" style="top:560px;"><span id="f06-b1n" class="f06-box-name">view 1</span><span id="f06-g1" class="f06-gone" data-layout-ignore>gone</span><span id="f06-s1" class="f06-strike"></span></div>
+      <div id="f06-box2" class="f06-box" style="top:660px;"><span id="f06-b2n" class="f06-box-name">view 2</span><span id="f06-g2" class="f06-gone" data-layout-ignore>gone</span><span id="f06-s2" class="f06-strike"></span></div>
+      <div id="f06-box3" class="f06-box" style="top:760px;"><span id="f06-b3n" class="f06-box-name">view 3</span><span id="f06-g3" class="f06-gone" data-layout-ignore>gone</span><span id="f06-s3" class="f06-strike"></span></div>
+      <div id="f06-box4" class="f06-box" style="top:860px;"><span id="f06-b4n" class="f06-box-name">view 4</span><span id="f06-g4" class="f06-gone" data-layout-ignore>gone</span><span id="f06-s4" class="f06-strike"></span></div>
+      <div id="f06-count" class="f06-count"><span id="f06-fig" class="f06-fig">1</span><span class="f06-unit" data-layout-ignore>entries held</span></div>
+      <div id="f06-note" class="f06-note" data-layout-ignore>no row leaves the list</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 19.413;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-the-leak"] = tl;
+
+      // Discrete text swap (no TextPlugin in the shipped GSAP): time proxy + reverse search.
+      function swap(node, states) {
+        var pr = { t: 0 };
+        var last = states[states.length - 1].t;
+        tl.to(pr, {
+          t: last, duration: last, ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      // one registration arriving: row + wire + box, ember dot rides the newest row
+      function arrive(n, t) {
+        var p = el("f06-w" + n);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.fromTo(el("f06-row" + n), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, t);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, t + 0.16);
+        tl.fromTo(el("f06-h" + n), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, t + 0.56);
+        tl.fromTo(el("f06-box" + n), { opacity: 0, x: 22 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, t + 0.3);
+      }
+
+      // a partner object retiring: fill drains to an outline, the label strikes, "gone" appears.
+      // The list row it points at is deliberately left untouched.
+      function retire(n, t) {
+        tl.to(el("f06-box" + n), { backgroundColor: "rgba(255,255,235,0)", borderColor: "rgba(26,26,26,0.32)", duration: 0.5, ease: "power1.inOut" }, t);
+        tl.to(el("f06-b" + n + "n"), { color: "#6f6f67", duration: 0.5, ease: "power1.inOut" }, t);
+        tl.fromTo(el("f06-s" + n), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "power2.out" }, t + 0.42);
+        tl.to(el("f06-g" + n), { opacity: 1, duration: 0.36, ease: "power1.out" }, t + 0.6);
+      }
+
+      // ── ground + chrome ──
+      tl.fromTo(el("f06-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("f06-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.08);
+      tl.fromTo(el("f06-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0-1.6s) — "The second cost leaks": the list, one entry, one live view ──
+      tl.fromTo(el("f06-chamber"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.22);
+      tl.fromTo(el("f06-head"), { opacity: 0 }, { opacity: 1, duration: 0.36, ease: "power1.out" }, 0.64);
+      arrive(1, 1.14);
+      tl.fromTo(el("f06-count"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 1.14);
+
+      // ── Scene 2 (2.5-5.1s) — "a listener added on mount and never removed" ──
+      arrive(2, 3.04);
+      swap(el("f06-fig"), [
+        { t: 1.14, text: "1" },
+        { t: 3.94, text: "2" },
+        { t: 11.7, text: "3" },
+        { t: 16.1, text: "4" }
+      ]);
+
+      // ── Scene 3 (5.6-9.1s) — "keeps its subject alive after its view is gone": box one retires,
+      //    its row keeps full ink. The display beat lands on "alive". ──
+      tl.fromTo(el("f06-display"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.98);
+      retire(1, 8.22);
+
+      // ── Scene 4 (10.4-14.2s) — "each mount registers again, and the earlier entry stays" ──
+      arrive(3, 11.12);
+      retire(2, 13.14);
+
+      // ── Scene 5 (15.6-19.0s) — "the list grows, and its entries point at nothing" ──
+      arrive(4, 16.1);
+      retire(3, 17.98);
+      retire(4, 18.72);
+      tl.fromTo(el("f06-note"), { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power1.out" }, 17.32);
+
+      // ── hold: the list is the only thing still wearing ink ──
+      tl.to(el("f06-chamber"), { y: 1.8, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: 1 }, 19.0);
+    })();
+  </script>
+</template>

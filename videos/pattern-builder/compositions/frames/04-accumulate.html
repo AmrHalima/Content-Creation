@@ -1,0 +1,243 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; top: 158px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f04-spike { color: #1a1a1a; font-size: 2.5cqw; letter-spacing: 0; }
+    .f04-caller {
+      position: absolute; top: 246px; left: 56px; width: 968px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0;
+    }
+    .f04-caller-tag {
+      box-sizing: border-box; padding: 12px 22px;
+      background: #e4e4d0; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.06em; color: #1a1a1a;
+      white-space: nowrap;
+    }
+    .f04-echo {
+      box-sizing: border-box; padding: 12px 20px;
+      background: #ffffeb; border: 2px solid rgba(26,26,26,0.22); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: #76766e;
+      white-space: nowrap;
+    }
+    .f04-echo-lit { border-color: rgba(26,26,26,0.72); color: #1a1a1a; }
+    .f04-seam {
+      position: absolute; top: 470px; left: 56px; width: 968px; height: 560px;
+      box-sizing: border-box;
+      background: #1a1a1a;
+      border: 2px solid #ffffeb;
+      border-radius: 12px;
+      padding: 30px 34px;
+      opacity: 0;
+    }
+    .f04-seam-head {
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.10em; text-transform: uppercase;
+      color: rgba(255,255,235,0.62);
+    }
+    .f04-slotrow {
+      position: relative;
+      display: flex; align-items: center; gap: 22px;
+      height: 124px; margin-top: 26px;
+      box-sizing: border-box; padding: 0 26px;
+      background: #252320;
+      border: 2px solid rgba(255,255,235,0.20);
+      border-radius: 8px;
+    }
+    .f04-slot-key {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: rgba(255,255,235,0.66);
+    }
+    .f04-slot-val {
+      margin-left: auto;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 3.0cqw; letter-spacing: -0.01em; color: #ffffeb;
+      opacity: 0;
+      display: inline-block;
+    }
+    .f04-private {
+      position: absolute; top: 442px; left: 700px;
+      box-sizing: border-box; padding: 10px 20px;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f04-svg { position: absolute; inset: 0; pointer-events: none; }
+    .f04-stop { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 3; stroke-linecap: round; }
+    .f04-block { stroke: #1a1a1a; stroke-width: 4; opacity: 0; }
+    .f04-product {
+      position: absolute; top: 1112px; left: 56px; width: 968px; height: 300px;
+      box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+      border: 3px dashed rgba(26,26,26,0.34);
+      border-radius: 12px;
+      opacity: 0;
+    }
+    .f04-product-label {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.1cqw; letter-spacing: 0.10em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f04-product-slot {
+      width: 300px; height: 74px;
+      background: repeating-linear-gradient(135deg, rgba(26,26,26,0.10) 0 8px, rgba(26,26,26,0) 8px 16px);
+      border: 2px solid rgba(26,26,26,0.22);
+      border-radius: 8px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-accumulate" data-width="1080" data-height="1920" data-duration="8.244">
+
+    <div id="04-accumulate-fieldclip" class="clip" data-start="0" data-duration="8.244" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field"></div>
+      <div id="04-accumulate-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="04-accumulate-headclip" class="clip" data-start="0" data-duration="8.244" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="04-accumulate-kicker" class="f04-kicker"><span class="f04-spike">&#10033;</span><span>inside the builder</span></div>
+      <div id="04-accumulate-caller" class="f04-caller">
+        <span class="f04-caller-tag">caller</span>
+        <span id="04-accumulate-e1" class="f04-echo">.customer(c)</span>
+        <span id="04-accumulate-e2" class="f04-echo">.line(l)</span>
+        <span id="04-accumulate-e3" class="f04-echo">.shipTo(s)</span>
+      </div>
+    </div>
+
+    <div id="04-accumulate-seamclip" class="clip" data-start="0" data-duration="8.244" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="04-accumulate-seam" class="f04-seam">
+        <div class="f04-seam-head"><span>OrderBuilder</span><span>state</span></div>
+        <div id="04-accumulate-r1" class="f04-slotrow">
+          <span class="f04-slot-key">customer</span>
+          <span id="04-accumulate-v1" class="f04-slot-val">c</span>
+        </div>
+        <div id="04-accumulate-r2" class="f04-slotrow">
+          <span class="f04-slot-key">line</span>
+          <span id="04-accumulate-v2" class="f04-slot-val">l</span>
+        </div>
+        <div id="04-accumulate-r3" class="f04-slotrow">
+          <span class="f04-slot-key">shipTo</span>
+          <span id="04-accumulate-v3" class="f04-slot-val">s</span>
+        </div>
+      </div>
+      <div id="04-accumulate-private" class="f04-private">private</div>
+    </div>
+
+    <div id="04-accumulate-arrowclip" class="clip" data-start="4.56" data-duration="3.684" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f04-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="04-accumulate-stop" class="f04-stop" d="M 540 330 L 540 452" />
+        <g id="04-accumulate-blockwrap">
+          <line id="04-accumulate-block" class="f04-block" x1="512" y1="452" x2="568" y2="452" />
+        </g>
+      </svg>
+    </div>
+
+    <div id="04-accumulate-productclip" class="clip" data-start="0.98" data-duration="7.264" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="04-accumulate-product" class="f04-product">
+        <span class="f04-product-label">the order goes here</span>
+        <span class="f04-product-slot"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.744;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-accumulate"] = tl;
+
+      // ── Scene 1 (0.0–2.6s) — "nothing is an order yet". The seam chamber enters at 0.8 and
+      //    is immovable from then on; the product frame below arrives dashed and empty. The
+      //    caller rail exists but no echo is lit. ──
+      tl.fromTo(el("04-accumulate-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("04-accumulate-kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 0.14);
+      tl.fromTo(el("04-accumulate-caller"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.30);
+      tl.fromTo(el("04-accumulate-seam"), { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.80);
+      tl.fromTo(el("04-accumulate-product"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.98);
+
+      // ── Scene 2 (2.6–4.6s) — "each call adds one piece". This is the one-to-one motion the
+      //    part exists for: echo lights, then one beat later the value lands in the matching
+      //    private slot. Three discrete states, steady cadence, no partial tweens. ──
+      var PAIRS = [
+        { echo: "04-accumulate-e1", val: "04-accumulate-v1", row: "04-accumulate-r1", at: 2.64 },
+        { echo: "04-accumulate-e2", val: "04-accumulate-v2", row: "04-accumulate-r2", at: 3.52 },
+        { echo: "04-accumulate-e3", val: "04-accumulate-v3", row: "04-accumulate-r3", at: 4.20 }
+      ];
+      for (var i = 0; i < PAIRS.length; i++) {
+        var pr = PAIRS[i];
+        tl.to(el(pr.echo), { borderColor: "rgba(26,26,26,0.72)", color: "#1a1a1a", duration: 0.18, ease: "power1.out" }, pr.at);
+        tl.fromTo(
+          el(pr.val),
+          { opacity: 0, y: -16 },
+          { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" },
+          pr.at + 0.30
+        );
+        tl.fromTo(
+          el(pr.row),
+          { borderColor: "rgba(255,255,235,0.20)" },
+          { borderColor: "rgba(255,255,235,0.52)", duration: 0.24, ease: "power2.out" },
+          pr.at + 0.30
+        );
+      }
+
+      // ── Scene 3 (4.6–7.0s) — "to private state the caller cannot touch". The `private`
+      //    chip settles on the border, the caller's arrow draws down and STOPS SHORT of the
+      //    wall, and the block bar lands on it. The product frame never fills. ──
+      tl.fromTo(el("04-accumulate-private"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 4.82);
+      var STROKE = 130;
+      el("04-accumulate-stop").style.strokeDasharray = STROKE + " " + STROKE;
+      tl.fromTo(
+        el("04-accumulate-stop"),
+        { attr: { "stroke-dashoffset": STROKE } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.72, ease: "power2.out" },
+        5.60
+      );
+      tl.fromTo(el("04-accumulate-block"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.46);
+      tl.fromTo(el("04-accumulate-blockwrap"), { scale: 0.86, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "power3.out" }, 6.46);
+
+      // ── Scene 4 (7.0–7.74s) — "cannot touch" (6.46) then "touch." (6.94): held read. Three
+      //    filled slots, an empty product frame, jitter on the pinned chamber only. ──
+      var jit = { p: 0 };
+      var box = el("04-accumulate-seam");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - 7.05,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.2).toFixed(3) + "px)"; }
+      }, 7.05);
+    })();
+  </script>
+</template>

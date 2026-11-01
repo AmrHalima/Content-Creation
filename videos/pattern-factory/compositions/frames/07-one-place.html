@@ -1,0 +1,194 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f07-kicker {
+      position: absolute; top: 168px; left: 80px; width: 700px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f07-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; }
+    .f07-ktext { display: inline-block; }
+    .f07-chamber {
+      position: absolute; left: 90px; width: 700px; box-sizing: border-box;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      padding: 18px 26px;
+    }
+    .f07-caller { top: 250px; height: 200px; }
+    .f07-seam {
+      position: absolute; top: 590px; left: 90px; width: 700px; height: 240px;
+      box-sizing: border-box; border: 2px solid rgba(255,255,235,0.22); border-radius: 12px;
+      background: #181715; padding: 18px 26px;
+    }
+    .f07-role {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.1em; text-transform: uppercase; color: #76766e;
+    }
+    .f07-seam .f07-role { color: rgba(255,255,235,0.6); }
+    .f07-name {
+      display: block; margin-top: 10px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.9cqw; color: #1a1a1a;
+    }
+    .f07-seamname {
+      display: block; margin-top: 6px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-style: italic;
+      font-size: 5.2cqw; line-height: 1.04; letter-spacing: -0.012em; color: #ffffeb;
+    }
+    .f07-marker {
+      position: absolute; left: 26px; bottom: 20px;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 56px; padding: 0 22px;
+      background: #FFA946; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.06em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f07-bound {
+      position: absolute; left: 0; top: 154px; width: 700px; height: 0;
+      border-top: 2px dashed rgba(255,255,235,0.55);
+      opacity: 0;
+    }
+    .f07-impl {
+      position: absolute; top: 1010px; width: 280px; height: 116px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: #1a1a1a; text-align: center;
+    }
+    .f07-impl-a { left: 60px; }
+    .f07-impl-b { left: 360px; }
+    .f07-impl-c { left: 660px; background: #E4E4D0; }
+    .f07-note {
+      position: absolute; top: 470px; left: 90px; width: 700px; height: 60px;
+      display: flex; align-items: center;
+      font-family: "Inter", sans-serif; font-weight: 400; font-size: 2.7cqw; color: #76766e;
+      opacity: 0;
+    }
+    .f07-note-mark { display: inline-block; width: 32px; height: 2px; background: #76766e; margin-right: 18px; }
+    .f07-arrows { position: absolute; inset: 0; }
+    .f07-arrows svg { display: block; width: 100%; height: 100%; }
+    .f07-shaft { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .f07-head { fill: #1a1a1a; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="07-one-place" data-width="1080" data-height="1920" data-duration="9.941">
+
+    <div id="07-one-place-groundclip" class="clip f07-groundclip" data-start="0" data-duration="9.941" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field" id="07-one-place-field"></div>
+      <div class="f07-grid" id="07-one-place-grid"></div>
+    </div>
+
+    <div id="07-one-place-stackclip" class="clip f07-stackclip" data-start="0" data-duration="9.941" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f07-kicker" id="07-one-place-kicker">
+        <span class="f07-spike" id="07-one-place-spike">&#10009;</span><span class="f07-ktext" id="07-one-place-ktext" data-layout-ignore>what changes</span>
+      </div>
+      <div class="f07-chamber f07-caller" id="07-one-place-caller">
+        <div class="f07-role" id="07-one-place-callerrole">caller</div>
+        <div class="f07-name" id="07-one-place-callernme">PaymentGateway</div>
+      </div>
+      <div class="f07-seam" id="07-one-place-seam">
+        <div class="f07-role" id="07-one-place-seamrole">the seam</div>
+        <div class="f07-seamname" id="07-one-place-seamname">factory</div>
+        <div class="f07-marker" id="07-one-place-marker">+ 1 case</div>
+        <div class="f07-bound" id="07-one-place-bound"></div>
+      </div>
+      <div class="f07-impl f07-impl-a" id="07-one-place-impl1">StripeGateway</div>
+      <div class="f07-impl f07-impl-b" id="07-one-place-impl2">RazorpayGateway</div>
+      <div class="f07-note" id="07-one-place-note"><span class="f07-note-mark" id="07-one-place-notemark"></span>no new name here</div>
+    </div>
+
+    <div id="07-one-place-arrowclip" class="clip f07-arrowclip" data-start="0.4" data-duration="9.541" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f07-arrows" id="07-one-place-arrows">
+        <svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f07-shaft" id="07-one-place-shaft0" pathLength="1" d="M440 452 L440 584" />
+          <polygon class="f07-head" id="07-one-place-head0" points="440,588 424,552 456,552" />
+          <path class="f07-shaft" id="07-one-place-shaft1" pathLength="1" d="M200 832 L200 1004" />
+          <path class="f07-shaft" id="07-one-place-shaft2" pathLength="1" d="M500 832 L500 1004" />
+          <polygon class="f07-head" id="07-one-place-head1" points="200,1008 184,972 216,972" />
+          <polygon class="f07-head" id="07-one-place-head2" points="500,1008 484,972 516,972" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="07-one-place-newclip" class="clip f07-newclip" data-start="1.02" data-duration="8.921" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f07-impl f07-impl-c" id="07-one-place-impl3">UpiGateway</div>
+      <div class="f07-arrows" id="07-one-place-newarrows">
+        <svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f07-shaft" id="07-one-place-shaft3" pathLength="1" d="M800 832 L800 1004" />
+          <polygon class="f07-head" id="07-one-place-head3" points="800,1008 784,972 816,972" />
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.941;
+      var P = "07-one-place";
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines[P] = tl;
+
+      // ── ground ──
+      tl.fromTo(el(P + "-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.0s) — the stack arrives, and the caller pins: it never moves again ──
+      tl.fromTo(el(P + "-caller"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.2);
+      tl.fromTo(el(P + "-seam"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.36);
+      tl.fromTo(el(P + "-impl1"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 0.5);
+      tl.fromTo(el(P + "-impl2"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 0.62);
+      tl.fromTo(el(P + "-shaft0"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.fromTo(el(P + "-head0"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 0.72);
+      tl.fromTo(el(P + "-shaft1"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 0.56);
+      tl.fromTo(el(P + "-shaft2"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 0.68);
+      tl.fromTo(el(P + "-head1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 0.9);
+      tl.fromTo(el(P + "-head2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 1.0);
+
+      // ── Scene 2 (1.0–2.4s) — "lands": the third implementation enters the band ──
+      tl.fromTo(el(P + "-impl3"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 1.02);
+      tl.fromTo(el(P + "-shaft3"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.44, ease: "power2.out" }, 1.6);
+      tl.fromTo(el(P + "-head3"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 1.96);
+
+      // ── Scene 3 (2.4–5.4s) — "the change is inside the factory": the only ember, on the seam ──
+      tl.fromTo(el(P + "-marker"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power3.out" }, 3.18);
+
+      // ── Scene 4 (5.4–7.6s) — "callers never heard of it": a note under the pinned caller ──
+      tl.fromTo(el(P + "-note"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 6.04);
+
+      // ── Scene 5 (7.6–9.941s) — "coupling stays out of the domain": the boundary rule ──
+      tl.fromTo(el(P + "-bound"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", transformOrigin: "left center" }, 8.06);
+
+      // subtle jitter (finite, low amplitude): the new chip only — the caller stays pinned
+      var jit = { p: 0 };
+      var hold = el(P + "-impl3");
+      var HOLD = 9.4;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.25,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          hold.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

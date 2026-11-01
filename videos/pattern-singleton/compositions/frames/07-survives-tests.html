@@ -1,0 +1,154 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .clipband { position: absolute; inset: 0; }
+
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid {
+      position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    .f07-kicker {
+      position: absolute; top: 200px; left: 72px; width: 820px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f07-spike { display: inline-block; opacity: 0; color: #76766e; font-size: 1.7cqw; margin-right: 14px; }
+    .f07-ktext { display: inline-block; opacity: 0; }
+
+    .f07-case {
+      position: absolute; left: 72px; width: 380px; height: 190px; box-sizing: border-box;
+      border: 2px solid #1a1a1a; border-radius: 8px; background: #ffffeb; opacity: 0;
+    }
+    .f07-casea { top: 480px; }
+    .f07-caseb { top: 760px; }
+    .f07-caselabel {
+      position: absolute; left: 34px; top: 70px; display: block; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.8cqw;
+      letter-spacing: -0.018em; color: #1a1a1a;
+    }
+
+    .f07-box {
+      position: absolute; left: 620px; top: 560px; width: 340px; height: 300px;
+      box-sizing: border-box; border: 2px solid #1a1a1a; border-radius: 8px;
+      background: #1a1a1a; opacity: 0;
+    }
+    .f07-boxlabel {
+      position: absolute; left: 26px; top: 40px; display: block; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; color: #ffffeb;
+    }
+    /* two stacked state nodes: the value changes by replacement, never by text tween */
+    .f07-state {
+      position: absolute; left: 26px; top: 176px; width: 290px; height: 56px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+    }
+    .f07-statezero { color: #8f8f84; opacity: 0; }
+    .f07-stateseven { color: #ffffeb; opacity: 0; }
+
+    .f07-link { position: absolute; inset: 0; opacity: 0; }
+    .f07-bar { position: absolute; background: #1a1a1a; }
+    .f07-headr {
+      position: absolute; width: 0; height: 0;
+      border-top: 10px solid transparent; border-bottom: 10px solid transparent;
+      border-left: 15px solid #1a1a1a;
+    }
+
+    .f07-noreset {
+      position: absolute; left: 72px; top: 686px; width: 258px; height: 60px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-survives-tests" data-width="1080" data-height="1920" data-duration="7.711">
+
+    <div id="f07-ground" class="clip clipband" data-start="0" data-duration="7.711" data-track-index="0">
+      <div class="f07-field"></div>
+      <div id="f07-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="f07-chrome" class="clip clipband" data-start="0" data-duration="7.711" data-track-index="1">
+      <div class="f07-kicker">
+        <div id="f07-spike" class="f07-spike">&#10009;</div>
+        <div id="f07-ktext" class="f07-ktext" data-layout-ignore>THE SECOND COST</div>
+      </div>
+    </div>
+
+    <div id="f07-content" class="clip clipband" data-start="0" data-duration="7.711" data-track-index="2">
+      <div id="f07-casea" class="f07-case f07-casea">
+        <div class="f07-caselabel">test A</div>
+      </div>
+
+      <div id="f07-box" class="f07-box">
+        <div class="f07-boxlabel">Config</div>
+        <div id="f07-statezero" class="f07-state f07-statezero">retries = 0</div>
+        <div id="f07-stateseven" class="f07-state f07-stateseven">retries = 7</div>
+      </div>
+
+      <div id="f07-linka" class="f07-link">
+        <div class="f07-bar" style="left:452px; top:574px; width:90px; height:3px;"></div>
+        <div class="f07-bar" style="left:539px; top:574px; width:3px; height:88px;"></div>
+        <div class="f07-bar" style="left:539px; top:659px; width:81px; height:3px;"></div>
+        <div class="f07-headr" style="left:612px; top:651px;"></div>
+      </div>
+
+      <div id="f07-caseb" class="f07-case f07-caseb">
+        <div class="f07-caselabel">test B</div>
+      </div>
+
+      <div id="f07-linkb" class="f07-link">
+        <div class="f07-bar" style="left:452px; top:854px; width:90px; height:3px;"></div>
+        <div class="f07-bar" style="left:539px; top:762px; width:3px; height:92px;"></div>
+        <div class="f07-bar" style="left:539px; top:762px; width:81px; height:3px;"></div>
+        <div class="f07-headr" style="left:612px; top:752px;"></div>
+      </div>
+
+      <div id="f07-noreset" class="f07-noreset">no reset</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.211;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-survives-tests"] = tl;
+
+      tl.fromTo(el("f07-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("f07-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.24, ease: "power2.out" }, 0.05);
+      tl.fromTo(el("f07-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.36, ease: "power1.out" }, 0.16);
+
+      // ── Scene 1 (0.0–1.8s) — "It outlives the test run too" ──
+      tl.fromTo(el("f07-casea"), { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.38, ease: "power3.out" }, 0.24);
+      tl.fromTo(el("f07-box"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.44);
+      tl.fromTo(el("f07-statezero"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 1.80);
+
+      // ── Scene 2 (1.8–5.5s) — "State left by one case": the node is replaced, not rewritten ──
+      tl.fromTo(el("f07-linka"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out", immediateRender: false }, 2.92);
+      tl.to(el("f07-statezero"), { opacity: 0, duration: 0.28, ease: "power1.inOut" }, 4.10);
+      tl.to(el("f07-stateseven"), { opacity: 1, duration: 0.28, ease: "power1.inOut", immediateRender: false }, 4.10);
+
+      // ── Scene 3 (5.5–7.2s) — "in the next one": the second case reaches the same object ──
+      tl.fromTo(el("f07-caseb"), { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.38, ease: "power3.out", immediateRender: false }, 5.94);
+      tl.fromTo(el("f07-linkb"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 6.24);
+      tl.fromTo(el("f07-noreset"),
+        { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out", immediateRender: false }, 6.64);
+    })();
+  </script>
+</template>

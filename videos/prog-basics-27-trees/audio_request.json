@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Your computer's folders are secretly a data structure."
+    },
+    {
+      "id": "02",
+      "text": "A tree is a hierarchy of nodes. A node is one box, holding one thing. One root at the top, and every node can have children."
+    },
+    {
+      "id": "03",
+      "text": "A node with no children is a leaf. Folders, HTML pages, and org charts are all trees. This one has five nodes and three leaves."
+    },
+    {
+      "id": "04",
+      "text": "A list is one line. A tree branches, and each branch is another tree."
+    },
+    {
+      "id": "05",
+      "text": "How many leaves if the root has 2 children and each child has 2 more?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

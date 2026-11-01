@@ -1,0 +1,275 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f09-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f09-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f09-kicker {
+      position: absolute; top: 214px; left: 60px; width: 720px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f09-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f09-ktext { display: inline-block; opacity: 0; }
+
+    .f09-stack { position: absolute; inset: 0; }
+    .f09-chip {
+      position: absolute; left: 260px; width: 560px; height: 96px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; white-space: nowrap; background: #e4e4d0;
+      border: 2px solid rgba(26,26,26,0.4);
+      font-family: "JetBrains Mono", monospace; font-size: 2.4cqw; color: #46463f; opacity: 0;
+    }
+    .f09-chip-caller { top: 336px; }
+    .f09-box {
+      position: absolute; left: 260px; width: 560px; height: 170px;
+      box-sizing: border-box; background: #181715; border-radius: 8px;
+      border: 2px solid rgba(255,255,235,0.22);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      opacity: 0;
+    }
+    .f09-box-a { top: 500px; }
+    .f09-box-b { top: 744px; border-color: #ffa946; }
+    .f09-box-name {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      line-height: 1; color: #ffffeb; white-space: nowrap;
+    }
+    .f09-box-role {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; line-height: 1;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,235,0.68); white-space: nowrap;
+    }
+    .f09-tip {
+      position: absolute; left: 260px; top: 962px; width: 560px; height: 58px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; color: #46463f;
+      white-space: nowrap; opacity: 0;
+    }
+    .f09-note {
+      position: absolute; top: 800px; left: 40px; width: 200px; height: 58px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; line-height: 1.2;
+      color: #76766e; opacity: 0; white-space: nowrap;
+    }
+
+    .f09-one { position: absolute; inset: 0; }
+    .f09-seal {
+      position: absolute; top: 620px; left: 300px; width: 480px; height: 200px;
+      box-sizing: border-box; background: #181715; border-radius: 8px;
+      border: 2px solid rgba(255,255,235,0.22);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      opacity: 0;
+    }
+    .f09-seal-name {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 2.5cqw; line-height: 1;
+      color: #ffffeb; white-space: nowrap;
+    }
+    .f09-seal-role {
+      display: block; font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; line-height: 1;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,235,0.68); white-space: nowrap;
+    }
+    .f09-edge {
+      position: absolute; left: 306px; width: 468px; height: 78px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; opacity: 0;
+    }
+    .f09-edge-left { top: 470px; background: #f0d7ff; border: 2px solid #1a1a1a; color: #1a1a1a; }
+    .f09-edge-right { top: 894px; background: #e4e4d0; border: 2px solid rgba(26,26,26,0.4); color: #46463f; }
+    .f09-mask { position: absolute; top: 1104px; left: 60px; width: 960px; height: 300px; overflow: hidden; }
+    .f09-display {
+      display: block; font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.4cqw; line-height: 1.06; letter-spacing: -0.02em; color: #1a1a1a;
+      text-align: center;
+    }
+    .f09-line { display: block; white-space: nowrap; }
+
+    .f09-wires { position: absolute; inset: 0; }
+    .f09-wires svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f09-wire { fill: none; stroke: #1a1a1a; stroke-width: 5; stroke-linecap: round; }
+    .f09-head { fill: #1a1a1a; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="09-stacked-and-rule" data-width="1080" data-height="1920" data-duration="10.133">
+
+    <div id="f09-ground" class="clip" data-start="0" data-duration="10.133" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f09-field"></div>
+      <div id="f09-grid" class="f09-grid"></div>
+    </div>
+
+    <div id="f09-chrome" class="clip" data-start="0" data-duration="10.133" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f09-kicker">
+        <span id="f09-spike" class="f09-spike">&#10009;</span><span id="f09-ktext" class="f09-ktext" data-layout-ignore>ADAPTERS ON ADAPTERS</span>
+      </div>
+    </div>
+
+    <div id="f09-pile" class="clip" data-start="0.2" data-duration="5.2" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f09-pile-inner" data-hold class="f09-stack">
+        <div id="f09-caller" class="f09-chip f09-chip-caller">CheckoutService</div>
+        <div id="f09-a" class="f09-box f09-box-a">
+          <span class="f09-box-name">VendorPayAdapter</span>
+          <span class="f09-box-role" data-layout-ignore>adapter</span>
+        </div>
+        <div id="f09-b" class="f09-box f09-box-b">
+          <span class="f09-box-name">LegacyPayAdapter</span>
+          <span class="f09-box-role" data-layout-ignore>adapter again</span>
+        </div>
+        <div id="f09-tip" class="f09-tip">BankClient</div>
+        <div id="f09-note" class="f09-note" data-layout-ignore>forwards both times</div>
+      </div>
+    </div>
+
+    <div id="f09-pilewires" class="clip" data-start="1.0" data-duration="4.4" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f09-pile-wires-inner" class="f09-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f09-w1" class="f09-wire" d="M 540 436 L 540 488" />
+          <polygon id="f09-h1" class="f09-head" points="527,478 540,502 553,478" />
+          <path id="f09-w2" class="f09-wire" d="M 540 674 L 540 732" />
+          <polygon id="f09-h2" class="f09-head" points="527,722 540,746 553,722" />
+          <path id="f09-w3" class="f09-wire" d="M 540 918 L 540 956" />
+          <polygon id="f09-h3" class="f09-head" points="527,946 540,970 553,946" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="f09-rule" class="clip" data-start="4.9" data-duration="5.233" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f09-one" class="f09-one">
+        <div id="f09-edge-a" class="f09-edge f09-edge-left">PaymentGateway</div>
+        <div id="f09-seal" class="f09-seal">
+          <span class="f09-seal-name">VendorPayAdapter</span>
+          <span class="f09-seal-role" data-layout-ignore>one box</span>
+        </div>
+        <div id="f09-edge-b" class="f09-edge f09-edge-right">BankClient</div>
+        <div class="f09-mask">
+          <div id="f09-display" class="f09-display">
+            <span class="f09-line">one box per pair</span>
+            <span class="f09-line">of shapes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="f09-rulewires" class="clip" data-start="6.2" data-duration="3.933" data-track-index="5" style="position:absolute;inset:0;">
+      <div class="f09-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f09-w4" class="f09-wire" d="M 540 552 L 540 610" />
+          <polygon id="f09-h4" class="f09-head" points="527,600 540,624 553,600" />
+          <path id="f09-w5" class="f09-wire" d="M 540 824 L 540 886" />
+          <polygon id="f09-h5" class="f09-head" points="527,876 540,900 553,876" />
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.133;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["09-stacked-and-rule"] = tl;
+
+      // the closing eyebrow is another in-place label swap: time proxy + reverse search,
+      // never tl.set({ text: ... }) (no TextPlugin in the shipped GSAP; it no-ops silently)
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t,
+          duration: states[states.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      function draw(id, at, dur) {
+        var p = el(id);
+        var len = p.getTotalLength();
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: dur, ease: "power3.out" }, at);
+      }
+
+      // ── ground ──
+      tl.fromTo(el("f09-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f09-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f09-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.6s) "Stacked adapters fail the same way" ──
+      tl.fromTo(el("f09-caller"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.3);
+      tl.fromTo(el("f09-a"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.56);
+      draw("f09-w1", 1.1, 0.32);
+      tl.fromTo(el("f09-h1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 1.36);
+
+      // ── Scene 2 (1.6–4.2s) "one layer down": the second adapter takes the ember, chain completes ──
+      draw("f09-w2", 1.9, 0.32);
+      tl.fromTo(el("f09-h2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 2.14);
+      tl.fromTo(el("f09-b"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 2.9);
+      draw("f09-w3", 3.4, 0.3);
+      tl.fromTo(el("f09-h3"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 3.62);
+      tl.fromTo(el("f09-tip"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 3.68);
+
+      // ── Scene 3 (4.2–6.6s) the pile is named, then it clears; the rule takes its place ──
+      tl.fromTo(el("f09-note"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 4.24);
+      tl.to(["#f09-pile-inner", "#f09-pile-wires-inner"], { opacity: 0, duration: 0.55, ease: "power2.inOut" }, 4.75);
+
+      textSeq(el("f09-ktext"), [
+        { t: 0, text: "ADAPTERS ON ADAPTERS" },
+        { t: 5.3, text: "THE RULE" }
+      ]);
+
+      tl.fromTo(el("f09-seal"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 5.06);
+      tl.fromTo(el("f09-edge-a"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 5.52);
+      tl.fromTo(el("f09-edge-b"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 6.0);
+
+      // ── Scene 4 (6.6–8.8s) "Keep one box per pair of shapes": one arrow in, one arrow out ──
+      draw("f09-w4", 6.4, 0.36);
+      tl.fromTo(el("f09-h4"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 6.7);
+      draw("f09-w5", 6.9, 0.36);
+      tl.fromTo(el("f09-h5"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 7.2);
+
+      // ── Scene 5 (8.8–10.13s) "and finish the translation inside it": the line holds, then stillness ──
+      tl.fromTo(el("f09-display"), { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 7.3);
+      tl.to(el("f09-display"), { scale: 1.02, duration: 0.5, ease: "power3.out" }, 8.9);
+
+      var jit = { p: 0 };
+      var box = el("f09-seal");
+      var HOLD = 9.52;
+      gsap.set(box, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

@@ -1,0 +1,136 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G5 CTA (pb-21/05-cta atoms) */
+    .f5-ask { position: absolute; left: 72px; top: 296px; width: 936px; height: 176px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .f5-rule { position: absolute; left: 300px; top: 496px; width: 480px; height: 4px;
+      background: rgba(255,255,255,0.16); border-radius: 2px; transform: scaleX(0);
+      transform-origin: center center; }
+
+    /* the ask made physical: G2's empty state — dashed edge, no value, a dim mint caret blinking */
+    .f5-band { position: absolute; left: 72px; top: 556px; width: 936px; height: 120px; display: flex;
+      align-items: center; justify-content: center; }
+    .f5-expr { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 4.4cqw; font-weight: 400; letter-spacing: 0.02em; color: #F4F1EA; white-space: nowrap; }
+    .f5-slot { position: relative; display: inline-block; box-sizing: border-box; width: 140px;
+      height: 100px; margin-left: 28px; opacity: 0; background: #1F242C;
+      border: 3px dashed rgba(255,255,255,0.16); border-radius: 22px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f5-caret { position: absolute; left: 50%; top: 50%; width: 6px; height: 48px;
+      transform: translate(-50%, -50%); background: #5AD6A0; border-radius: 3px; opacity: 0.2; }
+
+    .f5-plate { position: absolute; left: 330px; top: 740px; width: 420px; height: 104px; display: flex;
+      align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    .f5-brandline { position: absolute; left: 72px; top: 906px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="4.33">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="4.33" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="4.33" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 19 · THE ASK</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="4.33" data-track-index="2">
+      <div id="f5-ask" class="f5-ask">what's&nbsp;7&nbsp;%&nbsp;3?</div>
+      <div id="f5-rule" class="f5-rule"></div>
+
+      <div id="f5-band" class="f5-band">
+        <span id="f5-expr" class="f5-expr">7&nbsp;%&nbsp;3&nbsp;=</span>
+        <div id="f5-slot" class="f5-slot"><div id="f5-caret" class="f5-caret"></div></div>
+      </div>
+
+      <div id="f5-plate" class="f5-plate">comment&nbsp;it</div>
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 19 · BEGINNER</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 4.33;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: 1.08, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.44, ease: "sine.inOut", repeat: 2, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.08, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: this frame drops in from above (F4 came in from the right) */
+      tl.fromTo(el("f5-ask"), { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f5-ask"), { scale: 1 }, { scale: 1.03, duration: 0.22, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 0.36);
+
+      /* the empty answer slot arrives on "3?" (0.80 -> 1.14) — G2's "waiting to be filled" state,
+         and the only place the answer could live. The answer is not on this frame. */
+      tl.fromTo(el("f5-expr"), { opacity: 0, x: -28 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 0.82);
+      tl.fromTo(el("f5-slot"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.5)", immediateRender: false }, 0.94);
+      /* the caret blinks at 1s and returns to its own zero */
+      tl.fromTo(el("f5-caret"), { opacity: 0.2 }, { opacity: 1, duration: 0.5, ease: "sine.inOut",
+        repeat: 5, yoyo: true, immediateRender: false }, 1.1);
+
+      /* P10 rule settles under the ask while the slot is still arriving */
+      tl.fromTo(el("f5-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.inOut", immediateRender: false }, 1.16);
+
+      /* the mechanic verb plate lands on "Comment" (1.52 -> 1.84) — P2 drop-in */
+      tl.fromTo(el("f5-plate"), { opacity: 0, y: -70, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.36, ease: "back.out(1.7)", immediateRender: false }, 1.54);
+
+      /* the series line closes on "it." (1.84 -> 2.10), then the frame holds alone */
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.92);
+
+      /* ambient through the hold, every loop back to zero */
+      tl.fromTo(el("f5-plate"), { y: 0 }, { y: -5, duration: 1.0, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 2.2);
+      tl.fromTo(el("f5-slot"), { y: 0 }, { y: 4, duration: 0.85, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 2.6);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

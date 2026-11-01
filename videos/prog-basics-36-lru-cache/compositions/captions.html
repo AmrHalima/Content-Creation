@@ -1,0 +1,182 @@
+<template id="captions-template" data-composition-id="captions" data-width="1080" data-height="1920">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+
+<style data-brand-tokens>
+      :root {
+      --cap-band-top: 1600px;
+      --cap-band-height: 320px;
+      }
+    </style>
+
+<style>
+  @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+  @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* the campaign's lifted band, per frame.md v2 section 5: band 1024 -> 1344, floor empty */
+    --cap-band-top: 1024px;
+    --cap-band-height: 320px;
+    --say: #FFD166;
+    --say-ink: #22201B;
+    --ink: #F4F1EA;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* absolutely stacked over the SAME band — exactly one group shown at a time */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+  .caption-pill {
+    max-width: 88%;
+    padding: 22px 44px 28px;
+    background: rgba(21, 24, 29, 0.72);
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.70);
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.14em 0.26em;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 4.26vw, 46px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--ink);
+  }
+  .caption-word {
+    display: inline-block;
+    padding: 0.04em 0.10em 0.06em;
+    color: rgba(244, 241, 234, 0.45);
+    border-radius: 8px;
+  }
+  .caption-word.is-active {
+    color: var(--say-ink);
+    background: var(--say);
+  }
+  .caption-word.is-spoken {
+    color: var(--ink);
+    background: transparent;
+  }
+  /* dormant until a word-classer tags them (kept from the engine's vocab) */
+  .caption-word.cap-num { color: rgba(244, 241, 234, 0.62); }
+  .caption-word.cap-num.is-active { color: var(--say-ink); background: var(--say); }
+  .caption-word.cap-cta { color: var(--say); background: transparent; }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill { max-width: 92%; }
+    .caption-line { font-size: clamp(36px, 4.26vw, 46px); }
+  }
+</style>
+
+<div
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="31.15"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+>
+  <div class="caption-layer" aria-hidden="true">
+    <div id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [{"id":"caption-group-0","frame":1,"start":0,"end":0.28,"text":"How does","words":[{"id":"caption-word-0-0","text":"How","start":0,"end":0.16},{"id":"caption-word-0-1","text":"does","start":0.16,"end":0.28}]},{"id":"caption-group-1","frame":1,"start":0.28,"end":0.74,"text":"a cache","words":[{"id":"caption-word-1-0","text":"a","start":0.28,"end":0.42},{"id":"caption-word-1-1","text":"cache","start":0.42,"end":0.74}]},{"id":"caption-group-2","frame":1,"start":0.74,"end":1.46,"text":"decide what","words":[{"id":"caption-word-2-0","text":"decide","start":0.74,"end":1.24},{"id":"caption-word-2-1","text":"what","start":1.24,"end":1.46}]},{"id":"caption-group-3","frame":1,"start":1.46,"end":2.12,"text":"to throw away?","words":[{"id":"caption-word-3-0","text":"to","start":1.46,"end":1.58},{"id":"caption-word-3-1","text":"throw","start":1.58,"end":1.76},{"id":"caption-word-3-2","text":"away?","start":1.76,"end":2}]},{"id":"caption-group-4","frame":2,"start":3.3,"end":3.98,"text":"An LRU","words":[{"id":"caption-word-4-0","text":"An","start":3.3,"end":3.44},{"id":"caption-word-4-1","text":"LRU","start":3.44,"end":3.98}]},{"id":"caption-group-5","frame":2,"start":3.98,"end":4.62,"text":"cache has","words":[{"id":"caption-word-5-0","text":"cache","start":3.98,"end":4.26},{"id":"caption-word-5-1","text":"has","start":4.26,"end":4.62}]},{"id":"caption-group-6","frame":2,"start":4.62,"end":5.46,"text":"a fixed size.","words":[{"id":"caption-word-6-0","text":"a","start":4.62,"end":4.74},{"id":"caption-word-6-1","text":"fixed","start":4.74,"end":4.92},{"id":"caption-word-6-2","text":"size.","start":4.92,"end":5.34}]},{"id":"caption-group-7","frame":2,"start":5.98,"end":6.68,"text":"When it fills,","words":[{"id":"caption-word-7-0","text":"When","start":5.98,"end":6.16},{"id":"caption-word-7-1","text":"it","start":6.16,"end":6.28},{"id":"caption-word-7-2","text":"fills,","start":6.28,"end":6.56}]},{"id":"caption-group-8","frame":2,"start":7.04,"end":7.46,"text":"it throws","words":[{"id":"caption-word-8-0","text":"it","start":7.04,"end":7.22},{"id":"caption-word-8-1","text":"throws","start":7.22,"end":7.46}]},{"id":"caption-group-9","frame":2,"start":7.46,"end":7.8,"text":"out the","words":[{"id":"caption-word-9-0","text":"out","start":7.46,"end":7.66},{"id":"caption-word-9-1","text":"the","start":7.66,"end":7.8}]},{"id":"caption-group-10","frame":2,"start":7.8,"end":8.42,"text":"item used","words":[{"id":"caption-word-10-0","text":"item","start":7.8,"end":8.1},{"id":"caption-word-10-1","text":"used","start":8.1,"end":8.42}]},{"id":"caption-group-11","frame":2,"start":8.42,"end":9.36,"text":"least recently.","words":[{"id":"caption-word-11-0","text":"least","start":8.42,"end":8.76},{"id":"caption-word-11-1","text":"recently.","start":8.76,"end":9.24}]},{"id":"caption-group-12","frame":3,"start":10.55,"end":11.13,"text":"Every read","words":[{"id":"caption-word-12-0","text":"Every","start":10.55,"end":10.81},{"id":"caption-word-12-1","text":"read","start":10.81,"end":11.13}]},{"id":"caption-group-13","frame":3,"start":11.13,"end":11.79,"text":"moves that","words":[{"id":"caption-word-13-0","text":"moves","start":11.13,"end":11.51},{"id":"caption-word-13-1","text":"that","start":11.51,"end":11.79}]},{"id":"caption-group-14","frame":3,"start":11.79,"end":12.27,"text":"item to","words":[{"id":"caption-word-14-0","text":"item","start":11.79,"end":12.09},{"id":"caption-word-14-1","text":"to","start":12.09,"end":12.27}]},{"id":"caption-group-15","frame":3,"start":12.27,"end":12.73,"text":"the front.","words":[{"id":"caption-word-15-0","text":"the","start":12.27,"end":12.35},{"id":"caption-word-15-1","text":"front.","start":12.35,"end":12.61}]},{"id":"caption-group-16","frame":3,"start":12.97,"end":13.45,"text":"So the","words":[{"id":"caption-word-16-0","text":"So","start":12.97,"end":13.31},{"id":"caption-word-16-1","text":"the","start":13.31,"end":13.45}]},{"id":"caption-group-17","frame":3,"start":13.45,"end":13.77,"text":"back of","words":[{"id":"caption-word-17-0","text":"back","start":13.45,"end":13.67},{"id":"caption-word-17-1","text":"of","start":13.67,"end":13.77}]},{"id":"caption-group-18","frame":3,"start":13.77,"end":14.17,"text":"the line","words":[{"id":"caption-word-18-0","text":"the","start":13.77,"end":13.89},{"id":"caption-word-18-1","text":"line","start":13.89,"end":14.17}]},{"id":"caption-group-19","frame":3,"start":14.17,"end":14.83,"text":"is always","words":[{"id":"caption-word-19-0","text":"is","start":14.17,"end":14.47},{"id":"caption-word-19-1","text":"always","start":14.47,"end":14.83}]},{"id":"caption-group-20","frame":3,"start":14.83,"end":15.47,"text":"the oldest.","words":[{"id":"caption-word-20-0","text":"the","start":14.83,"end":15.09},{"id":"caption-word-20-1","text":"oldest.","start":15.09,"end":15.35}]},{"id":"caption-group-21","frame":4,"start":16.78,"end":17.22,"text":"A hash","words":[{"id":"caption-word-21-0","text":"A","start":16.78,"end":16.92},{"id":"caption-word-21-1","text":"hash","start":16.92,"end":17.22}]},{"id":"caption-group-22","frame":4,"start":17.22,"end":17.78,"text":"map finds","words":[{"id":"caption-word-22-0","text":"map","start":17.22,"end":17.44},{"id":"caption-word-22-1","text":"finds","start":17.44,"end":17.78}]},{"id":"caption-group-23","frame":4,"start":17.78,"end":18.4,"text":"the item,","words":[{"id":"caption-word-23-0","text":"the","start":17.78,"end":18},{"id":"caption-word-23-1","text":"item,","start":18,"end":18.28}]},{"id":"caption-group-24","frame":4,"start":18.62,"end":18.92,"text":"and a","words":[{"id":"caption-word-24-0","text":"and","start":18.62,"end":18.82},{"id":"caption-word-24-1","text":"a","start":18.82,"end":18.92}]},{"id":"caption-group-25","frame":4,"start":18.92,"end":19.46,"text":"linked list","words":[{"id":"caption-word-25-0","text":"linked","start":18.92,"end":19.1},{"id":"caption-word-25-1","text":"list","start":19.1,"end":19.46}]},{"id":"caption-group-26","frame":4,"start":19.46,"end":20.32,"text":"reorders it.","words":[{"id":"caption-word-26-0","text":"reorders","start":19.46,"end":19.88},{"id":"caption-word-26-1","text":"it.","start":19.88,"end":20.2}]},{"id":"caption-group-27","frame":4,"start":20.68,"end":21.24,"text":"That keeps","words":[{"id":"caption-word-27-0","text":"That","start":20.68,"end":20.98},{"id":"caption-word-27-1","text":"keeps","start":20.98,"end":21.24}]},{"id":"caption-group-28","frame":4,"start":21.24,"end":22.26,"text":"every read and","words":[{"id":"caption-word-28-0","text":"every","start":21.24,"end":21.6},{"id":"caption-word-28-1","text":"read","start":21.6,"end":21.94},{"id":"caption-word-28-2","text":"and","start":21.94,"end":22.26}]},{"id":"caption-group-29","frame":4,"start":22.26,"end":22.74,"text":"write in","words":[{"id":"caption-word-29-0","text":"write","start":22.26,"end":22.52},{"id":"caption-word-29-1","text":"in","start":22.52,"end":22.74}]},{"id":"caption-group-30","frame":4,"start":22.74,"end":23.48,"text":"constant time","words":[{"id":"caption-word-30-0","text":"constant","start":22.74,"end":23.12},{"id":"caption-word-30-1","text":"time","start":23.12,"end":23.48}]},{"id":"caption-group-31","frame":4,"start":23.48,"end":24.04,"text":"on average.","words":[{"id":"caption-word-31-0","text":"on","start":23.48,"end":23.66},{"id":"caption-word-31-1","text":"average.","start":23.66,"end":23.92}]},{"id":"caption-group-32","frame":5,"start":25.27,"end":26.23,"text":"Capacity 2:","words":[{"id":"caption-word-32-0","text":"Capacity","start":25.27,"end":25.79},{"id":"caption-word-32-1","text":"2:","start":25.79,"end":26.11}]},{"id":"caption-group-33","frame":5,"start":26.47,"end":26.77,"text":"put A,","words":[{"id":"caption-word-33-0","text":"put","start":26.47,"end":26.59},{"id":"caption-word-33-1","text":"A,","start":26.59,"end":26.73}]},{"id":"caption-group-34","frame":5,"start":26.77,"end":27.21,"text":"put B,","words":[{"id":"caption-word-34-0","text":"put","start":26.77,"end":26.85},{"id":"caption-word-34-1","text":"B,","start":26.85,"end":27.09}]},{"id":"caption-group-35","frame":5,"start":27.21,"end":27.51,"text":"get A,","words":[{"id":"caption-word-35-0","text":"get","start":27.21,"end":27.31},{"id":"caption-word-35-1","text":"A,","start":27.31,"end":27.45}]},{"id":"caption-group-36","frame":5,"start":27.51,"end":28.01,"text":"put C.","words":[{"id":"caption-word-36-0","text":"put","start":27.51,"end":27.59},{"id":"caption-word-36-1","text":"C.","start":27.59,"end":27.89}]},{"id":"caption-group-37","frame":5,"start":28.17,"end":28.97,"text":"What gets evicted?","words":[{"id":"caption-word-37-0","text":"What","start":28.17,"end":28.29},{"id":"caption-word-37-1","text":"gets","start":28.29,"end":28.49},{"id":"caption-word-37-2","text":"evicted?","start":28.49,"end":28.85}]}];
+  var DURATION = 31.15;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start);
+        tl.set(el, { className: "caption-word is-active" }, at);
+        // micro-animation per word: it lifts onto the highlighter instead of just changing colour
+        tl.fromTo(el, { scale: 0.94, y: 5 }, { scale: 1, y: 0, duration: 0.14, ease: "power2.out" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt);
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>
+
+<style>
+  .caption-line { line-height: 1.1 !important; }
+</style>
+</template>

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "An ER doesn't treat patients in the order they arrive."
+    },
+    {
+      "id": "02",
+      "text": "A priority queue serves the highest priority first. The oldest item waits its turn. It's usually built on a heap. This is that heap, with a serving order."
+    },
+    {
+      "id": "03",
+      "text": "Push low with five. Push urgent with one. Pop gives urgent. A heap puts the smallest number at the top. Schedulers, Dijkstra's algorithm, and notification systems rely on it."
+    },
+    {
+      "id": "04",
+      "text": "Two items share priority one. The tie breaks by spelling. Low leaves before urgent."
+    },
+    {
+      "id": "05",
+      "text": "Is priority-first always fair? Comment your take."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

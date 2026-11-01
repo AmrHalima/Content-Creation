@@ -1,0 +1,221 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 206px; left: 80px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #6e6e64;
+    }
+    .f01-spike { display: inline-block; color: #6e6e64; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 0; }
+    .f01-count {
+      position: absolute; top: 168px; right: 80px; width: 240px; height: 126px;
+      display: flex; align-items: flex-start; justify-content: flex-end; gap: 12px;
+      opacity: 0;
+    }
+    .f01-count-fig {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.4cqw; line-height: 0.9; letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .f01-count-unit {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.45cqw; line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #6e6e64; margin-top: 26px;
+    }
+
+    /* ── grammar R: caller (top) · seam (middle, dark) · implementation (bottom) ── */
+    .f01-chamber {
+      position: absolute; left: 80px; width: 560px; height: 190px;
+      box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: center; gap: 10px;
+      padding: 0 34px;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      background: #ffffff;
+      opacity: 0;
+    }
+    .f01-chamber-dark {
+      background: #1a1a1a;
+      border: 2px solid #1a1a1a;
+    }
+    .f01-chamber-forest { background: #034f46; border: 2px solid #1a1a1a; }
+    .f01-role {
+      display: inline-block;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.35cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(26,26,26,0.66);
+    }
+    .f01-chamber-dark .f01-role { color: rgba(255,255,235,0.74); }
+    .f01-chamber-forest .f01-role { color: rgba(255,255,235,0.74); }
+    .f01-name {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.5cqw; line-height: 1.1; letter-spacing: -0.005em;
+      color: #1a1a1a;
+    }
+    .f01-chamber-dark .f01-name { color: #ffffeb; }
+    .f01-chamber-forest .f01-name { color: #ffffeb; }
+    .f01-tag {
+      position: absolute; top: 24px; right: 24px;
+      display: inline-block;
+      padding: 6px 16px;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      background: #f0d7ff;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.35cqw; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-arrows { position: absolute; inset: 0; width: 1080px; height: 1920px; pointer-events: none; }
+    .f01-arrow { stroke: #1a1a1a; stroke-width: 3; fill: none; }
+    .f01-arrowhead { fill: #1a1a1a; }
+
+    /* ── the behaviour rail ── */
+    .f01-chip {
+      position: absolute; right: 80px; width: 296px; height: 96px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb;
+      border: 2px solid #1a1a1a;
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.3cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-conn { stroke: rgba(26,26,26,0.66); stroke-width: 3; fill: none; }
+    .f01-conn-live { stroke: #ffa946; stroke-width: 4; fill: none; }
+  </style>
+
+  <div id="root" data-composition-id="01-three-behaviours" data-width="1080" data-height="1920" data-duration="7.723">
+
+    <div id="f01-fieldclip" class="clip" data-start="0" data-duration="7.723" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="f01-field" class="f01-field"></div>
+      <div id="f01-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="f01-chromeclip" class="clip" data-start="0" data-duration="7.723" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f01-kicker" class="f01-kicker">
+        <span id="f01-spike" class="f01-spike">&#10009;</span><span id="f01-ktext" class="f01-ktext" data-layout-ignore>DECORATOR</span>
+      </div>
+      <div id="f01-count" class="f01-count">
+        <span class="f01-count-fig">1</span><span class="f01-count-unit" data-layout-ignore>service</span>
+      </div>
+    </div>
+
+    <div id="f01-spineclip" class="clip" data-start="0" data-duration="7.723" data-track-index="2" style="position:absolute;inset:0;">
+      <svg id="f01-arrowsvg" class="f01-arrows" viewBox="0 0 1080 1920" aria-hidden="true">
+        <g id="f01-arrow1" class="f01-arrow-g">
+          <line id="f01-arrowline1" class="f01-arrow" x1="360" y1="752" x2="360" y2="800" />
+          <polygon id="f01-head1" class="f01-arrowhead" points="352,798 368,798 360,812" />
+        </g>
+        <g id="f01-arrow2" class="f01-arrow-g">
+          <line id="f01-arrowline2" class="f01-arrow" x1="360" y1="1002" x2="360" y2="1050" />
+          <polygon id="f01-head2" class="f01-arrowhead" points="352,1048 368,1048 360,1062" />
+        </g>
+      </svg>
+      <div id="f01-caller" class="f01-chamber" style="top:560px;">
+        <span id="f01-caller-role" class="f01-role" data-layout-ignore>call site</span>
+        <span id="f01-caller-name" class="f01-name">order service</span>
+      </div>
+      <div id="f01-seam" class="f01-chamber f01-chamber-dark" style="top:810px;">
+        <span id="f01-seam-role" class="f01-role" data-layout-ignore>seam</span>
+        <span id="f01-seam-name" class="f01-name">PaymentGateway</span>
+        <span id="f01-seam-tag" class="f01-tag">interface</span>
+      </div>
+      <div id="f01-impl" class="f01-chamber f01-chamber-forest" style="top:1060px;">
+        <span id="f01-impl-role" class="f01-role" data-layout-ignore>implementation</span>
+        <span id="f01-impl-name" class="f01-name">StripeGateway</span>
+      </div>
+    </div>
+
+    <div id="f01-railclip" class="clip" data-start="0" data-duration="7.723" data-track-index="3" style="position:absolute;inset:0;">
+      <svg id="f01-connsvg" class="f01-arrows" viewBox="0 0 1080 1920" aria-hidden="true">
+        <path id="f01-conn1" class="f01-conn" d="M700 610 C 668 610 660 830 642 862" />
+        <path id="f01-conn2" class="f01-conn" d="M700 738 C 672 738 660 880 642 892" />
+        <path id="f01-conn3" class="f01-conn-live" d="M700 866 C 676 866 662 912 642 922" />
+      </svg>
+      <div id="f01-chip-cache" class="f01-chip" style="top:562px;">cache</div>
+      <div id="f01-chip-retry" class="f01-chip" style="top:690px;">retry</div>
+      <div id="f01-chip-log" class="f01-chip" style="top:818px;">log</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.723;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-three-behaviours"] = tl;
+
+      // ── ground: paper field + hairline grid (background, full-bleed, unlit) ──
+      tl.fromTo(el("f01-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.0s) — "You want": kicker + the caller chamber ──
+      tl.fromTo(el("f01-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f01-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+      tl.fromTo(el("f01-caller"), { opacity: 0, x: -46 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.3);
+
+      // ── Scene 2 (1.0–3.4s) — the behaviour rail, one chip per spoken behaviour ──
+      var CHIPS = [
+        { id: "f01-chip-cache", t: 0.52 },
+        { id: "f01-chip-retry", t: 1.74 },
+        { id: "f01-chip-log", t: 2.62 }
+      ];
+      CHIPS.forEach(function (c) {
+        tl.fromTo(el(c.id), { opacity: 0, x: 44 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, c.t);
+      });
+
+      // ── Scene 3 (3.4–5.0s) — "one service.": the seam lands dark, then the implementation ──
+      tl.fromTo(el("f01-count"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 3.36);
+      tl.fromTo(el("f01-seam"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 3.58);
+      tl.fromTo(el("f01-seam-tag"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 3.98);
+      tl.fromTo(el("f01-arrowline1"), { attr: { y2: 752 } }, { attr: { y2: 800 }, duration: 0.26, ease: "power2.out" }, 4.0);
+      tl.fromTo(el("f01-head1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.2);
+      tl.fromTo(el("f01-impl"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 4.4);
+      tl.fromTo(el("f01-arrowline2"), { attr: { y2: 1002 } }, { attr: { y2: 1050 }, duration: 0.26, ease: "power2.out" }, 4.8);
+      tl.fromTo(el("f01-head2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 5.0);
+
+      // ── Scene 4 (5.0–7.7s) — "Each one changes what the call does": three connectors, one voltage ──
+      var CONNS = [
+        { id: "f01-conn1", len: 300, t: 5.20 },
+        { id: "f01-conn2", len: 240, t: 6.08 },
+        { id: "f01-conn3", len: 200, t: 6.64 }
+      ];
+      CONNS.forEach(function (c) {
+        var node = el(c.id);
+        node.setAttribute("stroke-dasharray", c.len);
+        tl.fromTo(node, { attr: { "stroke-dashoffset": c.len } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.42, ease: "power2.out" }, c.t);
+      });
+      // Scene 5 (7.1–7.7s): the composed stack holds still — no jitter on an element GSAP has already
+      // transformed (the seam takes a y tween), because a manual style.transform would fight GSAP's own.
+    })();
+  </script>
+</template>

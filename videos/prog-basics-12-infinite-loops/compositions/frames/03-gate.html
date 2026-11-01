@@ -1,0 +1,294 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* G3 code chamber — pb-11/03-gate atoms. The chamber is NARROWER than F2's (640 vs 936) so the
+       cut never lands on the previous frame's layout, and the gate apparatus lives below it. */
+    .cd-root { position: absolute; left: 72px; top: 292px; width: 640px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 28px; width: 580px; height: 54px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .tk-i { color: #F4F1EA; } .tk-v { color: #5AD6A0; } .tk-a { color: #FFD166; }
+    .tk-b { font-weight: 700; }
+
+    .f3-lmask { position: absolute; left: 28px; height: 54px; width: 580px; background: #1F242C;
+      transform-origin: right center; }
+    .f3-caret { position: absolute; width: 5px; height: 40px; background: #FFD166; border-radius: 2px;
+      opacity: 0; }
+
+    /* the gate that re-tests (pb-11's f3-gate / f3-body / f3-loop apparatus) */
+    .f3-checklab { position: absolute; left: 72px; top: 566px; width: 300px; height: 34px;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .f3-gate { position: absolute; left: 72px; top: 604px; width: 236px; height: 96px;
+      box-sizing: border-box; background: #262C36; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 16px; opacity: 0;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .f3-gate-txt { position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: center; font-family: "JetBrains Mono", monospace; font-size: 2.9cqw;
+      font-weight: 700; color: #F4F1EA; }
+    .f3-gate-txt.off { opacity: 0; }
+    .f3-wire { position: absolute; left: 312px; top: 646px; width: 52px; height: 4px;
+      background: rgba(255,255,255,0.16); border-radius: 2px; transform-origin: left center;
+      transform: scaleX(0); }
+    .f3-body { position: absolute; left: 364px; top: 560px; width: 572px; height: 140px;
+      box-sizing: border-box; background: #1F242C; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 18px; opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f3-bodylab { position: absolute; left: 26px; top: 14px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.8cqw; font-weight: 400;
+      letter-spacing: 0.10em; color: #9BA6B2; white-space: nowrap; }
+    .f3-fill { position: absolute; left: 18px; right: 18px; bottom: 16px; height: 58px;
+      background: rgba(90,214,160,0.22); border: 2px solid rgba(90,214,160,0.45); border-radius: 12px;
+      transform-origin: bottom center; transform: scaleY(0); }
+    .f3-run { position: absolute; left: 26px; top: 32px; width: 40px; height: 40px; border-radius: 10px;
+      background: #F4F1EA; opacity: 0; }
+
+    /* the loop-back rail: CSS divs in the untransformed layer, never an SVG inside a transformed
+       band (wave packet section 4, pb-11's own finding) */
+    .f3-rail { position: absolute; left: 104px; top: 700px; width: 792px; height: 88px; opacity: 0;
+      border-left: 4px dashed #9BA6B2; border-bottom: 4px dashed #9BA6B2;
+      border-right: 4px dashed #9BA6B2; border-top: 0; border-radius: 0 0 26px 26px; }
+    .f3-head { position: absolute; left: 100px; top: 676px; width: 20px; height: 20px; opacity: 0;
+      border-left: 4px solid #9BA6B2; border-top: 4px solid #9BA6B2; transform: rotate(45deg); }
+    .f3-dot { position: absolute; left: 872px; top: 736px; width: 18px; height: 18px;
+      border-radius: 9999px; background: #9BA6B2; opacity: 0; }
+
+    .f3-pass { position: absolute; top: 812px; width: 176px; height: 62px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700; color: #9BA6B2; }
+    .f3-pass-b { left: 260px; } .f3-pass-c { left: 448px; }
+    .f3-pass-a { left: 72px; }
+
+    /* the new object: the variable the check reads, which never moves */
+    .f3-var { position: absolute; left: 640px; top: 800px; width: 296px; height: 86px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      gap: 22px; opacity: 0; background: #1F242C; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f3-name { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.8cqw;
+      font-weight: 400; color: #9BA6B2; }
+    .f3-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-size: 3.6cqw;
+      font-weight: 700; color: #5AD6A0; }
+    .f3-varlab { position: absolute; left: 640px; top: 894px; width: 296px; height: 34px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+
+    .f3-plate { position: absolute; left: 72px; top: 902px; width: 420px; height: 78px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #FFD166; border-radius: 16px;
+      box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    .f3-ell { position: absolute; top: 930px; width: 18px; height: 18px; border-radius: 9999px;
+      background: #9BA6B2; transform: scale(0); }
+    .f3-ell-b { left: 542px; } .f3-ell-c { left: 578px; }
+    .f3-ell-a { left: 506px; }
+  </style>
+
+  <div id="root" data-composition-id="03-gate" data-width="1080" data-height="1920" data-duration="4.9">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="4.9" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="4.9" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>THE GATE RE-READS, NOTHING CHANGES</div>
+        <div id="c3-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="4.9" data-track-index="2">
+      <div id="f3-chamber" class="cd-root" style="height:262px">
+        <div id="f3-bar" class="cd-bar">
+          <span id="f3-file" class="cd-file" data-layout-ignore>main.py</span>
+          <span id="f3-lang" class="cd-lang" data-layout-ignore>PYTHON</span>
+        </div>
+        <div id="f3-l1" class="cd-line" style="top:76px"><span class="tk-i">i</span>&nbsp;=&nbsp;<span class="tk-v tk-b">0</span></div>
+        <div id="f3-l2" class="cd-line" style="top:134px"><span class="tk-a tk-b">while</span>&nbsp;<span class="tk-i">i&nbsp;&lt;&nbsp;5</span>:</div>
+        <div id="f3-l3" class="cd-line" style="top:192px">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tk-i">print</span>(<span class="tk-i">i</span>)</div>
+        <div id="f3-m1" class="f3-lmask" style="top:76px"></div>
+        <div id="f3-m2" class="f3-lmask" style="top:134px"></div>
+        <div id="f3-m3" class="f3-lmask" style="top:192px"></div>
+        <div id="f3-cr1" class="f3-caret" style="left:32px;top:83px"></div>
+        <div id="f3-cr2" class="f3-caret" style="left:32px;top:141px"></div>
+        <div id="f3-cr3" class="f3-caret" style="left:32px;top:199px"></div>
+      </div>
+
+      <div id="f3-checklab" class="f3-checklab" data-layout-ignore>the check</div>
+      <div id="f3-gate" class="f3-gate">
+        <div id="f3-g1" class="f3-gate-txt">i&nbsp;&lt;&nbsp;5</div>
+        <div id="f3-g2" class="f3-gate-txt off">True</div>
+      </div>
+      <div id="f3-wire" class="f3-wire"></div>
+      <div id="f3-body" class="f3-body">
+        <div id="f3-bodylab" class="f3-bodylab" data-layout-ignore>the&nbsp;body&nbsp;runs</div>
+        <div id="f3-fill" class="f3-fill"></div>
+        <div id="f3-run" class="f3-run"></div>
+      </div>
+
+      <div id="f3-rail" class="f3-rail"></div>
+      <div id="f3-head" class="f3-head" data-layout-allow-overflow></div>
+      <div id="f3-dot" class="f3-dot"></div>
+
+      <div id="f3-p1" class="f3-pass f3-pass-a">pass&nbsp;1</div>
+      <div id="f3-p2" class="f3-pass f3-pass-b">pass&nbsp;2</div>
+      <div id="f3-p3" class="f3-pass f3-pass-c">pass&nbsp;3</div>
+
+      <div id="f3-var" class="f3-var"><span class="f3-name">i</span><span class="f3-val" id="f3-val">0</span></div>
+      <div id="f3-varlab" class="f3-varlab" data-layout-ignore>never changes</div>
+
+      <div id="f3-plate" class="f3-plate">forgot&nbsp;to&nbsp;update</div>
+      <div id="f3-e1" class="f3-ell f3-ell-a"></div>
+      <div id="f3-e2" class="f3-ell f3-ell-b"></div>
+      <div id="f3-e3" class="f3-ell f3-ell-c"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 4.9;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-gate"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 1.225, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.45, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.225, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c3-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.22);
+
+      /* entrance wipe: F2 came in from the right, this one comes in from the left */
+      tl.fromTo(el("f3-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.08);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.52);
+
+      tl.fromTo(el("f3-chamber"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 0.18);
+      tl.fromTo(el("f3-file"), { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.34);
+      tl.fromTo(el("f3-lang"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 0.44);
+
+      /* P3 type-on, one line per spoken clause.
+         Measured onsets: Usually 0.00 / you 0.42 / forgot 0.66 / to 0.90 / update 1.16-1.44 /
+         variable 1.66-2.04 / condition 2.60-3.00 / depends 3.00-3.28 / on. 3.28-3.68 */
+      tl.set(el("f3-l1"), { opacity: 1 }, 0.46);
+      tl.fromTo(el("f3-m1"), { scaleX: 1 }, { scaleX: 0, duration: 0.26, ease: "power1.inOut", immediateRender: false }, 0.46);
+      tl.fromTo(el("f3-cr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 130, duration: 0.26, ease: "power1.inOut", immediateRender: false }, 0.46);
+      tl.to(el("f3-cr1"), { opacity: 0, duration: 0.12, immediateRender: false }, 0.74);
+      tl.set(el("f3-l2"), { opacity: 1 }, 0.78);
+      tl.fromTo(el("f3-m2"), { scaleX: 1 }, { scaleX: 0, duration: 0.3, ease: "power1.inOut", immediateRender: false }, 0.78);
+      tl.fromTo(el("f3-cr2"), { opacity: 1, x: 0 }, { opacity: 1, x: 220, duration: 0.3, ease: "power1.inOut", immediateRender: false }, 0.78);
+      tl.to(el("f3-cr2"), { opacity: 0, duration: 0.12, immediateRender: false }, 1.10);
+      tl.set(el("f3-l3"), { opacity: 1 }, 1.18);
+      tl.fromTo(el("f3-m3"), { scaleX: 1 }, { scaleX: 0, duration: 0.28, ease: "power1.inOut", immediateRender: false }, 1.18);
+      tl.fromTo(el("f3-cr3"), { opacity: 1, x: 0 }, { opacity: 1, x: 230, duration: 0.28, ease: "power1.inOut", immediateRender: false }, 1.18);
+      tl.to(el("f3-cr3"), { opacity: 0, duration: 0.12, immediateRender: false }, 1.48);
+
+      /* the amber say-plate lands ON the spoken words "forgot to update" (1.16 -> 1.44) */
+      tl.fromTo(el("f3-plate"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 1.18);
+
+      /* the apparatus arrives: the check, the wire, the body, the rail */
+      tl.fromTo(el("f3-checklab"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 1.34);
+      tl.fromTo(el("f3-gate"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 1.46);
+      tl.fromTo(el("f3-wire"), { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, 1.58);
+      tl.fromTo(el("f3-body"), { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.62);
+      tl.fromTo(el("f3-bodylab"), { opacity: 0 }, { opacity: 1, duration: 0.24, immediateRender: false }, 1.72);
+      tl.fromTo(el("f3-run"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(1.7)", immediateRender: false }, 1.76);
+      tl.fromTo(el("f3-rail"), { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power2.out", immediateRender: false }, 1.78);
+      tl.fromTo(el("f3-head"), { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, 1.94);
+
+      /* the variable arrives as the word `variable` is spoken (1.66-2.04) — and it pulses on every
+         single pass while staying at 0. That stillness IS the cause, so this frame needs no
+         struck-out escape line: the line that would end it is absent, and drawing it is the answer
+         to the quiz this part asks. */
+      tl.fromTo(el("f3-var"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.70);
+      tl.fromTo(el("f3-varlab"), { opacity: 0 }, { opacity: 1, duration: 0.26, immediateRender: false }, 1.98);
+
+      function pass(t, dur, badge) {
+        /* body runs, the marker returns along the rail, the check is re-read, i does not move.
+           The return marker's x is SET to zero at the head of every pass (not tweened), so a fast
+           pass never has an arrival tween tailing past its own travel tween. */
+        tl.fromTo(el("f3-fill"), { scaleY: 0 }, { scaleY: 1, duration: dur * 0.5, ease: "power2.out", immediateRender: false }, t);
+        tl.to(el("f3-fill"), { scaleY: 0, duration: dur * 0.34, ease: "power2.in" }, t + dur * 0.62);
+        tl.set(el("f3-dot"), { x: 0, opacity: 1 }, t);
+        tl.to(el("f3-dot"), { x: -744, duration: dur, ease: "power1.inOut", immediateRender: false }, t);
+        tl.set(el("f3-dot"), { opacity: 0 }, t + dur);
+        tl.set(el("f3-run"), { x: 0 }, t);
+        tl.to(el("f3-run"), { x: 396, duration: dur * 0.58, ease: "power1.inOut", immediateRender: false }, t);
+        tl.fromTo(el("f3-gate"), { scale: 1 }, { scale: 1.05, duration: dur * 0.3, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, t + dur * 0.8);
+        tl.fromTo(el("f3-val"), { scale: 1 }, { scale: 1.14, duration: dur * 0.24, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, t + dur * 0.5);
+        if (badge) {
+          tl.fromTo(el(badge), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out", immediateRender: false }, t + 0.02);
+          tl.fromTo(el(badge), { color: "#9BA6B2" }, { color: "#F4F1EA", duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, t + dur * 0.7);
+        }
+      }
+
+      /* three settled passes, then the bounded accelerating spin (seven passes total, 0.42 -> 0.09).
+         Nothing here is unbounded: the rail runs a fixed number of times and then the board freezes. */
+      pass(1.98, 0.42, "f3-p1");
+      pass(2.50, 0.34, "f3-p2");
+      pass(2.94, 0.26, "f3-p3");
+      pass(3.28, 0.20, null);
+      pass(3.54, 0.15, null);
+      pass(3.75, 0.11, null);
+      pass(3.90, 0.09, null);
+
+      /* the check is re-read and pins at True: `i < 5` fades out, `True` fades in (no text tween —
+         two stacked state elements, exactly pb-11's idiom) */
+      tl.to(el("f3-g1"), { opacity: 0, duration: 0.18, ease: "power2.in", immediateRender: false }, 4.02);
+      tl.fromTo(el("f3-g2"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.22, ease: "back.out(1.6)", immediateRender: false }, 4.10);
+      tl.fromTo(el("f3-e1"), { scale: 0 }, { scale: 1, duration: 0.16, ease: "back.out(1.8)", immediateRender: false }, 4.16);
+      tl.fromTo(el("f3-e2"), { scale: 0 }, { scale: 1, duration: 0.16, ease: "back.out(1.8)", immediateRender: false }, 4.26);
+      tl.fromTo(el("f3-e3"), { scale: 0 }, { scale: 1, duration: 0.16, ease: "back.out(1.8)", immediateRender: false }, 4.36);
+
+      /* the board is frozen under the plate; only the plate and the ground still move */
+      tl.fromTo(el("f3-plate"), { y: 0 }, { y: -5, duration: 0.28, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 4.20);
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 4.58);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

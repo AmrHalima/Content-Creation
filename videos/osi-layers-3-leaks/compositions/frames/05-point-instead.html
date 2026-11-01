@@ -1,0 +1,156 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f5-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f5-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f5-kicker {
+      position: absolute; top: 470px; left: 96px; width: 560px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f5-column {
+      position: absolute; top: 540px; left: 96px; width: 480px; height: 792px;
+      box-sizing: border-box; border: 4px solid #1a1a1a; border-radius: 8px;
+      background: #ffffff; overflow: hidden;
+    }
+    .f5-row {
+      position: absolute; left: 0; width: 100%; height: 112px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 24px; padding: 0 28px;
+      border-bottom: 2px solid rgba(26,26,26,0.16); opacity: 0;
+    }
+    .f5-row-last { border-bottom: none; }
+    .f5-num { font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; width: 42px; flex: 0 0 42px; }
+    .f5-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.2cqw;
+      line-height: 1.02; letter-spacing: -0.018em; color: #1a1a1a;
+    }
+    .f5-bar { position: absolute; left: 0; top: 0; width: 8px; height: 100%; background: #ffa946; opacity: 0; }
+    .f5-svg { position: absolute; inset: 0; }
+    .f5-arw { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f5-head { fill: #ffa946; opacity: 0; }
+    /* the three symptom chips: each pins onto a DIFFERENT row of the same column */
+    .f5-chip {
+      position: absolute; left: 620px; width: 360px; height: 72px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 4px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.6cqw;
+      letter-spacing: 0.01em; color: #1a1a1a; opacity: 0;
+    }
+    .f5-get {
+      position: absolute; left: 620px; top: 1290px; width: 360px; height: 64px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 3px dashed rgba(26,26,26,0.5); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.75); opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-zk4j" id="root" data-composition-id="05-point-instead" data-width="1080" data-height="1920" data-duration="13.805">
+
+    <div data-hf-id="hf-xw2u" id="f5-fieldclip" class="clip" data-start="0" data-duration="13.805" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-59i4" class="f5-field"></div>
+      <div data-hf-id="hf-sg06" id="f5-grid" class="f5-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-h1mz" id="f5-colclip" class="clip" data-start="0" data-duration="13.805" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-ebib" id="f5-kicker" class="f5-kicker" data-layout-ignore>&#10009;&nbsp; point at the layer</div>
+      <div data-hf-id="hf-va3e" id="f5-column" class="f5-column">
+        <div data-hf-id="hf-voo5" id="f5-row7" class="f5-row" style="top:0px;"><div data-hf-id="hf-8yp5" id="f5-bar7" class="f5-bar"></div><span data-hf-id="hf-j496" class="f5-num">7</span><span data-hf-id="hf-0ltc" class="f5-name">application</span></div>
+        <div data-hf-id="hf-jfq6" id="f5-row6" class="f5-row" style="top:112px;"><span data-hf-id="hf-ipy5" class="f5-num">6</span><span data-hf-id="hf-k6me" class="f5-name">presentation</span></div>
+        <div data-hf-id="hf-d2gj" id="f5-row5" class="f5-row" style="top:224px;"><span data-hf-id="hf-jwv8" class="f5-num">5</span><span data-hf-id="hf-6pdy" class="f5-name">session</span></div>
+        <div data-hf-id="hf-rmug" id="f5-row4" class="f5-row" style="top:336px;"><div data-hf-id="hf-cwt6" id="f5-bar4" class="f5-bar"></div><span data-hf-id="hf-jik7" class="f5-num">4</span><span data-hf-id="hf-6lzb" class="f5-name">transport</span></div>
+        <div data-hf-id="hf-iek9" id="f5-row3" class="f5-row" style="top:448px;"><span data-hf-id="hf-kpha" class="f5-num">3</span><span data-hf-id="hf-pk2o" class="f5-name">network</span></div>
+        <div data-hf-id="hf-ie2b" id="f5-row2" class="f5-row" style="top:560px;"><div data-hf-id="hf-tdfo" id="f5-bar2" class="f5-bar"></div><span data-hf-id="hf-kb69" class="f5-num">2</span><span data-hf-id="hf-4ijy" class="f5-name">data link</span></div>
+        <div data-hf-id="hf-znbt" id="f5-row1" class="f5-row f5-row-last" style="top:672px;"><span data-hf-id="hf-li3c" class="f5-num">1</span><span data-hf-id="hf-nqfj" class="f5-name">physical</span></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-18dd" id="f5-arrowclip" class="clip" data-start="2.92" data-duration="10.885" data-track-index="2" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-g941" class="f5-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-0ngd" id="f5-a2" class="f5-arw" d="M 590 1156 L 1010 1156" />
+        <polygon data-hf-id="hf-67s2" id="f5-k2" class="f5-head" points="1002,1145 1024,1156 1002,1167" />
+        <path data-hf-id="hf-3iej" id="f5-a4" class="f5-arw" d="M 590 932 L 1010 932" />
+        <polygon data-hf-id="hf-esbt" id="f5-k4" class="f5-head" points="1002,921 1024,932 1002,943" />
+        <path data-hf-id="hf-kfoo" id="f5-a7" class="f5-arw" d="M 590 596 L 1010 596" />
+        <polygon data-hf-id="hf-72fh" id="f5-k7" class="f5-head" points="1002,585 1024,596 1002,607" />
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-mysd" id="f5-chipclip" class="clip" data-start="2.92" data-duration="10.885" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-jq11" id="f5-chip2" class="f5-chip" style="top:1120px;">no link</div>
+      <div data-hf-id="hf-gkeh" id="f5-chip4" class="f5-chip" style="top:896px;">connection resets</div>
+      <div data-hf-id="hf-9had" id="f5-chip7" class="f5-chip" style="top:560px;">certificate error</div>
+    </div>
+
+    <div data-hf-id="hf-nawd" id="f5-getclip" class="clip" data-start="1.02" data-duration="12.785" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-a2de" id="f5-get" class="f5-get">GET &#8230; (waiting)</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 13.205;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-point-instead"] = tl;
+
+      // ── Scene 1 (0.0–2.07s) — "then when it breaks, you point": the seven-row column resolves
+      //    at FULL ink, and to its right a bare unanswered request line. Nothing is lit yet — the
+      //    ladder is inert until a symptom names a row. ──
+      tl.fromTo(el("f5-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f5-kicker"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.12);
+      [
+        ["f5-row7", 0.18], ["f5-row6", 0.34], ["f5-row5", 0.5], ["f5-row4", 0.66],
+        ["f5-row3", 0.82], ["f5-row2", 0.98], ["f5-row1", 1.14]
+      ].forEach(function (r) {
+        tl.fromTo(el(r[0]), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.28, ease: "power3.out" }, r[1]);
+      });
+      tl.fromTo(el("f5-get"), { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 1.02);
+
+      // ── Scenes 2–4 — one symptom per spoken clause, landing bottom-up on screen (rows 2, 4, 7)
+      //    while the VO says "bottom", then "transport", then "top". Each arrow runs the full
+      //    420px to the frame edge before its chip stamps onto the row; the ember rule holds one
+      //    live row at a time, so the previous chip drains as the next arrives. ──
+      function pin(arrowId, headId, chipId, barId, tArrow, tChip, demoteChip, demoteBar) {
+        var p = el(arrowId);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.5, ease: "power3.out" }, tArrow);
+        tl.fromTo(el(headId), { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power1.out" }, tArrow + 0.42);
+        tl.fromTo(el(chipId), { opacity: 0, scale: 0.9, x: 26 }, { opacity: 1, scale: 1, x: 0, duration: 0.42, ease: "power3.out" }, tChip);
+        tl.fromTo(el(barId), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, tChip);
+        if (demoteChip) {
+          tl.to(el(demoteChip), { backgroundColor: "#ffffff", duration: 0.45, ease: "power1.inOut" }, tChip);
+          tl.to(el(demoteBar), { opacity: 0.2, duration: 0.45, ease: "power1.inOut" }, tChip);
+        }
+      }
+      pin("f5-a2", "f5-k2", "f5-chip2", "f5-bar2", 2.92, 3.43, null, null);
+      pin("f5-a4", "f5-k4", "f5-chip4", "f5-bar4", 5.71, 7.23, "f5-chip2", "f5-bar2");
+      pin("f5-a7", "f5-k7", "f5-chip7", "f5-bar7", 10.52, 10.93, "f5-chip4", "f5-bar4");
+
+      // ── Scene 5 (11.4–13.205s) — the poster pose: three pins on three rows, three arrows
+      //    leaving the frame edge from exactly the rows that have symptoms, and the request line
+      //    STILL waiting. That is the joke, and it is stated by leaving it alone. ──
+      var jit = { p: 0 };
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.6, duration: D - 11.4, ease: "none",
+        onUpdate: function () { el("f5-get").style.transform = "translateY(" + (Math.sin(jit.p) * 2).toFixed(3) + "px)"; }
+      }, 11.4);
+    })();
+  </script>
+</template>

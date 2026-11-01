@@ -1,0 +1,180 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f02-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f02-ktext { display: inline-block; opacity: 0; }
+
+    /* the card carried in from F1, dimmed, before it splits */
+    .f02-ghost {
+      position: absolute; top: 460px; left: 100px; width: 880px; height: 800px;
+      box-sizing: border-box; background: rgba(255,255,255,0.6);
+      border: 3px solid rgba(26,26,26,0.22); border-radius: 12px;
+    }
+    .f02-chamber { position: absolute; left: 100px; width: 880px; height: 240px; }
+    .f02-fill { position: absolute; inset: 0; border-radius: 12px; background: #ffffff; opacity: 0; }
+    .f02-lav { background: #F0D7FF; }
+    .f02-edge { position: absolute; inset: 0; overflow: visible; }
+    .f02-edge path { fill: none; stroke: #1a1a1a; stroke-width: 3; }
+    .f02-role {
+      position: absolute; top: 44px; left: 44px; width: 540px; height: 92px;
+      display: flex; align-items: center;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 5.2cqw; line-height: 1; letter-spacing: -0.022em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f02-cls {
+      position: absolute; top: 150px; left: 46px; width: 520px; height: 62px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.7cqw; line-height: 1; letter-spacing: 0.01em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f02-kind {
+      position: absolute; top: 60px; right: 44px; width: 220px; height: 56px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(26,26,26,0.28); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.01em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f02-note {
+      position: absolute; top: 156px; right: 44px; width: 260px; height: 52px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(26,26,26,0.28); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.5cqw; letter-spacing: 0.14em; text-transform: uppercase; color: #76766e;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-three-roles" data-width="1080" data-height="1920" data-duration="13.76">
+
+    <div id="02-three-roles-fieldclip" class="clip" data-start="0" data-duration="13.76" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f02-field"></div>
+      <div id="02-three-roles-grid" class="f02-grid"></div>
+    </div>
+
+    <div id="02-three-roles-chromeclip" class="clip" data-start="0" data-duration="13.76" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f02-kicker">
+        <span id="02-three-roles-spike" class="f02-spike">&#10009;</span><span id="02-three-roles-ktext" class="f02-ktext" data-layout-ignore>THE THREE ROLES</span>
+      </div>
+      <div id="02-three-roles-ghost" class="f02-ghost"></div>
+    </div>
+
+    <div id="02-three-roles-contractclip" class="clip" data-start="0.82" data-duration="12.94" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="02-three-roles-c1" class="f02-chamber" style="top:460px;">
+        <div id="02-three-roles-c1-fill" class="f02-fill f02-lav"></div>
+        <svg class="f02-edge" width="880" height="240" viewBox="0 0 880 240"><path id="02-three-roles-c1-edge" d="M 12,0 H 868 A 12,12 0 0 1 880,12 V 228 A 12,12 0 0 1 868,240 H 12 A 12,12 0 0 1 0,228 V 12 A 12,12 0 0 1 12,0 Z"/></svg>
+        <div id="02-three-roles-c1-role" class="f02-role">contract</div>
+        <div id="02-three-roles-c1-cls" class="f02-cls">OrderRepository</div>
+        <div id="02-three-roles-c1-kind" class="f02-kind">interface</div>
+      </div>
+    </div>
+
+    <div id="02-three-roles-implclip" class="clip" data-start="6.72" data-duration="7.04" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f02-chamber" style="top:740px;">
+        <div id="02-three-roles-c2-fill" class="f02-fill"></div>
+        <svg class="f02-edge" width="880" height="240" viewBox="0 0 880 240"><path id="02-three-roles-c2-edge" d="M 12,0 H 868 A 12,12 0 0 1 880,12 V 228 A 12,12 0 0 1 868,240 H 12 A 12,12 0 0 1 0,228 V 12 A 12,12 0 0 1 12,0 Z"/></svg>
+        <div id="02-three-roles-c2-role" class="f02-role">implementation</div>
+        <div id="02-three-roles-c2-cls" class="f02-cls">OrderRepositoryPg</div>
+        <div id="02-three-roles-c2-kind" class="f02-kind">class</div>
+      </div>
+    </div>
+
+    <div id="02-three-roles-consumerclip" class="clip" data-start="10.52" data-duration="3.24" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f02-chamber" style="top:1020px;">
+        <div id="02-three-roles-c3-fill" class="f02-fill"></div>
+        <svg class="f02-edge" width="880" height="240" viewBox="0 0 880 240"><path id="02-three-roles-c3-edge" d="M 12,0 H 868 A 12,12 0 0 1 880,12 V 228 A 12,12 0 0 1 868,240 H 12 A 12,12 0 0 1 0,228 V 12 A 12,12 0 0 1 12,0 Z"/></svg>
+        <div id="02-three-roles-c3-role" class="f02-role">consumer</div>
+        <div id="02-three-roles-c3-cls" class="f02-cls">CheckoutService</div>
+        <div id="02-three-roles-c3-kind" class="f02-kind">caller</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 13.76;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      // self-draw a chamber border along its own path length (svg-path-draw), deterministic
+      function drawOutline(id, at, dur) {
+        var p = el(id);
+        var len = p.getTotalLength();
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: dur, ease: "power2.inOut" }, at);
+      }
+
+      tl.fromTo(el("02-three-roles-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("02-three-roles-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("02-three-roles-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–2.0s) — "The pattern splits that": the carried card clears, bands expand ──
+      tl.fromTo(el("02-three-roles-ghost"), { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power1.in" }, 0.82);
+
+      // ── Scene 2 (2.0–6.4s) — the contract chamber, on "contract" (2.70) and "written" (3.76) ──
+      tl.fromTo(el("02-three-roles-c1-fill"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0.82);
+      drawOutline("02-three-roles-c1-edge", 0.9, 0.8);
+      tl.fromTo(el("02-three-roles-c1-role"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.7);
+      tl.fromTo(el("02-three-roles-c1-cls"), { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 3.76);
+      tl.fromTo(el("02-three-roles-c1-kind"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 4.48);
+
+      // ── Scene 3 (6.4–9.4s) — implementation, on "implementation" (6.80) and "owns" (7.54) ──
+      tl.fromTo(el("02-three-roles-c2-fill"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 6.72);
+      drawOutline("02-three-roles-c2-edge", 6.8, 0.7);
+      tl.fromTo(el("02-three-roles-c2-role"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 6.8);
+      tl.fromTo(el("02-three-roles-c2-cls"), { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 7.54);
+      tl.fromTo(el("02-three-roles-c2-kind"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 8.54);
+
+      // ── Scene 4 (9.4–13.76s) — consumer on "consumer" (10.62), its class on "only" (11.82) ──
+      tl.fromTo(el("02-three-roles-c3-fill"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 10.52);
+      drawOutline("02-three-roles-c3-edge", 10.6, 0.6);
+      tl.fromTo(el("02-three-roles-c3-role"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 10.62);
+      tl.fromTo(el("02-three-roles-c3-cls"), { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 11.82);
+      tl.fromTo(el("02-three-roles-c3-kind"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 12.44);
+
+      // sine-wave-loop: the contract chamber only, across the final hold
+      var jit = { p: 0 };
+      // the chamber WRAPPER is jittered, never an element GSAP already transforms
+      var c1 = el("02-three-roles-c1");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - 13.1,
+        ease: "none",
+        onUpdate: function () { c1.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)"; }
+      }, 13.1);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["02-three-roles"] = tl;
+    })();
+  </script>
+</template>

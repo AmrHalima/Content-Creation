@@ -1,0 +1,231 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f05-ground { position: absolute; inset: 0; }
+    .f05-code { position: absolute; inset: 0; }
+    .f05-wire { position: absolute; inset: 0; }
+    .f05-rail { position: absolute; inset: 0; }
+
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; top: 140px; left: 72px;
+      display: inline-flex; align-items: baseline; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+    .f05-spike { color: rgba(26,26,26,0.64); }
+
+    /* grammar C #2 — the context (one declaration, 5 lines) */
+    .f05-chamber {
+      position: absolute; top: 230px; left: 90px; width: 900px; height: 400px;
+      box-sizing: border-box; background: #181715; border: 1px solid rgba(255,255,235,0.22);
+      border-radius: 8px; overflow: hidden; opacity: 0;
+    }
+    .f05-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 66px; background: #252320;
+      display: flex; align-items: center; padding: 0 34px; box-sizing: border-box;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(255,255,235,0.82);
+    }
+    .f05-line {
+      position: absolute; left: 124px; width: 832px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 52px;
+      color: #8a8a7a; white-space: pre; opacity: 0;
+    }
+    .f05-line-1 { top: 300px; }
+    .f05-line-2 { top: 352px; }
+    .f05-line-3 { top: 404px; }
+    .f05-line-4 { top: 456px; }
+    .f05-line-5 { top: 508px; }
+    .f05-tok { color: #ffa946; }
+    .f05-lav { color: #f0d7ff; }
+
+    /* the call line — where the instance name actually lives, and actually changes */
+    .f05-callwrap {
+      position: absolute; top: 690px; left: 90px; width: 900px; height: 130px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      display: flex; align-items: center; padding: 0 34px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f05-callrole {
+      position: absolute; top: 646px; left: 92px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(26,26,26,0.64); opacity: 0;
+    }
+    /* min-width on the wrap is mandatory: without it the right edge jitters as states change */
+    .f05-swap {
+      display: inline-block; min-width: 330px; color: #1a1a1a; white-space: nowrap;
+    }
+    .f05-ul {
+      position: absolute; top: 782px; left: 430px; width: 320px; height: 6px;
+      background: #ffa946; opacity: 0;
+    }
+
+    /* request rail — three requests, one slot */
+    .f05-req {
+      position: absolute; top: 900px; width: 250px; height: 96px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      background: #ffffeb; border: 2px solid rgba(26,26,26,0.45); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+    .f05-req-1 { left: 90px; }
+    .f05-req-2 { left: 415px; }
+    .f05-req-3 { left: 740px; }
+    .f05-dot { flex: 0 0 16px; height: 16px; border-radius: 9999px; background: rgba(26,26,26,0.35); }
+    .f05-svg { position: absolute; inset: 0; }
+    .f05-lead { fill: none; stroke: rgba(26,26,26,0.35); stroke-width: 3; }
+    .f05-note {
+      position: absolute; top: 1070px; left: 90px; width: 900px; height: 110px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 22px;
+      font-family: "Inter", sans-serif; font-size: 2.8cqw; line-height: 1.35;
+      color: rgba(26,26,26,0.74); opacity: 0;
+    }
+    .f05-note-rule { flex: 0 0 60px; height: 2px; background: rgba(26,26,26,0.55); }
+    .f05-unchanged {
+      position: absolute; top: 1230px; left: 90px; width: 900px; height: 200px;
+      box-sizing: border-box; border: 2px dashed rgba(26,26,26,0.35); border-radius: 12px;
+      display: flex; align-items: flex-end; justify-content: flex-end; padding: 0 26px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.64);
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-the-swap" data-width="1080" data-height="1920" data-duration="12.255">
+
+    <div id="05-the-swap-ground" class="clip f05-ground" data-start="0" data-duration="12.255" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="05-the-swap-field" class="f05-field"></div>
+      <div id="05-the-swap-grid" class="f05-grid"></div>
+      <div id="05-the-swap-kicker" class="f05-kicker"><span class="f05-spike">&#10033;</span><span>at runtime</span></div>
+    </div>
+
+    <div id="05-the-swap-code" class="clip f05-code" data-start="0" data-duration="12.255" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="05-the-swap-chamber" class="f05-chamber">
+        <div id="05-the-swap-titlebar" class="f05-titlebar">checkout.ts</div>
+      </div>
+      <div id="05-the-swap-l1" class="f05-line f05-line-1">class Checkout {</div>
+      <div id="05-the-swap-l2" class="f05-line f05-line-2">  constructor(private s: <span class="f05-tok">PricingStrategy</span>) {}</div>
+      <div id="05-the-swap-l3" class="f05-line f05-line-3">  total(cart: Cart): number {</div>
+      <div id="05-the-swap-l4" class="f05-line f05-line-4">    return <span class="f05-lav">this.s.price</span>(cart);</div>
+      <div id="05-the-swap-l5" class="f05-line f05-line-5">}</div>
+    </div>
+
+    <div id="05-the-swap-wire" class="clip f05-wire" data-start="0" data-duration="12.255" data-track-index="2" style="position:absolute;inset:0;">
+      <svg id="05-the-swap-svg" class="f05-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="05-the-swap-lead1" class="f05-lead" d="M 215 900 L 215 856 L 430 856 L 430 820" />
+        <path id="05-the-swap-lead2" class="f05-lead" d="M 540 900 L 540 820" />
+        <path id="05-the-swap-lead3" class="f05-lead" d="M 865 900 L 865 856 L 650 856 L 650 820" />
+      </svg>
+      <div id="05-the-swap-callrole" class="f05-callrole">wired per request</div>
+      <div id="05-the-swap-call" class="f05-callwrap"><span>new Checkout(new&nbsp;</span><span id="05-the-swap-name" class="f05-swap">StandardPricing</span><span>))</span></div>
+      <div id="05-the-swap-ul" class="f05-ul"></div>
+    </div>
+
+    <div id="05-the-swap-rail" class="clip f05-rail" data-start="0" data-duration="12.255" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="05-the-swap-r1" class="f05-req f05-req-1"><span class="f05-dot"></span><span>req 1</span></div>
+      <div id="05-the-swap-r2" class="f05-req f05-req-2"><span class="f05-dot"></span><span>req 2</span></div>
+      <div id="05-the-swap-r3" class="f05-req f05-req-3"><span class="f05-dot"></span><span>req 3</span></div>
+      <div id="05-the-swap-note" class="f05-note"><span class="f05-note-rule"></span><span>typed once &#183; chosen per call</span></div>
+      <div id="05-the-swap-unchanged" class="f05-unchanged">lines 1-5 unchanged</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.755;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-the-swap"] = tl;
+
+      // Measured cues (SCRIPT Line 5): context 0.18 · holds 0.70 · interface 1.66 · calls 2.78
+      // one 3.20 · method. 3.62 · Swap 4.94 · the object 5.64 · per 6.22 · request, 6.54 ·
+      // behaviour 8.08 · changes 8.60 · wiring 9.80 · untouched. 10.52
+
+      // ── Scene 1 (0.0–2.2s) — the context chamber, then the slot declaration ──
+      tl.fromTo(el("05-the-swap-grid"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+      tl.fromTo(el("05-the-swap-kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.08);
+      tl.fromTo(el("05-the-swap-chamber"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.18);
+      tl.fromTo(el("05-the-swap-l1"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0.4);
+      tl.fromTo(el("05-the-swap-l2"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" }, 0.7);
+      tl.fromTo(el("05-the-swap-l3"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 1.66);
+
+      // ── Scene 2 (2.2–4.6s) — "and calls one method" — the lavender call lifts ──
+      tl.fromTo(el("05-the-swap-l4"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" }, 2.78);
+      tl.fromTo(el("05-the-swap-l5"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 3.4);
+      tl.fromTo(el("05-the-swap-callrole"), { opacity: 0 }, { opacity: 1, duration: 0.32, ease: "power1.out" }, 3.8);
+
+      // ── Scene 3 (4.6–8.8s) — THE CENTRAL MOTION: the strategy name swaps in place ──
+      tl.fromTo(el("05-the-swap-call"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 4.94);
+      tl.fromTo(el("05-the-swap-ul"), { opacity: 0, scaleX: 0.3 }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "power3.out" }, 5.3);
+      tl.fromTo(el("05-the-swap-r1"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 5.02);
+      tl.fromTo(el("05-the-swap-r2"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 6.22);
+      tl.fromTo(el("05-the-swap-r3"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 8.08);
+      // the three leads draw as their request lands
+      var LEADS = [
+        { id: "05-the-swap-lead1", t: 5.2 },
+        { id: "05-the-swap-lead2", t: 6.5 },
+        { id: "05-the-swap-lead3", t: 8.36 }
+      ];
+      LEADS.forEach(function (s) {
+        var p = el(s.id);
+        var len = p.getTotalLength() * 1.02;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.42, ease: "power2.out" }, s.t);
+      });
+
+      // discrete-text-sequence (studio/known-traps.md #3): the shipped GSAP has NO TextPlugin,
+      // so a `text:` tween would be a silent no-op that still passes check. Whole states only,
+      // reverse-searched by a time proxy, assigned through textContent. Jumps stay instant.
+      var SEQUENCE = [
+        { t: 0.0, text: "StandardPricing" },   // lands with the call line at 4.94
+        { t: 6.3, text: "ContractPricing" },   // "per request," 6.22–6.54
+        { t: 8.7, text: "SeasonalPricing" }    // "the behaviour changes" 8.08–8.60
+      ];
+      function textAt(time) {
+        for (var i = SEQUENCE.length - 1; i >= 0; i--) {
+          if (time >= SEQUENCE[i].t) return SEQUENCE[i].text;
+        }
+        return "";
+      }
+      var nameEl = el("05-the-swap-name");
+      var driver = { t: 0 };
+      // the driver runs on absolute frame time, so the SEQUENCE t's are frame-local seconds
+      tl.to(driver, {
+        t: D,
+        duration: D,
+        ease: "none",
+        onUpdate: function () {
+          nameEl.textContent = textAt(driver.t);
+        }
+      }, 0);
+      // the ember underline settles, then steps with each swap (x only, never left/top)
+      tl.to(el("05-the-swap-ul"), { x: 6, duration: 0.3, ease: "power1.inOut" }, 6.3);
+      tl.to(el("05-the-swap-ul"), { x: 2, duration: 0.3, ease: "power1.inOut" }, 8.7);
+
+      // ── Scene 4 (8.8–11.755s) — "the wiring untouched": the evidence stays, dimmed ──
+      tl.to([el("05-the-swap-l1"), el("05-the-swap-l3"), el("05-the-swap-l5")], { opacity: 0.5, duration: 0.5, ease: "power1.inOut" }, 9.8);
+      tl.fromTo(el("05-the-swap-note"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 9.94);
+      tl.fromTo(el("05-the-swap-unchanged"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 10.52);
+      // sine-wave-loop on the wire layer only, minimum amplitude
+      tl.to(el("05-the-swap-wire"), { y: 2, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.9);
+    })();
+  </script>
+</template>

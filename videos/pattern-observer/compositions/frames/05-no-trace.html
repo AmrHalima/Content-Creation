@@ -1,0 +1,176 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid { position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px); }
+    .f05-kicker { position: absolute; top: 200px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f05-spike { display: inline-block; color: #956f33; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f05-ktext { display: inline-block; opacity: 0; }
+    .f05-display { position: absolute; top: 268px; left: 80px; width: 920px; height: 150px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.4cqw; line-height: 0.95;
+      letter-spacing: -0.022em; color: #1a1a1a; opacity: 0; }
+    .f05-chamber { position: absolute; top: 480px; left: 120px; width: 840px; height: 600px;
+      box-sizing: border-box; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px;
+      opacity: 0; overflow: hidden; }
+    .f05-head { position: absolute; top: 22px; left: 34px; width: 300px; height: 44px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #c9c9ba; opacity: 0; }
+    .f05-row { position: absolute; left: 34px; width: 772px; height: 92px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 26px; padding: 0 12px;
+      border-bottom: 2px solid rgba(255,255,235,0.1); opacity: 0; }
+    .f05-gutter { display: inline-block; width: 88px; flex: 0 0 88px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #8a8a7a; }
+    .f05-lbl { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.8cqw;
+      color: #ffffeb; }
+    .f05-slot { position: absolute; left: 34px; top: 460px; width: 772px; height: 92px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 26px; padding: 0 12px;
+      border: 3px dashed rgba(255,255,235,0.28); border-radius: 8px; opacity: 0; }
+    .f05-slot-lbl { display: inline-block; font-family: "JetBrains Mono", monospace;
+      font-size: 2.6cqw; color: #8a8a7a; }
+    .f05-ticks { position: absolute; top: 1268px; left: 120px; width: 840px; height: 120px;
+      display: flex; align-items: flex-start; gap: 26px; }
+    .f05-tickhead { display: inline-block; align-self: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; opacity: 0; }
+    .f05-tick { display: inline-block; width: 8px; height: 62px; background: rgba(26,26,26,0.42);
+      border-radius: 2px; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="05-no-trace" data-width="1080" data-height="1920" data-duration="10.228">
+
+    <div id="f05-fieldclip" class="clip" data-start="0" data-duration="10.228" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-field"></div>
+      <div id="f05-grid" class="f05-grid"></div>
+    </div>
+
+    <div id="f05-chromeclip" class="clip" data-start="0" data-duration="10.228" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f05-kicker">
+        <span id="f05-spike" class="f05-spike">&#10009;</span><span id="f05-ktext" class="f05-ktext" data-layout-ignore>THE CALL STACK</span>
+      </div>
+      <div id="f05-display" class="f05-display">no caller</div>
+    </div>
+
+    <div id="f05-stackclip" class="clip" data-start="0" data-duration="10.228" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f05-chamber" class="f05-chamber">
+        <div id="f05-head" class="f05-head" data-layout-ignore>stack</div>
+        <div id="f05-row0" class="f05-row" style="top:92px;"><span class="f05-gutter">#0</span><span id="f05-lbl0" class="f05-lbl">sendReceipt</span></div>
+        <div id="f05-row1" class="f05-row" style="top:184px;"><span class="f05-gutter">#1</span><span id="f05-lbl1" class="f05-lbl">logOrder</span></div>
+        <div id="f05-row2" class="f05-row" style="top:276px;"><span class="f05-gutter">#2</span><span id="f05-lbl2" class="f05-lbl">recordMetric</span></div>
+        <div id="f05-row3" class="f05-row" style="top:368px;border-bottom:none;"><span class="f05-gutter">#3</span><span id="f05-lbl3" class="f05-lbl">notify</span></div>
+      </div>
+      <div id="f05-slot" class="f05-slot" style="position:absolute;left:154px;top:1110px;width:772px;"><span class="f05-gutter">#4</span><span class="f05-slot-lbl">nothing that called this</span></div>
+    </div>
+
+    <div id="f05-tickclip" class="clip" data-start="7.4" data-duration="2.828" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f05-ticks">
+        <span id="f05-tickhead" class="f05-tickhead" data-layout-ignore>attached</span><span id="f05-t1" class="f05-tick"></span><span id="f05-t2" class="f05-tick"></span><span id="f05-t3" class="f05-tick"></span><span id="f05-t4" class="f05-tick"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.728;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-no-trace"] = tl;
+
+      // In-place label swap: time proxy + reverse-search over a discrete {t, text} array.
+      // TextPlugin is NOT in the shipped GSAP, so tl.set({ text }) would silently no-op.
+      function swap(node, states) {
+        var pr = { t: 0 };
+        var last = states[states.length - 1].t;
+        tl.to(pr, {
+          t: last,
+          duration: last,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      // ── ground + chrome ──
+      tl.fromTo(el("f05-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("f05-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.08);
+      tl.fromTo(el("f05-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0-1.8s) — "The tradeoff is paid in tracing": the rail opens empty ──
+      tl.fromTo(el("f05-chamber"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.18);
+      tl.fromTo(el("f05-head"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.12);
+
+      // ── Scene 2 (3.28-6.6s) — "a stack full of handlers": four rows arrive, then the three
+      //    handler labels cycle on the spoken words, because any of them could be any of them ──
+      [
+        { row: "f05-row0", t: 3.4 },
+        { row: "f05-row1", t: 3.7 },
+        { row: "f05-row2", t: 4.1 },
+        { row: "f05-row3", t: 4.26 }
+      ].forEach(function (r) {
+        tl.fromTo(el(r.row), { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, r.t);
+      });
+      // Three cyclic permutations of the same four names on one shared step clock (5.14 / 6.22 /
+      // 7.52 / 8.76 land on "nothing", "fired", "how", "attached"), so no two rows ever read the
+      // same handler at the same instant — a duplicate would look like a bug, not like anonymity.
+      swap(el("f05-lbl0"), [
+        { t: 3.4, text: "sendReceipt" },
+        { t: 5.14, text: "logOrder" },
+        { t: 6.22, text: "recordMetric" },
+        { t: 7.52, text: "syncSearch" },
+        { t: 8.76, text: "sendReceipt" }
+      ]);
+      swap(el("f05-lbl1"), [
+        { t: 3.7, text: "logOrder" },
+        { t: 5.14, text: "recordMetric" },
+        { t: 6.22, text: "syncSearch" },
+        { t: 7.52, text: "sendReceipt" },
+        { t: 8.76, text: "logOrder" }
+      ]);
+      swap(el("f05-lbl2"), [
+        { t: 4.1, text: "recordMetric" },
+        { t: 5.14, text: "syncSearch" },
+        { t: 6.22, text: "sendReceipt" },
+        { t: 7.52, text: "logOrder" },
+        { t: 8.76, text: "recordMetric" }
+      ]);
+
+      // ── Scene 3 (4.78-7.2s) — "says nothing about who fired": the display beat, then the
+      //    absent frame drawn as an empty dashed slot ──
+      tl.fromTo(el("f05-display"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 5.14);
+      tl.fromTo(el("f05-slot"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 6.22);
+
+      // ── Scene 4 (7.4-9.0s) — "or how many are still attached": ticks, no numerals ──
+      tl.fromTo(el("f05-tickhead"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 7.52);
+      [
+        { id: "f05-t1", t: 7.84 },
+        { id: "f05-t2", t: 8.2 },
+        { id: "f05-t3", t: 8.46 },
+        { id: "f05-t4", t: 8.76 }
+      ].forEach(function (k) {
+        tl.fromTo(el(k.id), { opacity: 0, scaleY: 0.4 }, { opacity: 1, scaleY: 1, duration: 0.3, ease: "power3.out", transformOrigin: "bottom center" }, k.t);
+      });
+
+      // ── Scene 5 (9.0-9.7s) — held read: this part's deliberate stillness ──
+      tl.to(el("f05-chamber"), { y: 1.8, duration: 0.34, ease: "sine.inOut", yoyo: true, repeat: 1 }, 9.05);
+    })();
+  </script>
+</template>

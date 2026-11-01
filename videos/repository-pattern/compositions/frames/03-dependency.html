@@ -1,0 +1,176 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f03-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f03-ktext { display: inline-block; opacity: 0; }
+
+    .f03-chamber { position: absolute; left: 100px; width: 880px; height: 220px; box-sizing: border-box; }
+    .f03-fill { position: absolute; inset: 0; border-radius: 12px; background: #ffffff; border: 3px solid #1a1a1a; }
+    .f03-lav { background: #F0D7FF; }
+    .f03-role {
+      position: absolute; top: 34px; left: 44px; width: 700px; height: 84px;
+      display: flex; align-items: center;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 4.8cqw; line-height: 1; letter-spacing: -0.022em; color: #1a1a1a;
+    }
+    .f03-cls {
+      position: absolute; top: 128px; left: 46px; width: 520px; height: 58px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: 0.01em; color: #1a1a1a;
+    }
+    .f03-corridor { position: absolute; inset: 0; overflow: visible; }
+    .f03-shaft { fill: none; stroke: #1a1a1a; stroke-width: 5; stroke-linecap: butt; }
+    .f03-shaft-ember { stroke: #FFA946; }
+    .f03-head { fill: #1a1a1a; }
+    .f03-head-ember { fill: #FFA946; }
+    .f03-strike { stroke: #1a1a1a; stroke-width: 4; opacity: 0; }
+    .f03-arrowlabel {
+      position: absolute; width: 220px; height: 46px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #76766e;
+      opacity: 0;
+    }
+    .f03-verdict {
+      position: absolute; top: 1400px; left: 270px; width: 540px; height: 74px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff;
+      border: 3px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: 0.06em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-dependency" data-width="1080" data-height="1920" data-duration="11.871">
+
+    <div id="03-dependency-fieldclip" class="clip" data-start="0" data-duration="11.871" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field"></div>
+      <div id="03-dependency-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="03-dependency-chromeclip" class="clip" data-start="0" data-duration="11.871" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f03-kicker">
+        <span id="03-dependency-spike" class="f03-spike">&#10009;</span><span id="03-dependency-ktext" class="f03-ktext" data-layout-ignore>WHICH WAY IT POINTS</span>
+      </div>
+    </div>
+
+    <div id="03-dependency-contractclip" class="clip" data-start="0" data-duration="11.871" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="03-dependency-contract" class="f03-chamber" style="top:400px;">
+        <div class="f03-fill f03-lav"></div>
+        <div class="f03-role">contract</div>
+        <div class="f03-cls">OrderRepository</div>
+      </div>
+    </div>
+
+    <div id="03-dependency-implclip" class="clip" data-start="0" data-duration="11.871" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="03-dependency-impl" class="f03-chamber" style="top:1120px;">
+        <div class="f03-fill"></div>
+        <div class="f03-role">implementation</div>
+        <div class="f03-cls">OrderRepositoryPg</div>
+      </div>
+    </div>
+
+    <div id="03-dependency-naiveclip" class="clip" data-start="2.8" data-duration="9.071" data-track-index="4" style="position:absolute;inset:0;">
+      <svg class="f03-corridor" width="1080" height="1920" viewBox="0 0 1080 1920">
+        <path id="03-dependency-naive" class="f03-shaft" d="M 340,650 L 340,1044"/>
+        <polygon id="03-dependency-naivehead" class="f03-head" points="322,1040 358,1040 340,1082"/>
+        <line id="03-dependency-strike" class="f03-strike" x1="296" y1="866" x2="384" y2="866"/>
+      </svg>
+      <div id="03-dependency-naivelabel" class="f03-arrowlabel" style="top:846px; left:80px;" data-layout-ignore>imports</div>
+    </div>
+
+    <div id="03-dependency-emberclip" class="clip" data-start="6.54" data-duration="5.331" data-track-index="5" style="position:absolute;inset:0;">
+      <svg class="f03-corridor" width="1080" height="1920" viewBox="0 0 1080 1920">
+        <path id="03-dependency-ember" class="f03-shaft f03-shaft-ember" d="M 740,1044 L 740,650"/>
+        <polygon id="03-dependency-emberhead" class="f03-head f03-head-ember" points="722,654 758,654 740,612"/>
+      </svg>
+      <div id="03-dependency-emberlabel" class="f03-arrowlabel" style="top:846px; left:780px;" data-layout-ignore>implements</div>
+    </div>
+
+    <div id="03-dependency-verdictclip" class="clip" data-start="9.8" data-duration="2.071" data-track-index="6" style="position:absolute;inset:0;">
+      <div id="03-dependency-verdict" class="f03-verdict">imports nothing</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 11.371;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      // self-draw a shaft along its own length (svg-path-draw): deterministic, seek-safe
+      function draw(id, at, dur) {
+        var p = el(id);
+        var len = p.getTotalLength();
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: dur, ease: "power2.inOut" }, at);
+      }
+
+      tl.fromTo(el("03-dependency-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("03-dependency-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("03-dependency-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–2.4s) — "Watch the dependency": the two chambers are already the room ──
+      tl.fromTo(el("03-dependency-contract"), { opacity: 0.5, y: -12 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0);
+      tl.fromTo(el("03-dependency-impl"), { opacity: 0.5, y: 12 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0.14);
+
+      // ── Scene 2 (2.4–5.6s) — the naive downward arrow is drawn so it can be corrected ──
+      draw("03-dependency-naive", 2.8, 1.7);
+      tl.fromTo(el("03-dependency-naivelabel"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 3.62);
+      tl.fromTo(el("03-dependency-naivehead"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out", transformOrigin: "center center" }, 4.5);
+
+      // ── Scene 3 (5.6–8.4s) — on "owns," (6.54) the ember arrow draws upward and the old one dies ──
+      tl.to(el("03-dependency-naive"), { opacity: 0.18, duration: 0.45, ease: "power1.out" }, 6.54);
+      tl.to(el("03-dependency-naivehead"), { opacity: 0.18, duration: 0.45, ease: "power1.out" }, 6.54);
+      tl.to(el("03-dependency-naivelabel"), { opacity: 0.24, duration: 0.45, ease: "power1.out" }, 6.54);
+      tl.fromTo(el("03-dependency-strike"), { opacity: 0 }, { opacity: 0.5, duration: 0.3, ease: "power1.out" }, 6.66);
+      draw("03-dependency-ember", 6.54, 1.06);
+      tl.fromTo(el("03-dependency-emberlabel"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 6.8);
+      tl.fromTo(el("03-dependency-emberhead"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out", transformOrigin: "center center" }, 7.6);
+
+      // ── Scene 4 (8.4–11.371s) — "so nothing in the domain names a table": the verdict lands on "names" ──
+      tl.fromTo(el("03-dependency-verdict"), { opacity: 0, y: 16, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.44, ease: "power3.out" }, 9.8);
+
+      // sine-wave-loop on the chamber WRAPPERS only (never an element GSAP already transforms)
+      var jit = { p: 0 };
+      var box = el("03-dependency-contract");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - 10.62,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)"; }
+      }, 10.62);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["03-dependency"] = tl;
+    })();
+  </script>
+</template>

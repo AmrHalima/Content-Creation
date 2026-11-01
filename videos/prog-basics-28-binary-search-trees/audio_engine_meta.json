@@ -1,0 +1,557 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 2.581,
+      "words": [
+        {
+          "text": "Search",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "a",
+          "start": 0.22,
+          "end": 0.38
+        },
+        {
+          "text": "million",
+          "start": 0.38,
+          "end": 0.72
+        },
+        {
+          "text": "items",
+          "start": 0.72,
+          "end": 1.18
+        },
+        {
+          "text": "in",
+          "start": 1.18,
+          "end": 1.5
+        },
+        {
+          "text": "about",
+          "start": 1.5,
+          "end": 1.66
+        },
+        {
+          "text": "twenty",
+          "start": 1.66,
+          "end": 1.96
+        },
+        {
+          "text": "steps.",
+          "start": 1.96,
+          "end": 2.26
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 10.005,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.12
+        },
+        {
+          "text": "binary",
+          "start": 0.12,
+          "end": 0.42
+        },
+        {
+          "text": "search",
+          "start": 0.42,
+          "end": 0.78
+        },
+        {
+          "text": "tree",
+          "start": 0.78,
+          "end": 1.14
+        },
+        {
+          "text": "keeps",
+          "start": 1.14,
+          "end": 1.42
+        },
+        {
+          "text": "smaller",
+          "start": 1.42,
+          "end": 1.84
+        },
+        {
+          "text": "values",
+          "start": 1.84,
+          "end": 2.26
+        },
+        {
+          "text": "on",
+          "start": 2.26,
+          "end": 2.5
+        },
+        {
+          "text": "the",
+          "start": 2.5,
+          "end": 2.6
+        },
+        {
+          "text": "left.",
+          "start": 2.6,
+          "end": 2.88
+        },
+        {
+          "text": "Larger",
+          "start": 3.48,
+          "end": 3.88
+        },
+        {
+          "text": "ones",
+          "start": 3.88,
+          "end": 4.1
+        },
+        {
+          "text": "go",
+          "start": 4.1,
+          "end": 4.32
+        },
+        {
+          "text": "on",
+          "start": 4.32,
+          "end": 4.5
+        },
+        {
+          "text": "the",
+          "start": 4.5,
+          "end": 4.6
+        },
+        {
+          "text": "right,",
+          "start": 4.6,
+          "end": 4.84
+        },
+        {
+          "text": "at",
+          "start": 4.84,
+          "end": 5.06
+        },
+        {
+          "text": "every",
+          "start": 5.06,
+          "end": 5.3
+        },
+        {
+          "text": "node.",
+          "start": 5.3,
+          "end": 5.62
+        },
+        {
+          "text": "The",
+          "start": 6.12,
+          "end": 6.2
+        },
+        {
+          "text": "root",
+          "start": 6.2,
+          "end": 6.4
+        },
+        {
+          "text": "is",
+          "start": 6.4,
+          "end": 6.58
+        },
+        {
+          "text": "eight.",
+          "start": 6.58,
+          "end": 6.82
+        },
+        {
+          "text": "Search",
+          "start": 7.2,
+          "end": 7.5
+        },
+        {
+          "text": "for",
+          "start": 7.5,
+          "end": 7.78
+        },
+        {
+          "text": "three.",
+          "start": 7.78,
+          "end": 8.08
+        },
+        {
+          "text": "Left,",
+          "start": 8.6,
+          "end": 8.96
+        },
+        {
+          "text": "then",
+          "start": 9.3,
+          "end": 9.4
+        },
+        {
+          "text": "left.",
+          "start": 9.4,
+          "end": 9.7
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 10.453,
+      "words": [
+        {
+          "text": "At",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "each",
+          "start": 0.14,
+          "end": 0.38
+        },
+        {
+          "text": "step",
+          "start": 0.38,
+          "end": 0.62
+        },
+        {
+          "text": "you",
+          "start": 0.62,
+          "end": 0.78
+        },
+        {
+          "text": "discard",
+          "start": 0.78,
+          "end": 1.14
+        },
+        {
+          "text": "half",
+          "start": 1.14,
+          "end": 1.5
+        },
+        {
+          "text": "the",
+          "start": 1.5,
+          "end": 1.64
+        },
+        {
+          "text": "tree.",
+          "start": 1.64,
+          "end": 1.92
+        },
+        {
+          "text": "If",
+          "start": 2.56,
+          "end": 2.64
+        },
+        {
+          "text": "the",
+          "start": 2.64,
+          "end": 2.76
+        },
+        {
+          "text": "tree",
+          "start": 2.76,
+          "end": 2.96
+        },
+        {
+          "text": "stays",
+          "start": 2.96,
+          "end": 3.2
+        },
+        {
+          "text": "balanced,",
+          "start": 3.2,
+          "end": 3.7
+        },
+        {
+          "text": "a",
+          "start": 4.12,
+          "end": 4.22
+        },
+        {
+          "text": "lookup",
+          "start": 4.22,
+          "end": 4.4
+        },
+        {
+          "text": "takes",
+          "start": 4.58,
+          "end": 4.88
+        },
+        {
+          "text": "about",
+          "start": 4.88,
+          "end": 5.14
+        },
+        {
+          "text": "log",
+          "start": 5.14,
+          "end": 5.52
+        },
+        {
+          "text": "n",
+          "start": 5.52,
+          "end": 5.72
+        },
+        {
+          "text": "steps.",
+          "start": 5.72,
+          "end": 6.1
+        },
+        {
+          "text": "One",
+          "start": 6.8,
+          "end": 7.06
+        },
+        {
+          "text": "million,",
+          "start": 7.06,
+          "end": 7.38
+        },
+        {
+          "text": "then",
+          "start": 7.8,
+          "end": 7.88
+        },
+        {
+          "text": "five",
+          "start": 7.88,
+          "end": 8.26
+        },
+        {
+          "text": "hundred",
+          "start": 8.26,
+          "end": 8.6
+        },
+        {
+          "text": "thousand,",
+          "start": 8.6,
+          "end": 9.06
+        },
+        {
+          "text": "then",
+          "start": 9.46,
+          "end": 9.56
+        },
+        {
+          "text": "down",
+          "start": 9.56,
+          "end": 9.86
+        },
+        {
+          "text": "to",
+          "start": 9.86,
+          "end": 10.06
+        },
+        {
+          "text": "one.",
+          "start": 10.06,
+          "end": 10.24
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 6.357,
+      "words": [
+        {
+          "text": "Here",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "is",
+          "start": 0.22,
+          "end": 0.4
+        },
+        {
+          "text": "that",
+          "start": 0.4,
+          "end": 0.6
+        },
+        {
+          "text": "tree",
+          "start": 0.6,
+          "end": 0.88
+        },
+        {
+          "text": "as",
+          "start": 0.88,
+          "end": 1.06
+        },
+        {
+          "text": "code.",
+          "start": 1.06,
+          "end": 1.36
+        },
+        {
+          "text": "It",
+          "start": 1.86,
+          "end": 2
+        },
+        {
+          "text": "looks",
+          "start": 2,
+          "end": 2.18
+        },
+        {
+          "text": "at",
+          "start": 2.18,
+          "end": 2.38
+        },
+        {
+          "text": "three",
+          "start": 2.38,
+          "end": 2.6
+        },
+        {
+          "text": "boxes",
+          "start": 2.6,
+          "end": 3.02
+        },
+        {
+          "text": "and",
+          "start": 3.02,
+          "end": 3.3
+        },
+        {
+          "text": "stops.",
+          "start": 3.3,
+          "end": 3.58
+        },
+        {
+          "text": "That",
+          "start": 4.24,
+          "end": 4.48
+        },
+        {
+          "text": "is",
+          "start": 4.48,
+          "end": 4.7
+        },
+        {
+          "text": "what",
+          "start": 4.7,
+          "end": 4.86
+        },
+        {
+          "text": "twenty",
+          "start": 4.86,
+          "end": 5.16
+        },
+        {
+          "text": "means",
+          "start": 5.16,
+          "end": 5.48
+        },
+        {
+          "text": "for",
+          "start": 5.48,
+          "end": 5.72
+        },
+        {
+          "text": "a",
+          "start": 5.72,
+          "end": 5.82
+        },
+        {
+          "text": "million.",
+          "start": 5.82,
+          "end": 6.06
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 4.053,
+      "words": [
+        {
+          "text": "What",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "happens",
+          "start": 0.14,
+          "end": 0.48
+        },
+        {
+          "text": "if",
+          "start": 0.48,
+          "end": 0.68
+        },
+        {
+          "text": "you",
+          "start": 0.68,
+          "end": 0.76
+        },
+        {
+          "text": "insert",
+          "start": 0.76,
+          "end": 1.04
+        },
+        {
+          "text": "1,",
+          "start": 1.04,
+          "end": 1.34
+        },
+        {
+          "text": "2,",
+          "start": 1.68,
+          "end": 1.94
+        },
+        {
+          "text": "3,",
+          "start": 2.1,
+          "end": 2.32
+        },
+        {
+          "text": "4,",
+          "start": 2.48,
+          "end": 2.72
+        },
+        {
+          "text": "5",
+          "start": 2.96,
+          "end": 3.24
+        },
+        {
+          "text": "in",
+          "start": 3.24,
+          "end": 3.46
+        },
+        {
+          "text": "that",
+          "start": 3.46,
+          "end": 3.58
+        },
+        {
+          "text": "order?",
+          "start": 3.58,
+          "end": 3.8
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 33.449
+}

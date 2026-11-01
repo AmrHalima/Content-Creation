@@ -1,0 +1,162 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 214px; left: 80px; width: 720px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f01-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 0; }
+    .f01-chip {
+      position: absolute; left: 80px; width: 330px; height: 62px;
+      box-sizing: border-box; display: flex; align-items: center;
+      padding: 0 22px;
+      border: 1px solid rgba(26,26,26,0.16);
+      border-radius: 8px;
+      background: #E4E4D0;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.8cqw; letter-spacing: 0.01em; color: #76766e;
+      opacity: 0;
+    }
+    .f01-tag {
+      position: absolute; top: 578px; left: 80px; width: 520px; height: 56px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.8cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-rule {
+      position: absolute; top: 648px; left: 80px; width: 520px; height: 1px;
+      background: rgba(26,26,26,0.28);
+      opacity: 0;
+    }
+    .f01-qline {
+      position: absolute; left: 80px; width: 920px; height: 176px;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 11.4cqw; line-height: 1.0; letter-spacing: -0.028em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-wordmark {
+      position: absolute; top: 1330px; left: 80px; width: 720px; height: 112px;
+      display: flex; align-items: flex-start;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 6.7cqw; line-height: 1.05; letter-spacing: -0.012em; font-style: italic;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-squiggle { position: absolute; top: 1452px; left: 80px; width: 460px; height: 44px; opacity: 0; }
+    .f01-squiggle svg { display: block; width: 100%; height: 100%; }
+    .f01-squiggle-path {
+      fill: none; stroke: #F0D7FF; stroke-width: 4; stroke-linecap: round;
+      stroke-dasharray: 1; stroke-dashoffset: 1;
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-which-type" data-width="1080" data-height="1920" data-duration="9.365">
+
+    <div id="01-which-type-groundclip" class="clip f01-groundclip" data-start="0" data-duration="9.365" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field" id="01-which-type-field"></div>
+      <div class="f01-grid" id="01-which-type-grid"></div>
+    </div>
+
+    <div id="01-which-type-chromeclip" class="clip f01-chromeclip" data-start="0" data-duration="9.365" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker" id="01-which-type-kicker">
+        <span class="f01-spike" id="01-which-type-spike">&#10009;</span><span class="f01-ktext" id="01-which-type-ktext" data-layout-ignore>every call site</span>
+      </div>
+      <div class="f01-chip" id="01-which-type-chip1" style="top:300px;">checkout.ts</div>
+      <div class="f01-chip" id="01-which-type-chip2" style="top:372px;">payments.ts</div>
+      <div class="f01-chip" id="01-which-type-chip3" style="top:444px;">webhooks.ts</div>
+      <div class="f01-tag" id="01-which-type-tag">one question</div>
+      <div class="f01-rule" id="01-which-type-rule"></div>
+    </div>
+
+    <div id="01-which-type-questionclip" class="clip f01-questionclip" data-start="4.98" data-duration="4.385" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f01-qline" id="01-which-type-w1" style="top:700px;">which</div>
+      <div class="f01-qline" id="01-which-type-w2" style="top:826px;">concrete</div>
+      <div class="f01-qline" id="01-which-type-w3" style="top:952px;">type?</div>
+    </div>
+
+    <div id="01-which-type-answerclip" class="clip f01-answerclip" data-start="7.18" data-duration="2.185" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f01-wordmark" id="01-which-type-wordmark">the factory</div>
+      <div class="f01-squiggle" id="01-which-type-squiggle">
+        <svg viewBox="0 0 460 44" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f01-squiggle-path" id="01-which-type-squiggle-path" pathLength="1"
+            d="M6 28 C 58 8, 104 40, 152 22 S 244 6, 296 26 S 400 38, 454 16" />
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.365;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-which-type"] = tl;
+
+      // ── ground: paper field + hairline grid (background, full-bleed, unlit) ──
+      tl.fromTo(el("01-which-type-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–2.0s) — "a caller that builds an object": kicker, then the chip rail ──
+      tl.fromTo(el("01-which-type-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("01-which-type-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el("01-which-type-chip1"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 0.96);
+      tl.fromTo(el("01-which-type-chip2"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 1.24);
+      tl.fromTo(el("01-which-type-chip3"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 1.54);
+
+      // ── Scene 2 (2.0–4.9s) — "answers one question first": the tag, then a hairline rule ──
+      tl.fromTo(el("01-which-type-tag"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 2.8);
+      tl.fromTo(el("01-which-type-rule"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "left center" }, 3.86);
+
+      // ── Scene 3 (4.9–7.0s) — the display question builds one word per spoken word ──
+      tl.fromTo(el("01-which-type-w1"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 4.98);
+      tl.fromTo(el("01-which-type-w2"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 5.22);
+      tl.fromTo(el("01-which-type-w3"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 5.84);
+
+      // ── Scene 4 (7.0–9.365s) — "the factory owns that answer": wordmark, then the lavender squiggle ──
+      tl.fromTo(el("01-which-type-wordmark"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 7.18);
+      tl.fromTo(el("01-which-type-squiggle"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 8.6);
+      tl.fromTo(el("01-which-type-squiggle-path"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.56, ease: "power2.out" }, 8.6);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite): wordmark only, settle -> cut
+      var jit = { p: 0 };
+      var hold = el("01-which-type-wordmark");
+      var HOLD = 9.06;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          hold.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

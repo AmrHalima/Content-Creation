@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Good code doesn't need comments. Agree or disagree?"
+    },
+    {
+      "id": "02",
+      "text": "A comment earns its place by explaining why. The code already says what it does."
+    },
+    {
+      "id": "03",
+      "text": "If a comment explains what the code does, rename things until it explains itself."
+    },
+    {
+      "id": "04",
+      "text": "Save comments for decisions, warnings, and tricky reasons. Retry three times: the payment API drops requests under load. Add one to i."
+    },
+    {
+      "id": "05",
+      "text": "Agree or disagree? Defend your side below."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

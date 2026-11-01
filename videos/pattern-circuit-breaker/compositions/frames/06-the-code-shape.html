@@ -1,0 +1,174 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; left: 90px; top: 218px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    /* the warm-navy code surface (frame.md § code-surface): navy body, navy-elev title bar */
+    .f06-panel {
+      position: absolute; left: 60px; top: 268px; width: 960px; height: 900px;
+      box-sizing: border-box; background: #181715; border: 1px solid rgba(255,255,235,0.14);
+      border-radius: 8px; opacity: 0; overflow: hidden;
+    }
+    .f06-bar { position: absolute; left: 0; top: 0; width: 100%; height: 82px; background: #252320; }
+    .f06-file {
+      position: absolute; left: 36px; top: 24px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      color: rgba(255,255,235,0.78); opacity: 0;
+    }
+    .f06-line {
+      position: absolute; left: 36px; width: 888px; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      line-height: 1.5; color: #8a8a80;
+      /* typed behind the caret: revealed by a quantised clip window, never by opacity */
+      clip-path: inset(0 100% 0 0);
+    }
+    .f06-l1 { top: 118px; }
+    .f06-l2 { top: 204px; }
+    .f06-l3 { top: 290px; }
+    .f06-l4 { top: 376px; }
+    .f06-l5 { top: 462px; }
+    .f06-l6 { top: 548px; }
+    .f06-kw { display: inline; color: #ffa946; }
+    .f06-id { display: inline; color: #ffffeb; }
+    .f06-note {
+      position: absolute; left: 36px; top: 630px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #8a8a80; opacity: 0;
+    }
+    .f06-caret {
+      position: absolute; left: 36px; top: 118px; width: 15px; height: 46px;
+      background: rgba(255,255,235,0.85); opacity: 0;
+    }
+    .f06-under { fill: none; stroke: #ffa946; stroke-width: 5; stroke-linecap: round; }
+    .f06-rule {
+      position: absolute; left: 90px; top: 1218px; width: 900px; height: 2px;
+      background: rgba(26,26,26,0.12); transform-origin: 0% 50%; transform: scaleX(0);
+    }
+    .f06-strip {
+      position: absolute; left: 90px; top: 1250px; width: 900px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f06-strip span { display: inline-block; color: #76766e; }
+  </style>
+
+  <div id="root" data-composition-id="06-the-code-shape" data-width="1080" data-height="1920" data-duration="11.679">
+
+    <div id="06-the-code-shape-fieldclip" class="clip" data-start="0" data-duration="11.679" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field"></div>
+      <div id="06-the-code-shape-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="06-the-code-shape-panelclip" class="clip" data-start="0" data-duration="11.679" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="06-the-code-shape-kicker" class="f06-kicker" data-layout-ignore>&#10009;&nbsp; the code shape</div>
+      <div id="06-the-code-shape-panel" class="f06-panel">
+        <div class="f06-bar"></div>
+        <div id="06-the-code-shape-file" class="f06-file">charge.ts</div>
+        <div class="f06-line f06-l1" id="06-the-code-shape-line1">// one wrapper, one dependency</div>
+        <div class="f06-line f06-l2" id="06-the-code-shape-line2"><span class="f06-kw">const</span> guarded = <span class="f06-id">breaker</span>.wrap(<span class="f06-id">gateway</span>)</div>
+        <div class="f06-line f06-l3" id="06-the-code-shape-line3"><span class="f06-kw">async function</span> charge(order: Order) {</div>
+        <div class="f06-line f06-l4" id="06-the-code-shape-line4">&nbsp;&nbsp;<span class="f06-kw">try</span> { <span class="f06-kw">return</span> <span class="f06-kw">await</span> guarded(order) }</div>
+        <div class="f06-line f06-l5" id="06-the-code-shape-line5">&nbsp;&nbsp;<span class="f06-kw">catch</span> (e) { <span class="f06-kw">if</span> (isOpen(e)) <span class="f06-kw">return</span> cachedQuote }</div>
+        <div class="f06-line f06-l6" id="06-the-code-shape-line6">}</div>
+        <div id="06-the-code-shape-caret" class="f06-caret"></div>
+        <svg class="f06-svgabs" width="960" height="900" viewBox="0 0 960 900" xmlns="http://www.w3.org/2000/svg">
+          <path id="06-the-code-shape-under" class="f06-under" d="M 44 520 L 812 520" />
+        </svg>
+        <div id="06-the-code-shape-note" class="f06-note" data-layout-ignore>shape, not a library</div>
+      </div>
+    </div>
+
+    <div id="06-the-code-shape-footclip" class="clip" data-start="0" data-duration="11.679" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="06-the-code-shape-rule" class="f06-rule"></div>
+      <div id="06-the-code-shape-strip" class="f06-strip">no library named</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var el = function (id) { return document.getElementById(id); };
+      var P = "06-the-code-shape-";
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-the-code-shape"] = tl;
+
+      var caret = el(P + "caret");
+
+      // ── token-streamed typing (the `code-typing` shape, hand-built because the registry block
+      //    could not be fetched on this machine's network): one time proxy per line reveals a
+      //    QUANTISED clip window, so the frontier steps token by token instead of oozing. No CSS
+      //    animation, no wall clock, nothing that can desync from a seek. ──
+      function typeLine(key, topAt, steps, at, dur) {
+        var node = el(P + key);
+        // monospace advance is measurable and fixed (JetBrains Mono = 0.6em), so the caret
+        // frontier is computed from the glyph count — never from a re-layout read.
+        var adv = parseFloat(getComputedStyle(node).fontSize) * 0.6;
+        var w = node.textContent.length * adv;
+        var pr = { p: 0 };
+        tl.set(caret, { top: topAt, left: 36 }, at);
+        tl.to(caret, { opacity: 1, duration: 0.12, ease: "none" }, at);
+        tl.to(pr, {
+          p: 1,
+          duration: dur,
+          ease: "none",
+          onUpdate: function () {
+            var q = Math.ceil(pr.p * steps) / steps;
+            node.style.clipPath = "inset(0 " + ((1 - q) * 100).toFixed(2) + "% 0 0)";
+            caret.style.left = (36 + w * q).toFixed(2) + "px";
+          }
+        }, at);
+      }
+
+      // ── Scene 1 (0.0–1.06s) — on "call site" the navy panel rises, framed in cream; the
+      //    filename seats on "site". An empty panel, not a slide. ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "kicker"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 0.05);
+      tl.fromTo(el(P + "panel"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.62, ease: "power3.out" }, 0.38);
+      tl.to(el(P + "file"), { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.68);
+
+      // ── Scene 2 (1.38–2.48s) — "it is one wrapper": the comment line types, then the wrapper it
+      //    describes. Muted body ink, so only the keywords carry colour. ──
+      typeLine("line1", 118, 6, 1.4, 0.78);
+      typeLine("line2", 204, 8, 2.1, 0.9);
+
+      // ── Scene 3 (3.40–4.72s) — the signature and the guarded call type on across "When the
+      //    breaker is open". ──
+      typeLine("line3", 290, 5, 3.4, 0.82);
+      typeLine("line4", 376, 7, 4.3, 0.86);
+
+      // ── Scene 4 (5.24–8.20s) — the guard line is the one that decides. It types across "throws
+      //    before its timeout" and an ember underline draws beneath it at 7.3 — the frame's
+      //    emphasis marker, landing on the line the whole narration is about. ──
+      typeLine("line5", 462, 9, 6.22, 1.16);
+      var under = el(P + "under");
+      var uLen = under.getTotalLength() * 1.05;
+      under.style.strokeDasharray = String(uLen);
+      under.style.strokeDashoffset = String(uLen);
+      tl.to(under, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 7.3);
+
+      // ── Scene 5 (8.56–11.179s) — the block closes, the caret retires once (a single fade, not a
+      //    blink loop), and the finished fragment holds so it can be read. ──
+      typeLine("line6", 548, 1, 8.98, 0.3);
+      tl.to(caret, { opacity: 0, duration: 0.24, ease: "power1.out" }, 9.4);
+      tl.to(el(P + "note"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 9.36);
+      tl.to(el(P + "rule"), { scaleX: 1, duration: 0.48, ease: "power2.out" }, 9.7);
+      tl.to(el(P + "strip"), { opacity: 1, duration: 0.44, ease: "power1.out" }, 9.9);
+    })();
+  </script>
+</template>

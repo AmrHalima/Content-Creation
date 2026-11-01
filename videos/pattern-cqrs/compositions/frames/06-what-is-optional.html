@@ -1,0 +1,147 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; left: 80px; top: 214px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f06-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f06-ktext { display: inline-block; opacity: 0; }
+
+    /* the anchor: pinned once, then immovable for the whole shot */
+    .f06-anchor {
+      position: absolute; left: 60px; top: 470px; width: 600px; height: 560px;
+      box-sizing: border-box; padding: 26px;
+      background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 12px; opacity: 0;
+    }
+    .f06-head {
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; line-height: 1; color: #ffffeb;
+      letter-spacing: -0.01em; opacity: 0;
+    }
+    .f06-model {
+      position: absolute; left: 86px; width: 520px; height: 116px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #034f46; border: 2px solid #ffffeb; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #ffffeb; opacity: 0;
+    }
+    .f06-label {
+      position: absolute; left: 700px; top: 410px; width: 320px; height: 44px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    /* the option rail: three add-ons that arrive unlit and stay unlit */
+    .f06-chip {
+      position: absolute; left: 700px; width: 320px; height: 116px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px dashed rgba(26,26,26,0.34); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.5cqw; color: #76766e; opacity: 0;
+    }
+
+    /* the landing: a display word and the film's single ember rule under it */
+    .f06-payoff { position: absolute; inset: 0; }
+    .f06-word {
+      position: absolute; left: 60px; top: 1090px; width: 520px; height: 100px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-style: italic; font-weight: 400; font-size: 6.7cqw;
+      line-height: 1.05; letter-spacing: -0.012em; color: #1a1a1a; opacity: 0;
+    }
+    .f06-rule { position: absolute; left: 60px; top: 1212px; width: 300px; height: 5px; background: #ffa946; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="06-what-is-optional" data-width="1080" data-height="1920" data-duration="11.184">
+
+    <div id="06-what-is-optional-fieldclip" class="clip" data-start="0" data-duration="11.184" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field"></div>
+      <div id="06-what-is-optional-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="06-what-is-optional-chromeclip" class="clip" data-start="0" data-duration="11.184" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f06-kicker"><span id="06-what-is-optional-spike" class="f06-spike">&#10009;</span><span id="06-what-is-optional-ktext" class="f06-ktext" data-layout-ignore>the split is in the model</span></div>
+      <div id="06-what-is-optional-label" class="f06-label" data-layout-ignore>the later step</div>
+    </div>
+
+    <div id="06-what-is-optional-anchorclip" class="clip" data-start="0" data-duration="11.184" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="06-what-is-optional-anchor" class="f06-anchor">
+        <div id="06-what-is-optional-head" class="f06-head">one database</div>
+      </div>
+      <div id="06-what-is-optional-m1" class="f06-model" style="top:624px;">write model</div>
+      <div id="06-what-is-optional-m2" class="f06-model" style="top:784px;">read model</div>
+    </div>
+
+    <div id="06-what-is-optional-railclip" class="clip" data-start="3.5" data-duration="7.684" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="06-what-is-optional-r1" class="f06-chip" style="top:470px;">event store</div>
+      <div id="06-what-is-optional-r2" class="f06-chip" style="top:620px;">message bus</div>
+      <div id="06-what-is-optional-r3" class="f06-chip" style="top:770px;">second store</div>
+    </div>
+
+    <div id="06-what-is-optional-payoffclip" class="clip" data-start="8.28" data-duration="2.904" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="06-what-is-optional-payoff" class="f06-payoff">
+        <div id="06-what-is-optional-word" class="f06-word">optional</div>
+        <div id="06-what-is-optional-rule" class="f06-rule"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 11.184;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "06-what-is-optional-";
+      var tl = gsap.timeline({ paused: true });
+
+      // ── Scene 1 (0.0–2.3s) — "Both halves can share one database": the anchor lands and PINS ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+      tl.fromTo(el(P + "anchor"), { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 0.0);
+      tl.fromTo(el(P + "head"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.4);
+      tl.fromTo(el(P + "m1"), { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 0.82);
+      tl.fromTo(el(P + "m2"), { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 1.56);
+
+      // ── Scene 2 (2.3–5.14s) — "no event store": the first add-on steps in, unlit, and stays ──
+      tl.fromTo(el(P + "label"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 2.3);
+      tl.fromTo(el(P + "r1"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 3.56);
+
+      // ── Scene 3 (5.14–7.22s) — steady cadence, same unlit state; the anchor has not moved ──
+      tl.fromTo(el(P + "r2"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 5.30);
+      tl.fromTo(el(P + "r3"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 6.74);
+
+      // ── Scene 4 (7.22–9.54s) — "that step is optional": the rail dims, the word lands, ember draws ──
+      tl.to(el(P + "r1"), { opacity: 0.5, duration: 0.5, ease: "power1.inOut" }, 7.9);
+      tl.to(el(P + "r2"), { opacity: 0.5, duration: 0.5, ease: "power1.inOut" }, 8.1);
+      tl.to(el(P + "r3"), { opacity: 0.5, duration: 0.5, ease: "power1.inOut" }, 8.3);
+      tl.fromTo(el(P + "word"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.52);
+      tl.fromTo(el(P + "rule"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.44, ease: "power3.out", transformOrigin: "left center" }, 9.10);
+
+      // ── Scene 5 (9.54–11.18s) — the deliberate held read: one small settle on the payoff, then still ──
+      var jit = { p: 0 };
+      var pay = el(P + "payoff");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.35,
+        duration: D - 10.0,
+        ease: "none",
+        onUpdate: function () {
+          pay.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)";
+        }
+      }, 10.0);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["06-what-is-optional"] = tl;
+    })();
+  </script>
+</template>

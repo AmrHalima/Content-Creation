@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Lumen — Product Intro</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #0D1321;
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Background container (untimed): full-bleed, clips the scaled inner */
+      #bg-wrap {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      #bg-inner {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #bg-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      /* Title clip — root-level, auto full-frame layout; flex-centers its content */
+      #title {
+        color: #F0EBD8;
+        font-family: Montserrat, sans-serif;
+        font-size: 110px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .tagline {
+        color: #2EC4B6;
+        font-family: Montserrat, sans-serif;
+        font-size: 34px;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-top: 44px;
+        opacity: 0.8;
+      }
+      .accent-line {
+        display: block;
+        width: 240px;
+        height: 4px;
+        background: #FF9F1C;
+        margin-top: 34px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Background: untimed container holds the timed video; inner div takes the scale tween -->
+      <div id="bg-wrap">
+        <div id="bg-inner" data-layout-allow-overflow>
+          <video id="bg-video" muted playsinline src="assets/background.mp4" data-start="0" data-duration="10"></video>
+        </div>
+      </div>
+
+      <!-- Title: fade-in over the background -->
+      <h1 id="title" class="clip" data-start="0" data-duration="9" data-track-index="1" data-layout-allow-overflow>
+        LUMEN
+        <span class="tagline">Introducing the next generation</span>
+        <span class="accent-line"></span>
+      </h1>
+    </div>
+
+    <!-- Subtle background music bed: separate <audio>, fade in/out via automation volume lane -->
+    <audio
+      id="music-bed"
+      src="assets/music.mp3"
+      data-start="0"
+      data-duration="10"
+      data-track-index="10"
+      data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":1.2,"v":0.14},{"t":8.8,"v":0.14},{"t":10,"v":0}]}]}'
+    ></audio>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      // Subtle background breath: slow scale over the full 10s (on non-timed inner wrapper)
+      tl.to("#bg-inner", { scale: 1.03, duration: 10, ease: "none" }, 0);
+      // Title fade-in with a gentle lift
+      tl.fromTo("#title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, 0.15);
+      // Accent line: hidden at start, scales in after the title appears
+      tl.set(".accent-line", { scaleX: 0, opacity: 0 }, 0);
+      tl.to(".accent-line", { scaleX: 1, opacity: 1, duration: 0.7, ease: "power2.out" }, 0.6);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #FFFFEB;
+    }
+    .f06-bg { position: absolute; inset: 0; background: #1A1A1A; }
+    .f06-head {
+      position: absolute; top: 250px; right: 96px; width: 888px; min-height: 200px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 8.6cqw; font-weight: 800; line-height: 1.1; letter-spacing: 0; opacity: 0;
+    }
+
+    .f06-svg { position: absolute; inset: 0; }
+    .f06-kicker {
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 40px; font-weight: 700;
+      letter-spacing: 0; fill: rgba(255,255,235,0.55);
+    }
+    .f06-kicker-hot { fill: #FFA946; }
+    .f06-phone { fill: none; stroke: rgba(255,255,235,0.55); stroke-width: 2; }
+    .f06-screen { fill: rgba(255,255,235,0.06); }
+    .f06-screen-live { fill: rgba(115,193,202,0.30); }
+    .f06-node { fill: none; stroke: rgba(255,255,235,0.34); stroke-width: 2; }
+    .f06-node-live { fill: #FFA946; stroke: none; }
+    .f06-lane-in { fill: none; stroke: rgba(255,255,235,0.28); stroke-width: 3; stroke-linecap: round; }
+    .f06-divert { fill: none; stroke: #FFA946; stroke-width: 3.5; stroke-linecap: round; }
+    .f06-lane-out { fill: none; stroke: #73C1CA; stroke-width: 3.5; stroke-linecap: round; }
+    .f06-travel { fill: #FFFFEB; }
+    .f06-travel-out { fill: #73C1CA; }
+    .f06-tag {
+      font-family: "Noto Naskh Arabic", serif; font-size: 38px; font-weight: 400;
+      letter-spacing: 0; fill: rgba(255,255,235,0.72);
+    }
+    .f06-tag-hot { fill: #FFA946; font-family: "Noto Kufi Arabic", sans-serif; font-weight: 700; }
+    .f06-cross { stroke: #FFA946; stroke-width: 5; stroke-linecap: round; }
+    .f06-ring { fill: none; stroke: rgba(255,255,235,0.4); stroke-width: 2; opacity: 0; }
+    .f06-ring-teal { stroke: #73C1CA; }
+
+    .f06-sub {
+      position: absolute; bottom: 170px; right: 96px; width: 820px; min-height: 220px;
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 5.4cqw; font-weight: 700;
+      line-height: 1.3; letter-spacing: 0; color: #FFA946; opacity: 0;
+    }
+    .f06-subrule {
+      position: absolute; bottom: 405px; right: 96px; width: 260px; height: 2px;
+      background: rgba(255,169,70,0.5); transform-origin: right center;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-why-invisible" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f06-bgclip" class="clip" data-start="0" data-duration="13.42" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-bg"></div>
+    </div>
+
+    <div id="f06-headclip" class="clip" data-start="0" data-duration="13.42" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f06-head" class="f06-head">ليه محدش بيحس بيها</div>
+    </div>
+
+    <div id="f06-diagramclip" class="clip" data-start="0" data-duration="13.42" data-track-index="2" style="position:absolute;inset:0;">
+      <svg class="f06-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- ── lane 1: the incoming call, diverted before it ever reaches her ── -->
+        <g id="f06-lane1" opacity="0">
+          <text class="f06-kicker f06-kicker-hot" x="984" y="500" text-anchor="start">١ · الوارد</text>
+          <path id="f06-inbound" class="f06-lane-in" d="M 1010 690 L 862 690" />
+          <polygon id="f06-inhead" class="f06-travel" points="0,-9 16,0 0,9" transform="translate(860,690) rotate(180)" opacity="0" />
+          <circle id="f06-innode" class="f06-node" cx="1010" cy="690" r="16" />
+          <text class="f06-tag" x="1010" y="642" text-anchor="start">مكالمة</text>
+        </g>
+
+        <g id="f06-her1" opacity="0">
+          <rect class="f06-phone" x="700" y="560" width="150" height="260" />
+          <rect id="f06-her1-screen" class="f06-screen" x="716" y="584" width="118" height="182" />
+          <text class="f06-tag" x="775" y="855" text-anchor="middle">رقمها</text>
+          <circle id="f06-ring1" class="f06-ring" cx="775" cy="690" r="120" />
+        </g>
+
+        <g id="f06-divertg" opacity="0">
+          <path id="f06-divert" class="f06-divert" d="M 700 720 C 560 780 480 880 300 900" />
+          <polygon id="f06-diverthead" class="f06-node-live" points="0,-9 16,0 0,9" transform="translate(298,900) rotate(180)" opacity="0" />
+          <circle id="f06-hisnode" class="f06-node-live" cx="240" cy="900" r="20" opacity="0" />
+          <text id="f06-histag" class="f06-tag f06-tag-hot" x="240" y="972" text-anchor="middle" opacity="0">رقم تاني</text>
+          <circle id="f06-dot" class="f06-travel" cx="0" cy="0" r="11" opacity="0" />
+        </g>
+
+        <g id="f06-silent" opacity="0">
+          <line class="f06-cross" x1="746" y1="655" x2="804" y2="713" />
+          <line class="f06-cross" x1="804" y1="655" x2="746" y2="713" />
+          <text class="f06-tag f06-tag-hot" x="775" y="912" text-anchor="middle" id="f06-silenttag">ساكن. مفيش حاجة بتترن</text>
+        </g>
+
+        <!-- ── lane 2: the outgoing call, untouched — and why the line feels fine ── -->
+        <g id="f06-lane2" opacity="0">
+          <text class="f06-kicker" x="984" y="1105" text-anchor="start">٢ · الصادر</text>
+          <g id="f06-her2">
+            <rect class="f06-phone" x="700" y="1160" width="150" height="260" />
+            <rect class="f06-screen f06-screen-live" x="716" y="1184" width="118" height="182" />
+            <text class="f06-tag" x="775" y="1455" text-anchor="middle">هّي اللي بتتصل</text>
+          </g>
+          <path id="f06-outbound" class="f06-lane-out" d="M 700 1290 L 330 1290" />
+          <polygon id="f06-outhead" class="f06-travel-out" points="0,-9 16,0 0,9" transform="translate(328,1290) rotate(180)" opacity="0" />
+          <circle id="f06-ring2" class="f06-ring f06-ring-teal" cx="250" cy="1290" r="100" opacity="0" />
+          <circle id="f06-peer" class="f06-node" cx="250" cy="1290" r="20" />
+          <text id="f06-peertag" class="f06-tag" x="250" y="1365" text-anchor="middle" opacity="0">اللي بتكلمه</text>
+          <text id="f06-outok" class="f06-tag" x="515" y="1245" text-anchor="middle" opacity="0">شغالة عادي</text>
+        </g>
+
+      </svg>
+    </div>
+
+    <div id="f06-subclip" class="clip" data-start="10.0" data-duration="3.42" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f06-subrule" class="f06-subrule"></div>
+      <div id="f06-sub" class="f06-sub">التحويل بيشتغل على الواردة بس. متتطمنّش من الخط نفسه.</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-why-invisible"] = tl;
+
+      var D = 13.42;
+
+      tl.fromTo(el("f06-head"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+
+      // Beat 1 — "مفيش مكالمة بتترن عندها": the lane appears, the call arrives, and stops short.
+      tl.fromTo(el("f06-lane1"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, 1.2);
+      tl.fromTo(el("f06-her1"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.5);
+      tl.fromTo(el("f06-innode"), { scale: 0, transformOrigin: "1010px 690px" }, { scale: 1, duration: 0.35, ease: "back.out(1.6)" }, 2.0);
+      tl.fromTo(el("f06-inhead"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 2.25);
+
+      // Beat 2 — "الموبايل ساكن": one finite ring, then the cross. The silence is the point.
+      tl.fromTo(el("f06-ring1"), { opacity: 0, scale: 0.72, transformOrigin: "775px 690px" },
+        { opacity: 0.55, scale: 1, duration: 0.5, ease: "power2.out" }, 2.6);
+      tl.to(el("f06-ring1"), { opacity: 0, duration: 0.45, ease: "power1.in" }, 3.1);
+      tl.fromTo(el("f06-silent"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 3.4);
+      tl.fromTo(el("f06-her1-screen"), { fill: "rgba(255,255,235,0.06)" }, { fill: "rgba(255,255,235,0.03)", duration: 0.4 }, 3.4);
+
+      // Beat 3 — the divert draws, and the call travels it. This is the theft made visible.
+      var divert = el("f06-divert");
+      var LEN = divert.getTotalLength();
+      divert.style.strokeDasharray = String(LEN);
+      divert.style.strokeDashoffset = String(LEN);
+      tl.fromTo(el("f06-divertg"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 4.0);
+      tl.to(divert, { strokeDashoffset: 0, duration: 1.6, ease: "power1.inOut" }, 4.1);
+
+      var dot = el("f06-dot");
+      var prog = { p: 0 };
+      tl.fromTo(dot, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 4.1);
+      tl.to(prog, {
+        p: 1, duration: 1.6, ease: "power1.inOut",
+        onUpdate: function () {
+          var pt = divert.getPointAtLength(prog.p * LEN);
+          dot.setAttribute("cx", pt.x);
+          dot.setAttribute("cy", pt.y);
+        }
+      }, 4.1);
+      tl.to(dot, { opacity: 0, duration: 0.25 }, 5.7);
+      tl.fromTo(el("f06-diverthead"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 5.6);
+      tl.fromTo(el("f06-hisnode"), { opacity: 0, scale: 0.5, transformOrigin: "240px 900px" },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 5.7);
+      tl.fromTo(el("f06-histag"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35 }, 6.0);
+
+      // Beat 4 — "والمكالمات الصادرة لسه شغالة عادي": the second lane, and it WORKS.
+      tl.fromTo(el("f06-lane2"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.6);
+      var out = el("f06-outbound");
+      var OLEN = out.getTotalLength();
+      out.style.strokeDasharray = String(OLEN);
+      out.style.strokeDashoffset = String(OLEN);
+      tl.to(out, { strokeDashoffset: 0, duration: 1.3, ease: "power1.inOut" }, 7.2);
+      tl.fromTo(el("f06-outhead"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 8.4);
+      tl.fromTo(el("f06-ring2"), { opacity: 0, scale: 0.7, transformOrigin: "250px 1290px" },
+        { opacity: 0.8, scale: 1, duration: 0.5, ease: "power2.out" }, 8.5);
+      tl.to(el("f06-ring2"), { opacity: 0.2, duration: 0.6, ease: "power1.out" }, 9.0);
+      tl.fromTo(el("f06-peertag"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 8.9);
+      tl.fromTo(el("f06-outok"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 9.2);
+
+      // Beat 5 — the rule: dim the working lane so the broken one is the only bright thing.
+      tl.to(el("f06-lane2"), { opacity: 0.34, duration: 0.7, ease: "power2.out" }, 10.4);
+      tl.fromTo(el("f06-subrule"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 10.5);
+      tl.fromTo(el("f06-sub"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 10.8);
+
+      // the diverted number keeps its ring while she hears nothing — finite, and it ends inside D
+      var pulses = Math.max(0, Math.floor((D - 11.6) / 1.1) - 1);
+      for (var i = 0; i <= pulses; i++) {
+        var at = 11.6 + i * 1.1;
+        tl.fromTo(el("f06-hisnode"), { scale: 1, transformOrigin: "240px 900px" },
+          { scale: 1.22, duration: 0.35, ease: "power2.inOut", yoyo: true, repeat: 1 }, at);
+      }
+      // last 0.9s HELD.
+    })();
+  </script>
+</template>

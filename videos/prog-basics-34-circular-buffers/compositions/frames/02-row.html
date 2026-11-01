@@ -1,0 +1,208 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* R2 slot cell — frame-day4 v2.2 section 1 rung 2: 96x110, radius 16, 3px --line on
+       --panel, value 4.0cqw SG 700 --value. Three slots at lefts 100 / 212 / 324 (pitch 112),
+       row top 400, bottom 510, right edge 420. Slot CENTRES 148 / 260 / 372 are the anchors for
+       anything that points at a slot (marker x = centre - 60, arc endpoints = centres). */
+    .pb-chamber { position: absolute; box-sizing: border-box; width: 96px; height: 110px; top: 400px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 16px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    /* G20 `empty`: a slot that has never been written is 3px DASHED --line with a muted dash */
+    .f2-shell { border-style: dashed; opacity: 0; }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 4.0cqw; color: #5AD6A0; }
+    .f2-none { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 4.0cqw; color: #9BA6B2; }
+
+    /* G2 name tab, repositioned: the wrap arc owns the band above the row, so 34's tab sits
+       beside the row in the free R2 label column (row ends x 420, column 452 -> 1008) */
+    .f2-tab { position: absolute; left: 452px; top: 424px; width: 108px; height: 44px;
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 700; color: #9BA6B2; }
+
+    /* the counted strip line — R2's strip lane (522) is 12px under the cell and a straddling
+       marker eats it, so the line lives in the trail/arc lane at 566 (50px clear of the row) */
+    .f2-ws { position: absolute; left: 72px; top: 566px; width: 864px; height: 40px; text-align: center;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 400;
+      letter-spacing: 0.08em; color: #9BA6B2; white-space: nowrap; }
+
+    /* the write-head marker — `.f3-marker` shape (120x60, --panel-2, 3px --say, radius 14,
+       mono 700 2.9cqw --say). Parked top 640, lands at y -160 so it straddles the cell's
+       BOTTOM edge (510). This is the frame's only amber element.
+       z-index 3: a straddling marker paints OVER the chamber it brackets (in F3 the TAIL needs
+       it; the chambers must lead the DOM so the value tokens paint over them). Same atom, same
+       rule — Wave B clones the pair, not the DOM-order accident. */
+    .f2-marker { position: absolute; top: 640px; left: 88px; width: 120px; height: 60px;
+      display: flex; align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 3px solid #FFD166; border-radius: 14px; z-index: 3;
+      box-shadow: 0 12px 26px -12px rgba(0,0,0,0.8);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700; color: #FFD166; }
+
+    /* the wrap arc — one svg per frame, fixed 936x1920 canvas at left 72, viewBox 1:1 px,
+       no scaled ancestor (frame-day4 section 3.3). Internal x = frame x - 72. */
+    .f2-arc { position: absolute; left: 72px; top: 0; }
+    .f2-arc-line { fill: none; stroke: rgba(255,255,255,0.30); stroke-width: 4;
+      stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+    .f2-arc-head { fill: rgba(255,255,255,0.30); opacity: 0; }
+
+    /* counted tag — pb-21's `.f3-tag` form, one lane lower (the arc owns the upper band) */
+    .f2-tag { position: absolute; top: 892px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #9BA6B2; white-space: nowrap; }
+    .pb-digit { color: #5AD6A0; }
+  </style>
+
+  <div id="root" data-composition-id="02-row" data-width="1080" data-height="1920" data-duration="7.70">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="7.70" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="7.70" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>A FIXED ROW, A WRITE SPOT THAT RETURNS</div>
+        <div id="c2-badge" class="pb-kbadge" data-layout-ignore>INTERMEDIATE</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="7.70" data-track-index="2">
+      <svg id="f2-arc" class="f2-arc" width="936" height="1920" viewBox="0 0 936 1920">
+        <path id="f2-arc-path" class="f2-arc-line" pathLength="100"
+              d="M 300 380 C 300 296 76 296 76 380" />
+        <polygon id="f2-arc-head" class="f2-arc-head" points="67,378 85,378 76,398" />
+      </svg>
+
+      <div id="f2-e0" class="pb-chamber f2-shell" style="left:100px;"><span class="f2-none">&mdash;</span></div>
+      <div id="f2-e1" class="pb-chamber f2-shell" style="left:212px;"><span class="f2-none">&mdash;</span></div>
+      <div id="f2-e2" class="pb-chamber f2-shell" style="left:324px;"><span class="f2-none">&mdash;</span></div>
+
+      <div id="f2-b0" class="pb-chamber" style="left:100px;"><span id="f2-v0" class="pb-val">A</span></div>
+      <div id="f2-b1" class="pb-chamber" style="left:212px;"><span id="f2-v1" class="pb-val">B</span></div>
+      <div id="f2-b2" class="pb-chamber" style="left:324px;"><span id="f2-v2" class="pb-val">C</span></div>
+
+      <div id="f2-tab" class="f2-tab" data-layout-ignore>buf</div>
+      <div id="f2-ws" class="f2-ws" data-layout-ignore>write spot:&nbsp;0&nbsp;1&nbsp;2&nbsp;0&nbsp;1&nbsp;2</div>
+      <div id="f2-marker" class="f2-marker" data-layout-allow-overlap>HEAD</div>
+      <div id="f2-tag" class="f2-tag" style="left:270px; width:300px;" data-layout-allow-overlap>WRAPPED&nbsp;<span class="pb-digit">1</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.70;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-row"] = tl;
+
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 1.92, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.56, ease: "sine.inOut", repeat: 2, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.92, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c2-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: up (F1 was a cut). The svg rides inside the same translate-only layer,
+         so its internal coordinates stay frame coordinates (section 3.3). */
+      tl.fromTo(el("f2-content"), { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f2-content"), { y: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* "A circular buffer is an array" (0.12-1.38): the three slots exist up front, empty and
+         dashed — a set size means the room is already there, nothing is appended later */
+      [0, 1, 2].forEach(function (n, i) {
+        tl.fromTo(el("f2-e" + n), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 0.2 + i * 0.18);
+      });
+
+      /* the name tab arrives with the word "array" (1.38); "a set size" (2.08-2.26) pulses the
+         row — emphasis on the spoken token, and the only emphasis the row gets before the write */
+      tl.fromTo(el("f2-tab"), { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.42);
+      [0, 1, 2].forEach(function (n, i) {
+        tl.fromTo(el("f2-e" + n), { scale: 1 }, { scale: 1.04, duration: 0.16, ease: "power2.out",
+          yoyo: true, repeat: 1, immediateRender: false }, 2.1 + i * 0.07);
+      });
+
+      /* "The write spot" (3.50-3.70): the counting line and the amber marker arrive together */
+      tl.fromTo(el("f2-ws"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 3.54);
+      tl.fromTo(el("f2-marker"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.8)", immediateRender: false }, 3.58);
+
+      /* "runs to the end" (4.00 -> 4.74): the marker hops to slot 0 and A is written, then steps
+         +112 to slot 1 (B) and +112 to slot 2 (C). The value is written when the head lands on it,
+         because F2 never speaks the letters — they are spoken in F4. */
+      tl.to(el("f2-marker"), { y: -160, duration: 0.28, ease: "power3.out", immediateRender: false }, 3.98);
+      writeSlot(0, 4.02);
+      tl.to(el("f2-marker"), { x: 112, duration: 0.22, ease: "power2.inOut", immediateRender: false }, 4.36);
+      writeSlot(1, 4.42);
+      tl.to(el("f2-marker"), { x: 224, duration: 0.22, ease: "power2.inOut", immediateRender: false }, 4.7);
+      writeSlot(2, 4.76);
+
+      /* "wraps back" (5.42-5.66): P8 draw-on of the return arc while the head travels back with
+         it, and the head arrives on slot 0 just before the word "zero" (6.00) */
+      tl.to(el("f2-arc-path"), { strokeDashoffset: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 5.44);
+      tl.to(el("f2-marker"), { x: 0, y: -160, duration: 0.44, ease: "power2.inOut", immediateRender: false }, 5.5);
+      tl.fromTo(el("f2-arc-head"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out", immediateRender: false }, 5.94);
+
+      /* the counted tag lands after "zero." (6.16) */
+      tl.fromTo(el("f2-tag"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 6.2);
+
+      /* ambient float on the written row, back to zero */
+      [0, 1, 2].forEach(function (n, i) {
+        tl.fromTo(el("f2-b" + n), { y: 0 }, { y: -4, duration: 0.64, ease: "sine.inOut", repeat: 1,
+          yoyo: true, immediateRender: false }, 6.5 + i * 0.08);
+      });
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 7.38);
+
+      /* P2 drop-in for one slot: the dashed shell hands over to the solid chamber, the mint value
+         falls in, the border flashes and settles. Nothing translates — the row is fixed. */
+      function writeSlot(n, at) {
+        var i = String(n);
+        tl.to(el("f2-e" + i), { opacity: 0, duration: 0.16, ease: "power1.out", immediateRender: false }, at);
+        tl.fromTo(el("f2-b" + i), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power1.out", immediateRender: false }, at);
+        tl.fromTo(el("f2-v" + i), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.44, ease: "bounce.out", immediateRender: false }, at + 0.02);
+        tl.to(el("f2-b" + i), { borderColor: "rgba(90,214,160,0.75)", duration: 0.2, immediateRender: false }, at + 0.44);
+        tl.to(el("f2-b" + i), { borderColor: "rgba(255,255,255,0.16)", duration: 0.34 }, at + 0.64);
+      }
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

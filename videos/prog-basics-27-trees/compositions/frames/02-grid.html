@@ -1,0 +1,177 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G11 tree (frame-day3.md § 6, first draw) ─────────────────────────────
+       node 148x96 · levels 292 / 452 / 612 / 772 · columns from
+       left = 72 + (936/n)/2 - 74 + i*(936/n) → n=1 466 · n=2 232, 700 · n=4 115, 349, 583, 817
+       node centre = left + 74 → root 540 · L 306 · R 774
+       elbows: three axis-aligned 3px --line divs, runY 420 / 580 / 740, stubs 32px.        */
+    .g11-node { position: absolute; box-sizing: border-box; width: 148px; height: 96px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .g11-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; font-size: 6.2cqw; }
+    /* the root box reserves its top 38px for the ROOT tab, so the value sits in the lower well */
+    .g11-root { display: block; text-align: center; }
+    .g11-root .g11-valwell { display: flex; align-items: center; justify-content: center;
+      height: 56px; margin-top: 34px; }
+    .g11-root .g11-val { font-size: 4.6cqw; }
+    .g11-two .g11-val { font-size: 4.6cqw; }
+
+    .g11-tab { position: absolute; height: 38px; display: flex; align-items: center;
+      justify-content: center; padding: 0 14px; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-bottom: none;
+      border-radius: 12px 12px 0 0; font-family: "JetBrains Mono", monospace; font-size: 2.5cqw;
+      font-weight: 700; letter-spacing: 0.04em; color: #F4F1EA; white-space: nowrap; }
+
+    .g11-stub { position: absolute; width: 3px; height: 32px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0; }
+    .g11-down { transform: scaleY(0); transform-origin: top center; }
+    .g11-up { transform: scaleY(0); transform-origin: bottom center; }
+    .g11-run { position: absolute; height: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0; transform: scaleX(0);
+      transform-origin: left center; }
+
+    .g11-ring { position: absolute; box-sizing: border-box; width: 168px; height: 116px;
+      border: 3px solid #FFD166; border-radius: 30px; opacity: 0;
+      box-shadow: 0 0 0 8px rgba(255,209,102,0.12); }
+
+    /* gloss chips — chrome, never a number, never a colour role (§ 4d) */
+    .g11-chip { position: absolute; height: 26px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; padding: 0 10px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="02-grid" data-width="1080" data-height="1920" data-duration="9.3">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="9.3" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="9.3" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 27</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="9.3" data-track-index="2">
+
+      <!-- elbow for root -> L and root -> R. runY 420; the down-stub at x 540 is SHARED by both
+           children, so one stub serves the pair and the two runs meet at 540 (one bracket, no knot). -->
+      <div id="f2-d0" class="g11-stub g11-down" style="left:539px; top:388px;"></div>
+      <div id="f2-r0" class="g11-run" style="left:306px; top:419px; width:234px;"></div>
+      <div id="f2-r1" class="g11-run" style="left:540px; top:419px; width:234px;"></div>
+      <div id="f2-u0" class="g11-stub g11-up" style="left:305px; top:420px;"></div>
+      <div id="f2-u1" class="g11-stub g11-up" style="left:773px; top:420px;"></div>
+
+      <!-- the tree -->
+      <div id="f2-nroot" class="g11-node g11-root" style="left:466px; top:292px;" data-layout-allow-occlusion><span class="g11-valwell"><span id="f2-vroot" class="g11-val">root</span></span></div>
+      <div id="f2-tab" class="g11-tab" style="left:474px; top:292px;" data-layout-ignore>ROOT</div>
+      <div id="f2-nl" class="g11-node" style="left:232px; top:452px;"><span class="g11-val">L</span></div>
+      <div id="f2-nr" class="g11-node" style="left:700px; top:452px;"><span class="g11-val">R</span></div>
+
+      <div id="f2-ring" class="g11-ring" style="left:456px; top:282px;"></div>
+
+      <!-- glosses: NODE on the box, EDGE on the line it counts, CHILD on the two boxes that arrived -->
+      <div id="f2-cnod" class="g11-chip" style="left:352px; top:327px;" data-layout-ignore>node</div>
+      <div id="f2-cedge" class="g11-chip" style="left:344px; top:424px;" data-layout-ignore>edge</div>
+      <div id="f2-chl" class="g11-chip" style="left:124px; top:487px;" data-layout-ignore>child</div>
+      <div id="f2-chr" class="g11-chip" style="left:856px; top:487px;" data-layout-ignore>child</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.3;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-grid"] = tl;
+
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 2.325, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.325, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.55, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: the board comes up from below */
+      tl.fromTo(el("f2-content"), { opacity: 0, y: 90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* "A tree is a hierarchy of nodes." (tree 0.10 · hierarchy 0.76 · nodes. 1.50)
+         P2 drop-in, parent first — the root is the only box that exists yet. */
+      tl.fromTo(el("f2-nroot"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 0.30);
+      tl.to(el("f2-nroot"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 0.76);
+      tl.to(el("f2-nroot"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 0.86);
+
+      /* "A node is one box, holding one thing." (node 2.62 · box, 3.40 · thing. 4.52)
+         the gloss rides the object, and the value scales once as it is named */
+      tl.fromTo(el("f2-cnod"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.70);
+      tl.to(el("f2-vroot"), { scale: 1.14, duration: 0.18, ease: "power2.out", immediateRender: false }, 3.40);
+      tl.to(el("f2-vroot"), { scale: 1, duration: 0.22, ease: "power2.inOut" }, 3.58);
+
+      /* "One root at the top," (root 5.50 · top, 5.98) — the tab seats and the --say ring closes.
+         The ring is this frame's only amber arrival, so it is gone before the children drop. */
+      tl.fromTo(el("f2-tab"), { opacity: 0, y: -22, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.7)", immediateRender: false }, 5.46);
+      tl.fromTo(el("f2-ring"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.5)", immediateRender: false }, 5.52);
+      tl.fromTo(el("f2-ring"), { boxShadow: "0 0 0 8px rgba(255,209,102,0.12)" },
+        { boxShadow: "0 0 0 15px rgba(255,209,102,0.20)", duration: 0.42, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 5.82);
+      tl.to(el("f2-ring"), { opacity: 0, duration: 0.3, ease: "power2.in" }, 6.30);
+
+      /* "and every node can have children." (every 6.68 · children. 7.64 → 7.98)
+         one node per clause, and after each one its elbow BUILDS in three 0.14s stages. */
+      tl.fromTo(el("f2-nl"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 6.55);
+      tl.to(el("f2-nl"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 7.01);
+      tl.to(el("f2-nl"), { scaleY: 1, duration: 0.2, ease: "power3.out" }, 7.11);
+      tl.fromTo(el("f2-d0"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 7.05);
+      tl.fromTo(el("f2-r0"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 7.19);
+      tl.fromTo(el("f2-u0"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 7.33);
+
+      tl.fromTo(el("f2-nr"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 7.45);
+      tl.to(el("f2-nr"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 7.91);
+      tl.to(el("f2-nr"), { scaleY: 1, duration: 0.2, ease: "power3.out" }, 8.01);
+      tl.fromTo(el("f2-r1"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 7.95);
+      tl.fromTo(el("f2-u1"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 8.09);
+
+      tl.fromTo(el("f2-cedge"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 8.28);
+      tl.fromTo(el("f2-chl"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 8.40);
+      tl.fromTo(el("f2-chr"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 8.54);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 8.98);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

@@ -1,0 +1,181 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .clipband { position: absolute; inset: 0; }
+
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    .f05-kicker {
+      position: absolute; top: 200px; left: 72px; width: 820px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f05-spike { display: inline-block; opacity: 0; color: #76766e; font-size: 1.7cqw; margin-right: 14px; }
+    .f05-ktext { display: inline-block; opacity: 0; }
+
+    /* grammar C, second use: the two call sites */
+    .f05-chamber {
+      position: absolute; left: 72px; top: 296px; width: 936px; height: 236px;
+      box-sizing: border-box; background: #1a1a1a;
+      border: 2px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f05-code {
+      position: absolute; left: 34px; width: 860px; height: 60px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400; color: #8f8f84;
+    }
+    .f05-codea { top: 48px; }
+    .f05-codeb { top: 124px; }
+    .f05-name { display: inline-block; color: #ffffeb; }
+
+    /* the two references */
+    .f05-chip {
+      position: absolute; top: 600px; width: 210px; height: 92px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #1a1a1a; border-radius: 8px; background: #ffffeb;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; font-weight: 400; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f05-chipa { left: 170px; }
+    .f05-chipb { left: 700px; }
+
+    /* orthogonal connectors — no rotation anywhere in this part */
+    .f05-link { position: absolute; inset: 0; opacity: 0; }
+    .f05-bar { position: absolute; background: #1a1a1a; }
+    .f05-head {
+      position: absolute; width: 0; height: 0;
+      border-left: 10px solid transparent; border-right: 10px solid transparent;
+      border-top: 15px solid #1a1a1a;
+    }
+
+    /* the one object both names point at */
+    .f05-boxwrap { position: absolute; left: 340px; top: 900px; width: 400px; height: 200px; }
+    .f05-box {
+      display: block; width: 100%; height: 100%; box-sizing: border-box;
+      background: #1a1a1a; border: 2px solid #1a1a1a; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 4cqw; font-weight: 400;
+      letter-spacing: 0.02em; color: #ffffeb;
+    }
+
+    .f05-check {
+      position: absolute; top: 1200px; left: 72px; width: 340px; height: 62px;
+      display: flex; align-items: center; white-space: nowrap; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 3cqw; font-weight: 400; color: #1a1a1a;
+    }
+    .f05-true {
+      position: absolute; top: 1188px; left: 440px; width: 200px; height: 80px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.1em; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-one-identity" data-width="1080" data-height="1920" data-duration="7.083">
+
+    <div id="f05-ground" class="clip clipband" data-start="0" data-duration="7.083" data-track-index="0">
+      <div class="f05-field"></div>
+      <div id="f05-grid" class="f05-grid"></div>
+    </div>
+
+    <div id="f05-chrome" class="clip clipband" data-start="0" data-duration="7.083" data-track-index="1">
+      <div class="f05-kicker">
+        <div id="f05-spike" class="f05-spike">&#10009;</div>
+        <div id="f05-ktext" class="f05-ktext" data-layout-ignore>ONE OBJECT</div>
+      </div>
+    </div>
+
+    <div id="f05-content" class="clip clipband" data-start="0" data-duration="7.083" data-track-index="2">
+      <div id="f05-chamber" class="f05-chamber">
+        <div id="f05-codea" class="f05-code f05-codea">const pool =&nbsp;<span class="f05-name">Config</span>.getInstance();</div>
+        <div id="f05-codeb" class="f05-code f05-codeb">const cfg =&nbsp;<span class="f05-name">Config</span>.getInstance();</div>
+      </div>
+
+      <div id="f05-chipa" class="f05-chip f05-chipa">pool</div>
+      <div id="f05-chipb" class="f05-chip f05-chipb">cfg</div>
+
+      <div id="f05-linkpool" class="f05-link">
+        <div class="f05-bar" style="left:273px; top:692px; width:3px; height:98px;"></div>
+        <div class="f05-bar" style="left:273px; top:790px; width:167px; height:3px;"></div>
+        <div class="f05-bar" style="left:437px; top:790px; width:3px; height:104px;"></div>
+        <div class="f05-head" style="left:428px; top:886px;"></div>
+      </div>
+      <div id="f05-linkcfg" class="f05-link">
+        <div class="f05-bar" style="left:803px; top:692px; width:3px; height:98px;"></div>
+        <div class="f05-bar" style="left:640px; top:790px; width:166px; height:3px;"></div>
+        <div class="f05-bar" style="left:640px; top:790px; width:3px; height:104px;"></div>
+        <div class="f05-head" style="left:631px; top:886px;"></div>
+      </div>
+
+      <div class="f05-boxwrap" id="f05-boxwrap">
+        <div id="f05-box" class="f05-box">Config</div>
+      </div>
+
+      <div id="f05-check" class="f05-check">pool === cfg</div>
+      <div id="f05-true" class="f05-true">true</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.083;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-one-identity"] = tl;
+
+      tl.fromTo(el("f05-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f05-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.05);
+      tl.fromTo(el("f05-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0–1.5s) — "Ask twice": the second call site arrives ──
+      tl.fromTo(el("f05-chamber"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+      tl.fromTo(el("f05-codea"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.46);
+      tl.fromTo(el("f05-codeb"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.46);
+
+      // ── Scene 2 (1.5–3.7s) — "the same object back": one box, two names ──
+      tl.fromTo(el("f05-box"),
+        { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out", immediateRender: false }, 1.92);
+      tl.fromTo(el("f05-chipa"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 2.24);
+      tl.fromTo(el("f05-chipb"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, 2.74);
+
+      // ── Scene 3 (3.7–5.4s) — "Two references pointing": both connectors converge ──
+      tl.fromTo(el("f05-linkpool"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 3.74);
+      tl.fromTo(el("f05-linkcfg"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 4.18);
+      tl.fromTo(el("f05-check"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 4.82);
+
+      // ── Scene 4 (5.4–7.1s) — the ember verdict on "one lifetime", then still ──
+      tl.fromTo(el("f05-true"),
+        { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out", immediateRender: false }, 5.86);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite) on the shared object only
+      var jit = { p: 0 };
+      var wrap = el("f05-boxwrap");
+      var HOLD = 6.30;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          wrap.style.transform = "translateY(" + (Math.sin(jit.p) * 1.5).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "How does your phone find one contact among ten thousand instantly?"
+    },
+    {
+      "id": "02",
+      "text": "A hash map stores key-value pairs. A hash function turns the key into an array position."
+    },
+    {
+      "id": "03",
+      "text": "A lookup jumps straight to the answer instead of searching. On average, lookup takes constant time. It reads one bucket. Reading them one by one takes all six."
+    },
+    {
+      "id": "04",
+      "text": "Ages is Sara twenty five. Ages at key Sara gives twenty five."
+    },
+    {
+      "id": "05",
+      "text": "Save this for your next interview. It comes up a lot."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

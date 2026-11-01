@@ -1,0 +1,45 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Your code wants one shape. The vendor's SDK hands you a different one."
+    },
+    {
+      "id": "02",
+      "text": "An adapter lets them talk, and neither side changes. It converts one interface into another."
+    },
+    {
+      "id": "03",
+      "text": "A factory picks which thing to build. An adapter reshapes a thing that already exists."
+    },
+    {
+      "id": "04",
+      "text": "That seam is where your domain stops and the vendor starts. Nothing in your code knows their client exists."
+    },
+    {
+      "id": "05",
+      "text": "The domain asks for amount, then currency. The vendor wants them the other way round, under a different name."
+    },
+    {
+      "id": "06",
+      "text": "The answer gets converted too, back into a type you own. Every difference handled in one box."
+    },
+    {
+      "id": "07",
+      "text": "It costs a layer you maintain on both sides. It pays when the two shapes change for different reasons."
+    },
+    {
+      "id": "08",
+      "text": "It leaks when the vendor's response type shows up in your caller's signature. Then the whole seam is decoration."
+    },
+    {
+      "id": "09",
+      "text": "Stacked adapters fail the same way, one layer down. Keep one box per pair of shapes and finish the translation inside it."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

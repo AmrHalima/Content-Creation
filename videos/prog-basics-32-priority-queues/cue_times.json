@@ -1,0 +1,477 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 3.221,
+      "words": [
+        {
+          "text": "An",
+          "start": 0,
+          "end": 0.16
+        },
+        {
+          "text": "ER",
+          "start": 0.16,
+          "end": 0.44
+        },
+        {
+          "text": "doesn't",
+          "start": 0.44,
+          "end": 1.02
+        },
+        {
+          "text": "treat",
+          "start": 1.02,
+          "end": 1.2
+        },
+        {
+          "text": "patients",
+          "start": 1.2,
+          "end": 1.64
+        },
+        {
+          "text": "in",
+          "start": 1.64,
+          "end": 2
+        },
+        {
+          "text": "the",
+          "start": 2,
+          "end": 2.12
+        },
+        {
+          "text": "order",
+          "start": 2.12,
+          "end": 2.34
+        },
+        {
+          "text": "they",
+          "start": 2.34,
+          "end": 2.58
+        },
+        {
+          "text": "arrive.",
+          "start": 2.58,
+          "end": 2.96
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 10.048,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "priority",
+          "start": 0.14,
+          "end": 0.56
+        },
+        {
+          "text": "queue",
+          "start": 0.56,
+          "end": 0.9
+        },
+        {
+          "text": "serves",
+          "start": 0.9,
+          "end": 1.36
+        },
+        {
+          "text": "the",
+          "start": 1.36,
+          "end": 1.6
+        },
+        {
+          "text": "highest",
+          "start": 1.6,
+          "end": 1.94
+        },
+        {
+          "text": "priority",
+          "start": 1.94,
+          "end": 2.54
+        },
+        {
+          "text": "first.",
+          "start": 2.54,
+          "end": 2.94
+        },
+        {
+          "text": "The",
+          "start": 3.62,
+          "end": 3.72
+        },
+        {
+          "text": "oldest",
+          "start": 3.72,
+          "end": 4.02
+        },
+        {
+          "text": "item",
+          "start": 4.02,
+          "end": 4.46
+        },
+        {
+          "text": "waits",
+          "start": 4.46,
+          "end": 4.72
+        },
+        {
+          "text": "its",
+          "start": 4.72,
+          "end": 4.98
+        },
+        {
+          "text": "turn.",
+          "start": 4.98,
+          "end": 5.26
+        },
+        {
+          "text": "It's",
+          "start": 5.88,
+          "end": 6.1
+        },
+        {
+          "text": "usually",
+          "start": 6.1,
+          "end": 6.4
+        },
+        {
+          "text": "built",
+          "start": 6.4,
+          "end": 6.72
+        },
+        {
+          "text": "on",
+          "start": 6.72,
+          "end": 6.96
+        },
+        {
+          "text": "a",
+          "start": 6.96,
+          "end": 7.08
+        },
+        {
+          "text": "heap.",
+          "start": 7.08,
+          "end": 7.26
+        },
+        {
+          "text": "This",
+          "start": 7.86,
+          "end": 8.04
+        },
+        {
+          "text": "is",
+          "start": 8.04,
+          "end": 8.18
+        },
+        {
+          "text": "that",
+          "start": 8.18,
+          "end": 8.38
+        },
+        {
+          "text": "heap,",
+          "start": 8.38,
+          "end": 8.66
+        },
+        {
+          "text": "with",
+          "start": 8.66,
+          "end": 9.04
+        },
+        {
+          "text": "a",
+          "start": 9.04,
+          "end": 9.16
+        },
+        {
+          "text": "serving",
+          "start": 9.16,
+          "end": 9.46
+        },
+        {
+          "text": "order.",
+          "start": 9.46,
+          "end": 9.78
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 12.053,
+      "words": [
+        {
+          "text": "Push",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "text": "low",
+          "start": 0.2,
+          "end": 0.54
+        },
+        {
+          "text": "with",
+          "start": 0.54,
+          "end": 0.8
+        },
+        {
+          "text": "five.",
+          "start": 0.8,
+          "end": 1.14
+        },
+        {
+          "text": "Push",
+          "start": 1.64,
+          "end": 1.88
+        },
+        {
+          "text": "urgent",
+          "start": 1.88,
+          "end": 2.22
+        },
+        {
+          "text": "with",
+          "start": 2.22,
+          "end": 2.44
+        },
+        {
+          "text": "one.",
+          "start": 2.44,
+          "end": 2.7
+        },
+        {
+          "text": "Pop",
+          "start": 3.18,
+          "end": 3.44
+        },
+        {
+          "text": "gives",
+          "start": 3.44,
+          "end": 3.78
+        },
+        {
+          "text": "urgent.",
+          "start": 3.78,
+          "end": 4.2
+        },
+        {
+          "text": "A",
+          "start": 4.78,
+          "end": 4.9
+        },
+        {
+          "text": "heap",
+          "start": 4.9,
+          "end": 5.1
+        },
+        {
+          "text": "puts",
+          "start": 5.1,
+          "end": 5.36
+        },
+        {
+          "text": "the",
+          "start": 5.36,
+          "end": 5.56
+        },
+        {
+          "text": "smallest",
+          "start": 5.56,
+          "end": 5.96
+        },
+        {
+          "text": "number",
+          "start": 5.96,
+          "end": 6.34
+        },
+        {
+          "text": "at",
+          "start": 6.34,
+          "end": 6.56
+        },
+        {
+          "text": "the",
+          "start": 6.56,
+          "end": 6.66
+        },
+        {
+          "text": "top.",
+          "start": 6.66,
+          "end": 6.94
+        },
+        {
+          "text": "Schedulers,",
+          "start": 7.6,
+          "end": 8.28
+        },
+        {
+          "text": "Dijkstra's",
+          "start": 8.56,
+          "end": 9.04
+        },
+        {
+          "text": "algorithm,",
+          "start": 9.04,
+          "end": 9.46
+        },
+        {
+          "text": "and",
+          "start": 9.46,
+          "end": 9.88
+        },
+        {
+          "text": "notification",
+          "start": 9.88,
+          "end": 10.3
+        },
+        {
+          "text": "systems",
+          "start": 10.3,
+          "end": 11.08
+        },
+        {
+          "text": "rely",
+          "start": 11.08,
+          "end": 11.44
+        },
+        {
+          "text": "on",
+          "start": 11.44,
+          "end": 11.78
+        },
+        {
+          "text": "it.",
+          "start": 11.78,
+          "end": 11.9
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 5.589,
+      "words": [
+        {
+          "text": "Two",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "items",
+          "start": 0.14,
+          "end": 0.5
+        },
+        {
+          "text": "share",
+          "start": 0.5,
+          "end": 0.88
+        },
+        {
+          "text": "priority",
+          "start": 0.88,
+          "end": 1.38
+        },
+        {
+          "text": "one.",
+          "start": 1.38,
+          "end": 1.72
+        },
+        {
+          "text": "The",
+          "start": 2.26,
+          "end": 2.32
+        },
+        {
+          "text": "tie",
+          "start": 2.32,
+          "end": 2.54
+        },
+        {
+          "text": "breaks",
+          "start": 2.54,
+          "end": 2.88
+        },
+        {
+          "text": "by",
+          "start": 2.88,
+          "end": 3.14
+        },
+        {
+          "text": "spelling.",
+          "start": 3.14,
+          "end": 3.52
+        },
+        {
+          "text": "Low",
+          "start": 3.98,
+          "end": 4.26
+        },
+        {
+          "text": "leaves",
+          "start": 4.26,
+          "end": 4.56
+        },
+        {
+          "text": "before",
+          "start": 4.56,
+          "end": 4.88
+        },
+        {
+          "text": "urgent.",
+          "start": 4.88,
+          "end": 5.26
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 3.051,
+      "words": [
+        {
+          "text": "Is",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "priority-first",
+          "start": 0.14,
+          "end": 0.6
+        },
+        {
+          "text": "always",
+          "start": 0.92,
+          "end": 1.28
+        },
+        {
+          "text": "fair?",
+          "start": 1.28,
+          "end": 1.6
+        },
+        {
+          "text": "Comment",
+          "start": 2.04,
+          "end": 2.32
+        },
+        {
+          "text": "your",
+          "start": 2.32,
+          "end": 2.52
+        },
+        {
+          "text": "take.",
+          "start": 2.52,
+          "end": 2.76
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G5 CTA (pb-11/pb-20 idiom via pb-21/05-cta). The ask is split into two groups of <=20
+       characters, because a 38-character headline at 6.4cqw needs 1400px of a 936px column. */
+    .f5-ask { position: absolute; left: 72px; width: 936px; height: 84px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .f5-a1 { top: 300px; }
+    .f5-a2 { top: 392px; }
+
+    /* the quiz, posed as the stack the learner has just watched — two G6 echo cards.
+       frame-day2 section 14: opacity: 0.42 on a whole echo row puts its text at 1.3:1, so the DIM
+       lives in the container's background and border and the mono text keeps full ink (deviation 10).
+       The answer (0 on the empty list) is NOT here; it is in the pinned comment. */
+    .f5-echo { position:absolute; box-sizing:border-box; height:84px; background:rgba(31,36,44,0.45);
+      border:3px solid rgba(255,255,255,0.10); border-radius:22px; opacity:0; }
+    .f5-e1 { left:136px; top:500px; width:760px; }
+    .f5-e2 { left:200px; top:596px; width:672px; }
+    .f5-tab { position:absolute; left:0; top:0; width:100%; height:38px; box-sizing:border-box;
+      background:rgba(38,44,54,0.60); border-bottom:3px solid rgba(255,255,255,0.10);
+      border-radius:18px 18px 0 0; display:flex; align-items:center; padding:0 22px; }
+    .f5-call { display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.6cqw; font-weight:700; line-height:1; letter-spacing:0.02em; color:#F4F1EA;
+      white-space:pre; }
+    .f5-pend { margin-left:auto; display:inline-block; font-variant-ligatures:none;
+      font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; font-family:"JetBrains Mono", monospace;
+      font-size:2.6cqw; font-weight:700; line-height:1; letter-spacing:0.04em; color:#9BA6B2;
+      white-space:pre; margin-right:16px; }
+    .f5-valband { position:absolute; left:0; top:38px; width:100%; height:43px; display:flex;
+      align-items:center; justify-content:center; }
+
+    /* the mechanic verb plate: the frame's only amber */
+    .f5-plate { position: absolute; left: 330px; top: 720px; width: 420px; height: 104px; display: flex;
+      align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    .f5-brandline { position: absolute; left: 72px; top: 906px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="6.3">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="6.3" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="6.3" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 15 · THE ASK</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="6.3" data-track-index="2">
+      <div id="f5-a1" class="f5-ask f5-a1">what's&nbsp;the&nbsp;base&nbsp;case</div>
+      <div id="f5-a2" class="f5-ask f5-a2">for&nbsp;summing&nbsp;a&nbsp;list?</div>
+
+      <div id="f5-e1" class="f5-echo f5-e1">
+        <div class="f5-tab"><span class="f5-call">sum(nums)</span><span class="f5-pend">&nbsp;waits</span></div>
+        <div class="f5-valband"></div>
+      </div>
+      <div id="f5-e2" class="f5-echo f5-e2">
+        <div class="f5-tab"><span class="f5-call">sum([])</span><span class="f5-pend" id="f5-q">&nbsp;?</span></div>
+        <div class="f5-valband"></div>
+      </div>
+
+      <div id="f5-plate" class="f5-plate">comment&nbsp;it</div>
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 15 · BEGINNER</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.3;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: 1.575, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: 1.575, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.575, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: drops in from above (F4 came from the left). This frame carries no exit
+         push: it loops under the platform's chrome, so it has to hold alone to the last frame. */
+      tl.fromTo(el("f5-content"), { opacity: 0, y: 90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* measured onsets line 5: What's 0.00 / the 0.30 / base 0.40 / case 0.60 / for 0.86 /
+         summing 1.08 / a 1.38 / list? 1.46 / Comment 2.06 / it. 2.36 */
+      tl.fromTo(el("f5-a1"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f5-a2"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.84);
+      tl.fromTo(el("f5-a2"), { scale: 1 }, { scale: 1.035, duration: 0.22, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 1.46);
+
+      /* the stack the learner just watched, back as the question — posed, not answered */
+      tl.fromTo(el("f5-e1"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 1.68);
+      tl.fromTo(el("f5-e2"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 1.96);
+      tl.fromTo(el("f5-q"), { scale: 0.6 }, { scale: 1, duration: 0.3, ease: "back.out(1.8)", immediateRender: false }, 2.16);
+
+      /* the mechanic verb lands on the spoken verb "Comment" (2.06) — P2 drop-in, and the only
+         amber in the frame (no say-sweep competes with it: pb-14 deviation 16) */
+      tl.fromTo(el("f5-plate"), { opacity: 0, y: -70, scale: 0.9 }, { opacity: 1, y: 0, scale: 1,
+        duration: 0.36, ease: "back.out(1.7)", immediateRender: false }, 2.10);
+
+      /* the series line closes after "it." (2.36) */
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 2.90);
+
+      /* the loop hold: colour-free motion only, so the plate stays the single amber */
+      tl.fromTo(el("f5-plate"), { y: 0 }, { y: -6, duration: 0.7, ease: "sine.inOut", repeat: 3,
+        yoyo: true, immediateRender: false }, 3.4);
+      tl.fromTo(el("f5-q"), { scale: 1 }, { scale: 1.16, duration: 0.22, ease: "power2.out",
+        yoyo: true, repeat: 3, immediateRender: false }, 4.2);
+      tl.fromTo(el("f5-a1"), { y: 0 }, { y: -3, duration: 1.05, ease: "sine.inOut", repeat: 1,
+        yoyo: true, immediateRender: false }, 4.0);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

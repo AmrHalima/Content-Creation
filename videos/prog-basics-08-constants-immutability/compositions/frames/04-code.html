@@ -1,0 +1,231 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    .pb-chip { position: absolute; box-sizing: border-box; height: 88px; display: flex;
+      align-items: center; justify-content: center; padding: 0 24px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    .pb-ann { position: absolute; box-sizing: border-box; opacity: 0; color: #9BA6B2;
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.01em; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+    .pb-rule { position: absolute; height: 4px; background: #FFD166; transform: scaleX(0);
+      transform-origin: left center; border-radius: 2px; }
+
+    .cd-root { position: absolute; left: 72px; top: 300px; width: 936px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 872px; height: 62px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .cd-rev { clip-path: inset(0 100% 0 0); white-space: pre; }
+    .cd-caret { position: absolute; left: 0; top: 7px; width: 5px; height: 46px;
+      background: #FFD166; opacity: 0; border-radius: 2px; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-a { color: #FFD166; } .tk-e { color: #FF6B5A; } .tk-c { color: #9BA6B2; }
+    .tk-b { font-weight: 700; }
+
+    /* F4 — the proof in code. Three typed lines, one boxed value, one refusal that
+       happens inside the code, and the interpreter's own line in coral (the only coral here). */
+    .f4-ch { top:296px; height:340px; }
+    .f4-hltok { position:absolute; left:94px; top:396px; width:196px; height:56px;
+      background:#FFD166; border-radius:10px; opacity:0; transform:scaleX(0);
+      transform-origin:left center; }
+    .f4-hltok2 { position:absolute; left:94px; top:544px; width:112px; height:56px;
+      background:#FFD166; border-radius:10px; opacity:0; transform:scaleX(0);
+      transform-origin:left center; }
+    .f4-box { position:absolute; left:176px; top:470px; width:96px; height:58px;
+      border:3px solid rgba(255,255,255,0.22); border-radius:10px; opacity:0;
+      transform:scaleX(0); transform-origin:center center; box-sizing:border-box; }
+    .f4-ring { position:absolute; left:172px; top:466px; width:104px; height:66px;
+      border:7px solid rgba(90,214,160,0.75); border-radius:14px; opacity:0;
+      box-sizing:border-box; }
+    .f4-hh { position:absolute; left:252px; top:548px; width:74px; height:58px;
+      border-radius:12px; font-size:2.9cqw; color:#5AD6A0; padding:0 10px; }
+    .f4-spark { position:absolute; width:5px; height:34px; background:#5AD6A0; opacity:0;
+      border-radius:3px; transform:scaleY(0); transform-origin:bottom center; }
+    .f4-sp1 { left:160px; top:420px; } .f4-sp2 { left:284px; top:420px; }
+    .f4-strike { position:absolute; left:96px; top:572px; width:250px; height:6px;
+      background:rgba(244,241,234,0.5); border-radius:3px; transform:scaleX(0);
+      transform-origin:left center; }
+    .f4-term { position:absolute; left:72px; top:668px; width:936px; height:158px;
+      box-sizing:border-box; background:#262C36; border:3px solid rgba(255,107,90,0.55);
+      border-radius:16px; opacity:0; padding:14px 28px; }
+    .f4-tl1 { position:absolute; left:28px; top:20px; width:880px; height:54px; display:flex;
+      align-items:center; font-family:"JetBrains Mono", monospace; font-size:2.75cqw;
+      font-weight:700; color:#FF6B5A; white-space:pre; }
+    .f4-tl2 { position:absolute; left:28px; top:78px; width:880px; height:54px; display:flex;
+      align-items:center; font-family:"JetBrains Mono", monospace; font-size:2.75cqw;
+      font-weight:700; color:#FF6B5A; white-space:pre; }
+    .f4-note { left:96px; top:860px; width:888px; }
+    .f4-note2 { left:96px; top:924px; width:888px; }
+  </style>
+
+  <div id="root" data-composition-id="04-code" data-width="1080" data-height="1920" data-duration="13.672">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="13.672" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div id="g4-shelf" class="gnd-shelf"></div>
+    </div>
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="13.672" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>RUN IT AND READ THE OUTPUT</div>
+        <div id="c4-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="13.672" data-track-index="2">
+
+      <div id="f4-ch" class="cd-root f4-ch">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON 3.13</span></div>
+        <div id="f4-l0" class="cd-line" style="top:88px;">
+          <div class="cd-rev" id="f4-r0"><span class="tk-i tk-b">MAX_USERS</span><span class="tk-m"> = </span><span class="tk-v" id="f4-v100">100</span><span class="tk-c" id="f4-cmt" style="opacity:0;">   # promise: never reassign</span></div>
+          <div class="cd-caret" id="f4-k0"></div>
+        </div>
+        <div id="f4-l1" class="cd-line" style="top:168px;">
+          <div class="cd-rev" id="f4-r1"><span class="tk-i">s</span><span class="tk-m"> = </span><span class="tk-v" id="f4-vhi">&#39;hi&#39;</span></div>
+          <div class="cd-caret" id="f4-k1"></div>
+        </div>
+        <div id="f4-l2" class="cd-line" style="top:248px;">
+          <div class="cd-rev" id="f4-r2"><span class="tk-i">s[0]</span><span class="tk-m"> = </span></div><div class="cd-rev" id="f4-r2b"><span class="tk-v" id="f4-vH">&#39;H&#39;</span></div>
+          <div class="cd-caret" id="f4-k2"></div>
+        </div>
+        <div id="f4-idle" class="cd-caret" style="left:378px; top:255px;"></div>
+      </div>
+      <div id="f4-hltok" class="f4-hltok"></div>
+      <div id="f4-hltok2" class="f4-hltok2"></div>
+      <div id="f4-box" class="f4-box"></div>
+      <div id="f4-ring" class="f4-ring"></div>
+      <div id="f4-sp1" class="f4-spark f4-sp1"></div>
+      <div id="f4-sp2" class="f4-spark f4-sp2"></div>
+      <div id="f4-hh" class="pb-chip f4-hh">&#39;H&#39;</div>
+      <div id="f4-strike" class="f4-strike"></div>
+      <div id="f4-term" class="f4-term"><div class="f4-tl1">TypeError: &#39;str&#39; object does not support</div><div class="f4-tl2">item assignment</div></div>
+      <div id="f4-note" class="pb-ann f4-note">the string did <strong>not</strong> change</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 13.672;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-code"] = tl;
+
+      /* ground */
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 2.279, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 3.418, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.279, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g4-shelf"), { opacity: 0.55 }, { opacity: 1, duration: 3.418, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("c4-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.26);
+
+      /* chamber arrives from the right (F4's wipe edge) */
+      tl.fromTo(el("f4-ch"), { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.2);
+
+      /* line 1 — "Max users is one hundred" (0 → 1.6) */
+      tl.set(el("f4-l0"), { opacity: 1 }, 0.3);
+      tl.fromTo(el("f4-r0"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "power1.inOut", immediateRender: false }, 0.3);
+      tl.fromTo(el("f4-k0"), { opacity: 1, x: 0 }, { opacity: 1, x: 288, duration: 1.1, ease: "power1.inOut", immediateRender: false }, 0.3);
+      tl.to(el("f4-k0"), { opacity: 0, duration: 0.2, ease: "power1.out" }, 1.44);
+      tl.fromTo(el("f4-v100"), { color: "#FFD166" }, { color: "#5AD6A0", duration: 0.34, ease: "power1.inOut", immediateRender: false }, 1.5);
+
+      /* amber token highlight runs MAX_USERS ... (2.7 → 4.2 "all caps means constant") */
+      tl.fromTo(el("f4-hltok"), { opacity: 0, scaleX: 0 }, { opacity: 0.28, scaleX: 1, duration: 0.34, ease: "power3.out", immediateRender: false }, 2.74);
+      tl.fromTo(el("f4-hltok"), { opacity: 0.28 }, { opacity: 0.6, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 3.2);
+      tl.to(el("f4-hltok"), { opacity: 0, duration: 0.3, ease: "power1.in" }, 4.3);
+      /* the convention comment arrives with the word "constant" */
+      tl.fromTo(el("f4-cmt"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", immediateRender: false }, 3.38);
+
+      /* line 2 — "Now s is hi" (5.16 → 6.3) */
+      tl.set(el("f4-l1"), { opacity: 1 }, 5.2);
+      tl.fromTo(el("f4-r1"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.72, ease: "power1.inOut", immediateRender: false }, 5.2);
+      tl.fromTo(el("f4-k1"), { opacity: 1, x: 0 }, { opacity: 1, x: 96, duration: 0.72, ease: "power1.inOut", immediateRender: false }, 5.2);
+      tl.to(el("f4-k1"), { opacity: 0, duration: 0.2, ease: "power1.out" }, 5.96);
+      tl.fromTo(el("f4-vhi"), { color: "#FFD166" }, { color: "#5AD6A0", duration: 0.3, ease: "power1.inOut", immediateRender: false }, 6.06);
+      /* the value gets a box: this one you cannot edit */
+      tl.fromTo(el("f4-box"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.36, ease: "power3.out", immediateRender: false }, 6.3);
+
+      /* line 3 — "Put a capital H at position zero" (6.94 → 9.0) */
+      tl.set(el("f4-l2"), { opacity: 1 }, 7.0);
+      tl.fromTo(el("f4-r2"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.62, ease: "power1.inOut", immediateRender: false }, 7.0);
+      tl.fromTo(el("f4-k2"), { opacity: 1, x: 0 }, { opacity: 1, x: 126, duration: 0.62, ease: "power1.inOut", immediateRender: false }, 7.0);
+      tl.fromTo(el("f4-r2b"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power1.out", immediateRender: false }, 7.66);
+      tl.to(el("f4-k2"), { opacity: 0, duration: 0.2, ease: "power1.out" }, 8.0);
+      tl.fromTo(el("f4-vH"), { scale: 1 }, { scale: 1.18, duration: 0.16, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 7.7);
+      /* highlight moves to s[0] on "position zero" */
+      tl.fromTo(el("f4-hltok2"), { opacity: 0, scaleX: 0 }, { opacity: 0.5, scaleX: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, 8.36);
+      tl.to(el("f4-hltok2"), { opacity: 0, duration: 0.3, ease: "power1.in" }, 9.1);
+
+      /* REFUSAL inside the code — the 'H' lifts out of line 3, dives at the boxed value,
+         is pushed back, and the box answers by turning into armour */
+      tl.fromTo(el("f4-hh"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1.12, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 8.36);
+      tl.to(el("f4-hh"), { y: -74, x: -60, duration: 0.34, ease: "power2.in", immediateRender: false }, 8.72);
+      tl.to(el("f4-hh"), { y: -58, x: -44, duration: 0.2, ease: "power2.out", immediateRender: false }, 9.1);
+      tl.to(el("f4-hh"), { y: -6, x: 30, opacity: 0, duration: 0.34, ease: "power2.in", immediateRender: false }, 9.34);
+      tl.to(el("f4-box"), { borderColor: "#5AD6A0", duration: 0.14, ease: "power1.out" }, 9.04);
+      tl.fromTo(el("f4-ring"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 9.06);
+      tl.fromTo(el("f4-box"), { x: 0 }, { x: 7, duration: 0.07, ease: "power1.inOut", yoyo: true, repeat: 3, immediateRender: false }, 9.04);
+      tl.fromTo(el("f4-sp1"), { scaleY: 0, opacity: 0.9 }, { scaleY: 1, opacity: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 9.08);
+      tl.fromTo(el("f4-sp2"), { scaleY: 0, opacity: 0.9 }, { scaleY: 1, opacity: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 9.16);
+      tl.to(el("f4-ring"), { opacity: 0.35, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 9.6);
+
+      /* the refused line is struck out, then the interpreter's own answer lands in coral */
+      tl.fromTo(el("f4-strike"), { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power3.inOut", immediateRender: false }, 9.66);
+      tl.to(el("f4-l2"), { opacity: 0.5, duration: 0.34, ease: "power1.out" }, 9.82);
+      tl.fromTo(el("f4-term"), { opacity: 0, y: 34, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out", immediateRender: false }, 10.24);
+      tl.fromTo(el("f4-term"), { x: 0 }, { x: 10, duration: 0.08, ease: "power1.inOut", yoyo: true, repeat: 3, immediateRender: false }, 10.7);
+      tl.fromTo(el("f4-idle"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "steps(1)", repeat: 3, yoyo: true, immediateRender: false }, 11.9);
+
+      tl.fromTo(el("f4-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 11.1);
+
+      tl.fromTo(el("f4-ch"), { y: 0 }, { y: -6, duration: 2.28, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 1.2);
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

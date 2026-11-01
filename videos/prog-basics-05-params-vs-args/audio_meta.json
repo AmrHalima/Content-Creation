@@ -1,0 +1,462 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 5.419,
+      "words": [
+        {
+          "text": "Parameters",
+          "start": 0,
+          "end": 0.88
+        },
+        {
+          "text": "and",
+          "start": 0.88,
+          "end": 1.18
+        },
+        {
+          "text": "arguments",
+          "start": 1.18,
+          "end": 1.7
+        },
+        {
+          "text": "are",
+          "start": 1.7,
+          "end": 2.14
+        },
+        {
+          "text": "not",
+          "start": 2.14,
+          "end": 2.36
+        },
+        {
+          "text": "the",
+          "start": 2.36,
+          "end": 2.58
+        },
+        {
+          "text": "same",
+          "start": 2.58,
+          "end": 2.96
+        },
+        {
+          "text": "thing,",
+          "start": 2.96,
+          "end": 3.3
+        },
+        {
+          "text": "and",
+          "start": 3.7,
+          "end": 4
+        },
+        {
+          "text": "interviewers",
+          "start": 4,
+          "end": 4.76
+        },
+        {
+          "text": "know",
+          "start": 4.76,
+          "end": 5
+        },
+        {
+          "text": "it.",
+          "start": 5,
+          "end": 5.22
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 11.499,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "parameter",
+          "start": 0.24,
+          "end": 0.78
+        },
+        {
+          "text": "is",
+          "start": 0.78,
+          "end": 1.38
+        },
+        {
+          "text": "the",
+          "start": 1.38,
+          "end": 1.56
+        },
+        {
+          "text": "placeholder",
+          "start": 1.56,
+          "end": 2.38
+        },
+        {
+          "text": "in",
+          "start": 2.38,
+          "end": 2.78
+        },
+        {
+          "text": "the",
+          "start": 2.78,
+          "end": 2.9
+        },
+        {
+          "text": "function",
+          "start": 2.9,
+          "end": 3.38
+        },
+        {
+          "text": "definition.",
+          "start": 3.38,
+          "end": 4.22
+        },
+        {
+          "text": "It's",
+          "start": 5.1,
+          "end": 5.44
+        },
+        {
+          "text": "the",
+          "start": 5.44,
+          "end": 5.56
+        },
+        {
+          "text": "empty",
+          "start": 5.56,
+          "end": 5.96
+        },
+        {
+          "text": "seat.",
+          "start": 5.96,
+          "end": 6.46
+        },
+        {
+          "text": "An",
+          "start": 7.28,
+          "end": 7.4
+        },
+        {
+          "text": "argument",
+          "start": 7.4,
+          "end": 7.9
+        },
+        {
+          "text": "is",
+          "start": 7.9,
+          "end": 8.4
+        },
+        {
+          "text": "the",
+          "start": 8.4,
+          "end": 8.58
+        },
+        {
+          "text": "actual",
+          "start": 8.58,
+          "end": 9.1
+        },
+        {
+          "text": "value",
+          "start": 9.1,
+          "end": 9.68
+        },
+        {
+          "text": "you",
+          "start": 9.68,
+          "end": 10.02
+        },
+        {
+          "text": "pass",
+          "start": 10.02,
+          "end": 10.42
+        },
+        {
+          "text": "when",
+          "start": 10.42,
+          "end": 10.78
+        },
+        {
+          "text": "you",
+          "start": 10.78,
+          "end": 10.9
+        },
+        {
+          "text": "call.",
+          "start": 10.9,
+          "end": 11.22
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 7.744,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "seat",
+          "start": 0.22,
+          "end": 0.5
+        },
+        {
+          "text": "exists",
+          "start": 0.5,
+          "end": 0.98
+        },
+        {
+          "text": "before",
+          "start": 0.98,
+          "end": 1.5
+        },
+        {
+          "text": "anyone",
+          "start": 1.5,
+          "end": 1.96
+        },
+        {
+          "text": "arrives.",
+          "start": 1.96,
+          "end": 2.46
+        },
+        {
+          "text": "The",
+          "start": 3.4,
+          "end": 3.52
+        },
+        {
+          "text": "value",
+          "start": 3.52,
+          "end": 3.94
+        },
+        {
+          "text": "fills",
+          "start": 3.94,
+          "end": 4.36
+        },
+        {
+          "text": "it,",
+          "start": 4.36,
+          "end": 4.7
+        },
+        {
+          "text": "for",
+          "start": 4.7,
+          "end": 5.08
+        },
+        {
+          "text": "that",
+          "start": 5.08,
+          "end": 5.36
+        },
+        {
+          "text": "one",
+          "start": 5.36,
+          "end": 5.6
+        },
+        {
+          "text": "call,",
+          "start": 5.6,
+          "end": 5.94
+        },
+        {
+          "text": "and",
+          "start": 5.94,
+          "end": 6.54
+        },
+        {
+          "text": "then",
+          "start": 6.54,
+          "end": 6.68
+        },
+        {
+          "text": "it's",
+          "start": 6.68,
+          "end": 6.98
+        },
+        {
+          "text": "gone.",
+          "start": 6.98,
+          "end": 7.3
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 8.875,
+      "words": [
+        {
+          "text": "Define",
+          "start": 0.1,
+          "end": 0.56
+        },
+        {
+          "text": "add,",
+          "start": 0.56,
+          "end": 1.08
+        },
+        {
+          "text": "with",
+          "start": 1.08,
+          "end": 1.46
+        },
+        {
+          "text": "a",
+          "start": 1.46,
+          "end": 1.62
+        },
+        {
+          "text": "and",
+          "start": 1.62,
+          "end": 1.74
+        },
+        {
+          "text": "b.",
+          "start": 1.74,
+          "end": 2.02
+        },
+        {
+          "text": "Those",
+          "start": 2.6,
+          "end": 2.88
+        },
+        {
+          "text": "two",
+          "start": 2.88,
+          "end": 3.16
+        },
+        {
+          "text": "are",
+          "start": 3.16,
+          "end": 3.3
+        },
+        {
+          "text": "parameters.",
+          "start": 3.3,
+          "end": 3.9
+        },
+        {
+          "text": "Call",
+          "start": 4.64,
+          "end": 5
+        },
+        {
+          "text": "add",
+          "start": 5,
+          "end": 5.4
+        },
+        {
+          "text": "with",
+          "start": 5.4,
+          "end": 5.6
+        },
+        {
+          "text": "two",
+          "start": 5.6,
+          "end": 5.98
+        },
+        {
+          "text": "and",
+          "start": 5.98,
+          "end": 6.2
+        },
+        {
+          "text": "three.",
+          "start": 6.2,
+          "end": 6.56
+        },
+        {
+          "text": "Those",
+          "start": 7.04,
+          "end": 7.34
+        },
+        {
+          "text": "two",
+          "start": 7.34,
+          "end": 7.68
+        },
+        {
+          "text": "are",
+          "start": 7.68,
+          "end": 7.88
+        },
+        {
+          "text": "arguments.",
+          "start": 7.88,
+          "end": 8.4
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 4.011,
+      "words": [
+        {
+          "text": "If",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "that",
+          "start": 0.26,
+          "end": 0.52
+        },
+        {
+          "text": "finally",
+          "start": 0.52,
+          "end": 1.1
+        },
+        {
+          "text": "made",
+          "start": 1.1,
+          "end": 1.52
+        },
+        {
+          "text": "it",
+          "start": 1.52,
+          "end": 1.64
+        },
+        {
+          "text": "click,",
+          "start": 1.64,
+          "end": 1.94
+        },
+        {
+          "text": "comment",
+          "start": 2.36,
+          "end": 2.8
+        },
+        {
+          "text": "the",
+          "start": 2.8,
+          "end": 3.06
+        },
+        {
+          "text": "word",
+          "start": 3.06,
+          "end": 3.28
+        },
+        {
+          "text": "seat.",
+          "start": 3.28,
+          "end": 3.66
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

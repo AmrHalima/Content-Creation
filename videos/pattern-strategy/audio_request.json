@@ -1,0 +1,37 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Every checkout asks for a price. The answer depends on the contract. That branch inside the call site is the coupling."
+    },
+    {
+      "id": "02",
+      "text": "Pull the varying behaviour out, behind one signature. The call site keeps the question. The implementations keep the how."
+    },
+    {
+      "id": "03",
+      "text": "A factory picks which type to build. A strategy picks which behaviour to run, and the caller holds only the interface. The dependency narrows to one name."
+    },
+    {
+      "id": "04",
+      "text": "The seam is one method. Every strategy fits that signature, or it is not a strategy."
+    },
+    {
+      "id": "05",
+      "text": "The context holds the interface and calls one method. Swap the object per request, and the behaviour changes with the wiring untouched."
+    },
+    {
+      "id": "06",
+      "text": "The tell is three strategies that share nothing but the interface. One reads a table, one calls a provider, one returns a constant."
+    },
+    {
+      "id": "07",
+      "text": "A switch grows a new case per behaviour. A map of strategies grows an entry. A seam nobody ever plugs into is just ceremony."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

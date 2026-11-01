@@ -1,0 +1,41 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Some things a program should only ever have one of. A connection pool, the app config. Singleton is a class enforcing that about itself."
+    },
+    {
+      "id": "02",
+      "text": "One instance, alive for the whole process. Nobody else gets to make a second. That is a lifetime decision wearing a pattern's clothes."
+    },
+    {
+      "id": "03",
+      "text": "Every caller reaches the same door: a static holder inside the class, and the one instance behind it."
+    },
+    {
+      "id": "04",
+      "text": "Private constructor, so nobody outside can call new. One static field holds the instance the class hands out."
+    },
+    {
+      "id": "05",
+      "text": "Ask twice and you get the same object back. Two references pointing at one lifetime."
+    },
+    {
+      "id": "06",
+      "text": "Any file can call the class directly, so the dependency never shows in a signature. A global, with a good name."
+    },
+    {
+      "id": "07",
+      "text": "It outlives the test run too. State left by one case is sitting there in the next one."
+    },
+    {
+      "id": "08",
+      "text": "Keep the one instance, drop the static. Let the container own the lifetime and the caller declare the dependency."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

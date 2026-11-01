@@ -1,0 +1,154 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #FFFFEB;
+    }
+    .f04-bg { position: absolute; inset: 0; background: #1A1A1A; }
+    .f04-axis {
+      position: absolute; top: 300px; bottom: 560px; left: 50%; width: 1px;
+      background: rgba(255,255,235,0.10);
+    }
+    .f04-svg { position: absolute; inset: 0; }
+    .f04-phone { fill: none; stroke: rgba(255,255,235,0.85); stroke-width: 2; }
+    .f04-screen { fill: rgba(255,255,235,0.10); }
+    .f04-path { fill: none; stroke: #FFA946; stroke-width: 2.5; stroke-linecap: round; }
+    .f04-dot { fill: #FFA946; }
+    .f04-ring { fill: none; stroke: rgba(255,255,235,0.5); stroke-width: 2; opacity: 0; }
+    .f04-ring-his { stroke: #FFA946; }
+    .f04-label {
+      position: absolute; width: 460px; height: 90px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 3.4cqw; font-weight: 500; letter-spacing: 0; line-height: 1;
+      white-space: nowrap; opacity: 0;
+    }
+    .f04-label-her { top: 900px; right: 130px; color: rgba(255,255,235,0.85); text-align: right; }
+    .f04-label-his { top: 1170px; left: 120px; color: #FFA946; text-align: left; width: 420px; }
+    .f04-incoming {
+      position: absolute; top: 470px; right: 150px; width: 620px; height: 90px;
+      font-family: "Noto Naskh Arabic", serif; font-size: 4cqw; font-weight: 400;
+      letter-spacing: 0; color: rgba(255,255,235,0.6); white-space: nowrap; opacity: 0;
+    }
+    .f04-statement {
+      position: absolute; bottom: 250px; right: 96px; width: 888px; min-height: 300px;
+      font-family: "Noto Kufi Arabic", sans-serif;
+      font-size: 8.4cqw; font-weight: 800; line-height: 1.08; letter-spacing: 0;
+      color: #FFFFEB; opacity: 0;
+    }
+    .f04-statement .hot { color: #FFA946; }
+    .f04-stub {
+      position: absolute; bottom: 470px; right: 96px; width: 180px; height: 3px;
+      background: rgba(255,255,235,0.22); transform-origin: right center;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-the-reroute" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f04-the-reroute-bg" class="clip" data-start="0" data-duration="9.02" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-bg"></div>
+      <div class="f04-axis"></div>
+    </div>
+
+    <div id="f04-the-reroute-diagramclip" class="clip" data-start="0" data-duration="9.02" data-track-index="1" style="position:absolute;inset:0;">
+      <svg class="f04-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <!-- her phone: reading-right -->
+        <g id="f04-the-reroute-her">
+          <rect class="f04-phone" x="700" y="590" width="170" height="300" rx="0" />
+          <rect class="f04-screen" x="716" y="612" width="138" height="232" />
+          <circle class="f04-ring" id="f04-the-reroute-ringher1" cx="785" cy="740" r="110" />
+          <circle class="f04-ring" id="f04-the-reroute-ringher2" cx="785" cy="740" r="150" />
+        </g>
+        <!-- his number: reading-left -->
+        <g id="f04-the-reroute-his">
+          <rect class="f04-phone" x="210" y="860" width="170" height="300" rx="0" />
+          <rect class="f04-screen" id="f04-the-reroute-hisscreen" x="226" y="882" width="138" height="232" />
+          <circle class="f04-ring f04-ring-his" id="f04-the-reroute-ringhis" cx="295" cy="1010" r="120" />
+        </g>
+        <!-- the bent path the call travels -->
+        <path id="f04-the-reroute-line" class="f04-path" d="M 700 760 C 590 800 520 900 380 950" />
+        <polygon id="f04-the-reroute-head" class="f04-dot" points="0,-8 14,0 0,8" transform="translate(380,950) rotate(168)" opacity="0" />
+        <circle id="f04-the-reroute-dot" class="f04-dot" cx="0" cy="0" r="11" opacity="0" />
+      </svg>
+    </div>
+
+    <div id="f04-the-reroute-labelsclip" class="clip" data-start="0" data-duration="9.02" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f04-the-reroute-lher" class="f04-label f04-label-her">رقم ماما</div>
+      <div id="f04-the-reroute-lhis" class="f04-label f04-label-his">رقم تاني</div>
+      <div id="f04-the-reroute-incoming" class="f04-incoming">مكالمة داخلية على رقمها</div>
+    </div>
+
+    <div id="f04-the-reroute-sayclip" class="clip" data-start="5.8" data-duration="3.22" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f04-the-reroute-stub" class="f04-stub"></div>
+      <div id="f04-the-reroute-say" class="f04-statement">مفيش مكالمة بتترن <span class="hot">عندها</span></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-the-reroute"] = tl;
+
+      // Scene 1 — the two devices enter, hers first (reading-right), then his.
+      tl.fromTo(el("f04-the-reroute-her"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+      tl.fromTo(el("f04-the-reroute-lher"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }, 0.5);
+      tl.fromTo(el("f04-the-reroute-his"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.85);
+      tl.fromTo(el("f04-the-reroute-lhis"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }, 1.2);
+
+      // Scene 2 — the incoming call rings on HER phone: two finite pulses, no repeat/yoyo.
+      tl.fromTo(el("f04-the-reroute-incoming"), { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 1.4);
+      tl.fromTo(el("f04-the-reroute-ringher1"), { opacity: 0, scale: 0.7, transformOrigin: "785px 740px" },
+        { opacity: 0.75, scale: 1, duration: 0.5, ease: "power2.out" }, 1.6);
+      tl.to(el("f04-the-reroute-ringher1"), { opacity: 0, duration: 0.45, ease: "power1.in" }, 2.1);
+      tl.fromTo(el("f04-the-reroute-ringher2"), { opacity: 0, scale: 0.7, transformOrigin: "785px 740px" },
+        { opacity: 0.5, scale: 1, duration: 0.55, ease: "power2.out" }, 2.2);
+      tl.to(el("f04-the-reroute-ringher2"), { opacity: 0, duration: 0.45, ease: "power1.in" }, 2.75);
+
+      // Scene 3 — the path draws and the call travels it (deterministic getPointAtLength driver).
+      var line = el("f04-the-reroute-line");
+      var LEN = line.getTotalLength();
+      line.style.strokeDasharray = String(LEN);
+      line.style.strokeDashoffset = String(LEN);
+      tl.to(line, { strokeDashoffset: 0, duration: 1.6, ease: "power1.inOut" }, 2.7);
+
+      var dot = el("f04-the-reroute-dot");
+      var prog = { p: 0 };
+      tl.fromTo(dot, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 2.7);
+      tl.to(prog, {
+        p: 1, duration: 1.6, ease: "power1.inOut",
+        onUpdate: function () {
+          var pt = line.getPointAtLength(prog.p * LEN);
+          dot.setAttribute("cx", pt.x);
+          dot.setAttribute("cy", pt.y);
+        }
+      }, 2.7);
+      tl.to(dot, { opacity: 0, duration: 0.25 }, 4.3);
+      tl.fromTo(el("f04-the-reroute-head"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 4.25);
+
+      // his phone receives it
+      tl.fromTo(el("f04-the-reroute-ringhis"), { opacity: 0, scale: 0.75, transformOrigin: "295px 1010px" },
+        { opacity: 0.9, scale: 1, duration: 0.55, ease: "power2.out" }, 4.35);
+      tl.to(el("f04-the-reroute-ringhis"), { opacity: 0.28, duration: 0.85, ease: "power1.out" }, 4.9);
+      tl.to(el("f04-the-reroute-hisscreen"), { fill: "rgba(255,169,70,0.55)", duration: 0.5, ease: "power2.out" }, 4.35);
+
+      // Scene 4 — her phone goes silent (the dim IS the teaching), and the line lands
+      tl.to(el("f04-the-reroute-her"), { opacity: 0.3, duration: 0.8, ease: "power2.out" }, 5.2);
+      tl.to(el("f04-the-reroute-lher"), { opacity: 0.32, duration: 0.8, ease: "power2.out" }, 5.2);
+      tl.to(el("f04-the-reroute-incoming"), { opacity: 0.25, duration: 0.6 }, 5.3);
+      tl.fromTo(el("f04-the-reroute-stub"), { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 5.3);
+      tl.fromTo(el("f04-the-reroute-say"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 5.6);
+
+      // 6.4s -> 9.02s: HELD. Path, dimmed phone, lit other phone, one line. Nothing moves.
+    })();
+  </script>
+</template>

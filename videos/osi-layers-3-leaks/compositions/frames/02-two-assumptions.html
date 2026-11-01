@@ -1,0 +1,174 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f2-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f2-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    /* the neighbouring bands, kept as background: one Layer 2 between two quiet rules */
+    .f2-out { position: absolute; left: 96px; width: 888px; height: 2px; background: rgba(26,26,26,0.14); }
+    .f2-mlabel {
+      position: absolute; left: 96px; width: 500px; height: 40px; display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    /* the two assumption cards. Both share one reading position (700); the first is slid up
+       out of it, not crossfaded away — the demotion is the argument. */
+    .f2-card {
+      position: absolute; left: 150px; width: 780px; height: 180px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f2-kicker {
+      position: absolute; left: 30px; top: 16px; width: 400px; height: 26px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f2-name {
+      position: absolute; left: 30px; top: 44px; width: 400px; height: 56px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.4cqw; line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .f2-line {
+      position: absolute; left: 30px; top: 122px; width: 560px; height: 42px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+      display: flex; align-items: center; opacity: 0;
+    }
+    .f2-a { top: 700px; }
+    .f2-b { top: 830px; }
+    /* card A's diagram: one straight stroke, one dot riding it — a wire on your own schedule.
+       Drawn in CSS, not SVG: a 1080x1920 viewBox inside a 780x180 card would squash to 9%. */
+    .f2-wirebar {
+      position: absolute; left: 30px; top: 108px; width: 700px; height: 5px; border-radius: 3px;
+      background: rgba(26,26,26,0.55); transform-origin: left center;
+    }
+    .f2-dot {
+      position: absolute; left: 30px; top: 101px; width: 19px; height: 19px; border-radius: 9999px;
+      background: #1a1a1a; opacity: 0;
+    }
+    /* card B's diagram: one open slot, three stations waiting for their turn */
+    .f2-slot {
+      position: absolute; left: 560px; top: 60px; width: 96px; height: 68px; box-sizing: border-box;
+      border: 4px dashed #1a1a1a; border-radius: 6px; background: #ffffeb; opacity: 0;
+    }
+    .f2-q {
+      position: absolute; width: 26px; height: 26px; box-sizing: border-box; border-radius: 9999px;
+      background: #1a1a1a; opacity: 0;
+    }
+    .f2-tag {
+      position: absolute; left: 390px; top: 1040px; width: 300px; height: 72px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 4px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.6cqw;
+      letter-spacing: 0.02em; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-zhcj" id="root" data-composition-id="02-two-assumptions" data-width="1080" data-height="1920" data-duration="10.377">
+
+    <div data-hf-id="hf-k6uq" id="f2-fieldclip" class="clip" data-start="0" data-duration="10.377" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-yjnv" class="f2-field"></div>
+      <div data-hf-id="hf-ffbs" id="f2-grid" class="f2-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-pdai" id="f2-bandclip" class="clip" data-start="0" data-duration="10.377" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-u78a" id="f2-outtop" class="f2-out" style="top:520px;"></div>
+      <div data-hf-id="hf-ftmd" id="f2-outbot" class="f2-out" style="top:1300px;"></div>
+      <div data-hf-id="hf-h8vr" id="f2-l3" class="f2-mlabel" data-layout-ignore style="top:470px;">layer 3 &middot; network</div>
+      <div data-hf-id="hf-ewd3" id="f2-l1" class="f2-mlabel" data-layout-ignore style="top:1320px;">layer 1 &middot; physical</div>
+      <div data-hf-id="hf-ak7m" id="f2-l2" class="f2-mlabel" data-layout-ignore style="top:1140px; left:390px; width:300px; justify-content:center;">layer 2 &middot; data link</div>
+    </div>
+
+    <div data-hf-id="hf-7osl" id="f2-acardclip" class="clip" data-start="0" data-duration="10.377" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-2lnx" id="f2-cardA" class="f2-card f2-a">
+        <div data-hf-id="hf-fxh4" class="f2-kicker" data-layout-ignore>assumption one</div>
+        <div data-hf-id="hf-l6a4" id="f2-nameA" class="f2-name">Ethernet</div>
+        <div data-hf-id="hf-5mpy" id="f2-wirebar" class="f2-wirebar"></div>
+        <div data-hf-id="hf-orsa" id="f2-dot" class="f2-dot"></div>
+        <div data-hf-id="hf-fsbw" id="f2-lineA" class="f2-line">one wire, your schedule</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-710n" id="f2-bcardclip" class="clip" data-start="3.84" data-duration="6.537" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-7ym9" id="f2-cardB" class="f2-card f2-b">
+        <div data-hf-id="hf-5j7i" class="f2-kicker" data-layout-ignore>assumption two</div>
+        <div data-hf-id="hf-3erm" id="f2-nameB" class="f2-name">Wi-Fi</div>
+        <div data-hf-id="hf-zndg" id="f2-slot" class="f2-slot"></div>
+        <div data-hf-id="hf-7xi5" id="f2-q1" class="f2-q" style="left:664px; top:81px;"></div>
+        <div data-hf-id="hf-7jap" id="f2-q2" class="f2-q" style="left:698px; top:81px;"></div>
+        <div data-hf-id="hf-93dd" id="f2-q3" class="f2-q" style="left:732px; top:81px;"></div>
+        <div data-hf-id="hf-dy1w" id="f2-lineB" class="f2-line">shared air, wait your turn</div>
+      </div>
+      <div data-hf-id="hf-0efp" id="f2-tag" class="f2-tag">same number</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.877;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-two-assumptions"] = tl;
+
+      // ── Scene 1 (0.0–1.64s) — "Ethernet is a wire": one card rises into the reading position
+      //    (centre ~790, the hero axis) and the straight stroke draws across it. Everything else
+      //    is bare cream; the neighbouring bands are background hairlines only. ──
+      tl.fromTo(el("f2-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f2-outtop"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.16);
+      tl.fromTo(el("f2-outbot"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.26);
+      tl.fromTo(el("f2-l3"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.out" }, 0.36);
+      tl.fromTo(el("f2-l1"), { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.out" }, 0.46);
+      tl.fromTo(el("f2-cardA"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("f2-wirebar"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 1.2);
+      tl.fromTo(el("f2-lineA"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.64);
+
+      // ── Scene 2 (1.97–3.84s) — "you use when you like": one dot rides the wire, finite
+      //    travel, no loop. Single ownership stated as movement, not as a caption. ──
+      tl.fromTo(el("f2-dot"), { opacity: 0, x: 0 }, { opacity: 1, x: 0, duration: 0.24, ease: "power1.out" }, 1.97);
+      tl.to(el("f2-dot"), { x: 672, duration: 1.1, ease: "power2.inOut" }, 2.3);
+
+      // ── Scene 3 (3.84–8.44s) — "Wi-Fi is a shared radio where you wait your turn": card A is
+      //    slid up out of the reading position into a demoted band and card B takes its place,
+      //    with three stations queueing behind one open slot. The slot pulses once on "your
+      //    turn". No morph — this frame is about whose turn it is, not the shape of an antenna. ──
+      tl.to(el("f2-cardA"), { y: -140, duration: 0.6, ease: "power3.out" }, 3.84);
+      tl.to(el("f2-cardA"), { opacity: 0.75, duration: 0.6, ease: "power1.out" }, 3.84);
+      tl.fromTo(el("f2-cardB"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 3.94);
+      tl.fromTo(el("f2-lineB"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 4.71);
+      tl.fromTo(el("f2-slot"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 5.37);
+      tl.fromTo(el("f2-q1"), { opacity: 0, x: 110 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 5.92);
+      tl.fromTo(el("f2-q2"), { opacity: 0, x: 110 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 6.28);
+      tl.fromTo(el("f2-q3"), { opacity: 0, x: 110 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 6.64);
+      tl.to(el("f2-slot"), { scale: 1.08, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 }, 7.23);
+      // the front of the queue finally gets the air — one step forward, finite
+      tl.to(el("f2-q1"), { x: -69, duration: 0.5, ease: "power3.out" }, 7.67);
+
+      // ── Scene 4 (8.44–9.877s) — "same number": the ember tag pins both cards into the one
+      //    band they each claim. Then a held read; the only aliveness is jitter on the two
+      //    still-waiting stations, phase-opposed so they never conveyor-belt. ──
+      tl.fromTo(el("f2-tag"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 8.44);
+      tl.fromTo(el("f2-l2"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 8.88);
+
+      var jit = { p: 0 };
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.7, duration: D - 9.0, ease: "none",
+        onUpdate: function () {
+          var y = Math.sin(jit.p) * 1.6;
+          el("f2-q2").style.transform = "translateY(" + y.toFixed(3) + "px)";
+          el("f2-q3").style.transform = "translateY(" + (-y).toFixed(3) + "px)";
+        }
+      }, 9.0);
+    })();
+  </script>
+</template>

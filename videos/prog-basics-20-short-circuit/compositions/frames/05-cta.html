@@ -1,0 +1,159 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G5 CTA (pb-11/pb-21 atoms). Headline 22 chars at 6.4cqw — inside the <=24-char rule for a
+       176px band, so it cannot wrap into the plate below it. */
+    .f5-ask { position: absolute; left: 72px; top: 288px; width: 936px; height: 100px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+
+    /* the joke made visible: the nested version, struck, above the guarded one-liner.
+       Everything here carries FRAME coordinates, not wrapper-relative (pb-21's F5 finding: an
+       absolute child of a clip band parked itself at y = 120 with a green check). */
+    .f5-box { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f5-nest { left: 72px; top: 404px; width: 560px; height: 168px; }
+    .f5-guard { left: 72px; top: 600px; width: 864px; height: 110px; }
+    .f5-cl { position: absolute; height: 54px; display: flex; align-items: center; white-space: pre;
+      opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    /* P10 strike-out. Drawn in --muted, NOT --say: the TAG THEM plate owns the only amber on this
+       frame from 0.18s, and frame-day2 section 1 keeps amber singular. The nested version is also
+       not wrong, so it gets no coral and no colour of blame — § 1 reserves --err for a raised error
+       and this part raises none. */
+    .f5-strike { position: absolute; left: 92px; width: 500px; height: 5px; border-radius: 3px;
+      background: #9BA6B2; transform-origin: left center; transform: scaleX(0); }
+    .f5-strike-a { top: 455px; width: 176px; } .f5-strike-b { top: 517px; width: 452px; }
+
+    .f5-plate { position: absolute; left: 330px; top: 748px; width: 420px; height: 104px; display: flex;
+      align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 2.9cqw; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #22201B; white-space: nowrap; }
+    .f5-brandline { position: absolute; left: 72px; top: 890px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+      font-size: 1.5cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="5.45">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="5.45" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="5.45" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 20 · THE ASK</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="5.45" data-track-index="2">
+      <div id="f5-ask" class="f5-ask">who&nbsp;writes&nbsp;nested&nbsp;ifs?</div>
+
+      <div id="f5-nbox" class="f5-box f5-nest"></div>
+      <div id="f5-n1" class="f5-cl" style="left:100px; top:428px;" data-layout-allow-occlusion>if&nbsp;user:</div>
+      <div id="f5-n2" class="f5-cl" style="left:100px; top:490px;" data-layout-allow-occlusion>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;user.is_admin:</div>
+      <div id="f5-sa" class="f5-strike f5-strike-a" data-layout-allow-occlusion></div>
+      <div id="f5-sb" class="f5-strike f5-strike-b" data-layout-allow-occlusion></div>
+
+      <div id="f5-gbox" class="f5-box f5-guard"></div>
+      <div id="f5-g1" class="f5-cl" style="left:100px; top:628px;">if&nbsp;user&nbsp;and&nbsp;user.is_admin:</div>
+
+      <div id="f5-plate" class="f5-plate">tag&nbsp;them</div>
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING BASICS · BASICS II · 20 · INTERMEDIATE</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.45;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: 1.36, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.72, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.36, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: F4 came up, this one drops down. The plate lands first, on "Tag" (0.00). */
+      tl.fromTo(el("f5-ask"), { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f5-plate"), { opacity: 0, y: -70, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.36, ease: "back.out(1.7)", immediateRender: false }, 0.16);
+
+      /* "the dev who writes" (who 0.66 / writes 0.88): the nested version arrives, then gets struck
+         across "nested ifs" (nested 1.10 / ifs 1.86). P10 strike-out = "not this" without saying it. */
+      tl.fromTo(el("f5-ask"), { scale: 1 }, { scale: 1.03, duration: 0.24, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 0.62);
+      tl.fromTo(el("f5-nbox"), { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out", immediateRender: false }, 0.72);
+      tl.fromTo(el("f5-n1"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 0.88);
+      tl.fromTo(el("f5-n2"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 1.02);
+      tl.fromTo(el("f5-sa"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.inOut", immediateRender: false }, 1.18);
+      tl.fromTo(el("f5-sb"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.inOut", immediateRender: false }, 1.32);
+
+      /* the guarded one-liner takes its place on "for this" (for 1.86 / this. 2.12) */
+      tl.fromTo(el("f5-gbox"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, 1.8);
+      tl.fromTo(el("f5-g1"), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.96);
+
+      /* the nested version is not wrong, only longer, so it steps back rather than getting painted:
+         the CONTAINER's border and background dim and the code keeps full ink (§ 14: opacity 0.42 on
+         a whole row puts its text at 1.3:1 — dim the box, not the digits). */
+      tl.to(el("f5-nbox"), { borderColor: "rgba(255,255,255,0.08)", backgroundColor: "#1A1E24", duration: 0.4, ease: "power2.inOut", immediateRender: false }, 2.3);
+      tl.to(el("f5-n1"), { color: "#9BA6B2", duration: 0.4, ease: "power2.inOut", immediateRender: false }, 2.3);
+      tl.to(el("f5-n2"), { color: "#9BA6B2", duration: 0.4, ease: "power2.inOut", immediateRender: false }, 2.3);
+
+      /* the series line closes on the tail of the CTA (this. 2.12) */
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 2.62);
+
+      /* the grown pad (2.12 -> 5.45) is shape, not dead air: the plate breathes, the guarded box
+         settles, the ask floats, and every loop returns to its own zero so the loop point is clean */
+      tl.fromTo(el("f5-plate"), { y: 0 }, { y: -6, duration: 0.78, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 2.9);
+      tl.fromTo(el("f5-gbox"), { borderColor: "rgba(255,255,255,0.16)" },
+        { borderColor: "rgba(255,255,255,0.42)", duration: 0.5, ease: "sine.inOut", repeat: 2,
+          yoyo: true, immediateRender: false }, 3.1);
+      tl.fromTo(el("f5-ask"), { y: 0 }, { y: -4, duration: 0.82, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 3.3);
+
+      /* no exit push: F5 loops under the platform's chrome and has to hold alone */
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

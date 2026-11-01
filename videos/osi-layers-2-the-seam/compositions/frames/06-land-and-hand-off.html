@@ -1,0 +1,125 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f6-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f6-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f6-kicker {
+      position: absolute; top: 660px; left: 90px; width: 900px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f6-statement {
+      position: absolute; top: 720px; left: 90px; width: 900px; height: 180px;
+      display: flex; align-items: flex-start; justify-content: center; text-align: center;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.6cqw; line-height: 1.04;
+      letter-spacing: -0.026em; color: #1a1a1a; opacity: 0;
+    }
+    .f6-rule { position: absolute; top: 928px; left: 420px; width: 240px; height: 2px; background: rgba(26,26,26,0.35); opacity: 0; }
+    /* the two swap records: the part's evidence kept on screen while the ask lands */
+    .f6-record {
+      position: absolute; left: 220px; top: 960px; width: 640px; height: 104px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 28px;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f6-rec-name { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 3.2cqw; letter-spacing: 0.02em; color: #1a1a1a; }
+    .f6-rec-arrow { font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; color: #1a1a1a; }
+    .f6-rec-sub { font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.14em; text-transform: uppercase; color: #76766e; }
+    .f6-card {
+      position: absolute; top: 1210px; left: 180px; width: 720px; height: 200px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; padding: 22px 30px; opacity: 0;
+    }
+    .f6-card-label {
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f6-card-title {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.4cqw; line-height: 1.08;
+      letter-spacing: -0.02em; margin-top: 8px; color: #1a1a1a;
+    }
+    .f6-pill {
+      position: absolute; top: 1430px; left: 340px; width: 400px; height: 84px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      background: #ffffeb; border: 4px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.8cqw;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-yx1u" id="root" data-composition-id="06-land-and-hand-off" data-width="1080" data-height="1920" data-duration="9.237">
+
+    <div data-hf-id="hf-0nbz" id="f6-fieldclip" class="clip" data-start="0" data-duration="9.237" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-b5w7" class="f6-field"></div>
+      <div data-hf-id="hf-een4" id="f6-grid" class="f6-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-ckhk" id="f6-lineclip" class="clip" data-start="0" data-duration="9.237" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-adip" id="f6-kicker" class="f6-kicker">two swaps &middot; one rule</div>
+      <div data-hf-id="hf-wqhf" id="f6-statement" class="f6-statement">a layer at a time,<br data-hf-id="hf-x5px">in public.</div>
+      <div data-hf-id="hf-vzg4" id="f6-rule" class="f6-rule"></div>
+    </div>
+
+    <div data-hf-id="hf-jfvo" id="f6-recordclip" class="clip" data-start="2.96" data-duration="6.277" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-hqry" id="f6-rec1" class="f6-record">
+        <span data-hf-id="hf-0csz" class="f6-rec-name">TCP</span><span data-hf-id="hf-t12i" class="f6-rec-arrow">&rarr;</span><span data-hf-id="hf-hbai" class="f6-rec-name">QUIC</span>
+        <span data-hf-id="hf-q24y" class="f6-rec-sub" data-layout-ignore>what carries it</span>
+      </div>
+      <div data-hf-id="hf-3h08" id="f6-rec2" class="f6-record" style="top:1080px;">
+        <span data-hf-id="hf-jqjj" class="f6-rec-name">Ethernet</span><span data-hf-id="hf-sy26" class="f6-rec-arrow">&rarr;</span><span data-hf-id="hf-bg12" class="f6-rec-name">Wi-Fi</span>
+        <span data-hf-id="hf-kbyu" class="f6-rec-sub" data-layout-ignore>what carries it</span>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-py5x" id="f6-ctaclip" class="clip" data-start="5.71" data-duration="3.527" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-h9wg" id="f6-card" class="f6-card">
+        <div data-hf-id="hf-rmfo" class="f6-card-label" data-layout-ignore>the article</div>
+        <div data-hf-id="hf-pze9" class="f6-card-title" data-layout-ignore>What got swapped,<br data-hf-id="hf-rsrt">and where QUIC actually lives</div>
+      </div>
+      <div data-hf-id="hf-sd43" id="f6-pill" class="f6-pill">read it</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.237;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-land-and-hand-off"] = tl;
+
+      // ── Scene 1 (0.0–1.6s) — the stack clears with a soft wipe; the statement slides up into
+      //    the upper third (hero axis 806) and settles. This part's only frame with no diagram. ──
+      tl.fromTo(el("f6-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f6-kicker"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.2);
+      tl.fromTo(el("f6-statement"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.62, ease: "power3.out" }, 0.46);
+      tl.fromTo(el("f6-rule"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.1);
+
+      // ── Scene 2 (2.96–5.4s) — two compact mono records fade up below the statement, one per
+      //    spoken clause: "a layer" (2.96) and "in public" (4.46). ──
+      tl.fromTo(el("f6-rec1"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 2.96);
+      tl.fromTo(el("f6-rec2"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 4.46);
+
+      // ── Scene 3 (5.71–9.237s) — "what got swapped is in the article": the card rises, the pill
+      //    fills lavender (the part's only lavender) on "swapped" (7.30). Then it holds still. ──
+      tl.fromTo(el("f6-card"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 5.71);
+      tl.fromTo(el("f6-pill"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 6.6);
+      tl.to(el("f6-pill"), { backgroundColor: "#f0d7ff", duration: 0.42, ease: "power2.out" }, 7.3);
+
+      // one restrained settle, then stillness to the end
+      tl.to(el("f6-statement"), { y: -3, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 8.1);
+    })();
+  </script>
+</template>

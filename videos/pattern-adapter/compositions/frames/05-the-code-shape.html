@@ -1,0 +1,184 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f05-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f05-kicker {
+      position: absolute; top: 214px; left: 84px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f05-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f05-ktext { display: inline-block; opacity: 0; }
+
+    .f05-chamber {
+      position: absolute; top: 400px; left: 60px; width: 960px; height: 400px;
+      box-sizing: border-box; background: #181715; border-radius: 8px;
+      border: 2px solid rgba(255,255,235,0.20); overflow: hidden; opacity: 0;
+      display: flex; flex-direction: column;
+    }
+    .f05-bar {
+      flex: 0 0 60px; display: flex; align-items: center; padding: 0 28px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.06em; color: rgba(255,255,235,0.66);
+    }
+    .f05-body { flex: 1 1 auto; padding: 22px 28px; }
+    .f05-line {
+      display: block; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 1.72;
+      color: #ffffeb; opacity: 0;
+    }
+    .f05-kw { color: #5db8a6; }
+    .f05-type { color: #f0d7ff; }
+    .f05-swap { display: inline; color: #ffffeb; }
+    .f05-rule { fill: none; stroke: rgba(255,255,235,0.5); stroke-width: 3; stroke-linecap: round; }
+    .f05-underline { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+    .f05-order {
+      position: absolute; left: 60px; width: 960px; height: 96px;
+      display: flex; align-items: center; gap: 22px; opacity: 0;
+    }
+    .f05-order-tag {
+      flex: 0 0 auto;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f05-pill {
+      box-sizing: border-box; height: 76px; display: flex; align-items: center; padding: 0 30px;
+      border-radius: 9999px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+    }
+    .f05-pill-mine { background: #f0d7ff; border: 2px solid #1a1a1a; }
+    .f05-pill-theirs { background: #e4e4d0; border: 2px solid rgba(26,26,26,0.4); }
+    .f05-note {
+      position: absolute; left: 60px; top: 1396px; width: 960px; height: 60px;
+      display: flex; align-items: center;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.4cqw;
+      line-height: 1.1; letter-spacing: -0.012em; color: #1a1a1a; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-the-code-shape" data-width="1080" data-height="1920" data-duration="8.896">
+
+    <div id="f05-ground" class="clip" data-start="0" data-duration="8.896" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-field"></div>
+      <div id="f05-grid" class="f05-grid"></div>
+    </div>
+
+    <div id="f05-chrome" class="clip" data-start="0" data-duration="8.896" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f05-kicker">
+        <span id="f05-spike" class="f05-spike">&#10009;</span><span id="f05-ktext" class="f05-ktext" data-layout-ignore>THE SHAPE</span>
+      </div>
+    </div>
+
+    <div id="f05-code" class="clip" data-start="0.2" data-duration="8.696" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f05-chamber" data-hold class="f05-chamber">
+        <div class="f05-bar"><span data-layout-ignore>vendor-pay-adapter.ts</span></div>
+        <div class="f05-body">
+          <span id="f05-l1" class="f05-line"><span class="f05-kw">class</span> VendorPayAdapter <span class="f05-kw">implements</span> <span class="f05-type">PaymentGateway</span> {</span>
+          <span id="f05-l2" class="f05-line">  <span class="f05-kw">async</span> charge(amount: number, currency: string) {</span>
+          <span id="f05-l3" class="f05-line">    <span class="f05-kw">const</span> raw = <span class="f05-kw">await</span> this.client.doTransaction(</span>
+          <span id="f05-l4" class="f05-line">      <span id="f05-swap" class="f05-swap">currency, amount</span>);</span>
+          <span id="f05-l5" class="f05-line">    <span class="f05-kw">return</span> toReceipt(raw);</span>
+          <span id="f05-l6" class="f05-line">  }</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="f05-orders" class="clip" data-start="1.5" data-duration="7.396" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f05-order-a" class="f05-order" style="top:948px;">
+        <span class="f05-order-tag" data-layout-ignore>your order</span><span class="f05-pill f05-pill-mine">amount, currency</span>
+      </div>
+      <div id="f05-order-b" class="f05-order" style="top:1080px;">
+        <span class="f05-order-tag" data-layout-ignore>their order</span><span class="f05-pill f05-pill-theirs">currency, amount</span>
+      </div>
+    </div>
+
+    <div id="f05-name" class="clip" data-start="7.2" data-duration="1.696" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f05-underline-wrap" style="position:absolute;top:0;left:0;width:1080px;height:1920px;">
+        <svg class="f05-underline" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f05-uline" class="f05-rule" d="M 661 632 L 880 632" />
+        </svg>
+      </div>
+      <div id="f05-note" class="f05-note">another name, same call</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.896;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-the-code-shape"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("f05-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f05-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f05-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.6s) "The domain asks for amount": the chamber opens, lines 1-2 arrive ──
+      tl.fromTo(el("f05-chamber"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.3);
+      // waterfall-entry: lines fall into place in reading order, paced to the line
+      tl.fromTo(el("f05-l1"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.55);
+      tl.fromTo(el("f05-l2"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.0);
+
+      // ── Scene 2 (1.6–3.6s) "then currency": your order seats under the signature ──
+      tl.fromTo(el("f05-order-a"), { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 1.62);
+
+      // ── Scene 3 (3.6–7.0s) "The vendor wants them the other way round" ──
+      tl.fromTo(el("f05-l3"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 4.4);
+      tl.fromTo(el("f05-l4"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 5.1);
+      // the swapped pair takes the frame's single ember moment on "other way round"
+      tl.to(el("f05-swap"), { color: "#ffa946", duration: 0.42, ease: "power1.out" }, 5.68);
+      tl.fromTo(el("f05-order-b"), { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 6.5);
+
+      // ── Scene 4 (7.0–8.4s) "under a different name": underline draws, the tail lines arrive last ──
+      var ul = el("f05-uline");
+      var ulLen = ul.getTotalLength();
+      ul.style.strokeDasharray = String(ulLen);
+      ul.style.strokeDashoffset = String(ulLen);
+      tl.to(ul, { strokeDashoffset: 0, duration: 0.5, ease: "power3.out" }, 7.36);
+      tl.fromTo(el("f05-l5"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 7.4);
+      tl.fromTo(el("f05-l6"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 7.9);
+      tl.fromTo(el("f05-note"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 8.02);
+
+      // ── Scene 5 (8.4–8.9s) held; jitter on the ember pill only ──
+      var jit = { p: 0 };
+      var pill = el("f05-order-b");
+      var HOLD = 8.36;
+      gsap.set(pill, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.15,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          pill.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

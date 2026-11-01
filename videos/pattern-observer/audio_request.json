@@ -1,0 +1,37 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "An order shipped, and three listeners want to know. Calling them directly means each new listener edits the sender."
+    },
+    {
+      "id": "02",
+      "text": "Observer moves the knowing into a list. The subject holds the listeners and calls each one when its state changes."
+    },
+    {
+      "id": "03",
+      "text": "A listener is one method behind an interface. The subject notifies its list without naming who is on it."
+    },
+    {
+      "id": "04",
+      "text": "Two methods carry it. Subscribe pushes a handler and returns the way to undo it. Notify walks the list and calls each one."
+    },
+    {
+      "id": "05",
+      "text": "The tradeoff is paid in tracing. A stack full of handlers says nothing about who fired, or how many are still attached."
+    },
+    {
+      "id": "06",
+      "text": "The second cost leaks. A listener added on mount and never removed keeps its subject alive after its view is gone. Each mount registers again, and the earlier entry stays. The list grows, and its entries point at nothing."
+    },
+    {
+      "id": "07",
+      "text": "The tell is the missing half. Subscribe hands back a detach, and the scope that subscribed runs it on teardown."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

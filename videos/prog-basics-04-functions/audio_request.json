@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "If you copy-paste the same code twice, you're missing something."
+    },
+    {
+      "id": "02",
+      "text": "A function is a named recipe. Write the steps once. Give them a name. Call it whenever you need it."
+    },
+    {
+      "id": "03",
+      "text": "Every time you call it, the steps run again. As many times as you want. Fix the recipe once. Every call gets fixed."
+    },
+    {
+      "id": "04",
+      "text": "Define greet, taking a name. It prints Hi plus the name. Call it with Sara. Call it with Omar. Two calls, one recipe."
+    },
+    {
+      "id": "05",
+      "text": "Who do you know that still copy-pastes? Send this to them."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

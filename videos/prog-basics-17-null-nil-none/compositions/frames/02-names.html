@@ -1,0 +1,206 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    /* G8 chrome — COPIED VERBATIM from pb-14's 01-address.html (frame-day2 § 14). Identical
+       geometry in every G8 frame of this film; only the kicker number and the title change. */
+    .g8-br { position: absolute; width: 72px; height: 72px; box-sizing: border-box; opacity: 1; }
+    .g8-br-tl { left: 48px; top: 48px; border-top: 3px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-tr { left: 960px; top: 48px; border-top: 3px solid rgba(255,255,255,0.08);
+      border-right: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-bl { left: 48px; top: 932px; border-bottom: 3px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(255,255,255,0.08); }
+    .g8-br-br { left: 960px; top: 932px; border-bottom: 3px solid rgba(255,255,255,0.08);
+      border-right: 3px solid rgba(255,255,255,0.08); }
+    .g8-rec { position: absolute; left: 72px; top: 112px; height: 40px; display: flex;
+      align-items: center; opacity: 1; }
+    .g8-dot { display: inline-block; width: 16px; height: 16px; margin-right: 16px;
+      border-radius: 9999px; background: #9BA6B2; }
+    .g8-recword { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.4cqw;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .g8-tc { position: absolute; left: 176px; top: 112px; height: 40px; display: flex;
+      align-items: center; font-family: "JetBrains Mono", monospace; font-size: 2.4cqw;
+      font-weight: 400; letter-spacing: 0.12em; color: #9BA6B2; opacity: 1; }
+    .g8-tc-t { display: inline-block; }
+    .g8-diff { position: absolute; left: 800px; top: 110px; height: 44px; display: flex;
+      align-items: center; justify-content: center; padding: 0 16px; box-sizing: border-box;
+      opacity: 1; border: 2px solid rgba(255,255,255,0.08); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; }
+    .g8-l3 { position: absolute; left: 72px; top: 800px; width: 560px; height: 96px;
+      box-sizing: border-box; background: #262C36; border-radius: 12px; opacity: 1;
+      padding: 12px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .g8-l3kick { display: block; font-family: "JetBrains Mono", monospace; font-size: 1.4cqw;
+      font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2;
+      white-space: nowrap; }
+    .g8-l3title { display: block; margin-top: 6px; font-family: "Space Grotesk", sans-serif;
+      font-weight: 700; font-size: 3.4cqw; letter-spacing: -0.005em; color: #F4F1EA;
+      white-space: nowrap; }
+
+    /* The spoken line, left-aligned at x 72. 5cqw (54px) rather than § 4's 9-11cqw: this frame
+       carries 23 words and its longest group is 27 characters, which measures ~815px at 5cqw and
+       ~980px at 6cqw — over the 936px column. pb-14's § 14 finding, and BRIEF deviation 8. The
+       28px reading floor is not at risk (54px). */
+    .f2-line { position:absolute; left:72px; width:936px; text-align:left; opacity:0;
+      font-family:"Space Grotesk", sans-serif; font-weight:700; line-height:1.04;
+      letter-spacing:-0.01em; color:#F4F1EA; white-space:nowrap; font-size:5cqw; }
+    .f2-l1 { top:234px; } .f2-l2 { top:294px; } .f2-l3 { top:400px; }
+    .f2-l4 { top:460px; } .f2-l5 { top:546px; }
+    .f2-w { display:inline-block; position:relative; }
+    .f2-hl { position:absolute; left:-8px; right:-10px; top:0.07em; bottom:0.05em;
+      background:#FFD166; border-radius:10px; transform:scaleX(0); transform-origin:left center; }
+    .f2-ht { position:relative; z-index:1; }
+
+    /* the three-name chip row (G2 chamber atoms at chip scale, frame-day2 § 4): --panel #1F242C
+       with a 3px --line border over the #15181D ground (a field-coloured chamber is invisible and
+       passes both gates), radius 22, G2's shadow. 296px wide, pitch 320, first at x 72 -> the row
+       ends at 1008, exactly the right edge of the 936px content column.
+       `nil` is a NAME here and nothing more: Go/Ruby/Lua/Swift cannot be executed on this machine
+       (bible § 4, frame-day2 § 13), so it gets no chamber and no output anywhere in this film. */
+    .pb-chip { position:absolute; width:296px; height:140px; box-sizing:border-box; opacity:0;
+      background:#1F242C; border:3px solid rgba(255,255,255,0.16); border-radius:22px;
+      box-shadow:0 18px 40px -18px rgba(0,0,0,0.70);
+      font-variant-ligatures:none; font-feature-settings:"liga" 0, "calt" 0, "dlig" 0; }
+    .f2-c1 { left:72px; top:640px; } .f2-c2 { left:392px; top:640px; } .f2-c3 { left:712px; top:640px; }
+    .pb-chipname { position:absolute; left:0; top:34px; width:100%; text-align:center;
+      display:block; font-family:"Space Grotesk", sans-serif; font-weight:700; font-size:4.2cqw;
+      line-height:1; letter-spacing:-0.01em; color:#F4F1EA; white-space:nowrap; }
+    .pb-chiptag { position:absolute; left:0; top:96px; width:100%; text-align:center;
+      display:block; font-family:"JetBrains Mono", monospace; font-weight:700; font-size:1.35cqw;
+      letter-spacing:0.14em; text-transform:uppercase; color:#9BA6B2; white-space:nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="02-names" data-width="1080" data-height="1920" data-duration="8.8">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="8.8" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="8.8" data-track-index="1">
+      <div class="g8-br g8-br-tl" data-layout-ignore></div>
+      <div class="g8-br g8-br-tr" data-layout-ignore></div>
+      <div class="g8-br g8-br-bl" data-layout-ignore></div>
+      <div class="g8-br g8-br-br" data-layout-ignore></div>
+      <div id="c2-rec" class="g8-rec" data-layout-ignore><span id="c2-dot" class="g8-dot"></span><span class="g8-recword">REC</span></div>
+      <div id="c2-tc" class="g8-tc" data-layout-ignore><span id="c2-tctxt" class="g8-tc-t">00:04</span></div>
+      <div id="c2-diff" class="g8-diff" data-layout-ignore>BEGINNER</div>
+      <div id="c2-l3" class="g8-l3" data-layout-ignore>
+        <span class="g8-l3kick">PROGRAMMING BASICS · BASICS II · 17</span>
+        <span class="g8-l3title">Null, nil, and None</span>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="8.8" data-track-index="2">
+      <div id="f2-c1" class="pb-chip f2-c1"><span class="pb-chipname">null</span><span class="pb-chiptag" data-layout-ignore>JAVASCRIPT</span></div>
+      <div id="f2-c2" class="pb-chip f2-c2"><span class="pb-chipname">nil</span><span class="pb-chiptag" data-layout-ignore>GO · RUBY · LUA · SWIFT</span></div>
+      <div id="f2-c3" class="pb-chip f2-c3"><span class="pb-chipname">None</span><span class="pb-chiptag" data-layout-ignore>PYTHON</span></div>
+
+      <div id="f2-l1" class="f2-line f2-l1"><span class="f2-w">Null,&nbsp;nil,&nbsp;and&nbsp;None</span></div>
+      <div id="f2-l2" class="f2-line f2-l2"><span class="f2-w">all&nbsp;mean&nbsp;</span><span class="f2-w"><span class="f2-hl" id="f2-hl" data-layout-allow-occlusion></span><span class="f2-ht" id="f2-ht">no&nbsp;value&nbsp;here</span></span></div>
+      <div id="f2-l3" class="f2-line f2-l3"><span class="f2-w">Zero&nbsp;and&nbsp;an&nbsp;empty&nbsp;string</span></div>
+      <div id="f2-l4" class="f2-line f2-l4"><span class="f2-w">are&nbsp;both&nbsp;values.</span></div>
+      <div id="f2-l5" class="f2-line f2-l5"><span class="f2-w">None&nbsp;is&nbsp;the&nbsp;absence&nbsp;of&nbsp;one.</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.8;
+      var T0 = 4.3;                     // film offset of this frame (STORYBOARD starts)
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-names"] = tl;
+
+      /* ground: duration = D/4 with an odd segment count, so the board is at its own zero on the
+         last frame of this scene (= the first of the next) */
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 2.2, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.2, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.2, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      /* REC dot: 15 half-blinks = 8.0s <= D, ends back on opacity 1; chrome never fades */
+      tl.fromTo(el("c2-dot"), { opacity: 1 }, { opacity: 0.15, duration: 0.5, ease: "sine.inOut",
+        repeat: 15, yoyo: true }, 0);
+
+      tl.to({ p: 0 }, { p: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var s = Math.floor(T0 + this.targets()[0].p);
+          el("c2-tctxt").textContent = "00:" + (s < 10 ? "0" + s : "" + s);
+        } }, 0);
+
+      /* entrance wipe: UP on F2 (F1 came from the left) */
+      tl.fromTo(el("f2-content"), { opacity: 0, y: 90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* P2 drop-in, ONE CHIP PER SPOKEN NAME — the enumeration is the motion on this frame.
+         Cued: "Null," 0.00 · "nil," 0.56 · "None" 1.08 */
+      function drop(id, t) {
+        tl.fromTo(el(id), { y: -210, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46,
+          ease: "bounce.out", immediateRender: false }, t);
+        tl.fromTo(el(id), { scaleY: 1 }, { scaleY: 0.96, duration: 0.1, ease: "power2.out",
+          immediateRender: false }, t + 0.44);
+        tl.to(el(id), { scaleY: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, t + 0.54);
+        tl.fromTo(el(id), { borderColor: "rgba(255,255,255,0.16)" },
+          { borderColor: "rgba(90,214,160,0.55)", duration: 0.2, ease: "power1.out",
+            immediateRender: false }, t + 0.44);
+        tl.to(el(id), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4, ease: "power1.inOut",
+          immediateRender: false }, t + 0.64);
+      }
+      drop("f2-c1", 0.10);   // "Null,"
+      drop("f2-c2", 0.60);   // "nil,"
+      drop("f2-c3", 1.12);   // "None"
+
+      /* the line arrives on its own words. Cued: all 1.26 / mean 1.56 / no 1.72 / value 1.94 /
+         here. 2.30 / Zero 3.10 / string 4.16 / are 4.48 / values. 4.90 / None 5.98 / absence 6.68 /
+         one. 7.34 (last word ends 7.56) */
+      tl.fromTo(el("f2-l1"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 0.05);
+      tl.fromTo(el("f2-l2"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 1.20);
+      tl.fromTo(el("f2-l3"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 3.02);
+      tl.fromTo(el("f2-l4"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 4.40);
+      tl.fromTo(el("f2-l5"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 5.90);
+
+      /* P1 say-sweep on `no value here` — cued 1.72-2.68. This is the frame's only amber: it is the
+         plain-English gloss of all three names, i.e. the word the voice is on. */
+      tl.fromTo(el("f2-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.68);
+      /* SET after the plate finishes (1.68 + 0.30 = 1.98), never a tween overlapping it — same
+         pb-18 deviation-14 fix as F1, same BRIEF deviation 12. */
+      tl.set(el("f2-ht"), { color: "#22201B" }, 2.00);
+
+      /* "absence" (6.68): the turn of the part, emphasised by SHAPE, not by a second amber plate
+         (frame-day2 § 1 and § 14; pb-14 deviations 7 and 16). */
+      tl.fromTo(el("f2-l5"), { scale: 1 }, { scale: 1.035, duration: 0.22, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 6.62);
+
+      /* ambient float, back to zero (0.5 + 3 x 2.2 = 7.1, inside D) */
+      tl.fromTo(el("f2-l1"), { y: 0 }, { y: -3, duration: 2.2, ease: "sine.inOut", repeat: 3,
+        yoyo: true, immediateRender: false }, 0.5);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 8.48);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

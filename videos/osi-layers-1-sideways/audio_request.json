@@ -1,0 +1,47 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "You've seen this stack seven times. Almost everyone reads it the wrong direction."
+    },
+    {
+      "id": "02",
+      "text": "Top to bottom, that is how it gets taught. Seven handing down to six."
+    },
+    {
+      "id": "03",
+      "text": "But each layer has a partner. Same number, other end of the wire. That is where the message goes.",
+      "sfx": [
+        "whoosh-short"
+      ]
+    },
+    {
+      "id": "04",
+      "text": "Your transport layer keeps ports and sequence numbers. So does theirs. The machines in between just forward.",
+      "sfx": [
+        "click-soft"
+      ]
+    },
+    {
+      "id": "05",
+      "text": "Layer three is the address on the outside. Every stop reads it and sorts. Only the far end opens the letter."
+    },
+    {
+      "id": "06",
+      "text": "Read it sideways and the stack turns into seven conversations across the wire. One layer, one partner, all at once.",
+      "sfx": [
+        "click-soft"
+      ]
+    },
+    {
+      "id": "07",
+      "text": "Next time you see the diagram, read it sideways. All seven pairs, side by side, in the article."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  },
+  "voice": "am_michael"
+}

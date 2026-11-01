@@ -1,0 +1,263 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f05-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    .f05-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px);
+    }
+    .f05-header {
+      position: absolute; top: 130px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.1cqw; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(20,19,19,0.64);
+      opacity: 0;
+    }
+    .f05-ring-svg { position: absolute; left: 0; top: 0; opacity: 0; }
+    .f05-ring-circle { fill: none; stroke: #141413; stroke-opacity: 0.3; stroke-width: 2; }
+    .f05-ring-dot { fill: #141413; fill-opacity: 0.45; }
+    .f05-spine { fill: none; stroke: #141413; stroke-opacity: 0.25; stroke-width: 2; }
+    .f05-tile {
+      position: absolute; width: 190px; height: 92px; box-sizing: border-box;
+      background: #EFE9DE;
+      border: 1px solid rgba(20,19,19,0.12);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      opacity: 0;
+    }
+    .f05-idx {
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.08em; color: rgba(20,19,19,0.64);
+    }
+    .f05-name { font-size: 2.85cqw; font-weight: 400; letter-spacing: -0.005em; color: #141413; }
+    .f05-gate {
+      position: absolute; left: 430px; width: 220px; height: 2px;
+      background: rgba(20,19,19,0.28);
+      opacity: 0;
+    }
+    .f05-form {
+      position: absolute; left: 670px; top: 741px; width: 360px; height: 320px; box-sizing: border-box;
+      background: #FAF9F5;
+      border: 1px solid rgba(20,19,19,0.14);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      padding: 26px 30px;
+      opacity: 0;
+    }
+    .f05-form-title {
+      font-family: "JetBrains Mono", monospace; font-size: 1.75cqw;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(20,19,19,0.64);
+      margin-bottom: 20px;
+    }
+    .f05-field {
+      font-family: "JetBrains Mono", monospace; font-size: 2.3cqw; color: #141413;
+      border-bottom: 1px solid rgba(20,19,19,0.12);
+      padding-bottom: 8px; margin-bottom: 16px;
+      white-space: nowrap;
+    }
+    .f05-stamp-rot {
+      /* Sits across the form's blank lower band. The three .f05-field rows end near
+         y=956; at -8deg this box's bounding box starts ~y=983, so the opaque stamp
+         backing never covers field text. */
+      position: absolute; left: 680px; top: 1005px; width: 330px; height: 86px;
+      transform: rotate(-8deg);
+    }
+    .f05-stamp {
+      position: absolute; inset: 0; box-sizing: border-box;
+      border: 3px solid #CC785C; border-radius: 8px;
+      box-shadow: inset 0 0 0 1px rgba(204,120,92,0.45);
+      background: rgba(250,249,245,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #CC785C;
+      opacity: 0;
+    }
+    .f05-lock-rule {
+      position: absolute; left: 390px; top: 1290px; width: 300px; height: 1px;
+      background: rgba(20,19,19,0.3);
+      opacity: 0;
+    }
+    .f05-lock-figure {
+      position: absolute; top: 1304px; left: 0; right: 0; text-align: center;
+      font-family: "EB Garamond", serif; font-size: 8cqw; font-weight: 400;
+      line-height: 0.95; letter-spacing: -0.025em; color: #141413;
+      opacity: 0;
+    }
+    .f05-lock-label {
+      position: absolute; top: 1402px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(20,19,19,0.74);
+      opacity: 0;
+    }
+    .f05-verdict {
+      position: absolute; top: 1476px; left: 0; right: 0; text-align: center;
+      font-size: 2.6cqw; font-weight: 400; line-height: 1.4; color: #141413;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-waterfall" data-width="1080" data-height="1920" data-duration="8.948">
+
+    <div id="05-waterfall-bg" class="clip" data-start="0" data-duration="8.948" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f05-bg"></div>
+      <div class="f05-grid"></div>
+    </div>
+
+    <div id="05-waterfall-stage" class="clip" data-start="0" data-duration="8.948" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="05-waterfall-header" class="f05-header">answer 01 &#183; waterfall</div>
+
+      <svg id="05-waterfall-ring" class="f05-ring-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <circle class="f05-ring-circle" cx="540" cy="300" r="110" />
+        <circle class="f05-ring-dot" cx="540" cy="190" r="5.5" />
+        <circle class="f05-ring-dot" cx="635.3" cy="245" r="5.5" />
+        <circle class="f05-ring-dot" cx="635.3" cy="355" r="5.5" />
+        <circle class="f05-ring-dot" cx="540" cy="410" r="5.5" />
+        <circle class="f05-ring-dot" cx="444.7" cy="355" r="5.5" />
+        <circle class="f05-ring-dot" cx="444.7" cy="245" r="5.5" />
+        <path id="05-waterfall-spine" class="f05-spine" d="M 540 440 L 540 1280" />
+      </svg>
+
+      <div id="05-waterfall-gate1" class="f05-gate" style="top:583px;"></div>
+      <div id="05-waterfall-gate2" class="f05-gate" style="top:719px;"></div>
+      <div id="05-waterfall-gate3" class="f05-gate" style="top:855px;"></div>
+      <div id="05-waterfall-gate4" class="f05-gate" style="top:991px;"></div>
+      <div id="05-waterfall-gate5" class="f05-gate" style="top:1127px;"></div>
+
+      <div id="05-waterfall-tile1" class="f05-tile" style="left:445px;top:470px;"><span class="f05-idx">01</span><span class="f05-name">Plan</span></div>
+      <div id="05-waterfall-tile2" class="f05-tile" style="left:445px;top:606px;"><span class="f05-idx">02</span><span class="f05-name">Design</span></div>
+      <div id="05-waterfall-tile3" class="f05-tile" style="left:445px;top:742px;"><span class="f05-idx">03</span><span class="f05-name">Build</span></div>
+      <div id="05-waterfall-tile4" class="f05-tile" style="left:445px;top:878px;"><span class="f05-idx">04</span><span class="f05-name">Test</span></div>
+      <div id="05-waterfall-tile5" class="f05-tile" style="left:445px;top:1014px;"><span class="f05-idx">05</span><span class="f05-name">Deploy</span></div>
+      <div id="05-waterfall-tile6" class="f05-tile" style="left:445px;top:1150px;"><span class="f05-idx">06</span><span class="f05-name">Operate</span></div>
+    </div>
+
+    <div id="05-waterfall-formclip" class="clip" data-start="1.8" data-duration="7.148" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="05-waterfall-form" class="f05-form">
+        <div class="f05-form-title">change request</div>
+        <div class="f05-field">scope&nbsp;&nbsp;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;</div>
+        <div class="f05-field">impact&nbsp;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;</div>
+        <div class="f05-field">approver&#95;&#95;&#95;&#95;&#95;&#95;&#95;</div>
+      </div>
+      <div class="f05-stamp-rot">
+        <div id="05-waterfall-stamp" class="f05-stamp">pending review</div>
+      </div>
+    </div>
+
+    <div id="05-waterfall-lockclip" class="clip" data-start="4.2" data-duration="4.748" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="05-waterfall-lockrule" class="f05-lock-rule"></div>
+      <div id="05-waterfall-lockfigure" class="f05-lock-figure">months</div>
+      <div id="05-waterfall-locklabel" class="f05-lock-label">feedback latency</div>
+    </div>
+
+    <div id="05-waterfall-verdictclip" class="clip" data-start="6.7" data-duration="2.248" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="05-waterfall-verdict" class="f05-verdict">and a death march when they&#8217;re not.</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var D = 8.448;
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-waterfall"] = tl;
+
+      // ── Seek-safe driver ──
+      // Two motions touch a shared property more than once (ring opacity in+out, stamp scale
+      // set+press+release). Chained tweens revert out of order on backward seek, so both are
+      // pure functions of t driven by one linear tween instead.
+      var ring = el("05-waterfall-ring");
+      var stamp = el("05-waterfall-stamp");
+
+      function smooth(p) { return p * p * (3 - 2 * p); }
+
+      function ringOpacity(t) {
+        if (t < 0.08) return 0;
+        if (t < 0.38) return smooth((t - 0.08) / 0.30);   // fade in
+        if (t < 0.75) return 1;                            // hold
+        if (t < 1.15) return 1 - smooth((t - 0.75) / 0.40); // morphs into the column
+        return 0;
+      }
+
+      function stampScale(t) {
+        if (t < 2.72) return 1.9;
+        if (t < 2.84) { var p = (t - 2.72) / 0.12; return 1.9 - 0.98 * p * p; } // power1.in compression
+        if (t < 3.34) {
+          var q = (t - 2.84) / 0.50, m = q - 1;            // back.out(2.0) release
+          return 0.92 + 0.08 * (1 + 3.0 * m * m * m + 2.0 * m * m);
+        }
+        return 1;
+      }
+
+      var driver = { t: 0 };
+      tl.to(driver, {
+        t: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var t = driver.t;
+          gsap.set(ring, { opacity: ringOpacity(t) });
+          gsap.set(stamp, { opacity: t >= 2.72 ? 1 : 0, scale: stampScale(t), transformOrigin: "50% 50%" });
+        }
+      }, 0);
+
+      // ── Scene 1: push-slide lands; the loop re-forms small at top, then unrolls into the gated column ──
+      tl.fromTo(el("05-waterfall-header"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.15);
+
+      var spine = el("05-waterfall-spine");
+      var spineLen = spine.getTotalLength();
+      spine.style.strokeDasharray = String(spineLen);
+      spine.style.strokeDashoffset = String(spineLen);
+      tl.to(spine, { strokeDashoffset: 0, duration: 0.65, ease: "power2.out" }, 0.35);
+
+      // tiles reposition down the spine (transform-only flight from the ring center)
+      var T = [
+        { n: 1, t: 0.50, dy: -216 },
+        { n: 2, t: 0.78, dy: -352 },
+        { n: 3, t: 1.02, dy: -488 },
+        { n: 4, t: 1.26, dy: -624 },
+        { n: 5, t: 1.50, dy: -760 },
+        { n: 6, t: 1.74, dy: -896 }
+      ];
+      T.forEach(function (spec) {
+        tl.fromTo(el("05-waterfall-tile" + spec.n),
+          { y: spec.dy, scale: 0.55, opacity: 0 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "power3.out" }, spec.t);
+      });
+      // gate bars re-draw between settled tiles
+      var G = [ { n: 1, t: 1.23 }, { n: 2, t: 1.47 }, { n: 3, t: 1.71 }, { n: 4, t: 1.95 }, { n: 5, t: 2.19 } ];
+      G.forEach(function (g) {
+        tl.fromTo(el("05-waterfall-gate" + g.n),
+          { opacity: 1, scaleX: 0 },
+          { scaleX: 1, duration: 0.22, ease: "power2.out", transformOrigin: "50% 50%" }, g.t);
+      });
+
+      // ── Scene 2: the change-request form slides in beside the build→test gate; the coral stamp slams ──
+      // (the stamp's press-slam itself is computed by the driver above — no chained tweens here)
+      tl.fromTo(el("05-waterfall-form"), { x: 70, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 1.90);
+
+      // ── Scene 3: the latency lockup reveals in its fixed slot (qualitative — no invented numerals) ──
+      tl.fromTo(el("05-waterfall-lockrule"), { opacity: 1, scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", transformOrigin: "50% 50%" }, 4.35);
+      tl.fromTo(el("05-waterfall-lockfigure"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 4.45);
+      tl.fromTo(el("05-waterfall-locklabel"), { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 4.75);
+
+      // ── Scene 4: the verdict snaps in; stage geometry freezes for the push-slide handoff ──
+      tl.fromTo(el("05-waterfall-verdict"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" }, 6.80);
+    })();
+  </script>
+</template>

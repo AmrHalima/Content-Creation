@@ -1,0 +1,194 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f01-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 200px; left: 100px; width: 880px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 2.7cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .f01-spike { display: inline-block; color: #CC785C; font-size: 2.9cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; min-width: 26.6em; text-align: left; }
+    .f01-caret { display: inline-block; width: 14px; height: 2.6cqw; background: #CC785C; margin-left: 6px; opacity: 0; }
+    .f01-ring-svg { position: absolute; inset: 0; }
+    .f01-arc { fill: none; stroke: #141413; stroke-opacity: 0.55; stroke-width: 2.5; stroke-linecap: round; }
+    .f01-head { fill: #141413; fill-opacity: 0.55; opacity: 0; }
+    .f01-tile {
+      position: absolute; width: 190px; height: 92px; box-sizing: border-box;
+      background: #EFE9DE;
+      border: 1px solid rgba(20,19,19,0.12);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      opacity: 0;
+    }
+    .f01-idx {
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.08em; color: rgba(20,19,19,0.64);
+    }
+    .f01-name { font-size: 2.85cqw; font-weight: 400; letter-spacing: -0.005em; color: #141413; }
+    .f01-strip {
+      position: absolute; top: 1395px; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      opacity: 0;
+    }
+    .f01-rule { width: 70px; height: 1px; background: rgba(20,19,19,0.15); }
+    .f01-strip-text {
+      font-family: "JetBrains Mono", monospace; font-size: 2.3cqw;
+      letter-spacing: 0.05em; color: rgba(20,19,19,0.74);
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-the-diagram" data-width="1080" data-height="1920">
+
+    <div id="01-the-diagram-bg" class="clip" data-start="0" data-duration="8.661" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-bg"></div>
+      <div id="01-the-diagram-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="01-the-diagram-kickerclip" class="clip" data-start="0" data-duration="8.661" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker">
+        <span id="01-the-diagram-spike" class="f01-spike">&#10009;</span><span id="01-the-diagram-ktext" class="f01-ktext"></span><span id="01-the-diagram-caret" class="f01-caret"></span>
+      </div>
+    </div>
+
+    <div id="01-the-diagram-ringclip" class="clip" data-start="0" data-duration="8.661" data-track-index="2" style="position:absolute;inset:0;">
+      <svg class="f01-ring-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="01-the-diagram-arc1" class="f01-arc" d="M 648.9 369.4 A 450 450 0 0 1 863.7 493.4" />
+        <path id="01-the-diagram-arc2" class="f01-arc" d="M 972.6 682.0 A 450 450 0 0 1 972.6 930.0" />
+        <path id="01-the-diagram-arc3" class="f01-arc" d="M 863.7 1118.6 A 450 450 0 0 1 648.9 1242.6" />
+        <path id="01-the-diagram-arc4" class="f01-arc" d="M 431.1 1242.6 A 450 450 0 0 1 216.3 1118.6" />
+        <path id="01-the-diagram-arc5" class="f01-arc" d="M 107.4 930.0 A 450 450 0 0 1 107.4 682.0" />
+        <path id="01-the-diagram-arc6" class="f01-arc" d="M 216.3 493.4 A 450 450 0 0 1 431.1 369.4" />
+        <polygon id="01-the-diagram-head1" class="f01-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(863.7,493.4) rotate(46)" />
+        <polygon id="01-the-diagram-head2" class="f01-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(972.6,930.0) rotate(106)" />
+        <polygon id="01-the-diagram-head3" class="f01-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(648.9,1242.6) rotate(166)" />
+        <polygon id="01-the-diagram-head4" class="f01-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(216.3,1118.6) rotate(226)" />
+        <polygon id="01-the-diagram-head5" class="f01-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(107.4,682.0) rotate(286)" />
+        <polygon id="01-the-diagram-head6" class="f01-head" points="-7,-6.5 13,0 -7,6.5" transform="translate(431.1,369.4) rotate(346)" />
+      </svg>
+      <div id="01-the-diagram-tile-plan" class="f01-tile" style="left:445px;top:310px;"><span class="f01-idx">01</span><span class="f01-name">Plan</span></div>
+      <div id="01-the-diagram-tile-design" class="f01-tile" style="left:835px;top:535px;"><span class="f01-idx">02</span><span class="f01-name">Design</span></div>
+      <div id="01-the-diagram-tile-build" class="f01-tile" style="left:835px;top:985px;"><span class="f01-idx">03</span><span class="f01-name">Build</span></div>
+      <div id="01-the-diagram-tile-test" class="f01-tile" style="left:445px;top:1210px;"><span class="f01-idx">04</span><span class="f01-name">Test</span></div>
+      <div id="01-the-diagram-tile-deploy" class="f01-tile" style="left:55px;top:985px;"><span class="f01-idx">05</span><span class="f01-name">Deploy</span></div>
+      <div id="01-the-diagram-tile-operate" class="f01-tile" style="left:55px;top:535px;"><span class="f01-idx">06</span><span class="f01-name">Operate</span></div>
+    </div>
+
+    <div id="01-the-diagram-stripclip" class="clip" data-start="5.5" data-duration="3.161" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="01-the-diagram-strip" class="f01-strip">
+        <div class="f01-rule"></div>
+        <div class="f01-strip-text">est. 1970s &#183; still in every job description</div>
+        <div class="f01-rule"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.661;
+      var CORAL = "#CC785C";
+      var INK = "#141413";
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-the-diagram"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("01-the-diagram-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+
+      // ── Scene 1: kicker types on (discrete word chunks) + context-sensitive caret ──
+      tl.fromTo(el("01-the-diagram-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }, 0.12);
+
+      var KSEQ = [
+        { t: 0.28, text: "THE " },
+        { t: 0.46, text: "THE SOFTWARE " },
+        { t: 0.64, text: "THE SOFTWARE DEVELOPMENT " },
+        { t: 0.84, text: "THE SOFTWARE DEVELOPMENT LIFE " },
+        { t: 1.02, text: "THE SOFTWARE DEVELOPMENT LIFE CYCLE" }
+      ];
+      function kTextAt(t) {
+        for (var i = KSEQ.length - 1; i >= 0; i--) if (t >= KSEQ[i].t) return KSEQ[i].text;
+        return "";
+      }
+      var ktextEl = el("01-the-diagram-ktext");
+      var caretEl = el("01-the-diagram-caret");
+      var driver = { t: 0 };
+      var BLINK_CYCLES = 12; // whole number over D — period ~0.72s
+      tl.to(driver, {
+        t: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var t = driver.t;
+          ktextEl.textContent = kTextAt(t);
+          // context-sensitive cursor: coral on the spike segment, ink on the main run
+          caretEl.style.background = t < 0.28 ? CORAL : INK;
+          if (t < 0.24) { caretEl.style.opacity = "0"; return; }
+          var solid = t < 1.2; // no blink while typing
+          var blinkOn = solid || Math.sin((2 * Math.PI * BLINK_CYCLES * t) / D) > 0;
+          var fade = t < 5.6 ? 1 : Math.max(0, Math.min(1, (6.0 - t) / 0.4)); // caret retires as the strip lands
+          caretEl.style.opacity = String((blinkOn ? 1 : 0) * fade);
+        }
+      }, 0);
+
+      // ── Scene 2: six tiles land on their spoken words (waterfall-entry discipline) ──
+      var TILES = [
+        { id: "01-the-diagram-tile-plan",    t: 1.80, y: 70, dur: 0.19 },
+        { id: "01-the-diagram-tile-design",  t: 2.10, y: 52, dur: 0.16 },
+        { id: "01-the-diagram-tile-build",   t: 2.40, y: 50, dur: 0.15 },
+        { id: "01-the-diagram-tile-test",    t: 2.70, y: 52, dur: 0.16 },
+        { id: "01-the-diagram-tile-deploy",  t: 3.02, y: 50, dur: 0.15 },
+        { id: "01-the-diagram-tile-operate", t: 3.34, y: 46, dur: 0.14 }
+      ];
+      TILES.forEach(function (spec) {
+        var node = el(spec.id);
+        tl.set(node, { opacity: 1 }, spec.t);
+        tl.fromTo(node, { y: spec.y }, { y: 0, duration: spec.dur, ease: "power4.out" }, spec.t);
+      });
+
+      // ── mono arrow arcs self-draw between settled tiles (svg-path-draw) ──
+      var ARCS = [
+        { arc: "01-the-diagram-arc1", head: "01-the-diagram-head1", t: 2.22, dur: 0.34 },
+        { arc: "01-the-diagram-arc2", head: "01-the-diagram-head2", t: 2.52, dur: 0.34 },
+        { arc: "01-the-diagram-arc3", head: "01-the-diagram-head3", t: 2.82, dur: 0.34 },
+        { arc: "01-the-diagram-arc4", head: "01-the-diagram-head4", t: 3.14, dur: 0.34 },
+        { arc: "01-the-diagram-arc5", head: "01-the-diagram-head5", t: 3.46, dur: 0.34 },
+        { arc: "01-the-diagram-arc6", head: "01-the-diagram-head6", t: 3.88, dur: 0.50 } // loop closes on "Fifty years old"
+      ];
+      ARCS.forEach(function (spec) {
+        var p = el(spec.arc);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: spec.dur, ease: "power2.out" }, spec.t);
+        tl.set(el(spec.head), { opacity: 1 }, spec.t + spec.dur);
+      });
+
+      // ── Scene 3: index strip fades in under the ring, everything holds still ──
+      tl.fromTo(el("01-the-diagram-strip"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 5.6);
+    })();
+  </script>
+</template>

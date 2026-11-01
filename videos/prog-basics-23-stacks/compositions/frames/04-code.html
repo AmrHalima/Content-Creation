@@ -1,0 +1,188 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      /* frame-day3 § 2: highest-probability defect in the tranche — JetBrains Mono ligates `->` and
+         `<=` into glyphs a learner cannot type. Kill-list on every frame of the part. */
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G3 code chamber (frame-day3 § 5): --panel #1F242C on --ground, 3px --line, radius 22,
+       64px --panel-2 titlebar with the filename left and the language chip right. Max 4 code lines
+       + 1 terminal strip — this one is exactly 4 + 1. */
+    .cd-root { position: absolute; left: 72px; top: 420px; width: 760px; height: 336px;
+      box-sizing: border-box; background: #1F242C; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 20px; opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background: #262C36;
+      border-radius: 16px 16px 0 0; display: flex; align-items: center; padding: 0 26px;
+      box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 700px; height: 58px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-b { font-weight: 700; }
+    .f4-lmask { position: absolute; left: 30px; height: 58px; width: 700px; background: #1F242C;
+      transform-origin: right center; }
+    .f4-caret { position: absolute; width: 5px; height: 44px; background: #FFD166;
+      border-radius: 2px; opacity: 0; }
+    /* the spoken verb, underlined as it is said (§ 9 P1 shape, run under the token rather than
+       behind it: an amber BACKGROUND inside a chamber line is the contrast trap pb-22 found) */
+    .f4-und { position: relative; display: inline-block; }
+    .f4-undbar { position: absolute; left: 0; right: 0; bottom: -4px; height: 3px;
+      background: #FFD166; border-radius: 2px; transform: scaleX(0); transform-origin: left center; }
+
+    /* terminal strip in § 4's chamber lane (y 900 h 72): the executed stdout, mint on --panel-2 */
+    .f4-term { position: absolute; left: 72px; top: 900px; width: 760px; height: 72px;
+      box-sizing: border-box; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; opacity: 0; display: flex; align-items: center; padding: 0 24px; }
+    .f4-termlab { display: inline-block; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .f4-out { display: inline-block; margin-left: 34px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      color: #5AD6A0; letter-spacing: 0.02em; }
+
+  </style>
+
+  <div id="root" data-composition-id="04-code" data-width="1080" data-height="1920" data-duration="6.1">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="6.1" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="6.1" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING&nbsp;BASICS&nbsp;·&nbsp;BASICS&nbsp;III&nbsp;·&nbsp;23</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="6.1" data-track-index="2">
+      <div id="f4-chamber" class="cd-root">
+        <div class="cd-bar">
+          <span id="f4-file" class="cd-file" data-layout-ignore>main.py</span>
+          <span id="f4-lang" class="cd-lang" data-layout-ignore>PYTHON</span>
+        </div>
+        <div id="f4-l1" class="cd-line" style="top:80px"><span class="tk-i">stack</span><span class="tk-m">&nbsp;=&nbsp;[]</span></div>
+        <div id="f4-l2" class="cd-line" style="top:142px"><span class="f4-und" id="f4-u1w">stack<span class="tk-b">.append</span>(<span class="tk-v">1</span>)<span class="f4-undbar" id="f4-u1"></span></span><span class="tk-m">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;</span><span class="tk-m">push</span></div>
+        <div id="f4-l3" class="cd-line" style="top:204px"><span class="tk-i">stack</span><span class="tk-b">.append</span>(<span class="tk-v">2</span>)<span class="tk-m">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;</span><span class="tk-m">push</span></div>
+        <div id="f4-l4" class="cd-line" style="top:266px"><span class="tk-i">print</span><span class="tk-m">(</span><span class="f4-und" id="f4-u2w">stack<span class="tk-b">.pop</span>()<span class="f4-undbar" id="f4-u2"></span></span><span class="tk-m">)</span><span class="tk-m">&nbsp;&nbsp;</span><span class="tk-m">#&nbsp;</span><span class="tk-v">2</span></div>
+        <div id="f4-m1" class="f4-lmask" style="top:80px"></div>
+        <div id="f4-m2" class="f4-lmask" style="top:142px"></div>
+        <div id="f4-m3" class="f4-lmask" style="top:204px"></div>
+        <div id="f4-m4" class="f4-lmask" style="top:266px"></div>
+        <div id="f4-cr1" class="f4-caret" style="left:34px;top:87px"></div>
+        <div id="f4-cr2" class="f4-caret" style="left:34px;top:149px"></div>
+        <div id="f4-cr3" class="f4-caret" style="left:34px;top:211px"></div>
+        <div id="f4-cr4" class="f4-caret" style="left:34px;top:273px"></div>
+      </div>
+
+      <div id="f4-term" class="f4-term">
+        <span id="f4-termlab" class="f4-termlab" data-layout-ignore>stdout</span>
+        <span id="f4-o1" class="f4-out">2</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.1;
+      /* Measured word onsets, audio_meta.json frame 4 (studio cues):
+         In 0.00 / Python 0.14 / a 0.78 / list 0.82 / does 1.06 / this 1.26 / Append 1.96 /
+         puts 2.28 / it 2.56 / on 2.74 / top 2.86 / Pop 3.56 / takes 3.82 / the 4.14 / top 4.34 /
+         off 4.56 */
+      var C = { python: 0.14, list: 0.82, append: 1.96, it: 2.56, pop: 3.56, off: 4.56 };
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-code"] = tl;
+
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: F3 came from the right, F4 from the left */
+      tl.fromTo(el("f4-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.10);
+
+      tl.fromTo(el("f4-chamber"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, C.python);
+      tl.fromTo(el("f4-file"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, C.python + 0.2);
+      tl.fromTo(el("f4-lang"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, C.python + 0.34);
+
+      /* P3 type-on: a chamber-coloured mask uncovers the line (right origin) while an amber caret
+         runs the width. One line per spoken clause. */
+      tl.set(el("f4-l1"), { opacity: 1 }, C.list - 0.04);
+      tl.fromTo(el("f4-m1"), { scaleX: 1 }, { scaleX: 0, duration: 0.42, ease: "power1.inOut", immediateRender: false }, C.list - 0.04);
+      tl.fromTo(el("f4-cr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 130, duration: 0.42, ease: "power1.inOut", immediateRender: false }, C.list - 0.04);
+      tl.set(el("f4-cr1"), { opacity: 0 }, C.list + 0.40);
+
+      tl.set(el("f4-l2"), { opacity: 1 }, C.append + 0.02);
+      tl.fromTo(el("f4-m2"), { scaleX: 1 }, { scaleX: 0, duration: 0.46, ease: "power1.inOut", immediateRender: false }, C.append + 0.02);
+      tl.fromTo(el("f4-cr2"), { opacity: 1, x: 0 }, { opacity: 1, x: 470, duration: 0.46, ease: "power1.inOut", immediateRender: false }, C.append + 0.02);
+      tl.set(el("f4-cr2"), { opacity: 0 }, C.append + 0.50);
+
+      tl.set(el("f4-l3"), { opacity: 1 }, C.it + 0.02);
+      tl.fromTo(el("f4-m3"), { scaleX: 1 }, { scaleX: 0, duration: 0.42, ease: "power1.inOut", immediateRender: false }, C.it + 0.02);
+      tl.fromTo(el("f4-cr3"), { opacity: 1, x: 0 }, { opacity: 1, x: 470, duration: 0.42, ease: "power1.inOut", immediateRender: false }, C.it + 0.02);
+      tl.set(el("f4-cr3"), { opacity: 0 }, C.it + 0.46);
+
+      /* the first verb underlined as it is said, retired before the second arrival (§ 1, one at a time) */
+      tl.fromTo(el("f4-u1"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, C.append + 0.10);
+      tl.to(el("f4-u1"), { scaleX: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, C.pop - 0.24);
+
+      tl.set(el("f4-l4"), { opacity: 1 }, C.pop + 0.02);
+      tl.fromTo(el("f4-m4"), { scaleX: 1 }, { scaleX: 0, duration: 0.46, ease: "power1.inOut", immediateRender: false }, C.pop + 0.02);
+      tl.fromTo(el("f4-cr4"), { opacity: 1, x: 0 }, { opacity: 1, x: 500, duration: 0.46, ease: "power1.inOut", immediateRender: false }, C.pop + 0.02);
+      tl.set(el("f4-cr4"), { opacity: 0 }, C.pop + 0.50);
+      tl.fromTo(el("f4-u2"), { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, C.pop + 0.12);
+
+      /* the executed stdout lands on "takes the top off" — mint because it is a VALUE, and the only
+         thing on this frame that printed */
+      tl.fromTo(el("f4-term"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, C.pop + 0.55);
+      tl.fromTo(el("f4-termlab"), { opacity: 0 }, { opacity: 1, duration: 0.22, immediateRender: false }, C.pop + 0.72);
+      tl.fromTo(el("f4-o1"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, C.off - 0.10);
+
+      /* ambient breath on the chamber, back to its own zero */
+      tl.fromTo(el("f4-chamber"), { y: 0 }, { y: -5, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 1.6);
+
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

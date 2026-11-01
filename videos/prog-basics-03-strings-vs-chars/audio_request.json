@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "A string isn't one thing. It's a lot of tiny things in a row."
+    },
+    {
+      "id": "02",
+      "text": "A character is one symbol. One letter, one digit, even one space."
+    },
+    {
+      "id": "03",
+      "text": "Line those symbols up and you have a string. Each one sits at a position, counting from zero. A slice takes the letters before its end."
+    },
+    {
+      "id": "04",
+      "text": "Word is code. Position zero gives you c. Slice one to three gives you od."
+    },
+    {
+      "id": "05",
+      "text": "Save this. Then slice your own name. Position zero is the first letter."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

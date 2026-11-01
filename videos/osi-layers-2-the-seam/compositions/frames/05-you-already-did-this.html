@@ -1,0 +1,202 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f5-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f5-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+    }
+    /* the three unchanged bands above are pinned screens: never translate, never scale,
+       never re-enter. depth-of-field-blur + 45% ink keeps the eye at the bottom. */
+    .f5-frozen { position: absolute; inset: 0; filter: blur(2.5px); opacity: 0.45; }
+    .f5-band {
+      position: absolute; left: 96px; width: 520px; height: 150px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; padding: 16px 24px;
+    }
+    .f5-kicker {
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f5-name { font-family: "EB Garamond", serif; font-size: 3.4cqw; line-height: 1.02; letter-spacing: -0.02em; margin-top: 2px; }
+    .f5-live {
+      position: absolute; left: 96px; width: 520px; height: 180px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; padding: 16px 24px;
+    }
+    .f5-link { top: 870px; }
+    .f5-phys { top: 1090px; }
+    .f5-medium {
+      position: absolute; left: 130px; top: 950px; width: 456px; height: 76px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 4px solid #1a1a1a; border-radius: 6px;
+      font-family: "EB Garamond", serif; font-size: 4cqw; color: #1a1a1a;
+    }
+    .f5-svg { position: absolute; inset: 0; }
+    .f5-cable { fill: none; stroke: #1a1a1a; stroke-width: 8; stroke-linecap: round; }
+    .f5-arc { fill: none; stroke: #1a1a1a; stroke-width: 7; stroke-linecap: round; }
+    .f5-arrow { fill: none; stroke: rgba(26,26,26,0.75); stroke-width: 5; stroke-linecap: round; }
+    .f5-head { fill: rgba(26,26,26,0.75); }
+    .f5-connector {
+      position: absolute; left: 540px; top: 1150px; width: 132px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 3px solid #1a1a1a; border-radius: 6px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: 0.06em; color: #1a1a1a;
+    }
+    .f5-dot {
+      position: absolute; left: 620px; top: 722px; width: 26px; height: 26px; border-radius: 50%;
+      background: #ffa946; opacity: 0; will-change: transform;
+    }
+    .f5-note {
+      position: absolute; left: 96px; top: 1400px; width: 700px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-trui" id="root" data-composition-id="05-you-already-did-this" data-width="1080" data-height="1920" data-duration="10.847">
+
+    <div data-hf-id="hf-5k3l" id="f5-fieldclip" class="clip" data-start="0" data-duration="10.847" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-59i4" class="f5-field"></div>
+      <div data-hf-id="hf-855k" class="f5-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-1klu" id="f5-frozenclip" class="clip" data-start="0" data-duration="10.847" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-k11y" class="f5-frozen">
+        <div data-hf-id="hf-309c" class="f5-band" style="top:300px;">
+          <div data-hf-id="hf-ybkb" class="f5-kicker" data-layout-ignore>&#10009;&nbsp; layer 7</div><div data-hf-id="hf-ugx5" class="f5-name">HTTP</div>
+        </div>
+        <div data-hf-id="hf-sgih" class="f5-band" style="top:480px;">
+          <div data-hf-id="hf-7eqr" class="f5-kicker" data-layout-ignore>layer 4</div><div data-hf-id="hf-65u3" class="f5-name">QUIC</div>
+        </div>
+        <div data-hf-id="hf-h49d" class="f5-band" style="top:660px;">
+          <div data-hf-id="hf-5f7m" class="f5-kicker" data-layout-ignore>layer 3</div><div data-hf-id="hf-jels" class="f5-name">IP</div>
+        </div>
+        <svg data-hf-id="hf-g941" class="f5-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <path data-hf-id="hf-nlw2" class="f5-arrow" d="M 620 375 L 1046 375" /><polygon data-hf-id="hf-yj9z" class="f5-head" points="1038,364 1060,375 1038,386" />
+          <path data-hf-id="hf-4eoi" class="f5-arrow" d="M 620 555 L 1046 555" /><polygon data-hf-id="hf-2inb" class="f5-head" points="1038,544 1060,555 1038,566" />
+        </svg>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-eysf" id="f5-linkclip" class="clip" data-start="0" data-duration="10.847" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-572y" class="f5-live f5-link">
+        <div data-hf-id="hf-lu40" class="f5-kicker" data-layout-ignore>layer 2 &middot; data link</div>
+      </div>
+      <div data-hf-id="hf-9sh3" id="f5-medium" class="f5-medium">Ethernet</div>
+      <svg data-hf-id="hf-jsc5" class="f5-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-rtdq" class="f5-arrow" d="M 620 960 L 1046 960" /><polygon data-hf-id="hf-lb8a" class="f5-head" points="1038,949 1060,960 1038,971" />
+        <path data-hf-id="hf-p5lm" class="f5-arrow" d="M 620 735 L 1046 735" /><polygon data-hf-id="hf-k613" class="f5-head" points="1038,724 1060,735 1038,746" />
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-d8ja" id="f5-physclip" class="clip" data-start="0" data-duration="10.847" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-ko32" class="f5-live f5-phys">
+        <div data-hf-id="hf-wnmm" class="f5-kicker" data-layout-ignore>layer 1 &middot; physical</div>
+      </div>
+      <svg data-hf-id="hf-kz98" class="f5-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-illf" id="f5-cable" class="f5-cable" d="M 150 1210 L 540 1210" />
+        <g data-hf-id="hf-sai6" id="f5-arcs">
+          <path data-hf-id="hf-zj5s" id="f5-arc1" class="f5-arc" d="M 190 1160 A 56 56 0 0 1 190 1260" />
+          <path data-hf-id="hf-qfno" id="f5-arc2" class="f5-arc" d="M 226 1128 A 100 100 0 0 1 226 1292" />
+          <path data-hf-id="hf-8sqd" id="f5-arc3" class="f5-arc" d="M 262 1096 A 144 144 0 0 1 262 1324" />
+        </g>
+        <circle data-hf-id="hf-e9nb" id="f5-anchor" cx="160" cy="1210" r="11" fill="#1a1a1a" opacity="0" />
+      </svg>
+      <div data-hf-id="hf-cj9h" id="f5-connector" class="f5-connector">RJ45</div>
+      <div data-hf-id="hf-8kyq" id="f5-dot" class="f5-dot"></div>
+    </div>
+
+    <div data-hf-id="hf-d61b" id="f5-noteclip" class="clip" data-start="8.94" data-duration="1.907" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-z5ts" id="f5-note" class="f5-note" data-layout-ignore>same number &middot; different hardware</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.347;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-you-already-did-this"] = tl;
+
+      // discrete-text-sequence via time proxy + reverse search (no TextPlugin here; part 1's helper)
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t, duration: states[states.length - 1].t, ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      // ── Scene 1 (0.0–1.26s) — "you have done it yourself": the three-band column returns dimmed,
+      //    the bottom band enters full ink: one solid cable with a connector chip, ember-filled. ──
+      tl.fromTo(el("f5-anchor"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 0.29);
+
+      // ── Scene 2 (2.38–4.76s) — "unplug the cable, stay on the site": the cable stroke RETRACTS
+      //    along itself (svg-path-draw played in reverse, finite single pass) and the connector
+      //    lifts out of frame. The frozen upper bands do not move. ──
+      var cab = el("f5-cable"), cabLen = cab.getTotalLength() * 1.05;
+      cab.style.strokeDasharray = String(cabLen);
+      cab.style.strokeDashoffset = "0";
+      tl.to(cab, { strokeDashoffset: cabLen, duration: 1.6, ease: "power2.inOut" }, 2.97);
+      tl.to(el("f5-connector"), { opacity: 0, y: -84, duration: 0.72, ease: "power3.in" }, 3.26);
+
+      // ── Scene 3 (5.49–8.9s) — "Wi-Fi takes over the link": radio arcs self-draw from the same
+      //    anchor and oscillate internally (finite cycles, not a forever loop); the medium chip
+      //    hard-swaps its label in place; the layer 3 peer arrow is re-lit by one travelling dot. ──
+      var ARCS = [{ id: "f5-arc1", t: 5.49 }, { id: "f5-arc2", t: 5.78 }, { id: "f5-arc3", t: 6.07 }];
+      ARCS.forEach(function (a) {
+        var p = el(a.id), len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.44, ease: "power3.out" }, a.t);
+      });
+      // finite internal oscillation: three cycles, then it stops
+      var osc = { p: 0 };
+      tl.to(osc, {
+        p: Math.PI * 2 * 3, duration: 1.65, ease: "none",
+        onUpdate: function () { el("f5-arcs").style.opacity = String(0.62 + 0.38 * Math.abs(Math.sin(osc.p))); }
+      }, 6.46);
+
+      textSeq(el("f5-medium"), [
+        { t: 0, text: "Ethernet" },
+        { t: 5.98, text: "Wi-Fi" }
+      ]);
+      tl.to(el("f5-medium"), { opacity: 0, duration: 0.07, ease: "none" }, 5.91);
+      tl.to(el("f5-medium"), { opacity: 1, duration: 0.14, ease: "power1.out" }, 5.98);
+
+      // the session is still running: one dot crosses the layer 3 arrow, the back-third event
+      var dot = { x: 0 };
+      tl.to(el("f5-dot"), { opacity: 1, duration: 0.14, ease: "none" }, 7.67);
+      tl.to(dot, {
+        x: 400, duration: 1.27, ease: "power1.inOut",
+        onUpdate: function () { el("f5-dot").style.transform = "translateX(" + dot.x.toFixed(2) + "px)"; }
+      }, 7.67);
+      tl.to(el("f5-dot"), { opacity: 0, duration: 0.2, ease: "power1.out" }, 8.94);
+
+      // ── Scene 4 (8.94–10.347s) — held read: new medium at the bottom, three untouched bands
+      //    above. Jitter on the arcs only. ──
+      tl.fromTo(el("f5-note"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 9.05);
+      var jit = { p: 0 };
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.6, duration: D - 9.42, ease: "none",
+        onUpdate: function () { el("f5-arcs").style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)"; }
+      }, 9.42);
+    })();
+  </script>
+</template>

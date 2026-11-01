@@ -1,0 +1,828 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 10.197,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "text": "service",
+          "start": 0.18,
+          "end": 0.62
+        },
+        {
+          "text": "method",
+          "start": 0.62,
+          "end": 1.1
+        },
+        {
+          "text": "that",
+          "start": 1.1,
+          "end": 1.5
+        },
+        {
+          "text": "builds",
+          "start": 1.5,
+          "end": 1.84
+        },
+        {
+          "text": "its",
+          "start": 1.84,
+          "end": 2.06
+        },
+        {
+          "text": "own",
+          "start": 2.06,
+          "end": 2.3
+        },
+        {
+          "text": "query,",
+          "start": 2.3,
+          "end": 2.84
+        },
+        {
+          "text": "opens",
+          "start": 2.84,
+          "end": 3.88
+        },
+        {
+          "text": "its",
+          "start": 3.88,
+          "end": 4.26
+        },
+        {
+          "text": "own",
+          "start": 4.26,
+          "end": 4.54
+        },
+        {
+          "text": "session,",
+          "start": 4.54,
+          "end": 5.04
+        },
+        {
+          "text": "and",
+          "start": 5.04,
+          "end": 5.92
+        },
+        {
+          "text": "maps",
+          "start": 5.92,
+          "end": 6.22
+        },
+        {
+          "text": "its",
+          "start": 6.22,
+          "end": 6.48
+        },
+        {
+          "text": "own",
+          "start": 6.48,
+          "end": 6.82
+        },
+        {
+          "text": "rows",
+          "start": 6.82,
+          "end": 7.3
+        },
+        {
+          "text": "is",
+          "start": 7.3,
+          "end": 7.7
+        },
+        {
+          "text": "three",
+          "start": 7.7,
+          "end": 8.16
+        },
+        {
+          "text": "layers",
+          "start": 8.16,
+          "end": 8.68
+        },
+        {
+          "text": "wearing",
+          "start": 8.68,
+          "end": 9.2
+        },
+        {
+          "text": "one",
+          "start": 9.2,
+          "end": 9.62
+        },
+        {
+          "text": "name.",
+          "start": 9.62,
+          "end": 9.96
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 12.715,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "text": "pattern",
+          "start": 0.2,
+          "end": 0.66
+        },
+        {
+          "text": "splits",
+          "start": 0.66,
+          "end": 1.14
+        },
+        {
+          "text": "that.",
+          "start": 1.14,
+          "end": 1.7
+        },
+        {
+          "text": "The",
+          "start": 2.38,
+          "end": 2.52
+        },
+        {
+          "text": "contract",
+          "start": 2.52,
+          "end": 3.02
+        },
+        {
+          "text": "is",
+          "start": 3.02,
+          "end": 3.52
+        },
+        {
+          "text": "written",
+          "start": 3.52,
+          "end": 3.92
+        },
+        {
+          "text": "in",
+          "start": 3.92,
+          "end": 4.2
+        },
+        {
+          "text": "domain",
+          "start": 4.2,
+          "end": 4.8
+        },
+        {
+          "text": "language.",
+          "start": 4.8,
+          "end": 5.36
+        },
+        {
+          "text": "The",
+          "start": 6.24,
+          "end": 6.32
+        },
+        {
+          "text": "implementation",
+          "start": 6.32,
+          "end": 7
+        },
+        {
+          "text": "owns",
+          "start": 7,
+          "end": 7.98
+        },
+        {
+          "text": "the",
+          "start": 7.98,
+          "end": 8.28
+        },
+        {
+          "text": "database.",
+          "start": 8.28,
+          "end": 8.8
+        },
+        {
+          "text": "The",
+          "start": 9.76,
+          "end": 9.88
+        },
+        {
+          "text": "consumer",
+          "start": 9.88,
+          "end": 10.5
+        },
+        {
+          "text": "sees",
+          "start": 10.5,
+          "end": 10.96
+        },
+        {
+          "text": "only",
+          "start": 10.96,
+          "end": 11.5
+        },
+        {
+          "text": "the",
+          "start": 11.5,
+          "end": 11.7
+        },
+        {
+          "text": "contract.",
+          "start": 11.7,
+          "end": 12.22
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 10.283,
+      "words": [
+        {
+          "text": "Watch",
+          "start": 0,
+          "end": 0.34
+        },
+        {
+          "text": "the",
+          "start": 0.34,
+          "end": 0.7
+        },
+        {
+          "text": "dependency.",
+          "start": 0.7,
+          "end": 1.44
+        },
+        {
+          "text": "The",
+          "start": 2.54,
+          "end": 2.64
+        },
+        {
+          "text": "implementation",
+          "start": 2.64,
+          "end": 3.34
+        },
+        {
+          "text": "answers",
+          "start": 3.34,
+          "end": 4.26
+        },
+        {
+          "text": "to",
+          "start": 4.26,
+          "end": 4.62
+        },
+        {
+          "text": "a",
+          "start": 4.62,
+          "end": 4.78
+        },
+        {
+          "text": "contract",
+          "start": 4.78,
+          "end": 5.3
+        },
+        {
+          "text": "the",
+          "start": 5.3,
+          "end": 5.66
+        },
+        {
+          "text": "domain",
+          "start": 5.66,
+          "end": 6
+        },
+        {
+          "text": "owns,",
+          "start": 6,
+          "end": 6.74
+        },
+        {
+          "text": "so",
+          "start": 7.16,
+          "end": 7.44
+        },
+        {
+          "text": "nothing",
+          "start": 7.44,
+          "end": 7.82
+        },
+        {
+          "text": "in",
+          "start": 7.82,
+          "end": 8.16
+        },
+        {
+          "text": "the",
+          "start": 8.16,
+          "end": 8.26
+        },
+        {
+          "text": "domain",
+          "start": 8.26,
+          "end": 8.74
+        },
+        {
+          "text": "names",
+          "start": 8.74,
+          "end": 9.4
+        },
+        {
+          "text": "a",
+          "start": 9.4,
+          "end": 9.58
+        },
+        {
+          "text": "table.",
+          "start": 9.58,
+          "end": 10
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 10.048,
+      "words": [
+        {
+          "text": "Find",
+          "start": 0,
+          "end": 0.44
+        },
+        {
+          "text": "an",
+          "start": 0.44,
+          "end": 0.66
+        },
+        {
+          "text": "order",
+          "start": 0.66,
+          "end": 0.98
+        },
+        {
+          "text": "by",
+          "start": 0.98,
+          "end": 1.36
+        },
+        {
+          "text": "id.",
+          "start": 1.36,
+          "end": 1.96
+        },
+        {
+          "text": "Save",
+          "start": 2.64,
+          "end": 3
+        },
+        {
+          "text": "an",
+          "start": 3,
+          "end": 3.24
+        },
+        {
+          "text": "order.",
+          "start": 3.24,
+          "end": 3.58
+        },
+        {
+          "text": "Every",
+          "start": 4.48,
+          "end": 4.82
+        },
+        {
+          "text": "connection",
+          "start": 4.82,
+          "end": 5.46
+        },
+        {
+          "text": "and",
+          "start": 5.46,
+          "end": 5.84
+        },
+        {
+          "text": "dialect",
+          "start": 5.84,
+          "end": 6.38
+        },
+        {
+          "text": "detail",
+          "start": 6.38,
+          "end": 7.1
+        },
+        {
+          "text": "lives",
+          "start": 7.1,
+          "end": 7.86
+        },
+        {
+          "text": "on",
+          "start": 7.86,
+          "end": 8.24
+        },
+        {
+          "text": "the",
+          "start": 8.24,
+          "end": 8.36
+        },
+        {
+          "text": "far",
+          "start": 8.36,
+          "end": 8.72
+        },
+        {
+          "text": "side",
+          "start": 8.72,
+          "end": 9.1
+        },
+        {
+          "text": "of",
+          "start": 9.1,
+          "end": 9.26
+        },
+        {
+          "text": "that",
+          "start": 9.26,
+          "end": 9.44
+        },
+        {
+          "text": "line.",
+          "start": 9.44,
+          "end": 9.76
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 10.517,
+      "words": [
+        {
+          "text": "Put",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "the",
+          "start": 0.22,
+          "end": 0.4
+        },
+        {
+          "text": "seam",
+          "start": 0.4,
+          "end": 0.72
+        },
+        {
+          "text": "on",
+          "start": 0.72,
+          "end": 1.04
+        },
+        {
+          "text": "a",
+          "start": 1.04,
+          "end": 1.14
+        },
+        {
+          "text": "table",
+          "start": 1.14,
+          "end": 1.62
+        },
+        {
+          "text": "instead",
+          "start": 1.62,
+          "end": 2.16
+        },
+        {
+          "text": "of",
+          "start": 2.16,
+          "end": 2.4
+        },
+        {
+          "text": "an",
+          "start": 2.4,
+          "end": 2.54
+        },
+        {
+          "text": "aggregate,",
+          "start": 2.54,
+          "end": 3.14
+        },
+        {
+          "text": "and",
+          "start": 4.02,
+          "end": 4.16
+        },
+        {
+          "text": "the",
+          "start": 4.16,
+          "end": 4.28
+        },
+        {
+          "text": "schema",
+          "start": 4.28,
+          "end": 4.72
+        },
+        {
+          "text": "quietly",
+          "start": 4.72,
+          "end": 5.38
+        },
+        {
+          "text": "becomes",
+          "start": 5.38,
+          "end": 6.1
+        },
+        {
+          "text": "your",
+          "start": 6.1,
+          "end": 6.36
+        },
+        {
+          "text": "domain",
+          "start": 6.36,
+          "end": 6.78
+        },
+        {
+          "text": "model,",
+          "start": 6.78,
+          "end": 7.38
+        },
+        {
+          "text": "one",
+          "start": 8.14,
+          "end": 8.32
+        },
+        {
+          "text": "repository",
+          "start": 8.32,
+          "end": 9.1
+        },
+        {
+          "text": "per",
+          "start": 9.1,
+          "end": 9.78
+        },
+        {
+          "text": "table.",
+          "start": 9.78,
+          "end": 10.22
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "path": "assets/voice/06.wav",
+      "duration_s": 8.683,
+      "words": [
+        {
+          "text": "Return",
+          "start": 0,
+          "end": 0.5
+        },
+        {
+          "text": "a",
+          "start": 0.5,
+          "end": 0.74
+        },
+        {
+          "text": "query",
+          "start": 0.74,
+          "end": 1.04
+        },
+        {
+          "text": "object,",
+          "start": 1.04,
+          "end": 1.76
+        },
+        {
+          "text": "or",
+          "start": 1.76,
+          "end": 2.32
+        },
+        {
+          "text": "a",
+          "start": 2.32,
+          "end": 2.5
+        },
+        {
+          "text": "commit",
+          "start": 2.5,
+          "end": 2.82
+        },
+        {
+          "text": "call,",
+          "start": 2.82,
+          "end": 3.24
+        },
+        {
+          "text": "and",
+          "start": 3.24,
+          "end": 4
+        },
+        {
+          "text": "the",
+          "start": 4,
+          "end": 4.1
+        },
+        {
+          "text": "caller",
+          "start": 4.1,
+          "end": 4.48
+        },
+        {
+          "text": "is",
+          "start": 4.48,
+          "end": 4.84
+        },
+        {
+          "text": "back",
+          "start": 4.84,
+          "end": 5.12
+        },
+        {
+          "text": "inside",
+          "start": 5.12,
+          "end": 5.62
+        },
+        {
+          "text": "the",
+          "start": 5.62,
+          "end": 5.94
+        },
+        {
+          "text": "database,",
+          "start": 5.94,
+          "end": 6.44
+        },
+        {
+          "text": "just",
+          "start": 6.44,
+          "end": 7.36
+        },
+        {
+          "text": "further",
+          "start": 7.36,
+          "end": 7.86
+        },
+        {
+          "text": "away.",
+          "start": 7.86,
+          "end": 8.32
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "path": "assets/voice/07.wav",
+      "duration_s": 9.579,
+      "words": [
+        {
+          "text": "It",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "pays",
+          "start": 0.22,
+          "end": 0.58
+        },
+        {
+          "text": "when",
+          "start": 0.58,
+          "end": 1
+        },
+        {
+          "text": "storage",
+          "start": 1,
+          "end": 1.5
+        },
+        {
+          "text": "changes",
+          "start": 1.5,
+          "end": 2.28
+        },
+        {
+          "text": "apart",
+          "start": 2.28,
+          "end": 2.7
+        },
+        {
+          "text": "from",
+          "start": 2.7,
+          "end": 3.22
+        },
+        {
+          "text": "the",
+          "start": 3.22,
+          "end": 3.36
+        },
+        {
+          "text": "use",
+          "start": 3.36,
+          "end": 3.58
+        },
+        {
+          "text": "case.",
+          "start": 3.58,
+          "end": 3.9
+        },
+        {
+          "text": "The",
+          "start": 4.86,
+          "end": 4.96
+        },
+        {
+          "text": "price",
+          "start": 4.96,
+          "end": 5.36
+        },
+        {
+          "text": "is",
+          "start": 5.36,
+          "end": 5.66
+        },
+        {
+          "text": "mapping",
+          "start": 5.66,
+          "end": 6.12
+        },
+        {
+          "text": "code",
+          "start": 6.12,
+          "end": 6.64
+        },
+        {
+          "text": "you",
+          "start": 6.64,
+          "end": 6.96
+        },
+        {
+          "text": "write",
+          "start": 6.96,
+          "end": 7.3
+        },
+        {
+          "text": "twice",
+          "start": 7.3,
+          "end": 7.82
+        },
+        {
+          "text": "and",
+          "start": 7.82,
+          "end": 8.46
+        },
+        {
+          "text": "keep",
+          "start": 8.46,
+          "end": 8.7
+        },
+        {
+          "text": "honest.",
+          "start": 8.7,
+          "end": 9.18
+        }
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "frame": 3,
+      "file": "assets/sfx/whoosh-short.mp3",
+      "offset_s": 6.54,
+      "duration_s": 0.57,
+      "volume": 0.35
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/click-soft.mp3",
+      "offset_s": 0.94,
+      "duration_s": 0.37,
+      "volume": 0.3
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/click-soft.mp3",
+      "offset_s": 2.74,
+      "duration_s": 0.37,
+      "volume": 0.3
+    }
+  ],
+  "total_duration_s": 72.022
+}

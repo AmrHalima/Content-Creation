@@ -1,0 +1,41 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "You want caching, retries and logging on one service. Each one changes what the call does."
+    },
+    {
+      "id": "02",
+      "text": "Inheritance answers that with a subclass per combination. Three behaviours, seven classes, picked before the program runs."
+    },
+    {
+      "id": "03",
+      "text": "A decorator wraps instead. It answers the same interface, does its own work, then calls the object inside."
+    },
+    {
+      "id": "04",
+      "text": "The order of the rings is a decision. Retry inside the cache, and a retried call gets stored."
+    },
+    {
+      "id": "05",
+      "text": "One ring in code is small. The constructor takes the interface, keeps it, and calls through."
+    },
+    {
+      "id": "06",
+      "text": "The stack is one expression at the call site. Its type is still PaymentGateway. Nothing downstream knows the difference."
+    },
+    {
+      "id": "07",
+      "text": "Inheritance needed seven classes, fixed at compile time. Three decorators need three classes and one expression per stack."
+    },
+    {
+      "id": "08",
+      "text": "Left unchecked, every call site adds a ring. Twelve deep, and a type check on the class you wrapped reads false."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

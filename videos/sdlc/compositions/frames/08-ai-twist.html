@@ -1,0 +1,219 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f08-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    .f08-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px);
+    }
+    .f08-cam-outer {
+      position: absolute; inset: 0;
+      transform-origin: 50% 50%;
+      will-change: transform;
+    }
+    .f08-cam-inner {
+      position: absolute; inset: 0;
+      will-change: transform;
+    }
+    .f08-kicker {
+      position: absolute; top: 660px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.1cqw; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(20,19,19,0.64);
+      opacity: 0;
+    }
+    .f08-marker { position: absolute; left: 1004px; top: 740px; width: 1px; height: 176px; background: rgba(20,19,19,0.4); }
+    .f08-marker-label {
+      position: absolute; top: 700px; right: 70px; text-align: right;
+      font-family: "JetBrains Mono", monospace; font-size: 1.75cqw;
+      letter-spacing: 0.1em; text-transform: lowercase; color: rgba(20,19,19,0.64);
+    }
+    .f08-marker-group { opacity: 0; }
+    .f08-bar { position: absolute; left: 76px; top: 780px; width: 928px; height: 96px; }
+    .f08-seg {
+      position: absolute; top: 0; height: 96px;
+      transform-origin: left center;
+      will-change: transform;
+    }
+    .f08-seg-review { left: 0; width: 210px; background: #EFE9DE; }
+    .f08-seg-approvals { left: 210px; width: 180px; background: #E7DFD1; }
+    .f08-seg-coordination { left: 390px; width: 210px; background: #DFD5C3; }
+    .f08-seg-build { left: 600px; width: 328px; background: #181715; }
+    .f08-label {
+      position: absolute; top: 900px; width: 220px; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.2cqw;
+      letter-spacing: 0.04em; color: rgba(20,19,19,0.64);
+      will-change: transform;
+    }
+    .f08-spark {
+      position: absolute; left: 808px; top: 796px; width: 64px; height: 64px;
+      text-align: center; line-height: 64px;
+      font-size: 52px; color: #CC785C;
+      opacity: 0;
+      will-change: transform;
+    }
+    .f08-annotation {
+      position: absolute; top: 948px; right: 70px; text-align: right;
+      font-family: "JetBrains Mono", monospace; font-size: 2cqw;
+      letter-spacing: 0.06em; color: rgba(20,19,19,0.7);
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="08-ai-twist" data-width="1080" data-height="1920">
+
+    <div id="08-ai-twist-bg" class="clip" data-start="0" data-duration="8.003" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f08-bg"></div>
+      <div class="f08-grid"></div>
+    </div>
+
+    <div id="08-ai-twist-chart" class="clip" data-start="0" data-duration="8.003" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="08-ai-twist-camouter" class="f08-cam-outer">
+        <div id="08-ai-twist-caminner" class="f08-cam-inner">
+
+          <div id="08-ai-twist-kicker" class="f08-kicker">where cycle time lives</div>
+
+          <div id="08-ai-twist-markergroup" class="f08-marker-group">
+            <div class="f08-marker"></div>
+            <div class="f08-marker-label">total cycle time</div>
+          </div>
+
+          <div class="f08-bar">
+            <div id="08-ai-twist-seg1" class="f08-seg f08-seg-review"></div>
+            <div id="08-ai-twist-seg2" class="f08-seg f08-seg-approvals"></div>
+            <div id="08-ai-twist-seg3" class="f08-seg f08-seg-coordination"></div>
+            <div id="08-ai-twist-seg4" class="f08-seg f08-seg-build"></div>
+          </div>
+
+          <div id="08-ai-twist-label1" class="f08-label" style="left:71px;">review</div>
+          <div id="08-ai-twist-label2" class="f08-label" style="left:266px;">approvals</div>
+          <div id="08-ai-twist-label3" class="f08-label" style="left:461px;">coordination</div>
+          <div id="08-ai-twist-label4" class="f08-label" style="left:730px;">build</div>
+
+          <div id="08-ai-twist-spark" class="f08-spark">&#10022;</div>
+
+          <div id="08-ai-twist-annotation" class="f08-annotation">&#8212; unchanged.</div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var D = 8.003;
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["08-ai-twist"] = tl;
+
+      // ── Seek-safe driver: the whole bar mechanism is pure functions of t.
+      // Entrance ramps and the collapse proxy compose by multiplication; one driver
+      // writes every transform, so seams between segments can never separate. ──
+      var segs = [1, 2, 3, 4].map(function (n) { return el("08-ai-twist-seg" + n); });
+      var labels = [1, 2, 3, 4].map(function (n) { return el("08-ai-twist-label" + n); });
+      var spark = el("08-ai-twist-spark");
+
+      var K = 0.48;                                  // survivor growth factor at full collapse
+      var BUILD_SHRINK = 1 - 40 / 328;               // build ends as a 40px sliver
+      var OFF = [0, 210 * K, 390 * K, 600 * K];      // per-segment x offsets at p=1
+      var ENT = [0.12, 0.24, 0.36, 0.48];            // entrance stagger starts (0.30s each)
+      var LABEL_IN = [0.22, 0.34, 0.46, 0.58];
+      // label center drift coefficients: cx(p) = cx0 + coef·p
+      var LABEL_DRIFT = [105 * K, 144, 237.6, 144]; // review / approvals / coordination / build sliver
+      // keyword-glow windows (measured VO): "Review, approvals, coordination:" 4.15–6.24
+      var GLOW = [
+        { s: 4.15, e: 4.75 },
+        { s: 4.80, e: 5.45 },
+        { s: 5.50, e: 6.24 },
+        null
+      ];
+      var ATK = 0.12, REL = 0.35, REST = 0.4;
+
+      function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+      function smooth(p) { return p * p * (3 - 2 * p); }
+      function easeOutCubic(q) { var m = 1 - q; return 1 - m * m * m; }
+
+      function collapseP(t) {
+        if (t <= 0.80) return 0;
+        if (t >= 1.45) return 1;
+        return smooth((t - 0.80) / 0.65);
+      }
+      function entScale(i, t) {
+        return easeOutCubic(clamp01((t - ENT[i]) / 0.30));
+      }
+      function glowEnv(g, t) {
+        if (!g || t < g.s) return 0;
+        if (t < g.s + ATK) return (t - g.s) / ATK;
+        if (t < g.e) return 1;
+        if (t < g.e + REL) return 1 - ((t - g.e) / REL) * (1 - REST);
+        return REST;
+      }
+
+      function sparkState(t) {
+        var op, sc;
+        if (t < 0.72) { op = 0; sc = 2.2; }
+        else if (t < 0.97) { var q = (t - 0.72) / 0.25; op = q; sc = 2.2 - 1.2 * easeOutCubic(q); }
+        else if (t < 1.60) { op = 1; sc = 1; }
+        else if (t < 2.00) { op = (2.00 - t) / 0.40; sc = 1; }
+        else { op = 0; sc = 1; }
+        return { op: op, sc: sc };
+      }
+
+      var driver = { t: 0 };
+      tl.to(driver, {
+        t: D, duration: D, ease: "none",
+        onUpdate: function () {
+          var t = driver.t;
+          var p = collapseP(t);
+
+          for (var i = 0; i < 4; i++) {
+            var col = i === 3 ? 1 - BUILD_SHRINK * p : 1 + K * p;
+            var sx = entScale(i, t) * col;
+            segs[i].style.transform = "translateX(" + (OFF[i] * p) + "px) scaleX(" + sx + ")";
+
+            var lx = LABEL_DRIFT[i] * p;
+            var env = glowEnv(GLOW[i], t);
+            var lIn = clamp01((t - LABEL_IN[i]) / 0.25);
+            var alpha = i === 3 ? (0.55 - 0.25 * p) * lIn : (0.45 + 0.55 * env) * lIn;
+            var lScale = 1 + 0.06 * env;
+            labels[i].style.transform = "translateX(" + lx + "px) scale(" + lScale + ")";
+            labels[i].style.color = "rgba(20,19,19," + (alpha).toFixed(3) + ")";
+          }
+
+          var sp = sparkState(t);
+          spark.style.opacity = String(sp.op);
+          spark.style.transform = "translateX(" + (144 * p) + "px) scale(" + sp.sc + ")";
+        }
+      }, 0);
+
+      // ── chrome entrances (single-entrance tweens; everything continuous lives on the driver) ──
+      tl.fromTo(el("08-ai-twist-kicker"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.25);
+      tl.fromTo(el("08-ai-twist-markergroup"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.55);
+      tl.fromTo(el("08-ai-twist-annotation"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 3.15);
+
+      // ── Scene 3: camera pushes into the three surviving segments as the VO names them.
+      // Nested-wrapper form: outer scales, inner counter-translates (T = -offset, shared ease).
+      // Target = survivor bar+labels band center (520, 855); offset = (-20, -105) → T = (+20, +105). ──
+      tl.to(el("08-ai-twist-camouter"), { scale: 1.22, duration: 1.8, ease: "power3.inOut" }, 4.10);
+      tl.to(el("08-ai-twist-caminner"), { x: 20, y: 105, duration: 1.8, ease: "power3.inOut" }, 4.10);
+      // settles 5.90 — "that's where the weeks live." (6.66–7.80) lands on the held group.
+    })();
+  </script>
+</template>

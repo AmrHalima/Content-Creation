@@ -1,0 +1,1501 @@
+{
+  "total_duration_s": 74.475,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 0.7,
+      "text": "Some things",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "Some",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "things",
+          "start": 0.32,
+          "end": 0.7
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 0.7,
+      "end": 1.8,
+      "text": "a program should",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "a",
+          "start": 0.7,
+          "end": 0.92
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "program",
+          "start": 0.92,
+          "end": 1.38
+        },
+        {
+          "id": "caption-word-1-2",
+          "text": "should",
+          "start": 1.38,
+          "end": 1.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 1.8,
+      "end": 2.46,
+      "text": "only ever",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "only",
+          "start": 1.8,
+          "end": 2.1
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "ever",
+          "start": 2.1,
+          "end": 2.46
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 2.46,
+      "end": 3.48,
+      "text": "have one of.",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "have",
+          "start": 2.46,
+          "end": 2.78
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "one",
+          "start": 2.78,
+          "end": 3.1
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "of.",
+          "start": 3.1,
+          "end": 3.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 1,
+      "start": 4.1,
+      "end": 5.36,
+      "text": "A connection pool,",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "A",
+          "start": 4.1,
+          "end": 4.2
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "connection",
+          "start": 4.2,
+          "end": 4.7
+        },
+        {
+          "id": "caption-word-4-2",
+          "text": "pool,",
+          "start": 4.7,
+          "end": 5.24
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 1,
+      "start": 5.7,
+      "end": 6.3,
+      "text": "the app",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "the",
+          "start": 5.7,
+          "end": 5.82
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "app",
+          "start": 5.82,
+          "end": 6.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 1,
+      "start": 6.46,
+      "end": 6.9,
+      "text": "config.",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "config.",
+          "start": 6.46,
+          "end": 6.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 1,
+      "start": 7.58,
+      "end": 9.26,
+      "text": "Singleton is a class",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "Singleton",
+          "start": 7.58,
+          "end": 8.3
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "is",
+          "start": 8.3,
+          "end": 8.72
+        },
+        {
+          "id": "caption-word-7-2",
+          "text": "a",
+          "start": 8.72,
+          "end": 8.84
+        },
+        {
+          "id": "caption-word-7-3",
+          "text": "class",
+          "start": 8.84,
+          "end": 9.26
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 1,
+      "start": 9.26,
+      "end": 11.26,
+      "text": "enforcing that about itself.",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "enforcing",
+          "start": 9.26,
+          "end": 10.26
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "that",
+          "start": 10.26,
+          "end": 10.52
+        },
+        {
+          "id": "caption-word-8-2",
+          "text": "about",
+          "start": 10.52,
+          "end": 10.78
+        },
+        {
+          "id": "caption-word-8-3",
+          "text": "itself.",
+          "start": 10.78,
+          "end": 11.14
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 11.605,
+      "end": 12.665,
+      "text": "One instance,",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "One",
+          "start": 11.605,
+          "end": 11.985
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "instance,",
+          "start": 11.985,
+          "end": 12.545
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 13.185,
+      "end": 14.245,
+      "text": "alive for the",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "alive",
+          "start": 13.185,
+          "end": 13.585
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "for",
+          "start": 13.585,
+          "end": 14.105
+        },
+        {
+          "id": "caption-word-10-2",
+          "text": "the",
+          "start": 14.105,
+          "end": 14.245
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 14.245,
+      "end": 15.285,
+      "text": "whole process.",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "whole",
+          "start": 14.245,
+          "end": 14.505
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "process.",
+          "start": 14.505,
+          "end": 15.165
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 16.045,
+      "end": 17.265,
+      "text": "Nobody else gets",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "Nobody",
+          "start": 16.045,
+          "end": 16.485
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "else",
+          "start": 16.485,
+          "end": 16.925
+        },
+        {
+          "id": "caption-word-12-2",
+          "text": "gets",
+          "start": 16.925,
+          "end": 17.265
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 2,
+      "start": 17.265,
+      "end": 17.685,
+      "text": "to make",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "to",
+          "start": 17.265,
+          "end": 17.525
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "make",
+          "start": 17.525,
+          "end": 17.685
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 2,
+      "start": 17.685,
+      "end": 18.305,
+      "text": "a second.",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "a",
+          "start": 17.685,
+          "end": 17.805
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "second.",
+          "start": 17.805,
+          "end": 18.185
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 2,
+      "start": 18.805,
+      "end": 19.265,
+      "text": "That is",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "That",
+          "start": 18.805,
+          "end": 19.045
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "is",
+          "start": 19.045,
+          "end": 19.265
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 2,
+      "start": 19.265,
+      "end": 20.765,
+      "text": "a lifetime decision",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "a",
+          "start": 19.265,
+          "end": 19.425
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "lifetime",
+          "start": 19.425,
+          "end": 19.925
+        },
+        {
+          "id": "caption-word-16-2",
+          "text": "decision",
+          "start": 19.925,
+          "end": 20.765
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 2,
+      "start": 20.765,
+      "end": 22.245,
+      "text": "wearing a pattern's",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "wearing",
+          "start": 20.765,
+          "end": 21.305
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "a",
+          "start": 21.305,
+          "end": 21.565
+        },
+        {
+          "id": "caption-word-17-2",
+          "text": "pattern's",
+          "start": 21.565,
+          "end": 22.245
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 2,
+      "start": 22.245,
+      "end": 22.725,
+      "text": "clothes.",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "clothes.",
+          "start": 22.245,
+          "end": 22.605
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 23.04,
+      "end": 24.5,
+      "text": "Every caller reaches",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "Every",
+          "start": 23.04,
+          "end": 23.48
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "caller",
+          "start": 23.48,
+          "end": 23.98
+        },
+        {
+          "id": "caption-word-19-2",
+          "text": "reaches",
+          "start": 23.98,
+          "end": 24.5
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 3,
+      "start": 24.5,
+      "end": 25.72,
+      "text": "the same door:",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "the",
+          "start": 24.5,
+          "end": 24.86
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "same",
+          "start": 24.86,
+          "end": 25.2
+        },
+        {
+          "id": "caption-word-20-2",
+          "text": "door:",
+          "start": 25.2,
+          "end": 25.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 3,
+      "start": 26.22,
+      "end": 27.52,
+      "text": "a static holder",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "a",
+          "start": 26.22,
+          "end": 26.52
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "static",
+          "start": 26.52,
+          "end": 26.98
+        },
+        {
+          "id": "caption-word-21-2",
+          "text": "holder",
+          "start": 26.98,
+          "end": 27.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 3,
+      "start": 27.52,
+      "end": 29.06,
+      "text": "inside the class,",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "inside",
+          "start": 27.52,
+          "end": 28.02
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "the",
+          "start": 28.02,
+          "end": 28.4
+        },
+        {
+          "id": "caption-word-22-2",
+          "text": "class,",
+          "start": 28.4,
+          "end": 28.94
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 3,
+      "start": 29.22,
+      "end": 29.6,
+      "text": "and the",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "and",
+          "start": 29.22,
+          "end": 29.48
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "the",
+          "start": 29.48,
+          "end": 29.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 3,
+      "start": 29.6,
+      "end": 30.9,
+      "text": "one instance behind",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "one",
+          "start": 29.6,
+          "end": 29.86
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "instance",
+          "start": 29.86,
+          "end": 30.32
+        },
+        {
+          "id": "caption-word-24-2",
+          "text": "behind",
+          "start": 30.32,
+          "end": 30.9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 3,
+      "start": 30.9,
+      "end": 31.44,
+      "text": "it.",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "it.",
+          "start": 30.9,
+          "end": 31.32
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 4,
+      "start": 31.552,
+      "end": 32.852,
+      "text": "Private constructor,",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "Private",
+          "start": 31.552,
+          "end": 32.032
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "constructor,",
+          "start": 32.032,
+          "end": 32.852
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 4,
+      "start": 32.852,
+      "end": 35.292,
+      "text": "so nobody outside can",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "so",
+          "start": 32.852,
+          "end": 33.652
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "nobody",
+          "start": 33.652,
+          "end": 34.192
+        },
+        {
+          "id": "caption-word-27-2",
+          "text": "outside",
+          "start": 34.192,
+          "end": 34.812
+        },
+        {
+          "id": "caption-word-27-3",
+          "text": "can",
+          "start": 34.812,
+          "end": 35.292
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 4,
+      "start": 35.292,
+      "end": 36.052,
+      "text": "call new.",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "call",
+          "start": 35.292,
+          "end": 35.612
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "new.",
+          "start": 35.612,
+          "end": 35.932
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 4,
+      "start": 36.712,
+      "end": 38.172,
+      "text": "One static field",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "One",
+          "start": 36.712,
+          "end": 37.132
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "static",
+          "start": 37.132,
+          "end": 37.572
+        },
+        {
+          "id": "caption-word-29-2",
+          "text": "field",
+          "start": 37.572,
+          "end": 38.172
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 38.172,
+      "end": 39.392,
+      "text": "holds the instance",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "holds",
+          "start": 38.172,
+          "end": 38.652
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "the",
+          "start": 38.652,
+          "end": 38.912
+        },
+        {
+          "id": "caption-word-30-2",
+          "text": "instance",
+          "start": 38.912,
+          "end": 39.392
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 4,
+      "start": 39.392,
+      "end": 40.532,
+      "text": "the class hands",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "the",
+          "start": 39.392,
+          "end": 39.732
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "class",
+          "start": 39.732,
+          "end": 40.092
+        },
+        {
+          "id": "caption-word-31-2",
+          "text": "hands",
+          "start": 40.092,
+          "end": 40.532
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 4,
+      "start": 40.532,
+      "end": 41.052,
+      "text": "out.",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "out.",
+          "start": 40.532,
+          "end": 40.932
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 5,
+      "start": 41.237,
+      "end": 42.697,
+      "text": "Ask twice and",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "Ask",
+          "start": 41.237,
+          "end": 41.697
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "twice",
+          "start": 41.697,
+          "end": 42.137
+        },
+        {
+          "id": "caption-word-33-2",
+          "text": "and",
+          "start": 42.137,
+          "end": 42.697
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 5,
+      "start": 42.697,
+      "end": 43.017,
+      "text": "you get",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "you",
+          "start": 42.697,
+          "end": 42.817
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "get",
+          "start": 42.817,
+          "end": 43.017
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 5,
+      "start": 43.017,
+      "end": 43.477,
+      "text": "the same",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "the",
+          "start": 43.017,
+          "end": 43.157
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "same",
+          "start": 43.157,
+          "end": 43.477
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 43.477,
+      "end": 44.577,
+      "text": "object back.",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "object",
+          "start": 43.477,
+          "end": 43.977
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "back.",
+          "start": 43.977,
+          "end": 44.457
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 5,
+      "start": 44.977,
+      "end": 47.097,
+      "text": "Two references pointing at",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "Two",
+          "start": 44.977,
+          "end": 45.417
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "references",
+          "start": 45.417,
+          "end": 46.057
+        },
+        {
+          "id": "caption-word-37-2",
+          "text": "pointing",
+          "start": 46.057,
+          "end": 46.637
+        },
+        {
+          "id": "caption-word-37-3",
+          "text": "at",
+          "start": 46.637,
+          "end": 47.097
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 5,
+      "start": 47.097,
+      "end": 47.957,
+      "text": "one lifetime.",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "one",
+          "start": 47.097,
+          "end": 47.317
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "lifetime.",
+          "start": 47.317,
+          "end": 47.837
+        }
+      ]
+    },
+    {
+      "id": "caption-group-39",
+      "frame": 6,
+      "start": 48.32,
+      "end": 49.46,
+      "text": "Any file can",
+      "words": [
+        {
+          "id": "caption-word-39-0",
+          "text": "Any",
+          "start": 48.32,
+          "end": 48.66
+        },
+        {
+          "id": "caption-word-39-1",
+          "text": "file",
+          "start": 48.66,
+          "end": 49.12
+        },
+        {
+          "id": "caption-word-39-2",
+          "text": "can",
+          "start": 49.12,
+          "end": 49.46
+        }
+      ]
+    },
+    {
+      "id": "caption-group-40",
+      "frame": 6,
+      "start": 49.46,
+      "end": 49.96,
+      "text": "call the",
+      "words": [
+        {
+          "id": "caption-word-40-0",
+          "text": "call",
+          "start": 49.46,
+          "end": 49.8
+        },
+        {
+          "id": "caption-word-40-1",
+          "text": "the",
+          "start": 49.8,
+          "end": 49.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-41",
+      "frame": 6,
+      "start": 49.96,
+      "end": 51.16,
+      "text": "class directly,",
+      "words": [
+        {
+          "id": "caption-word-41-0",
+          "text": "class",
+          "start": 49.96,
+          "end": 50.36
+        },
+        {
+          "id": "caption-word-41-1",
+          "text": "directly,",
+          "start": 50.36,
+          "end": 51.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-42",
+      "frame": 6,
+      "start": 51.54,
+      "end": 52.54,
+      "text": "so the dependency",
+      "words": [
+        {
+          "id": "caption-word-42-0",
+          "text": "so",
+          "start": 51.54,
+          "end": 51.76
+        },
+        {
+          "id": "caption-word-42-1",
+          "text": "the",
+          "start": 51.76,
+          "end": 51.88
+        },
+        {
+          "id": "caption-word-42-2",
+          "text": "dependency",
+          "start": 51.88,
+          "end": 52.54
+        }
+      ]
+    },
+    {
+      "id": "caption-group-43",
+      "frame": 6,
+      "start": 52.54,
+      "end": 54.12,
+      "text": "never shows in a",
+      "words": [
+        {
+          "id": "caption-word-43-0",
+          "text": "never",
+          "start": 52.54,
+          "end": 53.16
+        },
+        {
+          "id": "caption-word-43-1",
+          "text": "shows",
+          "start": 53.16,
+          "end": 53.66
+        },
+        {
+          "id": "caption-word-43-2",
+          "text": "in",
+          "start": 53.66,
+          "end": 54
+        },
+        {
+          "id": "caption-word-43-3",
+          "text": "a",
+          "start": 54,
+          "end": 54.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-44",
+      "frame": 6,
+      "start": 54.12,
+      "end": 54.78,
+      "text": "signature.",
+      "words": [
+        {
+          "id": "caption-word-44-0",
+          "text": "signature.",
+          "start": 54.12,
+          "end": 54.66
+        }
+      ]
+    },
+    {
+      "id": "caption-group-45",
+      "frame": 6,
+      "start": 55.64,
+      "end": 56.28,
+      "text": "A global,",
+      "words": [
+        {
+          "id": "caption-word-45-0",
+          "text": "A",
+          "start": 55.64,
+          "end": 55.82
+        },
+        {
+          "id": "caption-word-45-1",
+          "text": "global,",
+          "start": 55.82,
+          "end": 56.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-46",
+      "frame": 6,
+      "start": 56.28,
+      "end": 57.34,
+      "text": "with a good",
+      "words": [
+        {
+          "id": "caption-word-46-0",
+          "text": "with",
+          "start": 56.28,
+          "end": 56.98
+        },
+        {
+          "id": "caption-word-46-1",
+          "text": "a",
+          "start": 56.98,
+          "end": 57.14
+        },
+        {
+          "id": "caption-word-46-2",
+          "text": "good",
+          "start": 57.14,
+          "end": 57.34
+        }
+      ]
+    },
+    {
+      "id": "caption-group-47",
+      "frame": 6,
+      "start": 57.34,
+      "end": 57.82,
+      "text": "name.",
+      "words": [
+        {
+          "id": "caption-word-47-0",
+          "text": "name.",
+          "start": 57.34,
+          "end": 57.7
+        }
+      ]
+    },
+    {
+      "id": "caption-group-48",
+      "frame": 7,
+      "start": 58.027,
+      "end": 59.047,
+      "text": "It outlives the",
+      "words": [
+        {
+          "id": "caption-word-48-0",
+          "text": "It",
+          "start": 58.027,
+          "end": 58.267
+        },
+        {
+          "id": "caption-word-48-1",
+          "text": "outlives",
+          "start": 58.267,
+          "end": 58.827
+        },
+        {
+          "id": "caption-word-48-2",
+          "text": "the",
+          "start": 58.827,
+          "end": 59.047
+        }
+      ]
+    },
+    {
+      "id": "caption-group-49",
+      "frame": 7,
+      "start": 59.047,
+      "end": 60.327,
+      "text": "test run too.",
+      "words": [
+        {
+          "id": "caption-word-49-0",
+          "text": "test",
+          "start": 59.047,
+          "end": 59.467
+        },
+        {
+          "id": "caption-word-49-1",
+          "text": "run",
+          "start": 59.467,
+          "end": 59.827
+        },
+        {
+          "id": "caption-word-49-2",
+          "text": "too.",
+          "start": 59.827,
+          "end": 60.207
+        }
+      ]
+    },
+    {
+      "id": "caption-group-50",
+      "frame": 7,
+      "start": 60.947,
+      "end": 62.127,
+      "text": "State left by",
+      "words": [
+        {
+          "id": "caption-word-50-0",
+          "text": "State",
+          "start": 60.947,
+          "end": 61.307
+        },
+        {
+          "id": "caption-word-50-1",
+          "text": "left",
+          "start": 61.307,
+          "end": 61.767
+        },
+        {
+          "id": "caption-word-50-2",
+          "text": "by",
+          "start": 61.767,
+          "end": 62.127
+        }
+      ]
+    },
+    {
+      "id": "caption-group-51",
+      "frame": 7,
+      "start": 62.127,
+      "end": 63.247,
+      "text": "one case is",
+      "words": [
+        {
+          "id": "caption-word-51-0",
+          "text": "one",
+          "start": 62.127,
+          "end": 62.447
+        },
+        {
+          "id": "caption-word-51-1",
+          "text": "case",
+          "start": 62.447,
+          "end": 62.807
+        },
+        {
+          "id": "caption-word-51-2",
+          "text": "is",
+          "start": 62.807,
+          "end": 63.247
+        }
+      ]
+    },
+    {
+      "id": "caption-group-52",
+      "frame": 7,
+      "start": 63.247,
+      "end": 63.967,
+      "text": "sitting there",
+      "words": [
+        {
+          "id": "caption-word-52-0",
+          "text": "sitting",
+          "start": 63.247,
+          "end": 63.567
+        },
+        {
+          "id": "caption-word-52-1",
+          "text": "there",
+          "start": 63.567,
+          "end": 63.967
+        }
+      ]
+    },
+    {
+      "id": "caption-group-53",
+      "frame": 7,
+      "start": 63.967,
+      "end": 64.327,
+      "text": "in the",
+      "words": [
+        {
+          "id": "caption-word-53-0",
+          "text": "in",
+          "start": 63.967,
+          "end": 64.207
+        },
+        {
+          "id": "caption-word-53-1",
+          "text": "the",
+          "start": 64.207,
+          "end": 64.327
+        }
+      ]
+    },
+    {
+      "id": "caption-group-54",
+      "frame": 7,
+      "start": 64.327,
+      "end": 65.127,
+      "text": "next one.",
+      "words": [
+        {
+          "id": "caption-word-54-0",
+          "text": "next",
+          "start": 64.327,
+          "end": 64.667
+        },
+        {
+          "id": "caption-word-54-1",
+          "text": "one.",
+          "start": 64.667,
+          "end": 65.007
+        }
+      ]
+    },
+    {
+      "id": "caption-group-55",
+      "frame": 8,
+      "start": 65.238,
+      "end": 65.798,
+      "text": "Keep the",
+      "words": [
+        {
+          "id": "caption-word-55-0",
+          "text": "Keep",
+          "start": 65.238,
+          "end": 65.558
+        },
+        {
+          "id": "caption-word-55-1",
+          "text": "the",
+          "start": 65.558,
+          "end": 65.798
+        }
+      ]
+    },
+    {
+      "id": "caption-group-56",
+      "frame": 8,
+      "start": 65.798,
+      "end": 66.638,
+      "text": "one instance,",
+      "words": [
+        {
+          "id": "caption-word-56-0",
+          "text": "one",
+          "start": 65.798,
+          "end": 66.058
+        },
+        {
+          "id": "caption-word-56-1",
+          "text": "instance,",
+          "start": 66.058,
+          "end": 66.518
+        }
+      ]
+    },
+    {
+      "id": "caption-group-57",
+      "frame": 8,
+      "start": 67.098,
+      "end": 68.358,
+      "text": "drop the static.",
+      "words": [
+        {
+          "id": "caption-word-57-0",
+          "text": "drop",
+          "start": 67.098,
+          "end": 67.478
+        },
+        {
+          "id": "caption-word-57-1",
+          "text": "the",
+          "start": 67.478,
+          "end": 67.758
+        },
+        {
+          "id": "caption-word-57-2",
+          "text": "static.",
+          "start": 67.758,
+          "end": 68.238
+        }
+      ]
+    },
+    {
+      "id": "caption-group-58",
+      "frame": 8,
+      "start": 69.158,
+      "end": 69.478,
+      "text": "Let the",
+      "words": [
+        {
+          "id": "caption-word-58-0",
+          "text": "Let",
+          "start": 69.158,
+          "end": 69.318
+        },
+        {
+          "id": "caption-word-58-1",
+          "text": "the",
+          "start": 69.318,
+          "end": 69.478
+        }
+      ]
+    },
+    {
+      "id": "caption-group-59",
+      "frame": 8,
+      "start": 69.478,
+      "end": 71.198,
+      "text": "container own the lifetime",
+      "words": [
+        {
+          "id": "caption-word-59-0",
+          "text": "container",
+          "start": 69.478,
+          "end": 70.058
+        },
+        {
+          "id": "caption-word-59-1",
+          "text": "own",
+          "start": 70.058,
+          "end": 70.538
+        },
+        {
+          "id": "caption-word-59-2",
+          "text": "the",
+          "start": 70.538,
+          "end": 70.718
+        },
+        {
+          "id": "caption-word-59-3",
+          "text": "lifetime",
+          "start": 70.718,
+          "end": 71.198
+        }
+      ]
+    },
+    {
+      "id": "caption-group-60",
+      "frame": 8,
+      "start": 71.198,
+      "end": 72.398,
+      "text": "and the caller",
+      "words": [
+        {
+          "id": "caption-word-60-0",
+          "text": "and",
+          "start": 71.198,
+          "end": 71.878
+        },
+        {
+          "id": "caption-word-60-1",
+          "text": "the",
+          "start": 71.878,
+          "end": 71.998
+        },
+        {
+          "id": "caption-word-60-2",
+          "text": "caller",
+          "start": 71.998,
+          "end": 72.398
+        }
+      ]
+    },
+    {
+      "id": "caption-group-61",
+      "frame": 8,
+      "start": 72.398,
+      "end": 73.838,
+      "text": "declare the dependency.",
+      "words": [
+        {
+          "id": "caption-word-61-0",
+          "text": "declare",
+          "start": 72.398,
+          "end": 72.938
+        },
+        {
+          "id": "caption-word-61-1",
+          "text": "the",
+          "start": 72.938,
+          "end": 73.218
+        },
+        {
+          "id": "caption-word-61-2",
+          "text": "dependency.",
+          "start": 73.218,
+          "end": 73.718
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "How does a computer always know who's next in line?"
+    },
+    {
+      "id": "02",
+      "text": "A heap is a tree where every parent is smaller than its children. That version is a min-heap. Flip every comparison and it is a max-heap. A parent is the box above; a child sits below it."
+    },
+    {
+      "id": "03",
+      "text": "The smallest item sits at the top, so you can grab it instantly. Push one, three, two, seven, five. The root is one, and the row is not sorted."
+    },
+    {
+      "id": "04",
+      "text": "Insert and remove take log n. The longest path down is two steps. One swap did the rest."
+    },
+    {
+      "id": "05",
+      "text": "Save this for algorithm interviews."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

@@ -1,0 +1,859 @@
+{
+  "total_duration_s": 31.91,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 0.36,
+      "text": "How do",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "How",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "do",
+          "start": 0.2,
+          "end": 0.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 0.36,
+      "end": 1.12,
+      "text": "engineers say",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "engineers",
+          "start": 0.36,
+          "end": 0.72
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "say",
+          "start": 0.72,
+          "end": 1.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 1.12,
+      "end": 1.6,
+      "text": "'this code",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "'this",
+          "start": 1.12,
+          "end": 1.32
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "code",
+          "start": 1.32,
+          "end": 1.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 1.6,
+      "end": 2.28,
+      "text": "gets slow'",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "gets",
+          "start": 1.6,
+          "end": 1.9
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "slow'",
+          "start": 1.9,
+          "end": 2.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 1,
+      "start": 2.28,
+      "end": 3.36,
+      "text": "without a stopwatch?",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "without",
+          "start": 2.28,
+          "end": 2.58
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "a",
+          "start": 2.58,
+          "end": 2.74
+        },
+        {
+          "id": "caption-word-4-2",
+          "text": "stopwatch?",
+          "start": 2.74,
+          "end": 3.24
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 4.52,
+      "end": 4.92,
+      "text": "Big O",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "Big",
+          "start": 4.52,
+          "end": 4.68
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "O",
+          "start": 4.68,
+          "end": 4.92
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 4.92,
+      "end": 5.7,
+      "text": "describes how",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "describes",
+          "start": 4.92,
+          "end": 5.3
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "how",
+          "start": 5.3,
+          "end": 5.7
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 5.7,
+      "end": 6.04,
+      "text": "the work",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "the",
+          "start": 5.7,
+          "end": 5.84
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "work",
+          "start": 5.84,
+          "end": 6.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 6.04,
+      "end": 6.74,
+      "text": "grows as",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "grows",
+          "start": 6.04,
+          "end": 6.48
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "as",
+          "start": 6.48,
+          "end": 6.74
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 6.74,
+      "end": 7.7,
+      "text": "the input grows.",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "the",
+          "start": 6.74,
+          "end": 6.9
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "input",
+          "start": 6.9,
+          "end": 7.16
+        },
+        {
+          "id": "caption-word-9-2",
+          "text": "grows.",
+          "start": 7.16,
+          "end": 7.58
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 8.08,
+      "end": 8.62,
+      "text": "It drops",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "It",
+          "start": 8.08,
+          "end": 8.36
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "drops",
+          "start": 8.36,
+          "end": 8.62
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 8.62,
+      "end": 9.64,
+      "text": "the constants and",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "the",
+          "start": 8.62,
+          "end": 8.84
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "constants",
+          "start": 8.84,
+          "end": 9.2
+        },
+        {
+          "id": "caption-word-11-2",
+          "text": "and",
+          "start": 9.2,
+          "end": 9.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 9.64,
+      "end": 10.44,
+      "text": "keeps the shape.",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "keeps",
+          "start": 9.64,
+          "end": 9.86
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "the",
+          "start": 9.86,
+          "end": 10.08
+        },
+        {
+          "id": "caption-word-12-2",
+          "text": "shape.",
+          "start": 10.08,
+          "end": 10.32
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 3,
+      "start": 11.56,
+      "end": 12.04,
+      "text": "One flat",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "One",
+          "start": 11.56,
+          "end": 11.78
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "flat",
+          "start": 11.78,
+          "end": 12.04
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 3,
+      "start": 12.04,
+      "end": 13.12,
+      "text": "line means the",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "line",
+          "start": 12.04,
+          "end": 12.4
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "means",
+          "start": 12.4,
+          "end": 12.9
+        },
+        {
+          "id": "caption-word-14-2",
+          "text": "the",
+          "start": 12.9,
+          "end": 13.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 3,
+      "start": 13.12,
+      "end": 13.62,
+      "text": "same work",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "same",
+          "start": 13.12,
+          "end": 13.38
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "work",
+          "start": 13.38,
+          "end": 13.62
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 13.62,
+      "end": 14.36,
+      "text": "at any size.",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "at",
+          "start": 13.62,
+          "end": 13.76
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "any",
+          "start": 13.76,
+          "end": 13.88
+        },
+        {
+          "id": "caption-word-16-2",
+          "text": "size.",
+          "start": 13.88,
+          "end": 14.24
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 14.96,
+      "end": 15.52,
+      "text": "One straight",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "One",
+          "start": 14.96,
+          "end": 15.22
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "straight",
+          "start": 15.22,
+          "end": 15.52
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 3,
+      "start": 15.52,
+      "end": 16.7,
+      "text": "line means reading",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "line",
+          "start": 15.52,
+          "end": 15.94
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "means",
+          "start": 15.94,
+          "end": 16.38
+        },
+        {
+          "id": "caption-word-18-2",
+          "text": "reading",
+          "start": 16.38,
+          "end": 16.7
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 16.7,
+      "end": 17.72,
+      "text": "each item once.",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "each",
+          "start": 16.7,
+          "end": 17.02
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "item",
+          "start": 17.02,
+          "end": 17.38
+        },
+        {
+          "id": "caption-word-19-2",
+          "text": "once.",
+          "start": 17.38,
+          "end": 17.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 4,
+      "start": 18.92,
+      "end": 19.22,
+      "text": "A loop",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "A",
+          "start": 18.92,
+          "end": 19.04
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "loop",
+          "start": 19.04,
+          "end": 19.22
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 4,
+      "start": 19.22,
+      "end": 19.74,
+      "text": "inside a",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "inside",
+          "start": 19.22,
+          "end": 19.56
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "a",
+          "start": 19.56,
+          "end": 19.74
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 4,
+      "start": 19.74,
+      "end": 20.06,
+      "text": "loop,",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "loop,",
+          "start": 19.74,
+          "end": 19.98
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 4,
+      "start": 20.06,
+      "end": 20.9,
+      "text": "both over n,",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "both",
+          "start": 20.06,
+          "end": 20.22
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "over",
+          "start": 20.22,
+          "end": 20.5
+        },
+        {
+          "id": "caption-word-23-2",
+          "text": "n,",
+          "start": 20.5,
+          "end": 20.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 4,
+      "start": 21.1,
+      "end": 21.48,
+      "text": "is big",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "is",
+          "start": 21.1,
+          "end": 21.24
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "big",
+          "start": 21.24,
+          "end": 21.48
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 4,
+      "start": 21.48,
+      "end": 21.96,
+      "text": "O of",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "O",
+          "start": 21.48,
+          "end": 21.74
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "of",
+          "start": 21.74,
+          "end": 21.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 4,
+      "start": 21.96,
+      "end": 22.52,
+      "text": "n squared.",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "n",
+          "start": 21.96,
+          "end": 22.14
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "squared.",
+          "start": 22.14,
+          "end": 22.4
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 4,
+      "start": 23.12,
+      "end": 23.6,
+      "text": "Halving the",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "Halving",
+          "start": 23.12,
+          "end": 23.42
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "the",
+          "start": 23.42,
+          "end": 23.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 4,
+      "start": 23.6,
+      "end": 24.1,
+      "text": "list each",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "list",
+          "start": 23.6,
+          "end": 23.84
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "each",
+          "start": 23.84,
+          "end": 24.1
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 4,
+      "start": 24.1,
+      "end": 24.68,
+      "text": "step keeps",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "step",
+          "start": 24.1,
+          "end": 24.4
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "keeps",
+          "start": 24.4,
+          "end": 24.68
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 24.68,
+      "end": 25.24,
+      "text": "it shallow.",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "it",
+          "start": 24.68,
+          "end": 24.84
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "shallow.",
+          "start": 24.84,
+          "end": 25.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 5,
+      "start": 26.41,
+      "end": 27.07,
+      "text": "Save this.",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "Save",
+          "start": 26.41,
+          "end": 26.69
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "this.",
+          "start": 26.69,
+          "end": 26.95
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 5,
+      "start": 27.41,
+      "end": 27.83,
+      "text": "What's the",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "What's",
+          "start": 27.41,
+          "end": 27.69
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "the",
+          "start": 27.69,
+          "end": 27.83
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 5,
+      "start": 27.83,
+      "end": 28.17,
+      "text": "Big O",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "Big",
+          "start": 27.83,
+          "end": 27.99
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "O",
+          "start": 27.99,
+          "end": 28.17
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 5,
+      "start": 28.17,
+      "end": 28.53,
+      "text": "of looking",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "of",
+          "start": 28.17,
+          "end": 28.35
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "looking",
+          "start": 28.35,
+          "end": 28.53
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 5,
+      "start": 28.53,
+      "end": 28.83,
+      "text": "up a",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "up",
+          "start": 28.53,
+          "end": 28.73
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "a",
+          "start": 28.73,
+          "end": 28.83
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 28.83,
+      "end": 29.15,
+      "text": "key in",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "key",
+          "start": 28.83,
+          "end": 29.03
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "in",
+          "start": 29.03,
+          "end": 29.15
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 5,
+      "start": 29.15,
+      "end": 29.79,
+      "text": "a hash map?",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "a",
+          "start": 29.15,
+          "end": 29.23
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "hash",
+          "start": 29.23,
+          "end": 29.45
+        },
+        {
+          "id": "caption-word-37-2",
+          "text": "map?",
+          "start": 29.45,
+          "end": 29.67
+        }
+      ]
+    }
+  ]
+}

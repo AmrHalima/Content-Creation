@@ -1,0 +1,176 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; left: 40px; top: 296px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f06-word {
+      position: absolute; left: 40px; top: 330px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 7.6cqw; line-height: 1.02;
+      letter-spacing: -0.028em; opacity: 0;
+    }
+    .f06-rule { position: absolute; left: 40px; top: 442px; width: 1000px; height: 2px; background: rgba(26,26,26,0.18); opacity: 0; }
+
+    /* grammar A: two chambers, 440px of paper between them — the arrow's travel is the argument */
+    .f06-col { position: absolute; inset: 0; }
+    .f06-host {
+      position: absolute; left: 40px; width: 280px; height: 88px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 16px; padding: 0 18px;
+      background: #ffffff; border: 3px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f06-hnum { font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #76766e; }
+    .f06-hname { font-family: "EB Garamond", serif; font-size: 2.7cqw; line-height: 1; letter-spacing: -0.012em; }
+    .f06-peer {
+      position: absolute; left: 780px; width: 260px; height: 88px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      color: #ffffeb; opacity: 0;
+    }
+    .f06-svg { position: absolute; inset: 0; }
+    .f06-arw { fill: none; stroke: #ffa946; stroke-width: 5; stroke-linecap: round; }
+    .f06-head { fill: #ffa946; opacity: 0; }
+  </style>
+
+  <div data-hf-id="hf-g6fn" id="root" data-composition-id="06-seven-conversations" data-width="1080" data-height="1920" data-duration="11.551">
+
+    <div data-hf-id="hf-kjy4" id="06-seven-conversations-fieldclip" class="clip" data-start="0" data-duration="11.551" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-66hn" class="f06-field"></div>
+      <div data-hf-id="hf-gfd3" id="06-seven-conversations-grid" class="f06-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-c9xb" id="06-seven-conversations-railclip" class="clip" data-start="0" data-duration="11.551" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-qesb" id="06-seven-conversations-kicker" class="f06-kicker" data-layout-ignore>&#10009;&nbsp; seven pairs</div>
+      <div data-hf-id="hf-zegk" id="06-seven-conversations-word" class="f06-word">sideways</div>
+      <div data-hf-id="hf-l7u3" id="06-seven-conversations-rule" class="f06-rule"></div>
+    </div>
+
+    <div data-hf-id="hf-576e" id="06-seven-conversations-hostclip" class="clip" data-start="0" data-duration="11.551" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-zaot" id="06-seven-conversations-hostcol" class="f06-col">
+        <div data-hf-id="hf-6e5v" id="06-seven-conversations-h7" class="f06-host" style="top:500px;"><span data-hf-id="hf-qymd" class="f06-hnum">7</span><span data-hf-id="hf-vsvd" class="f06-hname">application</span></div>
+        <div data-hf-id="hf-o7ql" id="06-seven-conversations-h6" class="f06-host" style="top:608px;"><span data-hf-id="hf-rcxe" class="f06-hnum">6</span><span data-hf-id="hf-rom5" class="f06-hname">presentation</span></div>
+        <div data-hf-id="hf-okws" id="06-seven-conversations-h5" class="f06-host" style="top:716px;"><span data-hf-id="hf-rr8f" class="f06-hnum">5</span><span data-hf-id="hf-qear" class="f06-hname">session</span></div>
+        <div data-hf-id="hf-bx0v" id="06-seven-conversations-h4" class="f06-host" style="top:824px;"><span data-hf-id="hf-s5jg" class="f06-hnum">4</span><span data-hf-id="hf-80o6" class="f06-hname">transport</span></div>
+        <div data-hf-id="hf-p97m" id="06-seven-conversations-h3" class="f06-host" style="top:932px;"><span data-hf-id="hf-sjuh" class="f06-hnum">3</span><span data-hf-id="hf-2q5d" class="f06-hname">network</span></div>
+        <div data-hf-id="hf-j0cu" id="06-seven-conversations-h2" class="f06-host" style="top:1040px;"><span data-hf-id="hf-sy5i" class="f06-hnum">2</span><span data-hf-id="hf-io6f" class="f06-hname">data link</span></div>
+        <div data-hf-id="hf-1m4q" id="06-seven-conversations-h1" class="f06-host" style="top:1148px;"><span data-hf-id="hf-tcgj" class="f06-hnum">1</span><span data-hf-id="hf-24wk" class="f06-hname">physical</span></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-zti9" id="06-seven-conversations-peerclip" class="clip" data-start="0" data-duration="11.551" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-1p7j" id="06-seven-conversations-peercol" class="f06-col">
+        <div data-hf-id="hf-apdj" id="06-seven-conversations-p7" class="f06-peer" style="top:500px;">their layer 7</div>
+        <div data-hf-id="hf-t26q" id="06-seven-conversations-p6" class="f06-peer" style="top:608px;">their layer 6</div>
+        <div data-hf-id="hf-kke0" id="06-seven-conversations-p5" class="f06-peer" style="top:716px;">their layer 5</div>
+        <div data-hf-id="hf-gjsm" id="06-seven-conversations-p4" class="f06-peer" style="top:824px;">their layer 4</div>
+        <div data-hf-id="hf-2wkc" id="06-seven-conversations-p3" class="f06-peer" style="top:932px;">their layer 3</div>
+        <div data-hf-id="hf-iuhj" id="06-seven-conversations-p2" class="f06-peer" style="top:1040px;">their layer 2</div>
+        <div data-hf-id="hf-v7p6" id="06-seven-conversations-p1" class="f06-peer" style="top:1148px;">their layer 1</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-cxod" id="06-seven-conversations-arrowclip" class="clip" data-start="0" data-duration="11.551" data-track-index="4" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-ovi8" class="f06-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-20ov" id="06-seven-conversations-a7" class="f06-arw" d="M 330 544 L 754 544" />
+        <path data-hf-id="hf-yyre" id="06-seven-conversations-a6" class="f06-arw" d="M 330 652 L 754 652" />
+        <path data-hf-id="hf-744h" id="06-seven-conversations-a5" class="f06-arw" d="M 330 760 L 754 760" />
+        <path data-hf-id="hf-lzu4" id="06-seven-conversations-a4" class="f06-arw" d="M 330 868 L 754 868" />
+        <path data-hf-id="hf-iddj" id="06-seven-conversations-a3" class="f06-arw" d="M 330 976 L 754 976" />
+        <path data-hf-id="hf-qaw8" id="06-seven-conversations-a2" class="f06-arw" d="M 330 1084 L 754 1084" />
+        <path data-hf-id="hf-drmb" id="06-seven-conversations-a1" class="f06-arw" d="M 330 1192 L 754 1192" />
+        <polygon data-hf-id="hf-t21p" id="06-seven-conversations-k7" class="f06-head" points="756,533 776,544 756,555" />
+        <polygon data-hf-id="hf-8cg4" id="06-seven-conversations-k6" class="f06-head" points="756,641 776,652 756,663" />
+        <polygon data-hf-id="hf-kos2" id="06-seven-conversations-k5" class="f06-head" points="756,749 776,760 756,771" />
+        <polygon data-hf-id="hf-zlv7" id="06-seven-conversations-k4" class="f06-head" points="756,857 776,868 756,879" />
+        <polygon data-hf-id="hf-3256" id="06-seven-conversations-k3" class="f06-head" points="756,965 776,976 756,987" />
+        <polygon data-hf-id="hf-upg4" id="06-seven-conversations-k2" class="f06-head" points="756,1073 776,1084 756,1095" />
+        <polygon data-hf-id="hf-3gf6" id="06-seven-conversations-k1" class="f06-head" points="756,1181 776,1192 756,1203" />
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.051;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-seven-conversations"] = tl;
+
+      var HOSTS = ["h7", "h6", "h5", "h4", "h3", "h2", "h1"];
+      var PAIRS = ["a7|k7|p7", "a6|k6|p6", "a5|k5|p5", "a4|k4|p4", "a3|k3|p3", "a2|k2|p2", "a1|k1|p1"];
+      var BEAT = [3.729, 4.21, 4.69, 5.17, 5.65, 6.13, 6.61];
+      var PFX = "06-seven-conversations-";
+
+      // ── Scene 1 (0.0–1.6s) — "read it sideways": the wordmark lands on the spoken word, then
+      //    the host column assembles from the left, seven rows deep, capped stagger. The peer
+      //    region is blank paper. ──
+      tl.fromTo(el(PFX + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(PFX + "kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" }, 0.439);
+      tl.fromTo(el(PFX + "word"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.658);
+      tl.fromTo(el(PFX + "rule"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 1.0);
+      HOSTS.forEach(function (h, i) {
+        tl.fromTo(el(PFX + h), { opacity: 0, x: -54 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.2 + i * 0.16);
+      });
+
+      // ── Scene 2 (1.6–7.15s) — one pair per spoken beat, rows 7 to 1. Each arrow runs the full
+      //    440px gap (svg-path-draw, measured) before its peer chamber lands on it. ──
+      PAIRS.forEach(function (p, i) {
+        var parts = p.split("|");
+        var path = el(PFX + parts[0]);
+        var len = path.getTotalLength() * 1.05;
+        path.style.strokeDasharray = String(len);
+        path.style.strokeDashoffset = String(len);
+        var t = BEAT[i];
+        tl.to(path, { strokeDashoffset: 0, duration: 0.42, ease: "power3.out" }, t);
+        tl.fromTo(el(PFX + parts[1]), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power1.out" }, t + 0.34);
+        tl.fromTo(el(PFX + parts[2]), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, t + 0.12);
+      });
+
+      // ── Scene 3 (7.15–10.0s) — "one layer, one partner": the seven arrows light together ONCE,
+      //    a finite left-to-right wave, no loop. ──
+      PAIRS.forEach(function (p, i) {
+        var path = el(PFX + p.split("|")[0]);
+        var head = el(PFX + p.split("|")[1]);
+        var t = 7.47 + i * 0.07;
+        tl.to(path, { opacity: 0.35, duration: 0.14, ease: "sine.in" }, t);
+        tl.to(path, { opacity: 1, duration: 0.26, ease: "power1.out" }, t + 0.14);
+        tl.to(head, { opacity: 0.35, duration: 0.14, ease: "sine.in" }, t);
+        tl.to(head, { opacity: 1, duration: 0.26, ease: "power1.out" }, t + 0.14);
+      });
+
+      // ── Scene 4 (10.0–11.051s) — the poster pose. Phase-opposed jitter only (left sin(t),
+      //    right sin(t+pi)), 2px, so the two chambers never conveyor-belt together. No exit. ──
+      var hcol = el(PFX + "hostcol");
+      var pcol = el(PFX + "peercol");
+      var jp = { p: 0 };
+      tl.to(jp, {
+        p: Math.PI * 2 * 0.32,
+        duration: 1.0,
+        ease: "none",
+        onUpdate: function () {
+          var y = 2 * Math.sin(jp.p);
+          hcol.style.transform = "translateY(" + y.toFixed(2) + "px)";
+          pcol.style.transform = "translateY(" + (-y).toFixed(2) + "px)";
+        }
+      }, 10.05);
+    })();
+  </script>
+</template>

@@ -1,0 +1,427 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 2.56,
+      "words": [
+        {
+          "text": "Remove",
+          "start": 0,
+          "end": 0.28
+        },
+        {
+          "text": "duplicates",
+          "start": 0.28,
+          "end": 1.04
+        },
+        {
+          "text": "from",
+          "start": 1.04,
+          "end": 1.2
+        },
+        {
+          "text": "a",
+          "start": 1.2,
+          "end": 1.32
+        },
+        {
+          "text": "list",
+          "start": 1.32,
+          "end": 1.56
+        },
+        {
+          "text": "in",
+          "start": 1.56,
+          "end": 1.8
+        },
+        {
+          "text": "one",
+          "start": 1.8,
+          "end": 2
+        },
+        {
+          "text": "line.",
+          "start": 2,
+          "end": 2.32
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 7.957,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.1
+        },
+        {
+          "text": "set",
+          "start": 0.1,
+          "end": 0.3
+        },
+        {
+          "text": "holds",
+          "start": 0.3,
+          "end": 0.68
+        },
+        {
+          "text": "unique",
+          "start": 0.68,
+          "end": 0.98
+        },
+        {
+          "text": "values",
+          "start": 0.98,
+          "end": 1.46
+        },
+        {
+          "text": "with",
+          "start": 1.46,
+          "end": 1.82
+        },
+        {
+          "text": "no",
+          "start": 1.82,
+          "end": 2.04
+        },
+        {
+          "text": "guaranteed",
+          "start": 2.04,
+          "end": 2.48
+        },
+        {
+          "text": "order.",
+          "start": 2.48,
+          "end": 2.96
+        },
+        {
+          "text": "Unique",
+          "start": 3.48,
+          "end": 3.9
+        },
+        {
+          "text": "means",
+          "start": 3.9,
+          "end": 4.18
+        },
+        {
+          "text": "no",
+          "start": 4.18,
+          "end": 4.52
+        },
+        {
+          "text": "repeats.",
+          "start": 4.52,
+          "end": 4.9
+        },
+        {
+          "text": "Adding",
+          "start": 5.68,
+          "end": 5.96
+        },
+        {
+          "text": "the",
+          "start": 5.96,
+          "end": 6.14
+        },
+        {
+          "text": "same",
+          "start": 6.14,
+          "end": 6.36
+        },
+        {
+          "text": "value",
+          "start": 6.36,
+          "end": 6.74
+        },
+        {
+          "text": "twice",
+          "start": 6.74,
+          "end": 7.02
+        },
+        {
+          "text": "does",
+          "start": 7.02,
+          "end": 7.36
+        },
+        {
+          "text": "nothing.",
+          "start": 7.36,
+          "end": 7.66
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 8.32,
+      "words": [
+        {
+          "text": "Checking",
+          "start": 0,
+          "end": 0.44
+        },
+        {
+          "text": "whether",
+          "start": 0.44,
+          "end": 0.64
+        },
+        {
+          "text": "a",
+          "start": 0.64,
+          "end": 0.84
+        },
+        {
+          "text": "value",
+          "start": 0.84,
+          "end": 1.12
+        },
+        {
+          "text": "exists",
+          "start": 1.12,
+          "end": 1.56
+        },
+        {
+          "text": "is",
+          "start": 1.56,
+          "end": 1.8
+        },
+        {
+          "text": "fast.",
+          "start": 1.8,
+          "end": 2.16
+        },
+        {
+          "text": "Great",
+          "start": 2.68,
+          "end": 2.98
+        },
+        {
+          "text": "for",
+          "start": 2.98,
+          "end": 3.24
+        },
+        {
+          "text": "removing",
+          "start": 3.24,
+          "end": 3.6
+        },
+        {
+          "text": "duplicates",
+          "start": 3.6,
+          "end": 4.38
+        },
+        {
+          "text": "and",
+          "start": 4.38,
+          "end": 4.52
+        },
+        {
+          "text": "comparing",
+          "start": 4.52,
+          "end": 4.9
+        },
+        {
+          "text": "groups.",
+          "start": 4.9,
+          "end": 5.3
+        },
+        {
+          "text": "Four",
+          "start": 6.02,
+          "end": 6.28
+        },
+        {
+          "text": "values",
+          "start": 6.28,
+          "end": 6.66
+        },
+        {
+          "text": "go",
+          "start": 6.66,
+          "end": 6.94
+        },
+        {
+          "text": "in,",
+          "start": 6.94,
+          "end": 7.2
+        },
+        {
+          "text": "three",
+          "start": 7.48,
+          "end": 7.64
+        },
+        {
+          "text": "come",
+          "start": 7.64,
+          "end": 7.86
+        },
+        {
+          "text": "out.",
+          "start": 7.86,
+          "end": 8.1
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 4.907,
+      "words": [
+        {
+          "text": "Set",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "of",
+          "start": 0.24,
+          "end": 0.34
+        },
+        {
+          "text": "one,",
+          "start": 0.34,
+          "end": 0.52
+        },
+        {
+          "text": "two,",
+          "start": 0.52,
+          "end": 0.82
+        },
+        {
+          "text": "two,",
+          "start": 0.82,
+          "end": 1.06
+        },
+        {
+          "text": "three.",
+          "start": 1.06,
+          "end": 1.4
+        },
+        {
+          "text": "That",
+          "start": 1.78,
+          "end": 1.96
+        },
+        {
+          "text": "prints",
+          "start": 1.96,
+          "end": 2.18
+        },
+        {
+          "text": "one,",
+          "start": 2.18,
+          "end": 2.44
+        },
+        {
+          "text": "two,",
+          "start": 2.44,
+          "end": 2.68
+        },
+        {
+          "text": "three.",
+          "start": 2.68,
+          "end": 3
+        },
+        {
+          "text": "One",
+          "start": 3.4,
+          "end": 3.66
+        },
+        {
+          "text": "line,",
+          "start": 3.66,
+          "end": 4
+        },
+        {
+          "text": "and",
+          "start": 4,
+          "end": 4.26
+        },
+        {
+          "text": "no",
+          "start": 4.26,
+          "end": 4.44
+        },
+        {
+          "text": "loop.",
+          "start": 4.44,
+          "end": 4.64
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 4.864,
+      "words": [
+        {
+          "text": "Challenge:",
+          "start": 0,
+          "end": 0.34
+        },
+        {
+          "text": "find",
+          "start": 0.7,
+          "end": 0.96
+        },
+        {
+          "text": "the",
+          "start": 0.96,
+          "end": 1.14
+        },
+        {
+          "text": "common",
+          "start": 1.14,
+          "end": 1.38
+        },
+        {
+          "text": "items",
+          "start": 1.38,
+          "end": 1.76
+        },
+        {
+          "text": "of",
+          "start": 1.76,
+          "end": 1.96
+        },
+        {
+          "text": "two",
+          "start": 1.96,
+          "end": 2.18
+        },
+        {
+          "text": "lists",
+          "start": 2.18,
+          "end": 2.4
+        },
+        {
+          "text": "using",
+          "start": 2.4,
+          "end": 2.7
+        },
+        {
+          "text": "sets.",
+          "start": 2.7,
+          "end": 3.12
+        },
+        {
+          "text": "Post",
+          "start": 3.54,
+          "end": 3.9
+        },
+        {
+          "text": "your",
+          "start": 3.9,
+          "end": 4.12
+        },
+        {
+          "text": "one-liner.",
+          "start": 4.12,
+          "end": 4.32
+        }
+      ]
+    }
+  ]
+}

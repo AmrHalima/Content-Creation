@@ -1,0 +1,195 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-column {
+      position: absolute; top: 690px; left: 80px; width: 500px; height: 792px;
+      box-sizing: border-box; border: 4px solid rgba(26,26,26,0.4);
+      border-radius: 8px; background: #ffffff; overflow: hidden;
+    }
+    .f03-row {
+      position: absolute; left: 0; width: 100%; height: 112px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 22px; padding: 0 26px;
+      border-bottom: 2px solid rgba(26,26,26,0.08);
+    }
+    .f03-row-last { border-bottom: none; }
+    .f03-num {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      color: rgba(26,26,26,0.55); width: 40px; flex: 0 0 40px;
+    }
+    .f03-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.1cqw;
+      line-height: 1.02; letter-spacing: -0.018em; color: #1a1a1a;
+    }
+    .f03-svg { position: absolute; inset: 0; }
+    .f03-stub { fill: none; stroke: rgba(26,26,26,0.3); stroke-width: 4; stroke-linecap: round; opacity: 0; }
+    .f03-stubhead { fill: rgba(26,26,26,0.3); opacity: 0; }
+    .f03-peer { fill: none; stroke: rgba(26,26,26,0.5); stroke-width: 4; stroke-linecap: round; }
+    .f03-peer-hot { stroke: #ffa946; stroke-width: 6; }
+    .f03-peerhead { fill: rgba(26,26,26,0.5); opacity: 0; }
+    .f03-peerhead-hot { fill: #ffa946; }
+    .f03-flow { fill: #ffa946; opacity: 0; }
+    .f03-tag {
+      position: absolute; left: 690px; width: 316px; height: 64px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f03-samenumber {
+      position: absolute; top: 556px; left: 620px; width: 386px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.08em;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f03-offframe {
+      position: absolute; top: 1500px; left: 700px; width: 300px; height: 58px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: flex-end; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-1xrw" id="root" data-composition-id="03-the-flip" data-width="1080" data-height="1920">
+
+    <div data-hf-id="hf-soh2" id="03-the-flip-fieldclip" class="clip" data-start="0" data-duration="8.704" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-llfy" class="f03-field"></div>
+      <div data-hf-id="hf-72ww" id="03-the-flip-grid" class="f03-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-75zt" id="03-the-flip-columnclip" class="clip" data-start="0" data-duration="8.704" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-gehw" class="f03-column">
+        <div data-hf-id="hf-vedc" class="f03-row" style="top:0px;"><span data-hf-id="hf-2xva" class="f03-num">7</span><span data-hf-id="hf-h8m4" class="f03-name">application</span></div>
+        <div data-hf-id="hf-5brk" class="f03-row" style="top:112px;"><span data-hf-id="hf-2jk9" class="f03-num">6</span><span data-hf-id="hf-9zoi" class="f03-name">presentation</span></div>
+        <div data-hf-id="hf-qspo" class="f03-row" style="top:224px;"><span data-hf-id="hf-3qhc" class="f03-num">5</span><span data-hf-id="hf-nyqi" class="f03-name">session</span></div>
+        <div data-hf-id="hf-r0kg" class="f03-row" style="top:336px;"><span data-hf-id="hf-3c6b" class="f03-num">4</span><span data-hf-id="hf-ni83" class="f03-name">transport</span></div>
+        <div data-hf-id="hf-kg7s" class="f03-row" style="top:448px;"><span data-hf-id="hf-1cn6" class="f03-num">3</span><span data-hf-id="hf-g02s" class="f03-name">network</span></div>
+        <div data-hf-id="hf-1a95" class="f03-row" style="top:560px;"><span data-hf-id="hf-0yc5" class="f03-num">2</span><span data-hf-id="hf-tsmi" class="f03-name">data link</span></div>
+        <div data-hf-id="hf-m8xe" class="f03-row f03-row-last" style="top:672px;"><span data-hf-id="hf-2598" class="f03-num">1</span><span data-hf-id="hf-schn" class="f03-name">physical</span></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-8hp5" id="03-the-flip-arrowclip" class="clip" data-start="0" data-duration="8.704" data-track-index="2" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-ak31" class="f03-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <g data-hf-id="hf-sjfi" id="03-the-flip-stubs">
+          <path data-hf-id="hf-bmd5" class="f03-stub" d="M 150 768 L 150 792" />
+          <path data-hf-id="hf-ukbz" class="f03-stub" d="M 150 880 L 150 904" />
+          <path data-hf-id="hf-176c" class="f03-stub" d="M 150 992 L 150 1016" />
+          <path data-hf-id="hf-srq4" class="f03-stub" d="M 150 1104 L 150 1128" />
+          <path data-hf-id="hf-ol73" class="f03-stub" d="M 150 1216 L 150 1240" />
+          <path data-hf-id="hf-o999" class="f03-stub" d="M 150 1328 L 150 1352" />
+          <polygon data-hf-id="hf-prps" class="f03-stubhead" points="142,792 158,792 150,804" />
+          <polygon data-hf-id="hf-te5w" class="f03-stubhead" points="142,904 158,904 150,916" />
+          <polygon data-hf-id="hf-7h7p" class="f03-stubhead" points="142,1016 158,1016 150,1028" />
+          <polygon data-hf-id="hf-ge8e" class="f03-stubhead" points="142,1128 158,1128 150,1140" />
+          <polygon data-hf-id="hf-eq3u" class="f03-stubhead" points="142,1240 158,1240 150,1252" />
+          <polygon data-hf-id="hf-m130" class="f03-stubhead" points="142,1352 158,1352 150,1364" />
+        </g>
+        <g data-hf-id="hf-hhgy" id="03-the-flip-field" data-layout-allow-overflow>
+          <path data-hf-id="hf-l7uu" id="03-the-flip-a7" class="f03-peer" d="M 592 746 L 1090 746" />
+          <path data-hf-id="hf-8jx7" id="03-the-flip-a6" class="f03-peer" d="M 592 858 L 1090 858" />
+          <path data-hf-id="hf-a2rm" id="03-the-flip-a5" class="f03-peer" d="M 592 970 L 1090 970" />
+          <path data-hf-id="hf-pksn" id="03-the-flip-a4" class="f03-peer f03-peer-hot" d="M 592 1082 L 1090 1082" />
+          <path data-hf-id="hf-lab0" id="03-the-flip-a3" class="f03-peer" d="M 592 1194 L 1090 1194" />
+          <path data-hf-id="hf-chgp" id="03-the-flip-a2" class="f03-peer" d="M 592 1306 L 1090 1306" />
+          <path data-hf-id="hf-imba" id="03-the-flip-a1" class="f03-peer" d="M 592 1418 L 1090 1418" />
+          <circle data-hf-id="hf-ad2l" id="03-the-flip-flow" class="f03-flow" cx="592" cy="1082" r="9" />
+        </g>
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-o9l5" id="03-the-flip-tagclip" class="clip" data-start="0" data-duration="8.704" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-v6aj" id="03-the-flip-tag7" class="f03-tag" style="top:714px;">application</div>
+      <div data-hf-id="hf-1axl" id="03-the-flip-tag4" class="f03-tag" style="top:1050px;">transport</div>
+      <div data-hf-id="hf-7d95" id="03-the-flip-tag3" class="f03-tag" style="top:1162px;">network</div>
+      <div data-hf-id="hf-lh9z" id="03-the-flip-samenumber" class="f03-samenumber">&#8596;&nbsp;same number</div>
+      <div data-hf-id="hf-3686" id="03-the-flip-offframe" class="f03-offframe">off frame&nbsp;&#8594;</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.704;
+      var el = function (id) { return document.getElementById(id); };
+      var q = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-the-flip"] = tl;
+
+      // ── Scene 1 (0.0–1.6s) — the seven rows are dimmed to 40%; the down-arrow stubs
+      //    are still visible. One ember highlight enters at row 4 as the first arrow grows. ──
+      tl.fromTo(el("03-the-flip-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      q(".f03-stub").forEach(function (p, i) { tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 0.15 + i * 0.05); });
+      q(".f03-stubhead").forEach(function (p, i) { tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 0.2 + i * 0.05); });
+
+      // ── svg-path-draw setup: every peer arrow measures its own length ──
+      var ARROWS = [
+        { id: "03-the-flip-a4", t: 1.207, hot: true },   // "has" -> the first arrow, ember
+        { id: "03-the-flip-a7", t: 1.90 },
+        { id: "03-the-flip-a6", t: 2.653 },               // "Same"
+        { id: "03-the-flip-a5", t: 3.30 },                // "number,"
+        { id: "03-the-flip-a3", t: 4.05 },                // "other"
+        { id: "03-the-flip-a2", t: 4.60 },                // "of the"
+        { id: "03-the-flip-a1", t: 5.10 }                 // "wire." — last three land in the back half
+      ];
+      var DRAW_DUR = 0.78;
+      ARROWS.forEach(function (a) {
+        var p = el(a.id);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        // center-outward-expansion, short-path form: the arrow grows outward from the
+        // chamber's right edge rather than bursting from a shared center.
+        tl.to(p, { strokeDashoffset: 0, duration: DRAW_DUR, ease: "power3.out" }, a.t);
+      });
+
+      // the stubs retire as their row's arrow leaves the edge (within-frame seam, not a frame exit)
+      q(".f03-stub, .f03-stubhead").forEach(function (p, i) {
+        tl.to(p, { opacity: 0, duration: 0.3, ease: "power1.inOut" }, 1.6 + i * 0.13);
+      });
+
+      // ── Scene 2 (1.6–5.5s) — peer tags arrive at the right margin, one per arrow
+      //    (spring-pop-entrance, restrained register: smooth settle, no overshoot) ──
+      [
+        { id: "03-the-flip-tag7", t: 2.4 },
+        { id: "03-the-flip-tag4", t: 1.75 },
+        { id: "03-the-flip-tag3", t: 4.6 }
+      ].forEach(function (s) {
+        tl.fromTo(el(s.id), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, s.t);
+      });
+
+      // ── Scene 3 (5.5–7.9s) — one finite ember sweep along row 4's arrow ("message" 6.96) ──
+      tl.fromTo(
+        el("03-the-flip-flow"),
+        { opacity: 0, x: 0 },
+        { opacity: 1, x: 498, duration: 0.9, ease: "power1.inOut" },
+        6.0
+      );
+      tl.to(el("03-the-flip-flow"), { opacity: 0, duration: 0.3, ease: "power1.out" }, 6.9);
+      // "<-> same number" settles on "the message" (6.956)
+      tl.fromTo(el("03-the-flip-samenumber"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 6.96);
+      // the off-frame chip: where the arrows are going
+      tl.fromTo(el("03-the-flip-offframe"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 7.4);
+
+      // ── Scene 4 (7.9–8.704s) — held read of the flipped field; jitter on the arrow group only ──
+      tl.to(el("03-the-flip-field"), { y: 2, duration: 0.36, ease: "sine.inOut", yoyo: true, repeat: 1 }, 7.95);
+    })();
+  </script>
+</template>

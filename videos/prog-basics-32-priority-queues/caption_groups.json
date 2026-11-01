@@ -1,0 +1,886 @@
+{
+  "total_duration_s": 40,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 1.02,
+      "text": "An ER doesn't",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "An",
+          "start": 0,
+          "end": 0.16
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "ER",
+          "start": 0.16,
+          "end": 0.44
+        },
+        {
+          "id": "caption-word-0-2",
+          "text": "doesn't",
+          "start": 0.44,
+          "end": 1.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 1.02,
+      "end": 1.64,
+      "text": "treat patients",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "treat",
+          "start": 1.02,
+          "end": 1.2
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "patients",
+          "start": 1.2,
+          "end": 1.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 1.64,
+      "end": 2.12,
+      "text": "in the",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "in",
+          "start": 1.64,
+          "end": 2
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "the",
+          "start": 2,
+          "end": 2.12
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 2.12,
+      "end": 3.08,
+      "text": "order they arrive.",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "order",
+          "start": 2.12,
+          "end": 2.34
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "they",
+          "start": 2.34,
+          "end": 2.58
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "arrive.",
+          "start": 2.58,
+          "end": 2.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 2,
+      "start": 4.2,
+      "end": 4.76,
+      "text": "A priority",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "A",
+          "start": 4.2,
+          "end": 4.34
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "priority",
+          "start": 4.34,
+          "end": 4.76
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 4.76,
+      "end": 5.8,
+      "text": "queue serves the",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "queue",
+          "start": 4.76,
+          "end": 5.1
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "serves",
+          "start": 5.1,
+          "end": 5.56
+        },
+        {
+          "id": "caption-word-5-2",
+          "text": "the",
+          "start": 5.56,
+          "end": 5.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 5.8,
+      "end": 7.26,
+      "text": "highest priority first.",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "highest",
+          "start": 5.8,
+          "end": 6.14
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "priority",
+          "start": 6.14,
+          "end": 6.74
+        },
+        {
+          "id": "caption-word-6-2",
+          "text": "first.",
+          "start": 6.74,
+          "end": 7.14
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 7.82,
+      "end": 8.22,
+      "text": "The oldest",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "The",
+          "start": 7.82,
+          "end": 7.92
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "oldest",
+          "start": 7.92,
+          "end": 8.22
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 8.22,
+      "end": 8.92,
+      "text": "item waits",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "item",
+          "start": 8.22,
+          "end": 8.66
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "waits",
+          "start": 8.66,
+          "end": 8.92
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 8.92,
+      "end": 9.58,
+      "text": "its turn.",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "its",
+          "start": 8.92,
+          "end": 9.18
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "turn.",
+          "start": 9.18,
+          "end": 9.46
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 10.08,
+      "end": 10.6,
+      "text": "It's usually",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "It's",
+          "start": 10.08,
+          "end": 10.3
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "usually",
+          "start": 10.3,
+          "end": 10.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 10.6,
+      "end": 11.16,
+      "text": "built on",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "built",
+          "start": 10.6,
+          "end": 10.92
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "on",
+          "start": 10.92,
+          "end": 11.16
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 11.16,
+      "end": 11.58,
+      "text": "a heap.",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "a",
+          "start": 11.16,
+          "end": 11.28
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "heap.",
+          "start": 11.28,
+          "end": 11.46
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 2,
+      "start": 12.06,
+      "end": 12.38,
+      "text": "This is",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "This",
+          "start": 12.06,
+          "end": 12.24
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "is",
+          "start": 12.24,
+          "end": 12.38
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 2,
+      "start": 12.38,
+      "end": 12.86,
+      "text": "that heap,",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "that",
+          "start": 12.38,
+          "end": 12.58
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "heap,",
+          "start": 12.58,
+          "end": 12.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 2,
+      "start": 12.86,
+      "end": 13.36,
+      "text": "with a",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "with",
+          "start": 12.86,
+          "end": 13.24
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "a",
+          "start": 13.24,
+          "end": 13.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 2,
+      "start": 13.36,
+      "end": 14.1,
+      "text": "serving order.",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "serving",
+          "start": 13.36,
+          "end": 13.66
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "order.",
+          "start": 13.66,
+          "end": 13.98
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 15.2,
+      "end": 15.74,
+      "text": "Push low",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "Push",
+          "start": 15.2,
+          "end": 15.4
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "low",
+          "start": 15.4,
+          "end": 15.74
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 3,
+      "start": 15.74,
+      "end": 16.46,
+      "text": "with five.",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "with",
+          "start": 15.74,
+          "end": 16
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "five.",
+          "start": 16,
+          "end": 16.34
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 16.84,
+      "end": 17.42,
+      "text": "Push urgent",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "Push",
+          "start": 16.84,
+          "end": 17.08
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "urgent",
+          "start": 17.08,
+          "end": 17.42
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 3,
+      "start": 17.42,
+      "end": 18.02,
+      "text": "with one.",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "with",
+          "start": 17.42,
+          "end": 17.64
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "one.",
+          "start": 17.64,
+          "end": 17.9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 3,
+      "start": 18.38,
+      "end": 19.52,
+      "text": "Pop gives urgent.",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "Pop",
+          "start": 18.38,
+          "end": 18.64
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "gives",
+          "start": 18.64,
+          "end": 18.98
+        },
+        {
+          "id": "caption-word-21-2",
+          "text": "urgent.",
+          "start": 18.98,
+          "end": 19.4
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 3,
+      "start": 19.98,
+      "end": 20.3,
+      "text": "A heap",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "A",
+          "start": 19.98,
+          "end": 20.1
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "heap",
+          "start": 20.1,
+          "end": 20.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 3,
+      "start": 20.3,
+      "end": 20.76,
+      "text": "puts the",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "puts",
+          "start": 20.3,
+          "end": 20.56
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "the",
+          "start": 20.56,
+          "end": 20.76
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 3,
+      "start": 20.76,
+      "end": 21.76,
+      "text": "smallest number at",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "smallest",
+          "start": 20.76,
+          "end": 21.16
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "number",
+          "start": 21.16,
+          "end": 21.54
+        },
+        {
+          "id": "caption-word-24-2",
+          "text": "at",
+          "start": 21.54,
+          "end": 21.76
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 3,
+      "start": 21.76,
+      "end": 22.26,
+      "text": "the top.",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "the",
+          "start": 21.76,
+          "end": 21.86
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "top.",
+          "start": 21.86,
+          "end": 22.14
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 3,
+      "start": 22.8,
+      "end": 23.6,
+      "text": "Schedulers,",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "Schedulers,",
+          "start": 22.8,
+          "end": 23.48
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 3,
+      "start": 23.76,
+      "end": 24.66,
+      "text": "Dijkstra's algorithm,",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "Dijkstra's",
+          "start": 23.76,
+          "end": 24.24
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "algorithm,",
+          "start": 24.24,
+          "end": 24.66
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 3,
+      "start": 24.66,
+      "end": 26.28,
+      "text": "and notification systems",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "and",
+          "start": 24.66,
+          "end": 25.08
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "notification",
+          "start": 25.08,
+          "end": 25.5
+        },
+        {
+          "id": "caption-word-28-2",
+          "text": "systems",
+          "start": 25.5,
+          "end": 26.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 3,
+      "start": 26.28,
+      "end": 27.22,
+      "text": "rely on it.",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "rely",
+          "start": 26.28,
+          "end": 26.64
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "on",
+          "start": 26.64,
+          "end": 26.98
+        },
+        {
+          "id": "caption-word-29-2",
+          "text": "it.",
+          "start": 26.98,
+          "end": 27.1
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 28.3,
+      "end": 28.8,
+      "text": "Two items",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "Two",
+          "start": 28.3,
+          "end": 28.44
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "items",
+          "start": 28.44,
+          "end": 28.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 4,
+      "start": 28.8,
+      "end": 30.14,
+      "text": "share priority one.",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "share",
+          "start": 28.8,
+          "end": 29.18
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "priority",
+          "start": 29.18,
+          "end": 29.68
+        },
+        {
+          "id": "caption-word-31-2",
+          "text": "one.",
+          "start": 29.68,
+          "end": 30.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 4,
+      "start": 30.56,
+      "end": 30.84,
+      "text": "The tie",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "The",
+          "start": 30.56,
+          "end": 30.62
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "tie",
+          "start": 30.62,
+          "end": 30.84
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 4,
+      "start": 30.84,
+      "end": 31.94,
+      "text": "breaks by spelling.",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "breaks",
+          "start": 30.84,
+          "end": 31.18
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "by",
+          "start": 31.18,
+          "end": 31.44
+        },
+        {
+          "id": "caption-word-33-2",
+          "text": "spelling.",
+          "start": 31.44,
+          "end": 31.82
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 4,
+      "start": 32.28,
+      "end": 32.86,
+      "text": "Low leaves",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "Low",
+          "start": 32.28,
+          "end": 32.56
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "leaves",
+          "start": 32.56,
+          "end": 32.86
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 4,
+      "start": 32.86,
+      "end": 33.68,
+      "text": "before urgent.",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "before",
+          "start": 32.86,
+          "end": 33.18
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "urgent.",
+          "start": 33.18,
+          "end": 33.56
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 34.9,
+      "end": 35.62,
+      "text": "Is priority-first",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "Is",
+          "start": 34.9,
+          "end": 35.04
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "priority-first",
+          "start": 35.04,
+          "end": 35.5
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 5,
+      "start": 35.82,
+      "end": 36.62,
+      "text": "always fair?",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "always",
+          "start": 35.82,
+          "end": 36.18
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "fair?",
+          "start": 36.18,
+          "end": 36.5
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 5,
+      "start": 36.94,
+      "end": 37.78,
+      "text": "Comment your take.",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "Comment",
+          "start": 36.94,
+          "end": 37.22
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "your",
+          "start": 37.22,
+          "end": 37.42
+        },
+        {
+          "id": "caption-word-38-2",
+          "text": "take.",
+          "start": 37.42,
+          "end": 37.66
+        }
+      ]
+    }
+  ]
+}

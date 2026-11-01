@@ -1,0 +1,224 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G21 recency chain, built from pb-22's G7 atoms (176x108 node, CSS connectors) ── */
+    .g7-node { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex; align-items: stretch; }
+    .g7-cell { position: relative; flex: 1 1 0; display: flex; align-items: center;
+      justify-content: center; }
+    .g7-div { position: absolute; left: 50%; top: 10px; bottom: 10px; width: 3px;
+      margin-left: -1.5px; background: rgba(255,255,255,0.08); }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .g7-next { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 400;
+      color: #9BA6B2; }
+    /* connectors: 24px CSS bars, never SVG, never inside a scaled container */
+    .g7-bar { position: absolute; height: 3px; background: rgba(255,255,255,0.16); opacity: 0;
+      transform-origin: left center; transform: scaleX(0); border-radius: 2px; }
+    .g7-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box; opacity: 0;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg); }
+    .g7-chip { position: absolute; box-sizing: border-box; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 12px; opacity: 0; display: flex;
+      align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; color: #9BA6B2;
+      white-space: nowrap; }
+    /* the map side drawn onto the chain: key chip + its 12px pointer into the node below */
+    .g21-key { width: 96px; height: 44px; top: 340px; font-size: 2.2cqw; }
+    .g21-ptr { position: absolute; width: 3px; height: 12px; top: 386px; background:
+      rgba(255,255,255,0.16); opacity: 0; }
+    .g21-term { width: 60px; height: 56px; top: 426px; left: 472px; font-size: 2.2cqw; }
+    /* G2's empty shape = the eviction RULE, not an event: dashed, no value, fades inside the box */
+    .g21-ghost { position: absolute; box-sizing: border-box; background: rgba(31,36,44,0.4);
+      border: 3px dashed rgba(255,255,255,0.16); border-radius: 22px; display: flex;
+      align-items: center; justify-content: center; }
+    .g21-ghost-box { left: 672px; top: 400px; width: 176px; height: 108px; opacity: 0; }
+    .g21-caret { width: 6px; height: 54px; background: #5AD6A0; opacity: 0.45; border-radius: 3px; }
+
+    .g21-eyebrow { position: absolute; top: 256px; width: 200px; height: 40px; display: flex;
+      align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g21-eye-new { left: 72px; }
+    .g21-eye-old { left: 272px; }
+    .g21-celllab { position: absolute; top: 522px; height: 34px; text-align: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g21-cl-key { left: 272px; width: 88px; }
+    .g21-cl-next { left: 360px; width: 88px; }
+    .g21-evictlab { position: absolute; left: 640px; top: 522px; width: 368px; height: 34px;
+      text-align: center; opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.9cqw;
+      font-weight: 400; color: #9BA6B2; white-space: nowrap; }
+    .g21-evictlab b { display: inline-block; font-weight: 700; color: #F4F1EA; }
+
+    /* the executed state plate — one row per operation, performed one op then read */
+    .g21-plate { position: absolute; left: 72px; width: 936px; height: 38px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      color: #9BA6B2; white-space: nowrap; }
+    .g21-p1 { top: 630px; }
+    .g21-p2 { top: 668px; }
+    .g21-st { display: inline-block; font-weight: 700; color: #5AD6A0; }
+    .g21-par { color: #9BA6B2; }
+
+    .g21-tag { position: absolute; top: 892px; height: 66px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.1em; color: #9BA6B2; white-space: nowrap; }
+    .g21-tag-used { left: 72px; width: 480px; }
+    .g21-tag-full { left: 576px; width: 432px; }
+  </style>
+
+  <div id="root" data-composition-id="02-rule" data-width="1080" data-height="1920" data-duration="7.25">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="7.25" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="7.25" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 36</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="7.25" data-track-index="2">
+      <div id="f2-eye-new" class="g21-eyebrow g21-eye-new" data-layout-ignore>newest</div>
+      <div id="f2-eye-old" class="g21-eyebrow g21-eye-old" data-layout-ignore>oldest</div>
+
+      <div id="f2-keyA" class="g7-chip g21-key" style="left:312px" data-layout-ignore>A</div>
+      <div id="f2-ptrA" class="g21-ptr" style="left:358.5px"></div>
+      <div id="f2-keyB" class="g7-chip g21-key" style="left:112px" data-layout-ignore>B</div>
+      <div id="f2-ptrB" class="g21-ptr" style="left:158.5px"></div>
+
+      <div id="f2-nA" class="g7-node" style="left:272px; top:400px; width:176px; height:108px"><span class="g7-cell"><span class="pb-val" style="font-size:3.6cqw">A</span></span><span class="g7-div"></span><span class="g7-cell"><span class="g7-next" style="font-size:3.2cqw">&rarr;</span></span></div>
+      <div id="f2-nB" class="g7-node" style="left:72px; top:400px; width:176px; height:108px"><span class="g7-cell"><span class="pb-val" style="font-size:3.6cqw">B</span></span><span class="g7-div"></span><span class="g7-cell"><span class="g7-next" style="font-size:3.2cqw">&rarr;</span></span></div>
+
+      <div id="f2-c1" class="g7-bar" style="left:248px; top:453px; width:24px"></div>
+      <div id="f2-h1" class="g7-chev" style="left:260px; top:448px"></div>
+      <div id="f2-c2" class="g7-bar" style="left:448px; top:453px; width:24px"></div>
+      <div id="f2-h2" class="g7-chev" style="left:460px; top:448px"></div>
+      <div id="f2-none" class="g7-chip g21-term" data-layout-ignore>None</div>
+
+      <div id="f2-cl-key" class="g21-celllab g21-cl-key" data-layout-ignore>key</div>
+      <div id="f2-cl-next" class="g21-celllab g21-cl-next" data-layout-ignore>next</div>
+
+      <div id="f2-ghost" class="g21-ghost g21-ghost-box"><span id="f2-caret" class="g21-caret"></span></div>
+      <div id="f2-evictlab" class="g21-evictlab" data-layout-ignore><b>evicts</b>: throws it out</div>
+
+      <div id="f2-p1" class="g21-plate g21-p1">put(A,1) <span class="g21-par">-></span> <span class="g21-st">A</span></div>
+      <div id="f2-p2" class="g21-plate g21-p2">put(B,2) <span class="g21-par">-></span> <span class="g21-st">B -&gt; A</span></div>
+
+      <div id="f2-tag-used" class="g21-tag g21-tag-used">USED: B new, A older</div>
+      <div id="f2-tag-full" class="g21-tag g21-tag-full">FULL 2 OF 2</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 7.25;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-rule"] = tl;
+
+      /* ground */
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 3.625, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 3.625, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.8125, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: content rises in from below, the slot labels hold (frame-day2 § 7) */
+      tl.fromTo(el("f2-content"), { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.to(el("f2-content"), { y: 0, opacity: 1, duration: 0.01 }, 0.56);
+
+      /* BEAT 1 — "An LRU cache has a fixed size." (LRU 0.14 · fixed 1.44 · size. 1.62-2.04)
+         the role labels name the SLOTS, so they are up before anything is in them */
+      tl.fromTo(el("f2-eye-new"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.44);
+      tl.fromTo(el("f2-eye-old"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.56);
+      /* P2 drop-in: A falls into the head slot, its key chip and pointer land with it */
+      tl.fromTo(el("f2-nA"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 1.66);
+      tl.fromTo(el("f2-nA"), { scaleY: 1 }, { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 2.1);
+      tl.to(el("f2-nA"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 2.2);
+      tl.to(el("f2-nA"), { borderColor: "rgba(90,214,160,0.75)", duration: 0.22, immediateRender: false }, 2.1);
+      tl.to(el("f2-nA"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 2.34);
+      tl.fromTo(el("f2-keyA"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 2.24);
+      tl.fromTo(el("f2-ptrA"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.4);
+      tl.fromTo(el("f2-cl-key"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.44);
+      tl.fromTo(el("f2-cl-next"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.56);
+      /* the executed record: one op, then it is read */
+      tl.fromTo(el("f2-p1"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 2.06);
+
+      /* BEAT 2 — "When it fills, it throws out the item used least recently."
+         (When 2.68 · fills, 2.98-3.26 · throws 3.92 · out 4.16 · used 4.80 · least 5.12 · recently. 5.46-5.94)
+         B becomes the head, so A steps out of the head slot FIRST (right-to-left law: nothing
+         lands on an occupied slot), then B drops into the freed slot. */
+      tl.to(el("f2-nA"), { x: 200, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 3.0);
+      tl.to(el("f2-keyA"), { x: 200, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 3.0);
+      tl.to(el("f2-ptrA"), { x: 200, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 3.0);
+      tl.fromTo(el("f2-nB"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 3.42);
+      tl.to(el("f2-nB"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 3.86);
+      tl.to(el("f2-nB"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 3.96);
+      tl.to(el("f2-nB"), { borderColor: "rgba(90,214,160,0.75)", duration: 0.22, immediateRender: false }, 3.86);
+      tl.to(el("f2-nB"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 4.1);
+      tl.fromTo(el("f2-keyB"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.98);
+      tl.fromTo(el("f2-ptrB"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.22, ease: "power2.out", immediateRender: false }, 4.12);
+      /* P8: the link B -> A draws itself out of B's next cell, then the tail reaches the terminator */
+      tl.fromTo(el("f2-c1"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.28, ease: "power3.out", immediateRender: false }, 4.18);
+      tl.fromTo(el("f2-h1"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 4.36);
+      tl.fromTo(el("f2-c2"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.24, ease: "power3.out", immediateRender: false }, 4.5);
+      tl.fromTo(el("f2-h2"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 4.64);
+      tl.fromTo(el("f2-none"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 4.66);
+      tl.fromTo(el("f2-p2"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.5);
+      tl.fromTo(el("f2-tag-used"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 4.8);
+      tl.fromTo(el("f2-tag-full"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 4.96);
+
+      /* THE RULE: a dashed empty chamber leaves the tail, fading OUT INSIDE the content box.
+         x +140 with opacity 1->0 over the first 60% of 0.5s: gone by frame x 988 (20px inside 1008).
+         No item actually leaves — nothing has been read yet, so this is the rule, not an event. */
+      tl.fromTo(el("f2-ghost"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.5)", immediateRender: false }, 3.94);
+      tl.fromTo(el("f2-caret"), { opacity: 0.45 }, { opacity: 0.05, duration: 0.5, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 4.1);
+      tl.fromTo(el("f2-evictlab"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 4.2);
+      tl.to(el("f2-ghost"), { x: 140, duration: 0.5, ease: "power2.in", immediateRender: false }, 5.14);
+      tl.to(el("f2-ghost"), { opacity: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, 5.14);
+      tl.to(el("f2-evictlab"), { opacity: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, 5.66);
+
+      /* exit push */
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 6.93);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

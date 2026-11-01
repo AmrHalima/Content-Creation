@@ -1,0 +1,926 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 8.661,
+      "words": [
+        {
+          "text": "You",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "know",
+          "start": 0.14,
+          "end": 0.34
+        },
+        {
+          "text": "this",
+          "start": 0.34,
+          "end": 0.56
+        },
+        {
+          "text": "diagram.",
+          "start": 0.56,
+          "end": 1.04
+        },
+        {
+          "text": "Plan,",
+          "start": 1.64,
+          "end": 2.1
+        },
+        {
+          "text": "design,",
+          "start": 2.3,
+          "end": 2.52
+        },
+        {
+          "text": "build,",
+          "start": 2.88,
+          "end": 3.1
+        },
+        {
+          "text": "test,",
+          "start": 3.32,
+          "end": 3.62
+        },
+        {
+          "text": "deploy,",
+          "start": 3.94,
+          "end": 4.14
+        },
+        {
+          "text": "operate.",
+          "start": 4.48,
+          "end": 4.9
+        },
+        {
+          "text": "Fifty",
+          "start": 5.44,
+          "end": 5.74
+        },
+        {
+          "text": "years",
+          "start": 5.74,
+          "end": 6.04
+        },
+        {
+          "text": "old,",
+          "start": 6.04,
+          "end": 6.4
+        },
+        {
+          "text": "and",
+          "start": 6.4,
+          "end": 6.64
+        },
+        {
+          "text": "still",
+          "start": 6.64,
+          "end": 6.92
+        },
+        {
+          "text": "in",
+          "start": 6.92,
+          "end": 7.14
+        },
+        {
+          "text": "every",
+          "start": 7.14,
+          "end": 7.42
+        },
+        {
+          "text": "job",
+          "start": 7.42,
+          "end": 7.8
+        },
+        {
+          "text": "description.",
+          "start": 7.8,
+          "end": 8.22
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 3.477,
+      "words": [
+        {
+          "text": "Postmortems",
+          "start": 0,
+          "end": 0.74
+        },
+        {
+          "text": "keep",
+          "start": 0.74,
+          "end": 1
+        },
+        {
+          "text": "naming",
+          "start": 1,
+          "end": 1.32
+        },
+        {
+          "text": "the",
+          "start": 1.32,
+          "end": 1.58
+        },
+        {
+          "text": "same",
+          "start": 1.58,
+          "end": 1.8
+        },
+        {
+          "text": "villain.",
+          "start": 1.8,
+          "end": 2.16
+        },
+        {
+          "text": "The",
+          "start": 2.6,
+          "end": 2.74
+        },
+        {
+          "text": "handoff.",
+          "start": 2.74,
+          "end": 3.04
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 12.331,
+      "words": [
+        {
+          "text": "Requirements",
+          "start": 0,
+          "end": 0.66
+        },
+        {
+          "text": "to",
+          "start": 0.66,
+          "end": 0.84
+        },
+        {
+          "text": "design:",
+          "start": 0.84,
+          "end": 1.22
+        },
+        {
+          "text": "\"make",
+          "start": 1.22,
+          "end": 1.68
+        },
+        {
+          "text": "it",
+          "start": 1.68,
+          "end": 1.82
+        },
+        {
+          "text": "fast.\"",
+          "start": 1.82,
+          "end": 2.22
+        },
+        {
+          "text": "Design",
+          "start": 2.94,
+          "end": 3.12
+        },
+        {
+          "text": "to",
+          "start": 3.12,
+          "end": 3.38
+        },
+        {
+          "text": "build:",
+          "start": 3.38,
+          "end": 3.72
+        },
+        {
+          "text": "the",
+          "start": 4.1,
+          "end": 4.2
+        },
+        {
+          "text": "mockup",
+          "start": 4.2,
+          "end": 4.46
+        },
+        {
+          "text": "had",
+          "start": 4.66,
+          "end": 4.86
+        },
+        {
+          "text": "one",
+          "start": 4.86,
+          "end": 5.08
+        },
+        {
+          "text": "state,",
+          "start": 5.08,
+          "end": 5.38
+        },
+        {
+          "text": "the",
+          "start": 5.54,
+          "end": 5.6
+        },
+        {
+          "text": "data",
+          "start": 5.6,
+          "end": 5.88
+        },
+        {
+          "text": "has",
+          "start": 5.88,
+          "end": 6.12
+        },
+        {
+          "text": "nine.",
+          "start": 6.12,
+          "end": 6.46
+        },
+        {
+          "text": "Build",
+          "start": 6.86,
+          "end": 7.12
+        },
+        {
+          "text": "to",
+          "start": 7.12,
+          "end": 7.32
+        },
+        {
+          "text": "test:",
+          "start": 7.32,
+          "end": 7.74
+        },
+        {
+          "text": "\"works",
+          "start": 7.98,
+          "end": 8.3
+        },
+        {
+          "text": "on",
+          "start": 8.3,
+          "end": 8.56
+        },
+        {
+          "text": "my",
+          "start": 8.56,
+          "end": 8.74
+        },
+        {
+          "text": "machine.\"",
+          "start": 8.74,
+          "end": 9.2
+        },
+        {
+          "text": "Dev",
+          "start": 10.04,
+          "end": 10.22
+        },
+        {
+          "text": "to",
+          "start": 10.22,
+          "end": 10.42
+        },
+        {
+          "text": "ops:",
+          "start": 10.42,
+          "end": 10.82
+        },
+        {
+          "text": "shipped",
+          "start": 11.04,
+          "end": 11.36
+        },
+        {
+          "text": "it",
+          "start": 11.36,
+          "end": 11.52
+        },
+        {
+          "text": "on",
+          "start": 11.52,
+          "end": 11.62
+        },
+        {
+          "text": "a",
+          "start": 11.62,
+          "end": 11.7
+        },
+        {
+          "text": "Friday.",
+          "start": 11.7,
+          "end": 11.98
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 8.064,
+      "words": [
+        {
+          "text": "Waterfall,",
+          "start": 0,
+          "end": 0.76
+        },
+        {
+          "text": "Agile,",
+          "start": 0.76,
+          "end": 1.6
+        },
+        {
+          "text": "DevOps.",
+          "start": 1.6,
+          "end": 1.94
+        },
+        {
+          "text": "Three",
+          "start": 2.92,
+          "end": 3.2
+        },
+        {
+          "text": "answers",
+          "start": 3.2,
+          "end": 3.6
+        },
+        {
+          "text": "to",
+          "start": 3.6,
+          "end": 3.86
+        },
+        {
+          "text": "one",
+          "start": 3.86,
+          "end": 4.06
+        },
+        {
+          "text": "question:",
+          "start": 4.06,
+          "end": 4.5
+        },
+        {
+          "text": "how",
+          "start": 5.04,
+          "end": 5.2
+        },
+        {
+          "text": "late",
+          "start": 5.2,
+          "end": 5.52
+        },
+        {
+          "text": "is",
+          "start": 5.52,
+          "end": 5.72
+        },
+        {
+          "text": "reality",
+          "start": 5.72,
+          "end": 6.22
+        },
+        {
+          "text": "allowed",
+          "start": 6.22,
+          "end": 6.54
+        },
+        {
+          "text": "to",
+          "start": 6.54,
+          "end": 6.82
+        },
+        {
+          "text": "revise",
+          "start": 6.82,
+          "end": 7.2
+        },
+        {
+          "text": "the",
+          "start": 7.2,
+          "end": 7.48
+        },
+        {
+          "text": "plan?",
+          "start": 7.48,
+          "end": 7.8
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 8.448,
+      "words": [
+        {
+          "text": "Waterfall:",
+          "start": 0,
+          "end": 0.68
+        },
+        {
+          "text": "through",
+          "start": 0.68,
+          "end": 1
+        },
+        {
+          "text": "a",
+          "start": 1,
+          "end": 1.2
+        },
+        {
+          "text": "change",
+          "start": 1.2,
+          "end": 1.56
+        },
+        {
+          "text": "request.",
+          "start": 1.56,
+          "end": 2.06
+        },
+        {
+          "text": "Feedback",
+          "start": 2.62,
+          "end": 3.2
+        },
+        {
+          "text": "in",
+          "start": 3.2,
+          "end": 3.4
+        },
+        {
+          "text": "months.",
+          "start": 3.4,
+          "end": 3.72
+        },
+        {
+          "text": "Honest",
+          "start": 4.26,
+          "end": 4.74
+        },
+        {
+          "text": "when",
+          "start": 4.74,
+          "end": 4.92
+        },
+        {
+          "text": "requirements",
+          "start": 4.92,
+          "end": 5.52
+        },
+        {
+          "text": "are",
+          "start": 5.52,
+          "end": 5.8
+        },
+        {
+          "text": "frozen.",
+          "start": 5.8,
+          "end": 6.24
+        },
+        {
+          "text": "A",
+          "start": 6.74,
+          "end": 6.84
+        },
+        {
+          "text": "death",
+          "start": 6.84,
+          "end": 7.1
+        },
+        {
+          "text": "march",
+          "start": 7.1,
+          "end": 7.52
+        },
+        {
+          "text": "when",
+          "start": 7.52,
+          "end": 7.76
+        },
+        {
+          "text": "they're",
+          "start": 7.76,
+          "end": 7.9
+        },
+        {
+          "text": "not.",
+          "start": 8,
+          "end": 8.22
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "duration_s": 7.424,
+      "words": [
+        {
+          "text": "Agile:",
+          "start": 0,
+          "end": 0.54
+        },
+        {
+          "text": "every",
+          "start": 0.54,
+          "end": 0.82
+        },
+        {
+          "text": "sprint.",
+          "start": 0.82,
+          "end": 1.2
+        },
+        {
+          "text": "Feedback",
+          "start": 1.82,
+          "end": 2.22
+        },
+        {
+          "text": "in",
+          "start": 2.22,
+          "end": 2.42
+        },
+        {
+          "text": "weeks.",
+          "start": 2.42,
+          "end": 2.7
+        },
+        {
+          "text": "The",
+          "start": 3.38,
+          "end": 3.5
+        },
+        {
+          "text": "failure",
+          "start": 3.5,
+          "end": 3.84
+        },
+        {
+          "text": "mode",
+          "start": 3.84,
+          "end": 4.24
+        },
+        {
+          "text": "is",
+          "start": 4.24,
+          "end": 4.44
+        },
+        {
+          "text": "keeping",
+          "start": 4.44,
+          "end": 4.72
+        },
+        {
+          "text": "every",
+          "start": 4.72,
+          "end": 5.16
+        },
+        {
+          "text": "ceremony",
+          "start": 5.16,
+          "end": 5.68
+        },
+        {
+          "text": "and",
+          "start": 5.68,
+          "end": 6.1
+        },
+        {
+          "text": "none",
+          "start": 6.1,
+          "end": 6.34
+        },
+        {
+          "text": "of",
+          "start": 6.34,
+          "end": 6.52
+        },
+        {
+          "text": "the",
+          "start": 6.52,
+          "end": 6.64
+        },
+        {
+          "text": "authority.",
+          "start": 6.64,
+          "end": 7.06
+        }
+      ]
+    },
+    {
+      "frame": 7,
+      "duration_s": 12.352,
+      "words": [
+        {
+          "text": "DevOps:",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "every",
+          "start": 0.94,
+          "end": 1.2
+        },
+        {
+          "text": "commit.",
+          "start": 1.2,
+          "end": 1.56
+        },
+        {
+          "text": "Feedback",
+          "start": 2.08,
+          "end": 2.64
+        },
+        {
+          "text": "in",
+          "start": 2.64,
+          "end": 2.86
+        },
+        {
+          "text": "minutes.",
+          "start": 2.86,
+          "end": 3.14
+        },
+        {
+          "text": "Deploy",
+          "start": 3.72,
+          "end": 4.14
+        },
+        {
+          "text": "gets",
+          "start": 4.14,
+          "end": 4.44
+        },
+        {
+          "text": "boring,",
+          "start": 4.44,
+          "end": 4.9
+        },
+        {
+          "text": "rollback",
+          "start": 5.26,
+          "end": 5.64
+        },
+        {
+          "text": "gets",
+          "start": 5.64,
+          "end": 5.96
+        },
+        {
+          "text": "first-class.",
+          "start": 5.96,
+          "end": 6.24
+        },
+        {
+          "text": "The",
+          "start": 7.42,
+          "end": 7.54
+        },
+        {
+          "text": "failure",
+          "start": 7.54,
+          "end": 7.88
+        },
+        {
+          "text": "mode",
+          "start": 7.88,
+          "end": 8.3
+        },
+        {
+          "text": "is",
+          "start": 8.3,
+          "end": 8.54
+        },
+        {
+          "text": "an",
+          "start": 8.54,
+          "end": 8.68
+        },
+        {
+          "text": "automated",
+          "start": 8.68,
+          "end": 9.3
+        },
+        {
+          "text": "pipeline",
+          "start": 9.3,
+          "end": 9.88
+        },
+        {
+          "text": "queued",
+          "start": 9.88,
+          "end": 10.5
+        },
+        {
+          "text": "behind",
+          "start": 10.5,
+          "end": 10.78
+        },
+        {
+          "text": "one",
+          "start": 10.78,
+          "end": 11.2
+        },
+        {
+          "text": "manual",
+          "start": 11.2,
+          "end": 11.64
+        },
+        {
+          "text": "approval.",
+          "start": 11.64,
+          "end": 12.08
+        }
+      ]
+    },
+    {
+      "frame": 8,
+      "duration_s": 8.003,
+      "words": [
+        {
+          "text": "Then",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "text": "AI",
+          "start": 0.2,
+          "end": 0.52
+        },
+        {
+          "text": "collapsed",
+          "start": 0.52,
+          "end": 1.14
+        },
+        {
+          "text": "the",
+          "start": 1.14,
+          "end": 1.34
+        },
+        {
+          "text": "build",
+          "start": 1.34,
+          "end": 1.5
+        },
+        {
+          "text": "phase,",
+          "start": 1.5,
+          "end": 1.84
+        },
+        {
+          "text": "and",
+          "start": 2.24,
+          "end": 2.44
+        },
+        {
+          "text": "the",
+          "start": 2.44,
+          "end": 2.54
+        },
+        {
+          "text": "loop",
+          "start": 2.54,
+          "end": 2.74
+        },
+        {
+          "text": "barely",
+          "start": 2.74,
+          "end": 3.06
+        },
+        {
+          "text": "moved.",
+          "start": 3.06,
+          "end": 3.58
+        },
+        {
+          "text": "Review,",
+          "start": 4.06,
+          "end": 4.46
+        },
+        {
+          "text": "approvals,",
+          "start": 4.46,
+          "end": 5.26
+        },
+        {
+          "text": "coordination:",
+          "start": 5.26,
+          "end": 5.76
+        },
+        {
+          "text": "that's",
+          "start": 6.56,
+          "end": 6.88
+        },
+        {
+          "text": "where",
+          "start": 6.88,
+          "end": 6.98
+        },
+        {
+          "text": "the",
+          "start": 6.98,
+          "end": 7.08
+        },
+        {
+          "text": "weeks",
+          "start": 7.08,
+          "end": 7.38
+        },
+        {
+          "text": "live.",
+          "start": 7.38,
+          "end": 7.7
+        }
+      ]
+    },
+    {
+      "frame": 9,
+      "duration_s": 5.248,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.12
+        },
+        {
+          "text": "boxes",
+          "start": 0.12,
+          "end": 0.52
+        },
+        {
+          "text": "were",
+          "start": 0.52,
+          "end": 0.82
+        },
+        {
+          "text": "never",
+          "start": 0.82,
+          "end": 1.02
+        },
+        {
+          "text": "the",
+          "start": 1.02,
+          "end": 1.2
+        },
+        {
+          "text": "point.",
+          "start": 1.2,
+          "end": 1.54
+        },
+        {
+          "text": "Shrink",
+          "start": 1.9,
+          "end": 2.22
+        },
+        {
+          "text": "the",
+          "start": 2.22,
+          "end": 2.36
+        },
+        {
+          "text": "loop.",
+          "start": 2.36,
+          "end": 2.64
+        },
+        {
+          "text": "The",
+          "start": 3.12,
+          "end": 3.24
+        },
+        {
+          "text": "full",
+          "start": 3.24,
+          "end": 3.5
+        },
+        {
+          "text": "teardown",
+          "start": 3.5,
+          "end": 4.12
+        },
+        {
+          "text": "is",
+          "start": 4.12,
+          "end": 4.36
+        },
+        {
+          "text": "in",
+          "start": 4.36,
+          "end": 4.5
+        },
+        {
+          "text": "the",
+          "start": 4.5,
+          "end": 4.6
+        },
+        {
+          "text": "article.",
+          "start": 4.6,
+          "end": 4.92
+        }
+      ]
+    }
+  ]
+}

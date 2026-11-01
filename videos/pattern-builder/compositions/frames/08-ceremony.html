@@ -1,0 +1,205 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f08-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f08-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f08-kicker {
+      position: absolute; top: 146px; left: 84px;
+      display: inline-flex; align-items: baseline; gap: 14px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f08-spike { color: #1a1a1a; font-size: 2.5cqw; letter-spacing: 0; }
+    .f08-chamber {
+      position: absolute; left: 56px; width: 968px;
+      box-sizing: border-box;
+      background: #1a1a1a;
+      border: 2px solid #ffffeb;
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .f08-wrong { top: 244px; }
+    .f08-right { top: 960px; }
+    .f08-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 66px; padding: 0 26px;
+      background: #252320;
+      border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.95cqw; letter-spacing: 0.02em; color: #ffffeb;
+    }
+    .f08-bar-tag { color: rgba(255,255,235,0.55); font-size: 1.7cqw; letter-spacing: 0.12em; text-transform: uppercase; }
+    .f08-code { padding: 26px 26px 30px; }
+    .f08-cl {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.5cqw; line-height: 1.66; letter-spacing: -0.01em;
+      color: #8a8a7a; white-space: nowrap; opacity: 0;
+    }
+    .f08-kw { color: #ffa946; }
+    .f08-meth { color: #ffffeb; }
+    .f08-typ { color: #5db8a6; }
+    .f08-chip {
+      position: absolute; left: 56px;
+      box-sizing: border-box; padding: 12px 24px;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #1a1a1a; opacity: 0;
+    }
+    .f08-chip-wrong { top: 762px; }
+    .f08-chip-right { top: 1236px; border-color: #034f46; background: #034f46; color: #ffffeb; }
+    .f08-rule {
+      position: absolute; top: 900px; left: 56px; width: 968px; height: 1px;
+      background: rgba(26,26,26,0.22);
+    }
+    .f08-svg { position: absolute; inset: 0; pointer-events: none; }
+    .f08-draw { fill: none; stroke: rgba(26,26,26,0.30); stroke-width: 2; stroke-linecap: round; }
+    .f08-rail {
+      position: absolute; top: 1358px; left: 56px; width: 968px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0;
+    }
+    .f08-rail-label {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.10em; text-transform: uppercase;
+      color: #76766e; white-space: nowrap;
+    }
+    .f08-rail-chip {
+      box-sizing: border-box; padding: 10px 18px;
+      background: #e4e4d0; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; color: #1a1a1a; white-space: nowrap;
+    }
+      display: inline-block;
+  </style>
+
+  <div id="root" data-composition-id="08-ceremony" data-width="1080" data-height="1920" data-duration="8.725">
+
+    <div id="08-ceremony-fieldclip" class="clip" data-start="0" data-duration="8.725" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f08-field"></div>
+      <div id="08-ceremony-grid" class="f08-grid"></div>
+    </div>
+
+    <div id="08-ceremony-headclip" class="clip" data-start="0" data-duration="8.725" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="08-ceremony-kicker" class="f08-kicker"><span class="f08-spike">&#10033;</span><span>the tell</span></div>
+      <svg class="f08-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="08-ceremony-rule" class="f08-draw" d="M 56 900 L 1024 900" />
+      </svg>
+    </div>
+
+    <div id="08-ceremony-wrongclip" class="clip" data-start="1.60" data-duration="7.125" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="08-ceremony-wrong" class="f08-chamber f08-wrong">
+        <div class="f08-bar" data-layout-ignore><span>order.ts</span><span class="f08-bar-tag">the wrong shape</span></div>
+        <div class="f08-code">
+          <div id="08-ceremony-w1" class="f08-cl"><span class="f08-kw">const</span> order = <span class="f08-kw">new</span> <span class="f08-meth">OrderBuilder</span>()</div>
+          <div id="08-ceremony-w2" class="f08-cl">&nbsp;&nbsp;.<span class="f08-meth">customer</span>(c)</div>
+          <div id="08-ceremony-w3" class="f08-cl">&nbsp;&nbsp;.<span class="f08-meth">line</span>(l)</div>
+          <div id="08-ceremony-w4" class="f08-cl">&nbsp;&nbsp;.<span class="f08-meth">shipTo</span>(s)</div>
+          <div id="08-ceremony-w5" class="f08-cl">&nbsp;&nbsp;.<span class="f08-meth">build</span>();</div>
+        </div>
+      </div>
+      <div id="08-ceremony-chipwrong" class="f08-chip f08-chip-wrong">ceremony</div>
+    </div>
+
+    <div id="08-ceremony-rightclip" class="clip" data-start="4.66" data-duration="4.065" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="08-ceremony-right" class="f08-chamber f08-right">
+        <div class="f08-bar"><span>order.ts</span><span class="f08-bar-tag">the fixed shape</span></div>
+        <div class="f08-code">
+          <div id="08-ceremony-r1" class="f08-cl"><span class="f08-kw">const</span> order = <span class="f08-kw">new</span> <span class="f08-meth">Order</span>(c, l, s);</div>
+        </div>
+      </div>
+      <div id="08-ceremony-chipright" class="f08-chip f08-chip-right">one call</div>
+    </div>
+
+    <div id="08-ceremony-railclip" class="clip" data-start="6.62" data-duration="2.105" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="08-ceremony-rail" class="f08-rail">
+        <span class="f08-rail-label">all three required</span>
+        <span id="08-ceremony-rc1" class="f08-rail-chip">customer</span>
+        <span id="08-ceremony-rc2" class="f08-rail-chip">line</span>
+        <span id="08-ceremony-rc3" class="f08-rail-chip">shipTo</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.725;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["08-ceremony"] = tl;
+
+      // ── Scene 1 (0.0–1.6s) — "three mandatory fields". Paper, kicker, and the empty frame
+      //    of the wrong chamber. Nothing inside it yet. ──
+      tl.fromTo(el("08-ceremony-grid"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo(el("08-ceremony-kicker"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 0.14);
+      tl.fromTo(el("08-ceremony-wrong"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.66);
+
+      // ── Scene 2 (1.6–5.0s) — "need no builder at all". Five lines stagger in, one per
+      //    spoken word-group, so the pile is still arriving in the back half. The `ceremony`
+      //    chip lands on "all" (3.54). ──
+      var WRONG = ["08-ceremony-w1", "08-ceremony-w2", "08-ceremony-w3", "08-ceremony-w4", "08-ceremony-w5"];
+      var AT = [1.60, 2.20, 2.62, 3.02, 3.40];
+      for (var i = 0; i < WRONG.length; i++) {
+        tl.fromTo(
+          el(WRONG[i]),
+          { opacity: 0, x: -16 },
+          { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" },
+          AT[i]
+        );
+      }
+      tl.fromTo(el("08-ceremony-chipwrong"), { opacity: 0, scale: 0.94, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.36, ease: "power3.out" }, 3.60);
+
+      // ── Scene 3 (4.7–6.6s) — "call the constructor once". The fixed chamber rises below it
+      //    and holds exactly one line; the gap under that line is the argument. ──
+      tl.fromTo(el("08-ceremony-right"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 4.66);
+      tl.fromTo(el("08-ceremony-r1"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 5.14);
+      tl.fromTo(el("08-ceremony-chipright"), { opacity: 0, scale: 0.94, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.36, ease: "power3.out" }, 5.68);
+
+      // ── Scene 4 (6.6–8.7s) — "hand over a finished order". The rule draws between the two
+      //    chambers, the required rail names the three fields, and the film ends on the pair.
+      //    Final frame, so this one carries the only real settle. ──
+      var RULE = 968;
+      el("08-ceremony-rule").style.strokeDasharray = RULE + " " + RULE;
+      tl.fromTo(
+        el("08-ceremony-rule"),
+        { attr: { "stroke-dashoffset": RULE } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 0.66, ease: "power2.inOut" },
+        6.62
+      );
+      tl.fromTo(el("08-ceremony-rail"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 6.86);
+      var RCS = ["08-ceremony-rc1", "08-ceremony-rc2", "08-ceremony-rc3"];
+      for (var k = 0; k < RCS.length; k++) {
+        tl.fromTo(
+          el(RCS[k]),
+          { opacity: 0, x: -10 },
+          { opacity: 1, x: 0, duration: 0.24, ease: "power2.out" },
+          7.10 + k * 0.18
+        );
+      }
+      tl.fromTo(el("08-ceremony-wrong"), { scale: 1 }, { scale: 0.994, duration: 0.5, ease: "power2.inOut" }, 8.05);
+    })();
+  </script>
+</template>

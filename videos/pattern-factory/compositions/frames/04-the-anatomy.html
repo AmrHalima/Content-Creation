@@ -1,0 +1,201 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; top: 168px; left: 80px; width: 700px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f04-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; opacity: 0; }
+    .f04-ktext { display: inline-block; opacity: 0; }
+    .f04-chamber {
+      position: absolute; left: 150px; width: 660px; box-sizing: border-box;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      padding: 20px 28px;
+    }
+    .f04-caller { top: 244px; height: 224px; }
+    .f04-seam {
+      position: absolute; top: 622px; left: 150px; width: 660px; height: 252px;
+      box-sizing: border-box; border: 2px solid rgba(255,255,235,0.22); border-radius: 12px;
+      background: #181715; padding: 20px 28px;
+    }
+    .f04-seamedge {
+      position: absolute; top: 616px; left: 144px; width: 672px; height: 264px;
+      box-sizing: border-box; border: 2px solid #F0D7FF; border-radius: 16px;
+      opacity: 0;
+    }
+    .f04-role {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.12em; text-transform: uppercase; color: #76766e;
+    }
+    .f04-seam .f04-role { color: rgba(255,255,235,0.62); }
+    .f04-name {
+      display: block; margin-top: 12px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 3.1cqw; letter-spacing: 0.01em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f04-seamname {
+      display: block; margin-top: 8px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-style: italic;
+      font-size: 5.4cqw; line-height: 1.04; letter-spacing: -0.012em; color: #ffffeb;
+    }
+    .f04-marker {
+      position: absolute; left: 28px; bottom: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 56px; padding: 0 20px;
+      background: #FFA946; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.06em; text-transform: uppercase; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f04-impl {
+      position: absolute; top: 1042px; width: 320px; height: 104px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(26,26,26,0.3); border-radius: 12px; background: #ffffff;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.8cqw; color: #1a1a1a;
+      opacity: 0.45;
+    }
+    .f04-impl-a { left: 150px; }
+    .f04-impl-b { left: 490px; }
+    .f04-arrows { position: absolute; inset: 0; }
+    .f04-arrows svg { display: block; width: 100%; height: 100%; }
+    .f04-shaft { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .f04-knows { fill: none; stroke: rgba(26,26,26,0.5); stroke-width: 3; stroke-dasharray: 0.02 0.014; }
+    .f04-knowsdash { stroke-dashoffset: 1; }
+    .f04-head { fill: #1a1a1a; opacity: 0; }
+    .f04-head-soft { fill: rgba(26,26,26,0.5); opacity: 0; }
+    .f04-caption {
+      position: absolute; left: 556px; width: 340px; height: 54px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.4cqw; color: #76766e;
+      opacity: 0;
+    }
+    .f04-cap-depends { top: 500px; }
+    .f04-cap-knows { top: 828px; left: 900px; width: 150px; }
+    .f04-band {
+      position: absolute; top: 1220px; left: 150px; width: 660px; height: 58px;
+      display: flex; align-items: center;
+      font-family: "Inter", sans-serif; font-weight: 400; font-size: 2.6cqw; color: #76766e;
+      opacity: 0;
+    }
+    .f04-band-mark { display: inline-block; width: 30px; height: 2px; background: #76766e; margin-right: 18px; }
+  </style>
+
+  <div id="root" data-composition-id="04-the-anatomy" data-width="1080" data-height="1920" data-duration="10.133">
+
+    <div id="04-the-anatomy-groundclip" class="clip f04-groundclip" data-start="0" data-duration="10.133" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field" id="04-the-anatomy-field"></div>
+      <div class="f04-grid" id="04-the-anatomy-grid"></div>
+    </div>
+
+    <div id="04-the-anatomy-chromeclip" class="clip f04-chromeclip" data-start="0" data-duration="10.133" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f04-kicker" id="04-the-anatomy-kicker">
+        <span class="f04-spike" id="04-the-anatomy-spike">&#10009;</span><span class="f04-ktext" id="04-the-anatomy-ktext" data-layout-ignore>the anatomy</span>
+      </div>
+    </div>
+
+    <div id="04-the-anatomy-stackclip" class="clip f04-stackclip" data-start="0" data-duration="10.133" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f04-chamber f04-caller" id="04-the-anatomy-caller">
+        <div class="f04-role" id="04-the-anatomy-callerrole">caller</div>
+        <div class="f04-name" id="04-the-anatomy-callername">PaymentGateway</div>
+      </div>
+      <div class="f04-seam" id="04-the-anatomy-seam">
+        <div class="f04-role" id="04-the-anatomy-seamrole">the seam</div>
+        <div class="f04-seamname" id="04-the-anatomy-seamname">factory</div>
+        <div class="f04-marker" id="04-the-anatomy-marker">decides</div>
+      </div>
+      <div class="f04-seamedge" id="04-the-anatomy-seamedge"></div>
+      <div class="f04-impl f04-impl-a" id="04-the-anatomy-impl1">StripeGateway</div>
+      <div class="f04-impl f04-impl-b" id="04-the-anatomy-impl2">RazorpayGateway</div>
+      <div class="f04-band" id="04-the-anatomy-band"><span class="f04-band-mark" id="04-the-anatomy-bandmark"></span>concrete names</div>
+    </div>
+
+    <div id="04-the-anatomy-arrowclip" class="clip f04-arrowclip" data-start="0.86" data-duration="9.273" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f04-arrows" id="04-the-anatomy-arrows">
+        <svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f04-shaft" id="04-the-anatomy-shaft1" pathLength="1" d="M480 472 L480 616" />
+          <path class="f04-shaft" id="04-the-anatomy-shaft2" pathLength="1" d="M480 878 L480 1036" />
+          <path class="f04-shaft f04-knows f04-knowsdash" id="04-the-anatomy-knows" pathLength="1" d="M856 1040 L856 900 L856 760" />
+          <polygon class="f04-head" id="04-the-anatomy-head1" points="480,620 462,578 498,578" />
+          <polygon class="f04-head" id="04-the-anatomy-head2" points="480,1040 462,998 498,998" />
+          <polygon class="f04-head-soft" id="04-the-anatomy-headknows" points="856,756 838,798 874,798" />
+        </svg>
+      </div>
+      <div class="f04-caption f04-cap-depends" id="04-the-anatomy-capdep">depends on</div>
+      <div class="f04-caption f04-cap-knows" id="04-the-anatomy-capknows">knows</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.133;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-the-anatomy"] = tl;
+
+      // ── ground + chrome ──
+      tl.fromTo(el("04-the-anatomy-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("04-the-anatomy-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("04-the-anatomy-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el("04-the-anatomy-seamname"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.3);
+
+      // ── Scene 1 (0.0–2.0s) — "the dependency points down" ──
+      tl.fromTo(el("04-the-anatomy-shaft1"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.72, ease: "power2.out" }, 0.86);
+      tl.fromTo(el("04-the-anatomy-head1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 1.5);
+
+      // ── Scene 2 (2.0–3.4s) — "through the seam": the run completes, the lavender edge lights once ──
+      tl.fromTo(el("04-the-anatomy-seamedge"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 2.16);
+      tl.to(el("04-the-anatomy-seamedge"), { opacity: 0.5, duration: 0.5, ease: "power1.inOut" }, 2.7);
+      tl.fromTo(el("04-the-anatomy-shaft2"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.56, ease: "power2.out" }, 2.3);
+      tl.fromTo(el("04-the-anatomy-head2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 2.8);
+      tl.fromTo(el("04-the-anatomy-marker"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 2.5);
+
+      // ── Scene 3 (3.4–6.0s) — "the caller holds the interface" ──
+      tl.fromTo(el("04-the-anatomy-callername"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 4.32);
+      tl.fromTo(el("04-the-anatomy-capdep"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 5.18);
+
+      // ── Scene 4 (6.0–9.2s) — "the factory below holds the concrete classes": knows flows up ──
+      tl.fromTo(el("04-the-anatomy-knows"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, 6.76);
+      tl.fromTo(el("04-the-anatomy-headknows"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 7.5);
+      tl.fromTo(el("04-the-anatomy-capknows"), { opacity: 0, x: 14 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 7.3);
+      tl.to(el("04-the-anatomy-impl1"), { opacity: 1, borderColor: "#1a1a1a", duration: 0.42, ease: "power2.out" }, 8.62);
+      tl.to(el("04-the-anatomy-impl2"), { opacity: 1, borderColor: "#1a1a1a", duration: 0.42, ease: "power2.out" }, 8.86);
+      tl.fromTo(el("04-the-anatomy-band"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 8.62);
+
+      // ── Scene 5 (9.2–10.133s) — the deliberate held read: seam jitters, nothing else ──
+      var jit = { p: 0 };
+      var seam = el("04-the-anatomy-seam");
+      var HOLD = 9.6;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.25,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          seam.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

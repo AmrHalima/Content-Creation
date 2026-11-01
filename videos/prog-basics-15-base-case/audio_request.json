@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Forget this one thing and you'll get a stack overflow."
+    },
+    {
+      "id": "02",
+      "text": "The base case is where recursion stops."
+    },
+    {
+      "id": "03",
+      "text": "Without it, the function calls itself until the call stack runs out."
+    },
+    {
+      "id": "04",
+      "text": "Every recursive function needs a base case and a step that moves toward it."
+    },
+    {
+      "id": "05",
+      "text": "What's the base case for summing a list? Comment it."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

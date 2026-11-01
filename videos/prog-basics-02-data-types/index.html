@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="39"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div
+        id="el-01-hook"
+        class="scene"
+        data-composition-id="01-hook"
+        data-composition-src="compositions/frames/01-hook.html"
+        data-start="0"
+        data-duration="4.3"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-01-hook-voice"
+        src="assets/voice/01.wav"
+        data-start="0"
+        data-duration="4.3"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-02-carries-a-type"
+        class="scene"
+        data-composition-id="02-carries-a-type"
+        data-composition-src="compositions/frames/02-carries-a-type.html"
+        data-start="4.3"
+        data-duration="7.5"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-02-carries-a-type-voice"
+        src="assets/voice/02.wav"
+        data-start="4.3"
+        data-duration="7.5"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-03-the-four"
+        class="scene"
+        data-composition-id="03-the-four"
+        data-composition-src="compositions/frames/03-the-four.html"
+        data-start="11.8"
+        data-duration="11.2"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-03-the-four-voice"
+        src="assets/voice/03.wav"
+        data-start="11.8"
+        data-duration="11.2"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-04-split"
+        class="scene"
+        data-composition-id="04-split"
+        data-composition-src="compositions/frames/04-split.html"
+        data-start="23"
+        data-duration="8.2"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-04-split-voice"
+        src="assets/voice/04.wav"
+        data-start="23"
+        data-duration="8.2"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-05-quiz"
+        class="scene"
+        data-composition-id="05-quiz"
+        data-composition-src="compositions/frames/05-quiz.html"
+        data-start="31.2"
+        data-duration="7.8"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-05-quiz-voice"
+        src="assets/voice/05.wav"
+        data-start="31.2"
+        data-duration="7.8"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <!-- captions -->
+      <div
+        id="el-captions"
+        data-track-kind="captions"
+        class="scene"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="39"
+        data-track-index="2"
+      ></div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

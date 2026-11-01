@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "How does autocomplete answer before you finish typing?"
+    },
+    {
+      "id": "02",
+      "text": "A trie is a tree where each node is a letter. Words that share a prefix share a path. A prefix is the letters a word starts with."
+    },
+    {
+      "id": "03",
+      "text": "To autocomplete, walk down the typed prefix, then list everything below it. Car, cat, and can start the same way. They share c, then a, and split three ways."
+    },
+    {
+      "id": "04",
+      "text": "A path can exist without a word at the end. Here, three dots mark three real words."
+    },
+    {
+      "id": "05",
+      "text": "Which word shares a path with 'dog': 'dot' or 'cat'?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

@@ -1,0 +1,66 @@
+== 41.1  the growth table (exact, plottable) ==
+n    | O(1) | O(log n) |   O(n)  |  O(n log n)  |  O(n^2)
+1    |  1    |        0 |       1 |           0 |       1
+2    |  1    |        1 |       2 |           2 |       4
+4    |  1    |        2 |       4 |           8 |      16
+8    |  1    |        3 |       8 |          24 |      64
+16   |  1    |        4 |      16 |          64 |     256
+32   |  1    |        5 |      32 |         160 |    1024
+64   |  1    |        6 |      64 |         384 |    4096
+
+== 41.2  what each curve ACTUALLY counts, measured by instrumenting real loops ==
+n   | constant | linear | halving | nested(n x n) | nested(n x 3)
+1   |        1 |      1 |       1 |              1 |             3
+2   |        1 |      2 |       2 |              4 |             6
+4   |        1 |      4 |       3 |             16 |            12
+8   |        1 |      8 |       4 |             64 |            24
+16  |        1 |     16 |       5 |            256 |            48
+32  |        1 |     32 |       6 |           1024 |            96
+64  |        1 |     64 |       7 |           4096 |           192
+
+== 41.3  THE SCRIPT'S OWN CLAIM, TESTED: 'a loop inside a loop is O(n^2)' ==
+n = 64: nested over n x n = 4096 steps | nested with a fixed inner of 3 = 192 steps
+=> inner loop over a CONSTANT makes the whole thing O(n), not O(n^2). As written the
+   sentence is false for the extremely common `for i: for j in range(3)` shape.
+   doubling test, n x 3: 32 -> 96 | 64 -> 192 = x2.0 (linear: work doubles)
+   doubling test, n x n: 32 -> 1024 | 64 -> 4096 = x4.0 (quadratic: work quadruples)
+   The fix is two words: 'a loop inside a loop over the SAME size'.
+
+== 41.4  'O(log n) halves the work each step' - convention matters, so measure both ==
+n    | halving loop iterations | log2(n) | ceil(log2 n) | floor(log2 n)+1
+1    |                       1 |       0 |            0 |               1
+2    |                       2 |       1 |            1 |               2
+4    |                       3 |       2 |            2 |               3
+8    |                       4 |       3 |            3 |               4
+16   |                       5 |       4 |            4 |               5
+32   |                       6 |       5 |            5 |               6
+64   |                       7 |       6 |            6 |               7
+=> 'halves the work each step' is TRUE as behaviour, but the count a loop prints is
+   floor(log2 n) + 1, not log2 n, because the last iteration is the one that reaches zero.
+   A chart that plots log2(n) and a box that counts loop passes will DISAGREE by one.
+   Pin one convention per part: 41 shows the curve values (log2), 43 shows measured probe
+   counts. Never put both numbers in the same frame.
+
+== 41.5  the CTA answered: Big O of a hash map lookup ==
+AVERAGE case is O(1). Measured by counting real work a dict does per lookup:
+keys    | lookup of the SAME object | lookup of an EQUAL new object
+     10 | 1 hash, 0 eq            | 1 hash, 1 eq
+   1000 | 1 hash, 0 eq            | 1 hash, 1 eq
+ 100000 | 1 hash, 0 eq            | 1 hash, 1 eq
+1000000 | 1 hash, 0 eq            | 1 hash, 1 eq
+=> flat at 1 hash call and at most 1 equality test from 10 keys to 1,000,000 keys.
+   That is the measured O(1) average. (An earlier version of this probe printed '1 and 1'
+   for the identity case too - the real number there is 0 eq. Fixed.)
+WHAT 'AVERAGE' IS HIDING:
+     worst case is O(n): if every key collides the lookup walks a chain. Executed proof,
+     counters reset AFTER the dict is built so only the lookup is counted:
+     dict of 200 keys that all hash to 7 -> ONE lookup did 200 equality tests
+     (build cost is excluded; the ~n behaviour is the point: 200 keys, ~200 tests)
+       n =  50: 50 equality tests
+       n = 200: 200 equality tests
+       n = 800: 800 equality tests
+  2. it assumes a good hash and a resized table, so load factor stays low; the same
+     structure degrades if either stops holding;
+  3. 'constant' counts comparisons, not wall-clock time: a bigger table costs more cache
+     misses per lookup even at 1 comparison. The part says 'ignores constants' - true,
+     and that is exactly why the CTA's answer is O(1) while a real lookup is not free.

@@ -1,0 +1,166 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+
+    .f02-kicker {
+      position: absolute; left: 80px; top: 214px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f02-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f02-ktext { display: inline-block; opacity: 0; }
+    .f02-word {
+      position: absolute; left: 80px; top: 264px; width: 900px; height: 140px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 10.5cqw;
+      line-height: 0.95; letter-spacing: -0.028em; color: #1a1a1a; opacity: 0;
+    }
+
+    /* grammar R: caller (cream) / the seam (dark chamber) / two implementations (cream) */
+    .f02-box {
+      position: absolute; box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 0 26px;
+      background: #ffffff; border: 3px solid #1a1a1a; border-radius: 8px; opacity: 0;
+    }
+    .f02-dark {
+      position: absolute; box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 0 26px;
+      background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px; opacity: 0;
+    }
+    .f02-head {
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f02-head-dark { color: rgba(255,255,235,0.62); }
+    .f02-body {
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; line-height: 1;
+      letter-spacing: -0.01em; color: #1a1a1a; white-space: nowrap;
+    }
+    .f02-body-dark { color: #ffffeb; }
+    .f02-caller { left: 300px; top: 470px; width: 480px; height: 130px; }
+    .f02-seam { left: 300px; top: 680px; width: 480px; height: 140px; }
+    .f02-cmd { left: 60px; top: 940px; width: 460px; height: 150px; }
+    .f02-qry { left: 560px; top: 940px; width: 460px; height: 150px; }
+    /* the frame's single ember element: the split inside the seam */
+    .f02-tick {
+      position: absolute; left: 534px; top: 706px; width: 8px; height: 88px;
+      background: #ffa946; border-radius: 4px; opacity: 0;
+    }
+
+    .f02-svg { position: absolute; inset: 0; }
+    .f02-arw { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 5; stroke-linecap: round; }
+    .f02-head-tri { fill: rgba(26,26,26,0.55); opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="02-the-seam-and-the-name" data-width="1080" data-height="1920" data-duration="10.648">
+
+    <div id="02-the-seam-and-the-name-fieldclip" class="clip" data-start="0" data-duration="10.648" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f02-field"></div>
+      <div id="02-the-seam-and-the-name-grid" class="f02-grid"></div>
+    </div>
+
+    <div id="02-the-seam-and-the-name-chromeclip" class="clip" data-start="0" data-duration="10.648" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f02-kicker"><span id="02-the-seam-and-the-name-spike" class="f02-spike">&#10009;</span><span id="02-the-seam-and-the-name-ktext" class="f02-ktext" data-layout-ignore>command / query</span></div>
+      <div id="02-the-seam-and-the-name-word" class="f02-word">CQRS</div>
+    </div>
+
+    <div id="02-the-seam-and-the-name-stackclip" class="clip" data-start="0" data-duration="10.648" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="02-the-seam-and-the-name-caller" class="f02-box f02-caller">
+        <div class="f02-head" data-layout-ignore>caller</div>
+        <div class="f02-body">OrderService</div>
+      </div>
+      <div id="02-the-seam-and-the-name-seam" class="f02-dark f02-seam">
+        <div class="f02-head f02-head-dark" data-layout-ignore>the seam</div>
+        <div class="f02-body f02-body-dark">split</div>
+      </div>
+      <div id="02-the-seam-and-the-name-tick" class="f02-tick"></div>
+      <div id="02-the-seam-and-the-name-cmd" class="f02-box f02-cmd">
+        <div class="f02-head" data-layout-ignore>commands</div>
+        <div class="f02-body">handle(cmd)</div>
+      </div>
+      <div id="02-the-seam-and-the-name-qry" class="f02-box f02-qry">
+        <div class="f02-head" data-layout-ignore>queries</div>
+        <div class="f02-body">handle(q)</div>
+      </div>
+    </div>
+
+    <div id="02-the-seam-and-the-name-arrowclip" class="clip" data-start="2.58" data-duration="8.068" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f02-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="02-the-seam-and-the-name-a0" class="f02-arw" d="M 540 600 L 540 674" />
+        <polygon id="02-the-seam-and-the-name-t0" class="f02-head-tri" points="529,672 551,672 540,690" />
+        <path id="02-the-seam-and-the-name-a1" class="f02-arw" d="M 460 820 L 290 934" />
+        <polygon id="02-the-seam-and-the-name-t1" class="f02-head-tri" points="276,944 306,944 290,922" />
+        <path id="02-the-seam-and-the-name-a2" class="f02-arw" d="M 620 820 L 790 934" />
+        <polygon id="02-the-seam-and-the-name-t2" class="f02-head-tri" points="774,944 804,944 790,922" />
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 10.648;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "02-the-seam-and-the-name-";
+      var tl = gsap.timeline({ paused: true });
+
+      // ── Scene 1 (0.0–2.58s) — "Split the model along that seam": the name, then the stack assembles ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el(P + "word"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.36);
+      tl.fromTo(el(P + "caller"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 0.94);
+      // the seam box is the hero: it lands on the spoken word, and the caller dims behind it
+      tl.fromTo(el(P + "seam"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 1.74);
+      tl.to(el(P + "caller"), { opacity: 0.55, duration: 0.4, ease: "power1.inOut" }, 1.94);
+
+      // ── Scene 2 (2.58–5.52s) — "each side takes its own shape": two implementations, drawn from the seam ──
+      tl.fromTo(el(P + "tick"), { opacity: 0, scaleY: 0.4 }, { opacity: 1, scaleY: 1, duration: 0.34, ease: "power3.out", transformOrigin: "center top" }, 3.36);
+      [[P + "a0", 2.58, P + "t0"], [P + "a1", 3.36, P + "t1"], [P + "a2", 3.60, P + "t2"]].forEach(function (r) {
+        var path = el(r[0]);
+        var len = path.getTotalLength() * 1.05;
+        path.style.strokeDasharray = String(len);
+        path.style.strokeDashoffset = String(len);
+        tl.to(path, { strokeDashoffset: 0, duration: 0.36, ease: "power3.out" }, r[1]);
+        tl.fromTo(el(r[2]), { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power1.out" }, r[1] + 0.3);
+      });
+      tl.fromTo(el(P + "cmd"), { opacity: 0, x: -46 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 3.36);
+      tl.fromTo(el(P + "qry"), { opacity: 0, x: 46 }, { opacity: 0.55, x: 0, duration: 0.4, ease: "power3.out" }, 3.80);
+
+      // ── Scene 3 (5.52–8.0s) — "Commands change state": the left implementation comes to full ink ──
+      tl.to(el(P + "cmd"), { opacity: 1, duration: 0.34, ease: "power2.out" }, 5.52);
+
+      // ── Scene 4 (8.0–10.05s) — "Queries answer questions": the right one joins it ──
+      tl.to(el(P + "qry"), { opacity: 1, duration: 0.34, ease: "power2.out" }, 8.00);
+      tl.to(el(P + "caller"), { opacity: 0.42, duration: 0.5, ease: "power1.inOut" }, 8.44);
+
+      // ── Scene 5 (10.05–10.65s) — the hold the wordmark is owed: jitter on the seam only ──
+      var jit = { p: 0 };
+      var seam = el(P + "seam");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - 10.05,
+        ease: "none",
+        onUpdate: function () {
+          seam.style.transform = "translateY(" + (Math.sin(jit.p) * 1.5).toFixed(3) + "px)";
+        }
+      }, 10.05);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["02-the-seam-and-the-name"] = tl;
+    })();
+  </script>
+</template>

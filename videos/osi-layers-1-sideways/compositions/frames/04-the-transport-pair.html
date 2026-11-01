@@ -1,0 +1,175 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-rail { position: absolute; left: 44px; top: 700px; width: 44px; height: 700px; }
+    .f04-tick {
+      position: absolute; left: 0; width: 44px; height: 52px; box-sizing: border-box;
+      border: 2px solid rgba(26,26,26,0.2); border-radius: 6px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #76766e;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .f04-tick-on { border-color: rgba(26,26,26,0.55); color: #1a1a1a; }
+    .f04-card {
+      position: absolute; left: 120px; top: 700px; width: 420px; height: 340px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px;
+      padding: 26px 30px;
+      opacity: 0;
+    }
+    .f04-card-kicker {
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f04-card-title {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.6cqw; line-height: 1.02;
+      letter-spacing: -0.022em; margin-top: 10px;
+    }
+    .f04-fact {
+      position: absolute; left: 30px; width: 340px; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; padding: 0 20px;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f04-svg { position: absolute; inset: 0; }
+    .f04-arrow { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f04-head { fill: #ffa946; opacity: 0; }
+    .f04-peerlabel {
+      position: absolute; left: 800px; top: 712px; width: 220px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f04-stamp {
+      position: absolute; left: 740px; width: 280px; height: 58px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      background: #ffffff; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f04-stamp-sub { font-size: 2.6cqw; color: #76766e; letter-spacing: 0.1em; }
+    .f04-mbox {
+      position: absolute; left: 556px; top: 836px; width: 204px; height: 56px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(138,138,128,0.1); border: 2px dashed rgba(26,26,26,0.35); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.08em;
+      color: #6b6b63; opacity: 0;
+    }
+    .f04-mboxnote {
+      position: absolute; left: 512px; top: 902px; width: 292px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #6b6b63; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-p2vo" id="root" data-composition-id="04-the-transport-pair" data-width="1080" data-height="1920">
+
+    <div data-hf-id="hf-9zlw" id="04-the-transport-pair-fieldclip" class="clip" data-start="0" data-duration="9.963" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-ym35" class="f04-field"></div>
+      <div data-hf-id="hf-xn79" id="04-the-transport-pair-grid" class="f04-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-tvbh" id="04-the-transport-pair-railclip" class="clip" data-start="0" data-duration="9.963" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-li7j" class="f04-rail">
+        <div data-hf-id="hf-cj3v" class="f04-tick" style="top:0px;">7</div>
+        <div data-hf-id="hf-va9j" class="f04-tick" style="top:92px;">6</div>
+        <div data-hf-id="hf-z6v4" class="f04-tick" style="top:184px;">5</div>
+        <div data-hf-id="hf-4x09" class="f04-tick f04-tick-on" style="top:276px;">4</div>
+        <div data-hf-id="hf-11ty" class="f04-tick" style="top:368px;">3</div>
+        <div data-hf-id="hf-7a7m" class="f04-tick" style="top:460px;">2</div>
+        <div data-hf-id="hf-4ds9" class="f04-tick" style="top:552px;">1</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-qh9y" id="04-the-transport-pair-cardclip" class="clip" data-start="0" data-duration="9.963" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-vg9t" id="04-the-transport-pair-card" class="f04-card">
+        <div data-hf-id="hf-rk30" class="f04-card-kicker" data-layout-ignore>&#10009;&nbsp; layer 4</div>
+        <div data-hf-id="hf-r6xd" class="f04-card-title">transport</div>
+        <div data-hf-id="hf-hwgx" id="04-the-transport-pair-ports" class="f04-fact" style="top:200px;">ports</div>
+        <div data-hf-id="hf-4zcp" id="04-the-transport-pair-seq" class="f04-fact" style="top:266px;">sequence</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-71t2" id="04-the-transport-pair-arrowclip" class="clip" data-start="0" data-duration="9.963" data-track-index="3" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-d9ge" class="f04-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-cvo8" id="04-the-transport-pair-arrow" class="f04-arrow" d="M 552 742 L 1040 742" />
+        <polygon data-hf-id="hf-xlcz" id="04-the-transport-pair-head" class="f04-head" points="1032,731 1054,742 1032,753" />
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-ukuy" id="04-the-transport-pair-peerclip" class="clip" data-start="4.9" data-duration="5.063" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-9i80" id="04-the-transport-pair-peerlabel" class="f04-peerlabel">theirs</div>
+      <div data-hf-id="hf-ksbx" id="04-the-transport-pair-s1" class="f04-stamp" style="top:800px;">443<span data-hf-id="hf-gra7" class="f04-stamp-sub">https</span></div>
+      <div data-hf-id="hf-oufo" id="04-the-transport-pair-s2" class="f04-stamp" style="top:872px;">80<span data-hf-id="hf-53na" class="f04-stamp-sub">http</span></div>
+      <div data-hf-id="hf-8tj9" id="04-the-transport-pair-s3" class="f04-stamp" style="top:944px;">53<span data-hf-id="hf-gwx5" class="f04-stamp-sub">dns</span></div>
+      <div data-hf-id="hf-m9bd" id="04-the-transport-pair-s4" class="f04-stamp" style="top:1016px;">22<span data-hf-id="hf-h230" class="f04-stamp-sub">ssh</span></div>
+    </div>
+
+    <div data-hf-id="hf-g9l5" id="04-the-transport-pair-mboxclip" class="clip" data-start="7.6" data-duration="2.363" data-track-index="5" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-phrf" id="04-the-transport-pair-mbox" class="f04-mbox">forwards</div>
+      <div data-hf-id="hf-l3w6" id="04-the-transport-pair-mboxnote" data-layout-ignore class="f04-mboxnote">no state &middot; no ports</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.963;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-the-transport-pair"] = tl;
+
+      // ── Scene 1 (0.0–1.35s) — "your transport layer keeps": the host card enters once at
+      //    the upper third and is then immovable for the whole frame (fixed-anchor-cycle,
+      //    sub-shape A: one pinned anchor + a discrete stepping region beside it). ──
+      tl.fromTo(el("04-the-transport-pair-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("04-the-transport-pair-card"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.42);
+
+      // ── Scene 2 (1.35–6.2s) — the two facts land on their words, then the peer region
+      //    steps through four hard-cut states, one per beat of "So does theirs". ──
+      tl.fromTo(el("04-the-transport-pair-ports"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 2.311);
+      tl.fromTo(el("04-the-transport-pair-seq"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 3.115);
+
+      // the peer arrow runs the full gap (svg-path-draw, measured) — it is the claim
+      var arw = el("04-the-transport-pair-arrow");
+      var len = arw.getTotalLength() * 1.05;
+      arw.style.strokeDasharray = String(len);
+      arw.style.strokeDashoffset = String(len);
+      tl.to(arw, { strokeDashoffset: 0, duration: 0.55, ease: "power3.out" }, 4.962);
+      tl.fromTo(el("04-the-transport-pair-head"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 5.42);
+      tl.fromTo(el("04-the-transport-pair-peerlabel"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 5.16);
+
+      // four stamps, steady cadence, last one inside the back 50% of the frame
+      [
+        { id: "04-the-transport-pair-s1", t: 4.962 },
+        { id: "04-the-transport-pair-s2", t: 5.28 },
+        { id: "04-the-transport-pair-s3", t: 5.565 },
+        { id: "04-the-transport-pair-s4", t: 5.85 }
+      ].forEach(function (s) {
+        tl.fromTo(el(s.id), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.15, ease: "power4.out" }, s.t);
+      });
+
+      // ── Scene 3 (6.2–8.9s) — the middlebox arrives below the arrow on "machines" and then
+      //    visibly does nothing: muted fill, dashed edge, no glow, no state. ──
+      tl.fromTo(el("04-the-transport-pair-mbox"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" }, 7.613);
+      tl.fromTo(el("04-the-transport-pair-mboxnote"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 8.92);
+
+      // ── Scene 4 (8.9–9.963s) — host card + peer stamps + inert middlebox hold. Jitter on the card. ──
+      tl.to(el("04-the-transport-pair-card"), { y: 2, duration: 0.46, ease: "sine.inOut", yoyo: true, repeat: 1 }, 9.05);
+    })();
+  </script>
+</template>

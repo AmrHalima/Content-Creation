@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="SDLC diagram: the six phase boxes drawn quiet while every arrow between them carries a terracotta crack and a failure quote. The return loop reads months (waterfall), weeks (agile), minutes (devops).">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#141413" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <marker id="head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#CC785C"/>
+    </marker>
+    <marker id="headInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#141413" fill-opacity="0.55"/>
+    </marker>
+  </defs>
+
+  <!-- ground -->
+  <rect width="1600" height="900" fill="#FAF9F5"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- kicker -->
+  <text x="130" y="92" font-family="'JetBrains Mono', 'IBM Plex Mono', monospace" font-size="20" letter-spacing="5" fill="#141413" fill-opacity="0.75">&#10033; SDLC &#183; WHERE IT ACTUALLY BREAKS</text>
+
+  <!-- title -->
+  <text x="130" y="172" font-family="'EB Garamond', Amiri, Georgia, serif" font-style="italic" font-size="62" fill="#141413">The boxes were never the point.</text>
+
+  <!-- ============ phase tiles (deliberately quiet) ============ -->
+  <g font-family="'JetBrains Mono', 'IBM Plex Mono', monospace" font-size="19" text-anchor="middle">
+    <rect x="130" y="400" width="140" height="70" rx="8" fill="#EFE9DE" fill-opacity="0.7" stroke="#141413" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="200" y="442" fill="#141413" fill-opacity="0.55">plan</text>
+    <rect x="370" y="400" width="140" height="70" rx="8" fill="#EFE9DE" fill-opacity="0.7" stroke="#141413" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="440" y="442" fill="#141413" fill-opacity="0.55">design</text>
+    <rect x="610" y="400" width="140" height="70" rx="8" fill="#EFE9DE" fill-opacity="0.7" stroke="#141413" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="680" y="442" fill="#141413" fill-opacity="0.55">build</text>
+    <rect x="850" y="400" width="140" height="70" rx="8" fill="#EFE9DE" fill-opacity="0.7" stroke="#141413" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="920" y="442" fill="#141413" fill-opacity="0.55">test</text>
+    <rect x="1090" y="400" width="140" height="70" rx="8" fill="#EFE9DE" fill-opacity="0.7" stroke="#141413" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="1160" y="442" fill="#141413" fill-opacity="0.55">deploy</text>
+    <rect x="1330" y="400" width="140" height="70" rx="8" fill="#EFE9DE" fill-opacity="0.7" stroke="#141413" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="1400" y="442" fill="#141413" fill-opacity="0.55">operate</text>
+  </g>
+
+  <!-- ============ the arrows (the actual subject) ============ -->
+  <g stroke="#CC785C" stroke-width="5" fill="none" marker-end="url(#head)">
+    <line x1="278" y1="435" x2="360" y2="435"/>
+    <line x1="518" y1="435" x2="600" y2="435"/>
+    <line x1="758" y1="435" x2="840" y2="435"/>
+    <line x1="998" y1="435" x2="1080" y2="435"/>
+    <line x1="1238" y1="435" x2="1320" y2="435"/>
+  </g>
+
+  <!-- cracks on every arrow -->
+  <g stroke="#CC785C" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 313 421 L 322 431 L 316 436 L 326 449"/>
+    <path d="M 553 421 L 562 431 L 556 436 L 566 449"/>
+    <path d="M 793 421 L 802 431 L 796 436 L 806 449"/>
+    <path d="M 1033 421 L 1042 431 L 1036 436 L 1046 449"/>
+    <path d="M 1273 421 L 1282 431 L 1276 436 L 1286 449"/>
+  </g>
+
+  <!-- ============ quote cards ============ -->
+  <!-- leaders -->
+  <g stroke="#141413" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3 4">
+    <line x1="320" y1="300" x2="320" y2="418"/>
+    <line x1="560" y1="452" x2="560" y2="556"/>
+    <line x1="800" y1="300" x2="800" y2="418"/>
+    <line x1="1040" y1="452" x2="1040" y2="556"/>
+  </g>
+
+  <g font-family="'JetBrains Mono', 'IBM Plex Mono', monospace">
+    <!-- card 1 (above) -->
+    <rect x="210" y="212" width="220" height="88" rx="6" fill="#FAF9F5" stroke="#141413" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="230" y="250" font-size="19" fill="#141413">"make it fast."</text>
+    <text x="230" y="282" font-size="13" fill="#141413" fill-opacity="0.55">plan &#8594; design</text>
+
+    <!-- card 2 (below) -->
+    <rect x="450" y="556" width="220" height="106" rx="6" fill="#FAF9F5" stroke="#141413" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="470" y="590" font-size="17" fill="#141413">mockup: 1 state.</text>
+    <text x="470" y="614" font-size="17" fill="#141413">data: 9 states.</text>
+    <text x="470" y="646" font-size="13" fill="#141413" fill-opacity="0.55">design &#8594; build</text>
+
+    <!-- card 3 (above) -->
+    <rect x="680" y="212" width="240" height="88" rx="6" fill="#FAF9F5" stroke="#141413" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="700" y="250" font-size="19" fill="#141413">"works on my machine."</text>
+    <text x="700" y="282" font-size="13" fill="#141413" fill-opacity="0.55">build &#8594; test</text>
+
+    <!-- card 4 (below) -->
+    <rect x="920" y="556" width="240" height="88" rx="6" fill="#FAF9F5" stroke="#141413" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="940" y="594" font-size="19" fill="#141413">"shipped it on a Friday."</text>
+    <text x="940" y="626" font-size="13" fill="#141413" fill-opacity="0.55">dev &#8594; ops</text>
+  </g>
+
+  <!-- ============ the return loop ============ -->
+  <path d="M 1400 478 L 1400 762 L 200 762 L 200 486" fill="none" stroke="#141413" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="7 6" marker-end="url(#headInk)"/>
+  <text x="800" y="742" font-family="'JetBrains Mono', 'IBM Plex Mono', monospace" font-size="18" letter-spacing="1.5" text-anchor="middle" fill="#141413" fill-opacity="0.75">the loop: months (waterfall) &#183; weeks (agile) &#183; <tspan fill="#CC785C" fill-opacity="1">minutes (devops)</tspan></text>
+
+  <!-- landing -->
+  <text x="1470" y="852" font-family="'EB Garamond', Amiri, Georgia, serif" font-style="italic" font-size="42" text-anchor="end" fill="#141413">shrink the loop.</text>
+  <text x="130" y="852" font-family="'JetBrains Mono', 'IBM Plex Mono', monospace" font-size="14" letter-spacing="3" fill="#141413" fill-opacity="0.45">FIG. 1 &#183; THE SIX BOXES BEHAVE. THE FIVE ARROWS BETWEEN THEM HAVE QUOTES.</text>
+</svg>

@@ -1,0 +1,851 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 5.845,
+      "words": [
+        {
+          "text": "Your",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "code",
+          "start": 0.24,
+          "end": 0.7
+        },
+        {
+          "text": "wants",
+          "start": 0.7,
+          "end": 1.26
+        },
+        {
+          "text": "one",
+          "start": 1.26,
+          "end": 1.56
+        },
+        {
+          "text": "shape.",
+          "start": 1.56,
+          "end": 2
+        },
+        {
+          "text": "The",
+          "start": 2.62,
+          "end": 2.84
+        },
+        {
+          "text": "vendor's",
+          "start": 2.84,
+          "end": 3.44
+        },
+        {
+          "text": "SDK",
+          "start": 3.44,
+          "end": 4
+        },
+        {
+          "text": "hands",
+          "start": 4,
+          "end": 4.7
+        },
+        {
+          "text": "you",
+          "start": 4.7,
+          "end": 4.92
+        },
+        {
+          "text": "a",
+          "start": 4.92,
+          "end": 5.02
+        },
+        {
+          "text": "different",
+          "start": 5.02,
+          "end": 5.32
+        },
+        {
+          "text": "one.",
+          "start": 5.32,
+          "end": 5.62
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 8,
+      "words": [
+        {
+          "text": "An",
+          "start": 0,
+          "end": 0.28
+        },
+        {
+          "text": "adapter",
+          "start": 0.28,
+          "end": 0.8
+        },
+        {
+          "text": "lets",
+          "start": 0.8,
+          "end": 1.22
+        },
+        {
+          "text": "them",
+          "start": 1.22,
+          "end": 1.48
+        },
+        {
+          "text": "talk,",
+          "start": 1.48,
+          "end": 1.96
+        },
+        {
+          "text": "and",
+          "start": 1.96,
+          "end": 2.58
+        },
+        {
+          "text": "neither",
+          "start": 2.58,
+          "end": 2.88
+        },
+        {
+          "text": "side",
+          "start": 2.88,
+          "end": 3.36
+        },
+        {
+          "text": "changes.",
+          "start": 3.36,
+          "end": 4.06
+        },
+        {
+          "text": "It",
+          "start": 5,
+          "end": 5.14
+        },
+        {
+          "text": "converts",
+          "start": 5.14,
+          "end": 5.6
+        },
+        {
+          "text": "one",
+          "start": 5.6,
+          "end": 6.12
+        },
+        {
+          "text": "interface",
+          "start": 6.12,
+          "end": 6.72
+        },
+        {
+          "text": "into",
+          "start": 6.72,
+          "end": 7.12
+        },
+        {
+          "text": "another.",
+          "start": 7.12,
+          "end": 7.6
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 6.869,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "text": "factory",
+          "start": 0.18,
+          "end": 0.68
+        },
+        {
+          "text": "picks",
+          "start": 0.68,
+          "end": 1.2
+        },
+        {
+          "text": "which",
+          "start": 1.2,
+          "end": 1.54
+        },
+        {
+          "text": "thing",
+          "start": 1.54,
+          "end": 1.88
+        },
+        {
+          "text": "to",
+          "start": 1.88,
+          "end": 2.08
+        },
+        {
+          "text": "build.",
+          "start": 2.08,
+          "end": 2.44
+        },
+        {
+          "text": "An",
+          "start": 3.16,
+          "end": 3.3
+        },
+        {
+          "text": "adapter",
+          "start": 3.3,
+          "end": 3.78
+        },
+        {
+          "text": "reshapes",
+          "start": 3.78,
+          "end": 4.74
+        },
+        {
+          "text": "a",
+          "start": 4.74,
+          "end": 4.86
+        },
+        {
+          "text": "thing",
+          "start": 4.86,
+          "end": 5.2
+        },
+        {
+          "text": "that",
+          "start": 5.2,
+          "end": 5.48
+        },
+        {
+          "text": "already",
+          "start": 5.48,
+          "end": 5.9
+        },
+        {
+          "text": "exists.",
+          "start": 5.9,
+          "end": 6.36
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 8.469,
+      "words": [
+        {
+          "text": "That",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "text": "seam",
+          "start": 0.32,
+          "end": 0.7
+        },
+        {
+          "text": "is",
+          "start": 0.7,
+          "end": 1.06
+        },
+        {
+          "text": "where",
+          "start": 1.06,
+          "end": 1.24
+        },
+        {
+          "text": "your",
+          "start": 1.24,
+          "end": 1.42
+        },
+        {
+          "text": "domain",
+          "start": 1.42,
+          "end": 1.76
+        },
+        {
+          "text": "stops",
+          "start": 1.76,
+          "end": 2.4
+        },
+        {
+          "text": "and",
+          "start": 2.4,
+          "end": 3.1
+        },
+        {
+          "text": "the",
+          "start": 3.1,
+          "end": 3.22
+        },
+        {
+          "text": "vendor",
+          "start": 3.22,
+          "end": 3.54
+        },
+        {
+          "text": "starts.",
+          "start": 3.54,
+          "end": 4.18
+        },
+        {
+          "text": "Nothing",
+          "start": 4.94,
+          "end": 5.36
+        },
+        {
+          "text": "in",
+          "start": 5.36,
+          "end": 5.64
+        },
+        {
+          "text": "your",
+          "start": 5.64,
+          "end": 5.74
+        },
+        {
+          "text": "code",
+          "start": 5.74,
+          "end": 6.22
+        },
+        {
+          "text": "knows",
+          "start": 6.22,
+          "end": 6.7
+        },
+        {
+          "text": "their",
+          "start": 6.7,
+          "end": 7.02
+        },
+        {
+          "text": "client",
+          "start": 7.02,
+          "end": 7.54
+        },
+        {
+          "text": "exists.",
+          "start": 7.54,
+          "end": 8.04
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 8.896,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.22
+        },
+        {
+          "text": "domain",
+          "start": 0.22,
+          "end": 0.78
+        },
+        {
+          "text": "asks",
+          "start": 0.78,
+          "end": 1.24
+        },
+        {
+          "text": "for",
+          "start": 1.24,
+          "end": 1.58
+        },
+        {
+          "text": "amount,",
+          "start": 1.58,
+          "end": 1.72
+        },
+        {
+          "text": "then",
+          "start": 2.38,
+          "end": 2.7
+        },
+        {
+          "text": "currency.",
+          "start": 2.7,
+          "end": 3.42
+        },
+        {
+          "text": "The",
+          "start": 4.4,
+          "end": 4.54
+        },
+        {
+          "text": "vendor",
+          "start": 4.54,
+          "end": 4.86
+        },
+        {
+          "text": "wants",
+          "start": 4.86,
+          "end": 5.28
+        },
+        {
+          "text": "them",
+          "start": 5.28,
+          "end": 5.64
+        },
+        {
+          "text": "the",
+          "start": 5.64,
+          "end": 5.86
+        },
+        {
+          "text": "other",
+          "start": 5.86,
+          "end": 6.14
+        },
+        {
+          "text": "way",
+          "start": 6.14,
+          "end": 6.48
+        },
+        {
+          "text": "round,",
+          "start": 6.48,
+          "end": 6.98
+        },
+        {
+          "text": "under",
+          "start": 7.34,
+          "end": 7.7
+        },
+        {
+          "text": "a",
+          "start": 7.7,
+          "end": 7.94
+        },
+        {
+          "text": "different",
+          "start": 7.94,
+          "end": 8.2
+        },
+        {
+          "text": "name.",
+          "start": 8.2,
+          "end": 8.58
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "duration_s": 8.085,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "answer",
+          "start": 0.24,
+          "end": 0.68
+        },
+        {
+          "text": "gets",
+          "start": 0.68,
+          "end": 1.06
+        },
+        {
+          "text": "converted",
+          "start": 1.06,
+          "end": 1.74
+        },
+        {
+          "text": "too,",
+          "start": 1.74,
+          "end": 2.26
+        },
+        {
+          "text": "back",
+          "start": 2.26,
+          "end": 2.98
+        },
+        {
+          "text": "into",
+          "start": 2.98,
+          "end": 3.3
+        },
+        {
+          "text": "a",
+          "start": 3.3,
+          "end": 3.52
+        },
+        {
+          "text": "type",
+          "start": 3.52,
+          "end": 3.8
+        },
+        {
+          "text": "you",
+          "start": 3.8,
+          "end": 4.08
+        },
+        {
+          "text": "own.",
+          "start": 4.08,
+          "end": 4.42
+        },
+        {
+          "text": "Every",
+          "start": 5.08,
+          "end": 5.44
+        },
+        {
+          "text": "difference",
+          "start": 5.44,
+          "end": 5.86
+        },
+        {
+          "text": "handled",
+          "start": 5.86,
+          "end": 6.54
+        },
+        {
+          "text": "in",
+          "start": 6.54,
+          "end": 6.92
+        },
+        {
+          "text": "one",
+          "start": 6.92,
+          "end": 7.24
+        },
+        {
+          "text": "box.",
+          "start": 7.24,
+          "end": 7.66
+        }
+      ]
+    },
+    {
+      "frame": 7,
+      "duration_s": 7.915,
+      "words": [
+        {
+          "text": "It",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "text": "costs",
+          "start": 0.2,
+          "end": 0.54
+        },
+        {
+          "text": "a",
+          "start": 0.54,
+          "end": 0.8
+        },
+        {
+          "text": "layer",
+          "start": 0.8,
+          "end": 1.12
+        },
+        {
+          "text": "you",
+          "start": 1.12,
+          "end": 1.4
+        },
+        {
+          "text": "maintain",
+          "start": 1.4,
+          "end": 1.84
+        },
+        {
+          "text": "on",
+          "start": 1.84,
+          "end": 2.34
+        },
+        {
+          "text": "both",
+          "start": 2.34,
+          "end": 2.64
+        },
+        {
+          "text": "sides.",
+          "start": 2.64,
+          "end": 3.2
+        },
+        {
+          "text": "It",
+          "start": 4.06,
+          "end": 4.22
+        },
+        {
+          "text": "pays",
+          "start": 4.22,
+          "end": 4.6
+        },
+        {
+          "text": "when",
+          "start": 4.6,
+          "end": 4.96
+        },
+        {
+          "text": "the",
+          "start": 4.96,
+          "end": 5.08
+        },
+        {
+          "text": "two",
+          "start": 5.08,
+          "end": 5.34
+        },
+        {
+          "text": "shapes",
+          "start": 5.34,
+          "end": 5.74
+        },
+        {
+          "text": "change",
+          "start": 5.74,
+          "end": 6.3
+        },
+        {
+          "text": "for",
+          "start": 6.3,
+          "end": 6.64
+        },
+        {
+          "text": "different",
+          "start": 6.64,
+          "end": 6.96
+        },
+        {
+          "text": "reasons.",
+          "start": 6.96,
+          "end": 7.46
+        }
+      ]
+    },
+    {
+      "frame": 8,
+      "duration_s": 8.896,
+      "words": [
+        {
+          "text": "It",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "leaks",
+          "start": 0.26,
+          "end": 0.58
+        },
+        {
+          "text": "when",
+          "start": 0.58,
+          "end": 0.94
+        },
+        {
+          "text": "the",
+          "start": 0.94,
+          "end": 1.08
+        },
+        {
+          "text": "vendor's",
+          "start": 1.08,
+          "end": 1.64
+        },
+        {
+          "text": "response",
+          "start": 1.64,
+          "end": 2.12
+        },
+        {
+          "text": "type",
+          "start": 2.12,
+          "end": 2.7
+        },
+        {
+          "text": "shows",
+          "start": 2.7,
+          "end": 3.32
+        },
+        {
+          "text": "up",
+          "start": 3.32,
+          "end": 3.72
+        },
+        {
+          "text": "in",
+          "start": 3.72,
+          "end": 3.84
+        },
+        {
+          "text": "your",
+          "start": 3.84,
+          "end": 3.96
+        },
+        {
+          "text": "caller's",
+          "start": 3.96,
+          "end": 4.58
+        },
+        {
+          "text": "signature.",
+          "start": 4.58,
+          "end": 5.1
+        },
+        {
+          "text": "Then",
+          "start": 6.02,
+          "end": 6.32
+        },
+        {
+          "text": "the",
+          "start": 6.32,
+          "end": 6.54
+        },
+        {
+          "text": "whole",
+          "start": 6.54,
+          "end": 6.84
+        },
+        {
+          "text": "seam",
+          "start": 6.84,
+          "end": 7.34
+        },
+        {
+          "text": "is",
+          "start": 7.34,
+          "end": 7.72
+        },
+        {
+          "text": "decoration.",
+          "start": 7.72,
+          "end": 8.24
+        }
+      ]
+    },
+    {
+      "frame": 9,
+      "duration_s": 10.133,
+      "words": [
+        {
+          "text": "Stacked",
+          "start": 0,
+          "end": 0.52
+        },
+        {
+          "text": "adapters",
+          "start": 0.52,
+          "end": 1.22
+        },
+        {
+          "text": "fail",
+          "start": 1.22,
+          "end": 1.54
+        },
+        {
+          "text": "the",
+          "start": 1.54,
+          "end": 1.78
+        },
+        {
+          "text": "same",
+          "start": 1.78,
+          "end": 2.14
+        },
+        {
+          "text": "way,",
+          "start": 2.14,
+          "end": 2.5
+        },
+        {
+          "text": "one",
+          "start": 2.88,
+          "end": 3.22
+        },
+        {
+          "text": "layer",
+          "start": 3.22,
+          "end": 3.54
+        },
+        {
+          "text": "down.",
+          "start": 3.54,
+          "end": 4.04
+        },
+        {
+          "text": "Keep",
+          "start": 4.74,
+          "end": 5.18
+        },
+        {
+          "text": "one",
+          "start": 5.18,
+          "end": 5.52
+        },
+        {
+          "text": "box",
+          "start": 5.52,
+          "end": 6
+        },
+        {
+          "text": "per",
+          "start": 6,
+          "end": 6.28
+        },
+        {
+          "text": "pair",
+          "start": 6.28,
+          "end": 6.58
+        },
+        {
+          "text": "of",
+          "start": 6.58,
+          "end": 6.74
+        },
+        {
+          "text": "shapes",
+          "start": 6.74,
+          "end": 7.16
+        },
+        {
+          "text": "and",
+          "start": 7.16,
+          "end": 7.56
+        },
+        {
+          "text": "finish",
+          "start": 7.56,
+          "end": 7.92
+        },
+        {
+          "text": "the",
+          "start": 7.92,
+          "end": 8.12
+        },
+        {
+          "text": "translation",
+          "start": 8.12,
+          "end": 8.88
+        },
+        {
+          "text": "inside",
+          "start": 8.88,
+          "end": 9.52
+        },
+        {
+          "text": "it.",
+          "start": 9.52,
+          "end": 9.9
+        }
+      ]
+    }
+  ]
+}

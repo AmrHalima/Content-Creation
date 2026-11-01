@@ -1,0 +1,225 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f08-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f08-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f08-kicker {
+      position: absolute; top: 206px; left: 80px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #6e6e64;
+    }
+    .f08-spike { display: inline-block; color: #6e6e64; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f08-ktext { display: inline-block; opacity: 0; }
+
+    /* twelve nested wrappers, drawn by inset; the named three wear a heavier edge */
+    .f08-ring {
+      position: absolute;
+      box-sizing: border-box;
+      border: 2px solid rgba(26,26,26,0.46);
+      border-radius: 28px;
+      background: transparent;
+      opacity: 0;
+    }
+    .f08-ring-named { border: 2px solid #1a1a1a; opacity: 1; }
+    .f08-count {
+      position: absolute; left: 430px; top: 1104px; width: 220px; height: 42px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb;
+      border: 2px solid rgba(26,26,26,0.46);
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.4cqw;
+      letter-spacing: 0.14em; color: rgba(26,26,26,0.78); white-space: nowrap;
+      opacity: 0;
+    }
+    .f08-base {
+      position: absolute; left: 475px; top: 672px; width: 130px; height: 56px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #034f46;
+      border: 2px solid #ffffeb;
+      border-radius: 12px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.35cqw;
+      letter-spacing: 0.06em; color: #ffffeb; white-space: nowrap;
+    }
+
+    /* the stack trace nobody reads */
+    .f08-railrow {
+      position: absolute; left: 700px; width: 300px; height: 32px;
+      line-height: 32px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.35cqw;
+      letter-spacing: -0.01em; color: rgba(26,26,26,0.72); white-space: pre;
+      opacity: 0;
+    }
+    .f08-railhead {
+      position: absolute; left: 700px; top: 1104px; width: 300px; height: 34px;
+      line-height: 34px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.35cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6e6e64; white-space: pre;
+      opacity: 0;
+    }
+
+    /* the type check that lies */
+    .f08-check {
+      position: absolute; left: 80px; top: 1190px; width: 560px; height: 240px;
+      box-sizing: border-box;
+      background: #181715;
+      border: 2px solid #ffffeb;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .f08-checktitle {
+      position: absolute; top: 0; left: 0; width: 100%; height: 62px;
+      display: flex; align-items: center;
+      padding: 0 24px; box-sizing: border-box;
+      background: #252320;
+      border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.3cqw;
+      letter-spacing: 0.06em; color: rgba(255,255,235,0.62);
+    }
+    .f08-checkline {
+      position: absolute; left: 24px; top: 84px; width: 520px; height: 48px;
+      line-height: 48px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 1.55cqw;
+      letter-spacing: -0.01em; color: rgba(255,255,235,0.78); white-space: pre;
+      opacity: 0;
+    }
+    .f08-false {
+      position: absolute; left: 24px; top: 158px; width: 500px; height: 60px;
+      line-height: 60px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.2cqw;
+      letter-spacing: 0.02em; color: #ffa946; white-space: pre;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="08-twelve-deep" data-width="1080" data-height="1920" data-duration="9.003">
+
+    <div id="f08-fieldclip" class="clip" data-start="0" data-duration="9.003" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="f08-field" class="f08-field"></div>
+      <div id="f08-grid" class="f08-grid"></div>
+    </div>
+
+    <div id="f08-chromeclip" class="clip" data-start="0" data-duration="9.003" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="f08-kicker" class="f08-kicker">
+        <span id="f08-spike" class="f08-spike">&#10009;</span><span id="f08-ktext" class="f08-ktext" data-layout-ignore>DEPTH</span>
+      </div>
+    </div>
+
+    <div id="f08-stackclip" class="clip" data-start="0" data-duration="9.003" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f08-ring0" class="f08-ring f08-ring-named" style="left:80px; top:300px; width:920px; height:800px;"></div>
+      <div id="f08-ring1" class="f08-ring f08-ring-named" style="left:112px; top:332px; width:856px; height:736px;"></div>
+      <div id="f08-ring2" class="f08-ring f08-ring-named" style="left:144px; top:364px; width:792px; height:672px;"></div>
+      <div id="f08-ring3" class="f08-ring" style="left:176px; top:396px; width:728px; height:608px;"></div>
+      <div id="f08-ring4" class="f08-ring" style="left:208px; top:428px; width:664px; height:544px;"></div>
+      <div id="f08-ring5" class="f08-ring" style="left:240px; top:460px; width:600px; height:480px;"></div>
+      <div id="f08-ring6" class="f08-ring" style="left:272px; top:492px; width:536px; height:416px;"></div>
+      <div id="f08-ring7" class="f08-ring" style="left:304px; top:524px; width:472px; height:352px;"></div>
+      <div id="f08-ring8" class="f08-ring" style="left:336px; top:556px; width:408px; height:288px;"></div>
+      <div id="f08-ring9" class="f08-ring" style="left:368px; top:588px; width:344px; height:224px;"></div>
+      <div id="f08-ring10" class="f08-ring" style="left:400px; top:620px; width:280px; height:160px;"></div>
+      <div id="f08-ring11" class="f08-ring" style="left:432px; top:652px; width:216px; height:96px;"></div>
+      <div id="f08-base" class="f08-base">Stripe</div>
+      <div id="f08-count" class="f08-count">12 rings</div>
+    </div>
+
+    <div id="f08-railclip" class="clip" data-start="4.9" data-duration="4.103" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f08-railhead" class="f08-railhead" data-layout-ignore>charge() frames</div>
+      <div id="f08-row1" class="f08-railrow" style="top:1146px;" data-layout-ignore>1  CachedGateway</div>
+      <div id="f08-row2" class="f08-railrow" style="top:1180px;" data-layout-ignore>2  RetriedGateway</div>
+      <div id="f08-row3" class="f08-railrow" style="top:1214px;" data-layout-ignore>3  LoggedGateway</div>
+      <div id="f08-row4" class="f08-railrow" style="top:1248px;" data-layout-ignore>4  TimedGateway</div>
+      <div id="f08-row5" class="f08-railrow" style="top:1282px;" data-layout-ignore>5  MetredGateway</div>
+      <div id="f08-row6" class="f08-railrow" style="top:1316px;" data-layout-ignore>6  AuditedGateway</div>
+      <div id="f08-row7" class="f08-railrow" style="top:1350px;" data-layout-ignore>7  BreakerGateway</div>
+      <div id="f08-row8" class="f08-railrow" style="top:1384px;" data-layout-ignore>8  ThrottledGateway</div>
+      <div id="f08-row9" class="f08-railrow" style="top:1418px;" data-layout-ignore>9  PrefixedGateway</div>
+      <div id="f08-row10" class="f08-railrow" style="top:1452px;" data-layout-ignore>10 SanitizedGateway</div>
+      <div id="f08-row11" class="f08-railrow" style="top:1486px;" data-layout-ignore>11 FallbackGateway</div>
+      <div id="f08-row12" class="f08-railrow" style="top:1520px;" data-layout-ignore>12 GuardedGateway</div>
+    </div>
+
+    <div id="f08-checkclip" class="clip" data-start="6.2" data-duration="2.803" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f08-check" class="f08-check">
+        <div id="f08-checktitle" class="f08-checktitle">debugger</div>
+        <div id="f08-checkline" class="f08-checkline">gateway instanceof StripeGateway</div>
+        <div id="f08-false" class="f08-false">// false</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["08-twelve-deep"] = tl;
+
+      tl.fromTo(el("f08-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f08-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f08-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–3.2s) — the stack the viewer knows (three named rings, already seated),
+      // then "every call site adds a ring" punctures one in inside the last ──
+      tl.fromTo(el("f08-base"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0);
+      var ADD = [
+        { id: "f08-ring3", t: 1.52 },
+        { id: "f08-ring4", t: 1.82 },
+        { id: "f08-ring5", t: 2.22 },
+        { id: "f08-ring6", t: 2.58 },
+        { id: "f08-ring7", t: 3.02 }
+      ];
+      ADD.forEach(function (r) {
+        tl.fromTo(el(r.id), { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power2.out" }, r.t);
+      });
+
+      // ── Scene 2 (3.2–5.0s) — "Twelve deep," closes the ring in from every side ──
+      var DEEP = [
+        { id: "f08-ring8", t: 4.28 },
+        { id: "f08-ring9", t: 4.44 },
+        { id: "f08-ring10", t: 4.60 },
+        { id: "f08-ring11", t: 4.76 }
+      ];
+      DEEP.forEach(function (r) {
+        tl.fromTo(el(r.id), { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, r.t);
+      });
+      tl.fromTo(el("f08-count"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" }, 4.90);
+
+      // ── Scene 3 (5.0–7.4s) — the stack trace fills, one frame per wrapper ──
+      tl.fromTo(el("f08-railhead"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 5.00);
+      var ROWS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      ROWS.forEach(function (n) {
+        tl.fromTo(el("f08-row" + n), { opacity: 0, x: 18 }, { opacity: 1, x: 0, duration: 0.2, ease: "power2.out" }, 5.10 + (n - 1) * 0.14);
+      });
+
+      // ── Scene 4 (7.4–9.0s) — the type check, and the film's last word ──
+      tl.fromTo(el("f08-check"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 6.36);
+      tl.fromTo(el("f08-checkline"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.34, ease: "power2.out" }, 6.72);
+      tl.fromTo(el("f08-false"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 7.72);
+      // 8.2 → 9.003: everything stops dead. The last frame holds the tell; no fade, no exit.
+    })();
+  </script>
+</template>

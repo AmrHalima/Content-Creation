@@ -1,0 +1,185 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; left: 80px; top: 214px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f04-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f04-ktext { display: inline-block; opacity: 0; }
+    .f04-claim {
+      position: absolute; left: 80px; top: 266px; width: 920px; height: 126px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 8cqw;
+      line-height: 0.98; letter-spacing: -0.026em; color: #1a1a1a; opacity: 0;
+    }
+
+    /* grammar C — the code chamber (frame.md code-surface). One declaration, 5 lines. */
+    .f04-card {
+      position: absolute; left: 60px; top: 456px; width: 960px; height: 574px;
+      box-sizing: border-box; background: #181715;
+      border: 1px solid rgba(255,255,235,0.14); border-radius: 8px; opacity: 0;
+    }
+    .f04-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 78px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 18px; padding: 0 28px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.06em;
+      color: rgba(255,255,235,0.62);
+    }
+    .f04-dot { display: inline-block; width: 14px; height: 14px; border-radius: 9999px; background: rgba(255,255,235,0.22); }
+    .f04-line {
+      position: absolute; left: 32px; width: 880px; height: 62px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 1;
+      color: #ffffeb; opacity: 0;
+    }
+    .f04-kw { display: inline-block; color: #ffa946; }
+    .f04-st { display: inline-block; color: #5db8a6; }
+    .f04-pn { display: inline-block; color: rgba(255,255,235,0.52); }
+    /* the typing signature: a caret that sits AFTER the text and follows the frontier */
+    .f04-line-live { opacity: 1; }
+    .f04-typed-a { display: inline-block; white-space: pre; color: #ffa946; }
+    .f04-typed-b { display: inline-block; white-space: pre; }
+    .f04-caret { display: inline-block; width: 4px; height: 40px; background: #ffffeb; margin-left: 4px; opacity: 0; }
+    /* the frame's single ember element: the guard the invariant lives behind */
+    .f04-guard {
+      position: absolute; left: 10px; top: 180px; width: 7px; height: 170px;
+      background: #ffa946; border-radius: 4px; opacity: 0;
+    }
+
+    .f04-tag {
+      position: absolute; top: 1064px; height: 58px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; padding: 0 22px;
+      border: 1px solid rgba(26,26,26,0.24); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f04-tag-inv { left: 60px; width: 232px; color: #1a1a1a; border-color: rgba(26,26,26,0.34); }
+    .f04-tag-mut { left: 312px; width: 190px; color: #1a1a1a; border-color: rgba(26,26,26,0.34); }
+  </style>
+
+  <div id="root" data-composition-id="04-the-command-side" data-width="1080" data-height="1920" data-duration="9.195">
+
+    <div id="04-the-command-side-fieldclip" class="clip" data-start="0" data-duration="9.195" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field"></div>
+      <div id="04-the-command-side-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="04-the-command-side-chromeclip" class="clip" data-start="0" data-duration="9.195" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f04-kicker"><span id="04-the-command-side-spike" class="f04-spike">&#10009;</span><span id="04-the-command-side-ktext" class="f04-ktext" data-layout-ignore>command side</span></div>
+      <div id="04-the-command-side-claim" class="f04-claim">CreateOrder</div>
+    </div>
+
+    <div id="04-the-command-side-cardclip" class="clip" data-start="0" data-duration="9.195" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="04-the-command-side-card" class="f04-card">
+        <div class="f04-titlebar"><span class="f04-dot"></span><span class="f04-tfile" data-layout-ignore>create_order_handler.ts</span></div>
+        <div id="04-the-command-side-l1" class="f04-line" style="top:104px;"><span class="f04-kw">async</span><span>&nbsp;handle(</span><span class="f04-st">cmd</span><span class="f04-pn">:</span><span>&nbsp;CreateOrder)&nbsp;{</span></div>
+        <div id="04-the-command-side-l2" class="f04-line" style="top:188px;"><span>&nbsp;&nbsp;</span><span class="f04-kw">if</span><span>&nbsp;(cmd.items.length&nbsp;===&nbsp;0)</span></div>
+        <div id="04-the-command-side-l3" class="f04-line" style="top:272px;"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f04-kw">throw</span><span>&nbsp;</span><span class="f04-kw">new</span><span>&nbsp;DomainError(</span><span class="f04-st">&quot;empty&quot;</span><span class="f04-pn">)</span><span>;</span></div>
+        <div id="04-the-command-side-l4" class="f04-line f04-line-live" style="top:356px;"><span id="04-the-command-side-typedA" class="f04-typed-a"></span><span id="04-the-command-side-typedB" class="f04-typed-b"></span><span id="04-the-command-side-caret" class="f04-caret"></span></div>
+        <div id="04-the-command-side-l5" class="f04-line" style="top:440px;"><span>}</span></div>
+        <div id="04-the-command-side-guard" class="f04-guard"></div>
+      </div>
+    </div>
+
+    <div id="04-the-command-side-tagclip" class="clip" data-start="2.04" data-duration="7.155" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="04-the-command-side-taginv" class="f04-tag f04-tag-inv" data-layout-ignore>invariant</div>
+      <div id="04-the-command-side-tagmut" class="f04-tag f04-tag-mut" data-layout-ignore>mutate</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 9.195;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "04-the-command-side-";
+      var tl = gsap.timeline({ paused: true });
+
+      // the mutation line, typed in as discrete states (no TextPlugin in the shipped GSAP)
+      var A = "  await";
+      var B = " this.orders.save(Order.open(cmd));";
+      var STEPS = [
+        { t: 3.58, a: "", b: "" },
+        { t: 3.68, a: "  awa", b: "" },
+        { t: 3.84, a: A, b: "" },
+        { t: 3.98, a: A, b: " this" },
+        { t: 4.12, a: A, b: " this.orders" },
+        { t: 4.28, a: A, b: " this.orders.save(Order" },
+        { t: 4.44, a: A, b: " this.orders.save(Order.open(cmd)" },
+        { t: 4.60, a: A, b: B }
+      ];
+      var spanA = el(P + "typedA");
+      var spanB = el(P + "typedB");
+      spanA.textContent = STEPS[0].a;
+      spanB.textContent = STEPS[0].b;
+
+      // ── Scene 1 (0.0–1.26s) — the surface assembles, the caret waits at line 1 ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el(P + "claim"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.22);
+      tl.fromTo(el(P + "card"), { opacity: 0, scale: 0.985 }, { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" }, 0.4);
+      tl.fromTo(el(P + "caret"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 0.9);
+
+      // ── Scene 2 (1.26–3.58s) — "checks the invariants": guard lines land one per cue ──
+      tl.fromTo(el(P + "l1"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 1.26);
+      tl.fromTo(el(P + "l2"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 2.04);
+      tl.fromTo(el(P + "taginv"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 2.04);
+      tl.fromTo(el(P + "l3"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, 2.60);
+
+      // ── Scene 3 (3.22–5.2s) — "then mutates": the write is TYPED, caret tracking the frontier ──
+      tl.fromTo(el(P + "tagmut"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 3.58);
+      var proxy = { t: STEPS[0].t };
+      tl.to(proxy, {
+        t: STEPS[STEPS.length - 1].t,
+        duration: STEPS[STEPS.length - 1].t - STEPS[0].t,
+        ease: "none",
+        onUpdate: function () {
+          // reverse search: the last state whose time has been reached
+          var k = STEPS.length - 1;
+          while (k > 0 && proxy.t < STEPS[k].t) { k -= 1; }
+          if (spanA.textContent !== STEPS[k].a) { spanA.textContent = STEPS[k].a; }
+          if (spanB.textContent !== STEPS[k].b) { spanB.textContent = STEPS[k].b; }
+        }
+      }, STEPS[0].t);
+      // blink: two finite beats, then the caret settles
+      tl.to(el(P + "caret"), { opacity: 0.15, duration: 0.16, ease: "power1.inOut" }, 4.90);
+      tl.to(el(P + "caret"), { opacity: 1, duration: 0.16, ease: "power1.inOut" }, 5.14);
+      tl.fromTo(el(P + "l5"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out" }, 4.80);
+
+      // ── Scene 4 (5.2–8.3s) — "never reaches the database": the guard bar draws, in ember ──
+      tl.fromTo(el(P + "guard"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.5, ease: "power3.out", transformOrigin: "center top" }, 6.92);
+
+      // ── Scene 5 (8.3–9.2s) — held read of the finished handler: jitter on the chamber only ──
+      var jit = { p: 0 };
+      var card = el(P + "card");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.35,
+        duration: D - 8.5,
+        ease: "none",
+        onUpdate: function () {
+          card.style.transform = "translateY(" + (Math.sin(jit.p) * 1.5).toFixed(3) + "px)";
+        }
+      }, 8.5);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["04-the-command-side"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "A switch is just a tidy pile of if statements."
+    },
+    {
+      "id": "02",
+      "text": "One subject, many cases. A case is one answer to test for. The switch runs the case that fits. An if-chain asks again every line."
+    },
+    {
+      "id": "03",
+      "text": "Many languages need a break, meaning stop here. Skip it and the case below runs too. Saturday also runs Sunday. Kotlin and Swift never fall through."
+    },
+    {
+      "id": "04",
+      "text": "Switch on day, case sat, break. Python's version is match. No break needed."
+    },
+    {
+      "id": "05",
+      "text": "So: switch, or the if-else chain. What do you reach for? Argue it below."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

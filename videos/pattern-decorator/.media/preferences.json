@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "shortform-vertical",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:21.653Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:21.850Z"
+    },
+    "language": {
+      "value": "en",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:21.981Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:22.104Z"
+    },
+    "storyboard": {
+      "value": "no",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:22.221Z"
+    },
+    "voice": {
+      "value": "af_heart",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:22.345Z"
+    },
+    "style_preset.faceless-explainer": {
+      "value": "code-editorial",
+      "confirmed_in": [
+        "pattern-decorator"
+      ],
+      "updated_at": "2026-10-26T16:47:22.456Z"
+    }
+  },
+  "sightings": {}
+}

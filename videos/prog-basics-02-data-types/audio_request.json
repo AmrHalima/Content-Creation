@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Why does five plus five give you fifty-five?"
+    },
+    {
+      "id": "02",
+      "text": "Because every value carries a type, and the type decides what the operation means."
+    },
+    {
+      "id": "03",
+      "text": "Four you will use every day. Int for whole numbers, float for decimals, str for text, and bool for true or false."
+    },
+    {
+      "id": "04",
+      "text": "Five plus five gives ten. Put them both in quotes, and plus stops adding. It glues."
+    },
+    {
+      "id": "05",
+      "text": "So here is the quiz. Quote five, star three. What does Python give you? Comment it."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

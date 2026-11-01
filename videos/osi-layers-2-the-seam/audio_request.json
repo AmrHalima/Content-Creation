@@ -1,0 +1,37 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Every layer talks sideways, to the same number on the machine at the other end."
+    },
+    {
+      "id": "02",
+      "text": "A layer is a slot with a job. And a slot can be refilled."
+    },
+    {
+      "id": "03",
+      "text": "For years the web spoke HTTP over TCP. Then HTTP/3 arrived and put itself on QUIC instead."
+    },
+    {
+      "id": "04",
+      "text": "Different transport, different behaviour underneath. The application sent the same request and did not need to know.",
+      "sfx": [
+        "whoosh-short"
+      ]
+    },
+    {
+      "id": "05",
+      "text": "You have done it yourself. Unplug the cable, stay on the site. Wi-Fi takes over the link, and layer three never blinks."
+    },
+    {
+      "id": "06",
+      "text": "That is how the web got rebuilt a layer at a time, in public. What got swapped is in the article."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  },
+  "voice": "am_michael"
+}

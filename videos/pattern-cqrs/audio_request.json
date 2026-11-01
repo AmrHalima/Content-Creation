@@ -1,0 +1,41 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "One class answers the writes and serves the reads. The rules pull one way. The screens pull the other."
+    },
+    {
+      "id": "02",
+      "text": "Split the model along that seam, and each side takes its own shape. Commands change state. Queries answer questions."
+    },
+    {
+      "id": "03",
+      "text": "The write side keeps normalised entities. The read side ships flat rows, joined and pre-summed for the screen."
+    },
+    {
+      "id": "04",
+      "text": "A command handler checks the invariants, then mutates. An order with no lines never reaches the database."
+    },
+    {
+      "id": "05",
+      "text": "A query handler reads a shape built for the screen and changes nothing. It can denormalise freely."
+    },
+    {
+      "id": "06",
+      "text": "Both halves can share one database. No event store, no message bus, no second store. That step is optional."
+    },
+    {
+      "id": "07",
+      "text": "One side reads what the other wrote, and the copy can lag by a moment. That gap is the price."
+    },
+    {
+      "id": "08",
+      "text": "Two stores and an event stream on a workload that never asked. A page that writes, reads back, and shows nothing."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

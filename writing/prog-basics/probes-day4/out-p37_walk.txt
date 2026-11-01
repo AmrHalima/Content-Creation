@@ -1,0 +1,27 @@
+== 37.1  hop count to reach index 500 from head ==
+linked list: reach index 499 (the 500th item) -> value 499 in 499 hops
+linked list: reach index 500 (the 501st item) -> value 500 in 500 hops
+hops == index for a singly linked list starting at head (0 hops for index 0).
+OFF-BY-ONE HAZARD: 'item 500' means index 500 = 500 hops (the 501st item), but the 500th
+item is index 499 = 499 hops. A frame drawing a chain of boxes must pick ONE and label the
+box with its INDEX, not its counting number.
+
+== 37.2  the array does the same thing ==
+array: arr[500] -> 500 | pointer dereferences performed: 1 | comparisons in a loop: 0 (there is no loop)
+
+== 37.3  node objects cost extra memory, measured ==
+Python 3.13.15, 64-bit
+list of 501 ints  sys.getsizeof(list object) = 4072 bytes
+one Node with __slots__ = ('value','next')      = 48 bytes
+501 nodes = 24048 bytes, before counting the 501 int objects each one points at
+so the same 501 values cost at least 5.91 x the container bytes in the linked form
+
+== 37.4  the insert claim, counted ==
+linked insert after index 250: 250 hops to get there + 2 pointer writes + 1 new node (the walk is the cost, the splice is free)
+array insert at position 251: 250 elements shifted right (counted by CPython memmove)
+array length after insert: 502
+
+== 37.5  what the wall clock actually says (machine-specific - NOT a screen claim) ==
+array[500]: 0.0058s for 200k reads | linked HEAD pointer read: 0.0026s for 200k
+Timing depends on this machine and must not be printed as a lesson number;
+the hop counts in 37.1 are the reproducible evidence.

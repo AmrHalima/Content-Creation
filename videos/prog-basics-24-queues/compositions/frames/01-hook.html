@@ -1,0 +1,127 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    /* frame-day3.md § 2 — the ligature kill-list is on EVERY frame of the part, not only the code
+       frame: JetBrains Mono ligates <= and -> into glyphs a learner cannot type back. */
+    * { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    /* the ground (§ 3) — identical in every frame, every loop back to its own zero */
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    /* G1 hook (§ 5). Type alone — the piece's own rule and § 8's cover rule: no line on F1. */
+    .f1-line { position: absolute; left: 72px; width: 936px; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.08;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .f1-triad { font-size: 9.2cqw; height: 112px; }
+    .f1-punch { font-size: 9.2cqw; height: 118px; }
+    .f1-t1 { top: 300px; }
+    .f1-t2 { top: 412px; }
+    .f1-t3 { top: 524px; }
+    .f1-p1 { top: 654px; }
+    .f1-p2 { top: 772px; }
+    .f1-w { display: inline-block; position: relative; }
+    /* the self-contained say-plate (§ 14 finding 2): the plate is the TOKEN'S OWN background at the
+       end of the sweep, so the contrast gate can see it and no sampled frame sits between plate
+       and ink. */
+    .f1-hl { position: absolute; left: 0; right: 0; top: 0.08em; bottom: 0.05em;
+      background: #FFD166; border-radius: 12px; transform: scaleX(0); transform-origin: left center; }
+    .f1-ht { position: relative; z-index: 1; }
+  </style>
+
+  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-duration="4.9">
+
+    <div id="g1-ground" class="clip clipband" data-start="0" data-duration="4.9" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g1-grid" class="gnd-grid"></div>
+      <div id="g1-ga" class="gnd-glow-a"></div>
+      <div id="g1-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c1-chrome" class="clip clipband" data-start="0" data-duration="4.9" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c1-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 24</div>
+        <div id="c1-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f1-content" class="clip clipband" data-start="0" data-duration="4.9" data-track-index="2">
+      <div id="f1-l1" class="f1-line f1-triad f1-t1"><span class="f1-w">every&nbsp;printer</span></div>
+      <div id="f1-l2" class="f1-line f1-triad f1-t2"><span class="f1-w">call&nbsp;center</span></div>
+      <div id="f1-l3" class="f1-line f1-triad f1-t3"><span class="f1-w">message&nbsp;app</span></div>
+      <div id="f1-l4" class="f1-line f1-punch f1-p1"><span class="f1-w">runs&nbsp;on</span></div>
+      <div id="f1-l5" class="f1-line f1-punch f1-p2" data-layout-allow-occlusion><span class="f1-w" id="f1-tok"><span class="f1-hl" id="f1-hl" data-layout-allow-occlusion></span><span class="f1-ht" id="f1-ht">one&nbsp;of&nbsp;these</span></span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 4.9;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-hook"] = tl;
+
+      /* ground: every animation returns to its own zero (4 passes of D/4) */
+      tl.fromTo(el("g1-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g1-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g1-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c1-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c1-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.22);
+
+      /* The triad is read FLAT (SCRIPT.md delivery note): one wipe per group, keyed to the measured
+         onsets — Every 0.00 / call 1.00 / message 2.12 / runs 2.70 / one 3.14. Wipe direction: left. */
+      tl.fromTo(el("f1-l1"), { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f1-l2"), { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 1.0);
+      tl.fromTo(el("f1-l3"), { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 2.12);
+      tl.fromTo(el("f1-l4"), { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 2.7);
+      tl.fromTo(el("f1-l5"), { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 3.1);
+
+      /* P1 say-sweep on the hook's sharpest group, then the plate becomes the token's own
+         background and the type flips to --say-ink in the same tick (one arrival, no half-state). */
+      tl.fromTo(el("f1-hl"), { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power2.out", immediateRender: false }, 3.14);
+      tl.set(el("f1-tok"), { backgroundColor: "#FFD166" }, 3.46);
+      tl.set(el("f1-ht"), { color: "#22201B" }, 3.46);
+      tl.set(el("f1-hl"), { opacity: 0 }, 3.46);
+      tl.fromTo(el("f1-hl"), { boxShadow: "0 0 0 rgba(255,209,102,0)" },
+        { boxShadow: "0 0 34px rgba(255,209,102,0.5)", duration: 0.45, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 3.5);
+
+      /* ambient breath, one group only, back to zero */
+      tl.fromTo(el("f1-l1"), { y: 0 }, { y: -5, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 0.6);
+
+      tl.to(el("f1-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

@@ -1,0 +1,182 @@
+<template id="captions-template" data-composition-id="captions" data-width="1080" data-height="1920">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+
+<style data-brand-tokens>
+      :root {
+      --cap-band-top: 1600px;
+      --cap-band-height: 320px;
+      }
+    </style>
+
+<style>
+  @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+  @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* the campaign's lifted band, per frame.md v2 section 5: band 1024 -> 1344, floor empty */
+    --cap-band-top: 1024px;
+    --cap-band-height: 320px;
+    --say: #FFD166;
+    --say-ink: #22201B;
+    --ink: #F4F1EA;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* absolutely stacked over the SAME band — exactly one group shown at a time */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+  .caption-pill {
+    max-width: 88%;
+    padding: 22px 44px 28px;
+    background: rgba(21, 24, 29, 0.72);
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.70);
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.14em 0.26em;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 4.26vw, 46px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--ink);
+  }
+  .caption-word {
+    display: inline-block;
+    padding: 0.04em 0.10em 0.06em;
+    color: rgba(244, 241, 234, 0.45);
+    border-radius: 8px;
+  }
+  .caption-word.is-active {
+    color: var(--say-ink);
+    background: var(--say);
+  }
+  .caption-word.is-spoken {
+    color: var(--ink);
+    background: transparent;
+  }
+  /* dormant until a word-classer tags them (kept from the engine's vocab) */
+  .caption-word.cap-num { color: rgba(244, 241, 234, 0.62); }
+  .caption-word.cap-num.is-active { color: var(--say-ink); background: var(--say); }
+  .caption-word.cap-cta { color: var(--say); background: transparent; }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill { max-width: 92%; }
+    .caption-line { font-size: clamp(36px, 4.26vw, 46px); }
+  }
+</style>
+
+<div
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="31.5"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+>
+  <div class="caption-layer" aria-hidden="true">
+    <div id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [{"id":"caption-group-0","frame":1,"start":0,"end":0.52,"text":"The inventor","words":[{"id":"caption-word-0-0","text":"The","start":0,"end":0.12},{"id":"caption-word-0-1","text":"inventor","start":0.12,"end":0.52}]},{"id":"caption-group-1","frame":1,"start":0.52,"end":1.06,"text":"of null","words":[{"id":"caption-word-1-0","text":"of","start":0.52,"end":0.74},{"id":"caption-word-1-1","text":"null","start":0.74,"end":1.06}]},{"id":"caption-group-2","frame":1,"start":1.06,"end":1.54,"text":"called it","words":[{"id":"caption-word-2-0","text":"called","start":1.06,"end":1.36},{"id":"caption-word-2-1","text":"it","start":1.36,"end":1.54}]},{"id":"caption-group-3","frame":1,"start":1.54,"end":2.28,"text":"his billion-dollar","words":[{"id":"caption-word-3-0","text":"his","start":1.54,"end":1.78},{"id":"caption-word-3-1","text":"billion-dollar","start":1.78,"end":2.16}]},{"id":"caption-group-4","frame":1,"start":2.6,"end":3.08,"text":"mistake.","words":[{"id":"caption-word-4-0","text":"mistake.","start":2.6,"end":2.96}]},{"id":"caption-group-5","frame":2,"start":4.3,"end":4.72,"text":"Null,","words":[{"id":"caption-word-5-0","text":"Null,","start":4.3,"end":4.6}]},{"id":"caption-group-6","frame":2,"start":4.86,"end":5.26,"text":"nil,","words":[{"id":"caption-word-6-0","text":"nil,","start":4.86,"end":5.14}]},{"id":"caption-group-7","frame":2,"start":5.32,"end":5.56,"text":"and None","words":[{"id":"caption-word-7-0","text":"and","start":5.32,"end":5.38},{"id":"caption-word-7-1","text":"None","start":5.38,"end":5.56}]},{"id":"caption-group-8","frame":2,"start":5.56,"end":6.02,"text":"all mean","words":[{"id":"caption-word-8-0","text":"all","start":5.56,"end":5.86},{"id":"caption-word-8-1","text":"mean","start":5.86,"end":6.02}]},{"id":"caption-group-9","frame":2,"start":6.02,"end":7,"text":"no value here.","words":[{"id":"caption-word-9-0","text":"no","start":6.02,"end":6.24},{"id":"caption-word-9-1","text":"value","start":6.24,"end":6.6},{"id":"caption-word-9-2","text":"here.","start":6.6,"end":6.88}]},{"id":"caption-group-10","frame":2,"start":7.4,"end":8.08,"text":"Zero and","words":[{"id":"caption-word-10-0","text":"Zero","start":7.4,"end":7.7},{"id":"caption-word-10-1","text":"and","start":7.7,"end":8.08}]},{"id":"caption-group-11","frame":2,"start":8.08,"end":8.46,"text":"an empty","words":[{"id":"caption-word-11-0","text":"an","start":8.08,"end":8.16},{"id":"caption-word-11-1","text":"empty","start":8.16,"end":8.46}]},{"id":"caption-group-12","frame":2,"start":8.46,"end":8.98,"text":"string are","words":[{"id":"caption-word-12-0","text":"string","start":8.46,"end":8.78},{"id":"caption-word-12-1","text":"are","start":8.78,"end":8.98}]},{"id":"caption-group-13","frame":2,"start":8.98,"end":9.8,"text":"both values.","words":[{"id":"caption-word-13-0","text":"both","start":8.98,"end":9.2},{"id":"caption-word-13-1","text":"values.","start":9.2,"end":9.68}]},{"id":"caption-group-14","frame":2,"start":10.28,"end":10.84,"text":"None is","words":[{"id":"caption-word-14-0","text":"None","start":10.28,"end":10.56},{"id":"caption-word-14-1","text":"is","start":10.56,"end":10.84}]},{"id":"caption-group-15","frame":2,"start":10.84,"end":11.32,"text":"the absence","words":[{"id":"caption-word-15-0","text":"the","start":10.84,"end":10.98},{"id":"caption-word-15-1","text":"absence","start":10.98,"end":11.32}]},{"id":"caption-group-16","frame":2,"start":11.32,"end":11.98,"text":"of one.","words":[{"id":"caption-word-16-0","text":"of","start":11.32,"end":11.64},{"id":"caption-word-16-1","text":"one.","start":11.64,"end":11.86}]},{"id":"caption-group-17","frame":3,"start":13.1,"end":13.54,"text":"Calling a","words":[{"id":"caption-word-17-0","text":"Calling","start":13.1,"end":13.38},{"id":"caption-word-17-1","text":"a","start":13.38,"end":13.54}]},{"id":"caption-group-18","frame":3,"start":13.54,"end":14.04,"text":"method on","words":[{"id":"caption-word-18-0","text":"method","start":13.54,"end":13.82},{"id":"caption-word-18-1","text":"on","start":13.82,"end":14.04}]},{"id":"caption-group-19","frame":3,"start":14.04,"end":15.04,"text":"nothing crashes your","words":[{"id":"caption-word-19-0","text":"nothing","start":14.04,"end":14.34},{"id":"caption-word-19-1","text":"crashes","start":14.34,"end":14.84},{"id":"caption-word-19-2","text":"your","start":14.84,"end":15.04}]},{"id":"caption-group-20","frame":3,"start":15.04,"end":15.6,"text":"program.","words":[{"id":"caption-word-20-0","text":"program.","start":15.04,"end":15.48}]},{"id":"caption-group-21","frame":3,"start":15.92,"end":16.5,"text":"So check","words":[{"id":"caption-word-21-0","text":"So","start":15.92,"end":16.18},{"id":"caption-word-21-1","text":"check","start":16.18,"end":16.5}]},{"id":"caption-group-22","frame":3,"start":16.5,"end":17,"text":"before you","words":[{"id":"caption-word-22-0","text":"before","start":16.5,"end":16.8},{"id":"caption-word-22-1","text":"you","start":16.8,"end":17}]},{"id":"caption-group-23","frame":3,"start":17,"end":17.52,"text":"use it.","words":[{"id":"caption-word-23-0","text":"use","start":17,"end":17.26},{"id":"caption-word-23-1","text":"it.","start":17.26,"end":17.4}]},{"id":"caption-group-24","frame":4,"start":18.6,"end":19.06,"text":"Set user","words":[{"id":"caption-word-24-0","text":"Set","start":18.6,"end":18.82},{"id":"caption-word-24-1","text":"user","start":18.82,"end":19.06}]},{"id":"caption-group-25","frame":4,"start":19.06,"end":19.64,"text":"to None,","words":[{"id":"caption-word-25-0","text":"to","start":19.06,"end":19.26},{"id":"caption-word-25-1","text":"None,","start":19.26,"end":19.52}]},{"id":"caption-group-26","frame":4,"start":19.88,"end":20.26,"text":"then read","words":[{"id":"caption-word-26-0","text":"then","start":19.88,"end":20},{"id":"caption-word-26-1","text":"read","start":20,"end":20.26}]},{"id":"caption-group-27","frame":4,"start":20.26,"end":21.26,"text":"user dot name.","words":[{"id":"caption-word-27-0","text":"user","start":20.26,"end":20.56},{"id":"caption-word-27-1","text":"dot","start":20.56,"end":20.605},{"id":"caption-word-27-2","text":"name.","start":20.56,"end":21.14}]},{"id":"caption-group-28","frame":4,"start":21.64,"end":23.22,"text":"Python raises AttributeError.","words":[{"id":"caption-word-28-0","text":"Python","start":21.64,"end":22.04},{"id":"caption-word-28-1","text":"raises","start":22.04,"end":22.5},{"id":"caption-word-28-2","text":"AttributeError.","start":22.5,"end":23.1}]},{"id":"caption-group-29","frame":4,"start":23.94,"end":25.52,"text":"JavaScript raises TypeError.","words":[{"id":"caption-word-29-0","text":"JavaScript","start":23.94,"end":24.34},{"id":"caption-word-29-1","text":"raises","start":24.34,"end":25.02},{"id":"caption-word-29-2","text":"TypeError.","start":25.02,"end":25.4}]},{"id":"caption-group-30","frame":5,"start":27,"end":27.68,"text":"Save this,","words":[{"id":"caption-word-30-0","text":"Save","start":27,"end":27.26},{"id":"caption-word-30-1","text":"this,","start":27.26,"end":27.56}]},{"id":"caption-group-31","frame":5,"start":27.82,"end":28.12,"text":"then tell","words":[{"id":"caption-word-31-0","text":"then","start":27.82,"end":27.94},{"id":"caption-word-31-1","text":"tell","start":27.94,"end":28.12}]},{"id":"caption-group-32","frame":5,"start":28.12,"end":28.38,"text":"me your","words":[{"id":"caption-word-32-0","text":"me","start":28.12,"end":28.26},{"id":"caption-word-32-1","text":"your","start":28.26,"end":28.38}]},{"id":"caption-group-33","frame":5,"start":28.38,"end":29.24,"text":"worst null bug.","words":[{"id":"caption-word-33-0","text":"worst","start":28.38,"end":28.64},{"id":"caption-word-33-1","text":"null","start":28.64,"end":28.86},{"id":"caption-word-33-2","text":"bug.","start":28.86,"end":29.12}]}];
+  var DURATION = 31.5;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start);
+        tl.set(el, { className: "caption-word is-active" }, at);
+        // micro-animation per word: it lifts onto the highlighter instead of just changing colour
+        tl.fromTo(el, { scale: 0.94, y: 5 }, { scale: 1, y: 0, duration: 0.14, ease: "power2.out" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt);
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>
+
+<style>
+  .caption-line { line-height: 1.1 !important; }
+</style>
+</template>

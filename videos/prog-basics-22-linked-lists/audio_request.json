@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "An array is a row of seats. A linked list is a treasure hunt."
+    },
+    {
+      "id": "02",
+      "text": "A linked list is a chain of nodes. Each node stores a value and a pointer to the next node."
+    },
+    {
+      "id": "03",
+      "text": "Adding at the front is fast. Finding the 50th means walking through 49 nodes first."
+    },
+    {
+      "id": "04",
+      "text": "Here is the same chain as code. To reach three you follow two pointers. An array asks for index two and gets it."
+    },
+    {
+      "id": "05",
+      "text": "Which is faster for inserting at the front: array or linked list?"
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

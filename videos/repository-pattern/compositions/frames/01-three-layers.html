@@ -1,0 +1,203 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f01-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #76766e;
+    }
+    .f01-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 0; }
+    /* the hook line, already on screen in the first second: the NAME the lockup pays off */
+    .f01-claim {
+      position: absolute; top: 300px; left: 80px; width: 920px; height: 150px;
+      display: flex; align-items: center;
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 8.4cqw; line-height: 0.98; letter-spacing: -0.028em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+    /* the navy code surface (frame.md `code-surface`): navy body, navy-elev title bar,
+       cream@14% hairline, radius 8. Syntax colors are fixed decoration, not brand coral. */
+    .f01-card {
+      position: absolute; top: 620px; left: 100px; width: 880px; height: 470px;
+      box-sizing: border-box;
+      background: #181715;
+      border: 1px solid rgba(255,255,235,0.14);
+      border-radius: 8px;
+    }
+    .f01-titlebar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 78px;
+      box-sizing: border-box;
+      background: #252320;
+      border-bottom: 1px solid rgba(255,255,235,0.14);
+      display: flex; align-items: center; gap: 18px;
+      padding: 0 28px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 1.5cqw; letter-spacing: 0.06em;
+      color: rgba(255,255,235,0.62);
+    }
+    .f01-dot { display: inline-block; width: 14px; height: 14px; border-radius: 9999px; background: rgba(255,255,235,0.22); }
+    .f01-codeline {
+      position: absolute; left: 32px; width: 520px; height: 62px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.8cqw; line-height: 1; letter-spacing: -0.01em;
+      color: #ffffeb;
+      opacity: 0;
+    }
+    .f01-kw { display: inline-block; color: #FFA946; }
+    .f01-id { display: inline-block; color: #5DB8A6; }
+    .f01-pn { display: inline-block; color: rgba(255,255,235,0.52); }
+    /* frame-absolute coordinates: card spans x 100..980, code text ends at x 712 */
+    .f01-tag {
+      box-sizing: border-box;
+      position: absolute; left: 700px; width: 264px; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1px solid rgba(255,255,235,0.3);
+      border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.01em;
+      color: rgba(255,255,235,0.8);
+      opacity: 0;
+    }
+    .f01-lead { position: absolute; left: 656px; width: 40px; height: 2px; background: rgba(255,255,235,0.3); opacity: 0; }
+    /* the frame's single ember moment outside the code surface: the coral-callout band */
+    .f01-lockup {
+      position: absolute; top: 1180px; left: 90px; width: 600px; height: 96px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      background: #FFA946;
+      border: 3px solid #1a1a1a;
+      border-radius: 8px;
+      opacity: 0;
+    }
+    .f01-lock-fig {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 4.2cqw; line-height: 1; letter-spacing: -0.02em; color: #1a1a1a;
+    }
+    .f01-lock-unit {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; line-height: 1; letter-spacing: 0.02em; text-transform: lowercase;
+      color: #1a1a1a;
+    }
+    .f01-lock-sep { font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: rgba(26,26,26,0.55); }
+    .f01-lock-b { display: inline-flex; align-items: center; gap: 14px; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="01-three-layers" data-width="1080" data-height="1920" data-duration="12.191">
+
+    <div id="01-three-layers-fieldclip" class="clip" data-start="0" data-duration="12.191" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field"></div>
+      <div id="01-three-layers-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="01-three-layers-chromeclip" class="clip" data-start="0" data-duration="12.191" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker">
+        <span id="01-three-layers-spike" class="f01-spike">&#10009;</span><span id="01-three-layers-ktext" class="f01-ktext" data-layout-ignore>ONE METHOD BODY</span>
+      </div>
+      <div id="01-three-layers-claim" class="f01-claim">place_order()</div>
+    </div>
+
+    <div id="01-three-layers-cardclip" class="clip" data-start="0" data-duration="12.191" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="01-three-layers-card" class="f01-card">
+        <div class="f01-titlebar"><span class="f01-dot"></span><span class="f01-tfile" data-layout-ignore>order_service</span></div>
+        <div id="01-three-layers-s0" class="f01-codeline" style="top:100px;"><span class="f01-kw">def</span><span>&nbsp;</span><span>place_order(cmd):</span></div>
+        <div id="01-three-layers-s1" class="f01-codeline" style="top:184px;"><span>rows = db.</span><span class="f01-pn">query(</span><span class="f01-id">sql_orders</span><span class="f01-pn">)</span></div>
+        <div id="01-three-layers-s2" class="f01-codeline" style="top:268px;"><span>tx = session.</span><span class="f01-pn">begin()</span></div>
+        <div id="01-three-layers-s3" class="f01-codeline" style="top:352px;"><span>order = Order.</span><span class="f01-pn">from(</span><span class="f01-id">rows</span><span class="f01-pn">)</span></div>
+      </div>
+    </div>
+
+    <div id="01-three-layers-tagsclip" class="clip" data-start="1.9" data-duration="10.291" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="01-three-layers-lead1" class="f01-lead" style="top:834px;"></div>
+      <div id="01-three-layers-tag1" class="f01-tag" style="top:808px;">storage</div>
+      <div id="01-three-layers-lead2" class="f01-lead" style="top:918px;"></div>
+      <div id="01-three-layers-tag2" class="f01-tag" style="top:892px;">transaction</div>
+      <div id="01-three-layers-lead3" class="f01-lead" style="top:1002px;"></div>
+      <div id="01-three-layers-tag3" class="f01-tag" style="top:976px;">domain</div>
+    </div>
+
+    <div id="01-three-layers-lockclip" class="clip" data-start="8.86" data-duration="3.331" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="01-three-layers-lockup" class="f01-lockup">
+        <span class="f01-lock-fig">3</span><span class="f01-lock-unit">layers</span><span id="01-three-layers-lock-b" class="f01-lock-b"><span class="f01-lock-sep">&#183;</span><span class="f01-lock-fig">1</span><span class="f01-lock-unit">name</span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 11.691;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      // ── ground: paper field + hairline grid (background, full-bleed, unlit) ──
+      tl.fromTo(el("01-three-layers-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.7s) — "A service method": kicker, the name, the signature line ──
+      tl.fromTo(el("01-three-layers-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("01-three-layers-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0.22);
+      tl.fromTo(el("01-three-layers-claim"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.3);
+      tl.fromTo(el("01-three-layers-s0"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, 0.82);
+
+      // ── Scene 2 (1.7–7.9s) — three body lines, one per spoken clause, each bringing its layer tag ──
+      var LINES = [
+        { line: "01-three-layers-s1", lead: "01-three-layers-lead1", tag: "01-three-layers-tag1", t: 1.70 },
+        { line: "01-three-layers-s2", lead: "01-three-layers-lead2", tag: "01-three-layers-tag2", t: 3.90 },
+        { line: "01-three-layers-s3", lead: "01-three-layers-lead3", tag: "01-three-layers-tag3", t: 6.78 }
+      ];
+      LINES.forEach(function (r) {
+        tl.fromTo(el(r.line), { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, r.t);
+        tl.fromTo(el(r.lead), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.22, ease: "power2.out", transformOrigin: "left center" }, r.t + 0.24);
+        tl.fromTo(el(r.tag), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, r.t + 0.32);
+      });
+
+      // ── Scene 3+4 (8.42–11.69s) — "is three layers wearing one name": the ember lockup builds in two beats ──
+      tl.fromTo(el("01-three-layers-lockup"), { opacity: 0, scale: 0.94, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power3.out" }, 8.86);
+      tl.fromTo(el("01-three-layers-lock-b"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 10.44);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite): the held card only, settle -> cut
+      var jit = { p: 0 };
+      var card = el("01-three-layers-card");
+      var HOLD = 10.9;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.45,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          card.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)";
+        }
+      }, HOLD);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["01-three-layers"] = tl;
+    })();
+  </script>
+</template>

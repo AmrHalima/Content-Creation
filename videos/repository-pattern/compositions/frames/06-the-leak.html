@@ -1,0 +1,186 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f06-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f06-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f06-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f06-ktext { display: inline-block; opacity: 0; }
+
+    .f06-caller {
+      position: absolute; top: 300px; left: 340px; width: 400px; height: 76px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff; border: 3px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f06-panel { position: absolute; left: 90px; width: 900px; box-sizing: border-box; background: #181715; border-radius: 8px; }
+    .f06-iface { top: 420px; height: 400px; border: 3px solid #F0D7FF; }
+    .f06-store { top: 940px; height: 300px; border: 1px solid rgba(255,255,235,0.14); }
+    .f06-bar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 62px;
+      box-sizing: border-box; background: #252320;
+      display: flex; align-items: center; gap: 16px; padding: 0 24px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.06em;
+      color: rgba(255,255,235,0.62);
+    }
+    .f06-dot { display: inline-block; width: 13px; height: 13px; border-radius: 9999px; background: rgba(255,255,235,0.22); }
+    .f06-code {
+      position: absolute; left: 26px; width: 830px; height: 58px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; letter-spacing: -0.012em;
+      color: #ffffeb;
+      opacity: 0;
+    }
+    .f06-pn { display: inline-block; color: rgba(255,255,235,0.52); }
+    .f06-id { display: inline-block; color: #5DB8A6; }
+    .f06-kw { display: inline-block; color: #FFA946; }
+    .f06-narrow { width: 520px; }
+    .f06-leakmark { position: absolute; left: 10px; width: 5px; height: 48px; background: #E8A55A; opacity: 0; }
+    .f06-rule { position: absolute; top: 878px; left: 90px; width: 900px; height: 4px; background: #1a1a1a; opacity: 0; }
+    .f06-corridor { position: absolute; inset: 0; overflow: visible; }
+    .f06-cross { fill: none; stroke: #FFA946; stroke-width: 5; }
+    .f06-crosshead { fill: #FFA946; }
+    .f06-inside {
+      position: absolute; top: 210px; left: 26px; width: 420px; height: 62px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,235,0.55); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: #ffffeb;
+      opacity: 0;
+    }
+    .f06-verdict {
+      position: absolute; top: 336px; left: 120px; width: 320px; height: 52px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,235,0.34); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      text-transform: lowercase; color: rgba(255,255,235,0.86);
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-the-leak" data-width="1080" data-height="1920" data-duration="10.52">
+
+    <div id="06-the-leak-fieldclip" class="clip" data-start="0" data-duration="10.52" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-field"></div>
+      <div id="06-the-leak-grid" class="f06-grid"></div>
+    </div>
+
+    <div id="06-the-leak-chromeclip" class="clip" data-start="0" data-duration="10.52" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f06-kicker">
+        <span id="06-the-leak-spike" class="f06-spike">&#10009;</span><span id="06-the-leak-ktext" class="f06-ktext" data-layout-ignore>WHAT LEAKS THROUGH IT</span>
+      </div>
+      <div id="06-the-leak-caller" class="f06-caller">CheckoutService</div>
+      <div id="06-the-leak-rule" class="f06-rule"></div>
+    </div>
+
+    <div id="06-the-leak-ifaceclip" class="clip" data-start="0" data-duration="10.52" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="06-the-leak-iface" class="f06-panel f06-iface">
+        <div class="f06-bar"><span class="f06-dot"></span><span class="f06-tfile" data-layout-ignore>order_repository</span></div>
+        <div id="06-the-leak-h1" class="f06-code" style="top:80px;"><span>findById(</span><span class="f06-id">id</span><span>)</span><span class="f06-pn">&nbsp;&#8594;&nbsp;</span><span class="f06-kw">Order</span></div>
+        <div id="06-the-leak-h2" class="f06-code" style="top:146px;"><span>save(</span><span class="f06-id">order</span><span>)</span></div>
+        <div id="06-the-leak-mark1" class="f06-leakmark" style="top:212px;"></div>
+        <div id="06-the-leak-l1" class="f06-code" style="top:212px;"><span>find(</span><span class="f06-id">where</span><span class="f06-pn">:&nbsp;Query)</span><span class="f06-pn">&nbsp;&#8594;&nbsp;</span><span class="f06-kw">Query[]</span></div>
+        <div id="06-the-leak-mark2" class="f06-leakmark" style="top:278px;"></div>
+        <div id="06-the-leak-l2" class="f06-code" style="top:278px;"><span>commit(</span><span class="f06-pn">)</span></div>
+        <div id="06-the-leak-verdict" class="f06-verdict" data-layout-ignore>decoration</div>
+      </div>
+    </div>
+
+    <div id="06-the-leak-storeclip" class="clip" data-start="0" data-duration="10.52" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="06-the-leak-store" class="f06-panel f06-store">
+        <div class="f06-bar"><span class="f06-dot"></span><span class="f06-tfile" data-layout-ignore>postgres</span></div>
+        <div id="06-the-leak-s1" class="f06-code f06-narrow" style="top:80px;"><span>pool.</span><span class="f06-pn">connect(</span><span class="f06-id">dsn</span><span class="f06-pn">)</span></div>
+        <div id="06-the-leak-s2" class="f06-code f06-narrow" style="top:146px;"><span class="f06-kw">orders</span><span class="f06-pn">,&nbsp;</span><span class="f06-kw">order_lines</span></div>
+        <div id="06-the-leak-inside" class="f06-inside">the caller, in here</div>
+      </div>
+    </div>
+
+    <div id="06-the-leak-crossclip" class="clip" data-start="4.5" data-duration="6.02" data-track-index="4" style="position:absolute;inset:0;">
+      <svg class="f06-corridor" width="1080" height="1920" viewBox="0 0 1080 1920">
+        <path id="06-the-leak-cross" class="f06-cross" d="M 320,727 L 800,727 L 800,1100"/>
+        <polygon id="06-the-leak-crosshead" class="f06-crosshead" points="782,1096 818,1096 800,1136"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 9.92;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(el("06-the-leak-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("06-the-leak-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("06-the-leak-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–1.4s) — the room from F4 returns, in the same places, and is pinned ──
+      tl.fromTo(el("06-the-leak-caller"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("06-the-leak-iface"), { opacity: 0.5 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+      tl.fromTo(el("06-the-leak-store"), { opacity: 0.5 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.08);
+      tl.fromTo(el("06-the-leak-rule"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.2);
+      tl.fromTo(el("06-the-leak-h1"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.24);
+      tl.fromTo(el("06-the-leak-h2"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.36);
+      tl.fromTo(el("06-the-leak-s1"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.44);
+      tl.fromTo(el("06-the-leak-s2"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.52);
+
+      // ── Scene 2 (1.4–5.0s) — the two leaks stamp as hard-cut states on their own words ──
+      function stamp(codeId, markId, at) {
+        tl.fromTo(el(codeId), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.out" }, at);
+        tl.fromTo(el(markId), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.24, ease: "power2.out", transformOrigin: "center top" }, at + 0.06);
+      }
+      stamp("06-the-leak-l1", "06-the-leak-mark1", 0.94);
+      stamp("06-the-leak-l2", "06-the-leak-mark2", 2.74);
+
+      // ── Scene 3 (5.0–7.4s) — the crossing line draws THROUGH the seam and into storage ──
+      var cross = el("06-the-leak-cross");
+      var len = cross.getTotalLength(); // 480px jog + 373px descent, drawn as one path
+      cross.style.strokeDasharray = String(len);
+      cross.style.strokeDashoffset = String(len);
+      tl.to(cross, { strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut" }, 4.5);
+      tl.fromTo(el("06-the-leak-crosshead"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out", transformOrigin: "center center" }, 6.0);
+      tl.fromTo(el("06-the-leak-inside"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 6.38);
+
+      // ── Scene 4 (7.4–9.92s) — the abstraction loses its mark; the verdict lands on "further" ──
+      tl.to(el("06-the-leak-iface"), { borderColor: "rgba(255,255,235,0.26)", duration: 0.6, ease: "power1.out" }, 7.4);
+      tl.fromTo(el("06-the-leak-verdict"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 8.44);
+
+      // sine-wave-loop on the caller chip (an element GSAP only faded in, never transforms after)
+      var jit = { p: 0 };
+      var box = el("06-the-leak-caller");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - 8.98,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.7).toFixed(3) + "px)"; }
+      }, 8.98);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["06-the-leak"] = tl;
+    })();
+  </script>
+</template>

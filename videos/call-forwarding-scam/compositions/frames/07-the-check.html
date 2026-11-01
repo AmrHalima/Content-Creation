@@ -1,0 +1,214 @@
+<template>
+  <style>
+    @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+    @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      direction: rtl;
+      font-family: "Noto Naskh Arabic", serif;
+      color: #FFFFEB;
+    }
+    .f07-bg { position: absolute; inset: 0; background: #1A1A1A; }
+
+    .f07-card {
+      position: absolute; top: 170px; right: 96px; width: 888px; min-height: 300px;
+      display: flex; align-items: flex-start; gap: 26px;
+      border-top: 1px solid rgba(255,255,235,0.30); padding-top: 44px;
+    }
+    .f07-kicker {
+      font-family: "Noto Naskh Arabic", serif; font-size: 4.6cqw; font-weight: 400;
+      line-height: 1.2; letter-spacing: 0; color: rgba(255,255,235,0.72);
+      flex: 0 0 auto; min-width: 1px;
+    }
+    .f07-num {
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 13cqw; font-weight: 800;
+      line-height: 1; color: #FFA946; flex: 0 0 auto;
+    }
+    .f07-unit {
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 7cqw; font-weight: 700;
+      line-height: 1.1; color: #FFFFEB; flex: 1 1 auto; min-width: 1px;
+    }
+
+    .f07-row {
+      position: absolute; right: 96px; width: 888px; min-height: 130px;
+      display: flex; align-items: flex-start; gap: 22px;
+      border-top: 1px solid rgba(255,255,235,0.14); padding-top: 20px; opacity: 0;
+    }
+    .f07-r1 { top: 520px; }
+    .f07-r2 { top: 700px; }
+    .f07-r3 { top: 880px; }
+    .f07-rn {
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 4.4cqw; font-weight: 700;
+      color: #FFA946; line-height: 1.25; flex: 0 0 auto;
+    }
+    .f07-rt {
+      font-family: "Noto Naskh Arabic", serif; font-size: 4.1cqw; font-weight: 400;
+      line-height: 1.45; letter-spacing: 0; color: rgba(255,255,235,0.92);
+      flex: 1 1 auto; min-width: 1px;
+    }
+    .f07-rt b { font-family: "Noto Kufi Arabic", sans-serif; font-weight: 700; color: #FFFFEB; }
+
+    /* --- the new diagram: the settings path, opened step by step --- */
+    .f07-path {
+      position: absolute; top: 1090px; right: 96px; width: 888px; min-height: 520px;
+      border: 1px solid rgba(255,255,235,0.22); box-sizing: border-box; opacity: 0;
+    }
+    .f07-phead {
+      height: 76px; display: flex; align-items: center; padding: 0 30px;
+      border-bottom: 1px solid rgba(255,255,235,0.16);
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.4cqw; font-weight: 700;
+      color: rgba(255,255,235,0.75); opacity: 0;
+    }
+    .f07-pitem {
+      position: relative; height: 96px; display: flex; align-items: center; gap: 18px;
+      padding: 0 30px; border-bottom: 1px solid rgba(255,255,235,0.09);
+      font-family: "Noto Naskh Arabic", serif; font-size: 4cqw; font-weight: 400;
+      color: rgba(255,255,235,0.88); opacity: 0;
+    }
+    .f07-chev {
+      position: absolute; left: 26px; width: 14px; height: 14px;
+      border-left: 2px solid rgba(255,255,235,0.4); border-bottom: 2px solid rgba(255,255,235,0.4);
+      transform: rotate(45deg);
+    }
+    .f07-indent1 { padding-right: 62px; }
+    .f07-indent2 { padding-right: 94px; }
+    .f07-target { border-bottom: none; }
+    .f07-target .f07-plabel {
+      font-family: "Noto Kufi Arabic", sans-serif; font-weight: 700; color: #FFA946;
+    }
+    .f07-target .f07-chev { border-color: #FFA946; }
+    .f07-targetbg {
+      position: absolute; inset: 0; background: rgba(255,169,70,0.10); opacity: 0;
+    }
+    .f07-value {
+      position: absolute; top: 400px; right: 30px; width: 828px; min-height: 100px;
+      border: 1px solid #FFA946; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 0 26px; opacity: 0;
+    }
+    .f07-vlabel {
+      font-family: "Noto Naskh Arabic", serif; font-size: 3.6cqw; font-weight: 400;
+      letter-spacing: 0; color: rgba(255,255,235,0.9);
+    }
+    .f07-vstate {
+      font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.4cqw; font-weight: 700;
+      letter-spacing: 0; color: #FFA946; white-space: nowrap;
+    }
+
+    .f07-foot {
+      position: absolute; bottom: 130px; right: 96px; width: 888px; min-height: 180px;
+      display: flex; flex-direction: column; gap: 14px; opacity: 0;
+    }
+    .f07-footrule { width: 200px; height: 1px; background: #73C1CA; transform-origin: right center; }
+    .f07-foottext {
+      font-family: "Noto Naskh Arabic", serif; font-size: 3.9cqw; font-weight: 400;
+      line-height: 1.45; letter-spacing: 0; color: #73C1CA;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-the-check" data-width="1080" data-height="1920" dir="rtl" lang="ar">
+
+    <div id="f07-bgclip" class="clip" data-start="0" data-duration="16.7" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-bg"></div>
+    </div>
+
+    <div id="f07-cardclip" class="clip" data-start="0" data-duration="16.7" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f07-card" id="f07-card">
+        <span class="f07-kicker" id="f07-kicker">تأكد في</span>
+        <span class="f07-num" id="f07-num">٢</span>
+        <span class="f07-unit" id="f07-unit">دقيقتين</span>
+      </div>
+    </div>
+
+    <div id="f07-rowsclip" class="clip" data-start="1.2" data-duration="15.5" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f07-row1" class="f07-row f07-r1">
+        <span class="f07-rn">١</span>
+        <span class="f07-rt">خد الموبايل <b>في إيدك إنت</b>. الفحص ده متعملش بالكلام من على التليفون.</span>
+      </div>
+      <div id="f07-row2" class="f07-row f07-r2">
+        <span class="f07-rn">٢</span>
+        <span class="f07-rt">اسأله سؤال واحد: في حد كلّمك وقالك <b>اكتب كود على الشاشة</b>؟ لو نعم، ده إنذار.</span>
+      </div>
+      <div id="f07-row3" class="f07-row f07-r3">
+        <span class="f07-rn">٣</span>
+        <span class="f07-rt">لو لقيت رقم مش بتاعهم: كلّم شركة الاتصالات <b>من تليفون تاني</b>. مش من تليفونه.</span>
+      </div>
+    </div>
+
+    <div id="f07-pathclip" class="clip" data-start="2.6" data-duration="14.1" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f07-path" class="f07-path">
+        <div id="f07-phead" class="f07-phead">الموبايل بتاعها</div>
+        <div id="f07-pitem1" class="f07-pitem">
+          <span class="f07-plabel">الإعدادات</span>
+          <span class="f07-chev"></span>
+        </div>
+        <div id="f07-pitem2" class="f07-pitem f07-indent1">
+          <span class="f07-plabel">إعدادات المكالمات</span>
+          <span class="f07-chev"></span>
+        </div>
+        <div id="f07-pitem3" class="f07-pitem f07-indent2 f07-target">
+          <div id="f07-targetbg" class="f07-targetbg"></div>
+          <span class="f07-plabel" style="position:relative">تحويل المكالمات</span>
+          <span class="f07-chev" style="position:absolute"></span>
+        </div>
+        <div id="f07-value" class="f07-value">
+          <span class="f07-vlabel">تحويل كل المكالمات إلى</span>
+          <span class="f07-vstate">رقم مش من أرقامكم</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="f07-footclip" class="clip" data-start="14.0" data-duration="2.7" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f07-foot" class="f07-foot">
+        <div id="f07-footrule" class="f07-footrule"></div>
+        <div class="f07-foottext">مفيش كود إلغاء ثابت. اللي يثبّتهولك هي شركة الاتصالات نفسها، أو الشاشة دي.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-the-check"] = tl;
+
+      // Scene 1 — the numeral card.
+      tl.fromTo(el("f07-kicker"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f07-num"), { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.6, ease: "power4.out" }, 0.35);
+      tl.fromTo(el("f07-unit"), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.7);
+
+      tl.fromTo(el("f07-row1"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 1.5);
+
+      // Scene 2 — the settings path opens, one level per beat, down to the switch.
+      tl.fromTo(el("f07-path"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.8);
+      tl.fromTo(el("f07-phead"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 3.1);
+      tl.fromTo(el("f07-pitem1"), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 3.5);
+      tl.fromTo(el("f07-pitem2"), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 4.3);
+      tl.fromTo(el("f07-pitem3"), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 5.1);
+      tl.fromTo(el("f07-targetbg"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 5.5);
+
+      // the number that shouldn't be there
+      tl.fromTo(el("f07-value"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.2);
+
+      // Scene 3 — the question, while the path stays up on screen.
+      tl.fromTo(el("f07-row2"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 7.6);
+
+      // Scene 4 — the call to the carrier. The path dims so the action is the bright thing.
+      tl.fromTo(el("f07-row3"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 10.4);
+      tl.to(el("f07-path"), { opacity: 0.42, duration: 0.7, ease: "power2.out" }, 10.6);
+      tl.to(el("f07-row1"), { opacity: 0.5, duration: 0.5 }, 10.6);
+      tl.to(el("f07-row2"), { opacity: 0.5, duration: 0.5 }, 10.6);
+
+      // Scene 5 — the forest footnote.
+      tl.fromTo(el("f07-foot"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 14.2);
+      tl.fromTo(el("f07-footrule"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 14.3);
+      // 15.0s -> 16.7s HELD on the three actions + the footnote.
+    })();
+  </script>
+</template>

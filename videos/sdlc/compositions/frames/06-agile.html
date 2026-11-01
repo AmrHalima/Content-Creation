@@ -1,0 +1,219 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #141413;
+    }
+    .f06-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    .f06-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(20,19,19,0.05) 0 1px, transparent 1px 90px);
+    }
+    .f06-header {
+      position: absolute; top: 130px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.1cqw; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(20,19,19,0.64);
+      opacity: 0;
+    }
+    .f06-coil-svg { position: absolute; left: 0; top: 0; }
+    .f06-coil { fill: none; stroke: #141413; stroke-opacity: 0.3; stroke-width: 2.5; stroke-linecap: round; }
+    .f06-tick { stroke: #141413; stroke-opacity: 0.25; stroke-width: 2; opacity: 0; }
+    .f06-tile {
+      position: absolute; width: 190px; height: 92px; box-sizing: border-box;
+      background: #EFE9DE;
+      border: 1px solid rgba(20,19,19,0.12);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      opacity: 0;
+    }
+    .f06-idx {
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.08em; color: rgba(20,19,19,0.64);
+    }
+    .f06-name { font-size: 2.85cqw; font-weight: 400; letter-spacing: -0.005em; color: #141413; }
+    .f06-lock-rule {
+      position: absolute; left: 390px; top: 1290px; width: 300px; height: 1px;
+      background: rgba(20,19,19,0.3);
+    }
+    .f06-lock-figure {
+      position: absolute; top: 1304px; left: 0; right: 0; text-align: center;
+      font-family: "EB Garamond", serif; font-size: 8cqw; font-weight: 400;
+      line-height: 0.95; letter-spacing: -0.025em; color: #141413;
+      white-space: nowrap;
+    }
+    .f06-fig-text {
+      display: inline-block; width: 270px; text-align: left;
+    }
+    .f06-fig-cursor {
+      display: inline-block; width: 6px; height: 60px; margin-left: 6px;
+      background: #141413; vertical-align: baseline; opacity: 0;
+    }
+    .f06-lock-label {
+      position: absolute; top: 1402px; left: 0; right: 0; text-align: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(20,19,19,0.74);
+    }
+    .f06-card {
+      position: absolute; left: 620px; top: 856px; width: 400px; box-sizing: border-box;
+      background: #FAF9F5;
+      border: 1px solid rgba(20,19,19,0.14);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(20,19,19,0.08), 0 4px 16px rgba(20,19,19,0.04);
+      padding: 22px 28px;
+      opacity: 0;
+    }
+    .f06-card-label {
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(20,19,19,0.64);
+      margin-bottom: 16px;
+    }
+    .f06-card-line {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 1.5;
+      color: #141413; opacity: 0;
+    }
+    .f06-x { display: inline-block; color: #CC785C; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="06-agile" data-width="1080" data-height="1920" data-duration="7.924">
+
+    <div id="06-agile-bg" class="clip" data-start="0" data-duration="7.924" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f06-bg"></div>
+      <div class="f06-grid"></div>
+    </div>
+
+    <div id="06-agile-stage" class="clip" data-start="0" data-duration="7.924" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="06-agile-header" class="f06-header">answer 02 &#183; agile</div>
+
+      <svg class="f06-coil-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="06-agile-coil" class="f06-coil" d="M 540 440 C 806.7 510 806.7 510 540 580 C 273.3 650 273.3 650 540 720 C 806.7 790 806.7 790 540 860 C 273.3 930 273.3 930 540 1000 C 806.7 1070 806.7 1070 540 1140 C 273.3 1210 273.3 1210 540 1280" />
+        <line id="06-agile-tick1" class="f06-tick" x1="540" y1="570" x2="540" y2="590" />
+        <line id="06-agile-tick2" class="f06-tick" x1="540" y1="710" x2="540" y2="730" />
+        <line id="06-agile-tick3" class="f06-tick" x1="540" y1="850" x2="540" y2="870" />
+        <line id="06-agile-tick4" class="f06-tick" x1="540" y1="990" x2="540" y2="1010" />
+        <line id="06-agile-tick5" class="f06-tick" x1="540" y1="1130" x2="540" y2="1150" />
+      </svg>
+
+      <div id="06-agile-tile1" class="f06-tile" style="left:645px;top:464px;"><span class="f06-idx">01</span><span class="f06-name">Plan</span></div>
+      <div id="06-agile-tile2" class="f06-tile" style="left:245px;top:604px;"><span class="f06-idx">02</span><span class="f06-name">Design</span></div>
+      <div id="06-agile-tile3" class="f06-tile" style="left:645px;top:744px;"><span class="f06-idx">03</span><span class="f06-name">Build</span></div>
+      <div id="06-agile-tile4" class="f06-tile" style="left:245px;top:884px;"><span class="f06-idx">04</span><span class="f06-name">Test</span></div>
+      <div id="06-agile-tile5" class="f06-tile" style="left:645px;top:1024px;"><span class="f06-idx">05</span><span class="f06-name">Deploy</span></div>
+      <div id="06-agile-tile6" class="f06-tile" style="left:245px;top:1164px;"><span class="f06-idx">06</span><span class="f06-name">Operate</span></div>
+
+      <div class="f06-lock-rule"></div>
+      <div class="f06-lock-figure"><span class="f06-fig-text" id="06-agile-figtext">months</span><span class="f06-fig-cursor" id="06-agile-figcursor"></span></div>
+      <div class="f06-lock-label">feedback latency</div>
+    </div>
+
+    <div id="06-agile-notecard" class="clip" data-start="4.7" data-duration="3.224" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="06-agile-card" class="f06-card">
+        <div class="f06-card-label">failure mode</div>
+        <div id="06-agile-line1" class="f06-card-line">ceremony &#10003;</div>
+        <div id="06-agile-line2" class="f06-card-line">authority <span id="06-agile-x" class="f06-x">&#10007;</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var el = function (id) { return document.getElementById(id); };
+      var D = 7.424;
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["06-agile"] = tl;
+
+      // ── Seek-safe driver: the lockup token cycle (months → weeks) is text-state work —
+      // discrete reverse-search + square-wave cursor blink, both pure functions of t. ──
+      var figText = el("06-agile-figtext");
+      var figCursor = el("06-agile-figcursor");
+      var SEQ = [
+        { t: 0.00, text: "months" },
+        { t: 2.00, text: "month" },
+        { t: 2.06, text: "mon" },
+        { t: 2.12, text: "mo" },
+        { t: 2.18, text: "m" },
+        { t: 2.24, text: "" },
+        { t: 2.28, text: "w" },
+        { t: 2.34, text: "we" },
+        { t: 2.40, text: "wee" },
+        { t: 2.46, text: "week" },
+        { t: 2.52, text: "weeks" }
+      ];
+      function textAt(time) {
+        for (var i = SEQ.length - 1; i >= 0; i--) {
+          if (time >= SEQ[i].t) return SEQ[i].text;
+        }
+        return "";
+      }
+      function cursorOpacity(t) {
+        if (t < 1.95 || t >= 4.10) return 0;
+        if (t < 2.60) return 1;                                   // solid while editing
+        if (t < 3.80) {                                           // 2 whole blink cycles, 0.6s each
+          var phase = ((t - 2.60) / 1.20) * Math.PI * 2 * 2;
+          return Math.sin(phase) > 0 ? 1 : 0;
+        }
+        return (4.10 - t) / 0.30;                                 // fade out
+      }
+      var driver = { t: 0 };
+      tl.to(driver, {
+        t: D, duration: D, ease: "none",
+        onUpdate: function () {
+          figText.textContent = textAt(driver.t);
+          figCursor.style.opacity = String(cursorOpacity(driver.t));
+        }
+      }, 0);
+
+      // ── Scene 1: the column recoils into a sprint spiral; tiles ride to their slots ──
+      tl.fromTo(el("06-agile-header"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.15);
+
+      var coil = el("06-agile-coil");
+      var coilLen = coil.getTotalLength() * 1.05;
+      coil.style.strokeDasharray = String(coilLen);
+      coil.style.strokeDashoffset = String(coilLen);
+      tl.to(coil, { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, 0.35);
+
+      // sprint-boundary ticks at the coil crossings
+      [1, 2, 3, 4, 5].forEach(function (n, i) {
+        tl.fromTo(el("06-agile-tick" + n), { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, 0.50 + i * 0.10);
+      });
+
+      // tiles fly from the crossing each just rode through (transform-only)
+      var T = [
+        { n: 1, t: 0.39, x: -200 },
+        { n: 2, t: 0.48, x: 200 },
+        { n: 3, t: 0.60, x: -200 },
+        { n: 4, t: 0.71, x: 200 },
+        { n: 5, t: 0.85, x: -200 },
+        { n: 6, t: 1.06, x: 200 }
+      ];
+      T.forEach(function (spec) {
+        tl.fromTo(el("06-agile-tile" + spec.n),
+          { x: spec.x, y: -70, opacity: 0 },
+          { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, spec.t);
+      });
+
+      // ── Scene 2 is the driver's token swap (VO "Feedback in weeks." lands 1.73–2.67) ──
+
+      // ── Scene 3: the failure-mode note lands; the coral ✗ is the frame's one voltage ──
+      tl.fromTo(el("06-agile-card"), { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 4.90);
+      tl.fromTo(el("06-agile-line1"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 5.25);
+      tl.fromTo(el("06-agile-line2"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 6.70);
+      tl.fromTo(el("06-agile-x"), { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out", transformOrigin: "50% 50%" }, 6.70);
+    })();
+  </script>
+</template>

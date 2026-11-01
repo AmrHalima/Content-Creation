@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.93",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Remove duplicates from a list in one line."
+    },
+    {
+      "id": "02",
+      "text": "A set holds unique values with no guaranteed order. Unique means no repeats. Adding the same value twice does nothing."
+    },
+    {
+      "id": "03",
+      "text": "Checking whether a value exists is fast. Great for removing duplicates and comparing groups. Four values go in, three come out."
+    },
+    {
+      "id": "04",
+      "text": "Set of one, two, two, three. That prints one, two, three. One line, and no loop."
+    },
+    {
+      "id": "05",
+      "text": "Challenge: find the common items of two lists using sets. Post your one-liner."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

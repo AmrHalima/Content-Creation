@@ -1,0 +1,157 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid { position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px); }
+    .f01-kicker { position: absolute; top: 200px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f01-spike { display: inline-block; color: #956f33; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f01-ktext { display: inline-block; opacity: 0; }
+    .f01-display { position: absolute; top: 262px; left: 80px; width: 920px; height: 150px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.2cqw; line-height: 0.95;
+      letter-spacing: -0.022em; color: #1a1a1a; opacity: 0; }
+    .f01-sender { position: absolute; top: 470px; left: 250px; width: 580px; height: 150px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; opacity: 0; }
+    .f01-sender-name { font-family: "JetBrains Mono", monospace; font-size: 3.4cqw;
+      font-weight: 700; letter-spacing: -0.01em; color: #1a1a1a; }
+    .f01-svg { position: absolute; inset: 0; }
+    .f01-wire { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 4; stroke-linecap: round; }
+    .f01-head { fill: rgba(26,26,26,0.55); opacity: 0; }
+    .f01-box { position: absolute; left: 350px; width: 470px; height: 110px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; opacity: 0; }
+    .f01-box-name { font-family: "JetBrains Mono", monospace; font-size: 3.0cqw; color: #1a1a1a; }
+    .f01-ghost { position: absolute; left: 350px; top: 1275px; width: 470px; height: 111px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border: 3px dashed rgba(26,26,26,0.34); border-radius: 8px; opacity: 0; }
+    .f01-ghost-name { font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #6f6f67; }
+    .f01-chip { position: absolute; top: 500px; left: 700px; width: 300px; height: 92px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.7cqw;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #1a1a1a; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="01-direct-calls" data-width="1080" data-height="1920" data-duration="9.545">
+
+    <div id="f01-fieldclip" class="clip" data-start="0" data-duration="9.545" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f01-field"></div>
+      <div id="f01-grid" class="f01-grid"></div>
+    </div>
+
+    <div id="f01-chromeclip" class="clip" data-start="0" data-duration="9.545" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f01-kicker">
+        <span id="f01-spike" class="f01-spike">&#10009;</span><span id="f01-ktext" class="f01-ktext" data-layout-ignore>DIRECT CALLS</span>
+      </div>
+      <div id="f01-display" class="f01-display">an order shipped</div>
+    </div>
+
+    <div id="f01-diagramclip" class="clip" data-start="0" data-duration="9.545" data-track-index="2" style="position:absolute;inset:0;">
+      <svg class="f01-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="f01-stub" class="f01-wire" d="M 250 545 L 190 545" />
+        <path id="f01-trunk" class="f01-wire" d="M 190 545 L 190 1330" />
+        <g id="f01-branches">
+          <path id="f01-b1" class="f01-wire" d="M 190 790 L 330 790" />
+          <path id="f01-b2" class="f01-wire" d="M 190 970 L 330 970" />
+          <path id="f01-b3" class="f01-wire" d="M 190 1150 L 330 1150" />
+          <path id="f01-b4" class="f01-wire" d="M 190 1330 L 330 1330" />
+        </g>
+        <g id="f01-heads">
+          <polygon id="f01-h1" class="f01-head" points="330,781 330,799 348,790" />
+          <polygon id="f01-h2" class="f01-head" points="330,961 330,979 348,970" />
+          <polygon id="f01-h3" class="f01-head" points="330,1141 330,1159 348,1150" />
+          <polygon id="f01-h4" class="f01-head" points="330,1321 330,1339 348,1330" />
+        </g>
+      </svg>
+      <div id="f01-sender" class="f01-sender"><span class="f01-sender-name">OrderService</span></div>
+      <div id="f01-box1" class="f01-box" style="top:735px;"><span class="f01-box-name">logger</span></div>
+      <div id="f01-box2" class="f01-box" style="top:915px;"><span class="f01-box-name">email</span></div>
+      <div id="f01-box3" class="f01-box" style="top:1095px;"><span class="f01-box-name">metrics</span></div>
+      <div id="f01-ghost" class="f01-ghost"><span class="f01-ghost-name">next listener</span></div>
+    </div>
+
+    <div id="f01-chipclip" class="clip" data-start="7.5" data-duration="2.045" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f01-chip" class="f01-chip">sender grows</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.045;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-direct-calls"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("f01-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0-1.1s) — "An order shipped": kicker, display line, the sender seats ──
+      tl.fromTo(el("f01-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f01-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+      tl.fromTo(el("f01-display"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.52, ease: "power3.out" }, 0.26);
+      tl.fromTo(el("f01-sender"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.56);
+
+      // ── Scene 2 (1.1-4.0s) — "three listeners": the trunk draws, then one branch + box per
+      //    spoken word (svg-path-draw per wire, items direct into slot) ──
+      tl.fromTo(el("f01-stub"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out" }, 1.02);
+      var TRUNK = el("f01-trunk");
+      var TRUNK_LEN = TRUNK.getTotalLength() * 1.02;
+      TRUNK.style.strokeDasharray = String(TRUNK_LEN);
+      TRUNK.style.strokeDashoffset = String(TRUNK_LEN);
+      tl.to(TRUNK, { strokeDashoffset: 0, duration: 1.62, ease: "power1.inOut" }, 1.1);
+
+      var CALLS = [
+        { wire: "f01-b1", head: "f01-h1", box: "f01-box1", t: 1.84 },
+        { wire: "f01-b2", head: "f01-h2", box: "f01-box2", t: 2.2 },
+        { wire: "f01-b3", head: "f01-h3", box: "f01-box3", t: 2.78 }
+      ];
+      CALLS.forEach(function (c) {
+        var p = el(c.wire);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, c.t);
+        tl.fromTo(el(c.head), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, c.t + 0.42);
+        tl.fromTo(el(c.box), { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, c.t + 0.08);
+      });
+
+      // ── Scene 3 (4.0-7.5s) — "each new listener": a fourth branch reaches a slot with no box ──
+      (function () {
+        var p = el("f01-b4");
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.62, ease: "power2.out" }, 6.2);
+        tl.fromTo(el("f01-h4"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 6.72);
+        tl.fromTo(el("f01-ghost"), { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 6.68);
+      })();
+
+      // ── Scene 4 (7.5-9.05s) — "edits the sender": the ember chip settles, then a jitter holds ──
+      tl.fromTo(el("f01-chip"), { opacity: 0, scale: 0.94, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "power3.out" }, 7.92);
+      var jit = { p: 0 };
+      var grp = el("f01-branches");
+      var HOLD = 8.5;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () { grp.style.transform = "translateY(" + (Math.sin(jit.p) * 2).toFixed(3) + "px)"; }
+      }, HOLD);
+    })();
+  </script>
+</template>

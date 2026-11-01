@@ -1,0 +1,128 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f2-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f2-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f2-kicker {
+      position: absolute; top: 372px; left: 270px; width: 540px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    /* sockets are outlines with no fill: the subject of this frame is an absence */
+    .f2-socket {
+      position: absolute; left: 270px; width: 540px; height: 96px; box-sizing: border-box;
+      display: flex; align-items: center; gap: 26px; padding: 0 26px;
+      border: 4px solid rgba(26,26,26,0.34); border-radius: 8px; background: transparent;
+      opacity: 0;
+    }
+    .f2-num {
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; color: rgba(26,26,26,0.5);
+      width: 40px; flex: 0 0 40px; text-align: center;
+    }
+    .f2-slotlabel {
+      display: inline-block;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 3.2cqw;
+      letter-spacing: -0.018em; color: rgba(26,26,26,0.62); opacity: 0;
+      will-change: transform;
+    }
+    .f2-open { border-color: #ffa946; }
+    .f2-inner { position: absolute; inset: 6px; border: 2px solid rgba(255,169,70,0.45); border-radius: 4px; opacity: 0; }
+    .f2-note {
+      position: absolute; left: 270px; top: 1206px; width: 540px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-4qw8" id="root" data-composition-id="02-the-slot" data-width="1080" data-height="1920" data-duration="5.568">
+
+    <div data-hf-id="hf-0vtq" id="f2-fieldclip" class="clip" data-start="0" data-duration="5.568" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-yjnv" class="f2-field"></div>
+      <div data-hf-id="hf-ffbs" id="f2-grid" class="f2-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-qo97" id="f2-chromeclip" class="clip" data-start="0" data-duration="5.568" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-hg0o" id="f2-kicker" class="f2-kicker" data-layout-ignore>seven sockets</div>
+    </div>
+
+    <div data-hf-id="hf-oqz3" id="f2-socketclip" class="clip" data-start="0" data-duration="5.568" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-8ubz" id="f2-s7" class="f2-socket" style="top:440px;"><span data-hf-id="hf-3p43" class="f2-num">7</span><span data-hf-id="hf-x0w6" id="f2-l7" class="f2-slotlabel">application</span></div>
+      <div data-hf-id="hf-q34l" id="f2-s6" class="f2-socket" style="top:546px;"><span data-hf-id="hf-43f4" class="f2-num">6</span><span data-hf-id="hf-8y65" id="f2-l6" class="f2-slotlabel">presentation</span></div>
+      <div data-hf-id="hf-cc9w" id="f2-s5" class="f2-socket" style="top:652px;"><span data-hf-id="hf-2wi1" class="f2-num">5</span><span data-hf-id="hf-cjzq" id="f2-l5" class="f2-slotlabel">session</span></div>
+      <div data-hf-id="hf-8k9a" id="f2-s4" class="f2-socket" style="top:758px;">
+        <div data-hf-id="hf-y1hi" id="f2-inner4" class="f2-inner"></div>
+        <span data-hf-id="hf-3at2" class="f2-num">4</span><span data-hf-id="hf-z9zs" id="f2-l4" class="f2-slotlabel">transport</span>
+      </div>
+      <div data-hf-id="hf-3hv5" id="f2-s3" class="f2-socket" style="top:864px;"><span data-hf-id="hf-23vz" class="f2-num">3</span><span data-hf-id="hf-zo6q" id="f2-l3" class="f2-slotlabel">network</span></div>
+      <div data-hf-id="hf-eqj8" id="f2-s2" class="f2-socket" style="top:970px;"><span data-hf-id="hf-2i70" class="f2-num">2</span><span data-hf-id="hf-9f2r" id="f2-l2" class="f2-slotlabel">data link</span></div>
+      <div data-hf-id="hf-wgc5" id="f2-s1" class="f2-socket" style="top:1076px;"><span data-hf-id="hf-1b9x" class="f2-num">1</span><span data-hf-id="hf-hgy3" id="f2-l1" class="f2-slotlabel">physical</span></div>
+    </div>
+
+    <div data-hf-id="hf-ym6z" id="f2-noteclip" class="clip" data-start="4.3" data-duration="1.268" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-z702" id="f2-note" class="f2-note" data-layout-ignore>one socket open</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.568;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-the-slot"] = tl;
+
+      // ── Scene 1 (0.0–1.05s) — "a layer is a slot": the sockets stagger-assemble top-down,
+      //    each arriving as an outline with only its number inside. grid-card-assemble, kept as
+      //    an assembly of holes. ──
+      tl.fromTo(el("f2-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      var SOCKETS = [
+        { s: "f2-s7", t: 0.12 }, { s: "f2-s6", t: 0.26 }, { s: "f2-s5", t: 0.4 },
+        { s: "f2-s4", t: 0.54 }, { s: "f2-s3", t: 0.68 }, { s: "f2-s2", t: 0.82 }, { s: "f2-s1", t: 0.96 }
+      ];
+      SOCKETS.forEach(function (o) {
+        tl.fromTo(el(o.s), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, o.t);
+      });
+      tl.fromTo(el("f2-kicker"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.9);
+
+      // ── Scene 2 (1.05–3.4s) — one socket takes its job label per spoken word, paced to the
+      //    line, so the bottom three are still arriving in the back 50%. ──
+      var LABELS = [
+        { l: "f2-l7", t: 0.7 }, { l: "f2-l6", t: 1.05 }, { l: "f2-l5", t: 1.51 }, { l: "f2-l4", t: 1.98 },
+        { l: "f2-l3", t: 2.46 }, { l: "f2-l2", t: 2.92 }, { l: "f2-l1", t: 3.4 }
+      ];
+      LABELS.forEach(function (o) {
+        tl.fromTo(el(o.l), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, o.t);
+      });
+
+      // ── Scene 3 (3.25–4.9s) — "and a slot can be refilled": the layer 4 socket's inner edge
+      //    lights ember on "slot" (3.25) and its label slides OUT of the socket on "refilled"
+      //    (4.30), leaving it visibly open. One element lights, one empties; nothing else moves. ──
+      tl.to(el("f2-s4"), { borderColor: "#ffa946", duration: 0.4, ease: "power2.out" }, 3.25);
+      tl.fromTo(el("f2-inner4"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.35);
+      tl.to(el("f2-l4"), { opacity: 0, x: 260, duration: 0.42, ease: "power3.in" }, 4.3);
+      tl.fromTo(el("f2-note"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 4.44);
+
+      // ── Scene 4 (4.9–5.568s) — held read of the open socket. Jitter on that socket only. ──
+      var jit = { p: 0 };
+      var sk = el("f2-s4");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.7, duration: D - 4.9, ease: "none",
+        onUpdate: function () { sk.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)"; }
+      }, 4.9);
+    })();
+  </script>
+</template>

@@ -1,0 +1,1555 @@
+{
+  "total_duration_s": 75.519,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 0.64,
+      "text": "A caller",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "A",
+          "start": 0,
+          "end": 0.2
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "caller",
+          "start": 0.2,
+          "end": 0.64
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 0.64,
+      "end": 1.32,
+      "text": "that builds",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "that",
+          "start": 0.64,
+          "end": 0.96
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "builds",
+          "start": 0.96,
+          "end": 1.32
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 1.32,
+      "end": 2.8,
+      "text": "an object answers",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "an",
+          "start": 1.32,
+          "end": 1.54
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "object",
+          "start": 1.54,
+          "end": 2.08
+        },
+        {
+          "id": "caption-word-2-2",
+          "text": "answers",
+          "start": 2.08,
+          "end": 2.8
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 2.8,
+      "end": 4.46,
+      "text": "one question first:",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "one",
+          "start": 2.8,
+          "end": 3.24
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "question",
+          "start": 3.24,
+          "end": 3.86
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "first:",
+          "start": 3.86,
+          "end": 4.34
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 1,
+      "start": 4.98,
+      "end": 6.4,
+      "text": "which concrete type.",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "which",
+          "start": 4.98,
+          "end": 5.22
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "concrete",
+          "start": 5.22,
+          "end": 5.84
+        },
+        {
+          "id": "caption-word-4-2",
+          "text": "type.",
+          "start": 5.84,
+          "end": 6.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 1,
+      "start": 7.06,
+      "end": 8.26,
+      "text": "The factory owns",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "The",
+          "start": 7.06,
+          "end": 7.18
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "factory",
+          "start": 7.18,
+          "end": 7.62
+        },
+        {
+          "id": "caption-word-5-2",
+          "text": "owns",
+          "start": 7.62,
+          "end": 8.26
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 1,
+      "start": 8.26,
+      "end": 9.14,
+      "text": "that answer.",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "that",
+          "start": 8.26,
+          "end": 8.6
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "answer.",
+          "start": 8.6,
+          "end": 9.02
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 9.365,
+      "end": 10.405,
+      "text": "Today the caller",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "Today",
+          "start": 9.365,
+          "end": 9.745
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "the",
+          "start": 9.745,
+          "end": 10.045
+        },
+        {
+          "id": "caption-word-7-2",
+          "text": "caller",
+          "start": 10.045,
+          "end": 10.405
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 10.405,
+      "end": 11.585,
+      "text": "does it itself.",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "does",
+          "start": 10.405,
+          "end": 10.785
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "it",
+          "start": 10.785,
+          "end": 10.925
+        },
+        {
+          "id": "caption-word-8-2",
+          "text": "itself.",
+          "start": 10.925,
+          "end": 11.465
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 12.345,
+      "end": 12.725,
+      "text": "Read a",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "Read",
+          "start": 12.345,
+          "end": 12.545
+        },
+        {
+          "id": "caption-word-9-1",
+          "text": "a",
+          "start": 12.545,
+          "end": 12.725
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 12.725,
+      "end": 13.925,
+      "text": "config value,",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "config",
+          "start": 12.725,
+          "end": 13.125
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "value,",
+          "start": 13.125,
+          "end": 13.805
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 2,
+      "start": 14.145,
+      "end": 14.645,
+      "text": "branch,",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "branch,",
+          "start": 14.145,
+          "end": 14.525
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 2,
+      "start": 14.985,
+      "end": 16.245,
+      "text": "call the constructor.",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "call",
+          "start": 14.985,
+          "end": 15.245
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "the",
+          "start": 15.245,
+          "end": 15.425
+        },
+        {
+          "id": "caption-word-12-2",
+          "text": "constructor.",
+          "start": 15.425,
+          "end": 16.125
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 2,
+      "start": 17.005,
+      "end": 17.485,
+      "text": "Now the",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "Now",
+          "start": 17.005,
+          "end": 17.265
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "the",
+          "start": 17.265,
+          "end": 17.485
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 2,
+      "start": 17.485,
+      "end": 18.805,
+      "text": "caller knows every",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "caller",
+          "start": 17.485,
+          "end": 17.845
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "knows",
+          "start": 17.845,
+          "end": 18.245
+        },
+        {
+          "id": "caption-word-14-2",
+          "text": "every",
+          "start": 18.245,
+          "end": 18.805
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 2,
+      "start": 18.805,
+      "end": 19.585,
+      "text": "gateway it",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "gateway",
+          "start": 18.805,
+          "end": 19.285
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "it",
+          "start": 19.285,
+          "end": 19.585
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 2,
+      "start": 19.585,
+      "end": 20.245,
+      "text": "can build.",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "can",
+          "start": 19.585,
+          "end": 19.765
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "build.",
+          "start": 19.765,
+          "end": 20.125
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 3,
+      "start": 20.416,
+      "end": 21.596,
+      "text": "A factory takes",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "A",
+          "start": 20.416,
+          "end": 20.616
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "factory",
+          "start": 20.616,
+          "end": 21.076
+        },
+        {
+          "id": "caption-word-17-2",
+          "text": "takes",
+          "start": 21.076,
+          "end": 21.596
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 3,
+      "start": 21.596,
+      "end": 23.056,
+      "text": "that question away.",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "that",
+          "start": 21.596,
+          "end": 21.916
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "question",
+          "start": 21.916,
+          "end": 22.456
+        },
+        {
+          "id": "caption-word-18-2",
+          "text": "away.",
+          "start": 22.456,
+          "end": 22.936
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 3,
+      "start": 23.596,
+      "end": 24.616,
+      "text": "The caller asks",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "The",
+          "start": 23.596,
+          "end": 23.636
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "caller",
+          "start": 23.636,
+          "end": 24.036
+        },
+        {
+          "id": "caption-word-19-2",
+          "text": "asks",
+          "start": 24.036,
+          "end": 24.616
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 3,
+      "start": 24.616,
+      "end": 25.576,
+      "text": "for a gateway.",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "for",
+          "start": 24.616,
+          "end": 24.956
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "a",
+          "start": 24.956,
+          "end": 25.096
+        },
+        {
+          "id": "caption-word-20-2",
+          "text": "gateway.",
+          "start": 25.096,
+          "end": 25.456
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 3,
+      "start": 26.176,
+      "end": 27.536,
+      "text": "The factory decides",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "The",
+          "start": 26.176,
+          "end": 26.316
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "factory",
+          "start": 26.316,
+          "end": 26.816
+        },
+        {
+          "id": "caption-word-21-2",
+          "text": "decides",
+          "start": 26.816,
+          "end": 27.536
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 3,
+      "start": 27.536,
+      "end": 28.376,
+      "text": "which one.",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "which",
+          "start": 27.536,
+          "end": 27.936
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "one.",
+          "start": 27.936,
+          "end": 28.256
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 4,
+      "start": 28.544,
+      "end": 30.164,
+      "text": "The dependency points",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "The",
+          "start": 28.544,
+          "end": 28.724
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "dependency",
+          "start": 28.724,
+          "end": 29.404
+        },
+        {
+          "id": "caption-word-23-2",
+          "text": "points",
+          "start": 29.404,
+          "end": 30.164
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 4,
+      "start": 30.164,
+      "end": 31.204,
+      "text": "down through the",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "down",
+          "start": 30.164,
+          "end": 30.704
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "through",
+          "start": 30.704,
+          "end": 31.044
+        },
+        {
+          "id": "caption-word-24-2",
+          "text": "the",
+          "start": 31.044,
+          "end": 31.204
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 4,
+      "start": 31.204,
+      "end": 31.704,
+      "text": "seam.",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "seam.",
+          "start": 31.204,
+          "end": 31.584
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 4,
+      "start": 32.324,
+      "end": 33.464,
+      "text": "The caller holds",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "The",
+          "start": 32.324,
+          "end": 32.444
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "caller",
+          "start": 32.444,
+          "end": 32.864
+        },
+        {
+          "id": "caption-word-26-2",
+          "text": "holds",
+          "start": 32.864,
+          "end": 33.464
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 4,
+      "start": 33.464,
+      "end": 34.364,
+      "text": "the interface.",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "the",
+          "start": 33.464,
+          "end": 33.724
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "interface.",
+          "start": 33.724,
+          "end": 34.244
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 4,
+      "start": 35.204,
+      "end": 36.264,
+      "text": "The factory below",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "The",
+          "start": 35.204,
+          "end": 35.304
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "factory",
+          "start": 35.304,
+          "end": 35.784
+        },
+        {
+          "id": "caption-word-28-2",
+          "text": "below",
+          "start": 35.784,
+          "end": 36.264
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 4,
+      "start": 36.264,
+      "end": 37.684,
+      "text": "holds the concrete",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "holds",
+          "start": 36.264,
+          "end": 36.904
+        },
+        {
+          "id": "caption-word-29-1",
+          "text": "the",
+          "start": 36.904,
+          "end": 37.164
+        },
+        {
+          "id": "caption-word-29-2",
+          "text": "concrete",
+          "start": 37.164,
+          "end": 37.684
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 4,
+      "start": 37.684,
+      "end": 38.324,
+      "text": "classes.",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "classes.",
+          "start": 37.684,
+          "end": 38.204
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 5,
+      "start": 38.677,
+      "end": 39.777,
+      "text": "The seam is",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "The",
+          "start": 38.677,
+          "end": 38.917
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "seam",
+          "start": 38.917,
+          "end": 39.317
+        },
+        {
+          "id": "caption-word-31-2",
+          "text": "is",
+          "start": 39.317,
+          "end": 39.777
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 5,
+      "start": 39.777,
+      "end": 40.557,
+      "text": "a signature.",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "a",
+          "start": 39.777,
+          "end": 39.897
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "signature.",
+          "start": 39.897,
+          "end": 40.437
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 5,
+      "start": 41.317,
+      "end": 41.757,
+      "text": "It takes",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "It",
+          "start": 41.317,
+          "end": 41.437
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "takes",
+          "start": 41.437,
+          "end": 41.757
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 5,
+      "start": 41.757,
+      "end": 43.617,
+      "text": "a discriminator and returns",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "a",
+          "start": 41.757,
+          "end": 41.917
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "discriminator",
+          "start": 41.917,
+          "end": 42.817
+        },
+        {
+          "id": "caption-word-34-2",
+          "text": "and",
+          "start": 42.817,
+          "end": 43.137
+        },
+        {
+          "id": "caption-word-34-3",
+          "text": "returns",
+          "start": 43.137,
+          "end": 43.617
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 5,
+      "start": 43.617,
+      "end": 44.657,
+      "text": "the interface.",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "the",
+          "start": 43.617,
+          "end": 44.017
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "interface.",
+          "start": 44.017,
+          "end": 44.537
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 5,
+      "start": 45.317,
+      "end": 45.837,
+      "text": "That is",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "That",
+          "start": 45.317,
+          "end": 45.597
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "is",
+          "start": 45.597,
+          "end": 45.837
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 5,
+      "start": 45.837,
+      "end": 46.297,
+      "text": "all the",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "all",
+          "start": 45.837,
+          "end": 46.137
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "the",
+          "start": 46.137,
+          "end": 46.297
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 5,
+      "start": 46.297,
+      "end": 47.197,
+      "text": "caller sees.",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "caller",
+          "start": 46.297,
+          "end": 46.637
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "sees.",
+          "start": 46.637,
+          "end": 47.077
+        }
+      ]
+    },
+    {
+      "id": "caption-group-39",
+      "frame": 6,
+      "start": 47.466,
+      "end": 47.806,
+      "text": "So the",
+      "words": [
+        {
+          "id": "caption-word-39-0",
+          "text": "So",
+          "start": 47.466,
+          "end": 47.666
+        },
+        {
+          "id": "caption-word-39-1",
+          "text": "the",
+          "start": 47.666,
+          "end": 47.806
+        }
+      ]
+    },
+    {
+      "id": "caption-group-40",
+      "frame": 6,
+      "start": 47.806,
+      "end": 48.806,
+      "text": "call site is",
+      "words": [
+        {
+          "id": "caption-word-40-0",
+          "text": "call",
+          "start": 47.806,
+          "end": 48.086
+        },
+        {
+          "id": "caption-word-40-1",
+          "text": "site",
+          "start": 48.086,
+          "end": 48.466
+        },
+        {
+          "id": "caption-word-40-2",
+          "text": "is",
+          "start": 48.466,
+          "end": 48.806
+        }
+      ]
+    },
+    {
+      "id": "caption-group-41",
+      "frame": 6,
+      "start": 48.806,
+      "end": 49.626,
+      "text": "one line.",
+      "words": [
+        {
+          "id": "caption-word-41-0",
+          "text": "one",
+          "start": 48.806,
+          "end": 49.126
+        },
+        {
+          "id": "caption-word-41-1",
+          "text": "line.",
+          "start": 49.126,
+          "end": 49.506
+        }
+      ]
+    },
+    {
+      "id": "caption-group-42",
+      "frame": 6,
+      "start": 50.326,
+      "end": 50.786,
+      "text": "The config",
+      "words": [
+        {
+          "id": "caption-word-42-0",
+          "text": "The",
+          "start": 50.326,
+          "end": 50.406
+        },
+        {
+          "id": "caption-word-42-1",
+          "text": "config",
+          "start": 50.406,
+          "end": 50.786
+        }
+      ]
+    },
+    {
+      "id": "caption-group-43",
+      "frame": 6,
+      "start": 50.786,
+      "end": 52.266,
+      "text": "value goes in,",
+      "words": [
+        {
+          "id": "caption-word-43-0",
+          "text": "value",
+          "start": 50.786,
+          "end": 51.306
+        },
+        {
+          "id": "caption-word-43-1",
+          "text": "goes",
+          "start": 51.306,
+          "end": 51.706
+        },
+        {
+          "id": "caption-word-43-2",
+          "text": "in,",
+          "start": 51.706,
+          "end": 52.146
+        }
+      ]
+    },
+    {
+      "id": "caption-group-44",
+      "frame": 6,
+      "start": 52.526,
+      "end": 53.566,
+      "text": "a gateway comes",
+      "words": [
+        {
+          "id": "caption-word-44-0",
+          "text": "a",
+          "start": 52.526,
+          "end": 52.626
+        },
+        {
+          "id": "caption-word-44-1",
+          "text": "gateway",
+          "start": 52.626,
+          "end": 53.046
+        },
+        {
+          "id": "caption-word-44-2",
+          "text": "comes",
+          "start": 53.046,
+          "end": 53.566
+        }
+      ]
+    },
+    {
+      "id": "caption-group-45",
+      "frame": 6,
+      "start": 53.566,
+      "end": 54.106,
+      "text": "back.",
+      "words": [
+        {
+          "id": "caption-word-45-0",
+          "text": "back.",
+          "start": 53.566,
+          "end": 53.986
+        }
+      ]
+    },
+    {
+      "id": "caption-group-46",
+      "frame": 7,
+      "start": 54.314,
+      "end": 54.674,
+      "text": "When a",
+      "words": [
+        {
+          "id": "caption-word-46-0",
+          "text": "When",
+          "start": 54.314,
+          "end": 54.554
+        },
+        {
+          "id": "caption-word-46-1",
+          "text": "a",
+          "start": 54.554,
+          "end": 54.674
+        }
+      ]
+    },
+    {
+      "id": "caption-group-47",
+      "frame": 7,
+      "start": 54.674,
+      "end": 56.174,
+      "text": "new gateway lands,",
+      "words": [
+        {
+          "id": "caption-word-47-0",
+          "text": "new",
+          "start": 54.674,
+          "end": 54.894
+        },
+        {
+          "id": "caption-word-47-1",
+          "text": "gateway",
+          "start": 54.894,
+          "end": 55.334
+        },
+        {
+          "id": "caption-word-47-2",
+          "text": "lands,",
+          "start": 55.334,
+          "end": 56.054
+        }
+      ]
+    },
+    {
+      "id": "caption-group-48",
+      "frame": 7,
+      "start": 56.554,
+      "end": 57.134,
+      "text": "the change",
+      "words": [
+        {
+          "id": "caption-word-48-0",
+          "text": "the",
+          "start": 56.554,
+          "end": 56.674
+        },
+        {
+          "id": "caption-word-48-1",
+          "text": "change",
+          "start": 56.674,
+          "end": 57.134
+        }
+      ]
+    },
+    {
+      "id": "caption-group-49",
+      "frame": 7,
+      "start": 57.134,
+      "end": 58.274,
+      "text": "is inside the",
+      "words": [
+        {
+          "id": "caption-word-49-0",
+          "text": "is",
+          "start": 57.134,
+          "end": 57.494
+        },
+        {
+          "id": "caption-word-49-1",
+          "text": "inside",
+          "start": 57.494,
+          "end": 58.054
+        },
+        {
+          "id": "caption-word-49-2",
+          "text": "the",
+          "start": 58.054,
+          "end": 58.274
+        }
+      ]
+    },
+    {
+      "id": "caption-group-50",
+      "frame": 7,
+      "start": 58.274,
+      "end": 58.934,
+      "text": "factory.",
+      "words": [
+        {
+          "id": "caption-word-50-0",
+          "text": "factory.",
+          "start": 58.274,
+          "end": 58.814
+        }
+      ]
+    },
+    {
+      "id": "caption-group-51",
+      "frame": 7,
+      "start": 59.674,
+      "end": 61.074,
+      "text": "Callers never heard",
+      "words": [
+        {
+          "id": "caption-word-51-0",
+          "text": "Callers",
+          "start": 59.674,
+          "end": 60.354
+        },
+        {
+          "id": "caption-word-51-1",
+          "text": "never",
+          "start": 60.354,
+          "end": 60.654
+        },
+        {
+          "id": "caption-word-51-2",
+          "text": "heard",
+          "start": 60.654,
+          "end": 61.074
+        }
+      ]
+    },
+    {
+      "id": "caption-group-52",
+      "frame": 7,
+      "start": 61.074,
+      "end": 61.594,
+      "text": "of it,",
+      "words": [
+        {
+          "id": "caption-word-52-0",
+          "text": "of",
+          "start": 61.074,
+          "end": 61.254
+        },
+        {
+          "id": "caption-word-52-1",
+          "text": "it,",
+          "start": 61.254,
+          "end": 61.474
+        }
+      ]
+    },
+    {
+      "id": "caption-group-53",
+      "frame": 7,
+      "start": 61.694,
+      "end": 62.854,
+      "text": "so coupling stays",
+      "words": [
+        {
+          "id": "caption-word-53-0",
+          "text": "so",
+          "start": 61.694,
+          "end": 61.914
+        },
+        {
+          "id": "caption-word-53-1",
+          "text": "coupling",
+          "start": 61.914,
+          "end": 62.374
+        },
+        {
+          "id": "caption-word-53-2",
+          "text": "stays",
+          "start": 62.374,
+          "end": 62.854
+        }
+      ]
+    },
+    {
+      "id": "caption-group-54",
+      "frame": 7,
+      "start": 62.854,
+      "end": 63.394,
+      "text": "out of",
+      "words": [
+        {
+          "id": "caption-word-54-0",
+          "text": "out",
+          "start": 62.854,
+          "end": 63.274
+        },
+        {
+          "id": "caption-word-54-1",
+          "text": "of",
+          "start": 63.274,
+          "end": 63.394
+        }
+      ]
+    },
+    {
+      "id": "caption-group-55",
+      "frame": 7,
+      "start": 63.394,
+      "end": 64.014,
+      "text": "the domain.",
+      "words": [
+        {
+          "id": "caption-word-55-0",
+          "text": "the",
+          "start": 63.394,
+          "end": 63.534
+        },
+        {
+          "id": "caption-word-55-1",
+          "text": "domain.",
+          "start": 63.534,
+          "end": 63.894
+        }
+      ]
+    },
+    {
+      "id": "caption-group-56",
+      "frame": 8,
+      "start": 64.255,
+      "end": 64.875,
+      "text": "Here is",
+      "words": [
+        {
+          "id": "caption-word-56-0",
+          "text": "Here",
+          "start": 64.255,
+          "end": 64.595
+        },
+        {
+          "id": "caption-word-56-1",
+          "text": "is",
+          "start": 64.595,
+          "end": 64.875
+        }
+      ]
+    },
+    {
+      "id": "caption-group-57",
+      "frame": 8,
+      "start": 64.875,
+      "end": 65.455,
+      "text": "the tell.",
+      "words": [
+        {
+          "id": "caption-word-57-0",
+          "text": "the",
+          "start": 64.875,
+          "end": 65.055
+        },
+        {
+          "id": "caption-word-57-1",
+          "text": "tell.",
+          "start": 65.055,
+          "end": 65.335
+        }
+      ]
+    },
+    {
+      "id": "caption-group-58",
+      "frame": 8,
+      "start": 66.175,
+      "end": 67.175,
+      "text": "A factory that",
+      "words": [
+        {
+          "id": "caption-word-58-0",
+          "text": "A",
+          "start": 66.175,
+          "end": 66.295
+        },
+        {
+          "id": "caption-word-58-1",
+          "text": "factory",
+          "start": 66.295,
+          "end": 66.775
+        },
+        {
+          "id": "caption-word-58-2",
+          "text": "that",
+          "start": 66.775,
+          "end": 67.175
+        }
+      ]
+    },
+    {
+      "id": "caption-group-59",
+      "frame": 8,
+      "start": 67.175,
+      "end": 68.695,
+      "text": "forwards one argument",
+      "words": [
+        {
+          "id": "caption-word-59-0",
+          "text": "forwards",
+          "start": 67.175,
+          "end": 67.615
+        },
+        {
+          "id": "caption-word-59-1",
+          "text": "one",
+          "start": 67.615,
+          "end": 68.135
+        },
+        {
+          "id": "caption-word-59-2",
+          "text": "argument",
+          "start": 68.135,
+          "end": 68.695
+        }
+      ]
+    },
+    {
+      "id": "caption-group-60",
+      "frame": 8,
+      "start": 68.695,
+      "end": 69.895,
+      "text": "list to one",
+      "words": [
+        {
+          "id": "caption-word-60-0",
+          "text": "list",
+          "start": 68.695,
+          "end": 69.215
+        },
+        {
+          "id": "caption-word-60-1",
+          "text": "to",
+          "start": 69.215,
+          "end": 69.575
+        },
+        {
+          "id": "caption-word-60-2",
+          "text": "one",
+          "start": 69.575,
+          "end": 69.895
+        }
+      ]
+    },
+    {
+      "id": "caption-group-61",
+      "frame": 8,
+      "start": 69.895,
+      "end": 71.795,
+      "text": "constructor has nothing to",
+      "words": [
+        {
+          "id": "caption-word-61-0",
+          "text": "constructor",
+          "start": 69.895,
+          "end": 70.635
+        },
+        {
+          "id": "caption-word-61-1",
+          "text": "has",
+          "start": 70.635,
+          "end": 71.075
+        },
+        {
+          "id": "caption-word-61-2",
+          "text": "nothing",
+          "start": 71.075,
+          "end": 71.495
+        },
+        {
+          "id": "caption-word-61-3",
+          "text": "to",
+          "start": 71.495,
+          "end": 71.795
+        }
+      ]
+    },
+    {
+      "id": "caption-group-62",
+      "frame": 8,
+      "start": 71.795,
+      "end": 72.295,
+      "text": "choose.",
+      "words": [
+        {
+          "id": "caption-word-62-0",
+          "text": "choose.",
+          "start": 71.795,
+          "end": 72.175
+        }
+      ]
+    },
+    {
+      "id": "caption-group-63",
+      "frame": 8,
+      "start": 73.075,
+      "end": 73.675,
+      "text": "Keep it",
+      "words": [
+        {
+          "id": "caption-word-63-0",
+          "text": "Keep",
+          "start": 73.075,
+          "end": 73.375
+        },
+        {
+          "id": "caption-word-63-1",
+          "text": "it",
+          "start": 73.375,
+          "end": 73.675
+        }
+      ]
+    },
+    {
+      "id": "caption-group-64",
+      "frame": 8,
+      "start": 73.675,
+      "end": 74.195,
+      "text": "and you",
+      "words": [
+        {
+          "id": "caption-word-64-0",
+          "text": "and",
+          "start": 73.675,
+          "end": 74.035
+        },
+        {
+          "id": "caption-word-64-1",
+          "text": "you",
+          "start": 74.035,
+          "end": 74.195
+        }
+      ]
+    },
+    {
+      "id": "caption-group-65",
+      "frame": 8,
+      "start": 74.195,
+      "end": 75.055,
+      "text": "have ceremony.",
+      "words": [
+        {
+          "id": "caption-word-65-0",
+          "text": "have",
+          "start": 74.195,
+          "end": 74.415
+        },
+        {
+          "id": "caption-word-65-1",
+          "text": "ceremony.",
+          "start": 74.415,
+          "end": 74.935
+        }
+      ]
+    }
+  ]
+}

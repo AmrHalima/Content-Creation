@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <title>EDIT TEST 001</title>
+    <style>
+      @font-face {
+        font-family: "EB Garamond";
+        src: url("assets/fonts/EBGaramond-400.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Noto Kufi Arabic";
+        src: url("assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Noto Naskh Arabic";
+        src: url("assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+
+      :root {
+        --cream: #ffffeb;
+        --ink: #1a1a1a;
+        --muted: #8a8a80;
+        --stone: #e4e4d0;
+        --lavender: #f0d7ff;
+        --forest: #034f46;
+        --ember: #ffa946;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--cream);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--cream);
+        font-family: "Inter", "Noto Naskh Arabic", sans-serif;
+        color: var(--ink);
+      }
+
+      video {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+      #endstill {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+        z-index: 5;
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      /* ── HUD ─────────────────────────────────────────────── */
+      #hud {
+        left: 0;
+        top: 150px;
+        width: 1080px;
+        height: 92px;
+        z-index: 30;
+      }
+      .hud {
+        direction: ltr;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        padding: 0 40px;
+        background: var(--cream);
+        border-bottom: 2px solid var(--ink);
+      }
+      .hud-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .rec-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 9999px;
+        background: var(--ember);
+      }
+      .hud-title {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 21px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .hud-right {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        font-family: "Inter", sans-serif;
+      }
+      .tc {
+        font-size: 24px;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.04em;
+      }
+      .fps {
+        font-size: 19px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        color: #6b6b61;
+      }
+      #progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 1080px;
+        height: 6px;
+        background: var(--lavender);
+        transform-origin: left center;
+      }
+      /* ── Captions ────────────────────────────────────────── */
+      .cap {
+        left: 0;
+        top: 1326px;
+        width: 1080px;
+        z-index: 20;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .cap-wrap {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+      }
+      .slab {
+        position: relative;
+        display: inline-block;
+        padding: 10px 34px 20px 34px;
+        background: var(--cream);
+        border: 2px solid var(--ink);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .wash {
+        position: absolute;
+        inset: 0;
+        background: var(--lavender);
+        transform-origin: 100% 50%;
+      }
+      .cap-text {
+        position: relative;
+        z-index: 2;
+        font-family: "Noto Naskh Arabic", "Inter", serif;
+        font-weight: 600;
+        font-size: 68px;
+        line-height: 1.32;
+        color: var(--ink);
+        direction: rtl;
+        unicode-bidi: isolate;
+        white-space: nowrap;
+      }
+      .cap-text .lat {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 0.88em;
+        letter-spacing: 0.02em;
+      }
+      .cap-num {
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        transform: translateY(-100%);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+        background: var(--cream);
+        padding: 2px 8px 4px 0;
+      }
+
+      /* beat ticks under caption 2 */
+      .ticks {
+        display: flex;
+        align-items: flex-end;
+        gap: 9px;
+        height: 30px;
+      }
+      .tick {
+        width: 7px;
+        height: 26px;
+        background: var(--stone);
+        border-radius: 2px;
+        transform-origin: center bottom;
+      }
+      .tick:nth-child(2n) {
+        height: 18px;
+      }
+      .tick:nth-child(3n) {
+        height: 30px;
+      }
+
+      /* selection box */
+      #sel {
+        left: 0;
+        top: 1296px;
+        width: 1080px;
+        height: 236px;
+        z-index: 22;
+        pointer-events: none;
+      }
+      .selbox {
+        position: relative;
+        margin: 0 auto;
+        width: 934px;
+        height: 100%;
+        border: 2px dashed var(--lavender);
+        border-radius: 4px;
+        opacity: 0;
+      }
+      .handle {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: var(--lavender);
+        border: 2px solid var(--ink);
+        border-radius: 2px;
+      }
+      .handle.tl {
+        left: -9px;
+        top: -9px;
+      }
+      .handle.tr {
+        right: -9px;
+        top: -9px;
+      }
+      .handle.bl {
+        left: -9px;
+        bottom: -9px;
+      }
+      .handle.br {
+        right: -9px;
+        bottom: -9px;
+      }
+      .sel-label {
+        position: absolute;
+        right: -2px;
+        top: -38px;
+        direction: ltr;
+        background: var(--lavender);
+        border: 2px solid var(--ink);
+        border-radius: 4px;
+        padding: 4px 10px 6px;
+        font-family: "Inter", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+      }
+
+      /* ── Kinetic motion-graphics block ───────────────────── */
+      #kinetic {
+        left: 0;
+        top: 1144px;
+        width: 1080px;
+        height: 400px;
+        z-index: 21;
+        pointer-events: none;
+      }
+      .kin {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0;
+      }
+      .k-kicker {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--cream);
+        border: 2px solid var(--ink);
+        border-radius: 9999px;
+        padding: 2px 20px 8px;
+        margin-bottom: 6px;
+        opacity: 0;
+      }
+      .k-kicker span {
+        font-family: "Noto Naskh Arabic", serif;
+        font-size: 38px;
+        font-weight: 500;
+        color: var(--ink);
+        opacity: 0.6;
+        direction: rtl;
+      }
+      .k-kicker i {
+        display: block;
+        width: 64px;
+        height: 2px;
+        background: var(--ink);
+        opacity: 0.5;
+      }
+      .k-word {
+        display: block;
+        font-family: "Noto Kufi Arabic", sans-serif;
+        font-weight: 800;
+        font-size: 112px;
+        line-height: 1.04;
+        letter-spacing: 0;
+        color: var(--ink);
+        white-space: nowrap;
+        opacity: 0;
+      }
+      .k-word.w2 {
+        margin-top: -6px;
+      }
+      .k-tag {
+        margin-top: 4px;
+        font-family: "Noto Naskh Arabic", serif;
+        font-size: 56px;
+        font-weight: 700;
+        color: var(--ink);
+        background: var(--lavender);
+        border: 2px solid var(--ink);
+        border-radius: 9999px;
+        padding: 0 30px 8px;
+        opacity: 0;
+        direction: rtl;
+      }
+
+      /* burst shapes */
+      .burst {
+        position: absolute;
+        opacity: 0;
+      }
+      .b-dot {
+        width: 26px;
+        height: 26px;
+        border-radius: 9999px;
+        background: var(--forest);
+      }
+      .b-sq {
+        width: 24px;
+        height: 24px;
+        background: var(--ember);
+      }
+      .b-ring {
+        width: 34px;
+        height: 34px;
+        border-radius: 9999px;
+        border: 3px solid var(--ink);
+      }
+      .b-plus {
+        width: 30px;
+        height: 30px;
+      }
+      .b-plus::before,
+      .b-plus::after {
+        content: "";
+        position: absolute;
+        background: var(--forest);
+      }
+      .b-plus::before {
+        left: 13px;
+        top: 0;
+        width: 4px;
+        height: 30px;
+      }
+      .b-plus::after {
+        left: 0;
+        top: 13px;
+        width: 30px;
+        height: 4px;
+      }
+
+      /* ── Cut panel ───────────────────────────────────────── */
+      #cut {
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        z-index: 40;
+      }
+      .cut-panel {
+        position: absolute;
+        inset: 0;
+        background: var(--cream);
+        clip-path: inset(0 0 100% 0);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+      }
+      .cut-kicker {
+        direction: ltr;
+        font-family: "Inter", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+      }
+      .cut-tc {
+        direction: ltr;
+        font-family: "EB Garamond", serif;
+        font-size: 104px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .cut-rule {
+        width: 520px;
+        height: 2px;
+        background: var(--ink);
+        transform-origin: left center;
+      }
+      .cut-meta {
+        direction: ltr;
+        display: flex;
+        gap: 28px;
+        font-family: "Inter", sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+      }
+      .cut-meta b {
+        color: var(--forest);
+        font-weight: 700;
+      }
+
+      /* ── Face bracket ────────────────────────────────────── */
+      #bracket {
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        z-index: 18;
+        pointer-events: none;
+      }
+      .brk {
+        position: absolute;
+        left: 70px;
+        top: 268px;
+        width: 940px;
+        height: 1000px;
+        opacity: 0;
+      }
+      .brk span {
+        position: absolute;
+        width: 54px;
+        height: 54px;
+        border: 0 solid var(--lavender);
+      }
+      .brk .c1 {
+        left: 0;
+        top: 0;
+        border-left-width: 5px;
+        border-top-width: 5px;
+      }
+      .brk .c2 {
+        right: 0;
+        top: 0;
+        border-right-width: 5px;
+        border-top-width: 5px;
+      }
+      .brk .c3 {
+        left: 0;
+        bottom: 0;
+        border-left-width: 5px;
+        border-bottom-width: 5px;
+      }
+      .brk .c4 {
+        right: 0;
+        bottom: 0;
+        border-right-width: 5px;
+        border-bottom-width: 5px;
+      }
+      .brk-label {
+        position: absolute;
+        left: 0;
+        bottom: -52px;
+        direction: ltr;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Inter", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--ink);
+        background: var(--cream);
+        border: 2px solid var(--ink);
+        border-radius: 4px;
+        padding: 6px 14px 8px;
+      }
+      .brk-label i {
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
+        background: var(--forest);
+      }
+      .brk-label.alt {
+        opacity: 0;
+      }
+
+      /* ── Add / increase bar ──────────────────────────────── */
+      #more {
+        left: 0;
+        top: 1508px;
+        width: 1080px;
+        z-index: 23;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .more-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        opacity: 0;
+      }
+      .more-track {
+        position: relative;
+        width: 320px;
+        height: 12px;
+        background: var(--stone);
+        border-radius: 9999px;
+        overflow: hidden;
+        border: 2px solid var(--ink);
+      }
+      .more-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 62%;
+        background: var(--forest);
+      }
+      .more-chip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--lavender);
+        border: 2px solid var(--ink);
+        border-radius: 9999px;
+        padding: 6px 18px 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        opacity: 0;
+      }
+
+      /* ── End lockup ──────────────────────────────────────── */
+      #lockup {
+        left: 0;
+        top: 1404px;
+        width: 1080px;
+        height: 516px;
+        z-index: 50;
+      }
+      .lock {
+        direction: ltr;
+        position: absolute;
+        inset: 0;
+        background: var(--cream);
+        border-top: 2px solid var(--ink);
+        padding: 40px 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .lock-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .lock-title {
+        font-family: "EB Garamond", serif;
+        font-size: 66px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .lock-title em {
+        font-style: normal;
+        color: var(--forest);
+      }
+      .lock-num {
+        font-family: "EB Garamond", serif;
+        font-size: 38px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .lock-mid {
+        height: 2px;
+        background: var(--ink);
+        width: 100%;
+      }
+      .lock-bottom {
+        direction: ltr;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        font-family: "Inter", sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .lock-bottom span.mut {
+        color: #4a4a42;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-hpzq" id="root" data-composition-id="edit-test-001" data-start="0" data-duration="11.5" data-fps="30" data-width="1080" data-height="1920">
+      <!-- source footage: two windows, the 6.0–8.0s dead air is cut out -->
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0.05,&quot;contrast&quot;:0.05,&quot;highlights&quot;:-0.06,&quot;shadows&quot;:0.04,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0.06,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:0.03},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.05,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-gyyc" id="clipA" src="public/media/speaker.mp4" playsinline data-has-audio="true" data-start="0" data-duration="6.35" data-media-start="0" data-track-index="1"></video>
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0.05,&quot;contrast&quot;:0.05,&quot;highlights&quot;:-0.06,&quot;shadows&quot;:0.04,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0.06,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:0.03},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.05,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-d5vb" id="clipB" src="public/media/speaker.mp4" playsinline data-has-audio="true" data-start="6.35" data-duration="3.61" data-media-start="7.72" data-track-index="1"></video>
+      <img data-hf-id="hf-endstill" id="endstill" class="clip" src="public/media/endstill.jpg" data-start="9.28" data-duration="2.22" data-track-index="2" alt="" />
+      <!-- caption 01 -->
+      <div data-hf-id="hf-9nra" id="cap1" class="clip cap" data-start="0.04" data-duration="1.58" data-track-index="10">
+        <div data-hf-id="hf-69xp" class="cap-wrap">
+          <div data-hf-id="hf-5874" class="slab">
+            <div data-hf-id="hf-ja0v" class="wash" id="wash1"></div>
+            <p data-hf-id="hf-49in" class="cap-text" dir="rtl" lang="ar">هذا الفيديو تست</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- caption 02 + beat ticks -->
+      <div data-hf-id="hf-oi1y" id="cap2" class="clip cap" data-start="1.63" data-duration="2.03" data-track-index="11">
+        <div data-hf-id="hf-szcx" class="cap-wrap">
+          <div data-hf-id="hf-jr94" class="slab">
+            <div data-hf-id="hf-8ej8" class="wash" id="wash2"></div>
+            <p data-hf-id="hf-ts1y" class="cap-text" dir="rtl" lang="ar">خلّي الـ<span class="lat" dir="ltr">AI</span> يحط كابشن</p>
+          </div>
+          <div data-hf-id="hf-jlbm" class="ticks" id="ticks">
+            <span data-hf-id="hf-coyi" class="tick"></span><span data-hf-id="hf-ptha" class="tick"></span><span data-hf-id="hf-q7sb" class="tick"></span>
+            <span data-hf-id="hf-qm3c" class="tick"></span><span data-hf-id="hf-nty5" class="tick"></span><span data-hf-id="hf-o896" class="tick"></span>
+            <span data-hf-id="hf-omk7" class="tick"></span><span data-hf-id="hf-p0v8" class="tick"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- editor selection box around the caption -->
+      <div data-hf-id="hf-gjcv" id="sel" class="clip" data-layout-ignore="" data-start="3.0" data-duration="0.9" data-track-index="11">
+        <div data-hf-id="hf-56u6" class="selbox" id="selbox">
+          <span data-hf-id="hf-8ss9" class="handle tl"></span><span data-hf-id="hf-glev" class="handle tr"></span>
+          <span data-hf-id="hf-o1an" class="handle bl"></span><span data-hf-id="hf-1bgx" class="handle br"></span>
+          <div data-hf-id="hf-pfi2" class="sel-label">CAPTION.LAYER</div>
+        </div>
+      </div>
+      <!-- kinetic type: the caption style switches on the words themselves -->
+      <div data-hf-id="hf-7i74" id="kinetic" class="clip" data-start="3.8" data-duration="2.38" data-track-index="12">
+        <div data-hf-id="hf-eyuq" class="kin" id="kin">
+          <div data-hf-id="hf-zmlv" class="k-kicker" id="kk"><i data-hf-id="hf-wt6k"></i><span data-hf-id="hf-0z0i" dir="rtl" lang="ar">ويعمل</span><i data-hf-id="hf-zeb8"></i></div>
+          <span data-hf-id="hf-ntlx" class="k-word w1" id="kw1" dir="rtl" lang="ar">موشن</span>
+          <span data-hf-id="hf-ua8l" class="k-word w2" id="kw2" dir="rtl" lang="ar">جرافيكس</span>
+          <span data-hf-id="hf-8zhc" class="k-tag" id="ktag" dir="rtl" lang="ar">حلوة</span>
+
+          <span data-hf-id="hf-6m1j" class="burst b-dot" id="bs1" style="left: 118px; top: 96px"></span>
+          <span data-hf-id="hf-x7fs" class="burst b-ring" id="bs2" style="left: 892px; top: 168px"></span>
+          <span data-hf-id="hf-pi9v" class="burst b-sq" id="bs3" style="left: 210px; top: 300px"></span>
+          <span data-hf-id="hf-wt4f" class="burst b-plus" id="bs4" style="left: 826px; top: 306px"></span>
+          <span data-hf-id="hf-jn0l" class="burst b-dot" id="bs5" style="left: 74px; top: 246px"></span>
+          <span data-hf-id="hf-e0lu" class="burst b-ring" id="bs6" style="left: 958px; top: 60px"></span>
+          <span data-hf-id="hf-kecb" class="burst b-sq" id="bs7" style="left: 940px; top: 366px"></span>
+          <span data-hf-id="hf-qk1b" class="burst b-plus" id="bs8" style="left: 146px; top: 374px"></span>
+        </div>
+      </div>
+
+      <!-- cut beat covering the splice -->
+      <div data-hf-id="hf-dy0c" id="cut" class="clip" data-layout-ignore="" data-start="6.14" data-duration="0.58" data-track-index="40">
+        <div data-hf-id="hf-mmjd" class="cut-panel" id="cutpanel">
+          <div data-hf-id="hf-llov" class="cut-kicker">HARD CUT / SOURCE</div>
+          <div data-hf-id="hf-my65" class="cut-tc">00:06:10&#160;&#160;→&#160;&#160;00:07:21</div>
+          <div data-hf-id="hf-2cxd" class="cut-rule" id="cutrule"></div>
+          <div data-hf-id="hf-2vby" class="cut-meta"><span data-hf-id="hf-71he">IN <b data-hf-id="hf-lv53">00:06:10</b></span><span data-hf-id="hf-thdn">OUT <b data-hf-id="hf-lp56">00:07:21</b></span><span data-hf-id="hf-4haf">TRIM 1.37s</span></div>
+        </div>
+      </div>
+
+      <!-- caption 04 with face bracket -->
+      <div data-hf-id="hf-lzlv" id="bracket" class="clip" data-layout-ignore="" data-start="6.66" data-duration="1.4" data-track-index="8">
+        <div data-hf-id="hf-3xb4" class="brk" id="brk">
+          <span data-hf-id="hf-926t" class="c1"></span><span data-hf-id="hf-d0au" class="c2"></span><span data-hf-id="hf-gyev" class="c3"></span><span data-hf-id="hf-kwiw" class="c4"></span>
+          <div data-hf-id="hf-isw6" class="brk-label"><i data-hf-id="hf-y7e5"></i>CLIP_01</div>
+          <div data-hf-id="hf-li8l" class="brk-label alt" id="brkalt"><i data-hf-id="hf-ylp6"></i>TRK 1 / SYNC</div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-8szj" id="cap4" class="clip cap" data-start="6.72" data-duration="1.14" data-track-index="13">
+        <div data-hf-id="hf-u6a0" class="cap-wrap">
+          <div data-hf-id="hf-ikc1" class="slab">
+            <div data-hf-id="hf-rxwq" class="wash" id="wash4"></div>
+            <p data-hf-id="hf-8rh7" class="cap-text" dir="rtl" lang="ar">ورّينا شلون</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- caption 05 -->
+      <div data-hf-id="hf-ib8x" id="cap5" class="clip cap" data-start="7.86" data-duration="1.42" data-track-index="14">
+        <div data-hf-id="hf-tryz" class="cap-wrap">
+          <div data-hf-id="hf-iyn2" class="slab">
+            <div data-hf-id="hf-vw0r" class="wash" id="wash5"></div>
+            <p data-hf-id="hf-wul9" class="cap-text" dir="rtl" lang="ar">بقى ممكن يصير</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- preview meter -->
+      <div data-hf-id="hf-1aqp" id="more" class="clip" data-layout-ignore="" data-start="8.1" data-duration="1.1" data-track-index="11">
+        <div data-hf-id="hf-9mnn" class="more-row" id="morerow">
+          <div data-hf-id="hf-bvu1" class="more-track"><div data-hf-id="hf-26gx" class="more-fill" id="morefill"></div></div>
+          <div data-hf-id="hf-309d" class="more-chip" id="morechip">PREVIEW</div>
+        </div>
+      </div>
+
+      <!-- HUD on top of everything except cut/lockup -->
+      <div data-hf-id="hf-hvrx" id="hud" class="clip" data-layout-ignore="" data-start="0" data-duration="9.28" data-track-index="30">
+        <div data-hf-id="hf-cnyb" class="hud">
+          <div data-hf-id="hf-pch3" class="hud-left"><span data-hf-id="hf-7vwv" class="rec-dot"></span><span data-hf-id="hf-6rcw" class="hud-title">Edit Test 001</span></div>
+          <div data-hf-id="hf-734q" class="hud-right"><span data-hf-id="hf-esf6" class="tc" id="timecode">00:00:00:00</span><span data-hf-id="hf-l8ca" class="fps">30 FPS</span></div>
+          <div data-hf-id="hf-o6ww" id="progress"></div>
+        </div>
+      </div>
+
+      <!-- end lockup -->
+      <div data-hf-id="hf-04dr" id="lockup" class="clip" data-layout-allow-overflow="" data-start="9.28" data-duration="2.22" data-track-index="50">
+        <div data-hf-id="hf-ziuu" class="lock" id="lock">
+          <div data-hf-id="hf-nf6r" class="lock-top">
+            <div data-hf-id="hf-y6p4" class="lock-title">EDIT TEST <em data-hf-id="hf-nxy2">001</em></div>
+            <div data-hf-id="hf-f8wl" class="lock-num">9.3s</div>
+          </div>
+          <div data-hf-id="hf-elpw" class="lock-mid"></div>
+          <div data-hf-id="hf-d9u7" class="lock-bottom">
+            <span data-hf-id="hf-od3p">MOTION · CAPTION · CUT</span>
+            <span data-hf-id="hf-7bx6" class="mut">1080 × 1920 / 30 FPS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/gsap.min.js"></script>
+    <script>
+      (function () {
+        const FPS = 30;
+        const q = (t) => Math.round(t * FPS) / FPS;
+        const tl = window.gsap.timeline({ paused: true });
+
+        /* running timecode */
+        const tcEl = document.querySelector("#timecode");
+        const frameProxy = { f: 0 };
+        const totalFrames = Math.round(9.96 * FPS);
+        tl.to(
+          frameProxy,
+          {
+            f: totalFrames,
+            duration: 9.96,
+            ease: "none",
+            onUpdate: function () {
+              const f = Math.max(0, Math.min(totalFrames, Math.round(frameProxy.f)));
+              const ss = Math.floor(f / FPS);
+              const ff = f % FPS;
+              const pad = (n) => String(n).padStart(2, "0");
+              tcEl.textContent = "00:00:" + pad(ss) + ":" + pad(ff);
+            },
+          },
+          0,
+        );
+
+        /* HUD + progress */
+        tl.fromTo(".hud", { y: -26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+        tl.fromTo("#progress", { scaleX: 0 }, { scaleX: 1, duration: 9.9, ease: "none" }, 0.02);
+        /* --- caption helper: enter, wash, exit --- */
+        function caption(id, washId, start, duration, washStart, washDur) {
+          const wrap = "#" + id + " .cap-wrap";
+          tl.fromTo(wrap, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" }, start);
+          tl.set("#" + washId, { scaleX: 0, transformOrigin: "100% 50%" }, 0);
+          tl.to("#" + washId, { scaleX: 1, duration: washDur, ease: "none" }, washStart);
+          tl.to(wrap, { opacity: 0, duration: 0.12, ease: "power2.in" }, q(start + duration - 0.14));
+        }
+
+        caption("cap1", "wash1", 0.04, 1.58, 0.16, 0.92);
+        caption("cap2", "wash2", 1.63, 2.03, 1.78, 1.7);
+        caption("cap4", "wash4", 6.72, 1.14, 6.82, 0.9);
+        caption("cap5", "wash5", 7.86, 1.42, 7.98, 1.15);
+
+        /* beat ticks on the rhythm line */
+        const ticks = document.querySelectorAll("#ticks .tick");
+        ticks.forEach(function (t, i) {
+          tl.fromTo(
+            t,
+            { scaleY: 0.3, backgroundColor: "#E4E4D0" },
+            { scaleY: 1, backgroundColor: "#FFA946", duration: 0.14, ease: "power2.out" },
+            q(2.1 + i * 0.09),
+          );
+        });
+
+        /* selection box */
+        tl.fromTo("#selbox", { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power3.out" }, 3.02);
+        tl.to("#selbox", { opacity: 0, duration: 0.14, ease: "power2.in" }, 3.68);
+
+        /* kinetic block */
+        tl.fromTo("#kin", { opacity: 0 }, { opacity: 1, duration: 0.12 }, 3.8);
+        tl.fromTo("#kk", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 3.82);
+        tl.fromTo("#kw1", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.24, ease: "power4.out" }, 4.3);
+        tl.fromTo("#kw2", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.24, ease: "power4.out" }, 4.64);
+        tl.fromTo("#ktag", { opacity: 0, scale: 0.6, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.24, ease: "back.out(1.8)" }, 5.16);
+
+        const bursts = ["#bs1", "#bs2", "#bs3", "#bs4", "#bs5", "#bs6", "#bs7", "#bs8"];
+        bursts.forEach(function (b, i) {
+          tl.fromTo(
+            b,
+            { opacity: 0, scale: 0.2 },
+            { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(2)" },
+            q(5.16 + i * 0.035),
+          );
+          tl.to(b, { y: -26 - (i % 3) * 10, opacity: 0, duration: 0.4, ease: "power2.in" }, q(5.66 + i * 0.02));
+        });
+        tl.to("#kin", { opacity: 0, duration: 0.18, ease: "power2.in" }, 5.96);
+
+        /* cut panel */
+        tl.fromTo("#cutpanel", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.17, ease: "power4.in" }, 6.14);
+        tl.fromTo("#cutrule", { scaleX: 0 }, { scaleX: 1, duration: 0.2, ease: "power3.out" }, 6.3);
+        tl.to("#cutpanel", { clipPath: "inset(100% 0% 0% 0%)", duration: 0.18, ease: "power4.out" }, 6.54);
+
+        /* face bracket + label swap */
+        tl.fromTo("#brk", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power3.out" }, 6.68);
+        tl.to(".brk-label:not(.alt)", { opacity: 0, duration: 0.1 }, 7.44);
+        tl.to("#brkalt", { opacity: 1, duration: 0.1 }, 7.46);
+        tl.to("#brk", { opacity: 0, duration: 0.16, ease: "power2.in" }, 7.86);
+
+        /* preview meter */
+        tl.fromTo("#morerow", { opacity: 0 }, { opacity: 1, duration: 0.14 }, 8.12);
+        tl.fromTo("#morefill", { width: "62%" }, { width: "88%", duration: 0.42, ease: "power2.out" }, 8.55);
+        tl.fromTo("#morechip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(2)" }, 8.7);
+        tl.to("#morerow", { opacity: 0, duration: 0.12 }, 9.12);
+
+        /* end lockup */
+        tl.fromTo("#lock", { yPercent: 100 }, { yPercent: 0, duration: 0.38, ease: "power3.out" }, 9.28);
+        tl.fromTo(".lock-mid", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.38, ease: "power3.out" }, 9.46);
+
+        window.__timelines["edit-test-001"] = tl;
+        tl.seek(0);
+      })();
+    </script>
+  </body>
+</html>

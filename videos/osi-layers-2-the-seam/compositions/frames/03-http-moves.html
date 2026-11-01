@@ -1,0 +1,200 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f3-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f3-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f3-rail { position: absolute; left: 44px; top: 700px; width: 44px; height: 500px; }
+    .f3-tick {
+      position: absolute; left: 0; width: 44px; height: 48px; box-sizing: border-box;
+      border: 2px solid rgba(26,26,26,0.16); border-radius: 6px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; color: #76766e;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .f3-chip {
+      position: absolute; left: 120px; top: 612px; width: 420px; height: 62px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.6cqw;
+      letter-spacing: 0.06em; color: #1a1a1a; opacity: 0;
+    }
+    /* the pinned anchor: enters once at the upper third and is never moved again */
+    .f3-card {
+      position: absolute; left: 120px; top: 700px; width: 420px; height: 200px; box-sizing: border-box;
+      background: #ffffff; border: 4px solid #1a1a1a; border-radius: 8px; padding: 22px 28px;
+      opacity: 0;
+    }
+    .f3-kicker {
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f3-title { font-family: "EB Garamond", serif; font-size: 6.4cqw; line-height: 1; letter-spacing: -0.025em; margin-top: 6px; }
+    /* the slot under the card: same geometry for both states, only the name inside changes */
+    .f3-socket {
+      position: absolute; left: 120px; top: 940px; width: 420px; height: 200px; box-sizing: border-box;
+      border: 4px solid rgba(26,26,26,0.34); border-radius: 8px; background: transparent; opacity: 0;
+    }
+    .f3-block {
+      position: absolute; left: 128px; top: 948px; width: 404px; height: 184px; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      background: #ffa946; border: 4px solid #1a1a1a; border-radius: 6px; opacity: 0;
+    }
+    .f3-block-name { font-family: "EB Garamond", serif; font-size: 6cqw; line-height: 1; letter-spacing: -0.02em; color: #1a1a1a; }
+    .f3-block-sub { font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.62); }
+    .f3-svg { position: absolute; inset: 0; }
+    .f3-arrow { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f3-arrow-peer { fill: none; stroke: rgba(26,26,26,0.5); stroke-width: 5; stroke-linecap: round; }
+    .f3-head { fill: #ffa946; opacity: 0; }
+    .f3-head-peer { fill: rgba(26,26,26,0.5); opacity: 0; }
+    .f3-peer {
+      position: absolute; left: 800px; width: 220px; height: 60px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f3-holdnote {
+      position: absolute; left: 120px; top: 1178px; width: 420px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div data-hf-id="hf-x5sn" id="root" data-composition-id="03-http-moves" data-width="1080" data-height="1920" data-duration="12.709">
+
+    <div data-hf-id="hf-bs8e" id="f3-fieldclip" class="clip" data-start="0" data-duration="12.709" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-nmvm" class="f3-field"></div>
+      <div data-hf-id="hf-70ne" id="f3-grid" class="f3-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-glil" id="f3-railclip" class="clip" data-start="0" data-duration="12.709" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-x1ci" class="f3-rail">
+        <div data-hf-id="hf-q8la" class="f3-tick" style="top:0px;">7</div>
+        <div data-hf-id="hf-uuz8" class="f3-tick" style="top:92px;">6</div>
+        <div data-hf-id="hf-4uv5" class="f3-tick" style="top:184px;">5</div>
+        <div data-hf-id="hf-ogdu" class="f3-tick" style="top:276px;">4</div>
+        <div data-hf-id="hf-ranb" class="f3-tick" style="top:368px;">3</div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-hzan" id="f3-anchorclip" class="clip" data-start="0" data-duration="12.709" data-track-index="2" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-8797" id="f3-chip" class="f3-chip">HTTP/2</div>
+      <div data-hf-id="hf-pniq" id="f3-card" class="f3-card">
+        <div data-hf-id="hf-paod" class="f3-kicker" data-layout-ignore>&#10009;&nbsp; layer 7</div>
+        <div data-hf-id="hf-qcos" class="f3-title">HTTP</div>
+      </div>
+      <div data-hf-id="hf-egnw" id="f3-socket" class="f3-socket"></div>
+      <div data-hf-id="hf-0jpm" id="f3-block" class="f3-block">
+        <div data-hf-id="hf-errs" id="f3-blockname" class="f3-block-name">TCP</div>
+      </div>
+      <div data-hf-id="hf-f1ba" id="f3-holdnote" class="f3-holdnote" data-layout-ignore>same slot &middot; different block</div>
+    </div>
+
+    <div data-hf-id="hf-j5vw" id="f3-arrowclip" class="clip" data-start="2.2" data-duration="10.509" data-track-index="3" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-bobn" class="f3-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-kec8" id="f3-arrow7" class="f3-arrow" d="M 552 800 L 1046 800" />
+        <polygon data-hf-id="hf-2vex" id="f3-head7" class="f3-head" points="1038,789 1060,800 1038,811" />
+        <path data-hf-id="hf-ot6a" id="f3-arrow4" class="f3-arrow-peer" d="M 552 1040 L 1046 1040" />
+        <polygon data-hf-id="hf-92c3" id="f3-head4" class="f3-head-peer" points="1038,1029 1060,1040 1038,1051" />
+      </svg>
+      <div data-hf-id="hf-gcbq" id="f3-peer7" class="f3-peer" style="top:770px;">theirs</div>
+      <div data-hf-id="hf-ocx7" id="f3-peer4" class="f3-peer" style="top:1010px;">theirs</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 12.309;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-http-moves"] = tl;
+
+      // discrete-text-sequence via a time proxy + reverse search (no TextPlugin in this
+      // setup — tl.set({text}) silently no-ops — and this stays deterministic under any
+      // scrub direction). Identical helper to part 1's frame 5.
+      function textSeq(node, states) {
+        var pr = { t: 0 };
+        tl.to(pr, {
+          t: states[states.length - 1].t,
+          duration: states[states.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            for (var i = states.length - 1; i >= 0; i--) {
+              if (pr.t >= states[i].t) {
+                if (node.textContent !== states[i].text) node.textContent = states[i].text;
+                return;
+              }
+            }
+          }
+        }, 0);
+      }
+
+      // ── Scene 1 (0.0–1.8s) — "for years the web spoke HTTP": the pinned card seats at the
+      //    upper third (hero axis 806) and is then immovable. The transport socket is still open. ──
+      tl.fromTo(el("f3-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el("f3-card"), { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.48);
+      tl.fromTo(el("f3-socket"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 1.29);
+
+      // HTTP's peer conversation is already running, and never changes in this frame
+      var a7 = el("f3-arrow7"), l7 = a7.getTotalLength() * 1.05;
+      a7.style.strokeDasharray = String(l7); a7.style.strokeDashoffset = String(l7);
+      tl.to(a7, { strokeDashoffset: 0, duration: 0.6, ease: "power3.out" }, 2.26);
+      tl.fromTo(el("f3-head7"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 2.74);
+      tl.fromTo(el("f3-peer7"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 2.9);
+
+      // ── Scene 2 (3.71–4.9s) — "over TCP": TCP slides into the socket (transform only, the
+      //    socket's geometry is authored expanded — never a width/height tween), the chip resolves. ──
+      tl.fromTo(el("f3-block"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.71);
+      var a4 = el("f3-arrow4"), l4 = a4.getTotalLength() * 1.05;
+      a4.style.strokeDasharray = String(l4); a4.style.strokeDashoffset = String(l4);
+      tl.to(a4, { strokeDashoffset: 0, duration: 0.5, ease: "power3.out" }, 4.05);
+      tl.fromTo(el("f3-head4"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.44);
+      tl.fromTo(el("f3-peer4"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 4.5);
+      tl.fromTo(el("f3-chip"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 4.36);
+
+      // ── Scene 3 (5.83–10.8s) — two swaps, both on the VO's own words, both in the back half:
+      //    "HTTP/3" (5.83) steps the version chip; "QUIC" (10.19) hard-cuts the block. The pinned
+      //    card does not move when its slot is refilled. ──
+      textSeq(el("f3-chip"), [
+        { t: 0, text: "HTTP/2" },
+        { t: 5.83, text: "HTTP/3" },
+        { t: 10.19, text: "HTTP/3 on QUIC" }
+      ]);
+      tl.to(el("f3-chip"), { opacity: 0, duration: 0.08, ease: "none" }, 5.75);
+      tl.to(el("f3-chip"), { opacity: 1, duration: 0.12, ease: "power1.out" }, 5.83);
+      tl.to(el("f3-chip"), { opacity: 0, duration: 0.08, ease: "none" }, 10.11);
+      tl.to(el("f3-chip"), { opacity: 1, duration: 0.12, ease: "power1.out" }, 10.19);
+
+      // the block is the thing being swapped out, so it is the ember element
+      textSeq(el("f3-blockname"), [
+        { t: 0, text: "TCP" },
+        { t: 10.19, text: "QUIC" }
+      ]);
+      tl.to(el("f3-block"), { opacity: 0, duration: 0.07, ease: "none" }, 10.12);
+      tl.to(el("f3-block"), { scale: 0.97, duration: 0.01, ease: "none" }, 10.19);
+      tl.to(el("f3-block"), { opacity: 1, scale: 1, duration: 0.16, ease: "power4.out" }, 10.19);
+      tl.to(el("f3-socket"), { borderColor: "#ffa946", duration: 0.3, ease: "power2.out" }, 8.9);
+      tl.fromTo(el("f3-holdnote"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 10.84);
+
+      // ── Scene 4 (11.3–12.309s) — card + block + both peer arrows hold. Jitter on the pinned card only. ──
+      var jit = { p: 0 };
+      var card = el("f3-card");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.5, duration: D - 11.35, ease: "none",
+        onUpdate: function () { card.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)"; }
+      }, 11.35);
+    })();
+  </script>
+</template>

@@ -1,0 +1,363 @@
+/* Design tokens mirror `.agents/design.md` (universal design spec —
+   Halima E-Commerce lineage: oceanic teal on ice white, Caveat over Inter,
+   dual-theme, motion-first). Update both together. Logical properties only —
+   RTL gets them for free.
+   Signature: soft 1px borders, teal-tinted shadows, pill actions, and a
+   handwritten display face reserved for brand moments. */
+:root {
+  /* palette */
+  --background: #f5fcfd; /* Ice White — page canvas */
+  --foreground: #1a1a1a; /* body ink on light */
+  --card: #ffffff; /* raised surfaces: hero, prose blocks */
+  --card-foreground: #252525;
+  --petrol: #0f1818; /* Deep Petrol — the dark chamber (footer) */
+  --ice: #e8f6f7; /* foreground on petrol */
+  --secondary: #f7f7f7; /* quiet fills: tags, rules */
+  --secondary-foreground: #343434;
+  --muted: #8e8e8e; /* muted-foreground — meta, timestamps */
+  --accent: #47b5be; /* Oceanic Teal — the ONLY action color */
+  --accent-hover: rgba(71, 181, 190, 0.9);
+  --on-accent: #002528; /* text and icons sitting on teal */
+  --destructive: #e28684; /* warm coral — warnings, errors */
+  --border: #ebebeb;
+  --ring: #b5b5b5;
+  --border-soft: 1px solid var(--border);
+
+  /* type */
+  --font-display: "Caveat", "Noto Naskh Arabic", cursive;
+  --font-body: "Inter", "Noto Naskh Arabic", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --display-weight: 700; /* Caveat commands through size AND weight */
+  --display-tracking: 0.02em; /* positive tracking only — scripts break when tightened */
+  --display-line-height: 1.2;
+
+  /* layout */
+  --content-width: 72ch;
+  --page-width: 1200px;
+
+  /* radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px; /* cards */
+  --radius-xl: 18px;
+  --radius-3xl: 24px; /* gallery hero viewport */
+  --radius-badges: 9999px;
+
+  /* elevation — teal-tinted, never a heavy gray drop */
+  --shadow-md: 0 2px 8px -2px rgba(71, 181, 190, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px -4px rgba(71, 181, 190, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease-out;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ---- chrome ---- */
+.site-header {
+  background: var(--background);
+  border-block-end: var(--border-soft);
+  padding-block: 0.9rem;
+}
+
+.site-footer {
+  /* the dark chamber: petrol with ice text, translucent-white rule */
+  background: var(--petrol);
+  color: var(--ice);
+  border-block-start: 1px solid rgba(255, 255, 255, 0.1);
+  margin-block-start: 4rem;
+  padding-block: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.site-header .inner,
+.site-footer .inner {
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-name {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 1.9rem;
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-line-height);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Teal pill = the one clickable thing (primary-action treatment) */
+.lang-switch {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-badges);
+  padding-inline: 0.9rem;
+  padding-block: 0.25rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out, box-shadow 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+
+.lang-switch:hover {
+  color: var(--on-accent);
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ---- index / landing ---- */
+.page-title {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(2.4rem, 6vw, 3.2rem);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-line-height);
+  margin-block: 2rem 0.25rem;
+}
+
+.page-lede {
+  color: var(--muted);
+  margin-block: 0 2rem;
+}
+
+/* ---- post list ---- */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-list li + li {
+  border-block-start: var(--border-soft);
+}
+
+.post-list a {
+  display: block;
+  padding-block: 1.4rem;
+  text-decoration: none;
+}
+
+.post-list .title {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 2.1rem;
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-line-height);
+}
+
+.post-list .meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-block-start: 0.35rem;
+}
+
+.post-list .desc {
+  color: var(--card-foreground);
+  font-size: 0.95rem;
+  margin-block-start: 0.4rem;
+}
+
+/* ---- article ---- */
+article header.post-head {
+  padding-block: 2.5rem 1.5rem;
+  border-block-end: var(--border-soft);
+  margin-block-end: 2rem;
+}
+
+article h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: var(--display-weight);
+  line-height: var(--display-line-height);
+  letter-spacing: var(--display-tracking);
+  margin: 0;
+}
+
+article .post-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-block-start: 0.9rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Status pill — Halima's secondary tag, not a dark square */
+article .post-meta .tag {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-badges);
+  padding-inline: 0.6rem;
+  padding-block: 0.12rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+article .hero {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-3xl);
+  border: var(--border-soft);
+  margin-block-end: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+
+article .hero:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: var(--display-weight);
+  line-height: var(--display-line-height);
+  letter-spacing: var(--display-tracking);
+  margin-block: 2.2rem 0.8rem;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: var(--display-weight);
+  line-height: var(--display-line-height);
+  letter-spacing: var(--display-tracking);
+  margin-block: 1.8rem 0.6rem;
+}
+
+.prose p {
+  margin-block: 0 1.15rem;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: var(--border-soft);
+}
+
+.prose blockquote {
+  margin-block: 1.5rem;
+  margin-inline: 0;
+  padding-inline: 1.25rem;
+  border-inline-start: 3px solid var(--accent);
+  color: var(--card-foreground);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  background: var(--secondary);
+  border: var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding-inline: 0.3rem;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-block: 1.5rem;
+}
+
+.prose th,
+.prose td {
+  border-block-end: var(--border-soft);
+  padding-block: 0.5rem;
+  padding-inline-end: 0.75rem;
+  text-align: start;
+  vertical-align: top;
+}
+
+.prose th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose em {
+  color: var(--card-foreground);
+}
+
+[dir="rtl"] .prose {
+  line-height: 1.8;
+}
+
+/* RTL: Caveat has no Arabic glyphs, so the naskh face carries display there */
+[dir="rtl"] {
+  --font-display: "Noto Naskh Arabic", "Caveat", serif;
+  --display-weight: 600;
+  --display-tracking: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

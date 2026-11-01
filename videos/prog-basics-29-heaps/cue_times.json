@@ -1,0 +1,532 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 2.901,
+      "words": [
+        {
+          "text": "How",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "text": "does",
+          "start": 0.18,
+          "end": 0.32
+        },
+        {
+          "text": "a",
+          "start": 0.32,
+          "end": 0.42
+        },
+        {
+          "text": "computer",
+          "start": 0.42,
+          "end": 0.82
+        },
+        {
+          "text": "always",
+          "start": 0.82,
+          "end": 1.3
+        },
+        {
+          "text": "know",
+          "start": 1.3,
+          "end": 1.7
+        },
+        {
+          "text": "who's",
+          "start": 1.7,
+          "end": 2.02
+        },
+        {
+          "text": "next",
+          "start": 2.02,
+          "end": 2.22
+        },
+        {
+          "text": "in",
+          "start": 2.22,
+          "end": 2.42
+        },
+        {
+          "text": "line?",
+          "start": 2.42,
+          "end": 2.64
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 12.629,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.16
+        },
+        {
+          "text": "heap",
+          "start": 0.16,
+          "end": 0.32
+        },
+        {
+          "text": "is",
+          "start": 0.32,
+          "end": 0.56
+        },
+        {
+          "text": "a",
+          "start": 0.56,
+          "end": 0.66
+        },
+        {
+          "text": "tree",
+          "start": 0.66,
+          "end": 0.94
+        },
+        {
+          "text": "where",
+          "start": 0.94,
+          "end": 1.2
+        },
+        {
+          "text": "every",
+          "start": 1.2,
+          "end": 1.56
+        },
+        {
+          "text": "parent",
+          "start": 1.56,
+          "end": 1.9
+        },
+        {
+          "text": "is",
+          "start": 1.9,
+          "end": 2.16
+        },
+        {
+          "text": "smaller",
+          "start": 2.16,
+          "end": 2.56
+        },
+        {
+          "text": "than",
+          "start": 2.56,
+          "end": 2.8
+        },
+        {
+          "text": "its",
+          "start": 2.8,
+          "end": 2.98
+        },
+        {
+          "text": "children.",
+          "start": 2.98,
+          "end": 3.42
+        },
+        {
+          "text": "That",
+          "start": 4.12,
+          "end": 4.26
+        },
+        {
+          "text": "version",
+          "start": 4.26,
+          "end": 4.62
+        },
+        {
+          "text": "is",
+          "start": 4.62,
+          "end": 4.96
+        },
+        {
+          "text": "a",
+          "start": 4.96,
+          "end": 5.1
+        },
+        {
+          "text": "min-heap.",
+          "start": 5.1,
+          "end": 5.26
+        },
+        {
+          "text": "Flip",
+          "start": 6.02,
+          "end": 6.3
+        },
+        {
+          "text": "every",
+          "start": 6.3,
+          "end": 6.66
+        },
+        {
+          "text": "comparison",
+          "start": 6.66,
+          "end": 7.24
+        },
+        {
+          "text": "and",
+          "start": 7.24,
+          "end": 7.72
+        },
+        {
+          "text": "it",
+          "start": 7.72,
+          "end": 7.84
+        },
+        {
+          "text": "is",
+          "start": 7.84,
+          "end": 8.02
+        },
+        {
+          "text": "a",
+          "start": 8.02,
+          "end": 8.12
+        },
+        {
+          "text": "max-heap.",
+          "start": 8.12,
+          "end": 8.36
+        },
+        {
+          "text": "A",
+          "start": 9.2,
+          "end": 9.32
+        },
+        {
+          "text": "parent",
+          "start": 9.32,
+          "end": 9.62
+        },
+        {
+          "text": "is",
+          "start": 9.62,
+          "end": 9.9
+        },
+        {
+          "text": "the",
+          "start": 9.9,
+          "end": 10.02
+        },
+        {
+          "text": "box",
+          "start": 10.02,
+          "end": 10.3
+        },
+        {
+          "text": "above;",
+          "start": 10.3,
+          "end": 10.6
+        },
+        {
+          "text": "a",
+          "start": 11.1,
+          "end": 11.18
+        },
+        {
+          "text": "child",
+          "start": 11.18,
+          "end": 11.54
+        },
+        {
+          "text": "sits",
+          "start": 11.54,
+          "end": 11.84
+        },
+        {
+          "text": "below",
+          "start": 11.84,
+          "end": 12.2
+        },
+        {
+          "text": "it.",
+          "start": 12.2,
+          "end": 12.48
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 9.579,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.12
+        },
+        {
+          "text": "smallest",
+          "start": 0.12,
+          "end": 0.5
+        },
+        {
+          "text": "item",
+          "start": 0.5,
+          "end": 0.94
+        },
+        {
+          "text": "sits",
+          "start": 0.94,
+          "end": 1.2
+        },
+        {
+          "text": "at",
+          "start": 1.2,
+          "end": 1.4
+        },
+        {
+          "text": "the",
+          "start": 1.4,
+          "end": 1.48
+        },
+        {
+          "text": "top,",
+          "start": 1.48,
+          "end": 1.82
+        },
+        {
+          "text": "so",
+          "start": 2.1,
+          "end": 2.24
+        },
+        {
+          "text": "you",
+          "start": 2.24,
+          "end": 2.38
+        },
+        {
+          "text": "can",
+          "start": 2.38,
+          "end": 2.54
+        },
+        {
+          "text": "grab",
+          "start": 2.54,
+          "end": 2.78
+        },
+        {
+          "text": "it",
+          "start": 2.78,
+          "end": 2.98
+        },
+        {
+          "text": "instantly.",
+          "start": 2.98,
+          "end": 3.42
+        },
+        {
+          "text": "Push",
+          "start": 4.24,
+          "end": 4.42
+        },
+        {
+          "text": "one,",
+          "start": 4.42,
+          "end": 4.74
+        },
+        {
+          "text": "three,",
+          "start": 4.92,
+          "end": 5.12
+        },
+        {
+          "text": "two,",
+          "start": 5.24,
+          "end": 5.48
+        },
+        {
+          "text": "seven,",
+          "start": 5.58,
+          "end": 5.92
+        },
+        {
+          "text": "five.",
+          "start": 5.98,
+          "end": 6.38
+        },
+        {
+          "text": "The",
+          "start": 7.04,
+          "end": 7.12
+        },
+        {
+          "text": "root",
+          "start": 7.12,
+          "end": 7.34
+        },
+        {
+          "text": "is",
+          "start": 7.34,
+          "end": 7.52
+        },
+        {
+          "text": "one,",
+          "start": 7.52,
+          "end": 7.8
+        },
+        {
+          "text": "and",
+          "start": 8.04,
+          "end": 8.14
+        },
+        {
+          "text": "the",
+          "start": 8.14,
+          "end": 8.24
+        },
+        {
+          "text": "row",
+          "start": 8.24,
+          "end": 8.5
+        },
+        {
+          "text": "is",
+          "start": 8.5,
+          "end": 8.72
+        },
+        {
+          "text": "not",
+          "start": 8.72,
+          "end": 8.92
+        },
+        {
+          "text": "sorted.",
+          "start": 8.92,
+          "end": 9.32
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 6.165,
+      "words": [
+        {
+          "text": "Insert",
+          "start": 0,
+          "end": 0.38
+        },
+        {
+          "text": "and",
+          "start": 0.38,
+          "end": 0.66
+        },
+        {
+          "text": "remove",
+          "start": 0.66,
+          "end": 0.96
+        },
+        {
+          "text": "take",
+          "start": 0.96,
+          "end": 1.26
+        },
+        {
+          "text": "log",
+          "start": 1.26,
+          "end": 1.305
+        },
+        {
+          "text": "n.",
+          "start": 1.26,
+          "end": 1.82
+        },
+        {
+          "text": "The",
+          "start": 2.26,
+          "end": 2.46
+        },
+        {
+          "text": "longest",
+          "start": 2.46,
+          "end": 2.78
+        },
+        {
+          "text": "path",
+          "start": 2.78,
+          "end": 3.12
+        },
+        {
+          "text": "down",
+          "start": 3.12,
+          "end": 3.42
+        },
+        {
+          "text": "is",
+          "start": 3.42,
+          "end": 3.62
+        },
+        {
+          "text": "two",
+          "start": 3.62,
+          "end": 3.86
+        },
+        {
+          "text": "steps.",
+          "start": 3.86,
+          "end": 4.2
+        },
+        {
+          "text": "One",
+          "start": 4.72,
+          "end": 4.92
+        },
+        {
+          "text": "swap",
+          "start": 4.92,
+          "end": 5.22
+        },
+        {
+          "text": "did",
+          "start": 5.22,
+          "end": 5.5
+        },
+        {
+          "text": "the",
+          "start": 5.5,
+          "end": 5.64
+        },
+        {
+          "text": "rest.",
+          "start": 5.64,
+          "end": 5.94
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 2.048,
+      "words": [
+        {
+          "text": "Save",
+          "start": 0,
+          "end": 0.26
+        },
+        {
+          "text": "this",
+          "start": 0.26,
+          "end": 0.54
+        },
+        {
+          "text": "for",
+          "start": 0.54,
+          "end": 0.76
+        },
+        {
+          "text": "algorithm",
+          "start": 0.76,
+          "end": 1.2
+        },
+        {
+          "text": "interviews.",
+          "start": 1.2,
+          "end": 1.64
+        }
+      ]
+    }
+  ]
+}

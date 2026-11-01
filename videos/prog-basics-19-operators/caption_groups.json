@@ -1,0 +1,574 @@
+{
+  "total_duration_s": 30.52,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 0.3,
+      "text": "One of",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "One",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "of",
+          "start": 0.18,
+          "end": 0.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 0.3,
+      "end": 1.54,
+      "text": "these operators is",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "these",
+          "start": 0.3,
+          "end": 0.46
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "operators",
+          "start": 0.46,
+          "end": 0.96
+        },
+        {
+          "id": "caption-word-1-2",
+          "text": "is",
+          "start": 0.96,
+          "end": 1.54
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 1.54,
+      "end": 1.96,
+      "text": "not what",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "not",
+          "start": 1.54,
+          "end": 1.76
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "what",
+          "start": 1.76,
+          "end": 1.96
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 1.96,
+      "end": 2.42,
+      "text": "you think.",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "you",
+          "start": 1.96,
+          "end": 2.08
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "think.",
+          "start": 2.08,
+          "end": 2.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 2,
+      "start": 3.58,
+      "end": 5.4,
+      "text": "Arithmetic operators do math.",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "Arithmetic",
+          "start": 3.58,
+          "end": 4
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "operators",
+          "start": 4,
+          "end": 4.72
+        },
+        {
+          "id": "caption-word-4-2",
+          "text": "do",
+          "start": 4.72,
+          "end": 5
+        },
+        {
+          "id": "caption-word-4-3",
+          "text": "math.",
+          "start": 5,
+          "end": 5.28
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 5.88,
+      "end": 7.44,
+      "text": "Comparison operators return",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "Comparison",
+          "start": 5.88,
+          "end": 6.46
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "operators",
+          "start": 6.46,
+          "end": 6.86
+        },
+        {
+          "id": "caption-word-5-2",
+          "text": "return",
+          "start": 6.86,
+          "end": 7.44
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 7.44,
+      "end": 8.72,
+      "text": "true or false.",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "true",
+          "start": 7.44,
+          "end": 7.92
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "or",
+          "start": 7.92,
+          "end": 8.22
+        },
+        {
+          "id": "caption-word-6-2",
+          "text": "false.",
+          "start": 8.22,
+          "end": 8.6
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 9.34,
+      "end": 11.46,
+      "text": "Logical operators combine conditions:",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "Logical",
+          "start": 9.34,
+          "end": 9.84
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "operators",
+          "start": 9.84,
+          "end": 10.34
+        },
+        {
+          "id": "caption-word-7-2",
+          "text": "combine",
+          "start": 10.34,
+          "end": 10.84
+        },
+        {
+          "id": "caption-word-7-3",
+          "text": "conditions:",
+          "start": 10.84,
+          "end": 11.46
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 11.46,
+      "end": 12.4,
+      "text": "and,",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "and,",
+          "start": 11.46,
+          "end": 12.4
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 12.4,
+      "end": 12.84,
+      "text": "or,",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "or,",
+          "start": 12.4,
+          "end": 12.84
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 2,
+      "start": 12.84,
+      "end": 13.3,
+      "text": "not.",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "not.",
+          "start": 12.84,
+          "end": 13.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 3,
+      "start": 14.44,
+      "end": 15.2,
+      "text": "And watch out:",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "And",
+          "start": 14.44,
+          "end": 14.58
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "watch",
+          "start": 14.58,
+          "end": 14.8
+        },
+        {
+          "id": "caption-word-11-2",
+          "text": "out:",
+          "start": 14.8,
+          "end": 15.08
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 3,
+      "start": 15.54,
+      "end": 15.94,
+      "text": "a single",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "a",
+          "start": 15.54,
+          "end": 15.68
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "single",
+          "start": 15.68,
+          "end": 15.94
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 3,
+      "start": 15.94,
+      "end": 17.36,
+      "text": "equals sign assigns,",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "equals",
+          "start": 15.94,
+          "end": 16.3
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "sign",
+          "start": 16.3,
+          "end": 16.68
+        },
+        {
+          "id": "caption-word-13-2",
+          "text": "assigns,",
+          "start": 16.68,
+          "end": 17.36
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 3,
+      "start": 17.36,
+      "end": 17.78,
+      "text": "a double",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "a",
+          "start": 17.36,
+          "end": 17.52
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "double",
+          "start": 17.52,
+          "end": 17.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 3,
+      "start": 17.78,
+      "end": 18.68,
+      "text": "equals compares.",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "equals",
+          "start": 17.78,
+          "end": 18.18
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "compares.",
+          "start": 18.18,
+          "end": 18.56
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 4,
+      "start": 20.05,
+      "end": 21.13,
+      "text": "Seven floor divided",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "Seven",
+          "start": 20.05,
+          "end": 20.37
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "floor",
+          "start": 20.37,
+          "end": 20.67
+        },
+        {
+          "id": "caption-word-16-2",
+          "text": "divided",
+          "start": 20.67,
+          "end": 21.13
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 4,
+      "start": 21.13,
+      "end": 21.71,
+      "text": "by two",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "by",
+          "start": 21.13,
+          "end": 21.43
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "two",
+          "start": 21.43,
+          "end": 21.71
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 4,
+      "start": 21.71,
+      "end": 22.39,
+      "text": "gives three.",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "gives",
+          "start": 21.71,
+          "end": 21.93
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "three.",
+          "start": 21.93,
+          "end": 22.27
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 4,
+      "start": 22.73,
+      "end": 23.41,
+      "text": "Seven over",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "Seven",
+          "start": 22.73,
+          "end": 23.17
+        },
+        {
+          "id": "caption-word-19-1",
+          "text": "over",
+          "start": 23.17,
+          "end": 23.41
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 4,
+      "start": 23.41,
+      "end": 24.01,
+      "text": "two gives",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "two",
+          "start": 23.41,
+          "end": 23.71
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "gives",
+          "start": 23.71,
+          "end": 24.01
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 4,
+      "start": 24.01,
+      "end": 25.01,
+      "text": "three point five.",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "three",
+          "start": 24.01,
+          "end": 24.055
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "point",
+          "start": 24.01,
+          "end": 24.31
+        },
+        {
+          "id": "caption-word-21-2",
+          "text": "five.",
+          "start": 24.31,
+          "end": 24.89
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 5,
+      "start": 26.19,
+      "end": 26.85,
+      "text": "What's 7%",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "What's",
+          "start": 26.19,
+          "end": 26.53
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "7%",
+          "start": 26.53,
+          "end": 26.73
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 5,
+      "start": 26.99,
+      "end": 27.45,
+      "text": "3?",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "3?",
+          "start": 26.99,
+          "end": 27.33
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 5,
+      "start": 27.71,
+      "end": 28.41,
+      "text": "Comment it.",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "Comment",
+          "start": 27.71,
+          "end": 28.03
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "it.",
+          "start": 28.03,
+          "end": 28.29
+        }
+      ]
+    }
+  ]
+}

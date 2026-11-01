@@ -1,0 +1,133 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f07-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f07-grid { position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px); }
+    .f07-kicker { position: absolute; top: 200px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f07-spike { display: inline-block; color: #956f33; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f07-ktext { display: inline-block; opacity: 0; }
+    .f07-chamber { position: absolute; left: 80px; width: 920px; box-sizing: border-box;
+      background: #181715; border: 1px solid rgba(255,255,235,0.16); border-radius: 8px;
+      opacity: 0; overflow: hidden; }
+    .f07-fixed { border: 2px solid #f0d7ff; }
+    .f07-titlebar { position: absolute; top: 0; left: 0; width: 100%; height: 86px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 20px; padding: 0 30px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14); }
+    .f07-scope { font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.02em; color: #ffffeb; }
+    .f07-tagline { display: inline-block; margin-left: auto;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #c9c9ba; }
+    .f07-ln { position: absolute; left: 34px; width: 856px; height: 56px; display: flex;
+      align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #8a8a7a; opacity: 0; }
+    .f07-ln span { display: inline-block; }
+    .f07-load { color: #f0d7ff; }
+    .f07-kw { color: #ffa946; }
+    .f07-drop { position: absolute; top: 690px; left: 560px; width: 340px; height: 76px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 2.7cqw;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #1a1a1a; opacity: 0; }
+    .f07-brace { position: absolute; left: 14px; top: 944px; width: 62px; height: 200px;
+      box-sizing: border-box; border: 3px solid rgba(26,26,26,0.45);
+      border-left: none; border-radius: 0 12px 12px 0; opacity: 0; }
+    .f07-scope-note { position: absolute; left: 700px; top: 1190px; width: 300px; height: 56px;
+      display: flex; align-items: center; justify-content: flex-end;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #6f6f67; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="07-unsubscribe" data-width="1080" data-height="1920" data-duration="9.131">
+
+    <div id="f07-fieldclip" class="clip" data-start="0" data-duration="9.131" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f07-field"></div>
+      <div id="f07-grid" class="f07-grid"></div>
+    </div>
+
+    <div id="f07-chromeclip" class="clip" data-start="0" data-duration="9.131" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f07-kicker">
+        <span id="f07-spike" class="f07-spike">&#10009;</span><span id="f07-ktext" class="f07-ktext" data-layout-ignore>THE MISSING HALF</span>
+      </div>
+    </div>
+
+    <div id="f07-wrongclip" class="clip" data-start="0" data-duration="9.131" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f07-ch1" class="f07-chamber" style="top:380px;height:300px;">
+        <div class="f07-titlebar"><span class="f07-scope">mount</span><span class="f07-tagline" data-layout-ignore>before</span></div>
+        <div id="f07-a1" class="f07-ln" style="top:110px;"><span class="f07-load">mount</span>(): <span class="f07-load">void</span> {</div>
+        <div id="f07-a2" class="f07-ln" style="top:166px;">  bus.<span class="f07-load">subscribe</span>(this.sendReceipt);</div>
+        <div id="f07-a3" class="f07-ln" style="top:222px;">}</div>
+      </div>
+      <div id="f07-drop" class="f07-drop">handle dropped</div>
+    </div>
+
+    <div id="f07-fixedclip" class="clip" data-start="0" data-duration="9.131" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="f07-ch2" class="f07-chamber f07-fixed" style="top:790px;height:380px;">
+        <div class="f07-titlebar"><span class="f07-scope">mount / unmount</span><span class="f07-tagline" data-layout-ignore>after</span></div>
+        <div id="f07-b1" class="f07-ln" style="top:110px;"><span class="f07-load">mount</span>(): <span class="f07-load">void</span> {</div>
+        <div id="f07-b2" class="f07-ln" style="top:166px;">  <span class="f07-load">off</span> = bus.<span class="f07-load">subscribe</span>(this.sendReceipt);</div>
+        <div id="f07-b3" class="f07-ln" style="top:222px;">}</div>
+        <div id="f07-b4" class="f07-ln" style="top:288px;"><span class="f07-load">unmount</span>(): <span class="f07-load">void</span> { <span class="f07-kw">off</span>(); }</div>
+      </div>
+      <div id="f07-brace" class="f07-brace"></div>
+      <div id="f07-note" class="f07-scope-note" data-layout-ignore>same scope</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.131;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["07-unsubscribe"] = tl;
+
+      // ── ground + chrome ──
+      tl.fromTo(el("f07-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("f07-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.08);
+      tl.fromTo(el("f07-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 0.18);
+
+      // ── Scene 1 (0.0-2.2s) — "The tell is the missing half": the wrong shape, top chamber ──
+      tl.fromTo(el("f07-ch1"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 0.46);
+      [
+        { id: "f07-a1", t: 0.9 },
+        { id: "f07-a2", t: 1.08 },
+        { id: "f07-a3", t: 1.38 }
+      ].forEach(function (l) {
+        tl.fromTo(el(l.id), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, l.t);
+      });
+
+      // ── Scene 2 (2.66-4.6s) — "Subscribe hands back a detach": the fixed shape arrives below,
+      //    mirrored entrance (no tilt), and the ember note marks the value the top one threw away ──
+      tl.fromTo(el("f07-ch2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 2.66);
+      [
+        { id: "f07-b1", t: 3.26 },
+        { id: "f07-b2", t: 3.86 },
+        { id: "f07-b3", t: 4.22 }
+      ].forEach(function (l) {
+        tl.fromTo(el(l.id), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, l.t);
+      });
+      tl.fromTo(el("f07-drop"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 4.42);
+
+      // ── Scene 3 (5.46-8.2s) — "the scope that subscribed runs it on teardown": the pairing is
+      //    drawn, then the last line lands on "teardown" ──
+      tl.fromTo(el("f07-brace"), { opacity: 0, scaleX: 0.5 }, { opacity: 1, scaleX: 1, duration: 0.46, ease: "power2.out", transformOrigin: "left center" }, 6.38);
+      tl.fromTo(el("f07-b4"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 6.96);
+      tl.fromTo(el("f07-note"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 7.74);
+
+      // ── Scene 4 (8.6-9.13s) — held read of both chambers; nothing moves ──
+    })();
+  </script>
+</template>

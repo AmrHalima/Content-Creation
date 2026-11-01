@@ -1,0 +1,37 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "A dependency degrades, and every call still waits."
+    },
+    {
+      "id": "02",
+      "text": "A circuit breaker wraps the calls and fails fast."
+    },
+    {
+      "id": "03",
+      "text": "Closed means calls flow while the breaker counts failures. Cross the configured threshold and it goes open: nothing leaves. After the reset timeout it goes half-open and lets one probe through. Succeed and it closes, fail and it opens again."
+    },
+    {
+      "id": "04",
+      "text": "Threshold and reset timeout are configuration. Every dependency sets its own; a number copied from another service is a guess."
+    },
+    {
+      "id": "05",
+      "text": "An open breaker still has to answer, so the guarded call takes a fallback: the last cached value, or an honest unavailable."
+    },
+    {
+      "id": "06",
+      "text": "At the call site it is one wrapper. When the breaker is open the guarded call throws before its timeout, and the catch returns the fallback."
+    },
+    {
+      "id": "07",
+      "text": "The usual shape is a timeout with no breaker, so one slow dependency costs every caller its patience. Add retries, and the storm finishes what the outage started."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

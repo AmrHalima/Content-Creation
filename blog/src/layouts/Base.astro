@@ -1,0 +1,91 @@
+---
+import "../styles/global.css";
+import { site } from "../config";
+
+interface Alternate {
+  lang: string;
+  href: string;
+}
+
+interface Props {
+  lang: "en" | "ar";
+  title: string;
+  description: string;
+  /** Absolute path of this page, e.g. "/posts/shrink-the-loop/" */
+  path: string;
+  image?: string;
+  alternates?: Alternate[];
+  jsonLd?: Record<string, unknown>;
+}
+
+const { lang, title, description, path, image, alternates = [], jsonLd } = Astro.props;
+const dir = lang === "ar" ? "rtl" : "ltr";
+const origin = Astro.site?.origin.replace(/\/$/, "") ?? "";
+const url = origin + path;
+const siteTitle = lang === "ar" ? site.titleAr : site.title;
+const homeHref = lang === "ar" ? "/ar/" : "/";
+// When this page has a translation, the visible switch should land on that
+// translation, not on the other language's homepage. `alternates` already
+// carries the mapped path (Post.astro builds it from hasTranslation), and index
+// pages pass their own language root through it, so the fallback only applies
+// to a post that exists in one language alone.
+const otherLang = lang === "ar" ? "en" : "ar";
+const translation = alternates.find((alt) => alt.lang === otherLang);
+const otherHref = translation ? translation.href : lang === "ar" ? "/" : "/ar/";
+const ogImage = image ? origin + image : undefined;
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+    <link rel="alternate" hreflang={`${lang}`} href={url} />
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.lang} href={origin + alt.href} />)}
+    <meta property="og:type" content={jsonLd ? "article" : "website"} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:locale" content={lang === "ar" ? "ar_EG" : "en_US"} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
+    />
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", ...jsonLd })} />
+    )}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <a class="site-name" href={homeHref}>{siteTitle}</a>
+        <nav class="site-nav" aria-label={lang === "ar" ? "اللغة" : "Language"}>
+          <a class="lang-switch" href={otherHref} hrefLang={lang === "ar" ? "en" : "ar"}>
+            {lang === "ar" ? "EN" : "عربي"}
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="inner">
+        © {new Date().getFullYear()} {siteTitle}
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; top: 214px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f04-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f04-ktext { display: inline-block; opacity: 0; }
+
+    .f04-panel { position: absolute; left: 90px; width: 900px; box-sizing: border-box; background: #181715; border-radius: 8px; }
+    .f04-iface { top: 380px; height: 260px; border: 3px solid #F0D7FF; }
+    .f04-impl { top: 740px; height: 380px; border: 1px solid rgba(255,255,235,0.14); }
+    .f04-bar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 62px;
+      box-sizing: border-box; background: #252320;
+      display: flex; align-items: center; gap: 16px; padding: 0 24px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; letter-spacing: 0.06em;
+      color: rgba(255,255,235,0.62);
+    }
+    .f04-dot { display: inline-block; width: 13px; height: 13px; border-radius: 9999px; background: rgba(255,255,235,0.22); }
+    .f04-code {
+      position: absolute; left: 26px; width: 830px; height: 58px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; letter-spacing: -0.012em;
+      color: #ffffeb;
+      opacity: 0;
+    }
+    .f04-pn { display: inline-block; color: rgba(255,255,235,0.52); }
+    .f04-id { display: inline-block; color: #5DB8A6; }
+    .f04-kw { display: inline-block; color: #FFA946; }
+    .f04-band {
+      position: absolute; left: 8px; width: 866px; height: 62px;
+      background: rgba(232,165,90,0.22);
+      border-radius: 6px;
+      opacity: 0;
+    }
+    .f04-rule {
+      position: absolute; top: 690px; left: 90px; width: 540px; height: 4px;
+      background: #1a1a1a; opacity: 0;
+    }
+    .f04-pill {
+      position: absolute; top: 654px; left: 660px; width: 330px; height: 74px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #FFA946; border: 3px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; letter-spacing: 0.06em;
+      color: #1a1a1a;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-the-sketch" data-width="1080" data-height="1920" data-duration="11.008">
+
+    <div id="04-the-sketch-fieldclip" class="clip" data-start="0" data-duration="11.008" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field"></div>
+      <div id="04-the-sketch-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="04-the-sketch-chromeclip" class="clip" data-start="0" data-duration="11.008" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f04-kicker">
+        <span id="04-the-sketch-spike" class="f04-spike">&#10009;</span><span id="04-the-sketch-ktext" class="f04-ktext" data-layout-ignore>THE CONTRACT</span>
+      </div>
+    </div>
+
+    <div id="04-the-sketch-ifaceclip" class="clip" data-start="0" data-duration="11.008" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="04-the-sketch-iface" class="f04-panel f04-iface">
+        <div class="f04-bar"><span class="f04-dot"></span><span class="f04-tfile" data-layout-ignore>order_repository</span></div>
+        <div id="04-the-sketch-i1" class="f04-code" style="top:82px;"><span>findById(</span><span class="f04-id">id</span><span>)</span><span class="f04-pn">&nbsp;&#8594;&nbsp;</span><span class="f04-kw">Order</span></div>
+        <div id="04-the-sketch-i2" class="f04-code" style="top:148px;"><span>save(</span><span class="f04-id">order</span><span>)</span></div>
+      </div>
+    </div>
+
+    <div id="04-the-sketch-implclip" class="clip" data-start="5.06" data-duration="5.948" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="04-the-sketch-impl" class="f04-panel f04-impl">
+        <div class="f04-bar"><span class="f04-dot"></span><span class="f04-tfile" data-layout-ignore>order_repository_pg</span></div>
+        <div id="04-the-sketch-band" class="f04-band" style="top:134px;"></div>
+        <div id="04-the-sketch-m1" class="f04-code" style="top:80px;"><span>conn = pool.</span><span class="f04-pn">acquire()</span></div>
+        <div id="04-the-sketch-m2" class="f04-code" style="top:146px;"><span class="f04-kw">SELECT</span><span>&nbsp;* </span><span class="f04-kw">FROM</span><span>&nbsp;</span><span class="f04-id">orders</span></div>
+        <div id="04-the-sketch-m3" class="f04-code" style="top:212px;"><span>map rows </span><span class="f04-pn">&#8594;</span><span> </span><span class="f04-kw">Order</span></div>
+        <div id="04-the-sketch-m4" class="f04-code" style="top:278px;"><span>tx.</span><span class="f04-pn">commit()</span></div>
+      </div>
+    </div>
+
+    <div id="04-the-sketch-seamclip" class="clip" data-start="9.04" data-duration="1.968" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="04-the-sketch-rule" class="f04-rule"></div>
+      <div id="04-the-sketch-pill" class="f04-pill">the line</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 11.008;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(el("04-the-sketch-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("04-the-sketch-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("04-the-sketch-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1+2 (0.0–5.0s) — the contract, one signature per spoken clause, pinned once it is here ──
+      tl.fromTo(el("04-the-sketch-iface"), { opacity: 0.4 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+      tl.fromTo(el("04-the-sketch-i1"), { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.56);
+      tl.fromTo(el("04-the-sketch-i2"), { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 3.06);
+
+      // ── Scene 3 (5.06–8.9s) — the sheet travels: the implementation rises into frame on "Every connection" ──
+      tl.fromTo(el("04-the-sketch-impl"), { opacity: 0, y: 240 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 5.06);
+      var ROWS = [
+        { id: "04-the-sketch-m1", t: 5.40 },
+        { id: "04-the-sketch-m2", t: 6.08 },
+        { id: "04-the-sketch-m3", t: 6.48 },
+        { id: "04-the-sketch-m4", t: 7.08 }
+      ];
+      ROWS.forEach(function (r) {
+        tl.fromTo(el(r.id), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, r.t);
+      });
+
+      // code-highlight intent, hand-built (the registry block would not install): a band sweeps the
+      // target line on "lives" (7.88) while its neighbours dim
+      tl.fromTo(el("04-the-sketch-band"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.out", transformOrigin: "left center" }, 7.88);
+      tl.to(el("04-the-sketch-m1"), { opacity: 0.42, duration: 0.4, ease: "power1.out" }, 7.88);
+      tl.to(el("04-the-sketch-m3"), { opacity: 0.42, duration: 0.4, ease: "power1.out" }, 7.96);
+      tl.to(el("04-the-sketch-m4"), { opacity: 0.42, duration: 0.4, ease: "power1.out" }, 8.04);
+      // the interface panel keeps full opacity: fading navy on cream reads as mud, and the band
+      // plus the dimmed sibling rows already move the emphasis across the seam.
+
+      // ── Scene 4 (8.9–11.008s) — the seam draws on "far side", its name lands on "that line" ──
+      tl.fromTo(el("04-the-sketch-rule"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.62, ease: "power2.inOut", transformOrigin: "left center" }, 9.04);
+      tl.fromTo(el("04-the-sketch-pill"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 10.1);
+
+      // sine-wave-loop on the interface WRAPPER (GSAP never transforms this element)
+      var jit = { p: 0 };
+      var box = el("04-the-sketch-iface");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.4,
+        duration: D - 10.32,
+        ease: "none",
+        onUpdate: function () { box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.7).toFixed(3) + "px)"; }
+      }, 10.32);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["04-the-sketch"] = tl;
+    })();
+  </script>
+</template>

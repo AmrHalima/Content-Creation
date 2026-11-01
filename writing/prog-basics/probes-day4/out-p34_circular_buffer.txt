@@ -1,0 +1,16 @@
+== 34.1  ring of size 3, writes A B C D ==
+step | wrote | cells[0,1,2] | head | tail | count | evicted | oldest->newest
+   1 |   A   |     A..      |    0 |    1 |     1 |  None   | A
+   2 |   B   |     AB.      |    0 |    2 |     2 |  None   | A->B
+   3 |   C   |     ABC      |    0 |    0 |     3 |  None   | A->B->C
+   4 |   D   |     DBC      |    1 |    1 |     3 |    A    | B->C->D
+
+cells after the four writes, literally: ['D', 'B', 'C']
+did D overwrite A?  True (evicted cell reported in the table above)
+len(cells) after 4 writes: 3 (the array never grew)
+
+== 34.2  the hook's actual case: a log that keeps only the latest 100 entries ==
+writes issued: 250 | slots: 100 | len(cells): 100 | count: 100
+first live entry: line151 | last live entry: line250
+equals the last 100 of a plain list? True
+head slot: 50 tail slot: 50 (tail == head when full: writes wrap onto the oldest)

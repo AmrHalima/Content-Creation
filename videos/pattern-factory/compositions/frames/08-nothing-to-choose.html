@@ -1,0 +1,235 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f08-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f08-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f08-kicker {
+      position: absolute; top: 132px; left: 90px; width: 760px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f08-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; }
+    .f08-ktext { display: inline-block; }
+    .f08-top {
+      position: absolute; top: 220px; left: 90px; width: 900px; height: 470px;
+      box-sizing: border-box; background: #181715;
+      border: 2px solid rgba(255,255,235,0.16); border-radius: 8px;
+    }
+    .f08-topbar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 78px;
+      box-sizing: border-box; display: flex; align-items: center; padding: 0 26px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      border-radius: 6px 6px 0 0;
+    }
+    .f08-filename {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.1cqw; letter-spacing: 0.06em; color: rgba(255,255,235,0.62);
+    }
+    .f08-chip {
+      position: absolute; right: 26px; top: 17px;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 44px; padding: 0 20px;
+      border: 1px solid rgba(255,255,255,0.55); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.08em; text-transform: uppercase; color: #ffffeb;
+      white-space: nowrap;
+    }
+    .f08-code {
+      position: absolute; left: 120px; width: 840px; height: 74px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.7cqw; line-height: 1.6; color: #8a8a80;
+    }
+    .f08-t1 { top: 328px; }
+    .f08-t2 { top: 402px; }
+    .f08-t3 { top: 476px; }
+    .f08-key { display: inline-block; color: #ffffeb; }
+    .f08-tail { display: inline-block; opacity: 0; }
+    .f08-edgerule {
+      position: absolute; left: 18px; top: 104px; width: 4px; height: 240px;
+      background: #FFA946; opacity: 0;
+    }
+    .f08-pass { position: absolute; left: 90px; top: 220px; width: 900px; height: 470px; }
+    .f08-pass svg { display: block; width: 100%; height: 100%; }
+    .f08-passpath {
+      fill: none; stroke: rgba(255,255,235,0.55); stroke-width: 3;
+      stroke-dasharray: 0.04 0.03; stroke-dashoffset: 1;
+    }
+    .f08-bottom {
+      position: absolute; top: 740px; left: 90px; width: 900px; height: 290px;
+      box-sizing: border-box; background: #ffffff;
+      border: 2px solid rgba(26,26,26,0.22); border-radius: 8px;
+      opacity: 0;
+    }
+    .f08-bottombar {
+      position: absolute; top: 0; left: 0; width: 100%; height: 68px;
+      box-sizing: border-box; display: flex; align-items: center; padding: 0 26px;
+      border-bottom: 1px solid rgba(26,26,26,0.12);
+    }
+    .f08-bottomlabel {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.08em; text-transform: uppercase; color: #76766e;
+    }
+    .f08-inline {
+      position: absolute; left: 28px; top: 106px; width: 840px; height: 80px;
+      display: flex; align-items: center; white-space: pre;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.7cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f08-ceremony {
+      position: absolute; top: 1120px; left: 90px; width: 820px; height: 150px;
+      display: flex; align-items: flex-start;
+      font-family: "EB Garamond", serif; font-weight: 400; font-style: italic;
+      font-size: 7.3cqw; line-height: 1.02; letter-spacing: -0.012em; color: #1a1a1a;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="08-nothing-to-choose" data-width="1080" data-height="1920" data-duration="11.264">
+
+    <div id="08-nothing-to-choose-groundclip" class="clip f08-groundclip" data-start="0" data-duration="11.264" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f08-field" id="08-nothing-to-choose-field"></div>
+      <div class="f08-grid" id="08-nothing-to-choose-grid"></div>
+    </div>
+
+    <div id="08-nothing-to-choose-chromeclip" class="clip f08-chromeclip" data-start="0" data-duration="11.264" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f08-kicker" id="08-nothing-to-choose-kicker">
+        <span class="f08-spike" id="08-nothing-to-choose-spike">&#10009;</span><span class="f08-ktext" id="08-nothing-to-choose-ktext" data-layout-ignore>before and after</span>
+      </div>
+      <div class="f08-top" id="08-nothing-to-choose-top">
+        <div class="f08-topbar">
+          <span class="f08-filename" id="08-nothing-to-choose-filename" data-layout-ignore>gateway-factory.ts</span>
+          <span class="f08-chip" id="08-nothing-to-choose-chip">the tell</span>
+        </div>
+        <div class="f08-edgerule" id="08-nothing-to-choose-edgerule"></div>
+      </div>
+    </div>
+
+    <div id="08-nothing-to-choose-codeclip" class="clip f08-codeclip" data-start="1.92" data-duration="9.344" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f08-code f08-t1" id="08-nothing-to-choose-t1"><span class="f08-type" id="08-nothing-to-choose-t1a">function createGateway(</span><span class="f08-tail" id="08-nothing-to-choose-t1b"><span class="f08-key" id="08-nothing-to-choose-k1">key</span>: string) {</span></div>
+      <div class="f08-code f08-t2" id="08-nothing-to-choose-t2"><span class="f08-type" id="08-nothing-to-choose-t2a">  return new StripeGateway(</span><span class="f08-tail" id="08-nothing-to-choose-t2b"><span class="f08-key" id="08-nothing-to-choose-k2">key</span>);</span></div>
+      <div class="f08-code f08-t3" id="08-nothing-to-choose-t3">}</div>
+      <div class="f08-pass" id="08-nothing-to-choose-passwrap">
+        <svg viewBox="0 0 900 470" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f08-passpath" id="08-nothing-to-choose-pass" pathLength="1" d="M 392 150 C 436 188, 420 200, 456 224" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="08-nothing-to-choose-fixclip" class="clip f08-fixclip" data-start="7.54" data-duration="3.724" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f08-bottom" id="08-nothing-to-choose-bottom">
+        <div class="f08-bottombar"><span class="f08-bottomlabel" id="08-nothing-to-choose-bottomlabel">the direct call</span></div>
+        <div class="f08-inline" id="08-nothing-to-choose-inline">const gateway = new StripeGateway(key);</div>
+      </div>
+    </div>
+
+    <div id="08-nothing-to-choose-wordclip" class="clip f08-wordclip" data-start="8.9" data-duration="2.364" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f08-ceremony" id="08-nothing-to-choose-ceremony">ceremony</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.264;
+      var P = "08-nothing-to-choose";
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines[P] = tl;
+
+      // Discrete label swap on a time proxy with a reverse search over {t, text} steps.
+      // tl.set({ text: … }) is a silent no-op here: the shipped GSAP has no TextPlugin.
+      function discrete(node, steps) {
+        var proxy = { t: 0 };
+        var last = steps[0].text;
+        node.textContent = last;
+        tl.to(proxy, {
+          t: steps[steps.length - 1].t,
+          duration: steps[steps.length - 1].t,
+          ease: "none",
+          onUpdate: function () {
+            var pick = steps[0].text;
+            for (var i = steps.length - 1; i >= 0; i--) {
+              if (proxy.t >= steps[i].t) { pick = steps[i].text; break; }
+            }
+            if (pick !== last) { last = pick; node.textContent = pick; }
+          }
+        }, 0);
+      }
+
+      // Type-on: the proxy writes a slice of the plain-text prefix only, so the sibling
+      // spans (the highlighted argument) keep their own colour and node identity.
+      function typeOn(node, start, dur) {
+        var full = node.textContent;
+        var proxy = { c: full.length };
+        node.textContent = "";
+        tl.fromTo(proxy, { c: 0 }, {
+          c: full.length,
+          duration: dur,
+          ease: "none",
+          onUpdate: function () { node.textContent = full.slice(0, Math.round(proxy.c)); }
+        }, start);
+      }
+
+      // ── Scene 1 (0.0–1.9s) — two stacked outlines, and the chip that will be re-labelled ──
+      tl.fromTo(el(P + "-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "-top"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.2);
+      tl.fromTo(el(P + "-filename"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.4);
+      tl.fromTo(el(P + "-chip"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 0.62);
+
+      // ── Scene 2 (1.9–4.5s) — "forwards one argument list": the two lines type in ──
+      typeOn(el(P + "-t1a"), 1.92, 0.52);
+      tl.fromTo(el(P + "-t1b"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 2.44);
+      typeOn(el(P + "-t2a"), 3.36, 0.5);
+      tl.fromTo(el(P + "-t2b"), { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 3.86);
+      tl.fromTo(el(P + "-t3"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 4.2);
+
+      // ── Scene 3 (4.5–6.4s) — "to one constructor": the edge rule draws, the argument passes through ──
+      tl.fromTo(el(P + "-edgerule"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.5, ease: "power3.out", transformOrigin: "top center" }, 4.96);
+      tl.fromTo(el(P + "-pass"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.72, ease: "power2.out" }, 5.3);
+      tl.fromTo(el(P + "-k1"), { opacity: 0.45 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 5.32);
+      tl.fromTo(el(P + "-k2"), { opacity: 0.45 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 5.64);
+
+      // ── Scene 4 (6.4–8.8s) — "has nothing to choose": the chip swaps, the honest version lands ──
+      discrete(el(P + "-chip"), [
+        { t: 0, text: "the tell" },
+        { t: 6.82, text: "nothing to choose" }
+      ]);
+      tl.fromTo(el(P + "-bottom"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 7.54);
+      tl.fromTo(el(P + "-inline"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 7.9);
+
+      // ── Scene 5 (8.8–11.264s) — "keep it and you have ceremony": one serif word to close ──
+      tl.fromTo(el(P + "-ceremony"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.9);
+
+      // subtle jitter (finite, low amplitude): the closing word only
+      var jit = { p: 0 };
+      var hold = el(P + "-ceremony");
+      var HOLD = 10.86;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          hold.style.transform = "translateY(" + (Math.sin(jit.p) * 1.4).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

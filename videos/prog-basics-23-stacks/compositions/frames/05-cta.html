@@ -1,0 +1,171 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G5 CTA (frame-day3 § 5): headline ≤9 words and ≤24 characters at 6.4cqw in a 176px box —
+       "what's on top?" is 14 characters. Mechanic verb as a solid --say plate, badge in muted mono. */
+    .f5-ask { position: absolute; left: 72px; top: 288px; width: 936px; height: 176px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+
+    /* the pile behind the question, at G9's authored geometry (plate 520x84, left 280, slots
+       332/424/516/608, lid y 320, shelf y 700). Dimmed the § 1 way — background and border only,
+       never opacity on a container — and the VALUES hold full mint ink. THREE INTACT PLATES:
+       no plate leaves, no POP = 2 chip reappears, the three-push answer is never counted here. */
+    .g9-plate { position: absolute; left: 280px; width: 520px; height: 84px; box-sizing: border-box;
+      background: rgba(31,36,44,0.42); border: 3px solid rgba(255,255,255,0.08); border-radius: 22px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex; align-items: center;
+      justify-content: center; opacity: 0; }
+    .g9-s1 { top: 608px; }
+    .g9-s2 { top: 516px; }
+    .g9-s3 { top: 424px; }
+    .g9-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 5.6cqw; line-height: 1; color: #5AD6A0; }
+    .g9-tag { position: absolute; right: 24px; top: 0; bottom: 0; display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; opacity: 0; }
+    .g9-lid { position: absolute; left: 260px; top: 320px; width: 560px; height: 6px;
+      background: rgba(255,255,255,0.08); border-radius: 3px; opacity: 0; }
+    .g9-shelf { position: absolute; left: 240px; top: 700px; width: 640px; height: 3px;
+      background: rgba(255,255,255,0.08); opacity: 0; }
+    /* the `?` chip sits in the TOP tag's authored position (left 848) at the lid's right end, so it
+       never lands on the question's own glyphs (BRIEF deviation 6) */
+    .f5-q { position: absolute; left: 848px; top: 288px; width: 96px; height: 64px; box-sizing:
+      border-box; background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      opacity: 0; display: flex; align-items: center; justify-content: center;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 4cqw; color: #F4F1EA; }
+    .f5-chev { position: absolute; left: 884px; top: 356px; width: 12px; height: 12px; box-sizing:
+      border-box; opacity: 0; border-right: 3px solid rgba(255,255,255,0.16);
+      border-bottom: 3px solid rgba(255,255,255,0.16); transform: rotate(45deg); }
+
+    .f5-plate { position: absolute; left: 330px; top: 744px; width: 420px; height: 104px; display:
+      flex; align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    .f5-und { position: absolute; left: 420px; top: 862px; width: 240px; height: 4px;
+      background: rgba(34,32,27,0.5); border-radius: 2px; transform-origin: left center;
+      transform: scaleX(0); }
+    .f5-brandline { position: absolute; left: 72px; top: 906px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="5.7">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="5.7" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="5.7" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING&nbsp;BASICS&nbsp;·&nbsp;BASICS&nbsp;III&nbsp;·&nbsp;23&nbsp;·&nbsp;THE&nbsp;ASK</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="5.7" data-track-index="2">
+      <div id="f5-ask" class="f5-ask">what's&nbsp;on&nbsp;top?</div>
+
+      <div id="f5-shelf" class="g9-shelf"></div>
+      <div id="f5-lid" class="g9-lid"></div>
+      <div id="f5-p1" class="g9-plate g9-s1"><span class="g9-val">1</span></div>
+      <div id="f5-p2" class="g9-plate g9-s2"><span class="g9-val">2</span></div>
+      <div id="f5-p3" class="g9-plate g9-s3"><span class="g9-val">3</span><span class="g9-tag" id="f5-t3" data-layout-ignore>pop</span></div>
+      <div id="f5-q" class="f5-q" data-layout-ignore>?</div>
+      <div id="f5-chev" class="f5-chev" data-layout-ignore></div>
+
+      <div id="f5-plate" class="f5-plate">comment&nbsp;it</div>
+      <div id="f5-und" class="f5-und"></div>
+
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING&nbsp;BASICS&nbsp;·&nbsp;BASICS&nbsp;III&nbsp;·&nbsp;23&nbsp;·&nbsp;BEGINNER</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.7;
+      /* Measured word onsets, audio_meta.json frame 5 (studio cues):
+         After 0.00 / push 0.28 / 1 0.52 / push 0.94 / 2 1.08 / push 1.52 / 3 1.70 / then 2.04 /
+         pop 2.16 / what's 2.90 / on 3.12 / top 3.24 */
+      var C = { n1: 0.52, n2: 1.08, n3: 1.70, popq: 2.16, ask: 2.90 };
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: F4 came from the left, F5 drops in from above */
+      tl.fromTo(el("f5-ask"), { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.10);
+
+      /* the pile arrives intact, dimmed — lid and shelf with the headline, plates one per spoken
+         number, each brightening only its own container as it is named. Nothing leaves. */
+      tl.fromTo(el("f5-lid"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 0.30);
+      tl.fromTo(el("f5-shelf"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out", immediateRender: false }, 0.36);
+      tl.fromTo(el("f5-p1"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.30);
+      tl.fromTo(el("f5-p2"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.40);
+      tl.fromTo(el("f5-p3"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.50);
+      function brighten(id, t) {
+        tl.to(el(id), { borderColor: "rgba(255,255,255,0.16)", backgroundColor: "rgba(31,36,44,0.62)",
+          duration: 0.2, ease: "power1.out", immediateRender: false }, t);
+      }
+      brighten("f5-p1", C.n1);                            /* push 1  0.52 */
+      brighten("f5-p2", C.n2);                            /* push 2  1.08 */
+      brighten("f5-p3", C.n3);                            /* push 3  1.70 */
+
+      /* "then pop:" — the POP tag and the ? chip at the lid. The plate does NOT move: the question is
+         drawn, not answered. */
+      tl.fromTo(el("f5-t3"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out", immediateRender: false }, C.popq);
+      tl.fromTo(el("f5-q"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.3,
+        ease: "back.out(1.7)", immediateRender: false }, C.popq + 0.12);
+      tl.fromTo(el("f5-chev"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out",
+        immediateRender: false }, C.popq + 0.30);
+
+      /* the mechanic verb plate carries the ask; the brand line closes the film 2s before the loop */
+      tl.fromTo(el("f5-plate"), { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.7)", immediateRender: false }, C.ask + 0.30);
+      tl.fromTo(el("f5-und"), { scaleX: 0 }, { scaleX: 1, duration: 0.26, ease: "power2.out", immediateRender: false }, C.ask + 0.74);
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 3.90);
+
+      /* one ambient breath, back to zero; no exit push — this frame holds under the platform chrome */
+      tl.fromTo(el("f5-ask"), { y: 0 }, { y: -4, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 0.7);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

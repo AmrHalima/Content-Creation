@@ -1,0 +1,1126 @@
+{
+  "total_duration_s": 63.34,
+  "width": 1080,
+  "height": 1920,
+  "groups": [
+    {
+      "id": "caption-group-0",
+      "frame": 1,
+      "start": 0,
+      "end": 1.356,
+      "text": "You've seen this",
+      "words": [
+        {
+          "id": "caption-word-0-0",
+          "text": "You've",
+          "start": 0,
+          "end": 0.581
+        },
+        {
+          "id": "caption-word-0-1",
+          "text": "seen",
+          "start": 0.581,
+          "end": 0.968
+        },
+        {
+          "id": "caption-word-0-2",
+          "text": "this",
+          "start": 0.968,
+          "end": 1.356
+        }
+      ]
+    },
+    {
+      "id": "caption-group-1",
+      "frame": 1,
+      "start": 1.356,
+      "end": 2.928,
+      "text": "stack seven times.",
+      "words": [
+        {
+          "id": "caption-word-1-0",
+          "text": "stack",
+          "start": 1.356,
+          "end": 1.84
+        },
+        {
+          "id": "caption-word-1-1",
+          "text": "seven",
+          "start": 1.84,
+          "end": 2.324
+        },
+        {
+          "id": "caption-word-1-2",
+          "text": "times.",
+          "start": 2.324,
+          "end": 2.808
+        }
+      ]
+    },
+    {
+      "id": "caption-group-2",
+      "frame": 1,
+      "start": 3.148,
+      "end": 5.182,
+      "text": "Almost everyone reads it",
+      "words": [
+        {
+          "id": "caption-word-2-0",
+          "text": "Almost",
+          "start": 3.148,
+          "end": 3.729
+        },
+        {
+          "id": "caption-word-2-1",
+          "text": "everyone",
+          "start": 3.729,
+          "end": 4.504
+        },
+        {
+          "id": "caption-word-2-2",
+          "text": "reads",
+          "start": 4.504,
+          "end": 4.988
+        },
+        {
+          "id": "caption-word-2-3",
+          "text": "it",
+          "start": 4.988,
+          "end": 5.182
+        }
+      ]
+    },
+    {
+      "id": "caption-group-3",
+      "frame": 1,
+      "start": 5.182,
+      "end": 6.948,
+      "text": "the wrong direction.",
+      "words": [
+        {
+          "id": "caption-word-3-0",
+          "text": "the",
+          "start": 5.182,
+          "end": 5.472
+        },
+        {
+          "id": "caption-word-3-1",
+          "text": "wrong",
+          "start": 5.472,
+          "end": 5.956
+        },
+        {
+          "id": "caption-word-3-2",
+          "text": "direction.",
+          "start": 5.956,
+          "end": 6.828
+        }
+      ]
+    },
+    {
+      "id": "caption-group-4",
+      "frame": 2,
+      "start": 7.168,
+      "end": 8.499,
+      "text": "Top to bottom,",
+      "words": [
+        {
+          "id": "caption-word-4-0",
+          "text": "Top",
+          "start": 7.168,
+          "end": 7.498
+        },
+        {
+          "id": "caption-word-4-1",
+          "text": "to",
+          "start": 7.498,
+          "end": 7.719
+        },
+        {
+          "id": "caption-word-4-2",
+          "text": "bottom,",
+          "start": 7.719,
+          "end": 8.379
+        }
+      ]
+    },
+    {
+      "id": "caption-group-5",
+      "frame": 2,
+      "start": 8.519,
+      "end": 9.18,
+      "text": "that is",
+      "words": [
+        {
+          "id": "caption-word-5-0",
+          "text": "that",
+          "start": 8.519,
+          "end": 8.96
+        },
+        {
+          "id": "caption-word-5-1",
+          "text": "is",
+          "start": 8.96,
+          "end": 9.18
+        }
+      ]
+    },
+    {
+      "id": "caption-group-6",
+      "frame": 2,
+      "start": 9.18,
+      "end": 9.73,
+      "text": "how it",
+      "words": [
+        {
+          "id": "caption-word-6-0",
+          "text": "how",
+          "start": 9.18,
+          "end": 9.51
+        },
+        {
+          "id": "caption-word-6-1",
+          "text": "it",
+          "start": 9.51,
+          "end": 9.73
+        }
+      ]
+    },
+    {
+      "id": "caption-group-7",
+      "frame": 2,
+      "start": 9.73,
+      "end": 10.952,
+      "text": "gets taught.",
+      "words": [
+        {
+          "id": "caption-word-7-0",
+          "text": "gets",
+          "start": 9.73,
+          "end": 10.171
+        },
+        {
+          "id": "caption-word-7-1",
+          "text": "taught.",
+          "start": 10.171,
+          "end": 10.832
+        }
+      ]
+    },
+    {
+      "id": "caption-group-8",
+      "frame": 2,
+      "start": 11.172,
+      "end": 13.154,
+      "text": "Seven handing down to",
+      "words": [
+        {
+          "id": "caption-word-8-0",
+          "text": "Seven",
+          "start": 11.172,
+          "end": 11.722
+        },
+        {
+          "id": "caption-word-8-1",
+          "text": "handing",
+          "start": 11.722,
+          "end": 12.493
+        },
+        {
+          "id": "caption-word-8-2",
+          "text": "down",
+          "start": 12.493,
+          "end": 12.933
+        },
+        {
+          "id": "caption-word-8-3",
+          "text": "to",
+          "start": 12.933,
+          "end": 13.154
+        }
+      ]
+    },
+    {
+      "id": "caption-group-9",
+      "frame": 2,
+      "start": 13.154,
+      "end": 13.604,
+      "text": "six.",
+      "words": [
+        {
+          "id": "caption-word-9-0",
+          "text": "six.",
+          "start": 13.154,
+          "end": 13.484
+        }
+      ]
+    },
+    {
+      "id": "caption-group-10",
+      "frame": 3,
+      "start": 13.824,
+      "end": 15.031,
+      "text": "But each layer",
+      "words": [
+        {
+          "id": "caption-word-10-0",
+          "text": "But",
+          "start": 13.824,
+          "end": 14.126
+        },
+        {
+          "id": "caption-word-10-1",
+          "text": "each",
+          "start": 14.126,
+          "end": 14.528
+        },
+        {
+          "id": "caption-word-10-2",
+          "text": "layer",
+          "start": 14.528,
+          "end": 15.031
+        }
+      ]
+    },
+    {
+      "id": "caption-group-11",
+      "frame": 3,
+      "start": 15.031,
+      "end": 16.257,
+      "text": "has a partner.",
+      "words": [
+        {
+          "id": "caption-word-11-0",
+          "text": "has",
+          "start": 15.031,
+          "end": 15.333
+        },
+        {
+          "id": "caption-word-11-1",
+          "text": "a",
+          "start": 15.333,
+          "end": 15.433
+        },
+        {
+          "id": "caption-word-11-2",
+          "text": "partner.",
+          "start": 15.433,
+          "end": 16.137
+        }
+      ]
+    },
+    {
+      "id": "caption-group-12",
+      "frame": 3,
+      "start": 16.477,
+      "end": 17.603,
+      "text": "Same number,",
+      "words": [
+        {
+          "id": "caption-word-12-0",
+          "text": "Same",
+          "start": 16.477,
+          "end": 16.88
+        },
+        {
+          "id": "caption-word-12-1",
+          "text": "number,",
+          "start": 16.88,
+          "end": 17.483
+        }
+      ]
+    },
+    {
+      "id": "caption-group-13",
+      "frame": 3,
+      "start": 17.623,
+      "end": 18.629,
+      "text": "other end of",
+      "words": [
+        {
+          "id": "caption-word-13-0",
+          "text": "other",
+          "start": 17.623,
+          "end": 18.126
+        },
+        {
+          "id": "caption-word-13-1",
+          "text": "end",
+          "start": 18.126,
+          "end": 18.428
+        },
+        {
+          "id": "caption-word-13-2",
+          "text": "of",
+          "start": 18.428,
+          "end": 18.629
+        }
+      ]
+    },
+    {
+      "id": "caption-group-14",
+      "frame": 3,
+      "start": 18.629,
+      "end": 19.453,
+      "text": "the wire.",
+      "words": [
+        {
+          "id": "caption-word-14-0",
+          "text": "the",
+          "start": 18.629,
+          "end": 18.931
+        },
+        {
+          "id": "caption-word-14-1",
+          "text": "wire.",
+          "start": 18.931,
+          "end": 19.333
+        }
+      ]
+    },
+    {
+      "id": "caption-group-15",
+      "frame": 3,
+      "start": 19.673,
+      "end": 20.78,
+      "text": "That is where",
+      "words": [
+        {
+          "id": "caption-word-15-0",
+          "text": "That",
+          "start": 19.673,
+          "end": 20.076
+        },
+        {
+          "id": "caption-word-15-1",
+          "text": "is",
+          "start": 20.076,
+          "end": 20.277
+        },
+        {
+          "id": "caption-word-15-2",
+          "text": "where",
+          "start": 20.277,
+          "end": 20.78
+        }
+      ]
+    },
+    {
+      "id": "caption-group-16",
+      "frame": 3,
+      "start": 20.78,
+      "end": 22.308,
+      "text": "the message goes.",
+      "words": [
+        {
+          "id": "caption-word-16-0",
+          "text": "the",
+          "start": 20.78,
+          "end": 21.082
+        },
+        {
+          "id": "caption-word-16-1",
+          "text": "message",
+          "start": 21.082,
+          "end": 21.786
+        },
+        {
+          "id": "caption-word-16-2",
+          "text": "goes.",
+          "start": 21.786,
+          "end": 22.188
+        }
+      ]
+    },
+    {
+      "id": "caption-group-17",
+      "frame": 4,
+      "start": 22.528,
+      "end": 24.839,
+      "text": "Your transport layer keeps",
+      "words": [
+        {
+          "id": "caption-word-17-0",
+          "text": "Your",
+          "start": 22.528,
+          "end": 22.93
+        },
+        {
+          "id": "caption-word-17-1",
+          "text": "transport",
+          "start": 22.93,
+          "end": 23.834
+        },
+        {
+          "id": "caption-word-17-2",
+          "text": "layer",
+          "start": 23.834,
+          "end": 24.337
+        },
+        {
+          "id": "caption-word-17-3",
+          "text": "keeps",
+          "start": 24.337,
+          "end": 24.839
+        }
+      ]
+    },
+    {
+      "id": "caption-group-18",
+      "frame": 4,
+      "start": 24.839,
+      "end": 26.447,
+      "text": "ports and sequence",
+      "words": [
+        {
+          "id": "caption-word-18-0",
+          "text": "ports",
+          "start": 24.839,
+          "end": 25.342
+        },
+        {
+          "id": "caption-word-18-1",
+          "text": "and",
+          "start": 25.342,
+          "end": 25.643
+        },
+        {
+          "id": "caption-word-18-2",
+          "text": "sequence",
+          "start": 25.643,
+          "end": 26.447
+        }
+      ]
+    },
+    {
+      "id": "caption-group-19",
+      "frame": 4,
+      "start": 26.447,
+      "end": 27.27,
+      "text": "numbers.",
+      "words": [
+        {
+          "id": "caption-word-19-0",
+          "text": "numbers.",
+          "start": 26.447,
+          "end": 27.15
+        }
+      ]
+    },
+    {
+      "id": "caption-group-20",
+      "frame": 4,
+      "start": 27.49,
+      "end": 28.816,
+      "text": "So does theirs.",
+      "words": [
+        {
+          "id": "caption-word-20-0",
+          "text": "So",
+          "start": 27.49,
+          "end": 27.691
+        },
+        {
+          "id": "caption-word-20-1",
+          "text": "does",
+          "start": 27.691,
+          "end": 28.093
+        },
+        {
+          "id": "caption-word-20-2",
+          "text": "theirs.",
+          "start": 28.093,
+          "end": 28.696
+        }
+      ]
+    },
+    {
+      "id": "caption-group-21",
+      "frame": 4,
+      "start": 29.036,
+      "end": 31.046,
+      "text": "The machines in between",
+      "words": [
+        {
+          "id": "caption-word-21-0",
+          "text": "The",
+          "start": 29.036,
+          "end": 29.337
+        },
+        {
+          "id": "caption-word-21-1",
+          "text": "machines",
+          "start": 29.337,
+          "end": 30.141
+        },
+        {
+          "id": "caption-word-21-2",
+          "text": "in",
+          "start": 30.141,
+          "end": 30.342
+        },
+        {
+          "id": "caption-word-21-3",
+          "text": "between",
+          "start": 30.342,
+          "end": 31.046
+        }
+      ]
+    },
+    {
+      "id": "caption-group-22",
+      "frame": 4,
+      "start": 31.046,
+      "end": 32.271,
+      "text": "just forward.",
+      "words": [
+        {
+          "id": "caption-word-22-0",
+          "text": "just",
+          "start": 31.046,
+          "end": 31.448
+        },
+        {
+          "id": "caption-word-22-1",
+          "text": "forward.",
+          "start": 31.448,
+          "end": 32.151
+        }
+      ]
+    },
+    {
+      "id": "caption-group-23",
+      "frame": 5,
+      "start": 32.491,
+      "end": 34.193,
+      "text": "Layer three is the",
+      "words": [
+        {
+          "id": "caption-word-23-0",
+          "text": "Layer",
+          "start": 32.491,
+          "end": 33.058
+        },
+        {
+          "id": "caption-word-23-1",
+          "text": "three",
+          "start": 33.058,
+          "end": 33.626
+        },
+        {
+          "id": "caption-word-23-2",
+          "text": "is",
+          "start": 33.626,
+          "end": 33.853
+        },
+        {
+          "id": "caption-word-23-3",
+          "text": "the",
+          "start": 33.853,
+          "end": 34.193
+        }
+      ]
+    },
+    {
+      "id": "caption-group-24",
+      "frame": 5,
+      "start": 34.193,
+      "end": 36.47,
+      "text": "address on the outside.",
+      "words": [
+        {
+          "id": "caption-word-24-0",
+          "text": "address",
+          "start": 34.193,
+          "end": 34.988
+        },
+        {
+          "id": "caption-word-24-1",
+          "text": "on",
+          "start": 34.988,
+          "end": 35.215
+        },
+        {
+          "id": "caption-word-24-2",
+          "text": "the",
+          "start": 35.215,
+          "end": 35.555
+        },
+        {
+          "id": "caption-word-24-3",
+          "text": "outside.",
+          "start": 35.555,
+          "end": 36.35
+        }
+      ]
+    },
+    {
+      "id": "caption-group-25",
+      "frame": 5,
+      "start": 36.69,
+      "end": 38.506,
+      "text": "Every stop reads it",
+      "words": [
+        {
+          "id": "caption-word-25-0",
+          "text": "Every",
+          "start": 36.69,
+          "end": 37.257
+        },
+        {
+          "id": "caption-word-25-1",
+          "text": "stop",
+          "start": 37.257,
+          "end": 37.711
+        },
+        {
+          "id": "caption-word-25-2",
+          "text": "reads",
+          "start": 37.711,
+          "end": 38.279
+        },
+        {
+          "id": "caption-word-25-3",
+          "text": "it",
+          "start": 38.279,
+          "end": 38.506
+        }
+      ]
+    },
+    {
+      "id": "caption-group-26",
+      "frame": 5,
+      "start": 38.506,
+      "end": 39.534,
+      "text": "and sorts.",
+      "words": [
+        {
+          "id": "caption-word-26-0",
+          "text": "and",
+          "start": 38.506,
+          "end": 38.846
+        },
+        {
+          "id": "caption-word-26-1",
+          "text": "sorts.",
+          "start": 38.846,
+          "end": 39.414
+        }
+      ]
+    },
+    {
+      "id": "caption-group-27",
+      "frame": 5,
+      "start": 39.754,
+      "end": 40.889,
+      "text": "Only the far",
+      "words": [
+        {
+          "id": "caption-word-27-0",
+          "text": "Only",
+          "start": 39.754,
+          "end": 40.208
+        },
+        {
+          "id": "caption-word-27-1",
+          "text": "the",
+          "start": 40.208,
+          "end": 40.548
+        },
+        {
+          "id": "caption-word-27-2",
+          "text": "far",
+          "start": 40.548,
+          "end": 40.889
+        }
+      ]
+    },
+    {
+      "id": "caption-group-28",
+      "frame": 5,
+      "start": 40.889,
+      "end": 42.137,
+      "text": "end opens the",
+      "words": [
+        {
+          "id": "caption-word-28-0",
+          "text": "end",
+          "start": 40.889,
+          "end": 41.229
+        },
+        {
+          "id": "caption-word-28-1",
+          "text": "opens",
+          "start": 41.229,
+          "end": 41.797
+        },
+        {
+          "id": "caption-word-28-2",
+          "text": "the",
+          "start": 41.797,
+          "end": 42.137
+        }
+      ]
+    },
+    {
+      "id": "caption-group-29",
+      "frame": 5,
+      "start": 42.137,
+      "end": 42.938,
+      "text": "letter.",
+      "words": [
+        {
+          "id": "caption-word-29-0",
+          "text": "letter.",
+          "start": 42.137,
+          "end": 42.818
+        }
+      ]
+    },
+    {
+      "id": "caption-group-30",
+      "frame": 6,
+      "start": 43.158,
+      "end": 44.694,
+      "text": "Read it sideways",
+      "words": [
+        {
+          "id": "caption-word-30-0",
+          "text": "Read",
+          "start": 43.158,
+          "end": 43.597
+        },
+        {
+          "id": "caption-word-30-1",
+          "text": "it",
+          "start": 43.597,
+          "end": 43.816
+        },
+        {
+          "id": "caption-word-30-2",
+          "text": "sideways",
+          "start": 43.816,
+          "end": 44.694
+        }
+      ]
+    },
+    {
+      "id": "caption-group-31",
+      "frame": 6,
+      "start": 44.694,
+      "end": 45.9,
+      "text": "and the stack",
+      "words": [
+        {
+          "id": "caption-word-31-0",
+          "text": "and",
+          "start": 44.694,
+          "end": 45.023
+        },
+        {
+          "id": "caption-word-31-1",
+          "text": "the",
+          "start": 45.023,
+          "end": 45.352
+        },
+        {
+          "id": "caption-word-31-2",
+          "text": "stack",
+          "start": 45.352,
+          "end": 45.9
+        }
+      ]
+    },
+    {
+      "id": "caption-group-32",
+      "frame": 6,
+      "start": 45.9,
+      "end": 47.436,
+      "text": "turns into seven",
+      "words": [
+        {
+          "id": "caption-word-32-0",
+          "text": "turns",
+          "start": 45.9,
+          "end": 46.449
+        },
+        {
+          "id": "caption-word-32-1",
+          "text": "into",
+          "start": 46.449,
+          "end": 46.887
+        },
+        {
+          "id": "caption-word-32-2",
+          "text": "seven",
+          "start": 46.887,
+          "end": 47.436
+        }
+      ]
+    },
+    {
+      "id": "caption-group-33",
+      "frame": 6,
+      "start": 47.436,
+      "end": 50.408,
+      "text": "conversations across the wire.",
+      "words": [
+        {
+          "id": "caption-word-33-0",
+          "text": "conversations",
+          "start": 47.436,
+          "end": 48.862
+        },
+        {
+          "id": "caption-word-33-1",
+          "text": "across",
+          "start": 48.862,
+          "end": 49.52
+        },
+        {
+          "id": "caption-word-33-2",
+          "text": "the",
+          "start": 49.52,
+          "end": 49.849
+        },
+        {
+          "id": "caption-word-33-3",
+          "text": "wire.",
+          "start": 49.849,
+          "end": 50.288
+        }
+      ]
+    },
+    {
+      "id": "caption-group-34",
+      "frame": 6,
+      "start": 50.628,
+      "end": 51.625,
+      "text": "One layer,",
+      "words": [
+        {
+          "id": "caption-word-34-0",
+          "text": "One",
+          "start": 50.628,
+          "end": 50.957
+        },
+        {
+          "id": "caption-word-34-1",
+          "text": "layer,",
+          "start": 50.957,
+          "end": 51.505
+        }
+      ]
+    },
+    {
+      "id": "caption-group-35",
+      "frame": 6,
+      "start": 51.645,
+      "end": 52.862,
+      "text": "one partner,",
+      "words": [
+        {
+          "id": "caption-word-35-0",
+          "text": "one",
+          "start": 51.645,
+          "end": 51.974
+        },
+        {
+          "id": "caption-word-35-1",
+          "text": "partner,",
+          "start": 51.974,
+          "end": 52.742
+        }
+      ]
+    },
+    {
+      "id": "caption-group-36",
+      "frame": 6,
+      "start": 52.882,
+      "end": 53.989,
+      "text": "all at once.",
+      "words": [
+        {
+          "id": "caption-word-36-0",
+          "text": "all",
+          "start": 52.882,
+          "end": 53.211
+        },
+        {
+          "id": "caption-word-36-1",
+          "text": "at",
+          "start": 53.211,
+          "end": 53.43
+        },
+        {
+          "id": "caption-word-36-2",
+          "text": "once.",
+          "start": 53.43,
+          "end": 53.869
+        }
+      ]
+    },
+    {
+      "id": "caption-group-37",
+      "frame": 7,
+      "start": 54.209,
+      "end": 55.419,
+      "text": "Next time you",
+      "words": [
+        {
+          "id": "caption-word-37-0",
+          "text": "Next",
+          "start": 54.209,
+          "end": 54.649
+        },
+        {
+          "id": "caption-word-37-1",
+          "text": "time",
+          "start": 54.649,
+          "end": 55.089
+        },
+        {
+          "id": "caption-word-37-2",
+          "text": "you",
+          "start": 55.089,
+          "end": 55.419
+        }
+      ]
+    },
+    {
+      "id": "caption-group-38",
+      "frame": 7,
+      "start": 55.419,
+      "end": 56.969,
+      "text": "see the diagram,",
+      "words": [
+        {
+          "id": "caption-word-38-0",
+          "text": "see",
+          "start": 55.419,
+          "end": 55.749
+        },
+        {
+          "id": "caption-word-38-1",
+          "text": "the",
+          "start": 55.749,
+          "end": 56.079
+        },
+        {
+          "id": "caption-word-38-2",
+          "text": "diagram,",
+          "start": 56.079,
+          "end": 56.849
+        }
+      ]
+    },
+    {
+      "id": "caption-group-39",
+      "frame": 7,
+      "start": 56.989,
+      "end": 58.65,
+      "text": "read it sideways.",
+      "words": [
+        {
+          "id": "caption-word-39-0",
+          "text": "read",
+          "start": 56.989,
+          "end": 57.429
+        },
+        {
+          "id": "caption-word-39-1",
+          "text": "it",
+          "start": 57.429,
+          "end": 57.649
+        },
+        {
+          "id": "caption-word-39-2",
+          "text": "sideways.",
+          "start": 57.649,
+          "end": 58.53
+        }
+      ]
+    },
+    {
+      "id": "caption-group-40",
+      "frame": 7,
+      "start": 58.87,
+      "end": 60.42,
+      "text": "All seven pairs,",
+      "words": [
+        {
+          "id": "caption-word-40-0",
+          "text": "All",
+          "start": 58.87,
+          "end": 59.2
+        },
+        {
+          "id": "caption-word-40-1",
+          "text": "seven",
+          "start": 59.2,
+          "end": 59.75
+        },
+        {
+          "id": "caption-word-40-2",
+          "text": "pairs,",
+          "start": 59.75,
+          "end": 60.3
+        }
+      ]
+    },
+    {
+      "id": "caption-group-41",
+      "frame": 7,
+      "start": 60.44,
+      "end": 61.66,
+      "text": "side by side,",
+      "words": [
+        {
+          "id": "caption-word-41-0",
+          "text": "side",
+          "start": 60.44,
+          "end": 60.88
+        },
+        {
+          "id": "caption-word-41-1",
+          "text": "by",
+          "start": 60.88,
+          "end": 61.1
+        },
+        {
+          "id": "caption-word-41-2",
+          "text": "side,",
+          "start": 61.1,
+          "end": 61.54
+        }
+      ]
+    },
+    {
+      "id": "caption-group-42",
+      "frame": 7,
+      "start": 61.68,
+      "end": 63.12,
+      "text": "in the article.",
+      "words": [
+        {
+          "id": "caption-word-42-0",
+          "text": "in",
+          "start": 61.68,
+          "end": 61.9
+        },
+        {
+          "id": "caption-word-42-1",
+          "text": "the",
+          "start": 61.9,
+          "end": 62.23
+        },
+        {
+          "id": "caption-word-42-2",
+          "text": "article.",
+          "start": 62.23,
+          "end": 63
+        }
+      ]
+    }
+  ]
+}

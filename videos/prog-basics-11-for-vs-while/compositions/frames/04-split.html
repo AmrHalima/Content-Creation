@@ -1,0 +1,227 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G4 split, retuned to identity v2: two code chambers, 456px, 24px gutter, own language chip */
+    .f4-chamber { position: absolute; top: 320px; width: 456px; height: 344px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .f4-left { left: 72px; } .f4-right { left: 552px; }
+    .f4-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background: #262C36;
+      border-radius: 16px 16px 0 0; display: flex; align-items: center; padding: 0 22px;
+      box-sizing: border-box; }
+    .f4-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 1.95cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .f4-lang { margin-left: auto; display: inline-block; padding: 5px 12px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.3cqw; font-weight: 700;
+      letter-spacing: 0.12em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .f4-head { position: absolute; left: 0; top: 76px; width: 100%; height: 42px; display: flex;
+      align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .f4-line { position: absolute; left: 20px; width: 416px; height: 58px; display: flex;
+      align-items: center; white-space: pre; opacity: 0; overflow: visible;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .f4-l1 { top: 132px; } .f4-l2 { top: 196px; } .f4-l3 { top: 260px; }
+    .f4-mask { position: absolute; left: 20px; width: 416px; height: 58px; background: #1F242C;
+      transform-origin: right center; }
+    .f4-caret { position: absolute; left: 22px; width: 4px; height: 44px; background: #FFD166;
+      border-radius: 2px; opacity: 0; }
+    .tk-a { color: #FFD166; } .tk-v { color: #5AD6A0; } .tk-b { font-weight: 700; }
+    .tk-m { color: #9BA6B2; } .tk-i { color: #F4F1EA; }
+
+    /* the amber say-plate, self-contained inside its own token (P1) */
+    .f4-w { display: inline-block; position: relative; }
+    .f4-hl { position: absolute; left: -6px; right: -6px; top: 0.06em; bottom: 0.06em;
+      background: #FFD166; border-radius: 8px; clip-path: inset(0 100% 0 0); }
+    .f4-ht { position: relative; z-index: 1; }
+
+    .f4-gutter { position: absolute; left: 539px; top: 330px; width: 3px; height: 324px;
+      background: rgba(255,255,255,0.12); transform-origin: top center; transform: scaleY(0); }
+    .f4-printed { position: absolute; left: 72px; top: 716px; width: 456px; height: 40px;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .f4-out { position: absolute; top: 764px; width: 128px; height: 96px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 3px solid rgba(90,214,160,0.55); border-radius: 16px;
+      font-family: "Space Grotesk", sans-serif; font-size: 5.2cqw; font-weight: 700; color: #5AD6A0; }
+    .f4-out-a { left: 72px; } .f4-out-b { left: 236px; } .f4-out-c { left: 400px; }
+    .f4-escapeweb { position: absolute; left: 552px; top: 716px; width: 456px; height: 40px;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .f4-exit { position: absolute; left: 552px; top: 764px; width: 456px; height: 96px; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: rgba(90,214,160,0.10);
+      border: 3px solid rgba(90,214,160,0.55); border-radius: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 700; color: #5AD6A0;
+      letter-spacing: 0.06em; }
+    .f4-exit em { font-style: normal; color: #F4F1EA; margin: 0 10px; }
+    .f4-rule { position: absolute; left: 72px; top: 900px; width: 936px; height: 4px;
+      background: rgba(255,255,255,0.12); border-radius: 2px; transform-origin: left center;
+      transform: scaleX(0); }
+  </style>
+
+  <div id="root" data-composition-id="04-split" data-width="1080" data-height="1920" data-duration="9.8">
+
+    <div id="g4-ground" class="clip clipband" data-start="0" data-duration="9.8" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g4-grid" class="gnd-grid"></div>
+      <div id="g4-ga" class="gnd-glow-a"></div>
+      <div id="g4-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c4-chrome" class="clip clipband" data-start="0" data-duration="9.8" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c4-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · 11</div>
+      </div>
+    </div>
+
+    <div id="f4-content" class="clip clipband" data-start="0" data-duration="9.8" data-track-index="2">
+      <div id="f4-cl" class="f4-chamber f4-left">
+        <div class="f4-bar"><span id="f4-fl" class="f4-file" data-layout-ignore>main.py</span><span id="f4-lgl" class="f4-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f4-hl1" class="f4-head">count&nbsp;first</div>
+        <div id="f4-l1" class="f4-line f4-l1"><span class="tk-a tk-b">for</span>&nbsp;i&nbsp;in&nbsp;<span class="f4-w"><span class="f4-hl" id="f4-plate1" data-layout-allow-occlusion></span><span class="f4-ht" id="f4-t1">range(3)</span></span>:</div>
+        <div id="f4-l2" class="f4-line f4-l2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="tk-i">print</span>(i)</div>
+        <div id="f4-l3" class="f4-line f4-l3"><span class="tk-m">#</span>&nbsp;<span class="tk-v tk-b">0&nbsp;1&nbsp;2</span></div>
+        <div id="f4-m1" class="f4-mask f4-l1"></div>
+        <div id="f4-m2" class="f4-mask f4-l2"></div>
+        <div id="f4-m3" class="f4-mask f4-l3"></div>
+        <div id="f4-cr1" class="f4-caret" style="top:139px"></div>
+      </div>
+
+      <div id="f4-gutter" class="f4-gutter"></div>
+
+      <div id="f4-cr" class="f4-chamber f4-right">
+        <div class="f4-bar"><span id="f4-fr" class="f4-file" data-layout-ignore>main.py</span><span id="f4-lgr" class="f4-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f4-hr1" class="f4-head">until&nbsp;it&nbsp;changes</div>
+        <div id="f4-r1" class="f4-line f4-l1">done&nbsp;=&nbsp;<span class="tk-v">False</span></div>
+        <div id="f4-r2" class="f4-line f4-l2"><span class="tk-a tk-b">while</span>&nbsp;<span class="f4-w"><span class="f4-hl" id="f4-plate2" data-layout-allow-occlusion></span><span class="f4-ht" id="f4-t2">not&nbsp;done</span></span>:</div>
+        <div id="f4-r3" class="f4-line f4-l3">&nbsp;&nbsp;&nbsp;&nbsp;done&nbsp;=&nbsp;<span class="f4-w"><span class="f4-hl" id="f4-plate3" data-layout-allow-occlusion></span><span class="f4-ht" id="f4-t3">True</span></span></div>
+        <div id="f4-rm1" class="f4-mask f4-l1"></div>
+        <div id="f4-rm2" class="f4-mask f4-l2"></div>
+        <div id="f4-rm3" class="f4-mask f4-l3"></div>
+        <div id="f4-crr1" class="f4-caret" style="top:139px"></div>
+      </div>
+
+      <div id="f4-printed" class="f4-printed" data-layout-ignore>what&nbsp;it&nbsp;prints</div>
+      <div id="f4-o1" class="f4-out f4-out-a">0</div>
+      <div id="f4-o2" class="f4-out f4-out-b">1</div>
+      <div id="f4-o3" class="f4-out f4-out-c">2</div>
+      <div id="f4-escapelab" class="f4-escapeweb" data-layout-ignore>what&nbsp;lets&nbsp;it&nbsp;out</div>
+      <div id="f4-exit" class="f4-exit">exits<em>after&nbsp;1&nbsp;pass</em></div>
+      <div id="f4-rule" class="f4-rule"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.8;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-split"] = tl;
+
+      tl.fromTo(el("g4-grid"), { y: 0 }, { y: 16, duration: 1.63, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g4-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.45, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g4-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.63, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("c4-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: this frame comes in from the right, pushed left */
+      tl.fromTo(el("f4-content"), { x: 140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f4-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* LEFT chamber on "for" (0.00), written line by line (P3) */
+      tl.fromTo(el("f4-cl"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 0.16);
+      tl.fromTo(el("f4-fl"), { opacity: 0 }, { opacity: 1, duration: 0.26, immediateRender: false }, 0.3);
+      tl.fromTo(el("f4-lgl"), { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 0.4);
+      tl.fromTo(el("f4-hl1"), { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.5);
+      tl.set(el("f4-l1"), { opacity: 1 }, 0.56);
+      tl.fromTo(el("f4-m1"), { scaleX: 1 }, { scaleX: 0, duration: 0.7, ease: "power1.inOut", immediateRender: false }, 0.56);
+      tl.fromTo(el("f4-cr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 320, duration: 0.7, ease: "power1.inOut", immediateRender: false }, 0.56);
+      tl.set(el("f4-cr1"), { opacity: 0 }, 1.3);
+      tl.set(el("f4-l2"), { opacity: 1 }, 1.96);
+      tl.fromTo(el("f4-m2"), { scaleX: 1 }, { scaleX: 0, duration: 0.44, ease: "power1.inOut", immediateRender: false }, 1.96);
+      tl.set(el("f4-l3"), { opacity: 1 }, 2.3);
+      tl.fromTo(el("f4-m3"), { scaleX: 1 }, { scaleX: 0, duration: 0.5, ease: "power1.inOut", immediateRender: false }, 2.3);
+
+      /* P1 say-plate wipes over range(3) as it is spoken (range 0.92 -> three 1.96) */
+      tl.fromTo(el("f4-plate1"), { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power2.out", immediateRender: false }, 0.94);
+      tl.to(el("f4-t1"), { color: "#22201B", duration: 0.2, ease: "power1.inOut", immediateRender: false }, 1.14);
+      tl.fromTo(el("f4-plate1"), { opacity: 1 }, { opacity: 0.72, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 1.5);
+
+      /* the three values, one per spoken number (zero 2.24, one 3.28, two 3.72) */
+      tl.fromTo(el("f4-printed"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 2.0);
+      tl.fromTo(el("f4-o1"), { opacity: 0, y: -60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "bounce.out", immediateRender: false }, 2.26);
+      tl.fromTo(el("f4-o2"), { opacity: 0, y: -60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "bounce.out", immediateRender: false }, 3.3);
+      tl.fromTo(el("f4-o3"), { opacity: 0, y: -60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "bounce.out", immediateRender: false }, 3.74);
+      tl.to(el("f4-o1"), { borderColor: "rgba(90,214,160,1)", duration: 0.16, yoyo: true, repeat: 1, immediateRender: false }, 2.66);
+      tl.to(el("f4-o2"), { borderColor: "rgba(90,214,160,1)", duration: 0.16, yoyo: true, repeat: 1, immediateRender: false }, 3.7);
+      tl.to(el("f4-o3"), { borderColor: "rgba(90,214,160,1)", duration: 0.16, yoyo: true, repeat: 1, immediateRender: false }, 4.14);
+
+      /* the gutter rule divides the two shapes (P4 drawn top-down) */
+      tl.fromTo(el("f4-gutter"), { scaleY: 0 }, { scaleY: 1, duration: 0.46, ease: "power3.inOut", immediateRender: false }, 4.06);
+
+      /* RIGHT chamber on "while" (4.30), plate on not done (5.06 -> 5.64) */
+      tl.fromTo(el("f4-cr"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 4.32);
+      tl.fromTo(el("f4-fr"), { opacity: 0 }, { opacity: 1, duration: 0.26, immediateRender: false }, 4.48);
+      tl.fromTo(el("f4-lgr"), { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 4.58);
+      tl.fromTo(el("f4-hr1"), { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.7);
+      tl.set(el("f4-r1"), { opacity: 1 }, 4.8);
+      tl.fromTo(el("f4-rm1"), { scaleX: 1 }, { scaleX: 0, duration: 0.4, ease: "power1.inOut", immediateRender: false }, 4.8);
+      tl.set(el("f4-r2"), { opacity: 1 }, 5.06);
+      tl.fromTo(el("f4-rm2"), { scaleX: 1 }, { scaleX: 0, duration: 0.5, ease: "power1.inOut", immediateRender: false }, 5.06);
+      tl.fromTo(el("f4-crr1"), { opacity: 1, x: 0 }, { opacity: 1, x: 300, duration: 0.5, ease: "power1.inOut", immediateRender: false }, 5.06);
+      tl.set(el("f4-crr1"), { opacity: 0 }, 5.6);
+      tl.fromTo(el("f4-plate2"), { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power2.out", immediateRender: false }, 5.08);
+      tl.to(el("f4-t2"), { color: "#22201B", duration: 0.2, ease: "power1.inOut", immediateRender: false }, 5.3);
+      tl.set(el("f4-r3"), { opacity: 1 }, 6.12);
+      tl.fromTo(el("f4-rm3"), { scaleX: 1 }, { scaleX: 0, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 6.12);
+
+      /* what lets it out: the escape chip (until 6.12), then True at 8.12 */
+      tl.fromTo(el("f4-escapelab"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 6.2);
+      tl.fromTo(el("f4-exit"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.5)", immediateRender: false }, 6.5);
+      tl.fromTo(el("f4-plate3"), { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 0.36, ease: "power2.out", immediateRender: false }, 8.0);
+      tl.to(el("f4-t3"), { color: "#22201B", duration: 0.2, ease: "power1.inOut", immediateRender: false }, 8.2);
+      tl.to(el("f4-cr"), { borderColor: "rgba(90,214,160,0.7)", duration: 0.28, ease: "power2.out", immediateRender: false }, 8.34);
+      tl.to(el("f4-cr"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.4 }, 8.7);
+      tl.to(el("f4-exit"), { scale: 1.05, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 8.4);
+
+      /* ambient: the two boards breathe out of phase, back to zero */
+      tl.fromTo(el("f4-cl"), { y: 0 }, { y: -5, duration: 1.3, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 1.4);
+      tl.fromTo(el("f4-cr"), { y: 0 }, { y: 5, duration: 1.6, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, 5.2);
+      tl.fromTo(el("f4-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut", immediateRender: false }, 8.9);
+
+      tl.to(el("f4-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 9.48);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

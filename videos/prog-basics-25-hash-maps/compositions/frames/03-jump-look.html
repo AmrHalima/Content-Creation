@@ -1,0 +1,242 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    * { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    .pb-chamber { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .f3-box { width: 142px; height: 152px; top: 400px; }
+    .f3-box .pb-val { font-size: 4.6cqw; }
+    .f3-name { display: inline-block; margin-bottom: 6px; font-family: "JetBrains Mono", monospace;
+      font-size: 2.6cqw; font-weight: 700; letter-spacing: 0.02em; color: #9BA6B2;
+      white-space: nowrap; }
+    .f3-empty { background: rgba(31,36,44,0.55); border-style: dashed; }
+    .f3-idx { position: absolute; top: 616px; width: 142px; height: 40px; text-align: center;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 2.2cqw; font-weight: 400;
+      letter-spacing: 0.10em; color: #9BA6B2; }
+
+    /* counted tags — pb-21/03-shift's exact lane, lefts and widths (y 288 h 66) */
+    .f3-tag { position: absolute; top: 288px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #9BA6B2; white-space: nowrap; }
+    .f3-num { display: inline-block; color: #F4F1EA; }
+
+    /* G10 objects at § 6's authored positions — see BRIEF.md → Blocked */
+    .f3-chip { position: absolute; left: 420px; top: 292px; width: 240px; height: 64px;
+      box-sizing: border-box; background: #262C36; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 12px; opacity: 0; display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    .f3-hash { position: absolute; left: 540px; top: 400px; width: 200px; height: 84px;
+      box-sizing: border-box; background: #1F242C; border: 3px solid rgba(255,255,255,0.16);
+      border-radius: 22px; opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .f3-tab { position: absolute; left: 0; top: -60px; width: 100px; height: 60px;
+      box-sizing: border-box; background: #262C36; border: 3px solid rgba(255,255,255,0.16);
+      border-bottom: none; border-radius: 12px 12px 0 0; display: flex; align-items: center;
+      justify-content: center; font-family: "JetBrains Mono", monospace; font-size: 2.5cqw;
+      font-weight: 700; letter-spacing: 0.06em; color: #F4F1EA; }
+    .f3-fn { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.2cqw;
+      font-weight: 400; color: #9BA6B2; white-space: nowrap; }
+    .f3-slot { position: absolute; left: 510px; top: 490px; width: 260px; height: 36px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 10px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.10em; color: #9BA6B2; white-space: nowrap; }
+
+    /* the hop connector and the scan ring — CSS divs, never SVG in a scaled container */
+    .g7-bar { position: absolute; height: 3px; background: rgba(255,255,255,0.16); opacity: 0;
+      transform-origin: left center; transform: scaleX(0); border-radius: 2px; }
+    .g7-chev { position: absolute; width: 10px; height: 10px; box-sizing: border-box; opacity: 0;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg); }
+    .g7-ring { position: absolute; left: 64px; top: 390px; width: 162px; height: 172px;
+      box-sizing: border-box; border: 3px solid #FFD166; border-radius: 26px; opacity: 0;
+      box-shadow: 0 0 0 8px rgba(255,209,102,0.10); }
+    .f3-hold { opacity: 1; }
+  </style>
+
+  <div id="root" data-composition-id="03-jump-look" data-width="1080" data-height="1920" data-duration="11.5">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="11.5" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="11.5" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>THE PRICE OF A HOP</div>
+        <div id="c3-badge" class="pb-kbadge" data-layout-ignore>BEGINNER</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="11.5" data-track-index="2">
+
+      <div id="f3-tagA" class="f3-tag" style="left:270px; width:300px;" data-layout-allow-overlap>JUMPED&nbsp;<span id="f3-jn" class="f3-num f3-jump">1</span></div>
+      <div id="f3-tagB" class="f3-tag" style="left:590px; width:220px;" data-layout-allow-overlap>LOOKED&nbsp;AT&nbsp;<span id="f3-ln" class="f3-num">1</span></div>
+
+
+      <div id="f3-hash" class="f3-hash" data-layout-allow-overlap>
+        <div id="f3-tab" class="f3-tab" data-layout-ignore>HASH</div>
+        <div id="f3-fn" class="f3-fn" data-layout-ignore data-layout-allow-overflow>key -&gt; position</div>
+      </div>
+      <div id="f3-slot" class="f3-slot" data-layout-ignore data-layout-allow-overlap>ONE&nbsp;POSSIBLE&nbsp;SLOT</div>
+
+      <div id="f3-hops" class="g7-bar" style="left:740px; top:441px; width:124px;"></div>
+      <div id="f3-hopc" class="g7-chev" style="left:850px; top:437px;"></div>
+
+      <div id="f3-b0" class="pb-chamber f3-box f3-empty" style="left:74px;"></div>
+      <div id="f3-b1" class="pb-chamber f3-box" style="left:232px;"><span class="f3-name">Omar</span><span class="pb-val">30</span></div>
+      <div id="f3-b2" class="pb-chamber f3-box f3-empty" style="left:390px;"></div>
+      <div id="f3-b3" class="pb-chamber f3-box" style="left:548px;"><span class="f3-name">Lina</span><span class="pb-val">19</span></div>
+      <div id="f3-b4" class="pb-chamber f3-box f3-empty" style="left:706px;"></div>
+      <div id="f3-b5" class="pb-chamber f3-box" style="left:864px;"><span class="f3-name">Sara</span><span id="f3-v5" class="pb-val">25</span></div>
+
+      <div id="f3-i0" class="f3-idx" style="left:74px;" data-layout-ignore>0</div>
+      <div id="f3-i1" class="f3-idx" style="left:232px;" data-layout-ignore>1</div>
+      <div id="f3-i2" class="f3-idx" style="left:390px;" data-layout-ignore>2</div>
+      <div id="f3-i3" class="f3-idx" style="left:548px;" data-layout-ignore>3</div>
+      <div id="f3-i4" class="f3-idx" style="left:706px;" data-layout-ignore>4</div>
+      <div id="f3-i5" class="f3-idx" style="left:864px;" data-layout-ignore>5</div>
+
+      <!-- the chip is the LAST thing in the band: it lands on top of slot 5, not beneath its panel -->
+      <div id="f3-chip" class="f3-chip">'Sara'</div>
+      <div id="f3-ring" class="g7-ring"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.5;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-jump-look"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 2.875, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 3.83, ease: "sine.inOut", repeat: 2, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 2.875, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+      tl.fromTo(el("c3-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.24);
+
+      /* entrance wipe: F2 rose, this one comes in from the left — same board, no reload */
+      tl.fromTo(el("f3-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* the board arrives as a set (it is the board F2 just built): row, index, key, rule */
+      [0, 1, 2, 3, 4, 5].forEach(function (n, i) {
+        tl.fromTo(el("f3-b" + n), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 0.16 + i * 0.05);
+        tl.fromTo(el("f3-i" + n), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 0.34 + i * 0.05);
+      });
+      tl.fromTo(el("f3-hash"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.2);
+      tl.fromTo(el("f3-tab"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out", immediateRender: false }, 0.24);
+      tl.fromTo(el("f3-fn"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out", immediateRender: false }, 0.3);
+      tl.fromTo(el("f3-chip"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.26);
+      tl.fromTo(el("f3-slot"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.62);
+
+      /* ── BEAT 1, the hop (lookup 0.14 / jumps 0.52 / straight 0.80 / answer 1.52) ───────
+         one connector draws, the chip travels it in ONE run, slot 5 flashes --say for 0.30s.
+         NO BUCKET MOVES — that stillness is what "constant time" means physically. */
+      tl.fromTo(el("f3-hops"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 0.54);
+      tl.fromTo(el("f3-hopc"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 0.74);
+      /* the chip lands straddling bucket 5's BOTTOM edge (top 520): the piece file's Gate state says
+         if the chip covers the value, move the chip's resting y — never the ring's. */
+      tl.to(el("f3-chip"), { x: 395, y: 228, duration: 0.44, ease: "power3.out", immediateRender: false }, 0.56);
+      tl.to(el("f3-b5"), { borderColor: "#FFD166", duration: 0.14, ease: "power1.out", immediateRender: false }, 1.0);
+      tl.to(el("f3-b5"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.3, ease: "power1.inOut", immediateRender: false }, 1.3);
+      tl.fromTo(el("f3-tagA"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.3);
+      tl.fromTo(el("f3-jn"), { scale: 1.22 }, { scale: 1, duration: 0.24, ease: "power3.out", immediateRender: false }, 1.4);
+
+      /* ── BEAT 2, "constant time" (On 3.42 / constant 4.88 / time 5.30-5.68) ────────────
+         nothing is animated: the board holds, the chip holds, the counter holds. Stillness is
+         the beat. No notation is drawn or spoken (§ 7.2). */
+      tl.fromTo(el("f3-chip"), { y: 228 }, { y: 224, duration: 0.9, ease: "sine.inOut", repeat: 1, yoyo: true, immediateRender: false }, 3.6);
+
+      /* ── BEAT 3, "It reads one bucket." (It 6.26 / one 6.64 / bucket 6.92-7.20) ────────
+         the counted pair's first half re-settles on the word that restates it. One amber arrival. */
+      tl.to(el("f3-tagA"), { borderColor: "#FFD166", color: "#FFD166", duration: 0.26, ease: "power1.out", immediateRender: false }, 6.64);
+      tl.to(el("f3-jn"), { color: "#FFD166", duration: 0.2, immediateRender: false }, 6.64);
+
+      /* ── BEAT 4, the linear read (Reading 7.88 ... six 9.72-9.98) ──────────────────────
+         the key is done being spoken about, so the chip retires before the ring walks — a ring
+         stepping onto a parked chip would not be countable (the piece file's ring priority). */
+      tl.to(el("f3-chip"), { opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 7.6);
+      tl.to(el("f3-tagA"), { borderColor: "rgba(255,255,255,0.16)", color: "#9BA6B2", duration: 0.3, ease: "power1.inOut", immediateRender: false }, 7.66);
+      tl.fromTo(el("f3-ring"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 7.78);
+      tl.fromTo(el("f3-tagB"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 7.84);
+
+      /* the six authored lefts, stepped in order; the counter is the whole argument, so it is
+         paced to the spoken words (measured onsets) rather than to a 0.12s blur — § 6's stagger
+         put six steps and the final 6 on screen 1.3s before the word "six". Recorded as a retime. */
+      var steps = [7.88, 8.3, 8.64, 8.96, 9.3, 9.64];
+      steps.forEach(function (t, i) {
+        if (i > 0) {
+          tl.to(el("f3-ring"), { x: 158 * i, duration: 0.3, ease: "power3.out", immediateRender: false }, t - 0.14);
+        }
+        tl.to(el("f3-ln"), { scale: 1.22, duration: 0.12, ease: "power2.out", immediateRender: false }, t);
+        tl.to(el("f3-ln"), { scale: 1, duration: 0.16, ease: "power2.inOut", immediateRender: false }, t + 0.12);
+      });
+
+      /* LOOKED AT ticks 1..6 off a time proxy that assigns textContent — no TextPlugin, no wall clock */
+      var lookSteps = [{ t: 7.88, v: "1" }, { t: 8.3, v: "2" }, { t: 8.64, v: "3" },
+        { t: 8.96, v: "4" }, { t: 9.3, v: "5" }, { t: 9.64, v: "6" }];
+      var clock = { t: 0 };
+      function pick(arr, t) { var s = "1"; for (var i = 0; i < arr.length; i++) { if (t >= arr[i].t) s = arr[i].v; } return s; }
+      tl.to(clock, { t: D, duration: D, ease: "none", onUpdate: function () {
+        var n = el("f3-ln");
+        var s = pick(lookSteps, clock.t);
+        if (n._v !== s) { n._v = s; n.textContent = s; }
+      } }, 0);
+
+      /* the ring stops at 6 because Sara was authored into the LAST slot — the honest worst case,
+         and the only reason JUMPED 1 and LOOKED AT 6 are comparable numbers */
+      tl.to(el("f3-b5"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.01 }, 9.64);
+      tl.fromTo(el("f3-ring"), { boxShadow: "0 0 0 8px rgba(255,209,102,0.10)" },
+        { boxShadow: "0 0 0 16px rgba(255,209,102,0.20)", duration: 0.34, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 9.72);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 11.18);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

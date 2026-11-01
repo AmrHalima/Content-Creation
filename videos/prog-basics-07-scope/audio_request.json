@@ -1,0 +1,29 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Why does your variable not exist one line later?"
+    },
+    {
+      "id": "02",
+      "text": "Scope decides where a name is visible. Inside the function, x is real. Outside, it never was."
+    },
+    {
+      "id": "03",
+      "text": "The box is made inside, and it dies inside. A global x with the same name never changed. Two boxes, one label."
+    },
+    {
+      "id": "04",
+      "text": "Outside the wall, x is ninety-nine. Inside f, x becomes one. Call f, then print x. Still ninety-nine. Now reach for f's x from outside: NameError."
+    },
+    {
+      "id": "05",
+      "text": "Which scope error have you hit the most? Comment the name: NameError or UnboundLocalError."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

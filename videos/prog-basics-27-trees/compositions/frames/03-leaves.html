@@ -1,0 +1,219 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G11 tree, continued from F2 on the same grid (§ 6). Nothing is re-derived here. ── */
+    .g11-node { position: absolute; box-sizing: border-box; width: 148px; height: 96px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .g11-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; font-size: 6.2cqw; }
+    .g11-root { display: block; text-align: center; }
+    .g11-root .g11-valwell { display: flex; align-items: center; justify-content: center;
+      height: 56px; margin-top: 34px; }
+    .g11-root .g11-val, .g11-two .g11-val { font-size: 4.6cqw; }
+    .g11-tab { position: absolute; height: 38px; display: flex; align-items: center;
+      justify-content: center; padding: 0 14px; box-sizing: border-box;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-bottom: none;
+      border-radius: 12px 12px 0 0; font-family: "JetBrains Mono", monospace; font-size: 2.5cqw;
+      font-weight: 700; letter-spacing: 0.04em; color: #F4F1EA; white-space: nowrap; }
+    .g11-stub { position: absolute; width: 3px; height: 32px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; }
+    .g11-run { position: absolute; height: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; }
+    .g11-ring { position: absolute; box-sizing: border-box; width: 168px; height: 116px;
+      border: 3px solid #FFD166; border-radius: 30px; opacity: 0;
+      box-shadow: 0 0 0 8px rgba(255,209,102,0.12); }
+    .g11-chip { position: absolute; height: 26px; box-sizing: border-box; display: inline-block;
+      align-items: center; justify-content: center; padding: 0 10px; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .leaf { color: #9BA6B2; }
+
+    /* the three real-world chips: chip row, right of the field (§ 4d — never chambers) */
+    .f3-row { position: absolute; left: 556px; top: 636px; width: 428px; height: 38px;
+      display: flex; flex-direction: row; align-items: center; justify-content: flex-end; gap: 12px; }
+    .f3-rc { display: inline-block; box-sizing: border-box; height: 34px; padding: 0 10px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 10px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .f3-sayrule { position: absolute; left: 556px; top: 680px; width: 428px; height: 3px;
+      background: #FFD166; border-radius: 2px; opacity: 0; transform: scaleX(0);
+      transform-origin: left center; }
+
+    /* counted lane y 892 h 66 (§ 4) — label in --ink, the counted digit in mint */
+    .f3-tag { position: absolute; top: 892px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; gap: 16px; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #F4F1EA; white-space: nowrap; }
+    .f3-tk { display: inline-block; }
+    .f3-td { display: inline-block; color: #5AD6A0; opacity: 0; }
+    /* F3 opens holding F2's end state: everything carrying .on is painted at frame 0, not tweened in */
+    .g11-node.on, .g11-chip.on { opacity: 1; }
+  </style>
+
+  <div id="root" data-composition-id="03-leaves" data-width="1080" data-height="1920" data-duration="10.4">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="10.4" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="10.4" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 27</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="10.4" data-track-index="2" data-layout-allow-overflow>
+
+      <!-- the board F2 ended with, in the same frame coordinates -->
+      <div id="f3-d0" class="g11-stub" style="left:539px; top:388px;"></div>
+      <div id="f3-r0" class="g11-run" style="left:306px; top:419px; width:234px;"></div>
+      <div id="f3-r1" class="g11-run" style="left:540px; top:419px; width:234px;"></div>
+      <div id="f3-u0" class="g11-stub" style="left:305px; top:420px;"></div>
+      <div id="f3-u1" class="g11-stub" style="left:773px; top:420px;"></div>
+
+      <div class="g11-node g11-root on" style="left:466px; top:292px;" data-layout-allow-occlusion><span class="g11-valwell"><span class="g11-val">root</span></span></div>
+      <div id="f3-tab" class="g11-tab" style="left:474px; top:292px;" data-layout-ignore>ROOT</div>
+      <div id="f3-nl" class="g11-node on" style="left:232px; top:452px;"><span class="g11-val">L</span></div>
+      <div id="f3-nr" class="g11-node on" style="left:700px; top:452px;"><span id="f3-vr" class="g11-val">R</span></div>
+      <div id="f3-cnod" class="g11-chip on" style="left:352px; top:327px;" data-layout-ignore>node</div>
+      <div id="f3-cedge" class="g11-chip on" style="left:344px; top:424px;" data-layout-ignore>edge</div>
+      <div id="f3-chl" class="g11-chip on" style="left:124px; top:487px;" data-layout-ignore>child</div>
+      <div id="f3-chr" class="g11-chip on" style="left:856px; top:487px;" data-layout-ignore>child</div>
+
+      <!-- the second level grows under L only: centres 189 / 423, whose midpoint is exactly L's 306.
+           runY 580; the two runs meet at 306 and never overlap in x, and R's column (700..848) is
+           untouched by them. -->
+      <div id="f3-d2" class="g11-stub" style="left:305px; top:548px; transform:scaleY(0); transform-origin:top center;"></div>
+      <div id="f3-r2" class="g11-run" style="left:189px; top:579px; width:117px; transform:scaleX(0); transform-origin:left center;"></div>
+      <div id="f3-r3" class="g11-run" style="left:306px; top:579px; width:117px; transform:scaleX(0); transform-origin:left center;"></div>
+      <div id="f3-u2" class="g11-stub" style="left:188px; top:580px; transform:scaleY(0); transform-origin:bottom center;"></div>
+      <div id="f3-u3" class="g11-stub" style="left:422px; top:580px; transform:scaleY(0); transform-origin:bottom center;"></div>
+      <div id="f3-na" class="g11-node g11-two" style="left:115px; top:612px;"><span id="f3-va" class="g11-val">L1</span></div>
+      <div id="f3-nb" class="g11-node g11-two" style="left:349px; top:612px;"><span id="f3-vb" class="g11-val">L2</span></div>
+
+      <!-- LEAF chips on exactly the three childless boxes. L gets none: L has children. -->
+      <div id="f3-lfR" class="g11-chip leaf" style="left:732px; top:568px;" data-layout-ignore>leaf</div>
+      <div id="f3-lfA" class="g11-chip leaf" style="left:147px; top:728px;" data-layout-ignore>leaf</div>
+      <div id="f3-lfB" class="g11-chip leaf" style="left:381px; top:728px;" data-layout-ignore>leaf</div>
+
+      <div id="f3-ring" class="g11-ring" style="left:690px; top:442px;"></div>
+
+      <div class="f3-row">
+        <span id="f3-k1" class="f3-rc" data-layout-ignore>folders</span>
+        <span id="f3-k2" class="f3-rc" data-layout-ignore>html</span>
+        <span id="f3-k3" class="f3-rc" data-layout-ignore>org&nbsp;chart</span>
+      </div>
+      <div id="f3-rule" class="f3-sayrule"></div>
+
+      <div id="f3-tagN" class="f3-tag" style="left:270px; width:300px;" data-layout-allow-overlap><span class="f3-tk">nodes</span><span id="f3-dN" class="f3-td">5</span></div>
+      <div id="f3-tagL" class="f3-tag" style="left:590px; width:220px;" data-layout-allow-overlap><span class="f3-tk">leaves</span><span id="f3-dL" class="f3-td">3</span></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 10.4;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-leaves"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 2.6, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.6, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.733, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe from the RIGHT (F2 rose from below) — same board, new edge */
+      tl.fromTo(el("f3-content"), { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.04);
+
+      /* "A node with no children" (node 0.12 · no 0.62 · children 0.84 → 1.22) — two boxes drop under
+         L, and each elbow is BUILT in three 0.14s stages (stub → run → stub). */
+      tl.fromTo(el("f3-na"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 0.34);
+      tl.to(el("f3-na"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 0.80);
+      tl.to(el("f3-na"), { scaleY: 1, duration: 0.2, ease: "power3.out" }, 0.90);
+      tl.fromTo(el("f3-d2"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 0.86);
+      tl.fromTo(el("f3-r2"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 1.00);
+      tl.fromTo(el("f3-u2"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 1.14);
+
+      tl.fromTo(el("f3-nb"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 1.00);
+      tl.to(el("f3-nb"), { scaleY: 0.94, duration: 0.1, ease: "power2.in", immediateRender: false }, 1.46);
+      tl.to(el("f3-nb"), { scaleY: 1, duration: 0.2, ease: "power3.out" }, 1.56);
+      tl.fromTo(el("f3-r3"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 1.52);
+      tl.fromTo(el("f3-u3"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 1.66);
+
+      /* "is a leaf." (a 1.48 · leaf. 1.60 → 1.82) — the ring visits the three boxes with nothing under
+         them, one at a time, and each lights mint as it is named. L is skipped: that is the definition. */
+      tl.fromTo(el("f3-ring"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.5)", immediateRender: false }, 1.58);
+      tl.fromTo(el("f3-lfR"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 1.74);
+      tl.fromTo(el("f3-nr"), { borderColor: "rgba(255,255,255,0.16)" }, { borderColor: "#5AD6A0", duration: 0.18, ease: "power2.out", immediateRender: false }, 1.74);
+      tl.to(el("f3-nr"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.42, ease: "power1.inOut" }, 2.10);
+
+      tl.to(el("f3-ring"), { x: -585, y: 160, duration: 0.26, ease: "power2.inOut", immediateRender: false }, 1.96);
+      tl.fromTo(el("f3-lfA"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.20);
+      tl.fromTo(el("f3-na"), { borderColor: "rgba(255,255,255,0.16)" }, { borderColor: "#5AD6A0", duration: 0.18, ease: "power2.out", immediateRender: false }, 2.20);
+      tl.to(el("f3-na"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.42, ease: "power1.inOut" }, 2.56);
+
+      tl.to(el("f3-ring"), { x: -351, y: 160, duration: 0.26, ease: "power2.inOut", immediateRender: false }, 2.42);
+      tl.fromTo(el("f3-lfB"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.64);
+      tl.fromTo(el("f3-nb"), { borderColor: "rgba(255,255,255,0.16)" }, { borderColor: "#5AD6A0", duration: 0.18, ease: "power2.out", immediateRender: false }, 2.64);
+      tl.to(el("f3-nb"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.42, ease: "power1.inOut" }, 3.00);
+      tl.to(el("f3-ring"), { opacity: 0, duration: 0.26, ease: "power2.in" }, 2.86);
+
+      /* "Folders, HTML pages, and org charts are all trees."
+         (Folders 2.54 · HTML 3.36 · org 4.92 · all 5.74 · trees. 5.94 → 6.24) — three chips, one per
+         item, then one amber rule under the row while "are all trees" is said. */
+      tl.fromTo(el("f3-k1"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 2.54);
+      tl.fromTo(el("f3-k2"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 3.36);
+      tl.fromTo(el("f3-k3"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 4.92);
+      tl.fromTo(el("f3-rule"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.32, ease: "power2.out", immediateRender: false }, 5.70);
+      tl.to(el("f3-rule"), { opacity: 0, duration: 0.28, ease: "power2.in" }, 6.30);
+
+      /* "This one has five nodes and three leaves." (five 7.62 · nodes 7.92 · three 8.58 · leaves. 9.16)
+         P9 count-tick on each digit; no text tween anywhere in this film. */
+      tl.fromTo(el("f3-tagN"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 7.50);
+      tl.fromTo(el("f3-dN"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 7.62);
+      tl.fromTo(el("f3-tagL"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 8.44);
+      tl.fromTo(el("f3-dL"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out", immediateRender: false }, 8.58);
+      tl.to(el("f3-dL"), { scale: 1.18, duration: 0.18, ease: "power2.out", immediateRender: false }, 8.84);
+      tl.to(el("f3-dL"), { scale: 1, duration: 0.22, ease: "power2.inOut" }, 9.02);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 10.08);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

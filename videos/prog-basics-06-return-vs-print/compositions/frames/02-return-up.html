@@ -1,0 +1,291 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+    .pb-kbadge { display: inline-block; opacity: 0; margin-left: 20px; padding: 6px 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.35cqw; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #22201B;
+      background: #FFD166; border-radius: 8px; }
+
+    .pb-tab { position: absolute; height: 60px; display: flex; align-items: center;
+      justify-content: center; padding: 0 26px; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-bottom: none;
+      border-radius: 12px 12px 0 0; font-family: "JetBrains Mono", monospace; font-size: 2.75cqw;
+      font-weight: 700; letter-spacing: 0.03em; color: #F4F1EA; }
+    .pb-chamber { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70);
+      display: flex; align-items: center; justify-content: center; }
+    .pb-chamber.dashed { border-style: dashed; }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .pb-blink { position: absolute; width: 8px; height: 96px; background: #5AD6A0;
+      opacity: 0; border-radius: 3px; }
+
+    .pb-chip { position: absolute; box-sizing: border-box; height: 88px; display: flex;
+      align-items: center; justify-content: center; padding: 0 24px; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      color: #F4F1EA; white-space: nowrap; }
+    .pb-strip { position: absolute; box-sizing: border-box; display: flex; align-items: center;
+      padding: 0 28px; opacity: 0; background: #262C36; border: 2px solid rgba(255,255,255,0.16);
+      border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      font-weight: 700; color: #5AD6A0; white-space: nowrap; }
+    .pb-strip.emptydash { border-style: dashed; color: #9BA6B2; }
+    .pb-prompt { display: inline-block; margin-right: 18px; color: #9BA6B2; font-weight: 400; }
+    .pb-ann { position: absolute; box-sizing: border-box; opacity: 0; color: #9BA6B2;
+      font-family: "Space Grotesk", sans-serif; font-weight: 400; font-size: 2.9cqw;
+      letter-spacing: 0.01em; }
+    .pb-ann strong { color: #F4F1EA; font-weight: 700; }
+    .pb-plate { position: absolute; display: flex; align-items: center; justify-content: center;
+      height: 92px; padding: 0 44px; box-sizing: border-box; opacity: 0; background: #FFD166;
+      border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.45);
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #22201B; }
+
+    .pb-line { position: absolute; left: 72px; width: 936px; display: block; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.12;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .pb-word { display: inline-block; position: relative; }
+    .pb-hl { position: absolute; left: -8px; right: -8px; top: 0.08em; bottom: 0.06em;
+      background: #FFD166; border-radius: 8px; transform: scaleX(0); transform-origin: left center; }
+    .pb-wtxt { position: relative; z-index: 1; }
+
+    .cd-root { position: absolute; left: 72px; top: 300px; width: 936px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 20px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); }
+    .cd-bar { position: absolute; left: 0; top: 0; width: 100%; height: 64px;
+      background: #262C36; border-radius: 16px 16px 0 0; display: flex; align-items: center;
+      padding: 0 26px; box-sizing: border-box; }
+    .cd-file { display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 2.1cqw;
+      font-weight: 400; letter-spacing: 0.04em; color: #9BA6B2; }
+    .cd-lang { margin-left: auto; display: inline-block; padding: 5px 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.4cqw; font-weight: 700;
+      letter-spacing: 0.14em; color: #FFD166; border: 2px solid #FFD166; border-radius: 8px; }
+    .cd-line { position: absolute; left: 30px; width: 872px; height: 62px; display: flex;
+      align-items: center; white-space: pre; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 400; color: #F4F1EA; }
+    .cd-rev { clip-path: inset(0 100% 0 0); white-space: pre; }
+    .cd-caret { position: absolute; left: 0; top: 7px; width: 5px; height: 46px;
+      background: #FFD166; opacity: 0; border-radius: 2px; }
+    .tk-i { color: #F4F1EA; } .tk-m { color: #9BA6B2; } .tk-v { color: #5AD6A0; }
+    .tk-a { color: #FFD166; } .tk-e { color: #FF6B5A; } .tk-c { color: #9BA6B2; }
+    .tk-b { font-weight: 700; }
+
+    .pb-ask { position: absolute; left: 72px; width: 936px; display: block; text-align: center;
+      opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.005em; color: #F4F1EA; }
+    .pb-brandline { position: absolute; left: 72px; top: 930px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; }
+    .pb-sidepill { position: absolute; height: 88px; display: flex; align-items: center;
+      justify-content: center; padding: 0 32px; box-sizing: border-box; opacity: 0;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 9999px;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 3.2cqw;
+      letter-spacing: 0.02em; color: #F4F1EA; white-space: nowrap; }
+    .pb-sidepill.ring { border-color: #FFD166; box-shadow: 0 0 0 7px rgba(255,209,102,0.14);
+      color: #FFD166; }
+
+    .pb-rule { position: absolute; height: 4px; background: #FFD166; transform: scaleX(0);
+      transform-origin: left center; border-radius: 2px; }
+    .pb-wall { position: absolute; background: rgba(255,255,255,0.16); transform: scaleY(0);
+      transform-origin: top center; border-radius: 3px; }
+    .pb-fillbar { position: absolute; background: rgba(90,214,160,0.22); transform: scaleY(0);
+      transform-origin: bottom center; border-radius: 14px; }
+    .pb-spill { position: absolute; width: 12px; background: #FFD166; height: 0;
+      border-radius: 6px; }
+    .pb-wire { position: absolute; height: 4px; background: #FFD166; transform-origin: left center;
+      transform: scaleX(0); }
+    .pb-wirev { position: absolute; width: 4px; background: #FFD166; transform-origin: top center;
+      transform: scaleY(0); }
+    .pb-room { position: absolute; box-sizing: border-box; border: 3px dashed rgba(255,255,255,0.14);
+      border-radius: 26px; opacity: 0; }
+    .pb-roomlab { position: absolute; font-family: "JetBrains Mono", monospace; font-size: 2.7cqw;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9BA6B2;
+      opacity: 0; }
+
+    /* ── F2 specifics: G4 split, LEFT panel live, the caller ABOVE (value travels up) ── */
+    .f2-panel { width:456px; height:270px; top:590px; }
+    .f2-pl { left:72px; }
+    .f2-pr { left:552px; }
+    .f2-head { position:absolute; left:20px; top:72px; width:416px; height:52px; display:flex;
+      align-items:center; opacity:0; font-family:"JetBrains Mono", monospace; font-size:3.1cqw;
+      font-weight:700; letter-spacing:0.04em; color:#F4F1EA; }
+    .f2-cl { left:20px; width:416px; height:56px; font-size:2.9cqw; }
+    .f2-cl1 { top:134px; }
+    .f2-cl2 { top:196px; }
+    .f2-caller { left:158px; top:360px; width:284px; height:150px; }
+    .f2-ctab { left:158px; top:300px; width:200px; }
+    .f2-y { position:absolute; left:24px; top:52px; display:inline-block; opacity:0;
+      font-family:"JetBrains Mono", monospace; font-size:3.4cqw; font-weight:700; color:#F4F1EA; }
+    .f2-eq { position:absolute; left:96px; top:54px; display:inline-block; opacity:0;
+      font-family:"JetBrains Mono", monospace; font-size:3.2cqw; font-weight:400; color:#9BA6B2; }
+    .f2-cfill { left:8px; top:8px; width:268px; height:134px; }
+    .f2-shaft { position:absolute; left:298px; top:516px; width:4px; height:70px; background:#FFD166;
+      transform:scaleY(0); transform-origin:bottom center; border-radius:2px; }
+    .f2-head-tri { position:absolute; left:288px; top:496px; width:0; height:0; opacity:0;
+      border-left:14px solid transparent; border-right:14px solid transparent;
+      border-bottom:22px solid #FFD166; }
+    .f2-vchip { left:300px; top:388px; width:84px; height:84px; padding:0; border-radius:16px;
+      border:2px solid #5AD6A0; font-size:4cqw; color:#5AD6A0; }
+    .f2-keep { width:292px; height:84px; top:880px; font-size:2.6cqw; }
+    .f2-k1 { left:72px; }
+    .f2-k2 { left:394px; }
+    .f2-k3 { left:716px; }
+    .f2-cap { position:absolute; left:552px; top:452px; width:456px; height:40px; display:flex;
+      align-items:center; justify-content:center; opacity:0;
+      font-family:"JetBrains Mono", monospace; font-size:1.75cqw; font-weight:500;
+      letter-spacing:0.14em; text-transform:uppercase; color:#9BA6B2; }
+  </style>
+
+  <div id="root" data-composition-id="02-return-up" data-width="1080" data-height="1920" data-duration="9.6">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="9.6" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="9.6" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>THE CALLER · THE CODE THAT CALLED IT</div>
+        <div id="c2-badge" class="pb-kbadge" data-layout-ignore>INTERMEDIATE</div>
+      </div>
+    </div>
+    <div id="f2-content" class="clip clipband" data-layout-allow-overflow data-start="0" data-duration="9.6" data-track-index="2">
+
+      <div id="f2-tab" class="pb-tab f2-ctab">caller</div>
+      <div id="f2-caller" class="pb-chamber f2-caller">
+        <div id="f2-cfill" class="pb-fillbar f2-cfill"></div>
+        <div id="f2-y" class="f2-y">y</div>
+        <div id="f2-eq" class="f2-eq">=</div>
+      </div>
+      <div id="f2-cap" class="f2-cap" data-layout-ignore>it keeps what comes back</div>
+
+      <div id="f2-shaft" class="f2-shaft"></div>
+      <div id="f2-tri" class="f2-head-tri"></div>
+
+      <div id="f2-pl" class="cd-root f2-panel f2-pl">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f2-hl" class="f2-head"><span class="pb-word" id="f2-hlw"><span class="pb-hl" id="f2-hhl"></span><span class="pb-wtxt" id="f2-htx">return</span></span></div>
+        <div id="f2-l1" class="cd-line f2-cl f2-cl1"><div class="cd-rev" id="f2-r1"><span class="tk-i">def</span><span class="tk-i"> double</span><span class="tk-m">(</span><span class="tk-i">x</span><span class="tk-m">):</span></div></div>
+        <div id="f2-l2" class="cd-line f2-cl f2-cl2"><div class="cd-rev" id="f2-r2"><span class="tk-m">    </span><span class="tk-i" id="f2-kw">return</span><span class="tk-i"> x </span><span class="tk-m">* </span><span class="tk-v">2</span></div></div>
+      </div>
+
+      <div id="f2-pr" class="cd-root f2-panel f2-pr">
+        <div class="cd-bar"><span class="cd-file" data-layout-ignore>main.py</span><span class="cd-lang" data-layout-ignore>PYTHON</span></div>
+        <div id="f2-hr" class="f2-head">print</div>
+        <div id="f2-l3" class="cd-line f2-cl f2-cl1"><div class="cd-rev" id="f2-r3"><span class="tk-i">def</span><span class="tk-i"> double</span><span class="tk-m">(</span><span class="tk-i">x</span><span class="tk-m">):</span></div></div>
+        <div id="f2-l4" class="cd-line f2-cl f2-cl2"><div class="cd-rev" id="f2-r4"><span class="tk-m">    </span><span class="tk-i">print</span><span class="tk-m">(</span><span class="tk-i">x </span><span class="tk-m">* </span><span class="tk-v">2</span><span class="tk-m">)</span></div></div>
+      </div>
+
+      <div id="f2-chip" class="pb-chip f2-vchip">8</div>
+
+      <div id="f2-k1" class="pb-chip f2-keep f2-k1">keeps it</div>
+      <div id="f2-k2" class="pb-chip f2-keep f2-k2">stores it</div>
+      <div id="f2-k3" class="pb-chip f2-keep f2-k3">builds on it</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.6;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-return-up"] = tl;
+
+      /* ambient ground */
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 16, duration: 1.6, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.6, ease: "sine.inOut", repeat: 5, yoyo: true }, 0);
+
+      /* chrome */
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("c2-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.7)", immediateRender: false }, 0.26);
+
+      /* entrance wipe from the LEFT (F1 wiped from the left too, but on a different archetype and
+         hero position; F3 wipes from the right) — the two panels arrive, the right one already dim */
+      tl.fromTo(el("f2-tab"), { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.34, ease: "back.out(1.6)", immediateRender: false }, 0.44);
+      tl.fromTo(el("f2-caller"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 0.30);
+      tl.fromTo(el("f2-y"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, 0.62);
+      tl.fromTo(el("f2-eq"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.24, ease: "power2.out", immediateRender: false }, 0.80);
+      tl.fromTo(el("f2-cap"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.90);
+
+      tl.fromTo(el("f2-pl"), { opacity: 0, x: -140 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.16);
+      /* the .cd-line wrappers are authored invisible (the shared atom) and are switched on just
+         before their own clip-path reveal — the clone source does the same with tl.set */
+      tl.set(el("f2-l1"), { opacity: 1 }, 0.60);
+      tl.set(el("f2-l2"), { opacity: 1 }, 1.20);
+      tl.set(el("f2-l3"), { opacity: 1 }, 0.86);
+      tl.set(el("f2-l4"), { opacity: 1 }, 1.46);
+      tl.fromTo(el("f2-pr"), { opacity: 0, x: -140 }, { opacity: 0.32, x: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, 0.34);
+
+      /* P3 type-on, one line per spoken clause */
+      tl.fromTo(el("f2-hl"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.34);
+      tl.fromTo(el("f2-r1"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power1.inOut", immediateRender: false }, 0.64);
+      tl.fromTo(el("f2-r2"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power1.inOut", immediateRender: false }, 1.24);
+      tl.fromTo(el("f2-r3"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power1.inOut", immediateRender: false }, 0.90);
+      tl.fromTo(el("f2-r4"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power1.inOut", immediateRender: false }, 1.50);
+
+      /* P1 say-sweep on "return" — the word is spoken at 0.22-0.64 */
+      tl.fromTo(el("f2-hhl"), { scaleX: 0 }, { scaleX: 1, duration: 0.34, ease: "power2.out", immediateRender: false }, 0.34);
+      tl.to(el("f2-htx"), { color: "#22201B", duration: 0.2, ease: "power1.out" }, 0.50);
+
+      /* P8 arrow-run: the shaft draws UP out of the chamber on "back" (2.40), the head lands,
+         then the value chip travels the whole way into the caller box — the lesson is the direction */
+      tl.fromTo(el("f2-shaft"), { scaleY: 0, transformOrigin: "bottom center" }, { scaleY: 1, duration: 0.4, ease: "power2.out", immediateRender: false }, 2.40);
+      tl.fromTo(el("f2-tri"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.74);
+      tl.fromTo(el("f2-chip"), { opacity: 0, y: 300, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out", immediateRender: false }, 2.86);
+      tl.fromTo(el("f2-chip"), { scaleY: 1 }, { scaleY: 0.9, duration: 0.12, ease: "power2.in", immediateRender: false }, 3.58);
+      tl.to(el("f2-chip"), { scaleY: 1, duration: 0.2, ease: "back.out(1.8)" }, 3.70);
+      /* P6 box-fill + a mint border flash on the caller box: the value is now inside a name */
+      tl.fromTo(el("f2-cfill"), { scaleY: 0, transformOrigin: "bottom center" }, { scaleY: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, 3.62);
+      tl.to(el("f2-caller"), { borderColor: "#5AD6A0", duration: 0.26, ease: "power1.out" }, 3.62);
+      tl.to(el("f2-caller"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.6, ease: "power1.inOut" }, 4.40);
+
+      /* P7 pulse-set on the three things a caller does, one per spoken verb */
+      tl.fromTo(el("f2-k1"), { opacity: 0, y: 34, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.5)", immediateRender: false }, 5.36);
+      tl.fromTo(el("f2-k2"), { opacity: 0, y: 34, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.5)", immediateRender: false }, 6.46);
+      tl.fromTo(el("f2-k3"), { opacity: 0, y: 34, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.5)", immediateRender: false }, 7.44);
+      tl.to(el("f2-k1"), { borderColor: "#FFD166", color: "#FFD166", duration: 0.22, ease: "power1.out" }, 5.80);
+      tl.to(el("f2-k2"), { borderColor: "#FFD166", color: "#FFD166", duration: 0.22, ease: "power1.out" }, 6.88);
+      tl.to(el("f2-k3"), { borderColor: "#FFD166", color: "#FFD166", duration: 0.22, ease: "power1.out" }, 7.80);
+
+      /* the keyword inside the code lights last, on "builds on it", so the eye returns to the box */
+      tl.to(el("f2-kw"), { color: "#FFD166", duration: 0.24, ease: "power1.out" }, 8.00);
+
+      /* ambient float on the caller box, then the exit push inside the silence tail */
+      tl.fromTo(el("f2-caller"), { y: 0 }, { y: 6, duration: 1.6, ease: "sine.inOut", repeat: 3, yoyo: true }, 4.80);
+      tl.to(el("f2-content"), { y: -50, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

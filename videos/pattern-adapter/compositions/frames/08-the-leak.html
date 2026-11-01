@@ -1,0 +1,164 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f08-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f08-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f08-kicker {
+      position: absolute; top: 214px; left: 60px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f08-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f08-ktext { display: inline-block; opacity: 0; }
+
+    .f08-chamber {
+      position: absolute; left: 60px; width: 960px; height: 240px;
+      box-sizing: border-box; background: #181715; border-radius: 8px;
+      border: 2px solid rgba(255,255,235,0.20); overflow: hidden;
+      display: flex; flex-direction: column; opacity: 0;
+    }
+    .f08-top { top: 404px; }
+    .f08-bottom { top: 812px; }
+    .f08-bar {
+      flex: 0 0 62px; display: flex; align-items: center; padding: 0 28px;
+      background: #252320; border-bottom: 1px solid rgba(255,255,235,0.14);
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw;
+      letter-spacing: 0.06em; color: rgba(255,255,235,0.66);
+    }
+    .f08-body { flex: 1 1 auto; padding: 20px 28px; display: flex; flex-direction: column; justify-content: center; }
+    .f08-code {
+      display: block; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 1.6; color: #ffffeb;
+    }
+    .f08-type-a { color: #ffa946; display: inline; opacity: 0; }
+    .f08-type-b { color: #f0d7ff; display: inline; opacity: 0; }
+    .f08-via {
+      display: block; margin-top: 18px; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; line-height: 1.4;
+      color: rgba(255,255,235,0.72); opacity: 0;
+    }
+    .f08-flag {
+      position: absolute; top: 336px; left: 60px; width: 180px; height: 58px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #1a1a1a; color: #ffffeb; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw;
+      letter-spacing: 0.16em; text-transform: uppercase; opacity: 0;
+    }
+    .f08-flag-b { top: 740px; }
+    .f08-rule { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f08-sep { fill: none; stroke: rgba(26,26,26,0.34); stroke-width: 2; }
+  </style>
+
+  <div id="root" data-composition-id="08-the-leak" data-width="1080" data-height="1920" data-duration="8.896">
+
+    <div id="f08-ground" class="clip" data-start="0" data-duration="8.896" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f08-field"></div>
+      <div id="f08-grid" class="f08-grid"></div>
+    </div>
+
+    <div id="f08-chrome" class="clip" data-start="0" data-duration="8.896" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f08-kicker">
+        <span id="f08-spike" class="f08-spike">&#10009;</span><span id="f08-ktext" class="f08-ktext" data-layout-ignore>THE TELL</span>
+      </div>
+    </div>
+
+    <div id="f08-wrong" class="clip" data-start="0.2" data-duration="8.696" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f08-chamber-a" data-hold class="f08-chamber f08-top">
+        <div class="f08-bar"><span data-layout-ignore>checkout-service.ts</span></div>
+        <div class="f08-body">
+          <span class="f08-code">charge(amount, currency): <span id="f08-type-a" class="f08-type-a">Promise&lt;BankResponse&gt;</span></span>
+        </div>
+      </div>
+      <div id="f08-flag-a" class="f08-flag">leak</div>
+    </div>
+
+    <div id="f08-sep" class="clip" data-start="4.5" data-duration="4.396" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f08-rule" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path id="f08-sep-line" class="f08-sep" d="M 60 700 L 1020 700" />
+      </svg>
+    </div>
+
+    <div id="f08-right" class="clip" data-start="6.0" data-duration="2.896" data-track-index="4" style="position:absolute;inset:0;">
+      <div id="f08-chamber-b" class="f08-chamber f08-bottom">
+        <div class="f08-bar"><span data-layout-ignore>checkout-service.ts</span></div>
+        <div class="f08-body">
+          <span class="f08-code">charge(amount, currency): <span id="f08-type-b" class="f08-type-b">Promise&lt;Receipt&gt;</span></span>
+          <span id="f08-via" class="f08-via">// VendorPayAdapter does the converting</span>
+        </div>
+      </div>
+      <div id="f08-flag-b" class="f08-flag f08-flag-b">contained</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.896;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["08-the-leak"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("f08-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f08-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f08-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.4s) "It leaks when the vendor's": the wrong chamber seats ──
+      tl.fromTo(el("f08-chamber-a"), { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.3);
+
+      // ── Scene 2 (1.4–3.8s) "response type shows up in your caller's signature" ──
+      // the frame's single ember element is the vendor type sitting in YOUR signature
+      tl.fromTo(el("f08-type-a"), { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power1.out" }, 1.64);
+      tl.fromTo(el("f08-flag-a"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 2.74);
+
+      // ── Scene 3 (3.8–6.0s) "Then the whole seam is decoration": the rule draws, then the fix ──
+      var sep = el("f08-sep-line");
+      var sepLen = sep.getTotalLength();
+      sep.style.strokeDasharray = String(sepLen);
+      sep.style.strokeDashoffset = String(sepLen);
+      tl.to(sep, { strokeDashoffset: 0, duration: 0.6, ease: "power3.out" }, 4.6);
+      tl.fromTo(el("f08-chamber-b"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 6.06);
+
+      // ── Scene 4 (6.0–8.2s) the contained version, in the domain's own colour ──
+      tl.fromTo(el("f08-type-b"), { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power1.out" }, 6.9);
+      tl.fromTo(el("f08-via"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 7.34);
+      tl.fromTo(el("f08-flag-b"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 7.72);
+
+      // ── Scene 5 (8.2–8.9s) both chambers held; jitter on the ember token only ──
+      var jit = { p: 0 };
+      var token = el("f08-chamber-a");
+      var HOLD = 8.24;
+      gsap.set(token, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          token.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

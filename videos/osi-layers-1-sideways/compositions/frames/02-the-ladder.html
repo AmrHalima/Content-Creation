@@ -1,0 +1,221 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-column {
+      position: absolute; top: 690px; left: 255px; width: 570px; height: 792px;
+      box-sizing: border-box;
+      border: 4px solid rgba(26,26,26,0.45);
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .f02-row {
+      position: absolute; left: 0; width: 100%; height: 112px;
+      box-sizing: border-box;
+      display: flex; align-items: center; gap: 26px;
+      padding: 0 30px;
+      border-bottom: 2px solid rgba(26,26,26,0.1);
+      opacity: 0.55;
+    }
+    .f02-row-last { border-bottom: none; }
+    .f02-num {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.02em; color: rgba(26,26,26,0.6);
+      width: 46px; flex: 0 0 46px;
+    }
+    .f02-name {
+      font-family: "EB Garamond", serif; font-weight: 400;
+      font-size: 3.5cqw; line-height: 1.02; letter-spacing: -0.018em; color: #1a1a1a;
+    }
+    .f02-svg { position: absolute; inset: 0; }
+    .f02-dot { fill: #ffa946; opacity: 0; }
+    .f02-head { fill: #ffa946; opacity: 0; }
+    .f02-anchor { fill: none; stroke: rgba(26,26,26,0.4); stroke-width: 3; opacity: 0; }
+    .f02-tag {
+      position: absolute; top: 762px; left: 878px; width: 152px; height: 60px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb;
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 2.6cqw; letter-spacing: 0.02em; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f02-callout {
+      position: absolute; top: 1498px; left: 300px; width: 480px; height: 62px;
+      box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center; gap: 18px;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.6cqw; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #76766e;
+      opacity: 0;
+    }
+    .f02-rule { width: 54px; height: 1px; background: rgba(26,26,26,0.2); }
+  </style>
+
+  <div data-hf-id="hf-trpf" id="root" data-composition-id="02-the-ladder" data-width="1080" data-height="1920" data-duration="7.156">
+
+    <div data-hf-id="hf-1ww0" id="02-the-ladder-fieldclip" class="clip" data-start="0" data-duration="7.156" data-track-index="0" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-nzmv" class="f02-field"></div>
+      <div data-hf-id="hf-ddp1" id="02-the-ladder-grid" class="f02-grid"></div>
+    </div>
+
+    <div data-hf-id="hf-a1uf" id="02-the-ladder-columnclip" class="clip" data-start="0" data-duration="7.156" data-track-index="1" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-wjst" id="02-the-ladder-column" class="f02-column">
+        <div data-hf-id="hf-g5gq" id="02-the-ladder-row7" class="f02-row" style="top:0px;"><span data-hf-id="hf-xgtd" class="f02-num">7</span><span data-hf-id="hf-93yt" class="f02-name">application</span></div>
+        <div data-hf-id="hf-v60t" id="02-the-ladder-row6" class="f02-row" style="top:112px;"><span data-hf-id="hf-xv4e" class="f02-num">6</span><span data-hf-id="hf-lifd" class="f02-name">presentation</span></div>
+        <div data-hf-id="hf-m178" id="02-the-ladder-row5" class="f02-row" style="top:224px;"><span data-hf-id="hf-y9ff" class="f02-num">5</span><span data-hf-id="hf-1e2v" class="f02-name">session</span></div>
+        <div data-hf-id="hf-5xab" id="02-the-ladder-row4" class="f02-row" style="top:336px;"><span data-hf-id="hf-ynqg" class="f02-num">4</span><span data-hf-id="hf-9c8y" class="f02-name">transport</span></div>
+        <div data-hf-id="hf-x8y6" id="02-the-ladder-row3" class="f02-row" style="top:448px;"><span data-hf-id="hf-vvl9" class="f02-num">3</span><span data-hf-id="hf-7a51" class="f02-name">network</span></div>
+        <div data-hf-id="hf-a3nw" id="02-the-ladder-row2" class="f02-row" style="top:560px;"><span data-hf-id="hf-w9wa" class="f02-num">2</span><span data-hf-id="hf-lxmr" class="f02-name">data link</span></div>
+        <div data-hf-id="hf-6iot" id="02-the-ladder-row1" class="f02-row f02-row-last" style="top:672px;"><span data-hf-id="hf-wo7b" class="f02-num">1</span><span data-hf-id="hf-b4r4" class="f02-name">physical</span></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-b427" id="02-the-ladder-arrowclip" class="clip" data-start="0" data-duration="7.156" data-track-index="2" style="position:absolute;inset:0;">
+      <svg data-hf-id="hf-nmik" class="f02-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path data-hf-id="hf-rtgg" id="02-the-ladder-anchor" class="f02-anchor" d="M 843 746 L 873 746" />
+        <circle data-hf-id="hf-ax9h" id="02-the-ladder-d00" class="f02-dot" cx="858" cy="758" r="4.5" />
+        <circle data-hf-id="hf-6hcf" id="02-the-ladder-d01" class="f02-dot" cx="858" cy="805" r="4.5" />
+        <circle data-hf-id="hf-61jg" id="02-the-ladder-d02" class="f02-dot" cx="858" cy="852" r="4.5" />
+        <circle data-hf-id="hf-mpyk" id="02-the-ladder-d03" class="f02-dot" cx="858" cy="899" r="4.5" />
+        <circle data-hf-id="hf-d704" id="02-the-ladder-d04" class="f02-dot" cx="858" cy="946" r="4.5" />
+        <circle data-hf-id="hf-aenr" id="02-the-ladder-d05" class="f02-dot" cx="858" cy="993" r="4.5" />
+        <circle data-hf-id="hf-xu5w" id="02-the-ladder-d06" class="f02-dot" cx="858" cy="1040" r="4.5" />
+        <circle data-hf-id="hf-za0w" id="02-the-ladder-d07" class="f02-dot" cx="858" cy="1087" r="4.5" />
+        <circle data-hf-id="hf-rrri" id="02-the-ladder-d08" class="f02-dot" cx="858" cy="1134" r="4.5" />
+        <circle data-hf-id="hf-7dlf" id="02-the-ladder-d09" class="f02-dot" cx="858" cy="1181" r="4.5" />
+        <circle data-hf-id="hf-b6w1" id="02-the-ladder-d10" class="f02-dot" cx="858" cy="1228" r="4.5" />
+        <circle data-hf-id="hf-dg9a" id="02-the-ladder-d11" class="f02-dot" cx="858" cy="1275" r="4.5" />
+        <circle data-hf-id="hf-1xfe" id="02-the-ladder-d12" class="f02-dot" cx="858" cy="1322" r="4.5" />
+        <circle data-hf-id="hf-sml2" id="02-the-ladder-d13" class="f02-dot" cx="858" cy="1369" r="4.5" />
+        <circle data-hf-id="hf-zw3g" id="02-the-ladder-d14" class="f02-dot" cx="858" cy="1410" r="4.5" />
+        <g data-hf-id="hf-3rrf" id="02-the-ladder-headwrap">
+          <polygon data-hf-id="hf-otpo" id="02-the-ladder-head" class="f02-head" points="850,737 870,746 850,755" />
+        </g>
+      </svg>
+    </div>
+
+    <div data-hf-id="hf-wuwq" id="02-the-ladder-tagclip" class="clip" data-start="4.55" data-duration="2.606" data-track-index="3" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-lqfl" id="02-the-ladder-tag" class="f02-tag">7 &#8595; 6</div>
+    </div>
+
+    <div data-hf-id="hf-stob" id="02-the-ladder-calloutclip" class="clip" data-start="5.5" data-duration="1.656" data-track-index="4" style="position:absolute;inset:0;">
+      <div data-hf-id="hf-p9cl" id="02-the-ladder-callout" class="f02-callout">
+        <span data-hf-id="hf-qp8e" class="f02-rule"></span><span data-hf-id="hf-881d">taught this way</span><span data-hf-id="hf-mdr6" class="f02-rule"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.656;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-the-ladder"] = tl;
+
+      // ── Scene 1 (0.0–1.25s) — the column carries in from F1 at ~55% ink. Only the
+      //    arrow's start anchor at Layer 7 exists. Nothing else moves. ──
+      tl.fromTo(el("02-the-ladder-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+      tl.fromTo(el("02-the-ladder-anchor"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.35);
+      tl.fromTo(el("02-the-ladder-head"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.55);
+
+      // ── Scene 2 (1.25–3.7s) — the dotted arrow self-draws down past all seven
+      //    stations (svg-path-draw in its discrete-dot form: each dot is a stroke
+      //    segment landing in sequence at a constant rate), and each row steps bright
+      //    as it passes (discrete-text-sequence: whole-opacity states per threshold). ──
+      var DRAW_START = 1.25;
+      var DRAW_DUR = 2.45;
+      var TRAVEL = 664; // 746 -> 1410, the full ladder
+      var NDOT = 15;
+      for (var i = 0; i < NDOT; i++) {
+        tl.fromTo(
+          el("02-the-ladder-d" + (i < 10 ? "0" + i : i)),
+          { opacity: 0, scale: 0.4 },
+          { opacity: 1, scale: 1, duration: 0.12, ease: "power2.out" },
+          DRAW_START + (i / NDOT) * DRAW_DUR
+        );
+      }
+      // arrowhead rides the same linear rate as the dots, so the two read as one crawl
+      tl.fromTo(
+        el("02-the-ladder-headwrap"),
+        { y: 0 },
+        { y: TRAVEL, duration: DRAW_DUR, ease: "none" },
+        DRAW_START
+      );
+
+      // per-station label reveal, cadenced to "that is how it gets taught" (1.351 -> 3.664)
+      var ROWS = ["row7", "row6", "row5", "row4", "row3", "row2", "row1"];
+      var LIT = [1.35, 1.72, 2.09, 2.46, 2.83, 3.2, 3.57];
+      var rowEls = ROWS.map(function (r) { return el("02-the-ladder-" + r); });
+      var driver = { t: 0 };
+      tl.to(driver, {
+        t: D,
+        duration: D,
+        ease: "none",
+        onUpdate: function () {
+          var t = driver.t;
+          for (var k = 0; k < rowEls.length; k++) {
+            var d = t - LIT[k];
+            var o = 0.55;
+            if (d >= 0) {
+              // bright for one beat, then settle just above the dim field
+              o = d < 0.24 ? 0.55 + 0.45 * (d / 0.24) : Math.max(0.82, 1 - 0.18 * ((d - 0.24) / 0.7));
+            }
+            rowEls[k].style.opacity = o.toFixed(3);
+          }
+        }
+      }, 0);
+
+      // ── Scene 3 (3.7–6.0s) — "seven handing down to six": the 7 -> 6 tag settles at
+      //    the boundary the arrow crosses (restrained spring-pop, smooth, no overshoot) ──
+      tl.fromTo(
+        el("02-the-ladder-tag"),
+        { opacity: 0, scale: 0.94, x: 14 },
+        { opacity: 1, scale: 1, x: 0, duration: 0.42, ease: "power3.out" },
+        4.55
+      );
+      // "taught this way" callout lands under the column; advanced to 5.500 so the line holds
+      tl.fromTo(
+        el("02-the-ladder-callout"),
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" },
+        5.5
+      );
+
+      // ── Scene 4 (6.0–6.66s) — held read. Jitter only. ──
+      var jit = { p: 0 };
+      var col = el("02-the-ladder-column");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.25,
+        duration: D - 6.1,
+        ease: "none",
+        onUpdate: function () { col.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)"; }
+      }, 6.1);
+    })();
+  </script>
+</template>

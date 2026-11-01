@@ -1,0 +1,284 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    html, body { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G11 tree, § 6's grid, bound (not redrawn). 27 draws this grid; this part binds the
+          ordering law to it. Node 148x96, levels y 292/452/612, columns read as CENTRES
+          (n=1 → 466 | n=2 → 232,700 | n=3 → 155,467 under the left-hand parent), so a node's
+          own left is centre − 74. § 6's n=4 hazard ("86px gap") is only true under this reading.
+          Elbow runY 420 / 580 — the exact middle of each 64px gap. All connectors are CSS divs
+          in the untransformed layer: no SVG, no rotation, no diagonals. ── */
+    .g11-node { position: absolute; box-sizing: border-box; width: 148px; height: 96px;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      opacity: 0; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex;
+      align-items: center; justify-content: center; }
+    .g11-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      font-size: 4.6cqw; line-height: 1; color: #5AD6A0; }
+    /* the root's G2 name tab, h 38 (pb-15's .f2-tab form: internal, because a 64px level gap
+       cannot host an external tab at node top 292) */
+    .g11-tab { position: absolute; left: 0; top: 0; width: 100%; height: 38px; box-sizing: border-box;
+      background: #262C36; border-bottom: 3px solid rgba(255,255,255,0.16);
+      border-radius: 18px 18px 0 0; display: flex; align-items: center; justify-content: center; }
+    .g11-tab-t { display: inline-block; font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; font-family: "JetBrains Mono", monospace;
+      font-size: 2.2cqw; font-weight: 700; line-height: 1; letter-spacing: 0.14em; color: #F4F1EA;
+      white-space: nowrap; }
+    .n8  { left: 392px; top: 292px; }
+    .n4  { left: 158px; top: 452px; }
+    .n12 { left: 626px; top: 452px; }
+    .n3  { left:  81px; top: 612px; }
+    .n6  { left: 393px; top: 612px; }
+    /* the root carries a tab, so its value sits in the band below it (pb-15's .f2-valband form) */
+    .n8 .g11-val-band { position: absolute; left: 0; top: 38px; width: 100%; height: 58px;
+      display: flex; align-items: center; justify-content: center; }
+
+    .g7-hbar { position: absolute; height: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0; transform: scaleX(0); }
+    .g7-vbar { position: absolute; width: 3px; box-sizing: border-box;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0; transform: scaleY(0);
+      transform-origin: top center; }
+    .ho-r { transform-origin: right center; }
+    .ho-l { transform-origin: left center; }
+
+    /* the ordering law, drawn where § 6 puts it: at the elbow's UP-STUB, not on the node.
+       --muted mono, chrome-sized, so it carries the gloss and not a lesson colour. */
+    .g11-chip { position: absolute; width: 124px; height: 28px; box-sizing: border-box;
+      text-align: center; opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.85cqw;
+      font-weight: 700; line-height: 28px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9BA6B2; white-space: nowrap; }
+
+    /* the search ring — § 6's 168x116 --say box at node.left − 10 (+10 bleed all sides) */
+    .g11-ring { position: absolute; left: 382px; top: 282px; width: 168px; height: 116px;
+      box-sizing: border-box; border: 3px solid #FFD166; border-radius: 26px; opacity: 0;
+      box-shadow: 0 0 0 8px rgba(255,209,102,0.10); }
+    /* the two left turns: arrowheads, never a number (§ 4b — turns are shown by arrowheads) */
+    .g11-turn { position: absolute; width: 16px; height: 16px; box-sizing: border-box; opacity: 0;
+      border-top: 3px solid #FFD166; border-right: 3px solid #FFD166; transform: rotate(180deg); }
+    .t1 { left: 341px; top: 406px; }
+    .t2 { left: 110px; top: 566px; }
+
+    /* counted tag lane (upper, y 288 h 66) — pb-21's .f3-tag widths and positions */
+    .f2-tag { position: absolute; top: 288px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; gap: 14px; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #F4F1EA; white-space: nowrap; }
+    .f2-tag-n { display: inline-block; color: #5AD6A0; letter-spacing: 0; }
+    /* annotation line (§ 2 ramp: Space Grotesk 400, 2.9-3.2cqw, --ink at 78%, one clause) */
+    .f2-note { position: absolute; left: 72px; top: 812px; width: 936px; height: 52px;
+      text-align: center; opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 3cqw; line-height: 52px; color: rgba(244,241,234,0.78); white-space: nowrap; }
+    .f2-note strong { font-weight: 700; color: #F4F1EA; }
+  </style>
+
+  <div id="root" data-composition-id="02-bst" data-width="1080" data-height="1920" data-duration="11">
+
+    <div id="g2-ground" class="clip clipband" data-start="0" data-duration="11" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g2-grid" class="gnd-grid"></div>
+      <div id="g2-ga" class="gnd-glow-a"></div>
+      <div id="g2-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c2-chrome" class="clip clipband" data-start="0" data-duration="11" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c2-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 28</div>
+      </div>
+    </div>
+
+    <div id="f2-content" class="clip clipband" data-start="0" data-duration="11" data-track-index="2">
+
+      <!-- elbows: two shared down-stubs, four runs, four up-stubs. 3px --line (0.16), because a
+           viewer counts paths (§ 1). The two L1 runs ABUT at x 466 and never overlap. -->
+      <div id="f2-d1" class="g7-vbar"></div>
+      <div id="f2-d2" class="g7-vbar"></div>
+      <div id="f2-r4" class="g7-hbar ho-r"></div>
+      <div id="f2-r12" class="g7-hbar ho-l"></div>
+      <div id="f2-r3" class="g7-hbar ho-r"></div>
+      <div id="f2-r6" class="g7-hbar ho-l"></div>
+      <div id="f2-u4" class="g7-vbar"></div>
+      <div id="f2-u12" class="g7-vbar"></div>
+      <div id="f2-u3" class="g7-vbar"></div>
+      <div id="f2-u6" class="g7-vbar"></div>
+
+      <!-- nodes: the executed tree from inserting 8, 4, 12, 3, 6 -->
+      <div id="f2-n8" class="g11-node n8">
+        <div class="g11-tab"><span class="g11-tab-t" data-layout-ignore>ROOT</span></div>
+        <div class="g11-val-band"><span id="f2-v8" class="g11-val">8</span></div>
+      </div>
+      <div id="f2-n4" class="g11-node n4"><span id="f2-v4" class="g11-val">4</span></div>
+      <div id="f2-n12" class="g11-node n12"><span id="f2-v12" class="g11-val">12</span></div>
+      <div id="f2-n3" class="g11-node n3"><span id="f2-v3" class="g11-val">3</span></div>
+      <div id="f2-n6" class="g11-node n6"><span id="f2-v6" class="g11-val">6</span></div>
+
+      <!-- the ordering law, at each up-stub -->
+      <div id="f2-c4" class="g11-chip" style="left:170px; top:422px;" data-layout-ignore>smaller</div>
+      <div id="f2-c12" class="g11-chip" style="left:638px; top:422px;" data-layout-ignore>larger</div>
+      <div id="f2-c3" class="g11-chip" style="left:93px; top:582px;" data-layout-ignore>smaller</div>
+      <div id="f2-c6" class="g11-chip" style="left:405px; top:582px;" data-layout-ignore>larger</div>
+
+      <div id="f2-t1" class="g11-turn" data-layout-allow-occlusion></div>
+      <div id="f2-t2" class="g11-turn" data-layout-allow-occlusion></div>
+      <div id="f2-ring" class="g11-ring"></div>
+
+      <div id="f2-tag" class="f2-tag" style="left:636px; width:300px;" data-layout-allow-overlap>STEPS&nbsp;<span id="f2-tag-n" class="f2-tag-n">&nbsp;</span></div>
+
+      <div id="f2-note" class="f2-note">every look throws away <strong>half</strong> of what is left</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-bst"] = tl;
+
+      /* ground loops return to their own zero (v3.0 § 3) */
+      tl.fromTo(el("g2-grid"), { y: 0 }, { y: 12, duration: D / 2, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g2-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g2-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c2-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.08);
+
+      /* entrance wipe: F1 left with y, this one comes in from ABOVE-free ground — § 9 alternates
+         direction, so F2 uses the y variant and F3 uses x. */
+      tl.fromTo(el("f2-content"), { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.to(el("f2-content"), { y: 0, opacity: 1, duration: 0.01 }, 0.54);
+
+      /* ── authored geometry, once (frame coordinates, per § 8) ─────────────────────
+         node centres: 8 → x 466 · 4 → x 232 · 12 → x 700 · 3 → x 155 · 6 → x 467
+         bottoms:      8 → y 388 · 4/12 → y 548 · 3/6 → y 708     tops: 8 292 · 4/12 452 · 3/6 612
+         runY 420 / 580. A down-stub spans parentBottom → runY; an up-stub spans runY → childTop. */
+      function placeBar(id, x, y, w, h) {
+        var e = el(id), s = e.style;
+        s.left = x + "px"; s.top = y + "px";
+        if (h) { s.height = h + "px"; } else { s.width = w + "px"; }
+      }
+      placeBar("f2-d1", 464, 388, 0, 32);   /* root down-stub, shared by both L1 elbows */
+      placeBar("f2-d2", 230, 548, 0, 32);   /* node 4 down-stub, shared by both L2 elbows */
+      placeBar("f2-r4", 232, 420, 234, 0);  /* 8 → 4 run (grows leftward off the root centre) */
+      placeBar("f2-r12", 466, 420, 234, 0); /* 8 → 12 run */
+      placeBar("f2-r3", 82, 580, 72, 0);    /* 4 → 3 run */
+      placeBar("f2-r6", 232, 580, 72, 0);   /* 4 → 6 run */
+      placeBar("f2-u4", 230, 420, 0, 32);
+      placeBar("f2-u12", 698, 420, 0, 32);
+      placeBar("f2-u3", 152, 580, 0, 32);
+      placeBar("f2-u6", 464, 580, 0, 32);
+
+      /* ── BEAT 1: "A binary search tree keeps smaller values on the left." ─────────
+         onsets (studio cues): A 0.00 / binary 0.12 / search 0.42 / tree 0.78 / keeps 1.14 /
+         smaller 1.42 / values 1.84 / on 2.26 / the 2.50 / left. 2.60-2.88 */
+      tl.fromTo(el("f2-n8"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 0.14);
+      tl.to(el("f2-n8"), { scaleY: 0.96, duration: 0.1, ease: "power2.in", immediateRender: false }, 0.58);
+      tl.to(el("f2-n8"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 0.68);
+
+      tl.fromTo(el("f2-n4"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 1.42);
+      tl.to(el("f2-n4"), { scaleY: 0.96, duration: 0.1, ease: "power2.in", immediateRender: false }, 1.86);
+      tl.to(el("f2-n4"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 1.96);
+      /* the elbow is BUILT, not shown: stub → run → stub, 0.14s each (§ 6 motion contract) */
+      tl.fromTo(el("f2-d1"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.00);
+      tl.fromTo(el("f2-r4"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.16);
+      tl.fromTo(el("f2-u4"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 2.32);
+      tl.fromTo(el("f2-c4"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 2.26);
+
+      /* ── BEAT 2: "Larger ones go on the right, at every node." ───────────────────
+         Larger 3.48 / ones 3.88 / go 4.10 / on 4.32 / the 4.50 / right, 4.60-4.84 /
+         at 4.84 / every 5.06 / node. 5.30-5.62 */
+      tl.fromTo(el("f2-n12"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 3.48);
+      tl.to(el("f2-n12"), { scaleY: 0.96, duration: 0.1, ease: "power2.in", immediateRender: false }, 3.92);
+      tl.to(el("f2-n12"), { scaleY: 1, duration: 0.22, ease: "power3.out" }, 4.02);
+      tl.fromTo(el("f2-r12"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 4.06);
+      tl.fromTo(el("f2-u12"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 4.22);
+      tl.fromTo(el("f2-c12"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 4.32);
+
+      /* "at every node" — the rule is not a root-only rule, so the grandchildren arrive HERE */
+      tl.fromTo(el("f2-n3"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 5.06);
+      tl.fromTo(el("f2-d2"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 5.20);
+      tl.fromTo(el("f2-r3"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 5.36);
+      tl.fromTo(el("f2-u3"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 5.52);
+      tl.fromTo(el("f2-c3"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 5.30);
+      tl.fromTo(el("f2-n6"), { opacity: 0, y: -210 }, { opacity: 1, y: 0, duration: 0.46, ease: "bounce.out", immediateRender: false }, 5.62);
+      tl.fromTo(el("f2-r6"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 5.84);
+      tl.fromTo(el("f2-u6"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power3.out", immediateRender: false }, 6.00);
+      tl.fromTo(el("f2-c6"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out", immediateRender: false }, 5.86);
+
+      /* ── BEAT 3: the search. "The root is eight." The 6.12 / root 6.20 / is 6.40 /
+         eight. 6.58-6.82 — the ring lands on the root and STEPS turns 1 on the word.
+         "Search for three." Search 7.20 / for 7.50 / three. 7.78-8.08.
+         "Left, then left." Left, 8.60-8.96 / then 9.30 / left. 9.40-9.70 ── */
+      tl.fromTo(el("f2-tag"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 6.12);
+      tl.fromTo(el("f2-ring"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 6.40);
+
+      /* the target, named — the ring beats own the colour, so this is a scale, not a palette change */
+      tl.fromTo(el("f2-v3"), { scale: 1 }, { scale: 1.14, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 7.78);
+
+      /* the counter ticks 1, 2, 3 on P9 — NODES VISITED, never turns (§ 4b) */
+      var tickSteps = [{ t: 6.58, v: "1" }, { t: 8.72, v: "2" }, { t: 9.52, v: "3" }];
+      var clock = { t: 0 };
+      function pick(arr, t) { var s = "\u00a0"; for (var i = 0; i < arr.length; i++) { if (t >= arr[i].t) { s = arr[i].v; } } return s; }
+      tl.to(clock, { t: D, duration: D, ease: "none", onUpdate: function () {
+        var a = el("f2-tag-n"); var s1 = pick(tickSteps, clock.t);
+        if (a._v !== s1) { a._v = s1; a.textContent = s1; }
+      } }, 0);
+      [6.58, 8.72, 9.52].forEach(function (t) {
+        tl.fromTo(el("f2-tag-n"), { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.12, ease: "power3.out", immediateRender: false }, t);
+      });
+
+      /* hop 1: 8 → 4 on "Left," while 12 goes out of play (§ 1: dim the container's background
+         and border, keep the digit readable — never opacity on the container) */
+      tl.to(el("f2-ring"), { x: -234, y: 160, duration: 0.3, ease: "power3.out", immediateRender: false }, 8.60);
+      tl.to(el("f2-n12"), { backgroundColor: "rgba(31,36,44,0.42)", borderColor: "rgba(255,255,255,0.08)", duration: 0.28, ease: "power1.inOut", immediateRender: false }, 8.60);
+      tl.to(el("f2-v12"), { color: "rgba(244,241,234,0.62)", duration: 0.28, ease: "power1.inOut", immediateRender: false }, 8.60);
+      tl.fromTo(el("f2-c12"), { opacity: 1 }, { opacity: 0.35, duration: 0.28, immediateRender: false }, 8.60);
+      tl.fromTo(el("f2-t1"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.22, ease: "back.out(1.7)", immediateRender: false }, 8.86);
+
+      /* hop 2: 4 → 3 on the second "left.", which discards 6 */
+      tl.to(el("f2-ring"), { x: -311, y: 320, duration: 0.3, ease: "power3.out", immediateRender: false }, 9.40);
+      tl.to(el("f2-n6"), { backgroundColor: "rgba(31,36,44,0.42)", borderColor: "rgba(255,255,255,0.08)", duration: 0.28, ease: "power1.inOut", immediateRender: false }, 9.40);
+      tl.to(el("f2-v6"), { color: "rgba(244,241,234,0.62)", duration: 0.28, ease: "power1.inOut", immediateRender: false }, 9.40);
+      tl.fromTo(el("f2-c6"), { opacity: 1 }, { opacity: 0.35, duration: 0.28, immediateRender: false }, 9.40);
+      tl.fromTo(el("f2-t2"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.22, ease: "back.out(1.7)", immediateRender: false }, 9.62);
+
+      /* the annotation lands once the two dims have happened — the frame makes the argument */
+      tl.fromTo(el("f2-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 9.90);
+
+      /* the ring settles once and returns to zero (ambient breath, second primitive) */
+      tl.fromTo(el("f2-ring"), { boxShadow: "0 0 0 8px rgba(255,209,102,0.10)" },
+        { boxShadow: "0 0 0 14px rgba(255,209,102,0.18)", duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 9.90);
+
+      tl.to(el("f2-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 10.68);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

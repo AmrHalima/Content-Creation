@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1350" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      @font-face{font-family:"Noto Kufi Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("../assets/fonts/NotoKufiArabic-wght.ttf") format("truetype");}
+      @font-face{font-family:"Noto Naskh Arabic";font-weight:100 900;font-style:normal;font-display:block;src:url("../assets/fonts/NotoNaskhArabic-wght.ttf") format("truetype");}
+      html, body { width: 1080px; height: 1350px; overflow: hidden; background: #FFFFEB; }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        container-type: size;
+        direction: rtl;
+        background: #FFFFEB;
+        font-family: "Noto Naskh Arabic", serif;
+        color: #1A1A1A;
+      }
+      .ck-head {
+        position: absolute; top: 64px; right: 72px; width: 936px; height: 170px;
+        display: flex; align-items: flex-start; gap: 24px;
+        border-top: 4px solid #1A1A1A; padding-top: 28px;
+      }
+      .ck-num {
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 11cqw; font-weight: 900;
+        line-height: 0.95; letter-spacing: 0; color: #034F46; flex: 0 0 auto;
+      }
+      .ck-headtext { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-width: 1px; }
+      .ck-title {
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 6.6cqw; font-weight: 800;
+        line-height: 1.2; letter-spacing: 0; color: #1A1A1A;
+      }
+      .ck-sub {
+        font-family: "Noto Naskh Arabic", serif; font-size: 3.2cqw; font-weight: 400;
+        line-height: 1.4; letter-spacing: 0; color: rgba(26,26,26,0.66);
+      }
+      .ck-row {
+        position: absolute; right: 72px; width: 936px; min-height: 120px;
+        display: flex; align-items: flex-start; gap: 22px;
+        border-top: 1px solid rgba(26,26,26,0.24); padding-top: 24px;
+      }
+      .ck-r1 { top: 286px; }
+      .ck-r2 { top: 536px; }
+      .ck-r3 { top: 706px; }
+      .ck-rn {
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 4cqw; font-weight: 700;
+        line-height: 1.35; color: #034F46; flex: 0 0 auto;
+      }
+      .ck-rt {
+        font-family: "Noto Naskh Arabic", serif; font-size: 3.9cqw; font-weight: 400;
+        line-height: 1.55; letter-spacing: 0; color: #1A1A1A; flex: 1 1 auto; min-width: 1px;
+      }
+      .ck-rt b { font-family: "Noto Kufi Arabic", sans-serif; font-weight: 700; }
+      .ck-note {
+        position: absolute; top: 900px; right: 72px; width: 936px;
+        font-family: "Noto Naskh Arabic", serif; font-size: 3.4cqw; font-weight: 400;
+        line-height: 1.5; letter-spacing: 0; color: #034F46;
+      }
+      .ck-warn {
+        position: absolute; top: 1010px; right: 72px; width: 936px;
+        display: flex; align-items: flex-start; gap: 20px;
+      }
+      .ck-warnbar { width: 6px; flex: 0 0 auto; align-self: stretch; background: #FFA946; }
+      .ck-warntext {
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.3cqw; font-weight: 500;
+        line-height: 1.5; letter-spacing: 0; color: #1A1A1A; flex: 1 1 auto; min-width: 1px;
+      }
+      .ck-foot {
+        position: absolute; bottom: 0; right: 72px; width: 936px; height: 130px;
+        border-top: 1px solid rgba(26,26,26,0.24);
+        display: flex; align-items: center;
+        font-family: "Noto Kufi Arabic", sans-serif; font-size: 3.5cqw; font-weight: 700;
+        line-height: 1.4; letter-spacing: 0; color: #1A1A1A;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="1"
+      data-fps="1"
+      data-width="1080"
+      data-height="1350"
+      dir="rtl"
+      lang="ar"
+    >
+      <div
+        id="ck-clip"
+        class="clip"
+        data-start="0"
+        data-duration="1"
+        data-track-index="0"
+        style="position:absolute;inset:0;"
+      >
+        <div class="ck-head">
+          <span class="ck-num">٢</span>
+          <span class="ck-headtext">
+            <span class="ck-title">الفحص في دقيقتين</span>
+            <span class="ck-sub">تلات حاجات. بيتعملوا بإيدك إنت، مش بالكلام من على التليفون.</span>
+          </span>
+        </div>
+
+        <div class="ck-row ck-r1">
+          <span class="ck-rn">١</span>
+          <span class="ck-rt">خد الموبايل <b>في إيدك إنت</b>. افتح إعدادات التطبيق اللي بتتصل منه، ودوّر على «تحويل المكالمات». لو لقيت رقم ميعرفوه، إلغاه من نفس الشاشة.</span>
+        </div>
+
+        <div class="ck-row ck-r2">
+          <span class="ck-rn">٢</span>
+          <span class="ck-rt">اسأله سؤال واحد: في حد كلّمك وقالك <b>اكتب كود على التليفون</b>؟ لو نعم، ده إنذار.</span>
+        </div>
+
+        <div class="ck-row ck-r3">
+          <span class="ck-rn">٣</span>
+          <span class="ck-rt">لو لقيت رقم مش بتاعهم، أو حتى شكّيت: كلّم شركة الاتصالات <b>من تليفون تاني</b>. مش من تليفونه.</span>
+        </div>
+
+        <div class="ck-note">مفيش كود إلغاء ثابت. اللي يثبّتهولك هي شركة الاتصالات نفسها.</div>
+
+        <div class="ck-warn">
+          <span class="ck-warnbar"></span>
+          <span class="ck-warntext">التحويل على الواردة بس: المكالمات الصادرة هتفضل شغالة عادي، فمتتطمنّش من الخط نفسه.</span>
+        </div>
+
+        <div class="ck-foot">ادخل النهارده على موبايل ماما وبابا. اعمل الفحص بإيدك، مش ببعت بوست.</div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

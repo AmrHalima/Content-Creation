@@ -1,0 +1,195 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    /* frame-day3.md § 2 — ligature kill-list on every frame of the part */
+    * { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G9 `line` — the row F2 built, at rest. Elements the argument says HOLD carry .f3-hold and
+       receive NO tween: that is the MOVED 0 claim, proved by absence. */
+    .g9-node { position: absolute; top: 540px; width: 176px; height: 108px; box-sizing: border-box;
+      background: #1F242C; border: 3px solid rgba(255,255,255,0.16); border-radius: 22px; opacity: 0;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex; align-items: center;
+      justify-content: center; }
+    .g9-letter { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 700;
+      font-size: 3.6cqw; color: #5AD6A0; }
+    .g7-bar { position: absolute; height: 3px; background: rgba(255,255,255,0.16); opacity: 0;
+      transform-origin: left center; transform: scaleX(0); border-radius: 2px; }
+    .g7-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box; opacity: 0;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg); }
+    .g7-chev-in { transform: rotate(225deg); }
+    .g9-window { position: absolute; left: 66px; top: 508px; width: 3px; height: 180px;
+      background: rgba(255,255,255,0.16); border-radius: 2px; opacity: 0;
+      transform-origin: top center; transform: scaleY(0); }
+    .g9-end { position: absolute; top: 660px; width: 176px; height: 40px; text-align: center;
+      opacity: 0; font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g9-chip { position: absolute; top: 696px; height: 44px; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.85cqw; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g9-chip-out { left: 96px; width: 72px; }
+    .g9-chip-in { left: 900px; width: 60px; }
+
+    /* LAST on purpose: everything the argument says HOLD. Same specificity as the .g9-* / .g7-*
+       rules above, so it has to come after them or their opacity: 0 would win the cascade and the
+       row would render empty. No element carrying this class receives a position tween. */
+    .f3-hold { opacity: 1; }
+
+    /* the promise, arriving in its own two halves */
+    .f3-arg { position: absolute; left: 72px; width: 936px; height: 52px; display: flex;
+      align-items: center; justify-content: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-size: 3.4cqw; white-space: nowrap; }
+    .f3-arg-1 { top: 316px; font-weight: 400; color: rgba(244,241,234,0.78); }
+    .f3-arg-2 { top: 400px; font-weight: 700; color: #F4F1EA; }
+
+    /* the counted pair — .f3-tag lane at y 892 (§ 4's grid for part 24, § 6's G9 block), at pb-21's
+       authored x positions. Digits are values, so they are mint; labels are ink. */
+    .f3-tag { position: absolute; top: 892px; height: 66px; box-sizing: border-box; display: flex;
+      align-items: center; justify-content: center; gap: 14px; opacity: 0; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #F4F1EA; white-space: nowrap; }
+    .f3-tag b { display: inline-block; color: #5AD6A0; }
+    .f3-note { position: absolute; left: 72px; top: 790px; width: 936px; height: 56px;
+      text-align: center; opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 2.9cqw; color: #9BA6B2; white-space: nowrap; }
+    .f3-note strong { color: #F4F1EA; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="03-serve" data-width="1080" data-height="1920" data-duration="9.5">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="9.5" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="9.5" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · BASICS III · 24</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="9.5" data-track-index="2">
+      <div id="f3-arg1" class="f3-arg f3-arg-1" data-layout-ignore>the one who waited longest</div>
+      <div id="f3-arg2" class="f3-arg f3-arg-2" data-layout-ignore>is served next</div>
+
+      <div id="f3-c0" class="g7-bar f3-hold" style="left:248px; top:593px; width:24px; opacity:1; transform:none;"></div>
+      <div id="f3-h0" class="g7-chev" style="left:260px; top:588px; opacity:1;"></div>
+      <div id="f3-c1" class="g7-bar f3-hold" style="left:448px; top:593px; width:24px; opacity:1; transform:none;"></div>
+      <div id="f3-h1" class="g7-chev" style="left:460px; top:588px; opacity:1;"></div>
+      <div id="f3-c2" class="g7-bar f3-hold" style="left:648px; top:593px; width:24px; opacity:1; transform:none;"></div>
+      <div id="f3-h2" class="g7-chev" style="left:660px; top:588px; opacity:1;"></div>
+      <div id="f3-ci" class="g7-bar f3-hold" style="left:848px; top:593px; width:60px; opacity:1; transform:none;"></div>
+      <div id="f3-hi" class="g7-chev g7-chev-in" style="left:896px; top:588px; opacity:1;"></div>
+
+      <div id="f3-win" class="g9-window f3-hold" style="opacity:1; transform:none;"></div>
+
+      <div id="f3-nA" class="g9-node f3-hold" style="left:72px"><span class="g9-letter">A</span></div>
+      <div id="f3-nB" class="g9-node f3-hold" style="left:272px"><span class="g9-letter">B</span></div>
+      <div id="f3-nC" class="g9-node f3-hold" style="left:472px"><span class="g9-letter">C</span></div>
+      <div id="f3-nD" class="g9-node f3-hold" style="left:672px"><span class="g9-letter">D</span></div>
+
+      <div id="f3-front" class="g9-end f3-hold" style="left:72px; opacity:1;" data-layout-ignore>front</div>
+      <div id="f3-back" class="g9-end f3-hold" style="left:672px; opacity:1;" data-layout-ignore>back</div>
+      <div id="f3-out" class="g9-chip g9-chip-out f3-hold" style="opacity:1;" data-layout-ignore>out</div>
+      <div id="f3-in" class="g9-chip g9-chip-in f3-hold" style="opacity:1;" data-layout-ignore>in</div>
+
+      <div id="f3-tagA" class="f3-tag" style="left:270px; width:300px;" data-layout-allow-overlap>SERVED&nbsp;<b>1</b></div>
+      <div id="f3-tagB" class="f3-tag" style="left:590px; width:220px;" data-layout-allow-overlap>MOVED&nbsp;<b>0</b></div>
+
+      <div id="f3-note" class="f3-note"><strong>the&nbsp;marker&nbsp;moves</strong>&nbsp;·&nbsp;the&nbsp;boxes&nbsp;hold</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.5;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-serve"] = tl;
+
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: D / 4, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe from the LEFT (F2 came in from the right); the row rides in, then holds */
+      tl.fromTo(el("f3-content"), { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.56);
+
+      /* BEAT 1 — "It keeps things fair and in order." (fair 0.60, order. 1.46) */
+      tl.fromTo(el("f3-arg1"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 0.6);
+
+      /* BEAT 2 — "That is the right shape for tasks waiting their turn." (right 2.78, turn. 4.48).
+         The sentence lands in its own two halves while the row underneath already holds still. */
+      tl.fromTo(el("f3-arg2"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 2.96);
+
+      /* BEAT 3 — "Enqueue A, enqueue B" (Enqueue 5.44 / A, 5.56 / enqueue 6.30 / B, 6.38).
+         The two nodes are NAMED as the pair that joined: a 3px --say border on the one being said,
+         and the connector behind it redraws itself (P8). ONE amber at a time, and each border
+         retires to --line before the next arrival. */
+      tl.to(el("f3-nA"), { borderColor: "#FFD166", duration: 0.18, ease: "power1.out", immediateRender: false }, 5.56);
+      tl.fromTo(el("f3-c0"), { scaleX: 0 }, { scaleX: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 5.62);
+      tl.to(el("f3-nA"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.24, ease: "power1.inOut", immediateRender: false }, 5.98);
+
+      tl.to(el("f3-nB"), { borderColor: "#FFD166", duration: 0.18, ease: "power1.out", immediateRender: false }, 6.38);
+      tl.fromTo(el("f3-c1"), { scaleX: 0 }, { scaleX: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 6.44);
+      tl.to(el("f3-nB"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.24, ease: "power1.inOut", immediateRender: false }, 6.8);
+
+      /* BEAT 4 — "then dequeue gives A." (then 7.28 / dequeue 7.36 / gives 7.80 / A. 8.02-8.28)
+         THE NEGATIVE-SPACE BEAT. The served node is the ONLY node that moves: it crosses the window
+         and fades by the front. nB, nC, nD, every connector, the mouth, the OUT/IN/BACK labels carry
+         no tween at all — that absence is what MOVED 0 is counting. */
+      tl.to(el("f3-nA"), { borderColor: "#FFD166", duration: 0.18, ease: "power1.out", immediateRender: false }, 7.36);
+      tl.to(el("f3-nA"), { x: -220, opacity: 0, duration: 0.46, ease: "power3.out", immediateRender: false }, 7.6);
+
+      tl.fromTo(el("f3-tagA"), { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 7.42);
+      tl.fromTo(el("f3-tagA"), { scale: 1 }, { scale: 1.06, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 7.8);
+      tl.fromTo(el("f3-tagB"), { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)", immediateRender: false }, 8.02);
+
+      /* BEAT 5 — the marker travels. The FRONT chip moves exactly one pitch (200px) to sit under B.
+         The boxes the tag counts stay where they are; nothing re-flows to "make room" for it. */
+      tl.to(el("f3-front"), { x: 200, duration: 0.4, ease: "power3.out", immediateRender: false }, 8.5);
+      tl.fromTo(el("f3-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 8.62);
+
+      /* one ambient breath after the last beat has read, back to its own zero */
+      tl.fromTo(el("f3-tagB"), { y: 0 }, { y: -4, duration: 0.14, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 8.86);
+
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

@@ -1,0 +1,659 @@
+{
+  "generatedBy": "studio cues",
+  "model": "faster-whisper:small",
+  "language": "en",
+  "frames": [
+    {
+      "frame": 1,
+      "duration_s": 7.168,
+      "words": [
+        {
+          "text": "You've",
+          "start": 0,
+          "end": 0.44
+        },
+        {
+          "text": "seen",
+          "start": 0.44,
+          "end": 0.78
+        },
+        {
+          "text": "this",
+          "start": 0.78,
+          "end": 1.06
+        },
+        {
+          "text": "stack",
+          "start": 1.06,
+          "end": 1.46
+        },
+        {
+          "text": "seven",
+          "start": 1.46,
+          "end": 1.94
+        },
+        {
+          "text": "times.",
+          "start": 1.94,
+          "end": 2.66
+        },
+        {
+          "text": "Almost",
+          "start": 3.32,
+          "end": 3.86
+        },
+        {
+          "text": "everyone",
+          "start": 3.86,
+          "end": 4.54
+        },
+        {
+          "text": "reads",
+          "start": 4.54,
+          "end": 5.24
+        },
+        {
+          "text": "it",
+          "start": 5.24,
+          "end": 5.52
+        },
+        {
+          "text": "the",
+          "start": 5.52,
+          "end": 5.7
+        },
+        {
+          "text": "wrong",
+          "start": 5.7,
+          "end": 6.1
+        },
+        {
+          "text": "direction.",
+          "start": 6.1,
+          "end": 6.8
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "duration_s": 6.656,
+      "words": [
+        {
+          "text": "Top",
+          "start": 0,
+          "end": 0.46
+        },
+        {
+          "text": "to",
+          "start": 0.46,
+          "end": 0.72
+        },
+        {
+          "text": "bottom,",
+          "start": 0.72,
+          "end": 1.28
+        },
+        {
+          "text": "that",
+          "start": 1.28,
+          "end": 1.84
+        },
+        {
+          "text": "is",
+          "start": 1.84,
+          "end": 2.04
+        },
+        {
+          "text": "how",
+          "start": 2.04,
+          "end": 2.28
+        },
+        {
+          "text": "it",
+          "start": 2.28,
+          "end": 2.48
+        },
+        {
+          "text": "gets",
+          "start": 2.48,
+          "end": 2.84
+        },
+        {
+          "text": "taught.",
+          "start": 2.84,
+          "end": 3.32
+        },
+        {
+          "text": "Seven",
+          "start": 3.32,
+          "end": 4.5
+        },
+        {
+          "text": "handing",
+          "start": 4.5,
+          "end": 5.18
+        },
+        {
+          "text": "down",
+          "start": 5.18,
+          "end": 5.66
+        },
+        {
+          "text": "to",
+          "start": 5.66,
+          "end": 5.9
+        },
+        {
+          "text": "six.",
+          "start": 5.9,
+          "end": 6.24
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "duration_s": 8.704,
+      "words": [
+        {
+          "text": "But",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "text": "each",
+          "start": 0.32,
+          "end": 0.66
+        },
+        {
+          "text": "layer",
+          "start": 0.66,
+          "end": 1.06
+        },
+        {
+          "text": "has",
+          "start": 1.06,
+          "end": 1.44
+        },
+        {
+          "text": "a",
+          "start": 1.44,
+          "end": 1.6
+        },
+        {
+          "text": "partner.",
+          "start": 1.6,
+          "end": 2.16
+        },
+        {
+          "text": "Same",
+          "start": 2.78,
+          "end": 3.3
+        },
+        {
+          "text": "number,",
+          "start": 3.3,
+          "end": 3.84
+        },
+        {
+          "text": "other",
+          "start": 4.1,
+          "end": 4.34
+        },
+        {
+          "text": "end",
+          "start": 4.34,
+          "end": 4.78
+        },
+        {
+          "text": "of",
+          "start": 4.78,
+          "end": 4.96
+        },
+        {
+          "text": "the",
+          "start": 4.96,
+          "end": 5.08
+        },
+        {
+          "text": "wire.",
+          "start": 5.08,
+          "end": 5.52
+        },
+        {
+          "text": "That",
+          "start": 6.06,
+          "end": 6.42
+        },
+        {
+          "text": "is",
+          "start": 6.42,
+          "end": 6.62
+        },
+        {
+          "text": "where",
+          "start": 6.62,
+          "end": 6.88
+        },
+        {
+          "text": "the",
+          "start": 6.88,
+          "end": 7.08
+        },
+        {
+          "text": "message",
+          "start": 7.08,
+          "end": 7.58
+        },
+        {
+          "text": "goes.",
+          "start": 7.58,
+          "end": 8.16
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "duration_s": 9.963,
+      "words": [
+        {
+          "text": "Your",
+          "start": 0,
+          "end": 0.42
+        },
+        {
+          "text": "transport",
+          "start": 0.42,
+          "end": 1.06
+        },
+        {
+          "text": "layer",
+          "start": 1.06,
+          "end": 1.58
+        },
+        {
+          "text": "keeps",
+          "start": 1.58,
+          "end": 2.02
+        },
+        {
+          "text": "ports",
+          "start": 2.02,
+          "end": 2.56
+        },
+        {
+          "text": "and",
+          "start": 2.56,
+          "end": 2.94
+        },
+        {
+          "text": "sequence",
+          "start": 2.94,
+          "end": 3.42
+        },
+        {
+          "text": "numbers.",
+          "start": 3.42,
+          "end": 4.06
+        },
+        {
+          "text": "So",
+          "start": 4.84,
+          "end": 5.14
+        },
+        {
+          "text": "does",
+          "start": 5.14,
+          "end": 5.5
+        },
+        {
+          "text": "theirs.",
+          "start": 5.5,
+          "end": 5.96
+        },
+        {
+          "text": "The",
+          "start": 6.76,
+          "end": 6.98
+        },
+        {
+          "text": "machines",
+          "start": 6.98,
+          "end": 7.52
+        },
+        {
+          "text": "in",
+          "start": 7.52,
+          "end": 7.98
+        },
+        {
+          "text": "between",
+          "start": 7.98,
+          "end": 8.32
+        },
+        {
+          "text": "just",
+          "start": 8.32,
+          "end": 8.86
+        },
+        {
+          "text": "forward.",
+          "start": 8.86,
+          "end": 9.56
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "duration_s": 10.667,
+      "words": [
+        {
+          "text": "Layer",
+          "start": 0,
+          "end": 0.52
+        },
+        {
+          "text": "three",
+          "start": 0.52,
+          "end": 1.08
+        },
+        {
+          "text": "is",
+          "start": 1.08,
+          "end": 1.52
+        },
+        {
+          "text": "the",
+          "start": 1.52,
+          "end": 1.7
+        },
+        {
+          "text": "address",
+          "start": 1.7,
+          "end": 2.2
+        },
+        {
+          "text": "on",
+          "start": 2.2,
+          "end": 2.54
+        },
+        {
+          "text": "the",
+          "start": 2.54,
+          "end": 2.7
+        },
+        {
+          "text": "outside.",
+          "start": 2.7,
+          "end": 3.2
+        },
+        {
+          "text": "Every",
+          "start": 4.3,
+          "end": 4.66
+        },
+        {
+          "text": "stop",
+          "start": 4.66,
+          "end": 5.12
+        },
+        {
+          "text": "reads",
+          "start": 5.12,
+          "end": 5.68
+        },
+        {
+          "text": "it",
+          "start": 5.68,
+          "end": 6.02
+        },
+        {
+          "text": "and",
+          "start": 6.02,
+          "end": 6.22
+        },
+        {
+          "text": "sorts.",
+          "start": 6.22,
+          "end": 6.68
+        },
+        {
+          "text": "Only",
+          "start": 7.46,
+          "end": 7.96
+        },
+        {
+          "text": "the",
+          "start": 7.96,
+          "end": 8.2
+        },
+        {
+          "text": "far",
+          "start": 8.2,
+          "end": 8.64
+        },
+        {
+          "text": "end",
+          "start": 8.64,
+          "end": 9.08
+        },
+        {
+          "text": "opens",
+          "start": 9.08,
+          "end": 9.66
+        },
+        {
+          "text": "the",
+          "start": 9.66,
+          "end": 10.06
+        },
+        {
+          "text": "letter.",
+          "start": 10.06,
+          "end": 10.38
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "duration_s": 11.051,
+      "words": [
+        {
+          "text": "Read",
+          "start": 0,
+          "end": 0.52
+        },
+        {
+          "text": "it",
+          "start": 0.52,
+          "end": 0.7
+        },
+        {
+          "text": "sideways",
+          "start": 0.7,
+          "end": 1.42
+        },
+        {
+          "text": "and",
+          "start": 2.08,
+          "end": 2.28
+        },
+        {
+          "text": "the",
+          "start": 2.28,
+          "end": 2.4
+        },
+        {
+          "text": "stack",
+          "start": 2.4,
+          "end": 2.82
+        },
+        {
+          "text": "turns",
+          "start": 2.82,
+          "end": 3.38
+        },
+        {
+          "text": "into",
+          "start": 3.38,
+          "end": 3.7
+        },
+        {
+          "text": "seven",
+          "start": 3.7,
+          "end": 4.22
+        },
+        {
+          "text": "conversations",
+          "start": 4.22,
+          "end": 5.3
+        },
+        {
+          "text": "across",
+          "start": 5.3,
+          "end": 5.78
+        },
+        {
+          "text": "the",
+          "start": 5.78,
+          "end": 6.18
+        },
+        {
+          "text": "wire.",
+          "start": 6.18,
+          "end": 6.66
+        },
+        {
+          "text": "One",
+          "start": 7.54,
+          "end": 7.9
+        },
+        {
+          "text": "layer,",
+          "start": 7.9,
+          "end": 8.3
+        },
+        {
+          "text": "one",
+          "start": 8.7,
+          "end": 8.86
+        },
+        {
+          "text": "partner,",
+          "start": 8.86,
+          "end": 9.46
+        },
+        {
+          "text": "all",
+          "start": 9.94,
+          "end": 10.12
+        },
+        {
+          "text": "at",
+          "start": 10.12,
+          "end": 10.32
+        },
+        {
+          "text": "once.",
+          "start": 10.32,
+          "end": 10.64
+        }
+      ]
+    },
+    {
+      "frame": 7,
+      "duration_s": 9.131,
+      "words": [
+        {
+          "text": "Next",
+          "start": 0,
+          "end": 0.46
+        },
+        {
+          "text": "time",
+          "start": 0.46,
+          "end": 0.76
+        },
+        {
+          "text": "you",
+          "start": 0.76,
+          "end": 0.96
+        },
+        {
+          "text": "see",
+          "start": 0.96,
+          "end": 1.16
+        },
+        {
+          "text": "the",
+          "start": 1.16,
+          "end": 1.32
+        },
+        {
+          "text": "diagram,",
+          "start": 1.32,
+          "end": 1.98
+        },
+        {
+          "text": "read",
+          "start": 1.98,
+          "end": 2.6
+        },
+        {
+          "text": "it",
+          "start": 2.6,
+          "end": 2.8
+        },
+        {
+          "text": "sideways.",
+          "start": 2.8,
+          "end": 3.46
+        },
+        {
+          "text": "All",
+          "start": 3.46,
+          "end": 4.8
+        },
+        {
+          "text": "seven",
+          "start": 4.8,
+          "end": 5.32
+        },
+        {
+          "text": "pairs,",
+          "start": 5.32,
+          "end": 6.04
+        },
+        {
+          "text": "side",
+          "start": 6.04,
+          "end": 6.84
+        },
+        {
+          "text": "by",
+          "start": 6.84,
+          "end": 7.22
+        },
+        {
+          "text": "side,",
+          "start": 7.22,
+          "end": 7.82
+        },
+        {
+          "text": "in",
+          "start": 7.82,
+          "end": 8.06
+        },
+        {
+          "text": "the",
+          "start": 8.06,
+          "end": 8.2
+        },
+        {
+          "text": "article.",
+          "start": 8.2,
+          "end": 8.74
+        }
+      ]
+    }
+  ]
+}

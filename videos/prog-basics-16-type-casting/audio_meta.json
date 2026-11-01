@@ -1,0 +1,337 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 5.205,
+      "words": [
+        {
+          "text": "In",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "JavaScript,",
+          "start": 0.14,
+          "end": 0.64
+        },
+        {
+          "text": "'5'",
+          "start": 1.12,
+          "end": 1.42
+        },
+        {
+          "text": "3",
+          "start": 1.64,
+          "end": 1.94
+        },
+        {
+          "text": "is",
+          "start": 1.94,
+          "end": 2.08
+        },
+        {
+          "text": "'53',",
+          "start": 2.08,
+          "end": 2.52
+        },
+        {
+          "text": "but",
+          "start": 2.74,
+          "end": 2.82
+        },
+        {
+          "text": "'5'",
+          "start": 2.82,
+          "end": 2.865
+        },
+        {
+          "text": "-",
+          "start": 2.82,
+          "end": 3.12
+        },
+        {
+          "text": "3",
+          "start": 3.12,
+          "end": 3.36
+        },
+        {
+          "text": "is",
+          "start": 3.36,
+          "end": 3.54
+        },
+        {
+          "text": "2.",
+          "start": 3.54,
+          "end": 3.8
+        },
+        {
+          "text": "Yes,",
+          "start": 4.34,
+          "end": 4.56
+        },
+        {
+          "text": "really.",
+          "start": 4.72,
+          "end": 4.9
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 3.776,
+      "words": [
+        {
+          "text": "Casting",
+          "start": 0,
+          "end": 0.54
+        },
+        {
+          "text": "is",
+          "start": 0.54,
+          "end": 0.68
+        },
+        {
+          "text": "you",
+          "start": 0.68,
+          "end": 0.8
+        },
+        {
+          "text": "converting",
+          "start": 0.8,
+          "end": 1.2
+        },
+        {
+          "text": "a",
+          "start": 1.2,
+          "end": 1.42
+        },
+        {
+          "text": "type",
+          "start": 1.42,
+          "end": 1.62
+        },
+        {
+          "text": "on",
+          "start": 1.62,
+          "end": 1.76
+        },
+        {
+          "text": "purpose,",
+          "start": 1.76,
+          "end": 2.1
+        },
+        {
+          "text": "like",
+          "start": 2.52,
+          "end": 2.76
+        },
+        {
+          "text": "int('5').",
+          "start": 2.76,
+          "end": 3.02
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 7.125,
+      "words": [
+        {
+          "text": "Coercion",
+          "start": 0,
+          "end": 0.58
+        },
+        {
+          "text": "is",
+          "start": 0.58,
+          "end": 0.76
+        },
+        {
+          "text": "the",
+          "start": 0.76,
+          "end": 0.92
+        },
+        {
+          "text": "language",
+          "start": 0.92,
+          "end": 1.26
+        },
+        {
+          "text": "doing",
+          "start": 1.26,
+          "end": 1.68
+        },
+        {
+          "text": "it",
+          "start": 1.68,
+          "end": 1.9
+        },
+        {
+          "text": "silently.",
+          "start": 1.9,
+          "end": 2.44
+        },
+        {
+          "text": "Explicit",
+          "start": 3.1,
+          "end": 3.82
+        },
+        {
+          "text": "is",
+          "start": 3.82,
+          "end": 3.98
+        },
+        {
+          "text": "safer,",
+          "start": 3.98,
+          "end": 4.36
+        },
+        {
+          "text": "because",
+          "start": 4.36,
+          "end": 5
+        },
+        {
+          "text": "coercion",
+          "start": 5,
+          "end": 5.68
+        },
+        {
+          "text": "rules",
+          "start": 5.68,
+          "end": 5.92
+        },
+        {
+          "text": "can",
+          "start": 5.92,
+          "end": 6.24
+        },
+        {
+          "text": "surprise",
+          "start": 6.24,
+          "end": 6.6
+        },
+        {
+          "text": "you.",
+          "start": 6.6,
+          "end": 6.96
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 5.44,
+      "words": [
+        {
+          "text": "int('5')",
+          "start": 0,
+          "end": 0.24
+        },
+        {
+          "text": "3",
+          "start": 1.14,
+          "end": 1.46
+        },
+        {
+          "text": "gives",
+          "start": 1.46,
+          "end": 1.66
+        },
+        {
+          "text": "8,",
+          "start": 1.66,
+          "end": 1.96
+        },
+        {
+          "text": "while",
+          "start": 2.16,
+          "end": 2.56
+        },
+        {
+          "text": "'5'",
+          "start": 2.88,
+          "end": 3.14
+        },
+        {
+          "text": "3",
+          "start": 3.14,
+          "end": 3.5
+        },
+        {
+          "text": "in",
+          "start": 3.5,
+          "end": 3.66
+        },
+        {
+          "text": "JavaScript",
+          "start": 3.66,
+          "end": 4.14
+        },
+        {
+          "text": "gives",
+          "start": 4.14,
+          "end": 4.62
+        },
+        {
+          "text": "'53'.",
+          "start": 4.62,
+          "end": 5.12
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 3.52,
+      "words": [
+        {
+          "text": "Should",
+          "start": 0,
+          "end": 0.18
+        },
+        {
+          "text": "languages",
+          "start": 0.18,
+          "end": 0.58
+        },
+        {
+          "text": "coerce",
+          "start": 0.58,
+          "end": 1.24
+        },
+        {
+          "text": "types",
+          "start": 1.24,
+          "end": 1.44
+        },
+        {
+          "text": "automatically?",
+          "start": 1.44,
+          "end": 2.06
+        },
+        {
+          "text": "Yes",
+          "start": 2.66,
+          "end": 2.86
+        },
+        {
+          "text": "or",
+          "start": 2.86,
+          "end": 3.08
+        },
+        {
+          "text": "no.",
+          "start": 3.08,
+          "end": 3.28
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

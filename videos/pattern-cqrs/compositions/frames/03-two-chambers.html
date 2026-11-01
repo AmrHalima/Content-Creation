@@ -1,0 +1,195 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden; font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; left: 80px; top: 214px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e;
+    }
+    .f03-spike { display: inline-block; color: #ffa946; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f03-ktext { display: inline-block; opacity: 0; }
+
+    /* the two chambers — side by side ON PURPOSE (STORYBOARD ## Grammar decision, bible § 4) */
+    .f03-col { position: absolute; inset: 0; }
+    .f03-chamber { position: absolute; top: 560px; width: 340px; height: 560px; box-sizing: border-box; padding: 26px 24px; }
+    .f03-write { left: 40px; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 12px; opacity: 0; }
+    .f03-read { left: 700px; background: #ffffff; border: 3px solid #1a1a1a; border-radius: 12px; opacity: 0; }
+    .f03-side {
+      position: absolute; top: 500px; width: 340px; height: 44px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+    .f03-side-write { left: 40px; }
+    .f03-side-read { left: 700px; }
+    .f03-title {
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; line-height: 1;
+      letter-spacing: -0.01em; opacity: 0;
+    }
+    .f03-title-write { color: #ffffeb; }
+    .f03-title-read { color: #1a1a1a; }
+
+    /* normalised: one box per concept, joined by ticks — three tables, three names */
+    .f03-ent {
+      position: absolute; width: 268px; height: 82px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,235,0.34); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #ffffeb; opacity: 0;
+    }
+    .f03-tick { position: absolute; width: 2px; height: 22px; background: rgba(255,255,235,0.34); opacity: 0; }
+
+    /* denormalised: one row, its fields flattened straight into it */
+    .f03-row {
+      position: absolute; width: 268px; height: 82px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f03-fchip {
+      position: absolute; width: 268px; height: 58px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #e4e4d0; border: 1px solid rgba(26,26,26,0.24); border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.35cqw; color: #1a1a1a; opacity: 0;
+    }
+    .f03-bracket { position: absolute; width: 2px; height: 226px; background: rgba(26,26,26,0.28); opacity: 0; }
+
+    /* the sync arrow — the frame's single ember element, and its argument (300px of travel) */
+    .f03-svg { position: absolute; inset: 0; }
+    .f03-arw { fill: none; stroke: #ffa946; stroke-width: 6; stroke-linecap: round; }
+    .f03-head { fill: #ffa946; opacity: 0; }
+    .f03-synctag {
+      position: absolute; left: 486px; top: 764px; width: 112px; height: 46px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(26,26,26,0.24); border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 1.42cqw; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-two-chambers" data-width="1080" data-height="1920" data-duration="9.472">
+
+    <div id="03-two-chambers-fieldclip" class="clip" data-start="0" data-duration="9.472" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field"></div>
+      <div id="03-two-chambers-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="03-two-chambers-chromeclip" class="clip" data-start="0" data-duration="9.472" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f03-kicker"><span id="03-two-chambers-spike" class="f03-spike">&#10009;</span><span id="03-two-chambers-ktext" class="f03-ktext" data-layout-ignore>the two models</span></div>
+      <div id="03-two-chambers-synctag" class="f03-synctag" data-layout-ignore>sync</div>
+    </div>
+
+    <div id="03-two-chambers-writeclip" class="clip" data-start="0" data-duration="9.472" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="03-two-chambers-wcol" class="f03-col">
+        <div id="03-two-chambers-sidewrite" class="f03-side f03-side-write" data-layout-ignore>write side</div>
+        <div id="03-two-chambers-write" class="f03-chamber f03-write">
+          <div id="03-two-chambers-titlewrite" class="f03-title f03-title-write">normalised</div>
+        </div>
+        <div id="03-two-chambers-e1" class="f03-ent" style="left:76px;top:700px;">Order</div>
+        <div id="03-two-chambers-k1t" class="f03-tick" style="left:209px;top:784px;"></div>
+        <div id="03-two-chambers-e2" class="f03-ent" style="left:76px;top:828px;">OrderLine</div>
+        <div id="03-two-chambers-k2t" class="f03-tick" style="left:209px;top:912px;"></div>
+        <div id="03-two-chambers-e3" class="f03-ent" style="left:76px;top:956px;">Customer</div>
+      </div>
+    </div>
+
+    <div id="03-two-chambers-readclip" class="clip" data-start="3.96" data-duration="5.512" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="03-two-chambers-rcol" class="f03-col">
+        <div id="03-two-chambers-sideread" class="f03-side f03-side-read" data-layout-ignore>read side</div>
+        <div id="03-two-chambers-read" class="f03-chamber f03-read">
+          <div id="03-two-chambers-titleread" class="f03-title f03-title-read">flat</div>
+        </div>
+        <div id="03-two-chambers-row" class="f03-row" style="left:736px;top:690px;">OrderRow</div>
+        <div id="03-two-chambers-bracket" class="f03-bracket" style="left:722px;top:792px;"></div>
+        <div id="03-two-chambers-f1" class="f03-fchip" style="left:736px;top:800px;">status</div>
+        <div id="03-two-chambers-f2" class="f03-fchip" style="left:736px;top:870px;">customer</div>
+        <div id="03-two-chambers-f3" class="f03-fchip" style="left:736px;top:940px;">totalCents</div>
+      </div>
+    </div>
+
+    <div id="03-two-chambers-arrowclip" class="clip" data-start="5.76" data-duration="3.712" data-track-index="4" style="position:absolute;inset:0;">
+      <svg class="f03-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <path id="03-two-chambers-a1" class="f03-arw" d="M 392 840 L 672 840" />
+        <polygon id="03-two-chambers-k1" class="f03-head" points="674,824 700,840 674,856" />
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var D = 9.472;
+      var el = function (id) { return document.getElementById(id); };
+      var P = "03-two-chambers-";
+      var tl = gsap.timeline({ paused: true });
+
+      // ── ground + chrome ──
+      tl.fromTo(el(P + "grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(el(P + "spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el(P + "ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–1.36s) — "The write side": the dark chamber assembles at the left ──
+      tl.fromTo(el(P + "sidewrite"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 0.18);
+      tl.fromTo(el(P + "write"), { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 0.18);
+      tl.fromTo(el(P + "titlewrite"), { opacity: 0 }, { opacity: 1, duration: 0.32, ease: "power1.out" }, 0.88);
+
+      // ── Scene 2 (1.36–3.96s) — "normalised entities": one box per concept, on the beat ──
+      [["e1", 1.36, "k1t"], ["e2", 2.08, "k2t"], ["e3", 2.72, null]].forEach(function (r) {
+        tl.fromTo(el(P + r[0]), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, r[1]);
+        if (r[2]) {
+          tl.fromTo(el(P + r[2]), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.24, ease: "power2.out", transformOrigin: "center top" }, r[1] + 0.3);
+        }
+      });
+
+      // ── Scene 3 (3.96–6.2s) — "The read side ships flat": the white chamber, the row, then the arrow ──
+      tl.fromTo(el(P + "sideread"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 4.04);
+      tl.fromTo(el(P + "read"), { opacity: 0, x: 44 }, { opacity: 1, x: 0, duration: 0.44, ease: "power3.out" }, 4.04);
+      tl.fromTo(el(P + "titleread"), { opacity: 0 }, { opacity: 1, duration: 0.32, ease: "power1.out" }, 4.74);
+      tl.fromTo(el(P + "row"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 5.76);
+
+      // the arrow's travel is the argument: 300px, self-drawn, ember
+      var path = el(P + "a1");
+      var len = path.getTotalLength() * 1.05;
+      path.style.strokeDasharray = String(len);
+      path.style.strokeDashoffset = String(len);
+      tl.to(path, { strokeDashoffset: 0, duration: 0.46, ease: "power3.out" }, 5.9);
+      tl.fromTo(el(P + "k1"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power1.out" }, 6.3);
+      tl.fromTo(el(P + "synctag"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 6.2);
+
+      // ── Scene 4 (6.2–8.74s) — "joined and pre-summed for the screen": fields flatten into the row ──
+      tl.fromTo(el(P + "bracket"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.3, ease: "power2.out", transformOrigin: "center top" }, 6.2);
+      [["f1", 6.2], ["f2", 7.68], ["f3", 8.42]].forEach(function (r) {
+        tl.fromTo(el(P + r[0]), { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" }, r[1]);
+      });
+
+      // ── Scene 5 (8.74–9.47s) — held read of the pair: phase-opposed jitter, never a conveyor belt ──
+      var jit = { p: 0 };
+      var wcol = el(P + "wcol");
+      var rcol = el(P + "rcol");
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - 8.8,
+        ease: "none",
+        onUpdate: function () {
+          var y = Math.sin(jit.p) * 1.6;
+          wcol.style.transform = "translateY(" + y.toFixed(3) + "px)";
+          rcol.style.transform = "translateY(" + (-y).toFixed(3) + "px)";
+        }
+      }, 8.8);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["03-two-chambers"] = tl;
+    })();
+  </script>
+</template>

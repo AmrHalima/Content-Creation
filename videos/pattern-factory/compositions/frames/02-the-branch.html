@@ -1,0 +1,187 @@
+<template>
+  <style>
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f02-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f02-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f02-kicker {
+      position: absolute; top: 214px; left: 80px; width: 760px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f02-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; opacity: 0; }
+    .f02-ktext { display: inline-block; opacity: 0; }
+    .f02-chamber {
+      position: absolute; top: 380px; left: 150px; width: 780px; height: 300px;
+      box-sizing: border-box;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      padding: 26px 30px;
+      opacity: 0;
+    }
+    .f02-role {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.12em; text-transform: uppercase; color: #76766e;
+    }
+    .f02-caller-name {
+      display: block; margin-top: 22px;
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 4.2cqw; line-height: 1.05; letter-spacing: -0.005em; color: #1a1a1a;
+    }
+    .f02-value {
+      position: absolute; left: 30px; bottom: 26px;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 66px; padding: 0 24px;
+      border: 1px solid rgba(26,26,26,0.2); border-radius: 9999px; background: #E4E4D0;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.9cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f02-arrows { position: absolute; inset: 0; }
+    .f02-arrows svg { display: block; width: 100%; height: 100%; }
+    .f02-shaft { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .f02-head { fill: #1a1a1a; opacity: 0; }
+    .f02-cond {
+      position: absolute; top: 856px; left: 208px; width: 280px; height: 64px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #FFA946; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.7cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f02-impl {
+      position: absolute; top: 1096px; width: 330px; height: 108px;
+      box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;
+      padding: 0 24px;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      opacity: 0;
+    }
+    .f02-impl-a { left: 150px; }
+    .f02-impl-b { left: 600px; }
+    .f02-impl-name {
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.9cqw; letter-spacing: 0.01em; color: #1a1a1a;
+    }
+    .f02-new {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.5cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #76766e; margin-bottom: 8px;
+    }
+    .f02-note {
+      position: absolute; top: 1300px; left: 150px; width: 780px; height: 62px;
+      display: flex; align-items: center;
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 2.9cqw; color: #76766e;
+      opacity: 0;
+    }
+    .f02-note-mark { display: inline-block; width: 34px; height: 2px; background: #76766e; margin-right: 20px; }
+  </style>
+
+  <div id="root" data-composition-id="02-the-branch" data-width="1080" data-height="1920" data-duration="11.051">
+
+    <div id="02-the-branch-groundclip" class="clip f02-groundclip" data-start="0" data-duration="11.051" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f02-field" id="02-the-branch-field"></div>
+      <div class="f02-grid" id="02-the-branch-grid"></div>
+    </div>
+
+    <div id="02-the-branch-chromeclip" class="clip f02-chromeclip" data-start="0" data-duration="11.051" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f02-kicker" id="02-the-branch-kicker">
+        <span class="f02-spike" id="02-the-branch-spike">&#10009;</span><span class="f02-ktext" id="02-the-branch-ktext" data-layout-ignore>where the choice lives</span>
+      </div>
+      <div class="f02-chamber" id="02-the-branch-caller">
+        <div class="f02-role" id="02-the-branch-role">caller</div>
+        <div class="f02-caller-name" id="02-the-branch-name">picks the type</div>
+        <div class="f02-value" id="02-the-branch-value">config.provider</div>
+      </div>
+    </div>
+
+    <div id="02-the-branch-arrowclip" class="clip f02-arrowclip" data-start="4.78" data-duration="6.271" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f02-arrows" id="02-the-branch-arrows">
+        <svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f02-shaft" id="02-the-branch-shaft1" pathLength="1" d="M400 692 L400 790 L330 1010" />
+          <path class="f02-shaft" id="02-the-branch-shaft2" pathLength="1" d="M680 692 L680 790 L765 1010" />
+          <polygon class="f02-head" id="02-the-branch-head1" points="330,1030 312,986 348,986" />
+          <polygon class="f02-head" id="02-the-branch-head2" points="765,1030 747,986 783,986" />
+        </svg>
+      </div>
+      <div class="f02-cond" id="02-the-branch-cond">=== &quot;card&quot;</div>
+    </div>
+
+    <div id="02-the-branch-implclip" class="clip f02-implclip" data-start="5.88" data-duration="5.171" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f02-impl f02-impl-a" id="02-the-branch-impl1">
+        <div class="f02-new" id="02-the-branch-new1" data-layout-ignore>new</div>
+        <div class="f02-impl-name" id="02-the-branch-implname1">StripeGateway</div>
+      </div>
+      <div class="f02-impl f02-impl-b" id="02-the-branch-impl2">
+        <div class="f02-new" id="02-the-branch-new2" data-layout-ignore>new</div>
+        <div class="f02-impl-name" id="02-the-branch-implname2">RazorpayGateway</div>
+      </div>
+      <div class="f02-note" id="02-the-branch-note"><span class="f02-note-mark" id="02-the-branch-notemark"></span>both named here</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 11.051;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["02-the-branch"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("02-the-branch-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0–1.6s) — "today the caller does it itself": the caller chamber arrives ──
+      tl.fromTo(el("02-the-branch-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("02-the-branch-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+      tl.fromTo(el("02-the-branch-caller"), { opacity: 0, y: -26 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 0.68);
+      tl.fromTo(el("02-the-branch-role"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.9);
+      tl.fromTo(el("02-the-branch-name"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, 1.1);
+
+      // ── Scene 2 (1.6–3.8s) — "read a config value" ──
+      tl.fromTo(el("02-the-branch-value"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 3.36);
+
+      // ── Scene 3 (3.8–5.6s) — "branch": the first shaft self-draws, the ember condition lands ──
+      tl.fromTo(el("02-the-branch-shaft1"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.62, ease: "power2.out" }, 4.78);
+      tl.fromTo(el("02-the-branch-head1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 5.3);
+      tl.fromTo(el("02-the-branch-cond"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power3.out" }, 4.95);
+      tl.fromTo(el("02-the-branch-shaft2"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 5.3);
+      tl.fromTo(el("02-the-branch-head2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 5.8);
+
+      // ── Scene 4 (5.6–7.6s) — "call the constructor": the implementations appear at the far ends ──
+      tl.fromTo(el("02-the-branch-impl1"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 5.88);
+      tl.fromTo(el("02-the-branch-impl2"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out" }, 6.2);
+
+      // ── Scene 5 (7.6–11.051s) — "the caller knows every gateway it can build" ──
+      tl.to([el("02-the-branch-head1"), el("02-the-branch-head2")], { scale: 1.5, duration: 0.18, ease: "power2.inOut", transformOrigin: "center center" }, 8.48);
+      tl.to([el("02-the-branch-head1"), el("02-the-branch-head2")], { scale: 1, duration: 0.2, ease: "power2.inOut", transformOrigin: "center center" }, 8.66);
+      tl.fromTo(el("02-the-branch-note"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 9.44);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite): caller chamber only
+      var jit = { p: 0 };
+      var hold = el("02-the-branch-caller");
+      var HOLD = 10.4;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.35,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          hold.style.transform = "translateY(" + (Math.sin(jit.p) * 1.8).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

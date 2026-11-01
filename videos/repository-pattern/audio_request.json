@@ -1,0 +1,37 @@
+{
+  "provider": "auto",
+  "speed": "0.74",
+  "lines": [
+    {
+      "id": "01",
+      "text": "A service method that builds its own query, opens its own session, and maps its own rows is three layers wearing one name."
+    },
+    {
+      "id": "02",
+      "text": "The pattern splits that. The contract is written in domain language. The implementation owns the database. The consumer sees only the contract."
+    },
+    {
+      "id": "03",
+      "text": "Watch the dependency. The implementation answers to a contract the domain owns, so nothing in the domain names a table."
+    },
+    {
+      "id": "04",
+      "text": "Find an order by id. Save an order. Every connection and dialect detail lives on the far side of that line."
+    },
+    {
+      "id": "05",
+      "text": "Put the seam on a table instead of an aggregate, and the schema quietly becomes your domain model, one repository per table."
+    },
+    {
+      "id": "06",
+      "text": "Return a query object, or a commit call, and the caller is back inside the database, just further away."
+    },
+    {
+      "id": "07",
+      "text": "It pays when storage changes apart from the use case. The price is mapping code you write twice and keep honest."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  }
+}

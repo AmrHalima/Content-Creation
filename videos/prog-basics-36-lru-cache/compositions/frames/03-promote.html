@@ -1,0 +1,215 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* ── G21 recency chain, same atoms as 02-rule: node 176x108, connectors 24px CSS divs ── */
+    .g7-node { position: absolute; box-sizing: border-box; background: #1F242C;
+      border: 3px solid rgba(255,255,255,0.16); border-radius: 22px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.70); display: flex; align-items: stretch; }
+    .g7-cell { position: relative; flex: 1 1 0; display: flex; align-items: center;
+      justify-content: center; }
+    .g7-div { position: absolute; left: 50%; top: 10px; bottom: 10px; width: 3px;
+      margin-left: -1.5px; background: rgba(255,255,255,0.08); }
+    .pb-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .g7-next { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 400;
+      color: #9BA6B2; }
+    .g7-bar { position: absolute; height: 3px; background: rgba(255,255,255,0.16);
+      transform-origin: left center; border-radius: 2px; }
+    .g7-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box;
+      border-top: 3px solid rgba(255,255,255,0.16); border-right: 3px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg); }
+    .g7-chip { position: absolute; box-sizing: border-box; background: #262C36;
+      border: 2px solid rgba(255,255,255,0.16); border-radius: 12px; display: flex;
+      align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; color: #9BA6B2;
+      white-space: nowrap; }
+    .g21-key { width: 96px; height: 44px; top: 340px; font-size: 2.2cqw; }
+    .g21-ptr { position: absolute; width: 3px; height: 12px; top: 386px; background: rgba(255,255,255,0.16); }
+    .g21-term { width: 60px; height: 56px; top: 426px; left: 472px; font-size: 2.2cqw; }
+    /* the read: a standalone --say ring that travels; the boxes hold still until they are moved */
+    .g7-ring { position: absolute; box-sizing: border-box; border: 3px solid #FFD166;
+      border-radius: 26px; opacity: 0; box-shadow: 0 0 0 8px rgba(255,209,102,0.10); }
+
+    .g21-eyebrow { position: absolute; top: 256px; width: 200px; height: 40px; display: flex;
+      align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.9cqw; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+    .g21-eye-new { left: 72px; opacity: 1; }
+    .g21-eye-old { left: 272px; opacity: 1; }
+
+    /* the executed state plate: rows 1-2 are the record F2 wrote, row 3 is what this frame does */
+    .g21-plate { position: absolute; left: 72px; width: 936px; height: 38px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      color: #9BA6B2; white-space: nowrap; }
+    .g21-p1 { top: 630px; opacity: 1; }
+    .g21-p2 { top: 668px; opacity: 1; }
+    .g21-p3 { top: 706px; opacity: 0; }
+    .g21-st { display: inline-block; font-weight: 700; color: #5AD6A0; }
+    .g21-par { color: #9BA6B2; }
+
+    .g21-tag { position: absolute; top: 892px; height: 66px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #262C36; border: 2px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700;
+      letter-spacing: 0.1em; color: #9BA6B2; white-space: nowrap; }
+    .g21-tag-a { left: 72px; width: 480px; opacity: 1; }
+    .g21-tag-b { left: 72px; width: 480px; opacity: 0; }
+    .g21-note { position: absolute; left: 72px; top: 810px; width: 936px; height: 56px;
+      text-align: center; opacity: 0; font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 2.9cqw; color: #9BA6B2; white-space: nowrap; }
+    .g21-note strong { color: #F4F1EA; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="03-promote" data-width="1080" data-height="1920" data-duration="6.23">
+
+    <div id="g3-ground" class="clip clipband" data-start="0" data-duration="6.23" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g3-grid" class="gnd-grid"></div>
+      <div id="g3-ga" class="gnd-glow-a"></div>
+      <div id="g3-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c3-chrome" class="clip clipband" data-start="0" data-duration="6.23" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c3-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 36</div>
+      </div>
+    </div>
+
+    <div id="f3-content" class="clip clipband" data-start="0" data-duration="6.23" data-track-index="2">
+      <div id="f3-eye-new" class="g21-eyebrow g21-eye-new" data-layout-ignore>newest</div>
+      <div id="f3-eye-old" class="g21-eyebrow g21-eye-old" data-layout-ignore>oldest</div>
+
+      <div id="f3-keyB" class="g7-chip g21-key" style="left:112px" data-layout-ignore>B</div>
+      <div id="f3-ptrB" class="g21-ptr" style="left:158.5px"></div>
+      <div id="f3-keyA" class="g7-chip g21-key" style="left:312px" data-layout-ignore>A</div>
+      <div id="f3-ptrA" class="g21-ptr" style="left:358.5px"></div>
+
+      <div id="f3-c1" class="g7-bar" style="left:248px; top:453px; width:24px; opacity:1; transform:none;"></div>
+      <div id="f3-h1" class="g7-chev" style="left:260px; top:448px; opacity:1;"></div>
+      <div id="f3-c2" class="g7-bar" style="left:448px; top:453px; width:24px; opacity:1; transform:none;"></div>
+      <div id="f3-h2" class="g7-chev" style="left:460px; top:448px; opacity:1;"></div>
+      <div id="f3-none" class="g7-chip g21-term" style="opacity:1" data-layout-ignore>None</div>
+
+      <div id="f3-nB" class="g7-node" style="left:72px; top:400px; width:176px; height:108px; opacity:1"><span class="g7-cell"><span class="pb-val" style="font-size:3.6cqw">B</span></span><span class="g7-div"></span><span class="g7-cell"><span class="g7-next" style="font-size:3.2cqw">&rarr;</span></span></div>
+      <div id="f3-nA" class="g7-node" style="left:272px; top:400px; width:176px; height:108px; opacity:1" data-layout-allow-occlusion><span class="g7-cell"><span class="pb-val" style="font-size:3.6cqw">A</span></span><span class="g7-div"></span><span class="g7-cell"><span class="g7-next" style="font-size:3.2cqw">&rarr;</span></span></div>
+
+      <div id="f3-ring" class="g7-ring" style="left:62px; top:391px; width:196px; height:126px"></div>
+
+      <div id="f3-p1" class="g21-plate g21-p1">put(A,1) <span class="g21-par">-></span> <span class="g21-st">A</span></div>
+      <div id="f3-p2" class="g21-plate g21-p2">put(B,2) <span class="g21-par">-></span> <span class="g21-st">B -&gt; A</span></div>
+      <div id="f3-p3" class="g21-plate g21-p3">get(A) <span class="g21-par">-></span> <span class="g21-st">A -&gt; B</span></div>
+
+      <div id="f3-tag-a" class="g21-tag g21-tag-a">USED: B new, A older</div>
+      <div id="f3-tag-b" class="g21-tag g21-tag-b">USED: B oldest</div>
+      <div id="f3-note" class="g21-note">a read is <strong>also</strong> a write</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 6.23;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-promote"] = tl;
+
+      /* ground */
+      tl.fromTo(el("g3-grid"), { y: 0 }, { y: 16, duration: 3.115, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g3-ga"), { opacity: 0.55 }, { opacity: 1, duration: 3.115, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g3-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.5575, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c3-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe from the right (F2 rose in; the join never lands on an identical board) */
+      tl.fromTo(el("f3-content"), { x: 140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.to(el("f3-content"), { x: 0, opacity: 1, duration: 0.01 }, 0.56);
+
+      /* BEAT 1 — "Every read moves that item to the front."
+         onsets: Every 0.00 · read 0.26 · moves 0.58 · that 0.96 · item 1.24 · to 1.54 · front. 1.80-2.06 */
+      tl.fromTo(el("f3-ring"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.6)", immediateRender: false }, 0.28);
+      /* P8 arrow-run: the ring travels the connector head -> tail, the boxes hold still */
+      tl.to(el("f3-ring"), { x: 200, duration: 0.36, ease: "power3.out", immediateRender: false }, 0.6);
+      tl.fromTo(el("f3-ring"), { boxShadow: "0 0 0 8px rgba(255,209,102,0.10)" },
+        { boxShadow: "0 0 0 16px rgba(255,209,102,0.22)", duration: 0.4, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 0.98);
+      tl.to(el("f3-ring"), { opacity: 0, duration: 0.22, ease: "power2.in", immediateRender: false }, 1.42);
+
+      /* UNLINK: A steps out of the tail slot into the park slot (+400) and its links go dark.
+         Nothing lands on an occupied slot: A leaves 272 before B ever moves toward it. */
+      tl.to(el("f3-nA"), { x: 400, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 1.56);
+      tl.to(el("f3-keyA"), { x: 400, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 1.56);
+      tl.to(el("f3-ptrA"), { x: 400, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 1.56);
+      tl.to(el("f3-nA"), { borderColor: "rgba(255,255,255,0.08)", duration: 0.24, immediateRender: false }, 1.56);
+      tl.to(el("f3-c1"), { opacity: 0, duration: 0.18, ease: "power2.in", immediateRender: false }, 1.5);
+      tl.to(el("f3-h1"), { opacity: 0, duration: 0.18, ease: "power2.in", immediateRender: false }, 1.5);
+      tl.to(el("f3-c2"), { opacity: 0, duration: 0.18, ease: "power2.in", immediateRender: false }, 1.56);
+      tl.to(el("f3-h2"), { opacity: 0, duration: 0.18, ease: "power2.in", immediateRender: false }, 1.56);
+      tl.to(el("f3-none"), { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, 1.62);
+
+      /* BEAT 2 — "So the back of the line is always the oldest."
+         onsets: So 2.42 · back 2.90 · line 3.34 · is 3.62 · always 3.92 · oldest. 4.54-4.80
+         the displaced node shifts +200 into the slot A vacated, THEN A sweeps -600 home to the head. */
+      tl.to(el("f3-nB"), { x: 200, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 2.5);
+      tl.to(el("f3-keyB"), { x: 200, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 2.5);
+      tl.to(el("f3-ptrB"), { x: 200, duration: 0.34, ease: "power3.inOut", immediateRender: false }, 2.5);
+
+      tl.to(el("f3-nA"), { x: -200, duration: 0.44, ease: "power3.inOut", immediateRender: false }, 3.36);
+      tl.to(el("f3-keyA"), { x: -200, duration: 0.44, ease: "power3.inOut", immediateRender: false }, 3.36);
+      tl.to(el("f3-ptrA"), { x: -200, duration: 0.44, ease: "power3.inOut", immediateRender: false }, 3.36);
+      /* the promoted node's border flashes mint (P2's arrival flash) — never coral */
+      tl.to(el("f3-nA"), { borderColor: "rgba(90,214,160,0.85)", duration: 0.2, immediateRender: false }, 3.8);
+      tl.to(el("f3-nA"), { borderColor: "rgba(255,255,255,0.16)", duration: 0.42 }, 4.0);
+      tl.fromTo(el("f3-nA"), { scale: 1 }, { scale: 1.04, duration: 0.16, ease: "power2.out",
+        yoyo: true, repeat: 1, immediateRender: false }, 3.8);
+
+      /* ONE connector redraws: the head's next pointer, drawn out of A's next cell (P8) */
+      tl.fromTo(el("f3-c1"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, 4.04);
+      tl.fromTo(el("f3-h1"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 4.2);
+      tl.fromTo(el("f3-c2"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, 4.24);
+      tl.fromTo(el("f3-h2"), { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 4.38);
+      tl.fromTo(el("f3-none"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(1.6)", immediateRender: false }, 4.4);
+
+      /* the record gains its third row — a different state from rows 1 and 2, because the ops were
+         performed one at a time and read between, never evaluated up front */
+      tl.fromTo(el("f3-p3"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 3.94);
+      /* the tail tag re-ticks; nothing else in the lane changes */
+      tl.to(el("f3-tag-a"), { opacity: 0, duration: 0.24, ease: "power2.in", immediateRender: false }, 4.3);
+      tl.fromTo(el("f3-tag-b"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 4.54);
+      /* the reading line, in the air after the VO ends at 4.80 */
+      tl.fromTo(el("f3-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", immediateRender: false }, 5.06);
+
+      /* exit push */
+      tl.to(el("f3-content"), { y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 5.91);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

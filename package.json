@@ -1,0 +1,21 @@
+{
+  "name": "content-creation-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Production layer for the G:\\Content Creation workspace: gates, batch runs, word timings, trap detection.",
+  "type": "module",
+  "scripts": {
+    "doctor": "node studio/tools/studio.mjs doctor",
+    "status": "node studio/tools/studio.mjs status --sync",
+    "verify": "node studio/tools/studio.mjs verify --all",
+    "cues": "node studio/tools/studio.mjs cues",
+    "assemble": "node studio/tools/studio.mjs assemble",
+    "voice": "node studio/tools/studio.mjs voice",
+    "check:all": "node studio/tools/studio.mjs batch check --all",
+    "gate": "node studio/tools/studio.mjs batch verify cues assemble check --all",
+    "render": "node studio/tools/studio.mjs render"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

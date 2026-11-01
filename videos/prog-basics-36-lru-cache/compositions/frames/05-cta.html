@@ -1,0 +1,176 @@
+<template>
+  <style>
+    @font-face{font-family:"Space Grotesk";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-400.woff2") format("woff2");}
+    @font-face{font-family:"Space Grotesk";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Space Grotesk", sans-serif; color: #F4F1EA;
+      font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0, "dlig" 0; }
+    .clipband { position: absolute; inset: 0; }
+
+    .gnd-fill { position: absolute; inset: 0; background: #15181D; }
+    .gnd-grid { position: absolute; inset: -80px;
+      background: radial-gradient(circle, rgba(244,241,234,0.055) 2px, transparent 2px) 0 0 / 56px 56px; }
+    .gnd-glow-a { position: absolute; left: -150px; top: 210px; width: 780px; height: 780px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(255,209,102,0.16), transparent 72%); }
+    .gnd-glow-b { position: absolute; left: 620px; top: 600px; width: 660px; height: 660px;
+      border-radius: 9999px; filter: blur(46px);
+      background: radial-gradient(closest-side, rgba(90,214,160,0.13), transparent 72%); }
+    .gnd-shelf { position: absolute; left: 60px; top: 1010px; width: 960px; height: 1px;
+      background: rgba(255,255,255,0.08); }
+
+    .pb-kicker { position: absolute; left: 72px; top: 230px; width: 936px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap; }
+    .pb-ktext { display: inline-block; opacity: 0; font-family: "JetBrains Mono", monospace;
+      font-size: 1.55cqw; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9BA6B2; }
+
+    /* G5 CTA (pb-22's shipped geometry) */
+    .f5-ask { position: absolute; left: 72px; top: 296px; width: 936px; height: 176px; display: flex;
+      align-items: center; justify-content: center; text-align: center; opacity: 0;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 6.4cqw; line-height: 1.1;
+      letter-spacing: -0.01em; color: #F4F1EA; white-space: nowrap; }
+    .f5-rule { position: absolute; left: 340px; top: 486px; width: 400px; height: 5px;
+      background: rgba(255,255,255,0.16); border-radius: 3px; transform-origin: center center;
+      transform: scaleX(0); }
+    .f5-chip { position: absolute; top: 540px; width: 200px; height: 100px; display: flex;
+      align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #262C36; border: 3px solid rgba(255,255,255,0.16); border-radius: 14px;
+      font-family: "JetBrains Mono", monospace; font-size: 3.2cqw; font-weight: 700;
+      letter-spacing: 0.06em; color: #F4F1EA; white-space: nowrap; }
+    .f5-chip-a { left: 220px; }
+    .f5-chip-b { left: 660px; }
+    /* the ring travels A -> B and is RELEASED: resting on either would answer the viewer's quiz */
+    .f5-ring { position: absolute; left: 208px; top: 528px; width: 224px; height: 124px;
+      box-sizing: border-box; border: 3px solid #FFD166; border-radius: 20px; opacity: 0;
+      box-shadow: 0 0 0 8px rgba(255,209,102,0.12); }
+
+    /* the board the question is about: the chain from F3/F4, dimmed skin, letters at full ink.
+       opacity on a whole echo row would put the text at 1.3:1, so only the container goes down. */
+    .g5-node { position: absolute; box-sizing: border-box; background: rgba(31,36,44,0.5);
+      border: 3px solid rgba(255,255,255,0.08); border-radius: 22px; opacity: 0;
+      display: flex; align-items: stretch; }
+    .g5-cell { position: relative; flex: 1 1 0; display: flex; align-items: center;
+      justify-content: center; }
+    .g5-div { position: absolute; left: 50%; top: 10px; bottom: 10px; width: 3px;
+      margin-left: -1.5px; background: rgba(255,255,255,0.08); }
+    .g5-val { display: inline-block; font-family: "Space Grotesk", sans-serif; font-weight: 700;
+      color: #5AD6A0; }
+    .g5-next { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 400;
+      color: #9BA6B2; }
+    .g5-bar { position: absolute; height: 3px; background: rgba(255,255,255,0.08);
+      border-radius: 2px; opacity: 0; }
+    .g5-chev { position: absolute; width: 11px; height: 11px; box-sizing: border-box; opacity: 0;
+      border-top: 3px solid rgba(255,255,255,0.08); border-right: 3px solid rgba(255,255,255,0.08);
+      transform: rotate(45deg); }
+    .g5-chip { position: absolute; box-sizing: border-box; background: rgba(38,44,54,0.55);
+      border: 2px solid rgba(255,255,255,0.08); border-radius: 12px; opacity: 0; display: flex;
+      align-items: center; justify-content: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 400; color: #9BA6B2; }
+    .g5-term { width: 60px; height: 56px; top: 686px; left: 472px; font-size: 2.2cqw; }
+    /* put C, still outside: no connector reaches it, and none is ever drawn in this film */
+    .g5-wait { width: 128px; height: 44px; top: 692px; left: 704px; font-size: 2.2cqw;
+      border-style: dashed; }
+
+    .f5-plate { position: absolute; left: 330px; top: 792px; width: 420px; height: 96px;
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box; opacity: 0;
+      background: #FFD166; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(255,209,102,0.55);
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #22201B; white-space: nowrap; }
+    .f5-brandline { position: absolute; left: 72px; top: 920px; width: 936px; height: 44px;
+      display: flex; align-items: center; justify-content: center; opacity: 0;
+      font-family: "JetBrains Mono", monospace; font-size: 1.5cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #9BA6B2; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="05-cta" data-width="1080" data-height="1920" data-duration="5.88">
+
+    <div id="g5-ground" class="clip clipband" data-start="0" data-duration="5.88" data-track-index="0">
+      <div class="gnd-fill"></div>
+      <div id="g5-grid" class="gnd-grid"></div>
+      <div id="g5-ga" class="gnd-glow-a"></div>
+      <div id="g5-gb" class="gnd-glow-b"></div>
+      <div class="gnd-shelf"></div>
+    </div>
+
+    <div id="c5-chrome" class="clip clipband" data-start="0" data-duration="5.88" data-track-index="1">
+      <div class="pb-kicker">
+        <div id="c5-ktext" class="pb-ktext" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 36</div>
+      </div>
+    </div>
+
+    <div id="f5-content" class="clip clipband" data-start="0" data-duration="5.88" data-track-index="2">
+      <div id="f5-ask" class="f5-ask">which&nbsp;one&nbsp;leaves?</div>
+      <div id="f5-rule" class="f5-rule"></div>
+
+      <div id="f5-ca" class="f5-chip f5-chip-a">A</div>
+      <div id="f5-cb" class="f5-chip f5-chip-b">B</div>
+      <div id="f5-ring" class="f5-ring"></div>
+
+      <div id="f5-c1" class="g5-bar" style="left:248px; top:713px; width:24px"></div>
+      <div id="f5-h1" class="g5-chev" style="left:260px; top:708px"></div>
+      <div id="f5-c2" class="g5-bar" style="left:448px; top:713px; width:24px"></div>
+      <div id="f5-h2" class="g5-chev" style="left:460px; top:708px"></div>
+
+      <div id="f5-nA" class="g5-node" style="left:72px; top:660px; width:176px; height:108px"><span class="g5-cell"><span class="g5-val" style="font-size:3.6cqw">A</span></span><span class="g5-div"></span><span class="g5-cell"><span class="g5-next" style="font-size:3.2cqw">&rarr;</span></span></div>
+      <div id="f5-nB" class="g5-node" style="left:272px; top:660px; width:176px; height:108px"><span class="g5-cell"><span class="g5-val" style="font-size:3.6cqw">B</span></span><span class="g5-div"></span><span class="g5-cell"><span class="g5-next" style="font-size:3.2cqw">&rarr;</span></span></div>
+      <div id="f5-none" class="g5-chip g5-term" data-layout-ignore>None</div>
+      <div id="f5-wait" class="g5-chip g5-wait" data-layout-ignore>put&nbsp;C</div>
+
+      <div id="f5-plate" class="f5-plate">comment&nbsp;it</div>
+      <div id="f5-brand" class="f5-brandline" data-layout-ignore>PROGRAMMING BASICS · UNDER THE HOOD · 36 · INTERMEDIATE</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 5.88;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["05-cta"] = tl;
+
+      /* ground */
+      tl.fromTo(el("g5-grid"), { y: 0 }, { y: 16, duration: 2.94, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g5-ga"), { opacity: 0.55 }, { opacity: 1, duration: 2.94, ease: "sine.inOut", repeat: 1, yoyo: true }, 0);
+      tl.fromTo(el("g5-gb"), { opacity: 0.5 }, { opacity: 1, duration: 1.47, ease: "sine.inOut", repeat: 3, yoyo: true }, 0);
+
+      tl.fromTo(el("c5-ktext"), { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 0.1);
+
+      /* entrance wipe: this frame drops in from above (F4 pushed in from the left) */
+      tl.fromTo(el("f5-ask"), { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0.12);
+      tl.fromTo(el("f5-rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.42, ease: "power3.inOut", immediateRender: false }, 0.9);
+
+      /* the steps, read as steps (studio cues onsets): put 1.20 · A, 1.32 · put 1.50 · B, 1.58 ·
+         get 1.94 · A, 2.04 · put 2.24 · C. 2.32-2.62 · What 2.90 · gets 3.02 · evicted? 3.22-3.58 */
+      tl.fromTo(el("f5-ca"), { opacity: 0, y: -26, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 1.3);
+      tl.fromTo(el("f5-cb"), { opacity: 0, y: -26, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: false }, 1.58);
+
+      /* the dimmed board: A sits at the head because of the get, and nothing has left yet */
+      [ "f5-nA", "f5-nB", "f5-c1", "f5-h1", "f5-c2", "f5-h2", "f5-none" ].forEach(function (id, i) {
+        tl.fromTo(el(id), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power2.out", immediateRender: false }, 1.94 + i * 0.06);
+      });
+      tl.fromTo(el("f5-wait"), { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.34, ease: "power2.out", immediateRender: false }, 2.32);
+
+      /* the ring travels A -> B and is released on neither (pre-picking would answer the quiz) */
+      tl.fromTo(el("f5-ring"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(1.5)", immediateRender: false }, 2.9);
+      tl.to(el("f5-ring"), { x: 440, duration: 0.42, ease: "power3.inOut", immediateRender: false }, 3.32);
+      tl.fromTo(el("f5-ring"), { boxShadow: "0 0 0 8px rgba(255,209,102,0.12)" },
+        { boxShadow: "0 0 0 16px rgba(255,209,102,0.22)", duration: 0.5, ease: "sine.inOut",
+          yoyo: true, repeat: 1, immediateRender: false }, 3.0);
+      tl.to(el("f5-ring"), { opacity: 0, duration: 0.34, ease: "power2.in", immediateRender: false }, 3.86);
+
+      /* the mechanic verb plate carries the ask; no exit push — this frame loops under the chrome */
+      tl.fromTo(el("f5-plate"), { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.7)", immediateRender: false }, 3.6);
+      tl.fromTo(el("f5-brand"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 4.5);
+
+      /* ambient breath on the headline only, back to its own zero */
+      tl.fromTo(el("f5-ask"), { y: 0 }, { y: -4, duration: 1.1, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 0.7);
+
+      tl.to({}, { duration: D }, 0);
+    })();
+  </script>
+</template>

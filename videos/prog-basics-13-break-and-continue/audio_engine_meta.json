@@ -1,0 +1,437 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "af_heart",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 2.773,
+      "words": [
+        {
+          "text": "Two",
+          "start": 0,
+          "end": 0.16
+        },
+        {
+          "text": "tiny",
+          "start": 0.16,
+          "end": 0.56
+        },
+        {
+          "text": "keywords",
+          "start": 0.56,
+          "end": 1
+        },
+        {
+          "text": "that",
+          "start": 1,
+          "end": 1.44
+        },
+        {
+          "text": "save",
+          "start": 1.44,
+          "end": 1.7
+        },
+        {
+          "text": "you",
+          "start": 1.7,
+          "end": 1.84
+        },
+        {
+          "text": "from",
+          "start": 1.84,
+          "end": 1.98
+        },
+        {
+          "text": "messy",
+          "start": 1.98,
+          "end": 2.22
+        },
+        {
+          "text": "loops.",
+          "start": 2.22,
+          "end": 2.48
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 4.139,
+      "words": [
+        {
+          "text": "Break",
+          "start": 0,
+          "end": 0.34
+        },
+        {
+          "text": "exits",
+          "start": 0.34,
+          "end": 0.62
+        },
+        {
+          "text": "the",
+          "start": 0.62,
+          "end": 0.88
+        },
+        {
+          "text": "loop",
+          "start": 0.88,
+          "end": 1.06
+        },
+        {
+          "text": "immediately.",
+          "start": 1.06,
+          "end": 1.56
+        },
+        {
+          "text": "Use",
+          "start": 2.24,
+          "end": 2.44
+        },
+        {
+          "text": "break",
+          "start": 2.44,
+          "end": 2.74
+        },
+        {
+          "text": "when",
+          "start": 2.74,
+          "end": 2.96
+        },
+        {
+          "text": "you've",
+          "start": 2.96,
+          "end": 3.06
+        },
+        {
+          "text": "found",
+          "start": 3.06,
+          "end": 3.32
+        },
+        {
+          "text": "what",
+          "start": 3.32,
+          "end": 3.54
+        },
+        {
+          "text": "you",
+          "start": 3.54,
+          "end": 3.68
+        },
+        {
+          "text": "need.",
+          "start": 3.68,
+          "end": 3.92
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 7.061,
+      "words": [
+        {
+          "text": "Continue",
+          "start": 0,
+          "end": 0.46
+        },
+        {
+          "text": "skips",
+          "start": 0.46,
+          "end": 0.96
+        },
+        {
+          "text": "the",
+          "start": 0.96,
+          "end": 1.1
+        },
+        {
+          "text": "rest",
+          "start": 1.1,
+          "end": 1.32
+        },
+        {
+          "text": "of",
+          "start": 1.32,
+          "end": 1.44
+        },
+        {
+          "text": "this",
+          "start": 1.44,
+          "end": 1.6
+        },
+        {
+          "text": "round",
+          "start": 1.6,
+          "end": 1.9
+        },
+        {
+          "text": "and",
+          "start": 1.9,
+          "end": 2.42
+        },
+        {
+          "text": "jumps",
+          "start": 2.42,
+          "end": 2.7
+        },
+        {
+          "text": "to",
+          "start": 2.7,
+          "end": 2.94
+        },
+        {
+          "text": "the",
+          "start": 2.94,
+          "end": 3.04
+        },
+        {
+          "text": "next",
+          "start": 3.04,
+          "end": 3.26
+        },
+        {
+          "text": "one.",
+          "start": 3.26,
+          "end": 3.52
+        },
+        {
+          "text": "Use",
+          "start": 4.1,
+          "end": 4.38
+        },
+        {
+          "text": "continue",
+          "start": 4.38,
+          "end": 4.84
+        },
+        {
+          "text": "to",
+          "start": 4.84,
+          "end": 5.1
+        },
+        {
+          "text": "ignore",
+          "start": 5.1,
+          "end": 5.38
+        },
+        {
+          "text": "items",
+          "start": 5.38,
+          "end": 5.94
+        },
+        {
+          "text": "you",
+          "start": 5.94,
+          "end": 6.14
+        },
+        {
+          "text": "don't",
+          "start": 6.14,
+          "end": 6.38
+        },
+        {
+          "text": "care",
+          "start": 6.38,
+          "end": 6.52
+        },
+        {
+          "text": "about.",
+          "start": 6.52,
+          "end": 6.86
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 6.805,
+      "words": [
+        {
+          "text": "If",
+          "start": 0,
+          "end": 0.14
+        },
+        {
+          "text": "n",
+          "start": 0.14,
+          "end": 0.36
+        },
+        {
+          "text": "is",
+          "start": 0.36,
+          "end": 0.5
+        },
+        {
+          "text": "less",
+          "start": 0.5,
+          "end": 0.68
+        },
+        {
+          "text": "than",
+          "start": 0.68,
+          "end": 0.88
+        },
+        {
+          "text": "zero,",
+          "start": 0.88,
+          "end": 1.22
+        },
+        {
+          "text": "continue.",
+          "start": 1.44,
+          "end": 1.82
+        },
+        {
+          "text": "If",
+          "start": 2.48,
+          "end": 2.6
+        },
+        {
+          "text": "n",
+          "start": 2.6,
+          "end": 2.8
+        },
+        {
+          "text": "equals",
+          "start": 2.8,
+          "end": 3.04
+        },
+        {
+          "text": "the",
+          "start": 3.04,
+          "end": 3.28
+        },
+        {
+          "text": "target,",
+          "start": 3.28,
+          "end": 3.58
+        },
+        {
+          "text": "break.",
+          "start": 3.58,
+          "end": 3.9
+        },
+        {
+          "text": "Seen",
+          "start": 4.44,
+          "end": 4.74
+        },
+        {
+          "text": "keeps",
+          "start": 4.74,
+          "end": 5.06
+        },
+        {
+          "text": "three,",
+          "start": 5.06,
+          "end": 5.44
+        },
+        {
+          "text": "eight,",
+          "start": 5.5,
+          "end": 5.78
+        },
+        {
+          "text": "two,",
+          "start": 5.82,
+          "end": 6.18
+        },
+        {
+          "text": "seven.",
+          "start": 6.22,
+          "end": 6.54
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 4.587,
+      "words": [
+        {
+          "text": "Challenge:",
+          "start": 0,
+          "end": 0.34
+        },
+        {
+          "text": "find",
+          "start": 0.7,
+          "end": 0.96
+        },
+        {
+          "text": "the",
+          "start": 0.96,
+          "end": 1.14
+        },
+        {
+          "text": "first",
+          "start": 1.14,
+          "end": 1.32
+        },
+        {
+          "text": "even",
+          "start": 1.32,
+          "end": 1.6
+        },
+        {
+          "text": "number",
+          "start": 1.6,
+          "end": 1.98
+        },
+        {
+          "text": "in",
+          "start": 1.98,
+          "end": 2.16
+        },
+        {
+          "text": "a",
+          "start": 2.16,
+          "end": 2.24
+        },
+        {
+          "text": "list",
+          "start": 2.24,
+          "end": 2.44
+        },
+        {
+          "text": "using",
+          "start": 2.44,
+          "end": 2.72
+        },
+        {
+          "text": "break.",
+          "start": 2.72,
+          "end": 3.06
+        },
+        {
+          "text": "Post",
+          "start": 3.56,
+          "end": 3.84
+        },
+        {
+          "text": "your",
+          "start": 3.84,
+          "end": 4.04
+        },
+        {
+          "text": "code.",
+          "start": 4.04,
+          "end": 4.32
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 25.365
+}

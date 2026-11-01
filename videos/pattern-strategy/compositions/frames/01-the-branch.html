@@ -1,0 +1,231 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+
+    /* ── clip lanes (each is a GSAP target, so each carries its own rule —
+         an id-only element renders unstyled at 0,0 and still passes check) ── */
+    .f01-ground { position: absolute; inset: 0; }
+    .f01-filelayer { position: absolute; inset: 0; }
+    .f01-lineslayer { position: absolute; inset: 0; }
+    .f01-cardslayer { position: absolute; inset: 0; }
+
+    /* ── ground ── */
+    .f01-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f01-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+
+    /* ── kicker (JetBrains Mono, uppercase, indexical) ── */
+    .f01-kicker {
+      position: absolute; top: 140px; left: 72px;
+      display: inline-flex; align-items: baseline; gap: 16px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,26,0.64);
+    }
+    .f01-spike { color: rgba(26,26,26,0.64); }
+
+    /* ── the caller's file boundary ── */
+    .f01-filebox {
+      position: absolute; top: 300px; left: 100px; width: 880px; height: 1090px;
+      box-sizing: border-box; border: 2px dashed rgba(26,26,26,0.45); border-radius: 12px;
+      opacity: 0;
+    }
+    .f01-filename {
+      position: absolute; top: 336px; left: 132px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.02em;
+      color: rgba(26,26,26,0.64); opacity: 0;
+    }
+
+    /* ── call-site card ── */
+    .f01-card {
+      position: absolute; top: 430px; left: 190px; width: 700px; height: 210px;
+      box-sizing: border-box; background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 0 40px;
+      opacity: 0;
+    }
+    .f01-card-name {
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 4.4cqw;
+      line-height: 1.0; letter-spacing: -0.022em; color: #1a1a1a;
+    }
+    .f01-card-sig {
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; letter-spacing: 0.01em;
+      color: rgba(26,26,26,0.64);
+    }
+
+    /* ── branch targets ── */
+    .f01-chip {
+      position: absolute; width: 330px; height: 104px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.8cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f01-chip-a { top: 830px; left: 150px; }
+    .f01-chip-b { top: 830px; left: 600px; }
+    .f01-chip-next {
+      border-style: dashed; border-color: rgba(26,26,26,0.45); color: rgba(26,26,26,0.64);
+    }
+
+    /* ── connectors ── */
+    .f01-svg { position: absolute; inset: 0; }
+    .f01-link { fill: none; stroke: rgba(26,26,26,0.55); stroke-width: 4; stroke-linecap: round; }
+    .f01-link-next { stroke: rgba(26,26,26,0.35); stroke-dasharray: 10 12; }
+    .f01-head { fill: rgba(26,26,26,0.55); opacity: 0; }
+
+    /* ── the frame's one ember moment: the edit marker ── */
+    .f01-marker {
+      position: absolute; top: 604px; left: 566px; width: 260px; height: 76px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #ffa946; border-radius: 8px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw; letter-spacing: 0.04em;
+      color: #1a1a1a; opacity: 0;
+    }
+
+    /* ── footnote rail ── */
+    .f01-note {
+      position: absolute; top: 1180px; left: 150px; width: 780px; height: 120px;
+      box-sizing: border-box; display: flex; align-items: center; gap: 22px;
+      font-family: "Inter", sans-serif; font-size: 2.8cqw; line-height: 1.35;
+      color: rgba(26,26,26,0.74); opacity: 0;
+    }
+    .f01-note-rule { flex: 0 0 60px; height: 2px; background: rgba(26,26,26,0.55); }
+  </style>
+
+  <div id="root" data-composition-id="01-the-branch" data-width="1080" data-height="1920" data-duration="10.185">
+
+    <div id="01-the-branch-ground" class="clip f01-ground" data-start="0" data-duration="10.185" data-track-index="0" style="position:absolute;inset:0;">
+      <div id="01-the-branch-field" class="f01-field"></div>
+      <div id="01-the-branch-grid" class="f01-grid"></div>
+      <div id="01-the-branch-kicker" class="f01-kicker"><span class="f01-spike">&#10033;</span><span>strategy</span></div>
+    </div>
+
+    <div id="01-the-branch-file" class="clip f01-filelayer" data-start="0" data-duration="10.185" data-track-index="1" style="position:absolute;inset:0;">
+      <div id="01-the-branch-filebox" class="f01-filebox"></div>
+      <div id="01-the-branch-filename" class="f01-filename">checkout.ts</div>
+    </div>
+
+    <div id="01-the-branch-lines" class="clip f01-lineslayer" data-start="0" data-duration="10.185" data-track-index="2" style="position:absolute;inset:0;">
+      <svg id="01-the-branch-svg" class="f01-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <path id="01-the-branch-l1" class="f01-link" d="M 330 640 L 330 780" />
+        <path id="01-the-branch-l2" class="f01-link" d="M 750 640 L 750 780" />
+        <path id="01-the-branch-l3" class="f01-link f01-link-next" d="M 540 640 L 540 1040 L 540 1090" />
+        <polygon id="01-the-branch-h1" class="f01-head" points="322,780 338,780 330,794" />
+        <polygon id="01-the-branch-h2" class="f01-head" points="742,780 758,780 750,794" />
+      </svg>
+    </div>
+
+    <div id="01-the-branch-cards" class="clip f01-cardslayer" data-start="0" data-duration="10.185" data-track-index="3" style="position:absolute;inset:0;">
+      <div id="01-the-branch-card" class="f01-card">
+        <div id="01-the-branch-cardname" class="f01-card-name">Checkout</div>
+        <div id="01-the-branch-cardsig" class="f01-card-sig">total(cart): number</div>
+      </div>
+      <div id="01-the-branch-chipa" class="f01-chip f01-chip-a">standard</div>
+      <div id="01-the-branch-chipb" class="f01-chip f01-chip-b">contract</div>
+      <div id="01-the-branch-chipnext" class="f01-chip f01-chip-a f01-chip-next" style="top:1090px;left:375px;">next rule</div>
+      <div id="01-the-branch-marker" class="f01-marker">edits here</div>
+      <div id="01-the-branch-note" class="f01-note"><span class="f01-note-rule"></span><span>every new rule lands here</span></div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.685;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["01-the-branch"] = tl;
+
+      // Measured cues (studio cues / faster-whisper, SCRIPT Line 1):
+      // Every 0.00 · checkout 0.44 · price. 2.16 · The answer 3.36 · contract. 4.82
+      // That branch 6.16 · call site 7.72 · is the 8.38 · coupling. 8.90
+
+      // ── Scene 1 (0.0–2.2s) — field, kicker, the call-site card arrives on "checkout" ──
+      tl.fromTo(el("01-the-branch-grid"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0);
+      tl.fromTo(
+        el("01-the-branch-card"),
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" },
+        0.44
+      );
+      // "asks for a price" — the signature line under the card name lifts to full ink
+      tl.fromTo(
+        el("01-the-branch-cardsig"),
+        { color: "rgba(26,26,26,0.64)" },
+        { color: "rgba(26,26,26,1)", duration: 0.4, ease: "power1.out" },
+        1.7
+      );
+
+      // ── Scene 2 (2.2–5.0s) — the branch draws down on "The answer depends…" ──
+      var LINKS = [
+        { id: "01-the-branch-l1", t: 3.36 },
+        { id: "01-the-branch-l2", t: 3.66 }
+      ];
+      LINKS.forEach(function (l) {
+        var p = el(l.id);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        // svg-path-draw: each connector grows from the card's base toward its slot
+        tl.to(p, { strokeDashoffset: 0, duration: 0.68, ease: "power3.out" }, l.t);
+      });
+      tl.fromTo(el("01-the-branch-h1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.0);
+      tl.fromTo(el("01-the-branch-h2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.3);
+      // center-outward-expansion (short-path form): the two targets land one per word
+      tl.fromTo(
+        el("01-the-branch-chipa"),
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" },
+        4.4
+      );
+      tl.fromTo(
+        el("01-the-branch-chipb"),
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" },
+        4.62
+      );
+
+      // ── Scene 3 (5.0–7.6s) — "That branch inside…" the field grows, not fills in ──
+      // the existing targets step back so the empty slot reads as the point
+      tl.to([el("01-the-branch-chipa"), el("01-the-branch-chipb")], { opacity: 0.55, duration: 0.36, ease: "power1.inOut" }, 6.16);
+      // A repeating dash pattern CANNOT be hidden by strokeDashoffset (the fork was on screen
+      // from t=0 — found in the snapshot pass, invisible to check and to verify), so the dashed
+      // branch fades in on its cue instead of drawing.      tl.fromTo(el("01-the-branch-l3"), { opacity: 0 }, { opacity: 1, duration: 0.52, ease: "power1.out" }, 6.3);
+      tl.fromTo(
+        el("01-the-branch-chipnext"),
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" },
+        7.16
+      );
+
+      // ── Scene 4 (7.6–9.685s) — the file boundary, then the one ember marker on "coupling" ──
+      tl.fromTo(
+        el("01-the-branch-filebox"),
+        { opacity: 0, scale: 0.985 },
+        { opacity: 1, scale: 1, duration: 0.56, ease: "power3.out" },
+        7.72
+      );
+      tl.fromTo(el("01-the-branch-filename"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 8.0);
+      tl.fromTo(el("01-the-branch-note"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 7.66);
+      tl.fromTo(
+        el("01-the-branch-marker"),
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" },
+        8.9
+      );
+      // sine-wave-loop: the only aliveness during the hold, one held group
+      tl.to(el("01-the-branch-lines"), { y: 2, duration: 0.36, ease: "sine.inOut", yoyo: true, repeat: 1 }, 9.0);
+    })();
+  </script>
+</template>

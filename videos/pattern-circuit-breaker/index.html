@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #FFFFEB;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="76.161"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div
+        id="el-01-the-waiting"
+        class="scene"
+        data-composition-id="01-the-waiting"
+        data-composition-src="compositions/frames/01-the-waiting.html"
+        data-start="0"
+        data-duration="4.788"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-01-the-waiting-voice"
+        src="assets/voice/01.wav"
+        data-start="0"
+        data-duration="4.288"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-02-the-seam"
+        class="scene"
+        data-composition-id="02-the-seam"
+        data-composition-src="compositions/frames/02-the-seam.html"
+        data-start="4.288"
+        data-duration="4.425"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-02-the-seam-voice"
+        src="assets/voice/02.wav"
+        data-start="4.288"
+        data-duration="3.925"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-03-three-states"
+        class="scene"
+        data-composition-id="03-three-states"
+        data-composition-src="compositions/frames/03-three-states.html"
+        data-start="8.213000000000001"
+        data-duration="21.151"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-03-three-states-voice"
+        src="assets/voice/03.wav"
+        data-start="8.213000000000001"
+        data-duration="20.651"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-04-configuration"
+        class="scene"
+        data-composition-id="04-configuration"
+        data-composition-src="compositions/frames/04-configuration.html"
+        data-start="28.864"
+        data-duration="11.807"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-04-configuration-voice"
+        src="assets/voice/04.wav"
+        data-start="28.864"
+        data-duration="11.307"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-05-the-fallback"
+        class="scene"
+        data-composition-id="05-the-fallback"
+        data-composition-src="compositions/frames/05-the-fallback.html"
+        data-start="40.171"
+        data-duration="10.975"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-05-the-fallback-voice"
+        src="assets/voice/05.wav"
+        data-start="40.171"
+        data-duration="10.475"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-06-the-code-shape"
+        class="scene"
+        data-composition-id="06-the-code-shape"
+        data-composition-src="compositions/frames/06-the-code-shape.html"
+        data-start="50.646"
+        data-duration="11.679"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-06-the-code-shape-voice"
+        src="assets/voice/06.wav"
+        data-start="50.646"
+        data-duration="11.179"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-07-where-it-goes-wrong"
+        class="scene"
+        data-composition-id="07-where-it-goes-wrong"
+        data-composition-src="compositions/frames/07-where-it-goes-wrong.html"
+        data-start="61.825"
+        data-duration="14.336"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-07-where-it-goes-wrong-voice"
+        src="assets/voice/07.wav"
+        data-start="61.825"
+        data-duration="14.336"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <!-- captions -->
+      <div
+        id="el-captions"
+        data-track-kind="captions"
+        class="scene"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="76.161"
+        data-track-index="2"
+      ></div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      // ── frame transitions (injected by transitions.mjs) ──
+      (function () { var tl = window.__timelines["main"];
+        tl.to("#el-01-the-waiting", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 4.288);
+        tl.fromTo("#el-02-the-seam", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 4.288);
+        tl.addLabel("hf:transition:01-the-waiting:02-the-seam:crossfade", 4.288);
+        tl.to("#el-02-the-seam", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 8.213);
+        tl.fromTo("#el-03-three-states", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 8.213);
+        tl.addLabel("hf:transition:02-the-seam:03-three-states:crossfade", 8.213);
+        tl.to("#el-03-three-states", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 28.864);
+        tl.fromTo("#el-04-configuration", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 28.864);
+        tl.addLabel("hf:transition:03-three-states:04-configuration:crossfade", 28.864);
+        tl.to("#el-04-configuration", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 40.171);
+        tl.fromTo("#el-05-the-fallback", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 40.171);
+        tl.addLabel("hf:transition:04-configuration:05-the-fallback:crossfade", 40.171);
+        tl.to("#el-05-the-fallback", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 50.646);
+        tl.fromTo("#el-06-the-code-shape", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 50.646);
+        tl.addLabel("hf:transition:05-the-fallback:06-the-code-shape:crossfade", 50.646);
+        tl.to("#el-06-the-code-shape", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 61.825);
+        tl.fromTo("#el-07-where-it-goes-wrong", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 61.825);
+        tl.addLabel("hf:transition:06-the-code-shape:07-where-it-goes-wrong:crossfade", 61.825);
+        tl.to({}, { duration: 76.161 }, 0); // full-span anchor — main.duration() == composition total (Studio master duration)
+      })();
+    </script>
+  </body>
+</html>

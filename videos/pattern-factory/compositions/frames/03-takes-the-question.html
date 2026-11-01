@@ -1,0 +1,188 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a;
+    }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.05) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f03-kicker {
+      position: absolute; top: 200px; left: 80px; width: 700px; height: 46px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.55cqw; letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f03-spike { display: inline-block; margin-right: 16px; font-size: 1.7cqw; color: #76766e; opacity: 0; }
+    .f03-ktext { display: inline-block; opacity: 0; }
+    .f03-chamber {
+      position: absolute; left: 150px; width: 780px; box-sizing: border-box;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      padding: 22px 30px;
+    }
+    .f03-caller { top: 286px; height: 214px; opacity: 0.55; }
+    .f03-role {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.12em; text-transform: uppercase; color: #76766e;
+    }
+    .f03-line {
+      display: block; margin-top: 16px;
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 3.8cqw; line-height: 1.1; color: #1a1a1a;
+    }
+    .f03-seam {
+      position: absolute; top: 690px; left: 150px; width: 780px; height: 250px;
+      box-sizing: border-box; border: 2px solid rgba(255,255,235,0.22); border-radius: 12px;
+      background: #181715; padding: 20px 30px;
+      display: flex; flex-direction: column; justify-content: center;
+      opacity: 0;
+    }
+    .f03-seam-role {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 2.6cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,235,0.62);
+    }
+    .f03-seam-name {
+      display: block; margin-top: 10px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-style: italic;
+      font-size: 7.2cqw; line-height: 1.02; letter-spacing: -0.012em; color: #ffffeb;
+      opacity: 0;
+    }
+    .f03-cuelabel {
+      position: absolute; top: 618px; left: 560px; width: 380px; height: 56px;
+      display: flex; align-items: center; justify-content: flex-start;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.7cqw; color: #1a1a1a;
+      opacity: 0;
+    }
+    .f03-impl {
+      position: absolute; top: 1150px; width: 330px; height: 104px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border: 2px solid #1a1a1a; border-radius: 12px; background: #ffffff;
+      font-family: "JetBrains Mono", monospace; font-weight: 400;
+      font-size: 2.9cqw; color: #1a1a1a;
+    }
+    .f03-impl-a { left: 150px; }
+    .f03-impl-b { left: 600px; }
+    .f03-arrows { position: absolute; inset: 0; }
+    .f03-arrows svg { display: block; width: 100%; height: 100%; }
+    .f03-shaft { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .f03-old { stroke: rgba(26,26,26,0.4); stroke-dashoffset: 0; }
+    .f03-new { stroke-dashoffset: 1; }
+    .f03-head { fill: #1a1a1a; opacity: 0; }
+    .f03-head-old { fill: rgba(26,26,26,0.4); opacity: 1; }
+  </style>
+
+  <div id="root" data-composition-id="03-takes-the-question" data-width="1080" data-height="1920" data-duration="8.128">
+
+    <div id="03-takes-the-question-groundclip" class="clip f03-groundclip" data-start="0" data-duration="8.128" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field" id="03-takes-the-question-field"></div>
+      <div class="f03-grid" id="03-takes-the-question-grid"></div>
+    </div>
+
+    <div id="03-takes-the-question-oldclip" class="clip f03-oldclip" data-start="0" data-duration="2.9" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f03-arrows" id="03-takes-the-question-oldarrows">
+        <svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f03-shaft f03-old" id="03-takes-the-question-old1" pathLength="1" d="M400 502 L400 640 L315 1146" />
+          <path class="f03-shaft f03-old" id="03-takes-the-question-old2" pathLength="1" d="M680 502 L680 640 L765 1146" />
+          <polygon class="f03-head f03-head-old" id="03-takes-the-question-oldh1" points="315,1150 297,1108 333,1108" />
+          <polygon class="f03-head f03-head-old" id="03-takes-the-question-oldh2" points="765,1150 747,1108 783,1108" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="03-takes-the-question-stackclip" class="clip f03-stackclip" data-start="0" data-duration="8.128" data-track-index="2" style="position:absolute;inset:0;">
+      <div class="f03-chamber f03-caller" id="03-takes-the-question-caller">
+        <div class="f03-role" id="03-takes-the-question-callerrole">caller</div>
+        <div class="f03-line" id="03-takes-the-question-callerline">asks for a gateway</div>
+      </div>
+      <div class="f03-seam" id="03-takes-the-question-seam">
+        <div class="f03-seam-role" id="03-takes-the-question-seamrole">the seam</div>
+        <div class="f03-seam-name" id="03-takes-the-question-seamname">factory</div>
+      </div>
+      <div class="f03-impl f03-impl-a" id="03-takes-the-question-impl1">StripeGateway</div>
+      <div class="f03-impl f03-impl-b" id="03-takes-the-question-impl2">RazorpayGateway</div>
+    </div>
+
+    <div id="03-takes-the-question-newclip" class="clip f03-newclip" data-start="3.62" data-duration="4.508" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f03-arrows" id="03-takes-the-question-newarrows">
+        <svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+          <path class="f03-shaft f03-new" id="03-takes-the-question-shaft1" pathLength="1" d="M540 502 L540 688" />
+          <path class="f03-shaft f03-new" id="03-takes-the-question-shaft2" pathLength="1" d="M330 942 L330 1060 L315 1142" />
+          <path class="f03-shaft f03-new" id="03-takes-the-question-shaft3" pathLength="1" d="M750 942 L750 1060 L765 1142" />
+          <polygon class="f03-head" id="03-takes-the-question-head1" points="540,690 522,648 558,648" />
+          <polygon class="f03-head" id="03-takes-the-question-head2" points="315,1146 297,1104 333,1104" />
+          <polygon class="f03-head" id="03-takes-the-question-head3" points="765,1146 747,1104 783,1104" />
+        </svg>
+      </div>
+      <div class="f03-cuelabel" id="03-takes-the-question-cuelabel">createGateway</div>
+    </div>
+
+    <div id="03-takes-the-question-chromeclip" class="clip f03-chromeclip" data-start="0" data-duration="8.128" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f03-kicker" id="03-takes-the-question-kicker">
+        <span class="f03-spike" id="03-takes-the-question-spike">&#10009;</span><span class="f03-ktext" id="03-takes-the-question-ktext" data-layout-ignore>the move</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.128;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-takes-the-question"] = tl;
+
+      // ── ground + chrome ──
+      tl.fromTo(el("03-takes-the-question-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("03-takes-the-question-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("03-takes-the-question-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0.2);
+
+      // ── Scene 1 (0.0–1.5s) — "a factory": the seam begins to expand in the gap ──
+      tl.fromTo(el("03-takes-the-question-seam"), { opacity: 0, scale: 0.06 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out", transformOrigin: "50% 50%" }, 0.2);
+      tl.fromTo(el("03-takes-the-question-seamrole"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.9);
+
+      // ── Scene 2 (1.5–3.2s) — "away": the long arrows undraw, the chamber settles ──
+      tl.to(el("03-takes-the-question-old1"), { strokeDashoffset: 1, duration: 0.5, ease: "power2.inOut" }, 2.04);
+      tl.to(el("03-takes-the-question-old2"), { strokeDashoffset: 1, duration: 0.5, ease: "power2.inOut" }, 2.16);
+      tl.to([el("03-takes-the-question-oldh1"), el("03-takes-the-question-oldh2")], { opacity: 0, duration: 0.3, ease: "power1.inOut" }, 2.04);
+
+      // ── Scene 3 (3.2–5.8s) — "the caller asks for a gateway" ──
+      tl.fromTo(el("03-takes-the-question-shaft1"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.44, ease: "power2.out" }, 3.62);
+      tl.fromTo(el("03-takes-the-question-head1"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 4.0);
+      tl.fromTo(el("03-takes-the-question-cuelabel"), { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, 4.68);
+
+      // ── Scene 4 (5.8–8.128s) — "the factory decides which one" ──
+      tl.fromTo(el("03-takes-the-question-seamname"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 5.9);
+      tl.to(el("03-takes-the-question-caller"), { opacity: 1, duration: 0.4, ease: "power1.out" }, 5.9);
+      tl.fromTo(el("03-takes-the-question-shaft2"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.42, ease: "power2.out" }, 6.4);
+      tl.fromTo(el("03-takes-the-question-shaft3"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.42, ease: "power2.out" }, 6.54);
+      tl.fromTo(el("03-takes-the-question-head2"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.8);
+      tl.fromTo(el("03-takes-the-question-head3"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 6.94);
+
+      // sine-wave-loop (subtle jitter, low amplitude, finite): seam chamber only
+      var jit = { p: 0 };
+      var seam = el("03-takes-the-question-seam");
+      var HOLD = 7.4;
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.3,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          seam.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>

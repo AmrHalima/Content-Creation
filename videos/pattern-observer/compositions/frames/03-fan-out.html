@@ -1,0 +1,153 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root { position: absolute; inset: 0; container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1a1a; }
+    .f03-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f03-grid { position: absolute; inset: 0; opacity: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px); }
+    .f03-kicker { position: absolute; top: 200px; left: 80px; width: 700px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; }
+    .f03-spike { display: inline-block; color: #956f33; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f03-ktext { display: inline-block; opacity: 0; }
+    .f03-display { position: absolute; top: 262px; left: 80px; width: 920px; height: 150px;
+      font-family: "EB Garamond", serif; font-weight: 400; font-size: 6.2cqw; line-height: 0.95;
+      letter-spacing: -0.022em; color: #1a1a1a; opacity: 0; }
+    .f03-chamber { position: absolute; top: 520px; left: 80px; width: 480px; height: 620px;
+      box-sizing: border-box; background: #1a1a1a; border: 2px solid #ffffeb; border-radius: 8px;
+      opacity: 0; overflow: hidden; }
+    .f03-strip { position: absolute; top: 0; left: 0; width: 100%; height: 100px;
+      box-sizing: border-box; display: flex; align-items: center; padding: 0 30px;
+      background: #252320; border-bottom: 2px solid rgba(255,255,235,0.18); }
+    .f03-strip-name { font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; font-weight: 700; color: #ffffeb; }
+    .f03-mini { position: absolute; left: 26px; width: 428px; height: 74px; box-sizing: border-box;
+      display: flex; align-items: center; padding: 0 18px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.6cqw;
+      color: #ffffeb;
+      border-bottom: 2px solid rgba(255,255,235,0.1); opacity: 0; }
+    .f03-shape { position: absolute; top: 1170px; left: 80px; width: 480px; height: 78px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(26,26,26,0.5); border-radius: 8px; background: #ffffff;
+      font-family: "JetBrains Mono", monospace; font-size: 2.1cqw; color: #1a1a1a; opacity: 0; }
+    .f03-svg { position: absolute; inset: 0; }
+    .f03-wire { fill: none; stroke: rgba(26,26,26,0.5); stroke-width: 4; stroke-linecap: round; }
+    .f03-wire-hot { stroke: #ffa946; stroke-width: 6; }
+    .f03-head { fill: rgba(26,26,26,0.5); opacity: 0; }
+    .f03-head-hot { fill: #ffa946; }
+    .f03-flow { fill: #ffa946; opacity: 0; }
+    .f03-tag { position: absolute; left: 680px; width: 320px; height: 88px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffeb; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.7cqw; color: #1a1a1a; opacity: 0; }
+    .f03-nobeat { position: absolute; top: 1290px; left: 600px; width: 400px; height: 78px;
+      display: flex; align-items: center; justify-content: flex-end;
+      font-family: "JetBrains Mono", monospace; font-size: 1.7cqw; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #6f6f67; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="03-fan-out" data-width="1080" data-height="1920" data-duration="9.929">
+
+    <div id="f03-fieldclip" class="clip" data-start="0" data-duration="9.929" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f03-field"></div>
+      <div id="f03-grid" class="f03-grid"></div>
+    </div>
+
+    <div id="f03-chromeclip" class="clip" data-start="0" data-duration="9.929" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f03-kicker">
+        <span id="f03-spike" class="f03-spike">&#10009;</span><span id="f03-ktext" class="f03-ktext" data-layout-ignore>THE FAN-OUT</span>
+      </div>
+      <div id="f03-display" class="f03-display">one shape</div>
+    </div>
+
+    <div id="f03-chamberclip" class="clip" data-start="0" data-duration="9.929" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f03-chamber" class="f03-chamber">
+        <div class="f03-strip"><span class="f03-strip-name">OrderService</span></div>
+        <div id="f03-mini1" class="f03-mini" style="top:132px;">sendReceipt</div>
+        <div id="f03-mini2" class="f03-mini" style="top:214px;">logOrder</div>
+        <div id="f03-mini3" class="f03-mini" style="top:296px;">recordMetric</div>
+        <div id="f03-mini4" class="f03-mini" style="top:378px;border-bottom:none;">syncSearch</div>
+      </div>
+      <div id="f03-shape" class="f03-shape" data-layout-ignore>(order: Order) =&gt; void</div>
+    </div>
+
+    <div id="f03-arrowclip" class="clip" data-start="0" data-duration="9.929" data-track-index="3" style="position:absolute;inset:0;">
+      <svg class="f03-svg" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>
+        <g id="f03-field">
+          <path id="f03-a1" class="f03-wire f03-wire-hot" d="M 562 640 L 680 640" />
+          <path id="f03-a2" class="f03-wire" d="M 562 830 L 680 830" />
+          <path id="f03-a3" class="f03-wire" d="M 562 1020 L 680 1020" />
+          <polygon id="f03-h1" class="f03-head f03-head-hot" points="660,631 660,649 678,640" />
+          <polygon id="f03-h2" class="f03-head" points="660,821 660,839 678,830" />
+          <polygon id="f03-h3" class="f03-head" points="660,1011 660,1029 678,1020" />
+          <circle id="f03-flow" class="f03-flow" cx="562" cy="640" r="10" />
+        </g>
+      </svg>
+      <div id="f03-tag1" class="f03-tag" style="top:596px;">logger</div>
+      <div id="f03-tag2" class="f03-tag" style="top:786px;">email</div>
+      <div id="f03-tag3" class="f03-tag" style="top:976px;">metrics</div>
+      <div id="f03-nobeat" class="f03-nobeat" data-layout-ignore>no names</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 9.429;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["03-fan-out"] = tl;
+
+      // ── ground ──
+      tl.fromTo(el("f03-grid"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0);
+
+      // ── Scene 1 (0.0-1.2s) — "A listener is one method": the subject is already here, rail muted ──
+      tl.fromTo(el("f03-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power2.out" }, 0.08);
+      tl.fromTo(el("f03-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.44, ease: "power1.out" }, 0.18);
+      tl.fromTo(el("f03-chamber"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.0);
+      tl.fromTo(el("f03-display"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" }, 1.22);
+      [
+        { id: "f03-mini1", t: 0.26 },
+        { id: "f03-mini2", t: 0.68 },
+        { id: "f03-mini3", t: 1.22 },
+        { id: "f03-mini4", t: 1.58 }
+      ].forEach(function (m) {
+        tl.fromTo(el(m.id), { opacity: 0 }, { opacity: 0.55, duration: 0.34, ease: "power1.out" }, m.t);
+      });
+
+      // ── Scene 2 (2.08-4.4s) — "behind an interface": the shape is named, then three arrows grow
+      //    outward from the chamber's right edge (center-outward-expansion, direct-into-slot form) ──
+      tl.fromTo(el("f03-shape"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 2.08);
+      var FAN = [
+        { wire: "f03-a1", head: "f03-h1", tag: "f03-tag1", t: 4.54 },
+        { wire: "f03-a2", head: "f03-h2", tag: "f03-tag2", t: 5.16 },
+        { wire: "f03-a3", head: "f03-h3", tag: "f03-tag3", t: 6.1 }
+      ];
+      FAN.forEach(function (f) {
+        var p = el(f.wire);
+        var len = p.getTotalLength() * 1.05;
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: 0, duration: 0.56, ease: "power3.out" }, f.t);
+        tl.fromTo(el(f.head), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, f.t + 0.44);
+        tl.fromTo(el(f.tag), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, f.t + 0.3);
+      });
+
+      // ── Scene 3 (6.4-8.0s) — "notifies its list without naming": one finite sweep down arrow 1 ──
+      tl.fromTo(el("f03-flow"), { opacity: 0, x: 0 }, { opacity: 1, x: 110, duration: 0.8, ease: "power1.inOut" }, 6.46);
+      tl.to(el("f03-flow"), { opacity: 0, duration: 0.3, ease: "power1.out" }, 7.26);
+
+      // ── Scene 4 (7.5-9.4s) — the beat lands on "naming", then the field holds ──
+      tl.fromTo(el("f03-nobeat"), { opacity: 0 }, { opacity: 1, duration: 0.46, ease: "power1.out" }, 7.56);
+      tl.to(el("f03-field"), { y: 2, duration: 0.36, ease: "sine.inOut", yoyo: true, repeat: 1 }, 8.6);
+    })();
+  </script>
+</template>

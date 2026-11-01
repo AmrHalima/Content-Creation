@@ -1,0 +1,218 @@
+<template>
+  <style>
+    @font-face{font-family:"EB Garamond";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-400.woff2") format("woff2");}
+    @font-face{font-family:"EB Garamond";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/EBGaramond-700.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/Inter-400.woff2") format("woff2");}
+    @font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/Inter-700.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");}
+    @font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-700.woff2") format("woff2");}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      container-type: size;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1a1a;
+    }
+    .f04-field { position: absolute; inset: 0; background: #ffffeb; }
+    .f04-grid {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(to right, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(to bottom, rgba(26,26,26,0.055) 0 1px, transparent 1px 90px);
+      opacity: 0;
+    }
+    .f04-kicker {
+      position: absolute; top: 214px; left: 84px; width: 620px; height: 44px;
+      display: flex; align-items: center; white-space: nowrap;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f04-spike { display: inline-block; color: #76766e; font-size: 1.7cqw; margin-right: 14px; opacity: 0; }
+    .f04-ktext { display: inline-block; opacity: 0; }
+
+    .f04-box {
+      position: absolute; left: 168px; width: 744px; height: 208px;
+      box-sizing: border-box; border-radius: 8px;
+      display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+      gap: 10px; padding: 0 36px; opacity: 0;
+    }
+    .f04-caller { top: 302px; background: #e4e4d0; border: 4px solid #1a1a1a; }
+    .f04-seam {
+      top: 700px; height: 232px; background: #181715;
+      border: 2px solid rgba(255,255,235,0.22);
+    }
+    .f04-vendor { top: 1146px; background: #ffffeb; border: 2px solid rgba(26,26,26,0.34); }
+    .f04-name {
+      display: block;
+      font-family: "JetBrains Mono", monospace; font-size: 2.9cqw; line-height: 1.1;
+      letter-spacing: 0.01em; color: #1a1a1a; white-space: nowrap;
+    }
+    .f04-seam .f04-name { color: #ffffeb; }
+    .f04-vendor .f04-name { color: #46463f; }
+    .f04-role {
+      display: block;
+      font-family: "JetBrains Mono", monospace; font-size: 1.6cqw; line-height: 1;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #76766e;
+    }
+    .f04-vendor .f04-role { color: #8f8f85; }
+    .f04-tab {
+      position: absolute; top: 672px; left: 168px; height: 62px; width: 336px;
+      box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      background: #f0d7ff; border: 2px solid #1a1a1a; border-radius: 9999px;
+      font-family: "JetBrains Mono", monospace; font-size: 2.3cqw; color: #1a1a1a;
+      white-space: nowrap; opacity: 0;
+    }
+    .f04-edge {
+      position: absolute; top: 700px; left: 156px; width: 6px; height: 232px;
+      background: #ffa946; opacity: 0;
+    }
+
+    .f04-wires { position: absolute; inset: 0; }
+    .f04-wires svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .f04-dep { fill: none; stroke: #1a1a1a; stroke-width: 5; stroke-linecap: round; }
+    .f04-imp { fill: none; stroke: #1a1a1a; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 12; }
+    .f04-no { fill: none; stroke: #8f8f85; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 10 12; }
+    .f04-head { fill: #1a1a1a; opacity: 0; }
+    .f04-lane {
+      position: absolute; width: 260px; height: 36px;
+      display: flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-size: 1.55cqw; line-height: 1;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #76766e; opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-three-chambers" data-width="1080" data-height="1920" data-duration="8.469">
+
+    <div id="f04-ground" class="clip" data-start="0" data-duration="8.469" data-track-index="0" style="position:absolute;inset:0;">
+      <div class="f04-field"></div>
+      <div id="f04-grid" class="f04-grid"></div>
+    </div>
+
+    <div id="f04-chrome" class="clip" data-start="0" data-duration="8.469" data-track-index="1" style="position:absolute;inset:0;">
+      <div class="f04-kicker">
+        <span id="f04-spike" class="f04-spike">&#10009;</span><span id="f04-ktext" class="f04-ktext" data-layout-ignore>THE SEAM</span>
+      </div>
+    </div>
+
+    <div id="f04-graph" class="clip" data-start="0.2" data-duration="8.269" data-track-index="2" style="position:absolute;inset:0;">
+      <div id="f04-seam" class="f04-box f04-seam">
+        <span class="f04-name">VendorPayAdapter</span>
+        <span class="f04-role" data-layout-ignore>the seam</span>
+      </div>
+      <div id="f04-caller" class="f04-box f04-caller">
+        <span class="f04-name">CheckoutService</span>
+        <span class="f04-role" data-layout-ignore>caller</span>
+      </div>
+      <div id="f04-vendor" class="f04-box f04-vendor">
+        <span class="f04-name">BankClient</span>
+        <span class="f04-role" data-layout-ignore>vendor</span>
+      </div>
+      <div id="f04-tab" class="f04-tab" data-layout-allow-overlap>PaymentGateway</div>
+      <div id="f04-edge" class="f04-edge"></div>
+    </div>
+
+    <div id="f04-dep" class="clip" data-start="1.8" data-duration="6.669" data-track-index="3" style="position:absolute;inset:0;">
+      <div class="f04-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f04-dep-a" class="f04-dep" d="M 540 516 L 540 686" />
+          <polygon id="f04-dep-ha" class="f04-head" points="525,676 540,704 555,676" />
+          <path id="f04-dep-b" class="f04-dep" d="M 540 938 L 540 1128" />
+          <polygon id="f04-dep-hb" class="f04-head" points="525,1118 540,1146 555,1118" />
+        </svg>
+      </div>
+      <div id="f04-dep-tag" class="f04-lane" style="top:576px; left:566px;" data-layout-ignore>depends on</div>
+    </div>
+
+    <div id="f04-imp" class="clip" data-start="4.8" data-duration="3.669" data-track-index="4" style="position:absolute;inset:0;">
+      <div class="f04-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f04-imp-a" class="f04-imp" d="M 300 516 L 300 660" />
+          <polygon id="f04-imp-ha" class="f04-head" points="287,650 300,674 313,650" />
+          <path id="f04-imp-b" class="f04-imp" d="M 780 1138 L 780 950" />
+          <polygon id="f04-imp-hb" class="f04-head" points="767,962 780,936 793,962" />
+        </svg>
+      </div>
+      <div id="f04-imp-ta" class="f04-lane" style="top:596px; left:80px; width:200px;" data-layout-ignore>imports</div>
+      <div id="f04-imp-tb" class="f04-lane" style="top:1006px; left:812px; width:200px;" data-layout-ignore>imports</div>
+    </div>
+
+    <div id="f04-noimp" class="clip" data-start="6.5" data-duration="1.969" data-track-index="5" style="position:absolute;inset:0;">
+      <div class="f04-wires">
+        <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path id="f04-no-a" class="f04-no" d="M 96 512 L 96 1250" />
+        </svg>
+      </div>
+      <div id="f04-no-tag" class="f04-lane" style="top:1276px; left:40px; width:340px;" data-layout-ignore>never this line</div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var D = 8.469;
+      var el = function (id) { return document.getElementById(id); };
+      var tl = gsap.timeline({ paused: true });
+      window.__timelines["04-three-chambers"] = tl;
+
+      function draw(id, at, dur, end) {
+        var p = el(id);
+        var len = p.getTotalLength();
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        tl.to(p, { strokeDashoffset: (end || 0), duration: dur, ease: "power3.out" }, at);
+        return p;
+      }
+
+      // ── ground ──
+      tl.fromTo(el("f04-grid"), { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+      tl.fromTo(el("f04-spike"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      tl.fromTo(el("f04-ktext"), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power1.out" }, 0.22);
+
+      // ── Scene 1 (0.0–1.4s) "That seam is where your domain" : the seam chamber arrives on the word ──
+      tl.fromTo(el("f04-seam"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.46, ease: "power3.out" }, 0.36);
+
+      // ── Scene 2 (1.4–3.6s) "stops and the vendor starts": caller above, vendor below, spine draws ──
+      tl.fromTo(el("f04-caller"), { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 1.24);
+      tl.fromTo(el("f04-tab"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 1.76);
+      draw("f04-dep-a", 1.9, 0.5);
+      tl.fromTo(el("f04-dep-ha"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out" }, 2.32);
+      tl.fromTo(el("f04-dep-tag"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 2.4);
+      tl.fromTo(el("f04-vendor"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.44, ease: "power3.out" }, 3.06);
+      draw("f04-dep-b", 3.56, 0.5);
+      tl.fromTo(el("f04-dep-hb"), { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power1.out" }, 3.98);
+
+      // ── Scene 3 (3.6–6.4s) "Nothing in your code knows their client exists" ──
+      tl.fromTo(el("f04-imp-ta"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 4.94);
+      draw("f04-imp-a", 5.1, 0.42);
+      tl.fromTo(el("f04-imp-ha"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 5.44);
+      draw("f04-imp-b", 5.7, 0.46);
+      tl.fromTo(el("f04-imp-hb"), { opacity: 0 }, { opacity: 1, duration: 0.24, ease: "power1.out" }, 6.08);
+      tl.fromTo(el("f04-imp-tb"), { opacity: 0 }, { opacity: 1, duration: 0.34, ease: "power1.out" }, 6.14);
+
+      // the line that must not exist draws, then is withdrawn (opacity only, no movement)
+      draw("f04-no-a", 6.7, 0.5);
+      tl.fromTo(el("f04-no-tag"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 7.0);
+      tl.to(["#f04-no-a", "#f04-no-tag"], { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.54);
+
+      // ── Scene 4 (6.4–8.0s) the seam takes the frame's single ember edge ──
+      tl.fromTo(el("f04-edge"), { opacity: 0 }, { opacity: 1, duration: 0.36, ease: "power1.out" }, 6.22);
+
+      // ── Scene 5 (8.0–8.47s) held stack, jitter on the seam box only ──
+      var jit = { p: 0 };
+      var box = el("f04-seam");
+      var HOLD = 7.9;
+      gsap.set(box, { transformOrigin: "50% 50%" });
+      tl.to(jit, {
+        p: Math.PI * 2 * 0.2,
+        duration: D - HOLD,
+        ease: "none",
+        onUpdate: function () {
+          box.style.transform = "translateY(" + (Math.sin(jit.p) * 1.6).toFixed(3) + "px)";
+        }
+      }, HOLD);
+    })();
+  </script>
+</template>
